@@ -281,7 +281,21 @@ MODAL AGREGAR BODEGA
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="tel" class="form-control input" name="nuevoTelefono" placeholder="Ingresar teléfono" required>
+                        <!-- Esta funcion permite que se pueda ingresar solo numeros con un minimo y maximo de 9 -->
+                        <input 
+                          type="text" 
+                          class="form-control input" 
+                          name="nuevoTelefono" 
+                          placeholder="Ingresar teléfono" 
+                          required 
+                          minlength="9" 
+                          maxlength="9" 
+                          pattern="\d{9}" 
+                          inputmode="numeric" 
+                          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                        >
+
+
 
                       </div>
                   </div>
