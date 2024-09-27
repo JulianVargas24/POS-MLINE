@@ -4,12 +4,12 @@ require_once "conexion.php";
 
 class ModeloCompra
 {
-
 	/*=============================================
 	CREAR ORDEN COMPRA
 	=============================================*/
 
-	static public function mdlIngresarCompra($tabla, $datos){
+	static public function mdlIngresarCompra($tabla, $datos)
+	{
 
 		$con = Conexion::conectar();
 		$stmt = $con->prepare("INSERT INTO $tabla(codigo, id_proveedor, fecha_emision, id_centro, id_bodega, subtotal, descuento, total_neto, iva, total_final,  id_medio_pago, id_plazo_pago, observacion, productos, folio_oc) 
@@ -31,15 +31,15 @@ class ModeloCompra
 		$stmt->bindParam(":folio_oc", $datos["folio_oc"], PDO::PARAM_STR);
 
 		if ($stmt->execute()) {
-            return "ok";
+			return "ok";
 		} else {
 
 			return "error";
 		}
-
 	}
 
-	static public function mdlEditarCompra($tabla, $datos){
+	static public function mdlEditarCompra($tabla, $datos)
+	{
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET codigo = :codigo, fecha_emision = :fecha_emision, fecha_vencimiento = :fecha_vencimiento, id_centro = :id_centro, id_bodega = :id_bodega, subtotal = :subtotal,
 												descuento = :descuento, total_neto = :total_neto, iva = :iva, total_final = :total_final, id_medio_pago = :id_medio_pago, id_plazo_pago = :id_plazo_pago, id_proveedor = :id_proveedor,
 												observacion = :observacion, productos = :productos WHERE id = :id");
@@ -61,8 +61,6 @@ class ModeloCompra
 		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
 
 
-
-
 		if ($stmt->execute()) {
 
 			return "ok";
@@ -76,27 +74,26 @@ class ModeloCompra
 	}
 
 	static public function mdlActualizarEstadoOrdenCompra($datos)
-    {
+	{
 
-        $estado = 'Cerrada';
+		$estado = 'Cerrada';
 
-        $stmt = Conexion::conectar()->prepare("UPDATE orden_compra SET estado = :estado WHERE codigo = :id;");
+		$stmt = Conexion::conectar()->prepare("UPDATE orden_compra SET estado = :estado WHERE codigo = :id;");
 
 
-        $stmt->bindParam(":estado", $estado, PDO::PARAM_STR);
-        $stmt->bindParam(":id", $datos["folio_oc"], PDO::PARAM_INT);
-        if ($stmt->execute()) {
+		$stmt->bindParam(":estado", $estado, PDO::PARAM_STR);
+		$stmt->bindParam(":id", $datos["folio_oc"], PDO::PARAM_INT);
+		if ($stmt->execute()) {
 
-            return "true";
-        } else {
+			return "true";
+		} else {
 
-            return "false";
-        }
+			return "false";
+		}
 
-        $stmt->close();
-        $stmt = null;
-    }
-
+		$stmt->close();
+		$stmt = null;
+	}
 
 	static public function mdlMostrarCompras($tabla, $item, $valor)
 	{
@@ -124,7 +121,7 @@ class ModeloCompra
 		$stmt = null;
 	}
 
-	static public function mdlEliminarOrdenCompra($tabla, $datos)
+	static public function mdlEliminarCompra($tabla, $datos)
 	{
 
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
