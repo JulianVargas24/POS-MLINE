@@ -179,8 +179,8 @@ if ($_SESSION["perfil"] == "Especial") {
             </div>
 
 
-
-            <button type="button" class="btn btn-default">Salir</button>
+            <!-- Botones en  -->
+            <button type="button" class="btn btn-default" onclick="window.location.href='ajuste';">Salir</button>
             <button type="submit" class="btn btn-primary">Aplicar Ajustes</button>
         </div>
 
