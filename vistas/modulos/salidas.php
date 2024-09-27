@@ -198,8 +198,8 @@ if($_SESSION["perfil"] == "Especial"){
                                 
                             </div>
                             
-                            
-                            <button type="button" class="btn btn-default">Salir</button>
+                            <!-- Botones en SALIDA MANUAL -->
+                            <button type="button" class="btn btn-default" onclick="window.location.href='salida';">Salir</button>
                             <button type="submit" class="btn btn-primary">Guardar Salida</button>
                     </form>
                     <form role="form" method="post" class="formularioEntradaInventario" id="orden">    
@@ -345,8 +345,8 @@ if($_SESSION["perfil"] == "Especial"){
                                 
                             </div>
                             
-                            
-                            <button type="button" class="btn btn-default">Salir</button>
+                             <!-- Botones en BODEGA a ORDEN de TRABAJO -->
+                            <button type="button" class="btn btn-default" onclick="window.location.href='salida';">Salir</button>
                             <button type="submit" class="btn btn-primary">Guardar Salida</button>
                     </form>     
                         <?php
