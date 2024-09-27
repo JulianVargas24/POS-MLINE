@@ -206,8 +206,8 @@ if($_SESSION["perfil"] == "Especial"){
                     
                 </div>
                 
-                
-                <button type="button" class="btn btn-default">Salir</button>
+                <!-- Botones en BODEGA a BODEGA -->
+                <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
                 <button type="submit" class="btn btn-primary">Guardar Entrada</button>
             </form>
             <form role="form" method="post" class="formularioEntradaInventario" id="manual">    
@@ -353,8 +353,8 @@ if($_SESSION["perfil"] == "Especial"){
                     
                 </div>
                 
-                
-                <button type="button" class="btn btn-default">Salir</button>
+                <!-- Botones en INGRESO MANUAL a BODEGA -->
+                <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
                 <button type="submit" class="btn btn-primary">Guardar Entrada</button>
             </form>
             <form role="form" method="post" class="formularioEntradaInventario" id="orden">    
@@ -499,8 +499,8 @@ if($_SESSION["perfil"] == "Especial"){
                     
                 </div>
                 
-                
-                <button type="button" class="btn btn-default">Salir</button>
+                <!-- Botones en ORDEN de TRABAJO a BODEGA -->
+                <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
                 <button type="submit" class="btn btn-primary">Guardar Entrada</button>
             </form>
             <form role="form" method="post" class="formularioEntradaInventario" id="carga">    
@@ -646,8 +646,8 @@ if($_SESSION["perfil"] == "Especial"){
                     
                 </div>
                 
-                
-                <button type="button" class="btn btn-default">Salir</button>
+                <!-- Botones en CARGA de PRODUCTO -->
+                <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
                 <button type="submit" class="btn btn-primary">Guardar Entrada</button>
             </form>
             
