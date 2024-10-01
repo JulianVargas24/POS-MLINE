@@ -175,33 +175,29 @@ static public function mdlEditarCotizacionExenta($tabla, $datos){
     $stmt = null;
 }
 
-static public function mdlMostrarCotizaciones($tabla, $item, $valor){
-
-	if($item != null){
-
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
-
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-		$stmt -> execute();
-
-		return $stmt -> fetch();
-
-	}else{
-
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-
-		$stmt -> execute();
-
-		return $stmt -> fetchAll();
-
-	}
-
-	$stmt -> close();
-
-	$stmt = null;
+static public function mdlMostrarCotizaciones($tabla, $item, $valor, $fechaInicial = null, $fechaFinal = null) {
+    // Si se proporcionan fechas, filtra por rango de fechas
+    if ($fechaInicial && $fechaFinal) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_emision BETWEEN :fechaInicial AND :fechaFinal");
+        $stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
+        $stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(); // Devuelve todas las filas que coinciden
+    } elseif ($item != null) {
+        // Si hay un ítem específico, filtra por ese ítem
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+        $stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(); // Devuelve solo una fila
+    } else {
+        // Si no hay filtros, devuelve todas las cotizaciones
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+        $stmt->execute();
+        return $stmt->fetchAll(); // Devuelve todas las filas
+    }
 
 }
+
 
 static public function mdlEliminarCotizacion($tabla, $datos){
 

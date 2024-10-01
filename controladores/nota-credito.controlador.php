@@ -49,7 +49,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito ha sido guardada correctamente",
+						  title: "La Nota de Credito Afecta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -111,7 +111,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito ha sido guardada correctamente",
+						  title: "La Nota de Credito exenta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -172,7 +172,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito ha sido guardada correctamente",
+						  title: "La Nota de Credito  exenta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){

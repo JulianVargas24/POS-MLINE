@@ -696,7 +696,7 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>
                                         
                                     
-                   <button type="button" class="btn btn-default">Salir</button>
+                    <button type="button" class="btn btn-default">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar Facturacion</button>                 
                 </form>
                     <?php

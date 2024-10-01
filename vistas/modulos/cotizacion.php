@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      COTIZACION AFECTA
+      COTIZACIÓN AFECTA
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Crear Cotizacion Afecta</li>
+      <li class="active">Crear Cotización Afecta</li>
     
     </ol>
 
@@ -92,7 +92,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>                
                                                             <input type="text" class="form-control" id="traerDireccion" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -145,10 +145,10 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                                         <div class="box box-info">
                                                 <div class="box-body">
-                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Cotizacion</h4>
+                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Cotización</h4>
                                                         <div class="row" style="margin-bottom:5px;">
                                                             <div class="col-xs-6">
-                                                            <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                            <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
                                                                 <div class="form-group">
                                                                     <div class="input-group">
                                                                         
@@ -258,7 +258,7 @@ if($_SESSION["perfil"] == "Especial"){
                                 $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
 
                                 ?>
-                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;color:red;"> COTIZACION</h4>
+                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;color:red;"> COTIZACIÓN</h4>
                                         <div class="row" style="margin-top:5px;">
                                             <div class="col-xs-7">
                                                  <div class="form-group">

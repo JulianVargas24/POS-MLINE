@@ -93,7 +93,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>                
                                                             <input type="text" class="form-control" id="traerDireccion" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -146,11 +146,11 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                                         <div class="box box-info">
                                                 <div class="box-body">
-                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Emision</h4>
+                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Emisión</h4>
                                                         <div class="row" style="margin-bottom:5px;">
                                                         
                                                             <div class="col-xs-6">
-                                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                                <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
                                                                 <div class="form-group">
                                                                     <div class="input-group">
                                                                         
@@ -284,7 +284,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                         <div class="col-xs-6">
                                                                             <div class="form-group">
                                                                                 <div class="input-group">
-                                                                                <span class="input-group-addon" style="background-color:green; color:white; font-weight:bold">F.EMISION</span>
+                                                                                <span class="input-group-addon" style="background-color:green; color:white; font-weight:bold">F.EMISIÓN</span>
                                                                                     <input type="date" class="form-control" name="nuevaFechaDocumento" id="nuevaFechaDocumento">
                                                                                 </div>
                                                                             </div>
@@ -327,7 +327,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                 </div>
                                             </div> 
                                         </div>
-                                        <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">RAZON REFERENCIA:</h4>
+                                        <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">RAZÓN REFERENCIA:</h4>
                                         <div class="row" style="margin-top:5px;">
                                             <div class="col-xs-12">
                                                  <div class="form-group">
@@ -768,7 +768,7 @@ MODAL VER COTIZACIONES
          <tr>
            
            <th>Folio</th>
-           <th>Emision</th>
+           <th>Emisión</th>
            <th>Vencimiento</th>
            <th>Cliente</th>
            <th>Observacion</th>
@@ -876,7 +876,7 @@ MODAL VER COTIZACIONES
                         <th style="width:10px">#</th>
                         <th>Folio</th>
                         <th>Nombre</th>
-                        <th>Fecha Emision</th>
+                        <th>Fecha Emisión</th>
                         <th>Observacion</th>
                         <th>Acciones</th>
 

@@ -12,7 +12,7 @@ class ControladorVentaBoleta
 
         if (isset($_POST["nuevoCodigo"])) {
 
-            $tabla = "venta_boleta";
+            $tabla = "venta_boleta_afecta";
 
             $datos = array(
                 "codigo" => $_POST["nuevoCodigo"],
@@ -52,7 +52,7 @@ class ControladorVentaBoleta
                     
                     swal({
                           type: "success",
-                          title: "La Venta con Boleta ha sido guardada correctamente",
+                          title: "La Venta con Boleta afecta ha sido guardada correctamente",
                           showConfirmButton: true,
                           confirmButtonText: "Cerrar"
                           }).then(function(result){

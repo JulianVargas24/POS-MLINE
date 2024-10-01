@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      BOLETA AFECTA
+       CREAR VENTA CON BOLETA AFECTA
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Crear Venta con Boleta</li>
+      <li class="active">Crear Venta con Boleta Afecta</li>
     
     </ol>
 
@@ -93,7 +93,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>                
                                                             <input type="text" class="form-control" id="traerDireccion" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -146,7 +146,7 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                                         <div class="box box-info">
                                                 <div class="box-body">
-                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Emision</h4>
+                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Emisión</h4>
                                                         <div class="row" style="margin-bottom:5px;">
                                                         <div class="col-xs-5">
                                                         <?php
@@ -165,7 +165,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                
                                                                 <div class="form-group">
                                                                     <div class="input-group">
-                                                                    <span class="input-group-addon" style="font-weight:bold;background-color:green;color:white;">EMISION</span>
+                                                                    <span class="input-group-addon" style="font-weight:bold;background-color:green;color:white;">EMISIÓN</span>
                                                                         <input style="font-size:16px;font-weight:bold;padding:7px;" type="date" class="form-control input" name="nuevaFechaEmision" id="nuevaFechaEmision" value="<?php echo date("Y-m-d");?>">
                                                                     </div>
                                                                 </div>

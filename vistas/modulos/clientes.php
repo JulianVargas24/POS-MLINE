@@ -432,7 +432,7 @@ MODAL AGREGAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                            <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar email" required>
+                            <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                           </div>
                       </div>
@@ -530,7 +530,7 @@ MODAL AGREGAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoEmailCobranza" placeholder="Ingresar correo" required>
+                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                       </div>
                   </div>
@@ -908,7 +908,7 @@ MODAL EDITAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                            <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required>
+                            <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                           </div>
                       </div>
@@ -1006,7 +1006,7 @@ MODAL EDITAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoEmailCobranza" placeholder="Ingresar correo" required>
+                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                       </div>
                   </div>

@@ -18,7 +18,8 @@ $totalProductos = count($productos);
 $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor, $orden);
 $totalProveedores = count($proveedores);
 
-$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);/$totalUsuarios = count($usuarios) - 1;
+$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);
+$totalUsuarios = count($usuarios) - 1;
 
 $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor, $orden);
 $totalBodegas = count($bodegas);

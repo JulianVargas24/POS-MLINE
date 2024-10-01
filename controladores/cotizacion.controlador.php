@@ -210,22 +210,29 @@ class ControladorCotizacion{
  		}
 	}
 
-	static public function ctrMostrarCotizaciones($item, $valor){
-
+	static public function ctrMostrarCotizaciones($item, $valor) {
 		$tabla = "cotizaciones";
-
-		$respuesta = ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor);
-
-		return $respuesta;
 	
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;    
+	
+		// Llamar a la función del modelo para obtener cotizaciones
+		return ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 	}
+	
 	static public function ctrMostrarCotizacionesExentas($item, $valor){
 
 		$tabla = "cotizaciones_exentas";
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;    
+	
+		// Llamar a la función del modelo para obtener cotizaciones
+		return ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+		//$respuesta = ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor);
 
-		$respuesta = ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor);
-
-		return $respuesta;
+		//return $respuesta;
 	
 	}
 	
@@ -489,11 +496,19 @@ class ControladorCotizacion{
 				$negocio = ControladorNegocios::ctrMostrarNegocios("id", $item["id_unidad_negocio"]);
 				
 			
+					// Verifica que los resultados no sean falsos
+				$clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+				$vendedorNombre = isset($vendedor["nombre"]) ? $vendedor["nombre"] : "No disponible";
+				$bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+				$plazoNombre = isset($plazos["nombre"]) ? $plazos["nombre"] : "No disponible";
+				$medioNombre = isset($medios["medio_pago"]) ? $medios["medio_pago"] : "No disponible";
+				$negocioNombre = isset($negocio["unidad_negocio"]) ? $negocio["unidad_negocio"] : "No disponible";
+
 			 echo utf8_decode("<tr>
 			 			<td style='border:1px solid #eee;'>".$item["codigo"]."</td> 
-			 			<td style='border:1px solid #eee;'>".$cliente["nombre"]."</td>
-						 <td style='border:1px solid #eee;'>".$vendedor["nombre"]."</td>
-						 <td style='border:1px solid #eee;'>".$bodega["nombre"]."</td>
+						<td style='border:1px solid #eee;'>".$clienteNombre."</td>
+						<td style='border:1px solid #eee;'>".$vendedorNombre."</td>
+						<td style='border:1px solid #eee;'>".$bodegaNombre."</td>
 						
 						 <td style='border:1px solid #eee;'>");
 						 

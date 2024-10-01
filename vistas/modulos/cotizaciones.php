@@ -74,6 +74,8 @@ if($xml){
           <?php
           if($_SESSION["perfil"]=="Administrador")
           ?> 
+          
+
         <div class="input-group">
 
           <button type="button" class="btn btn-default" id="daterange-cotizacion">
@@ -100,6 +102,8 @@ if($xml){
 
           </button>
 
+          <a href="cotizaciones"> <button class="btn btn-success ml-2"> <i class="fa fa-home"> </i> </button> </a>
+
         </div>
 
         <div class="box-tools pull-right">
@@ -115,7 +119,6 @@ if($xml){
   
       </div>
        
-
       <div class="box-body">
 
       
@@ -127,7 +130,7 @@ if($xml){
            
            <th>Folio</th>
            <th>Documento</th>
-           <th>Emision</th>
+           <th>Emisión</th>
            <th>Vencimiento</th>
            <th>Vendedor</th>
            <th>Unidad de Negocio</th>

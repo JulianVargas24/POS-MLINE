@@ -573,7 +573,9 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>
                                         
                                     
-                   <button type="button" class="btn btn-default">Salir</button>
+                    <a href="cotizaciones">                 
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
                     <button type="submit" class="btn btn-primary">Guardar cambios</button>                 
                 </form>
                     <?php
