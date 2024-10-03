@@ -136,7 +136,7 @@ class ControladorUsuarios{
 					}
 
 					if($_FILES["nuevaFoto"]["type"] == "image/png"){
-
+			
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 						=============================================*/
