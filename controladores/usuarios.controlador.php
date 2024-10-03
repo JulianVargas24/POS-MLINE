@@ -81,7 +81,7 @@ class ControladorUsuarios{
 	}
 
 	/*=============================================
-	REGISTRO DE USUARIO
+	CREAR USUARIO
 	=============================================*/
 
 	static public function ctrCrearUsuario(){

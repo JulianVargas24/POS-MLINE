@@ -339,7 +339,7 @@ MODAL AGREGAR CLIENTE
 
                       <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
                             
-                            <option value="">Seleccionar Tipo Cliente</option>
+                            <option value="">Seleccionar Tipo Producto</option>
                             <?php
     
                               $item = null;
@@ -813,7 +813,7 @@ MODAL EDITAR CLIENTE
 
                       <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
                             
-                            <option value="">Seleccionar Tipo Cliente</option>
+                            <option value="">Seleccionar Tipo Producto</option>
                             <?php
     
                               $item = null;
@@ -838,22 +838,33 @@ MODAL EDITAR CLIENTE
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
                       <select class="form-control input" id="editarFactor" name="editarFactor" required>
-                            
-                        <option value="1">PRECIO LISTA - 0%</option>
-                        <?php
 
-                          $item = null;
-                          $valor = null;
+    <?php
+    // Si existe un valor previamente seleccionado, lo usas
+    if (isset($factorSeleccionado)) {
+        echo '<option value="'.$factorSeleccionado.'">PRECIO LISTA - %' . $factorSeleccionado . '</option>';
+    } else {
+        // Si no hay valor seleccionado, puedes mostrar esta opción predeterminada
+        echo '<option value="">PRECIO LISTA - 0%</option>';
+    }
 
-                          $listaPrecio = ControladorListas::ctrMostrarListas($item, $valor);
+    $item = null;
+    $valor = null;
 
-                          foreach ($listaPrecio as $key => $value) {
-                            if($value["id"] != 1){
-                            echo '<option value="'.$value["id"].'">'.$value["nombre_lista"].'- %'.$value["factor"].'</option>';}
-                          }
+    // Obtener todas las listas de precios
+    $listaPrecio = ControladorListas::ctrMostrarListas($item, $valor);
 
-                        ?>
-                      </select>
+    // Iterar sobre cada lista de precios y crear una opción en el select
+    foreach ($listaPrecio as $key => $value) {
+        if ($value["id"] != 1) {
+            // Comparar con el factor seleccionado
+            $selected = ($value["id"] == $factorSeleccionado) ? 'selected' : '';
+            echo '<option value="'.$value["id"].'" '.$selected.'>'.$value["nombre_lista"].'- %'.$value["factor"].'</option>';
+        }
+    }
+    ?>
+</select>
+
 
                     </div>
                     </div>
@@ -908,7 +919,7 @@ MODAL EDITAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                            <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                            <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                           </div>
                       </div>
@@ -1006,7 +1017,7 @@ MODAL EDITAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                        <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                       </div>
                   </div>
