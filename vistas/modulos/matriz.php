@@ -1,17 +1,11 @@
 <?php
-
 if($_SESSION["perfil"] == "Especial"){
-
   echo '<script>
-
     window.location = "inicio";
-
   </script>';
 
   return;
-
 }
-
 ?>
 
 <div class="content-wrapper">
@@ -19,9 +13,7 @@ if($_SESSION["perfil"] == "Especial"){
   <section class="content-header">
     
     <h1>
-      
       Administrar Matriz
-    
     </h1>
 
     <ol class="breadcrumb">
@@ -48,8 +40,6 @@ if($_SESSION["perfil"] == "Especial"){
         </button>';
         }
       ?>
-        
-        
 
       </div>
 
@@ -74,7 +64,6 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Tipo Cliente</th>
            <th>Tipo Producto</th>
            <th>Acciones</th>
-
          </tr> 
 
         </thead>
@@ -82,14 +71,12 @@ if($_SESSION["perfil"] == "Especial"){
         <tbody>
 
         <?php
-
           $item = null;
           $valor = null;
 
           $matrices = ControladorMatrices::ctrMostrarMatrices($item, $valor);
 
           foreach ($matrices as $key => $value) {
-            
 
             echo '<tr>
 
@@ -109,31 +96,20 @@ if($_SESSION["perfil"] == "Especial"){
 
                     <td>
 
-                    <div class="btn-group">';
-                       if($_SESSION["perfil"] == "Administrador" && $_SESSION["nombre"] == "MLINE"){
-                       
-                     echo '<button class="btn btn-warning btnEditarMatriz" idMatriz="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarMatriz"><i class="fa fa-pencil"></i></button>
-                     
+                        <div class="btn-group">';
 
-                      <button class="btn btn-danger btnEliminarMatriz" idMatriz="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                            if($_SESSION["perfil"] == "Administrador" && $_SESSION["nombre"] == "MLINE"){
+                                echo '<button class="btn btn-warning btnEditarMatriz" idMatriz="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarMatriz"><i class="fa fa-pencil"></i></button>;
+                                <button class="btn btn-danger btnEliminarMatriz" idMatriz="'.$value["id"].'"><i class="fa fa-times"></i></button>';
 
-                      }if($_SESSION["perfil"] == "Administrador"){
-                        echo '<button class="btn btn-success btnEditarMatrizCliente" idMatrizCliente="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarMatrizCliente"><i class="fa fa-pencil"></i></button>';
+                            }if($_SESSION["perfil"] == "Administrador"){
+                                echo '<button class="btn btn-success btnEditarMatrizCliente" idMatrizCliente="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarMatrizCliente"><i class="fa fa-pencil"></i></button>';
+                            }
+                        echo '</div>  
 
-                      }
-
-                      
-                    echo '</div>  
-
-                  </td>
-
-
-                    
-
+                    </td>
                   </tr>';
-          
             }
-
         ?>
    
         </tbody>
@@ -559,13 +535,8 @@ if($_SESSION["perfil"] == "Especial"){
                         </div>
                     </div>    
                   </div>
-                </div> 
-
-
-           
-  
+                </div>
           </div>
-
         </div>
 
         <!--=====================================
@@ -847,10 +818,6 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>    
                   </div>
                 </div>
-
-
-           
-  
           </div>
 
         </div>
@@ -965,11 +932,9 @@ if($_SESSION["perfil"] == "Especial"){
                                 foreach ($regiones as $key => $value){
                                 echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
                                 }
-
                                 ?>
             
                             </select>
-
 
                           </div>
                       </div>   
@@ -1134,13 +1099,7 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>    
                   </div>
                 </div>
-
-
-
-           
-  
           </div>
-
         </div>
 
         <!--=====================================
@@ -1169,6 +1128,12 @@ if($_SESSION["perfil"] == "Especial"){
   </div>
 
 </div>
+<?php
+
+$eliminarMatriz = new ControladorMatrices();
+$eliminarMatriz -> ctrEliminarMatriz();
+
+?>
 
 
 

@@ -33,14 +33,8 @@ $(".tablas").on("click", ".btnEditarMatriz", function(){
             $("#editarFechaVencimiento").val(respuesta["fecha_vencimiento"]);
             $("#editarTipoProducto").val(respuesta["tipo_producto"]);
             $("#editarTipoCliente").val(respuesta["tipo_cliente"]);
-
-           
-
      	}
-
 	})
-
-
 })
 
 
@@ -76,43 +70,29 @@ $(".tablas").on("click", ".btnEditarMatrizCliente", function(){
             $("#editarVencimientoCliente").val(respuesta["fecha_vencimiento"]);
             $("#editarTipoProductoCliente").val(respuesta["tipo_producto"]);
             $("#editarTipoClienteCliente").val(respuesta["tipo_cliente"]);
-
-
-
-           
-
      	}
-
 	})
-
-
 })
 
 /*=============================================
-ELIMINAR PROVEEDOR
+ELIMINAR MATRIZ
 =============================================*/
 $(".tablas").on("click", ".btnEliminarMatriz", function(){
-
 
     var idMatriz = $(this).attr("idMatriz");
 
     swal({
-        title: '¿Está seguro de borrar esta Matriz?',
-        text: "¡Si no lo está puede cancelar la acción!",
+        title: '¿Está seguro de borrar esta matriz?',
+        text: "¡Si no lo está, puede cancelar la acción!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar Matriz!'
+        confirmButtonText: 'Sí, borrar matriz'
     }).then(function(result){
-
         if(result.value){
-
             window.location = "index.php?ruta=matriz&idMatriz="+idMatriz;
-
         }
-
     })
-
 })
