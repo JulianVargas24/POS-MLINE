@@ -1129,10 +1129,8 @@ if($_SESSION["perfil"] == "Especial"){
 
 </div>
 <?php
-
 $eliminarMatriz = new ControladorMatrices();
 $eliminarMatriz -> ctrEliminarMatriz();
-
 ?>
 
 
