@@ -44,7 +44,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                             <div class="form-group">
                                 <div class="input-group">
-                                    <label for="">Fecha Emision</label>
+                                    <label for="">Fecha Emisión</label>
                                     <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">
                                 </div>
                             </div>
