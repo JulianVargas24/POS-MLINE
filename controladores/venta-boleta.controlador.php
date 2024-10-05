@@ -12,7 +12,7 @@ class ControladorVentaBoleta
 
         if (isset($_POST["nuevoCodigo"])) {
 
-            $tabla = "venta_boleta_afecta";
+            $tabla = "venta_boleta";
 
             $datos = array(
                 "codigo" => $_POST["nuevoCodigo"],

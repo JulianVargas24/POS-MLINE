@@ -485,6 +485,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>
                                         <input type="hidden" name="listaProductos" id="listaProductos">
                                         </div>
+                                        
                                     </div>
                                 </div>     
                             </div>        
@@ -531,8 +532,8 @@ if($_SESSION["perfil"] == "Especial"){
                 </form>
                 <?php
 
-                $VentaBoleta = new ControladorVentaBoleta();
-                $VentaBoleta -> ctrCrearVentaBoleta();   
+                    $VentaBoleta = new ControladorVentaBoleta();
+                    $VentaBoleta -> ctrCrearVentaBoleta();   
 
                 ?>
             </div>

@@ -655,7 +655,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <div class="box-body">
                                         <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
                                         <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"><?php echo $cotizacion["observacion"]; ?></textarea>
-                                        <input type="text" id="listaProductos" name="listaProductos"> 
+                                        <input type="hidden" id="listaProductos" name="listaProductos"> 
                                         </div>
                                     </div>
                                 </div>     
@@ -695,8 +695,9 @@ if($_SESSION["perfil"] == "Especial"){
                                     </div>
                     </div>
                                         
-                                    
+                    <a href="cotizaciones">        
                     <button type="button" class="btn btn-default">Salir</button>
+                    </a>                                              
                     <button type="submit" class="btn btn-primary">Guardar Facturacion</button>                 
                 </form>
                     <?php

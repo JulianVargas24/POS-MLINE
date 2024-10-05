@@ -453,7 +453,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <div class="box-body">
                                         <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
                                         <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>                                                     
-                                        <!--<input type="text" name="listaProductos" id="listaProductos">-->
+                                        <input type="hidden" name="listaProductos" id="listaProductos">
                                         </div>
                                     </div>
                                 </div>     
@@ -499,12 +499,12 @@ if($_SESSION["perfil"] == "Especial"){
                     </a>
                     <button type="submit" class="btn btn-primary">Guardar Venta</button>                 
                 </form>
-                                    <?php
+                <?php
 
-                                        $agregarVentaExenta = new ControladorVentaBoleta();
-                                        echo $agregarVentaExenta -> ctrCrearVentaBoletaExenta();
+                    $agregarVentaExenta = new ControladorVentaBoleta();
+                    $agregarVentaExenta -> ctrCrearVentaBoletaExenta();
 
-                                    ?>
+                ?>
             </div>
         </div>
     </section>

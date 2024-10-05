@@ -720,12 +720,12 @@ if($_SESSION["perfil"] == "Especial"){
                     </a>
                     <button type="submit" class="btn btn-primary">Guardar Venta</button>                 
                 </form>
-                                    <?php
+                <?php
 
-                                        $agregarVentaAfecta = new ControladorVentaFactura();
-                                        $agregarVentaAfecta -> ctrCrearVentaAfecta();
+                    $agregarVentaAfecta = new ControladorVentaFactura();
+                    $agregarVentaAfecta -> ctrCrearVentaAfecta();
 
-                                    ?>
+                ?>
             </div>
         </div>
     </section>
