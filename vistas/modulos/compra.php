@@ -140,7 +140,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <input type="date" class="form-control input-sm"
                                                            name="nuevaFechaEmision" id="nuevaFechaEmision"
-                                                           value="<?php echo date("Y-m-d"); ?>">
+                                                           value="<?php echo date("Y-m-d"); ?>" required
+                                                           onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                 </div>
                                             </div>
                                         </div>
@@ -151,29 +152,15 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <input type="hidden" id="nuevoEstado" name="nuevoEstado"
                                                            value="Abierta">
                                                     <input type="date" class="form-control input-sm"
-                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
+                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                           required
+                                                           onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                 </div>
                                             </div>
                                         </div>
-                                        <script>
-                                            const fechaEmisionInput = document.getElementById('nuevaFechaEmision');
-                                            const fechaVencimientoInput = document.getElementById('nuevaFechaVencimiento');
 
-                                            fechaEmisionInput.addEventListener('input', validarFechas);
-                                            fechaVencimientoInput.addEventListener('input', validarFechas);
-
-                                            function validarFechas() {
-                                                const fechaEmision = new Date(fechaEmisionInput.value);
-                                                const fechaVencimiento = new Date(fechaVencimientoInput.value);
-
-                                                if (fechaEmision > fechaVencimiento) {
-                                                    fechaVencimientoInput.value = '';
-                                                    alert('La fecha de emisión no puede ser mayor que la fecha de vencimiento.');
-                                                }
-                                            }
-                                        </script>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Centro de Costo</div>
+                                            <div class="d-block" style="font-size:14px;">Centro de costo</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevoCentro"
@@ -197,7 +184,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega de Destino</div>
+                                            <div class="d-block" style="font-size:14px;">Bodega de destino</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevaBodega"
