@@ -23,7 +23,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Crear Orden</li>
+            <li class="active">Crear Orden de Compra</li>
 
         </ol>
 
@@ -140,7 +140,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <input type="date" class="form-control input-sm"
                                                            name="nuevaFechaEmision" id="nuevaFechaEmision"
-                                                           value="<?php echo date("Y-m-d"); ?>">
+                                                           value="<?php echo date("Y-m-d"); ?>" required
+                                                           onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                 </div>
                                             </div>
                                         </div>
@@ -151,35 +152,21 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <input type="hidden" id="nuevoEstado" name="nuevoEstado"
                                                            value="Abierta">
                                                     <input type="date" class="form-control input-sm"
-                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
+                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                           required
+                                                           onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                 </div>
                                             </div>
                                         </div>
-                                        <script>
-                                            const fechaEmisionInput = document.getElementById('nuevaFechaEmision');
-                                            const fechaVencimientoInput = document.getElementById('nuevaFechaVencimiento');
 
-                                            fechaEmisionInput.addEventListener('input', validarFechas);
-                                            fechaVencimientoInput.addEventListener('input', validarFechas);
-
-                                            function validarFechas() {
-                                                const fechaEmision = new Date(fechaEmisionInput.value);
-                                                const fechaVencimiento = new Date(fechaVencimientoInput.value);
-
-                                                if (fechaEmision > fechaVencimiento) {
-                                                    fechaVencimientoInput.value = '';
-                                                    alert('La fecha de emisión no puede ser mayor que la fecha de vencimiento.');
-                                                }
-                                            }
-                                        </script>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Centro de Costo</div>
+                                            <div class="d-block" style="font-size:14px;">Centro de costo</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevoCentro"
                                                             name="nuevoCentro" required>
 
-                                                        <option value="">Seleccionar Centro</option>
+                                                        <option value="">Seleccionar centro</option>
 
                                                         <?php
                                                         $item = null;
@@ -197,7 +184,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega de Destino</div>
+                                            <div class="d-block" style="font-size:14px;">Bodega de destino</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevaBodega"
@@ -430,7 +417,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="col-xs-6">
                                     <div class="box box-info">
                                         <div class="box-body">
-                                            <h4 class="box-title" style="font-weight:bold; font-size:20px;">Totales</h4>
+                                            <h3 class="box-title" style="font-weight:bold; font-size:20px;">Totales</h3>
 
                                             <div class="row">
                                                 <div class="col-xs-7">
@@ -557,7 +544,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         <div class="input-group" style="display:block;">
                                                             <select name="nuevoMedioPago" id="nuevoMedioPago"
                                                                     class="form-control">
-                                                                <option value="">Seleccionar Medio de Pago:</option>
+                                                                <option value="">Seleccionar medio de pago</option>
 
                                                                 <?php
                                                                 $item = null;
@@ -595,8 +582,8 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-success">
                                 <div class="box-header with-border"></div>
                                 <div class="box-body">
-                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">
-                                        Productos para Seleccionar</h4>
+                                    <h3 class="box-title text-center" style="font-weight:bold; font-size:20px;">
+                                        Productos para Seleccionar</h3>
                                     <table class="table table-bordered table-striped dt-responsive tablaCompras">
                                         <thead>
                                         <tr>
