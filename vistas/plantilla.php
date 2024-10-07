@@ -5,120 +5,120 @@ session_start();
 ?>
 
 
-
 <!DOCTYPE html>
 <html>
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Sistema POS</title>
+    <title>Sistema POS</title>
 
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <link rel="icon" href="vistas/img/plantilla/pistola.png">
+    <link rel="icon" href="vistas/img/plantilla/pistola.png">
 
-   <!--=====================================
-  PLUGINS DE CSS
-  ======================================-->
+    <!--=====================================
+   PLUGINS DE CSS
+   ======================================-->
 
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
- 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="vistas/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="vistas/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
-  <!-- Theme style -->
-  <link rel="stylesheet" href="vistas/dist/css/AdminLTE.css">
-  
-  <!-- AdminLTE Skins -->
-  <link rel="stylesheet" href="vistas/dist/css/skins/_all-skins.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="vistas/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="vistas/bower_components/Ionicons/css/ionicons.min.css">
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="vistas/dist/css/AdminLTE.css">
 
-   <!-- DataTables -->
-  <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-  <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+    <!-- AdminLTE Skins -->
+    <link rel="stylesheet" href="vistas/dist/css/skins/_all-skins.min.css">
 
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="vistas/plugins/iCheck/all.css">
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-   <!-- Daterange picker -->
-  <link rel="stylesheet" href="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
 
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="vistas/bower_components/morris.js/morris.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="vistas/plugins/iCheck/all.css">
+
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="vistas/bower_components/morris.js/morris.css">
 
 
-  <!-- Select 2 -->
-  <link rel="stylesheet" href="vistas/bower_components/select2/dist/css/select2.css">
+    <!-- Select 2 -->
+    <link rel="stylesheet" href="vistas/bower_components/select2/dist/css/select2.css">
 
-  <!--=====================================
-  PLUGINS DE JAVASCRIPT
-  ======================================-->
+    <!--=====================================
+    PLUGINS DE JAVASCRIPT
+    ======================================-->
 
-  <!-- jQuery 3 -->
-  <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
-  
-  <!-- Bootstrap 3.3.7 -->
-  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery 3 -->
+    <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
 
-  <!-- FastClick -->
-  <script src="vistas/bower_components/fastclick/lib/fastclick.js"></script>
-  
-  <!-- AdminLTE App -->
-  <script src="vistas/dist/js/adminlte.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-  <!-- DataTables -->
-  <script src="vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vistas/bower_components/fastclick/lib/fastclick.js"></script>
 
-  <!-- SweetAlert 2 -->
-  <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
-   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <!-- AdminLTE App -->
+    <script src="vistas/dist/js/adminlte.min.js"></script>
 
-  <!-- iCheck 1.0.1 -->
-  <script src="vistas/plugins/iCheck/icheck.min.js"></script>
+    <!-- DataTables -->
+    <script src="vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+    <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
 
-  <!-- InputMask -->
-  <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
-  <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-  <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <!-- SweetAlert 2 -->
+    <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+    <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
-  <!-- jQuery Number -->
-  <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="vistas/plugins/iCheck/icheck.min.js"></script>
 
-  <!-- daterangepicker http://www.daterangepicker.com/-->
-  <script src="vistas/bower_components/moment/min/moment.min.js"></script>
-  <script src="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- InputMask -->
+    <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
-  <!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
-  <script src="vistas/bower_components/raphael/raphael.min.js"></script>
-  <script src="vistas/bower_components/morris.js/morris.min.js"></script>
+    <!-- jQuery Number -->
+    <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
 
-  <!-- ChartJS http://www.chartjs.org/-->
-  <script src="vistas/bower_components/Chart.js/Chart.js"></script>
+    <!-- daterangepicker http://www.daterangepicker.com/-->
+    <script src="vistas/bower_components/moment/min/moment.min.js"></script>
+    <script src="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-  <!-- Select 2 -->
- <script src="vistas/bower_components/select2/dist/js/select2.js"></script>
+    <!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
+    <script src="vistas/bower_components/raphael/raphael.min.js"></script>
+    <script src="vistas/bower_components/morris.js/morris.min.js"></script>
 
-  <!-- Jsbarcode codigo de barras -->
-  <script src="vistas/plugins/jsbarcode/JsBarcode.all.min.js"></script>
-  <script src="vistas/plugins/jsbarcode/jquery.PrintArea.js"></script>
+    <!-- ChartJS http://www.chartjs.org/-->
+    <script src="vistas/bower_components/Chart.js/Chart.js"></script>
 
- <!-- Bootsrap estilo input FILE-->
- <script src="vistas/plugins/bootstrap-filestyle-2.1.0/src/bootstrap-filestyle.js"></script>
+    <!-- Select 2 -->
+    <script src="vistas/bower_components/select2/dist/js/select2.js"></script>
 
- <!-- JqueryValidate -->
- <script src="vistas/bower_components/jqueryvalidate/jquery.validate.js"></script>
+    <!-- Jsbarcode codigo de barras -->
+    <script src="vistas/plugins/jsbarcode/JsBarcode.all.min.js"></script>
+    <script src="vistas/plugins/jsbarcode/jquery.PrintArea.js"></script>
+
+    <!-- Bootsrap estilo input FILE-->
+    <script src="vistas/plugins/bootstrap-filestyle-2.1.0/src/bootstrap-filestyle.js"></script>
+
+    <!-- JqueryValidate -->
+    <script src="vistas/bower_components/jqueryvalidate/jquery.validate.js"></script>
 
 </head>
 
@@ -127,12 +127,12 @@ CUERPO DOCUMENTO
 ======================================-->
 
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
- 
-  <?php
 
-  if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
+<?php
 
-   echo '<div class="wrapper">';
+if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
+
+    echo '<div class="wrapper">';
 
     /*=============================================
     CABEZOTE
@@ -150,90 +150,90 @@ CUERPO DOCUMENTO
     CONTENIDO
     =============================================*/
 
-    if(isset($_GET["ruta"])){
+    if (isset($_GET["ruta"])) {
 
-      if($_GET["ruta"] == "inicio" ||
-         $_GET["ruta"] == "usuarios" ||
-         $_GET["ruta"] == "proveedores" ||
-         $_GET["ruta"] == "categorias" ||
-         $_GET["ruta"] == "subcategorias" ||
-         $_GET["ruta"] == "unidades" ||
-         $_GET["ruta"] == "listas" ||
-         $_GET["ruta"] == "bodegas" ||
-         $_GET["ruta"] == "impuestos" ||
-         $_GET["ruta"] == "kardex" ||
-         $_GET["ruta"] == "compras" ||
-         $_GET["ruta"] == "compra" ||
-         $_GET["ruta"] == "bancos" ||
-         $_GET["ruta"] == "crear-compra" ||
-         $_GET["ruta"] == "orden-compra" ||
-         $_GET["ruta"] == "editar-orden-compra" ||
-         $_GET["ruta"] == "orden-vestuario" ||
-         $_GET["ruta"] == "personal" ||
-         $_GET["ruta"] == "orden-trabajo" ||
-         $_GET["ruta"] == "parametros-generales" ||
-         $_GET["ruta"] == "parametros-documentos" ||
-         $_GET["ruta"] == "parametros-electronicos" ||
-         $_GET["ruta"] == "parametros-impresion" ||
-         $_GET["ruta"] == "rubros" ||
-         $_GET["ruta"] == "sucursales" ||
-         $_GET["ruta"] == "matriz" ||
-         $_GET["ruta"] == "plazos" ||
-         $_GET["ruta"] == "entrada" ||
-         $_GET["ruta"] == "nota-credito" ||
-         $_GET["ruta"] == "salida" ||
-         $_GET["ruta"] == "ajuste" ||
-         $_GET["ruta"] == "entradas" ||
-         $_GET["ruta"] == "salidas" ||
-         $_GET["ruta"] == "ajustes" ||
-         $_GET["ruta"] == "centro-costo" ||
-         $_GET["ruta"] == "unidad-negocio" ||
-         $_GET["ruta"] == "productos" ||
-         $_GET["ruta"] == "plantel" ||
-         $_GET["ruta"] == "clientes" ||
-         $_GET["ruta"] == "venta-factura" ||
-         $_GET["ruta"] == "venta-factura-exenta" ||
-         $_GET["ruta"] == "venta-boleta" ||
-         $_GET["ruta"] == "boleta-exenta" ||
-         $_GET["ruta"] == "cotizacion" ||
-         $_GET["ruta"] == "cotizacion-exenta" ||
-         $_GET["ruta"] == "editar-cotizacion" ||
-         $_GET["ruta"] == "ventas" ||
-         $_GET["ruta"] == "carga-inventario" ||
-         $_GET["ruta"] == "crear-venta" ||
-         $_GET["ruta"] == "editar-venta" ||
-         $_GET["ruta"] == "historial-venta" ||
-         $_GET["ruta"] == "medios-pago" ||
-         $_GET["ruta"] == "tipo-cliente" ||
-         $_GET["ruta"] == "tipo-producto" ||
-         $_GET["ruta"] == "reportes" ||
-         $_GET["ruta"] == "ordenes-compra" ||
-         $_GET["ruta"] == "cierre-caja" ||
-         $_GET["ruta"] == "cotizaciones" ||
-         $_GET["ruta"] == "tabla-listas" ||
-         $_GET["ruta"] == "lista-precios" ||
-         $_GET["ruta"] == "productos-bodega" ||
-         $_GET["ruta"] == "editar-orden-vestuario" ||
-         $_GET["ruta"] == "facturacion-afecta" ||
-         $_GET["ruta"] == "facturacion-exenta" ||
-         $_GET["ruta"] == "facturacion-compra" ||
-         $_GET["ruta"] == "nota-credito-exenta" || 
-         $_GET["ruta"] == "nota-credito-boleta" ||
-         $_GET["ruta"] == "nota-credito-boleta-exenta" ||  
-         $_GET["ruta"] == "nota-credito" ||         
-         $_GET["ruta"] == "salir"){
+        if ($_GET["ruta"] == "inicio" ||
+            $_GET["ruta"] == "usuarios" ||
+            $_GET["ruta"] == "proveedores" ||
+            $_GET["ruta"] == "categorias" ||
+            $_GET["ruta"] == "subcategorias" ||
+            $_GET["ruta"] == "unidades" ||
+            $_GET["ruta"] == "listas" ||
+            $_GET["ruta"] == "bodegas" ||
+            $_GET["ruta"] == "impuestos" ||
+            $_GET["ruta"] == "kardex" ||
+            $_GET["ruta"] == "compras" ||
+            $_GET["ruta"] == "compra" ||
+            $_GET["ruta"] == "bancos" ||
+            $_GET["ruta"] == "crear-compra" ||
+            $_GET["ruta"] == "orden-compra" ||
+            $_GET["ruta"] == "editar-orden-compra" ||
+            $_GET["ruta"] == "orden-vestuario" ||
+            $_GET["ruta"] == "personal" ||
+            $_GET["ruta"] == "orden-trabajo" ||
+            $_GET["ruta"] == "parametros-generales" ||
+            $_GET["ruta"] == "parametros-documentos" ||
+            $_GET["ruta"] == "parametros-electronicos" ||
+            $_GET["ruta"] == "parametros-impresion" ||
+            $_GET["ruta"] == "rubros" ||
+            $_GET["ruta"] == "sucursales" ||
+            $_GET["ruta"] == "matriz" ||
+            $_GET["ruta"] == "plazos" ||
+            $_GET["ruta"] == "entrada" ||
+            $_GET["ruta"] == "nota-credito" ||
+            $_GET["ruta"] == "salida" ||
+            $_GET["ruta"] == "ajuste" ||
+            $_GET["ruta"] == "entradas" ||
+            $_GET["ruta"] == "salidas" ||
+            $_GET["ruta"] == "ajustes" ||
+            $_GET["ruta"] == "centro-costo" ||
+            $_GET["ruta"] == "unidad-negocio" ||
+            $_GET["ruta"] == "productos" ||
+            $_GET["ruta"] == "plantel" ||
+            $_GET["ruta"] == "clientes" ||
+            $_GET["ruta"] == "venta-factura" ||
+            $_GET["ruta"] == "venta-factura-exenta" ||
+            $_GET["ruta"] == "venta-boleta" ||
+            $_GET["ruta"] == "boleta-exenta" ||
+            $_GET["ruta"] == "cotizacion" ||
+            $_GET["ruta"] == "cotizacion-exenta" ||
+            $_GET["ruta"] == "editar-cotizacion" ||
+            $_GET["ruta"] == "ventas" ||
+            $_GET["ruta"] == "carga-inventario" ||
+            $_GET["ruta"] == "crear-venta" ||
+            $_GET["ruta"] == "editar-venta" ||
+            $_GET["ruta"] == "historial-venta" ||
+            $_GET["ruta"] == "medios-pago" ||
+            $_GET["ruta"] == "tipo-cliente" ||
+            $_GET["ruta"] == "tipo-producto" ||
+            $_GET["ruta"] == "reportes" ||
+            $_GET["ruta"] == "ordenes-compra" ||
+            $_GET["ruta"] == "cierre-caja" ||
+            $_GET["ruta"] == "cotizaciones" ||
+            $_GET["ruta"] == "tabla-listas" ||
+            $_GET["ruta"] == "lista-precios" ||
+            $_GET["ruta"] == "productos-bodega" ||
+            $_GET["ruta"] == "editar-orden-vestuario" ||
+            $_GET["ruta"] == "facturacion-afecta" ||
+            $_GET["ruta"] == "facturacion-exenta" ||
+            $_GET["ruta"] == "facturacion-compra" ||
+            $_GET["ruta"] == "nota-credito-exenta" ||
+            $_GET["ruta"] == "nota-credito-boleta" ||
+            $_GET["ruta"] == "nota-credito-boleta-exenta" ||
+            $_GET["ruta"] == "nota-credito" ||
+            $_GET["ruta"] == "salir") {
 
-        include "modulos/".$_GET["ruta"].".php";
+            include "modulos/" . $_GET["ruta"] . ".php";
 
-      }else{
+        } else {
 
-        include "modulos/404.php";
+            include "modulos/404.php";
 
-      }
+        }
 
-    }else{
+    } else {
 
-      include "modulos/inicio.php";
+        include "modulos/inicio.php";
 
     }
 
@@ -245,14 +245,13 @@ CUERPO DOCUMENTO
 
     echo '</div>';
 
-  }else{
+} else {
 
     include "modulos/login.php";
 
-  }
+}
 
-  ?>
-
+?>
 
 <script src="vistas/js/plantilla.js"></script>
 <script src="vistas/js/usuarios.js"></script>
@@ -294,5 +293,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/ajustes.js"></script>
 <script src="vistas/js/lista-precios.js"></script>
 <script src="vistas/js/carga-inicial.js"></script>
+<script src="vistas/js/validaciones.js"></script>
+
 </body>
 </html>
