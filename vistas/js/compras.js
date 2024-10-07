@@ -4,7 +4,6 @@ $('.tablaCompras').DataTable( {
 	"retrieve": true,
 	"processing": true,
 	 "language": {
-
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
 			"sZeroRecords":    "No se encontraron resultados",
@@ -27,12 +26,8 @@ $('.tablaCompras').DataTable( {
 				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 			}
-
 	}
-
 } );
-
-
 
 /*=============================================
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
@@ -65,16 +60,7 @@ $(".tablaCompra tbody").on("click", "button.agregarProducto", function(){
 			var descuento = 0;
 			var total = Number(precio) + Number(impuesto);
 
-
-
-  
-
-          	
-
-			
-
           	$(".nuevoProducto").append(
-
 
 			`<div class="row" style="padding:5px 15px">
 			  	<!-- Descripción del producto -->
@@ -119,7 +105,6 @@ $(".tablaCompra tbody").on("click", "button.agregarProducto", function(){
 				</div>
 			  </div>`)
 
-
 	        // SUMAR TOTAL DE PRECIOS
 		
 	        sumarTotalPrecios()
@@ -141,19 +126,10 @@ $(".tablaCompra tbody").on("click", "button.agregarProducto", function(){
 			$(".nuevoSubtotalProducto").number(true, 0);
 			$(".nuevoIvaProducto").number(true, 0);
 
-
 			localStorage.removeItem("quitarProducto");
-
 		  }
-		 
-
 	 })
-	 
-	
 });
-
-
-
 
 function cambios(){
 	sumarTotalPrecios();
@@ -181,13 +157,8 @@ $(".tablaCompra").on("draw.dt", function(){
 
 			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").removeClass('btn-default');
 			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").addClass('btn-primary agregarProducto');
-
 		}
-
-
 	}
-
-
 })
 
 
@@ -248,12 +219,8 @@ $(".formularioCompra").on("click", "button.quitarProducto", function(){
         // AGRUPAR PRODUCTOS EN FORMATO JSON
 
         listarProductosCompra()
-
 	}
-
 })
-
-
 
 /*=============================================
 AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS
@@ -380,7 +347,6 @@ $(".formularioCompra").on("change", "select.nuevaDescripcionProducto", function(
 	var datos = new FormData();
     datos.append("nombreProducto", nombreProducto);
 
-
 	  $.ajax({
 
      	url:"ajax/productos.ajax.php",
@@ -427,13 +393,8 @@ $(".formularioCompra").on("change", "input.nuevoPrecioUnitario", function(){
 	subtotal.val(subtotalFinal);
 	total.val(totalFinal);
 
-
-
-
 	listarProductosCompra()
 	sumarTotalPrecios()
-
-
 })
 /*=============================================
 MODIFICAR LA CANTIDAD
@@ -499,7 +460,6 @@ $(".formularioCompra").on("change", "input.nuevaCantidadProducto", function(){
     // AGRUPAR PRODUCTOS EN FORMATO JSON
 
     listarProductosCompra()
-
 })
 
 $("#formularioCompra").click("input.nuevaCantidadProduction", function(){
@@ -564,7 +524,6 @@ function sumarTotalPrecios(){
 	sumarDescuentos()
 	sumarIva()
 	sumarTotales()
-
 }
 
 /*=============================================
@@ -572,7 +531,6 @@ FUNCIÓN AGREGAR IMPUESTO
 =============================================*/
 
 function agregarImpuesto(){
-
 	var descuento = $("#nuevoDescuentoVenta").val();
 	var impuesto = $("#nuevoImpuestoVenta").val();
 	var precioTotal = $("#nuevoTotalVenta").attr("total");
@@ -603,10 +561,7 @@ function restarVentas(){
 	var pendiente = Number(total - pagado);
 
 	$("#TotalPendientePago").val(pendiente);
-
-
 }
-
 
 /*function restar3(){
 
@@ -650,7 +605,6 @@ function sumarTotales(){
 	$("#nuevoTotalCompra").attr("total", sumaTotales);
 }
 
-
 function sumarDescuentos(){
 	var descuentoItem = $(".nuevoDescuentoProducto");
 
@@ -673,12 +627,7 @@ function sumarDescuentos(){
 	
 	$("#nuevoTotalDescuento").val(sumaTotalDescuento);
 	$("#nuevoTotalDescuento").attr("total",sumaTotalDescuento);
-	
-
-
-
 }
-
 
 function sumarSubtotal(){
 	var cantidadItem = $(".nuevaCantidadProducto");
@@ -695,6 +644,7 @@ function sumarSubtotal(){
 	$("#nuevoSubtotal").val(sumaTotalSubtotal);
 	$("#nuevoSubtotal").attr("total",sumaTotalSubtotal);
 }
+
 function sumarIva(){
 
 	var ivaItem = $(".nuevoIvaProducto");
@@ -718,13 +668,7 @@ function sumarIva(){
 	
 	$("#nuevoTotalIva").val(sumaTotalIva);
 	$("#nuevoTotalIva").attr("total",sumaTotalIva);
-	
-
-
-
 }
-
-
 
 function costoExtra(){
 	var costo = $("#nuevoCostoExtra").val();
@@ -735,8 +679,6 @@ function costoExtra(){
 	$("#nuevoTotalVenta").val(total_costo);
 
 }
-
-
 
 $(document).ready(function(){
 
@@ -763,27 +705,21 @@ $(document).ready(function(){
 				$("#traerActividad").val(respuesta["actividad"]);
 				$("#traerEjecutivo").val(respuesta["ejecutivo"]);
 	
-			  
-			   
 				sumarTotalPrecios();
 				listarProductosCompra();
 			 }
 	
 		})
-	
 
-	
 	$("#seleccionarCliente").select2();
 	
 	});
-
 
 	$("#nuevoCostoExtra").change(function(){
 
 		costoExtra();
 	
 	});
-
 
 	$("#totalVenta").change(function(){
 
@@ -808,12 +744,10 @@ $("#TotalPendientePago").change(function(){
 
 });
 
-
 $("#nuevoDescuentoVenta").change(function(){
 	
 	agregarImpuesto();
 	desc();
-
 
 });
 
@@ -834,7 +768,6 @@ $("#nuevoMetodoPago").change(function(){
 	var metodo3 = $(this).val();
 	var metodo4 = $(this).val();
 	var metodo5 = $(this).val();
-
 
 	if(metodo == "Efectivo"){
 
@@ -1064,7 +997,6 @@ $("#nuevoMetodoPago").change(function(){
 
 })
 
-
 /*=============================================
 CAMBIO EN PENDIENTE PAGO
 =============================================*/
@@ -1080,26 +1012,6 @@ $(".formulario").on("change", "input#nuevoValorPendientePago", function(){
 
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*=============================================
 CAMBIO TRANSACCIÓN
 =============================================*/
@@ -1110,7 +1022,6 @@ $(".formulario").on("change", "input#nuevoCodigoTransaccion", function(){
 
 
 })
-
 
 /*=============================================
 LISTAR TODOS LOS PRODUCTOS
@@ -1212,7 +1123,6 @@ $(".tablas").on("click", ".btnHistorial", function(){
 
 })
 
-
 /*=============================================
 FUNCIÓN PARA DESACTIVAR LOS BOTONES AGREGAR CUANDO EL PRODUCTO YA HABÍA SIDO SELECCIONADO EN LA CARPETA
 =============================================*/
@@ -1256,16 +1166,15 @@ $('.tablaVentas').on( 'draw.dt', function(){
 
 })
 
-
 /*=============================================
 BORRAR ORDEN COMPRA
 =============================================*/
-$(".tablas").on("click", ".btnEliminarOrdenCompra", function(){
+$(".tablas").on("click", ".btnEliminarCompra", function(){
 
-  var idOrdenCompra= $(this).attr("idOrdenCompra");
+  var idCompra= $(this).attr("idCompra");
 
   swal({
-        title: '¿Está seguro de borrar la Orden de Compra?',
+        title: '¿Está seguro de borrar la Compra?',
         text: "¡Si no lo está puede cancelar la accíón!",
         type: 'warning',
         showCancelButton: true,
@@ -1276,7 +1185,7 @@ $(".tablas").on("click", ".btnEliminarOrdenCompra", function(){
       }).then(function(result){
         if (result.value) {
           
-            window.location = "index.php?ruta=compras&idOrdenCompra="+idOrdenCompra;
+            window.location = "index.php?ruta=compras&idCompra="+idCompra;
         }
 
   })
@@ -1318,11 +1227,6 @@ $("#nuevoProveedor").change(function(){
 
 });
 
-
-
-
-
-
 /*=============================================
 IMPRIMIR FACTURA
 =============================================*/
@@ -1335,11 +1239,9 @@ $(".tablas").on("click", ".btnImprimirFactura", function(){
 
 })
 
-
 /*=============================================
 BOTON PARA VER FACTURA HISTORIAL DE VENTAS
 =============================================*/
-
 
 $(".tablas").on("click", ".btnImprimirHistorial", function(){
 
@@ -1469,8 +1371,6 @@ $(".abrirXML").click(function(){
 
 
 })
-
-
 
 /*========================================= 
 PDF
