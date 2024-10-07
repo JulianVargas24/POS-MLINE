@@ -5,26 +5,20 @@ class ControladorListas{
 	/*=============================================
 	CREAR UNIDADES
 	=============================================*/
-
 	static public function ctrCrearLista(){
-
 		if(isset($_POST["nuevaLista"])){
 
-
 				$tabla = "lista_precios";
-
 				$datos = array("nombre_lista" => $_POST["nuevaLista"],
 								"factor" => $_POST["nuevoFactor"]);
-
-				$respuesta = ModeloUnidades::mdlIngresarLista($tabla, $datos);
+				$respuesta = ModeloListas::mdlIngresarLista($tabla, $datos);
 
 				if($respuesta == "ok"){
-
 					echo'<script>
 
 					swal({
 						  type: "success",
-						  title: "La Lista ha sido guardada correctamente",
+						  title: "La lista ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -34,19 +28,14 @@ class ControladorListas{
 
 									}
 								})
-
 					</script>';
-
-			} 
-
+			}
 		}
-
 	}
 
 	/*=============================================
 	MOSTRAR UNIDADES
 	=============================================*/
-
 	static public function ctrMostrarListas($item, $valor){
 
 		$tabla = "lista_precios";
@@ -54,9 +43,7 @@ class ControladorListas{
 		$respuesta = ModeloListas::mdlMostrarListas($tabla, $item, $valor);
 
 		return $respuesta;
-	
 	}
-
 	/*=============================================
 	EDITAR CATEGORIA
 	=============================================*/
@@ -65,8 +52,6 @@ class ControladorListas{
 
 		if(isset($_POST["editarLista"])){
 
-		
-
 				$tabla = "lista_precios";
 
                 $datos = array("id"=>$_POST["idLista"],
@@ -74,13 +59,11 @@ class ControladorListas{
                                "factor"=>$_POST["editarFactor"],
                                );
 
-
 				$respuesta = ModeloListas::mdlEditarLista($tabla, $datos);
 
 				if($respuesta == "ok"){
 
                     echo'<script>
-                    
                     
 					swal({
 						  type: "success",
@@ -89,21 +72,13 @@ class ControladorListas{
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
-
 									window.location = "listas";
-
 									}
 								})
 
 					</script>';
-
 				}
-
-
-			
-
 		}
-
 	}
 
 	/*=============================================
@@ -111,34 +86,27 @@ class ControladorListas{
 	=============================================*/
 
 	static public function ctrBorrarLista(){
-
-		if(isset($_GET["id_lista"])){
+		if(isset($_GET["idLista"])){
 
 			$tabla ="lista_precios";
-			$datos = $_GET["id_lista"];
+			$datos = $_GET["idLista"];
 
-			$respuesta = ModeloUnidades::mdlBorrarLista($tabla, $datos);
+			$respuesta = ModeloListas::mdlBorrarLista($tabla, $datos);
 
 			if($respuesta == "ok"){
-
 				echo'<script>
-
 					swal({
 						  type: "success",
-						  title: "La Lista ha sido borrada correctamente",
+						  title: "La lista ha sido borrada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
-
 									window.location = "listas";
-
 									}
 								})
-
 					</script>';
 			}
 		}
-		
 	}
 }
