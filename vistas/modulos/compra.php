@@ -216,6 +216,12 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-info">
                                 <div class="box-body">
 
+                                    <?php
+                                    $tabla = "compras";
+                                    $atributo = "compras";
+                                    $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
+                                    ?>
+
                                     <h2 class="box-title"
                                         style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
                                         FACTURA DE COMPRA
@@ -223,6 +229,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <div class="row" style="margin-top:2px;">
                                         <div class="col-xs-7">
                                             <div class="form-group">
+                                                <!--
                                                 <div class="input-group">
                                                     <span class="input-group-addon"
                                                           style="background-color:red; color:white; font-weight:bold">FOLIO</span>
@@ -231,6 +238,14 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <input type="text" style="font-weight:bold; font-size:16px;"
                                                            class="form-control" name="nuevoCodigo" id="nuevoCodigo"
                                                            required>
+                                                </div>
+                                                -->
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"
+                                                          style="background-color:red; color:white; font-weight:bold">FOLIO</span>
+                                                    <input type="text" style="font-weight:bold; font-size:16px;"
+                                                           class="form-control" name="nuevoCodigo" id="nuevoCodigo"
+                                                           value=" <?php echo $folio + 1; ?>" readonly required>
                                                 </div>
                                             </div>
                                         </div>
@@ -502,7 +517,8 @@ if ($_SESSION["perfil"] == "Especial") {
                     ======================================-->
 
                 <div class="modal-header" style="background:#3c8dbc; color:white">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;
+                    </button>
                     <h2 class="modal-title">Órdenes de Compra</h2>
                 </div>
 
@@ -511,7 +527,8 @@ if ($_SESSION["perfil"] == "Especial") {
                     ======================================-->
 
                 <div class="modal-body">
-                    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+                    <table class="table table-bordered table-striped dt-responsive tablas"
+                           width="100%">
                         <thead>
                         <tr>
                             <th style="width:10px">#</th>
@@ -565,8 +582,11 @@ if ($_SESSION["perfil"] == "Especial") {
                     ======================================-->
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="button" class="btn btn-default pull-left"
+                            data-dismiss="modal">Salir
+                    </button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios
+                    </button>
                 </div>
             </form>
         </div>
