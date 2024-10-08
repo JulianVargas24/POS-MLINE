@@ -33,7 +33,12 @@ class ControladorVentaBoleta
                 "pendiente" => $_POST["nuevoTotalPendiente"],
                 "productos" => $_POST["listaProductos"]
             );
-
+            
+				// Imprimir los datos antes de insertarlos
+				/*echo '<pre>';
+				var_dump($datos);
+				echo '</pre>';
+				exit; */ // Terminar la ejecución para que no se inserten los datos aún.
 
             $respuesta = ModeloVentaBoleta::mdlIngresarVentaBoleta($tabla, $datos);
             $productos = json_decode($datos["productos"], true);

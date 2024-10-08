@@ -31,6 +31,12 @@ class ControladorCotizacion{
                                 "productos"=>$_POST["listaProductos"]);
 
 
+				// Imprimir los datos antes de insertarlos
+				/*echo '<pre>';
+				var_dump($datos);
+				echo '</pre>';
+				exit; */ // Terminar la ejecución para que no se inserten los datos aún.
+											
 			   	$respuesta = ModeloCotizacion::mdlIngresarCotizacion($tabla, $datos);
 
 			   	if($respuesta == "ok"){
