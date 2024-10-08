@@ -39,7 +39,7 @@ class ModeloBodegas{
 	MOSTRAR PROVEEDORES
 	=============================================*/
 
-	static public function mdlMostrarBodegas($tabla, $item, $valor){
+	/*static public function mdlMostrarBodegas($tabla, $item, $valor){
 
 		if($item != null){
 
@@ -65,6 +65,38 @@ class ModeloBodegas{
 
 		$stmt = null;
 
+	}*/
+	
+	static public function mdlMostrarBodegas($tabla, $item, $valor){
+
+		if($item != null){
+	
+			// Agregar JOIN para obtener el nombre de la región
+			$stmt = Conexion::conectar()->prepare("SELECT bodegas.*, regiones.nombre_region 
+												   FROM $tabla 
+												   JOIN regiones ON bodegas.region = regiones.region_id
+												   WHERE $item = :$item");
+	
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt -> execute();
+	
+			return $stmt -> fetch();
+	
+		} else {
+	
+			// Agregar JOIN para mostrar todas las bodegas con el nombre de la región
+			$stmt = Conexion::conectar()->prepare("SELECT bodegas.*, regiones.nombre_region 
+												   FROM $tabla 
+												   JOIN regiones ON bodegas.region = regiones.region_id");
+	
+			$stmt -> execute();
+	
+			return $stmt -> fetchAll();
+	
+		}
+	
+		$stmt -> close();
+		$stmt = null;
 	}
 
 	/*=============================================

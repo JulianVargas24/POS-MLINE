@@ -172,16 +172,28 @@ MODAL AGREGAR CATEGORÍA
 
                     </div>
             </div>
+            
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Porcentaje</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                    <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar Factor"  required max="100">
+                    <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar Porcentaje"  required max="100">
 
                 </div>
+            </div>
+
+            <div class="form-group">              
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descripción</div>
+                    <div class="input-group">
+                    
+                      <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                      <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" placeholder="Ingresar Descripción" required>
+
+                    </div>
             </div>
   
                       
@@ -272,6 +284,18 @@ MODAL EDITAR SUBCATEGORÍA
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
                     <input type="number" class="form-control input" id="editarFactor" name="editarFactor"  required max="100">
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descripción</div>
+                <div class="input-group">
+                    
+                  <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                  <input type="text" class="form-control input" id="editarDescripcion" name="editarDescripcion"  required>
+                       
 
                 </div>
             </div>

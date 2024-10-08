@@ -88,7 +88,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                     <td>'.$value["nombre"].'</td>
 
-                    <td>'.$value["region"].'</td>
+                    <td>'.$value["nombre_region"].'</td>
 
                     <td>'.$value["comuna"].'</td>
 
@@ -205,16 +205,21 @@ MODAL AGREGAR BODEGA
                                 $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
 
                                 foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                  echo '<option  value="'.$value["region_id"].'" data-nombre-region="'.$value["nombre_region"].'">'.$value["nombre_region"].' '.$value["ordinal"].' </option>';
                                 }
 
                                 ?>
             
                             </select>
+                            <!-- Campo oculto para almacenar el nombre de la región seleccionada -->
+                            <input type="hidden" id="nombreRegionSeleccionada" name="nombreRegionSeleccionada">
+ 
 
 
                           </div>
                       </div>   
+
+
                   <!-- ENTRADA PARA LA CIUDAD -->
                       <div class="col-lg-6" style="margin-top:10px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
@@ -235,12 +240,40 @@ MODAL AGREGAR BODEGA
                                     $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
 
                                     foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
+                                      echo '<option  value="'.$value["nombre_comunas"].'" data-region-id="'.$value["region_id"].'">'.$value["nombre_comunas"].' </option>';
+
                                     }
 
                                     ?>
               
                                 </select>
+
+                                <script>
+                                  document.getElementById('nuevaRegion').addEventListener('change', function() {
+                                      var regionId = this.value;  // Obtiene el id de la región seleccionada
+                                      var regionNombre = this.options[this.selectedIndex].getAttribute('data-nombre-region');  // Obtiene el nombre de la región seleccionada
+
+                                      // Guarda el nombre de la región seleccionada en el campo oculto
+                                      document.getElementById('nombreRegionSeleccionada').value = regionNombre;
+
+                                var comunaSelect = document.getElementById('nuevaComuna');
+                                      
+                                      // Filtra las comunas según la región seleccionada
+                                      for (var i = 0; i < comunaSelect.options.length; i++) {
+                                          var option = comunaSelect.options[i];
+                                          var optionRegionId = option.getAttribute('data-region-id');
+
+                                          if (regionId === optionRegionId || option.value === "") {
+                                              option.style.display = 'block';  // Mostrar comunas que correspondan a la región seleccionada
+                                          } else {
+                                              option.style.display = 'none';   // Ocultar comunas que no correspondan
+                                          }
+                                      }
+
+                                      // Reiniciar la selección de comuna
+                                      comunaSelect.value = "";
+                                  });
+                                </script>
 
                             </div>
                       </div>
@@ -282,18 +315,19 @@ MODAL AGREGAR BODEGA
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
                         <!-- Esta funcion permite que se pueda ingresar solo numeros con un minimo y maximo de 9 -->
-                        <input 
-                          type="text" 
-                          class="form-control input" 
-                          name="nuevoTelefono" 
-                          placeholder="Ingresar teléfono" 
-                          required 
-                          minlength="9" 
-                          maxlength="9" 
-                          pattern="\d{9}" 
-                          inputmode="numeric" 
-                          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                        >
+                        <input type="tel" class="form-control input" name="nuevoTelefono"
+                                            placeholder="Ingresar teléfono" required
+                                            maxlength="12"
+                                            pattern="^\+[0-9]{11}$"
+                                            title="Ingrese el número de teléfono completo."
+                                            onfocus="if (this.value === '') { this.value = '+'; }"
+                                            oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
+                                                if (!this.value.startsWith('+')) {
+                                                    this.value = '+' + this.value.slice(1);
+                                                }
+                                                this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');">
+
+
 
 
 
@@ -306,7 +340,8 @@ MODAL AGREGAR BODEGA
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required>
+                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+
 
                       </div>
                     </div>                 
@@ -491,7 +526,34 @@ MODAL EDITAR PROVEEDOR
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required>
+                        <input type="text" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required value="+">                       
+                        <span id="errorTelefono" style="color: red; display: none;">El número no debe exceder los 11 dígitos después del signo +.</span>
+
+                        <script>
+                          const telefonoInput = document.getElementById('editarTelefono');
+                          const errorTelefono = document.getElementById('errorTelefono');
+
+                          // Al escribir en el campo de teléfono
+                          telefonoInput.addEventListener('input', function() {
+                            let valor = telefonoInput.value;
+
+                            // Asegurarse de que el valor comience siempre con "+"
+                            if (!valor.startsWith('+')) {
+                              telefonoInput.value = '+' + valor.replace(/\D/g, ''); // Elimina cualquier carácter no numérico
+                            }
+
+                            // Limitar la cantidad de dígitos después del "+"
+                            let numeros = valor.slice(1).replace(/\D/g, ''); // Remover todo lo que no sea número después del +
+                            if (numeros.length > 11) {
+                              errorTelefono.style.display = 'inline'; // Mostrar el error si se excede el límite
+                              telefonoInput.value = '+' + numeros.slice(0, 11); // Mantener máximo 11 dígitos
+                            } else {
+                              errorTelefono.style.display = 'none'; // Esconder el mensaje de error si el número está bien
+                              telefonoInput.value = '+' + numeros; // Actualizar el valor con los números válidos
+                            }
+                          });
+                        </script>
+
 
                       </div>
                   </div>
@@ -502,7 +564,7 @@ MODAL EDITAR PROVEEDOR
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required>
+                        <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                       </div>
                     </div>                 
