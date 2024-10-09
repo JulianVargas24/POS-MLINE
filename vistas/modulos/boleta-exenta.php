@@ -153,7 +153,13 @@ if($_SESSION["perfil"] == "Especial"){
                                                                 <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
                                                                 <div class="form-group">
                                                                     <div class="input-group">
+                                                                    <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" 
+                                                                    value="<?php echo date('Y-m-d'); ?>" required 
+                                                                    onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">    
                                                                         
+                                                                        
+                                                                        <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" value="<?php echo date("Y-m-d");?>">
+                                                                    
                                                                         <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" value="<?php echo date("Y-m-d");?>">
                                                                     </div>
                                                                 </div>
@@ -164,6 +170,9 @@ if($_SESSION["perfil"] == "Especial"){
                                                                 <div class="form-group">
                                                                     <div class="input-group">
 
+
+                                                                        <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
+                                                                    
                                                                         <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
                                                                     </div>
                                                                 </div>
