@@ -15,7 +15,8 @@ class ControladorImpuestos{
 
 				$datos = array("nombre" => $_POST["nuevoImpuesto"],
 								"factor" => $_POST["nuevoFactor"],
-								"descripcion" => $_POST["nuevoDescripcion"]);
+								"descripcion" => $_POST["nuevoDescripcion"],
+								"codigo" => $_POST["nuevoCodigo"]);
 
 				$respuesta = ModeloImpuestos::mdlIngresarImpuesto($tabla, $datos);
 
@@ -93,7 +94,8 @@ class ControladorImpuestos{
                 $datos = array("id"=>$_POST["idImpuesto"],								
                                "nombre"=>$_POST["editarImpuesto"],
                                "factor"=>$_POST["editarFactor"],
-							   "descripcion"=>$_POST["editarDescripcion"]
+							   "descripcion"=>$_POST["editarDescripcion"],
+							   "codigo" => $_POST["editarCodigo"]
                                );
 
 

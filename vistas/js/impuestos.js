@@ -19,6 +19,7 @@ $(".tablas").on("click", ".btnEditarImpuesto", function () {
     success: function (respuesta) {
       console.log(respuesta);
       $("#editarFactor").val(respuesta["factor"]);
+      $("#editarCodigo").val(respuesta["codigo"]);
       $("#editarImpuesto").val(respuesta["nombre"]);
       $("#editarDescripcion").val(respuesta["descripcion"]); /*hola*/
       $("#idImpuesto").val(respuesta["id"]);

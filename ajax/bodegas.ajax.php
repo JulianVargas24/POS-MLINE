@@ -36,3 +36,15 @@ if(isset($_POST["idBodega"])){
 	$bodega -> ajaxEditarBodega();
 
 }
+
+if (isset($_POST['regionId'])) {
+    $regionId = $_POST['regionId'];
+
+    // Llamar al controlador para obtener las comunas de la región seleccionada
+    $item = 'region_id';
+    $valor = $regionId;
+    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
+
+    // Devolver las comunas como JSON
+    echo json_encode($comunas);
+}

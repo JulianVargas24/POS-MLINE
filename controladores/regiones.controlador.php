@@ -27,17 +27,6 @@ class ControladorRegiones{
     } 
 
 
-	/*=============================================
-    MOSTRAR DATOS DE COMUNAS CON NOMBRE DE REGIÓN
-    =============================================*/
-    static public function ctrMostrarDatosConRegion() {
-
-        // Llamada al modelo para obtener los datos
-        $respuesta = ModeloRegiones::mdlMostrarDatosConRegion("comunas");
-
-        return $respuesta;  // Devuelve los datos a la vista
-    }
-    
     
     
 

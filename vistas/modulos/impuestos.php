@@ -161,6 +161,17 @@ MODAL AGREGAR CATEGORÍA
           <div class="box-body">
 
             <!-- ENTRADA PARA EL NOMBRE -->
+
+            <div class="form-group">
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código</div>
+                <div class="input-group">
+                
+                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                    <input type="number" class="form-control input" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar Código"  required>
+
+                </div>
+            </div>
             
             <div class="form-group">              
                     <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto</div>
@@ -195,6 +206,8 @@ MODAL AGREGAR CATEGORÍA
 
                     </div>
             </div>
+
+
   
                       
           
@@ -262,6 +275,17 @@ MODAL EDITAR SUBCATEGORÍA
           <div class="box-body">
 
             <!-- ENTRADA PARA EL NOMBRE -->
+
+            <div class="form-group">
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código</div>
+                <div class="input-group">
+                
+                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                    <input type="number" class="form-control input" id="editarCodigo" name="editarCodigo"  required>
+
+                </div>
+            </div>
             
             <div class="form-group">
                 <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto</div>

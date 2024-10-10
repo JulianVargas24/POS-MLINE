@@ -106,6 +106,8 @@ if($_SESSION["perfil"] == "Especial"){
                       <div class="btn-group">
                           
                         <button class="btn btn-warning btnEditarBodega" data-toggle="modal" data-target="#modalEditarBodega" idBodega="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
+                        // Supongamos que tienes un botón con id "editarBodegaBtn" para editar la bodega
+
 
                       if($_SESSION["perfil"] == "Administrador"){
 
@@ -120,6 +122,7 @@ if($_SESSION["perfil"] == "Especial"){
                   </tr>';
           
             }
+            
 
            
         ?>
@@ -247,34 +250,12 @@ MODAL AGREGAR BODEGA
                                     ?>
               
                                 </select>
-
                                 <script>
-                                  document.getElementById('nuevaRegion').addEventListener('change', function() {
-                                      var regionId = this.value;  // Obtiene el id de la región seleccionada
-                                      var regionNombre = this.options[this.selectedIndex].getAttribute('data-nombre-region');  // Obtiene el nombre de la región seleccionada
-
-                                      // Guarda el nombre de la región seleccionada en el campo oculto
-                                      document.getElementById('nombreRegionSeleccionada').value = regionNombre;
-
-                                var comunaSelect = document.getElementById('nuevaComuna');
-                                      
-                                      // Filtra las comunas según la región seleccionada
-                                      for (var i = 0; i < comunaSelect.options.length; i++) {
-                                          var option = comunaSelect.options[i];
-                                          var optionRegionId = option.getAttribute('data-region-id');
-
-                                          if (regionId === optionRegionId || option.value === "") {
-                                              option.style.display = 'block';  // Mostrar comunas que correspondan a la región seleccionada
-                                          } else {
-                                              option.style.display = 'none';   // Ocultar comunas que no correspondan
-                                          }
-                                      }
-
-                                      // Reiniciar la selección de comuna
-                                      comunaSelect.value = "";
-                                  });
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        filtrarComunasPorRegion('nuevaRegion', 'nuevaComuna', 'nombreRegionSeleccionada');
+                                    });
                                 </script>
-
+                                
                             </div>
                       </div>
                    
@@ -317,15 +298,9 @@ MODAL AGREGAR BODEGA
                         <!-- Esta funcion permite que se pueda ingresar solo numeros con un minimo y maximo de 9 -->
                         <input type="tel" class="form-control input" name="nuevoTelefono"
                                             placeholder="Ingresar teléfono" required
-                                            maxlength="12"
-                                            pattern="^\+[0-9]{11}$"
+                                            maxlength="12" pattern="^\+[0-9]{11}$"
                                             title="Ingrese el número de teléfono completo."
-                                            onfocus="if (this.value === '') { this.value = '+'; }"
-                                            oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
-                                                if (!this.value.startsWith('+')) {
-                                                    this.value = '+' + this.value.slice(1);
-                                                }
-                                                this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');">
+                                            onfocus="validarTelefono(this)">
 
 
 
@@ -450,8 +425,9 @@ MODAL EDITAR PROVEEDOR
 
                                 $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
 
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                foreach ($regiones as $key => $value) {
+                                  $selected = ($value["region_id"] == $bodegas["region"]) ? 'selected' : ''; // Comparar el valor guardado con las regiones disponibles
+                                  echo '<option value="' . $value["region_id"] . '" ' . $selected . '>' . $value["nombre_region"] . '</option>';
                                 }
 
                                 ?>
@@ -481,15 +457,28 @@ MODAL EDITAR PROVEEDOR
                                     
                                     $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
 
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
+                                    // Agregar las opciones al select
+                                    foreach ($comunas as $key => $value) {
+                                      // Verifica si la comuna es la que se está editando
+                                      $selected = ($value["nombre_comunas"] === $bodega["comuna"]) ? 'selected' : '';
+                                      echo '<option value="'.$value["nombre_comunas"].'" data-region-id="'.$value["region_id"].'" '.$selected.'>'.$value["nombre_comunas"].'</option>';
+                                  }
 
                                     ?>
                           </select>
+                          
+                          
 
                           </div>
-                      </div>                 
+                      </div>
+                      
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            inicializarFiltroComunas('editarRegion', 'editarComuna');
+                        });
+                      </script>
+
+
                     <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                       <div class="col-lg-6" style="margin-top:10px;">
                       <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
@@ -526,33 +515,10 @@ MODAL EDITAR PROVEEDOR
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required value="+">                       
-                        <span id="errorTelefono" style="color: red; display: none;">El número no debe exceder los 11 dígitos después del signo +.</span>
-
-                        <script>
-                          const telefonoInput = document.getElementById('editarTelefono');
-                          const errorTelefono = document.getElementById('errorTelefono');
-
-                          // Al escribir en el campo de teléfono
-                          telefonoInput.addEventListener('input', function() {
-                            let valor = telefonoInput.value;
-
-                            // Asegurarse de que el valor comience siempre con "+"
-                            if (!valor.startsWith('+')) {
-                              telefonoInput.value = '+' + valor.replace(/\D/g, ''); // Elimina cualquier carácter no numérico
-                            }
-
-                            // Limitar la cantidad de dígitos después del "+"
-                            let numeros = valor.slice(1).replace(/\D/g, ''); // Remover todo lo que no sea número después del +
-                            if (numeros.length > 11) {
-                              errorTelefono.style.display = 'inline'; // Mostrar el error si se excede el límite
-                              telefonoInput.value = '+' + numeros.slice(0, 11); // Mantener máximo 11 dígitos
-                            } else {
-                              errorTelefono.style.display = 'none'; // Esconder el mensaje de error si el número está bien
-                              telefonoInput.value = '+' + numeros; // Actualizar el valor con los números válidos
-                            }
-                          });
-                        </script>
+                        <input type="text" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required
+                          maxlength="12" pattern="^\+[0-9]{11}$"
+                          title="Ingrese el número de teléfono completo."
+                          onfocus="validarTelefono(this)">   
 
 
                       </div>
@@ -615,6 +581,7 @@ MODAL EDITAR PROVEEDOR
 
   $eliminarBodega = new ControladorBodegas();
   $eliminarBodega -> ctrEliminarBodega();
+  
 
 ?>
 
