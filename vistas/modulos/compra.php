@@ -215,13 +215,6 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="col-xs-3">
                             <div class="box box-info">
                                 <div class="box-body">
-
-                                    <?php
-                                    $tabla = "compras";
-                                    $atributo = "compras";
-                                    $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
-                                    ?>
-
                                     <h2 class="box-title"
                                         style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
                                         FACTURA DE COMPRA
@@ -229,7 +222,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <div class="row" style="margin-top:2px;">
                                         <div class="col-xs-7">
                                             <div class="form-group">
-                                                <!--
                                                 <div class="input-group">
                                                     <span class="input-group-addon"
                                                           style="background-color:red; color:white; font-weight:bold">FOLIO</span>
@@ -237,15 +229,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                                            value="0">
                                                     <input type="text" style="font-weight:bold; font-size:16px;"
                                                            class="form-control" name="nuevoCodigo" id="nuevoCodigo"
-                                                           required>
-                                                </div>
-                                                -->
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"
-                                                          style="background-color:red; color:white; font-weight:bold">FOLIO</span>
-                                                    <input type="text" style="font-weight:bold; font-size:16px;"
-                                                           class="form-control" name="nuevoCodigo" id="nuevoCodigo"
-                                                           value=" <?php echo $folio + 1; ?>" readonly required>
+                                                           required pattern="[0-9]+"
+                                                           oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                                 </div>
                                             </div>
                                         </div>
@@ -461,7 +446,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 Observaciones</h3>
                                             <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
                                                       rows="6"></textarea>
-                                            <input type="text" id="listaProductos" name="listaProductos">
+                                            <input type="hidden" id="listaProductos" name="listaProductos">
                                         </div>
                                     </div>
                                 </div>
