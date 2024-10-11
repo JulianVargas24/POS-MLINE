@@ -826,31 +826,21 @@ MODAL EDITAR CLIENTE
 
                       <select class="form-control input" id="editarFactor" name="editarFactor" required>
 
-    <?php
-    // Si existe un valor previamente seleccionado, lo usas
-    if (isset($factorSeleccionado)) {
-        echo '<option value="'.$factorSeleccionado.'">PRECIO LISTA - %' . $factorSeleccionado . '</option>';
-    } else {
-        // Si no hay valor seleccionado, puedes mostrar esta opción predeterminada
-        echo '<option value="">PRECIO LISTA - 0%</option>';
-    }
+                      <option value="">PRECIO LISTA - 0%</option>
+                        <?php
 
-    $item = null;
-    $valor = null;
+                          $item = null;
+                          $valor = null;
 
-    // Obtener todas las listas de precios
-    $listaPrecio = ControladorListas::ctrMostrarListas($item, $valor);
+                          $listaPrecio = ControladorListas::ctrMostrarListas($item, $valor);
 
-    // Iterar sobre cada lista de precios y crear una opción en el select
-    foreach ($listaPrecio as $key => $value) {
-        if ($value["id"] != 1) {
-            // Comparar con el factor seleccionado
-            $selected = ($value["id"] == $factorSeleccionado) ? 'selected' : '';
-            echo '<option value="'.$value["id"].'" '.$selected.'>'.$value["nombre_lista"].'- %'.$value["factor"].'</option>';
-        }
-    }
-    ?>
-</select>
+                          foreach ($listaPrecio as $key => $value) {
+                            if($value["id"] != 1){
+                            echo '<option value="'.$value["id"].'">'.$value["nombre_lista"].'- %'.$value["factor"].'</option>';}
+                          }
+
+                        ?>
+                      </select>
 
 
                     </div>
@@ -886,16 +876,9 @@ MODAL EDITAR CLIENTE
                             <input type="tel" class="form-control input" name="editarTelefono"
                                             id="editarTelefono"
                                             placeholder="Ingresar teléfono" required
-                                            maxlength="12"
-                                            pattern="^\+[0-9]{11}$"
-                                            title="Ingrese el número de teléfono completo."
-                                            onfocus="if (this.value === '') { this.value = '+'; }"
-                                            oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
-                                                if (!this.value.startsWith('+')) {
-                                                    this.value = '+' + this.value.slice(1);
-                                                }
-                                                this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');">
-                            
+                                            maxlength="12" pattern="^\+[0-9]{11}$"
+                                            title="Ingrese el número de teléfono completo incluido el +"
+                                            onfocus="validarTelefono(this)">
                           </div>
                       </div>
                       
@@ -1017,16 +1000,9 @@ MODAL EDITAR CLIENTE
                         <input type="tel" class="form-control input" name="editarTelefono"
                                             id="editarTelefono"
                                             placeholder="Ingresar teléfono" required
-                                            maxlength="12"
-                                            pattern="^\+[0-9]{11}$"
-                                            title="Ingrese el número de teléfono completo."
-                                            onfocus="if (this.value === '') { this.value = '+'; }"
-                                            oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
-                                                if (!this.value.startsWith('+')) {
-                                                    this.value = '+' + this.value.slice(1);
-                                                }
-                                                this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');">
-
+                                            maxlength="12" pattern="^\+[0-9]{11}$"
+                                            title="Ingrese el número de teléfono completo incluido el +"
+                                            onfocus="validarTelefono(this)">
                       </div>
                   </div>
                 

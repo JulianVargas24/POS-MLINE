@@ -314,12 +314,9 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
 
-                    <!-- <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
                     <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td> -->
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
-                    <td>$ '.$value["pendiente"].'</td>
+                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
 
                     <td>
 
@@ -402,8 +399,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -493,10 +490,10 @@ if($xml){
                     <td>'.$cliente.'</td>
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
-      
+
                     <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
-                    <td>$ '.$value["pendiente"].'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
 
                     <td>
 
@@ -586,8 +583,9 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
+                    
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -679,8 +677,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ 0</td>
 
                     <td>
@@ -771,8 +769,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ 0</td>
 
                     <td>
@@ -863,8 +861,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["iva"].'</td>
 
                     <td>
