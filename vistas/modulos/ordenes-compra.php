@@ -1,14 +1,14 @@
 <?php
 
-if($_SESSION["perfil"] == "Especial"){
+if ($_SESSION["perfil"] == "Especial") {
 
-  echo '<script>
+    echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-  return;
+    return;
 
 }
 
@@ -16,248 +16,238 @@ if($_SESSION["perfil"] == "Especial"){
 
 <div class="content-wrapper">
 
-  <section class="content-header">
-    
-    <h1>
-      
-      Administrar Orden Compra
-    
-    </h1>
+    <section class="content-header">
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Orden Compra</li>
-    
-    </ol>
+        <h1>
+            Administrar Órdenes de Compra
+        </h1>
 
-  </section>
+        <ol class="breadcrumb">
 
-  <section class="content">
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-    <div class="box">
+            <li class="active">Administrar Orden Compra</li>
 
-      <div class="box-header with-border">
+        </ol>
 
-      
-      <a href="orden-compra">
-          <button class="btn btn-warning" data-toggle="modal" data-target="#modalAgregarCompra">
-            
-            Agregar Orden de Compra
+    </section>
 
-          </button>
-      </a>
-      </div>
+    <section class="content">
 
-      <div class="box-body">
-      <div class="box-header with-border">
-    <?php
-    if($_SESSION["perfil"]=="Administrador")
-    ?> 
-      <div class="input-group">
+        <div class="box">
 
-        <button type="button" class="btn btn-default" id="daterange-orden-compra">
+            <div class="box-header with-border">
+
+                <a href="orden-compra">
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalAgregarCompra">
+                        Agregar orden de compra
+                    </button>
+                </a>
+            </div>
+
+            <div class="box-body">
+                <div class="box-header with-border">
+                    <?php
+                    if ($_SESSION["perfil"] == "Administrador")
+                    ?>
+                    <div class="input-group">
+
+                        <button type="button" class="btn btn-default" id="daterange-orden-compra">
         
           <span>
             <i class="fa fa-calendar"></i> 
 
             <?php
 
-              if(isset($_GET["fechaInicial"])){
+            if (isset($_GET["fechaInicial"])) {
 
-                echo $_GET["fechaInicial"]." - ".$_GET["fechaFinal"];
-              
-              }else{
-              
+                echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
+
+            } else {
+
                 echo 'Rango de fecha';
 
-              }
+            }
 
             ?>
           </span>
 
-          <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-caret-down"></i>
 
-        </button>
+                        </button>
 
-      </div>
+                    </div>
 
-      <div class="box-tools pull-right">
+                    <div class="box-tools pull-right">
 
-          <?php
+                        <?php
+                        if (isset($_GET["fechaInicial"])) {
+                            echo '<a href="vistas/modulos/descargar-reporte-orden-compra.php?reporte=reporte&fechaInicial=' . $_GET["fechaInicial"] . '&fechaFinal=' . $_GET["fechaFinal"] . '">';
+                        } else {
+                            echo '<a href="vistas/modulos/descargar-reporte-orden-compra.php?reporte=reporte">';
+                        }
+                        ?>
 
-          if(isset($_GET["fechaInicial"])){
+                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
 
-            echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial='.$_GET["fechaInicial"].'&fechaFinal='.$_GET["fechaFinal"].'">';
+                        </a>
 
-          }else{
+                    </div>
 
-            echo '<a href="vistas/modulos/descargar-reporte-orden-compra.php?reporte=reporte">';
+                </div>
+                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-          }         
+                    <thead>
 
-          ?>
-        
-          <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
+                    <tr>
+                        <th>Folio</th>
+                        <th>Tipo de documento</th>
+                        <th>Proveedor</th>
+                        <th>Emisión</th>
+                        <th>Vencimiento</th>
+                        <th>Centro de costo</th>
+                        <th>Bodega</th>
+                        <th>Estado de orden</th>
+                        <th>Plazo de pago</th>
+                        <th>Medio de pago</th>
+                        <th>Observación</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
 
-          </a>
+                    </thead>
 
-        </div>
-  
-  </div> 
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           <th>Folio</th>
-           <th>Tipo Documento</th>
-           <th>Proveedor</th>
-           <th>Emision</th>
-           <th>Vencimiento</th>
-           <th>Centro de Costo</th>
-           <th>Bodega</th>
-           <th>Estado de Orden</th>
-           <th>Plazo de Pago</th>
-           <th>Medio de Pago</th>
-           <th>Observacion</th>
-           <th>Total</th>
-           <th>Acciones</th>
-         </tr> 
+                    <tbody>
 
-        </thead>
+                    <?php
 
-        <tbody>
+                    $item = null;
+                    $valor = null;
 
-        <?php
+                    $ordenCompra = ControladorOrdenCompra::ctrMostrarOrdenCompra($item, $valor);
+                    $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+                    $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                    $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
+                    $plazos = ControladorPlazos::ctrMostrarPlazos($item, $valor);
+                    $medios = ControladorMediosPago::ctrMostrarMedios($item, $valor);
 
-          $item = null;
-          $valor = null;
+                    foreach ($ordenCompra as $key => $value) {
 
-          $ordenCompra = ControladorOrdenCompra::ctrMostrarOrdenCompra($item, $valor);
-          $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
-          $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
-          $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
-          $plazos = ControladorPlazos::ctrMostrarPlazos($item,$valor);
-          $medios = ControladorMediosPago::ctrMostrarMedios($item,$valor);
+                        for ($i = 0; $i < count($centros); ++$i) {
+                            if ($centros[$i]["id"] == $value["id_centro"]) {
+                                $centro = $centros[$i]["centro"];
+                            }
+                        }
+                        for ($i = 0; $i < count($bodegas); ++$i) {
+                            if ($bodegas[$i]["id"] == $value["id_bodega"]) {
+                                $bodega = $bodegas[$i]["nombre"];
+                            }
+                        }
+                        for ($i = 0; $i < count($proveedores); ++$i) {
+                            if ($proveedores[$i]["id"] == $value["id_proveedor"]) {
+                                $proveedor = $proveedores[$i]["razon_social"];
+                            }
+                        }
+                        for ($i = 0; $i < count($plazos); ++$i) {
+                            if ($plazos[$i]["id"] == $value["id_plazo_pago"]) {
+                                $plazo = $plazos[$i]["nombre"];
+                            }
+                        }
+                        for ($i = 0; $i < count($medios); ++$i) {
+                            if ($medios[$i]["id"] == $value["id_medio_pago"]) {
+                                $medio = $medios[$i]["medio_pago"];
+                            }
+                        }
 
-          foreach ($ordenCompra as $key => $value) {
-
-            for($i = 0; $i < count($centros); ++$i){
-              if ($centros[$i]["id"] == $value["id_centro"]) {
-                $centro = $centros[$i]["centro"];
-              }
-            }
-            for($i = 0; $i < count($bodegas); ++$i){
-              if ($bodegas[$i]["id"] == $value["id_bodega"]) {
-                $bodega = $bodegas[$i]["nombre"];
-              }
-            }
-            for($i = 0; $i < count($proveedores); ++$i){
-              if ($proveedores[$i]["id"] == $value["id_proveedor"]) {
-                $proveedor = $proveedores[$i]["razon_social"];
-              }
-            }
-            for($i = 0; $i < count($plazos); ++$i){
-              if ($plazos[$i]["id"] == $value["id_plazo_pago"]) {
-                $plazo = $plazos[$i]["nombre"];
-              }
-            }
-            for($i = 0; $i < count($medios); ++$i){
-              if ($medios[$i]["id"] == $value["id_medio_pago"]) {
-                $medio = $medios[$i]["medio_pago"];
-              }
-            }
-            
-            if($value["estado"] != "Cerrada"){
-            echo '<tr>
+                        if ($value["estado"] != "Cerrada") {
+                            echo '<tr>
 
 
-                    <td>'.$value["codigo"].'</td> 
+                    <td>' . $value["codigo"] . '</td> 
 
                     <td>Orden de Compra</td>
                     
-                    <td>'.$proveedor.'</td>
+                    <td>' . $proveedor . '</td>
 
-                    <td>'.$value["fecha_emision"].'</td>
+                    <td>' . $value["fecha_emision"] . '</td>
 
-                    <td>'.$value["fecha_vencimiento"].'</td>
+                    <td>' . $value["fecha_vencimiento"] . '</td>
 
-                    <td>'.$centro.'</td>
+                    <td>' . $centro . '</td>
 
-                    <td>'.$bodega.'</td>      
+                    <td>' . $bodega . '</td>      
 
-                    <td>'.$value["estado"].'</td>
+                    <td>' . $value["estado"] . '</td>
 
-                    <td>'.$plazo.'</td>
+                    <td>' . $plazo . '</td>
 
-                    <td>'.$medio.'</td>
+                    <td>' . $medio . '</td>
 
-                    <td>'.$value["observacion"].'</td>
+                    <td>' . $value["observacion"] . '</td>
       
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ ' . $value["total_final"] . '</td>
                     <td>
 
                     <div class="btn-group">
 
 
 
-                      <button disabled class="btn btn-success btnImprimirTicket" codigoVenta="'.$value["codigo"].'">
+                      <button disabled class="btn btn-success btnImprimirTicket" codigoVenta="' . $value["codigo"] . '">
 
                       Ticket
 
                       </button>
                         
-                      <button class="btn btn-info btnImprimirOrdenCompra"  codigoOrden="'.$value["codigo"].'">
+                      <button class="btn btn-info btnImprimirOrdenCompra"  codigoOrden="' . $value["codigo"] . '">
 
                       PDF
 
                       </button>';
 
-                      if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
-
-                      
-                      echo '
-                             <button class="btn btn-success btnFacturarOrdenCompra" idOrdenCompra="'.$value["codigo"].'">Facturar</button>
-                            <button class="btn btn-warning btnEditarOrdenCompra" idOrdenCompra="'.$value["id"].'"><i class="fa fa-pencil"></i></button> ';
-
-                      }
-                      if($_SESSION["perfil"] == "Administrador"){
-                     echo' <button class="btn btn-danger btnEliminarOrdenCompra" idOrdenCompra="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                            if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
 
 
-                    }
+                                echo '
+                             <button class="btn btn-success btnFacturarOrdenCompra" idOrdenCompra="' . $value["codigo"] . '">Facturar</button>
+                            <button class="btn btn-warning btnEditarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-pencil"></i></button> ';
 
-                    echo '</div>  
+                            }
+                            if ($_SESSION["perfil"] == "Administrador") {
+                                echo ' <button class="btn btn-danger btnEliminarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+
+
+                            }
+
+                            echo '</div>  
 
                   </td>
 
 
 
-                  </tr>';}
-          
-            }
+                  </tr>';
+                        }
 
-           
-        ?>
-   
-        </tbody>
+                    }
 
-       </table>
 
-       <?php
+                    ?>
 
-        $eliminarOrdenCompra = new ControladorOrdenCompra();
-        $eliminarOrdenCompra -> ctrEliminarOrdenCompra();
+                    </tbody>
 
-        ?>
+                </table>
 
-      </div>
+                <?php
 
-    </div>
+                $eliminarOrdenCompra = new ControladorOrdenCompra();
+                $eliminarOrdenCompra->ctrEliminarOrdenCompra();
 
-  </section>
+                ?>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </div>
 
@@ -265,9 +255,7 @@ if($_SESSION["perfil"] == "Especial"){
 MODAL AGREGAR BODEGA
 ======================================-->
 <style>
-  .error{
-    color: red;
-  }
+    .error {
+        color: red;
+    }
 </style>
-
-
