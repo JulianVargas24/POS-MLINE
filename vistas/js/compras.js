@@ -1252,9 +1252,7 @@ if (window.location.href.includes("compras")) {
     /*=============================================
     CANCELAR RANGO DE FECHAS
     =============================================*/
-    $(".daterangepicker.opensleft .range_inputs .cancelBtn").on(
-        "click",
-        function () {
+    $(".daterangepicker .range_inputs .cancelBtn").on("click", function () {
             localStorage.removeItem("capturarRango");
             localStorage.clear();
             window.location = "compras";

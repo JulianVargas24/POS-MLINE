@@ -106,9 +106,9 @@ $(".tablaCompras tbody").on("click", "button.agregarProducto", function () {
 			  </div>`)
 
 
-	        // SUMAR TOTAL DE PRECIOS
-		
-	        sumarTotalPrecios()
+            // SUMAR TOTAL DE PRECIOS
+
+            sumarTotalPrecios()
 
             // AGREGAR IMPUESTO
             agregarImpuesto()
@@ -1318,7 +1318,7 @@ BOTON PARA VER FACTURA HISTORIAL DE VENTAS
 =============================================*/
 
 
-$(".tablas").on("click", ".btnImprimirHistorial", function(){
+$(".tablas").on("click", ".btnImprimirHistorial", function () {
 
     var codigoVenta = $(this).attr("codigoVenta");
 
@@ -1397,12 +1397,12 @@ if (window.location.href.includes("ordenes-compra")) {
     /*=============================================
     CANCELAR RANGO DE FECHAS
     =============================================*/
-    $(".daterangepicker.opensleft .range_inputs .cancelBtn").on("click", function () {
-
-        localStorage.removeItem("capturarRango");
-        localStorage.clear();
-        window.location = "ordenes-compra";
-    });
+    $(".daterangepicker .range_inputs .cancelBtn").on("click", function () {
+            localStorage.removeItem("capturarRango");
+            localStorage.clear();
+            window.location = "ordenes-compra";
+        }
+    );
 }
 
 /*=============================================
@@ -1416,8 +1416,4 @@ $(".abrirXML").click(function () {
 })
 
 
-
-
 //TRAER PROVEEDOR
-
-
