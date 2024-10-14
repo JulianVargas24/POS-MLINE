@@ -213,7 +213,11 @@ MODAL AGREGAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoRutId" id="nuevoRutId" placeholder="Ingrese su RUT" required>
+                        <input type="text" class="form-control input" name="nuevoRutId" id="nuevoRutId" 
+                          placeholder="Ingrese su RUT" 
+                          required
+                          pattern="^(\d{1,2}\.\d{3}\.\d{3}-[\dkK])$" 
+                          title="El RUT debe tener el formato XX.XXX.XXX-X">
 
                       </div>
                   </div>
@@ -674,7 +678,11 @@ MODAL EDITAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarRutId" id="editarRutId" placeholder="Ingrese su RUT" required>
+                        <input type="text" class="form-control input" name="editarRutId" id="editarRutId" 
+                          placeholder="Ingrese su RUT" 
+                          required
+                          pattern="^(\d{1,2}\.\d{3}\.\d{3}-[\dkK])$" 
+                          title="El RUT debe tener el formato XX.XXX.XXX-X">
 
                       </div>
                   </div>
