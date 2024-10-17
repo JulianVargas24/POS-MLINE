@@ -251,16 +251,10 @@ MODAL AGREGAR CLIENTE
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
                                 }
-
                                 ?>
             
                             </select>
@@ -278,20 +272,6 @@ MODAL AGREGAR CLIENTE
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
-
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
-
-                                    ?>
               
                                 </select>
 
@@ -1093,4 +1073,40 @@ MODAL EDITAR CLIENTE
 
 ?>
 
+<script>
+document.getElementById('nuevaRegion').addEventListener('change', function() {
+    var regionId = this.value; // Obtener el ID de la región seleccionada
 
+    // Verifica que haya una región seleccionada
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
+
+                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
+                var comunaSelect = document.getElementById('nuevaComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
+
+                // Rellenar las opciones del select de comunas
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
+                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        // Enviar el ID de la región seleccionada al servidor
+        xhr.send('regionId=' + regionId);
+    } else {
+        // Si no hay región seleccionada, limpiar el select de comunas
+        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+
+  </script>
