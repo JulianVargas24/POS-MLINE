@@ -69,7 +69,7 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Teléfono</th>
            <th>Region</th>
            <th>Comuna</th>
-           <th>Ciudad</th>
+           <th>Direccion</th>
            <th>Actividad</th>
            <th>Ejecutivo</th>
            <th>Descuento</th>
@@ -90,51 +90,38 @@ if($_SESSION["perfil"] == "Especial"){
           $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
 
           foreach ($clientes as $key => $value) {
-            
+            // Obtener los nombres de la región y la comuna
+            $regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
+            $comunaNombre = ControladorRegiones::ctrMostrarComunas('id', $value['comuna']);
 
+            // Asignar nombres o mostrar el ID si no se encuentra el nombre
+            $regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : ''.$value['region'];
+            $comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : ''.$value['comuna'];
+        
             echo '<tr>
-
                     <td>'.($key+1).'</td>
-
                     <td>'.$value["nombre"].'</td>
-
                     <td>'.$value["rut"].'</td>
-
                     <td>'.$value["email"].'</td>
-
                     <td>'.$value["telefono"].'</td>
-
-                    <td>'.$value["region"].'</td> 
-
-                    <td>'.$value["comuna"].'</td> 
-                    
+                    <td>'.$regionDisplay.'</td>
+                    <td>'.$comunaDisplay.'</td> 
                     <td>'.$value["direccion"].'</td>  
-
                     <td>'.$value["actividad"].'</td> 
-
                     <td>'.$value["ejecutivo"].'</td> 
-
                     <td>'.$value["factor_lista"].'%</td> 
-
                     <td>
-
-                      <div class="btn-group">
-                          
-                        <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
-
-                      if($_SESSION["perfil"] == "Administrador"){
-
-                          echo '<button class="btn btn-danger btnEliminarCliente" idCliente="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-
-                      }
-
-                      echo '</div>  
-
-                    </td>
-
-                  </tr>';
-          
+                        <div class="btn-group">
+                            <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
+        
+            if ($_SESSION["perfil"] == "Administrador") {
+                echo '<button class="btn btn-danger btnEliminarCliente" idCliente="'.$value["id"].'"><i class="fa fa-times"></i></button>';
             }
+        
+            echo '      </div>  
+                    </td>
+                  </tr>';
+        }
 
         ?>
    
@@ -696,16 +683,9 @@ MODAL EDITAR CLIENTE
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $cliente['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
                                 }
-
                                 ?>
             
                             </select>
@@ -723,25 +703,14 @@ MODAL EDITAR CLIENTE
                                 <select class="form-control input" id="editarComuna" name="editarComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
-
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
-
-                                    ?>
               
                                 </select>
 
                             </div>
                       </div>
+
+                      <!-- Input hidden para la comuna actual -->
+                      <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
      
                     <div class="col-xs-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
@@ -1109,4 +1078,36 @@ document.getElementById('nuevaRegion').addEventListener('change', function() {
     }
 });
 
+document.getElementById('editarRegion').addEventListener('change', function() {
+    var regionId = this.value;
+    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var comunas = JSON.parse(xhr.responseText);
+                var comunaSelect = document.getElementById('editarComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
+
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id;
+                    option.textContent = comuna.nombre;
+                    if (comuna.id == comunaActual) {
+                        option.selected = true; // Seleccionar la comuna actual
+                    }
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        xhr.send('regionId=' + regionId);
+    } else {
+        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
   </script>
