@@ -1329,11 +1329,11 @@ $(".tablas").on("click", ".btnImprimirHistorial", function () {
 /*=============================================
 IMPRIMIR Ticket
 =============================================*/
-$(".tablas").on("click", ".btnImprimirTicket", function () {
+$(".tablas").on("click", ".btnImprimirTicketOrdenCompra", function () {
 
-    var codigoVenta = $(this).attr("codigoVenta");
+    var codigoOrdenCompra = $(this).attr("codigoOrdenCompra");
 
-    window.open("extensiones/tcpdf/pdf/ticket.php?codigo=" + codigoVenta, "_blank");
+    window.open("extensiones/tcpdf/pdf/ticket-orden-compra.php?codigo=" + codigoOrdenCompra, "_blank");
 
 })
 

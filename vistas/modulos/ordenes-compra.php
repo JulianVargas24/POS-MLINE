@@ -9,7 +9,6 @@ if ($_SESSION["perfil"] == "Especial") {
   </script>';
 
     return;
-
 }
 
 ?>
@@ -53,24 +52,22 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="input-group">
 
                         <button type="button" class="btn btn-default" id="daterange-orden-compra">
-        
-          <span>
-            <i class="fa fa-calendar"></i> 
 
-            <?php
+                            <span>
+                                <i class="fa fa-calendar"></i>
 
-            if (isset($_GET["fechaInicial"])) {
+                                <?php
 
-                echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
+                                if (isset($_GET["fechaInicial"])) {
 
-            } else {
+                                    echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
+                                } else {
 
-                echo 'Rango de fecha';
+                                    echo 'Rango de fecha';
+                                }
 
-            }
-
-            ?>
-          </span>
+                                ?>
+                            </span>
 
                             <i class="fa fa-caret-down"></i>
 
@@ -190,45 +187,29 @@ if ($_SESSION["perfil"] == "Especial") {
 
                     <div class="btn-group">
 
-
-
-                      <button disabled class="btn btn-success btnImprimirTicket" codigoVenta="' . $value["codigo"] . '">
-
+                      <button class="btn btn-success btnImprimirTicketOrdenCompra" codigoOrdenCompra="' . $value["codigo"] . '">
                       Ticket
-
                       </button>
                         
                       <button class="btn btn-info btnImprimirOrdenCompra"  codigoOrden="' . $value["codigo"] . '">
-
                       PDF
-
                       </button>';
 
                             if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
-
-
                                 echo '
-                             <button class="btn btn-success btnFacturarOrdenCompra" idOrdenCompra="' . $value["codigo"] . '">Facturar</button>
-                            <button class="btn btn-warning btnEditarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-pencil"></i></button> ';
-
+                                <button class="btn btn-success btnFacturarOrdenCompra" idOrdenCompra="' . $value["codigo"] . '">Facturar</button>
+                                <button class="btn btn-warning btnEditarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-pencil"></i></button> ';
                             }
                             if ($_SESSION["perfil"] == "Administrador") {
                                 echo ' <button class="btn btn-danger btnEliminarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-
-
                             }
-
-                            echo '</div>  
+                            echo '</div>
 
                   </td>
 
-
-
                   </tr>';
                         }
-
                     }
-
 
                     ?>
 
