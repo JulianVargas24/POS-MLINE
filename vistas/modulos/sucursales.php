@@ -81,28 +81,27 @@ if($_SESSION["perfil"] == "Especial"){
           $sucursales = ControladorSucursales::ctrMostrarSucursales($item, $valor);
 
           foreach ($sucursales as $key => $value) {
+            // Obtener los nombres de la región y la comuna
+            $regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
+            $comunaNombre = ControladorRegiones::ctrMostrarComunas('id', $value['comuna']);
+
+            // Asignar nombres o mostrar el ID si no se encuentra el nombre
+            $regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : ''.$value['region'];
+            $comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : ''.$value['comuna'];
             
 
             echo '<tr>
 
                     <td>'.($key+1).'</td>
-
                     <td>'.$value["nombre"].'</td>
-
-                    <td>'.$value["region"].'</td>
-
-                    <td>'.$value["comuna"].'</td>
-
-                    <td>'.$value["direccion"].'</td>
-
-                    <td>'.$value["bodega"].'</td>
-
-                    <td>'.$value["jefe"].'</td>
-                          
-
-                    <td>'.$value["telefono"].'</td>
-
                     <td>'.$value["email"].'</td>
+                    <td>'.$value["telefono"].'</td>
+                    <td>'.$regionDisplay.'</td>
+                    <td>'.$comunaDisplay.'</td> 
+                    <td>'.$value["direccion"].'</td>  
+                    <td>'.$value["bodega"].'</td> 
+                    <td>'.$value["jefe"].'</td>
+                    <td>'.$value["factor_lista"].'%</td> 
 
 
                     <td>
@@ -144,19 +143,19 @@ if($_SESSION["perfil"] == "Especial"){
 MODAL AGREGAR SUCURSAL
 ====================================-->
 <style>
-  .error{
+  .error {
     color: red;
   }
 </style>
 
 <div id="modalAgregarSucursal" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
 
       <form role="form" method="post" id="form_nueva_bodega">
-
+        
         <!--=====================================
         CABEZA DEL MODAL
         ======================================-->
@@ -167,10 +166,11 @@ MODAL AGREGAR SUCURSAL
 
           <h4 class="modal-title">Agregar Sucursal</h4>
 
+
         </div>
 
         <!--=====================================
-        CUERPO DEL MODAL, REGION, CIUDAD, DIRECCION
+        CUERPO DEL MODAL
         ======================================-->
 
         <div class="modal-body">
@@ -178,31 +178,27 @@ MODAL AGREGAR SUCURSAL
           <div class="box-body">
 
             <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Sucursal</h4>
-              <div class="box box-info">
-                <div class="box-body">                
-                  <div class="form-group row">              
-                    <div class="col-lg-6">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
-                      <div class="input-group">
-                          
-                          <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-                          
-                          <input type="text" class="form-control input" name="nuevaSucursal" id="nuevaSucursal" placeholder="Ingresar Nombre Sucursal" required>
+            <div class="box box-info">
+              <div class="box-body">                
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
+                    <div class="input-group">
 
-                        </div>
+                      <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+                      <input type="text" class="form-control input" name="nuevaSucursal" id="nuevaSucursal" placeholder="Ingresar Nombre Sucursal" required>
                     </div>
-                    <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
-                        <div class="input-group">
-                        
-                          <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+                  </div>
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese Pais" required value="Chile">
+                    </div>
+                  </div>
 
-                          <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese Pais" required value="Chile">
-
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold;margin-top:10px">Region</div>
+                  <div class="col-xs-6">
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -212,95 +208,60 @@ MODAL AGREGAR SUCURSAL
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
                                 }
-
                                 ?>
             
                             </select>
+                    </div>
+                  </div>   
 
-
-                          </div>
-                      </div>   
                   <!-- ENTRADA PARA LA CIUDAD  -->
-                  <div class="col-lg-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold;margin-top:10px">Comuna</div>
-                          <div class="input-group">
-                      
-                            <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
-
-                            <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
-                                                                            
-                                <option  value="">Seleccionar Comuna</option>
-
-                                <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                foreach ($comunas as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                }
-
-                                ?>
-            
-                            </select>
-
-
-                          </div>
-                      </div>   
-                    <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
-                      <div class="col-lg-6" style="margin-top:10px;">
-                                <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
+                  <div class="col-xs-6">
+                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
                             <div class="input-group">
-                          
-                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-
-                                <input type="text" class="form-control input" name="nuevaDireccion" placeholder="Ingresar Direccion" required>
-
-                            </div>
-                      </div>
-
-                      <div class="col-lg-6" style="margin-top:10px;">
-                                <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega Asociada</div>
-                            <div class="input-group">
-                          
-                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-
-                                <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
                             
-                            <option value="">Seleccionar Bodega</option>
+                              <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                            <?php
+                                <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
+                                                                              
+                                    <option value="">Seleccionar Comuna</option>
+              
+                                </select>
+                    </div>
+                  </div>   
 
-                            $item = null;
-                            $valor = null;
+                  <!-- ENTRADA PARA LA DIRECCIÓN -->                           
+                  <div class="col-lg-6" style="margin-top:10px;">
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
+                      <input type="text" class="form-control input" name="nuevaDireccion" placeholder="Ingresar Dirección" required>
+                    </div>
+                  </div>
 
-                            $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
-
-                            foreach ($bodegas as $key => $value) {
-                            echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                            }
-
-                            ?>
-            
-                        </select>
-
-                            </div>
-                      </div>
-                      
-                  </div> 
+                  <div class="col-lg-6" style="margin-top:10px;">
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega Asociada</div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
+                      <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
+                        <option value="">Seleccionar Bodega</option>
+                        <?php
+                          $item = null;
+                          $valor = null;
+                          $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                          foreach ($bodegas as $key => $value) {
+                            echo '<option value="'.$value["nombre"].'">'.$value["nombre"].'</option>';
+                          }
+                        ?>
+                      </select>
+                    </div>
+                  </div>   
                 </div>  
               </div>
+            </div>
 
             <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Contacto</h4>
             <div class="box box-success">
@@ -309,67 +270,66 @@ MODAL AGREGAR SUCURSAL
                   <div class="col-lg-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe Encargado</div>
                     <div class="input-group">
-                        
-                          <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                          <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" placeholder="Ingresar Encargado" required>
-
-                        </div>
+                      <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+                      <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" placeholder="Ingresar Encargado" required>
+                    </div>
                   </div>
                   <div class="col-lg-6">
-                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Telefono</div> 
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Teléfono</div>
                     <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="tel" class="form-control input" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" required>
-
-                      </div>
+                      <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
+                      <input type="tel" class="form-control input" name="nuevoTelefono" id="nuevoTelefono" 
+                      placeholder="Ingresar teléfono" required 
+                      maxlength="12"
+                      pattern="^\+[0-9]{11}$"
+                      title="Ingrese el número de teléfono completo."
+                      onfocus="if (this.value === '') { this.value = '+'; }"
+                      oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
+                      if (!this.value.startsWith('+')) {
+                          this.value = '+' + this.value.slice(1);
+                      }
+                      this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');">
+                    </div>
                   </div>
-                 
-                    <div class="col-lg-6" style="margin-top:10px;">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Correo Electronico</div> 
-                        <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-
-                        <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar email" required>
-
-                      </div>
-                    </div>                 
-                  <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
+                </div>
+                
+                <div class="col-lg-6" style="margin-top:10px;">
+                  <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
+                  <div class="input-group">
                     
-                    
-                </div> 
-              </div>  
-            </div>
-
-
-           
-  
-          </div>
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail"
+                    placeholder="Ingresar email" required
+                    pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
+                    title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                  </div>
+                </div>
+              </div>                 
+            </div> 
+          </div>  
 
         </div>
 
         <!--=====================================
         PIE DEL MODAL
         ======================================-->
-
+        
         <div class="modal-footer">
-
+          
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar Sucursal</button>
-
+        
         </div>
-
+      
       </form>
 
       <?php
 
         $crearSucursal = new ControladorSucursales();
-        $crearSucursal -> ctrCrearSucursal();
-
+        $crearSucursal->ctrCrearSucursal();
       ?>
 
     </div>
@@ -436,8 +396,11 @@ MODAL EDITAR SUCURSAL
 
                         </div>
                       </div>
-                      <div class="col-lg-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold;margin-top:10px">Region</div>
+
+                      <!-- ENTRADA PARA LA REGION -->
+
+                      <div class="col-xs-6">
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -447,25 +410,18 @@ MODAL EDITAR SUCURSAL
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $cliente['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
                                 }
-
                                 ?>
             
                             </select>
 
-
                           </div>
                       </div>   
+
                   <!-- ENTRADA PARA LA CIUDAD -->
-                      <div class="col-lg-6" style="margin-top:10px;">
+                  <div class="col-xs-6">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
                             <div class="input-group">
                             
@@ -488,11 +444,56 @@ MODAL EDITAR SUCURSAL
                                     }
 
                                     ?>
-              
+
+
                                 </select>
 
                             </div>
-                      </div>                
+                      </div>
+
+                      <!-- Input hidden para la comuna actual -->
+                      <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
+     
+                    <div class="col-xs-6">
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
+                    <div class="input-group">
+                    
+                      <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
+
+                      <input type="text" class="form-control input" name="editarDireccion" id="editarDireccion" placeholder="Ingrese Direccion" required>
+
+                    </div>
+                    </div>
+                    
+                    <div class="col-xs-6">
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo Campaña</div>
+                    <div class="input-group">
+                    
+                      <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                      <select class="form-control input" id="nuevoTipoCliente" name="nuevoTipoCliente" required>
+                            
+                        <option value="">Seleccionar Tipo Cliente</option>
+                        <?php
+
+                          $item = null;
+                          $valor = null;
+
+                          $tipoCliente = ControladorTipoClientes::ctrMostrarTipoClientes($item, $valor);
+
+                          foreach ($tipoCliente as $key => $value) {
+                            
+                            echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+                          }
+
+                        ?>
+                      </select>
+
+                    </div>
+                    </div>
+
+
+                                   
                     <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                       <div class="col-lg-6" style="margin-top:10px;">
                         <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
@@ -513,6 +514,12 @@ MODAL EDITAR SUCURSAL
                                 <select class="form-control input" id="editarBodega" name="editarBodega" required>
                             
                             <option value="">Seleccionar Bodega</option>
+
+                            <?php
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $cliente['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
+                                }
+                                ?>
 
                             <?php
 
@@ -550,26 +557,37 @@ MODAL EDITAR SUCURSAL
                         </div>
                   </div>
                   <div class="col-lg-6">
-                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Telefono</div> 
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Teléfono</div>
                     <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="tel" class="form-control input" name="editarTelefono" id="editarTelefono"  required>
-
+                      <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
+                      <input type="tel" class="form-control input" name="editarTelefono" id="editarTelefono" 
+                      placeholder="Ingresar teléfono" required
+                      maxlength="12"
+                      pattern="^\+[0-9]{11}$"
+                      title="Ingrese el número de teléfono completo."
+                      onfocus="if (this.value === '') { this.value = '+'; }"
+                      oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
+                      if (!this.value.startsWith('+')) {
+                      this.value = '+' + this.value.slice(1);
+                      }
+                      this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');">
                       </div>
-                  </div>
+                    </div>
+
                  
                     <div class="col-lg-6" style="margin-top:10px;">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Correo Electronico</div> 
-                        <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-
-                        <input type="text" class="form-control input" name="editarEmail" id="editarEmail"  required>
-
-                      </div>
-                    </div>                 
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
+                      <div class="input-group">
+                        
+                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                      <input type="text" class="form-control input" name="editarEmail" id="editarEmail" required
+                      placeholder="Ingresar email"
+                      pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
+                      title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                    </div>
+                  </div>
+               
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                     
                     
@@ -620,4 +638,72 @@ MODAL EDITAR SUCURSAL
 
 ?>
 
+<script>
+document.getElementById('nuevaRegion').addEventListener('change', function() {
+    var regionId = this.value; // Obtener el ID de la región seleccionada
 
+    // Verifica que haya una región seleccionada
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
+
+                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
+                var comunaSelect = document.getElementById('nuevaComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
+
+                // Rellenar las opciones del select de comunas
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
+                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        // Enviar el ID de la región seleccionada al servidor
+        xhr.send('regionId=' + regionId);
+    } else {
+        // Si no hay región seleccionada, limpiar el select de comunas
+        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+
+document.getElementById('editarRegion').addEventListener('change', function() {
+    var regionId = this.value;
+    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var comunas = JSON.parse(xhr.responseText);
+                var comunaSelect = document.getElementById('editarComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
+
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id;
+                    option.textContent = comuna.nombre;
+                    if (comuna.id == comunaActual) {
+                        option.selected = true; // Seleccionar la comuna actual
+                    }
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        xhr.send('regionId=' + regionId);
+    } else {
+        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+  </script>
