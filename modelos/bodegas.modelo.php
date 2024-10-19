@@ -43,26 +43,20 @@ class ModeloBodegas{
 
 		if($item != null){
 	
-			// Agregar JOIN para obtener el nombre de la región
-			$stmt = Conexion::conectar()->prepare("SELECT bodegas.*, regiones.nombre_region 
-												   FROM $tabla 
-												   JOIN regiones ON bodegas.region = regiones.region_id
-												   WHERE $item = :$item");
-	
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
 			$stmt -> execute();
-	
+
 			return $stmt -> fetch();
 	
 		} else {
 	
-			// Agregar JOIN para mostrar todas las bodegas con el nombre de la región
-			$stmt = Conexion::conectar()->prepare("SELECT bodegas.*, regiones.nombre_region 
-												   FROM $tabla 
-												   JOIN regiones ON bodegas.region = regiones.region_id");
-	
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
 			$stmt -> execute();
-	
+
 			return $stmt -> fetchAll();
 	
 		}

@@ -80,7 +80,13 @@ if($_SESSION["perfil"] == "Especial"){
           $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
 
           foreach ($bodegas as $key => $value) {
-            
+            // Obtener los nombres de la región y la comuna
+            $regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
+            $comunaNombre = ControladorRegiones::ctrMostrarComunas('id', $value['comuna']);
+
+            // Asignar nombres o mostrar el ID si no se encuentra el nombre
+            $regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : ''.$value['region'];
+            $comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : ''.$value['comuna'];
 
             echo '<tr>
 
@@ -88,9 +94,9 @@ if($_SESSION["perfil"] == "Especial"){
 
                     <td>'.$value["nombre"].'</td>
 
-                    <td>'.$value["nombre_region"].'</td>
+                    <td>'.$regionDisplay.'</td>
 
-                    <td>'.$value["comuna"].'</td>
+                    <td>'.$comunaDisplay.'</td>
 
                     <td>'.$value["direccion"].'</td>
 
@@ -201,22 +207,15 @@ MODAL AGREGAR BODEGA
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                  echo '<option  value="'.$value["region_id"].'" data-nombre-region="'.$value["nombre_region"].'">'.$value["nombre_region"].' '.$value["ordinal"].' </option>';
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
                                 }
-
                                 ?>
-            
+
                             </select>
-                            <!-- Campo oculto para almacenar el nombre de la región seleccionada -->
-                            <input type="hidden" id="nombreRegionSeleccionada" name="nombreRegionSeleccionada">
- 
+            
+                            
 
 
                           </div>
@@ -233,28 +232,10 @@ MODAL AGREGAR BODEGA
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
-
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                      echo '<option  value="'.$value["nombre_comunas"].'" data-region-id="'.$value["region_id"].'">'.$value["nombre_comunas"].' </option>';
-
-                                    }
-
-                                    ?>
+>
               
                                 </select>
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function () {
-                                        filtrarComunasPorRegion('nuevaRegion', 'nuevaComuna', 'nombreRegionSeleccionada');
-                                    });
-                                </script>
+                                
                                 
                             </div>
                       </div>
@@ -419,17 +400,9 @@ MODAL EDITAR PROVEEDOR
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value) {
-                                  $selected = ($value["region_id"] == $bodegas["region"]) ? 'selected' : ''; // Comparar el valor guardado con las regiones disponibles
-                                  echo '<option value="' . $value["region_id"] . '" ' . $selected . '>' . $value["nombre_region"] . '</option>';
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $bodegas['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
                                 }
-
                                 ?>
             
                             </select>
@@ -449,36 +422,18 @@ MODAL EDITAR PROVEEDOR
 
                             <option value="">Seleccionar Comuna</option>
 
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
                                     
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    // Agregar las opciones al select
-                                    foreach ($comunas as $key => $value) {
-                                      // Verifica si la comuna es la que se está editando
-                                      $selected = ($value["nombre_comunas"] === $bodega["comuna"]) ? 'selected' : '';
-                                      echo '<option value="'.$value["nombre_comunas"].'" data-region-id="'.$value["region_id"].'" '.$selected.'>'.$value["nombre_comunas"].'</option>';
-                                  }
-
-                                    ?>
                           </select>
                           
                           
 
                           </div>
                       </div>
+
+                      <!-- Input hidden para la comuna actual -->
+                      <input type="hidden" id="comunaActual" value="<?php echo $bodegas['comuna']; ?>">
                       
-                      <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            inicializarFiltroComunas('editarRegion', 'editarComuna');
-                        });
-                      </script>
-
-
+                      
                     <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                       <div class="col-lg-6" style="margin-top:10px;">
                       <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
@@ -584,5 +539,75 @@ MODAL EDITAR PROVEEDOR
   
 
 ?>
+
+<script>
+document.getElementById('nuevaRegion').addEventListener('change', function() {
+    var regionId = this.value; // Obtener el ID de la región seleccionada
+
+    // Verifica que haya una región seleccionada
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
+
+                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
+                var comunaSelect = document.getElementById('nuevaComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
+
+                // Rellenar las opciones del select de comunas
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
+                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        // Enviar el ID de la región seleccionada al servidor
+        xhr.send('regionId=' + regionId);
+    } else {
+        // Si no hay región seleccionada, limpiar el select de comunas
+        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+
+document.getElementById('editarRegion').addEventListener('change', function() {
+    var regionId = this.value;
+    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var comunas = JSON.parse(xhr.responseText);
+                var comunaSelect = document.getElementById('editarComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
+
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id;
+                    option.textContent = comuna.nombre;
+                    if (comuna.id == comunaActual) {
+                        option.selected = true; // Seleccionar la comuna actual
+                    }
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        xhr.send('regionId=' + regionId);
+    } else {
+        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+  </script>
 
 
