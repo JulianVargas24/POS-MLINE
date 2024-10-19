@@ -77,42 +77,33 @@ class ModeloMatrices{
 	EDITAR PROVEEDOR
 	=============================================*/
 
-	static public function mdlEditarMatriz($tabla, $datos){
-
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET razon_social = :razon_social, rut = :rut, pais = :pais,  region = :region, comuna = :comuna, tipo_cliente = :tipo_cliente, tipo_producto = :tipo_producto, direccion = :direccion, ejecutivo = :ejecutivo, telefono = :telefono,  email = :email, actividad = :actividad, fecha_inicio = :fecha_inicio, fecha_vencimiento = :fecha_vencimiento  WHERE id = :id");
-
+	static public function mdlEditarMatriz($tabla, $datos) {
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET razon_social = :razon_social, rut = :rut, pais = :pais, region = :region, comuna = :comuna, direccion = :direccion, ejecutivo = :ejecutivo, telefono = :telefono, email = :email, actividad = :actividad, fecha_inicio = :fecha_inicio, fecha_vencimiento = :fecha_vencimiento, tipo_cliente = :tipo_cliente, tipo_producto = :tipo_producto WHERE id = :id");
+	
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":razon_social", $datos["razon_social"], PDO::PARAM_STR);
-		$stmt->bindParam(":region", $datos["region"], PDO::PARAM_STR);
 		$stmt->bindParam(":rut", $datos["rut"], PDO::PARAM_STR);
 		$stmt->bindParam(":pais", $datos["pais"], PDO::PARAM_STR);
+		$stmt->bindParam(":region", $datos["region"], PDO::PARAM_STR);
 		$stmt->bindParam(":comuna", $datos["comuna"], PDO::PARAM_STR);
-        $stmt->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
-        $stmt->bindParam(":ejecutivo", $datos["ejecutivo"], PDO::PARAM_STR);
-        $stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
+		$stmt->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
+		$stmt->bindParam(":ejecutivo", $datos["ejecutivo"], PDO::PARAM_STR);
+		$stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
 		$stmt->bindParam(":actividad", $datos["actividad"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_inicio", $datos["fecha_inicio"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_vencimiento", $datos["fecha_vencimiento"], PDO::PARAM_STR);
 		$stmt->bindParam(":tipo_cliente", $datos["tipo_cliente"], PDO::PARAM_STR);
 		$stmt->bindParam(":tipo_producto", $datos["tipo_producto"], PDO::PARAM_STR);
-		
-			
-
-		if($stmt->execute()){
-
+	
+		if ($stmt->execute()) {
 			return "ok";
-
-		}else{
-
+		} else {
 			return "error";
-		
 		}
-
-		$stmt -> close();
-
+	
+		$stmt->close();
 		$stmt = null;
-
 	}
 
 	static public function mdlEditarCondicionVenta($tabla, $datos){
@@ -137,6 +128,10 @@ class ModeloMatrices{
 
 
 	}
+
+
+
+	
 	/*=============================================
 	BORRAR PROVEEDOR
 	=============================================*/
