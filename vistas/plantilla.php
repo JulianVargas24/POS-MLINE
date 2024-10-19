@@ -294,5 +294,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/ajustes.js"></script>
 <script src="vistas/js/lista-precios.js"></script>
 <script src="vistas/js/carga-inicial.js"></script>
+<script src="vistas/js/validaciones.js"></script>
+<script src="vistas/js/bancos.js"></script>
 </body>
 </html>
