@@ -60,7 +60,7 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Nombre</th>
            <th>Rut</th>
            <th>Cargo</th>
-           <th>Comision</th>
+           <th>Comisión</th>
            <th>Acciones</th>
 
          </tr> 
@@ -189,7 +189,7 @@ MODAL AGREGAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-address-card"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoRutId" id="nuevoRutId" placeholder="Ingrese su RUT" required>
+                        <input type="text" class="form-control input" name="nuevoRutId" id="nuevoRutId" placeholder="Ingrese su RUT" required onblur="formatearRut(this)">
 
                       </div>
                   </div>
@@ -203,12 +203,13 @@ MODAL AGREGAR CLIENTE
                     </div>                 
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->
                   <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Comision</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Comisión</div>
                     <div class="input-group">
                     
-                      <span class="input-group-addon"><i class="fa fa-calculator"></i></span> 
+                      <span class="input-group-addon"><i class="fa fa-calculator"></i></span>
 
-                      <input type="text" class="form-control input" name="nuevaComision" id="nuevaComision" placeholder="Ingrese Comision" required>
+                        <input type="number" class="form-control input" name="nuevaComision" id="nuevaComision" placeholder="Ingrese Comision" min="0" step="0.01" required>
+
 
                     </div>
                   </div>
@@ -308,7 +309,7 @@ MODAL EDITAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-address-card"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarRutId" id="editarRutId" placeholder="Ingrese su RUT" required>
+                        <input type="text" class="form-control input" name="editarRutId" id="editarRutId" placeholder="Ingrese su RUT" required required onblur="formatearRut(this)">
 
                       </div>
                   </div>
@@ -322,12 +323,13 @@ MODAL EDITAR CLIENTE
                     </div>                 
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->
                   <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Comision</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Comisión</div>
                     <div class="input-group">
                     
-                      <span class="input-group-addon"><i class="fa fa-calculator"></i></span> 
+                      <span class="input-group-addon"><i class="fa fa-calculator"></i></span>
 
-                      <input type="text" class="form-control input" name="editarComision" id="editarComision" placeholder="Ingrese Comision" required>
+                        <input type="number" class="form-control input" name="editarComision" id="editarComision" placeholder="Ingrese Comision" min="0" step="0.01" required>
+
 
                     </div>
                   </div>

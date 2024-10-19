@@ -67,7 +67,7 @@ if($_SESSION["perfil"] == "Especial"){
            
            <th>Folio</th>
            <th>Movimiento</th>
-           <th>Emision</th>
+           <th>Emisión</th>
            <th>Bodega Afectada</th>
            <th>Observaciones</th>
 
