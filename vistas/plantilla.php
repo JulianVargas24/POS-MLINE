@@ -163,6 +163,7 @@ if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
             $_GET["ruta"] == "impuestos" ||
             $_GET["ruta"] == "kardex" ||
             $_GET["ruta"] == "compras" ||
+            $_GET["ruta"] == "editar-compra" ||
             $_GET["ruta"] == "compra" ||
             $_GET["ruta"] == "bancos" ||
             $_GET["ruta"] == "crear-compra" ||

@@ -17,14 +17,14 @@ if ($_SESSION["perfil"] == "Especial") {
     <section class="content-header">
 
         <h1 style="color:green;font-weight:bold">
-            Editar Orden de Compra
+            Editar Compra
         </h1>
 
         <ol class="breadcrumb">
 
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Editar Orden</li>
+            <li class="active">Editar compra</li>
 
         </ol>
 
@@ -33,32 +33,32 @@ if ($_SESSION["perfil"] == "Especial") {
     <section class="content">
         <div class="box">
             <div class="box-body">
-                <form role="form" method="post" class="formularioOrdenCompra">
+                <form role="form" method="post" class="formularioCompra">
                     <?php
 
                     $item = "id";
-                    $valor = $_GET["idOrdenCompra"];
+                    $valor = $_GET["idCompra"];
 
-                    $ordenCompra = ControladorOrdenCompra::ctrMostrarOrdenCompra($item, $valor);
+                    $compra = ControladorCompra::ctrMostrarCompras($item, $valor);
 
                     $itemProveedor = "id";
-                    $valorProveedor = $ordenCompra["id_proveedor"];
+                    $valorProveedor = $compra["id_proveedor"];
                     $proveedor = ControladorProveedores::ctrMostrarProveedores($itemProveedor, $valorProveedor);
 
                     $itemCentro = "id";
-                    $valorCentro = $ordenCompra["id_centro"];
+                    $valorCentro = $compra["id_centro"];
                     $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
 
                     $itemBodega = "id";
-                    $valorBodega = $ordenCompra["id_bodega"];
+                    $valorBodega = $compra["id_bodega"];
                     $bodega = ControladorBodegas::ctrMostrarBodegas($itemBodega, $valorBodega);
 
                     $itemPlazo = "id";
-                    $valorPlazo = $ordenCompra["id_plazo_pago"];
+                    $valorPlazo = $compra["id_plazo_pago"];
                     $plazo = ControladorPlazos::ctrMostrarPlazos($itemPlazo, $valorPlazo);
 
                     $itemMedio = "id";
-                    $valorMedio = $ordenCompra["id_medio_pago"];
+                    $valorMedio = $compra["id_medio_pago"];
                     $medio = ControladorMediosPago::ctrMostrarMedios($itemMedio, $valorMedio);
 
 
@@ -78,8 +78,8 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                             <div class="form-group">
                                                 <div class="input-group" style="display:block;">
-                                                    <input type="hidden" name="idOrdenCompra" id="idOrdenCompra"
-                                                           value="<?php echo $ordenCompra["id"]; ?>">
+                                                    <input type="hidden" name="idCompra" id="idCompra"
+                                                           value="<?php echo $compra["id"]; ?>">
                                                     <select class="form-control" id="nuevoProveedor"
                                                             name="nuevoProveedor" required readonly>
                                                         <option value="<?php echo $proveedor["id"]; ?>"><?php echo $proveedor["razon_social"]; ?></option>
@@ -172,7 +172,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-info">
                                 <div class="box-body">
                                     <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Datos de Orden
+                                        Datos de Compras
                                     </h2>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-xs-6">
@@ -182,7 +182,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                                     <input type="date" class="form-control input-sm"
                                                            name="nuevaFechaEmision" id="nuevaFechaEmision" readonly
-                                                           value="<?php echo $ordenCompra["fecha_emision"]; ?>">
+                                                           value="<?php echo $compra["fecha_emision"]; ?>">
                                                 </div>
                                             </div>
 
@@ -195,7 +195,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                            value="Abierta">
                                                     <input type="date" class="form-control input-sm"
                                                            name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                                                           value="<?php echo $ordenCompra["fecha_vencimiento"]; ?>"
+                                                           value="<?php echo $compra["fecha_vencimiento"]; ?>"
                                                            onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                 </div>
                                             </div>
@@ -266,7 +266,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="box-body">
                                     <h2 class="box-title"
                                         style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
-                                        ORDEN DE COMPRA
+                                        FACTURA DE COMPRA
                                     </h2>
                                     <div class="row" style="margin-top:2px;">
                                         <div class="col-xs-7">
@@ -276,7 +276,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                           style="background-color:red; color:white; font-weight:bold">FOLIO</span>
                                                     <input type="text" style="font-weight:bold; font-size:16px;"
                                                            class="form-control" name="nuevoCodigo" id="nuevoCodigo"
-                                                           value="<?php echo $ordenCompra["codigo"]; ?>" readonly
+                                                           value="<?php echo $compra["codigo"]; ?>" readonly
                                                            required>
                                                 </div>
                                                 <div class="input-group">
@@ -285,8 +285,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <select class="form-control input" id="nuevoEstado"
                                                             name="nuevoEstado" required>
                                                         <option selected
-                                                                value="<?php echo $ordenCompra["estado"]; ?>"><?php echo $ordenCompra["estado"]; ?></option>
-                                                        <optgroup label="---Cambiar Estado de Orden--"></optgroup>
+                                                                value="<?php echo $compra["estado"]; ?>"><?php echo $compra["estado"]; ?></option>
+                                                        <optgroup label="---Cambiar estado de la compra--"></optgroup>
 
                                                         <option value="Abierta">Abierta</option>
                                                         <option value="Cerrada">Cerrada</option>
@@ -354,7 +354,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                         <?php
 
-                                        $listaProducto = json_decode($ordenCompra["productos"], true);
+                                        $listaProducto = json_decode($compra["productos"], true);
 
                                         foreach ($listaProducto as $key => $value) {
                                             $subtotal = $value["precio"] * $value["cantidad"];
@@ -572,7 +572,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <h3 class="box-title" style="font-weight:bold; font-size:20px;">
                                                 Observaciones</h3>
                                             <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
-                                                      rows="6"><?php echo $ordenCompra["observacion"]; ?></textarea>
+                                                      rows="6"><?php echo $compra["observacion"]; ?></textarea>
                                             <input type="hidden" id="listaProductos" name="listaProductos">
                                         </div>
                                     </div>
@@ -607,12 +607,12 @@ if ($_SESSION["perfil"] == "Especial") {
             <a href="compras">
                 <button type="button" class="btn btn-default">Salir</button>
             </a>
-            <button type="submit" class="btn btn-primary">Editar Orden</button>
+            <button type="submit" class="btn btn-primary">Editar Compra</button>
 
             <?php
 
-            $editarOrdenCompra = new ControladorOrdenCompra();
-            $editarOrdenCompra->ctrEditarOrdenCompra();
+            $editarCompra = new ControladorCompra();
+            $editarCompra->ctrEditarCompra();
 
             ?>
 
