@@ -19,10 +19,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['regionId'])) {
     echo json_encode(['error' => 'No se recibió regionId']);
 }
 ?>
-
-
-
-
-
-
-
