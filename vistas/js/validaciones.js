@@ -4,82 +4,87 @@
  */
 
 function formatearRut(inputRutId) {
-    let rut = inputRutId.value.trim();
+  let rut = inputRutId.value.trim();
 
-    // Eliminar puntos.
-    rut = rut.replace(/\./g, '');
-    // Reemplazar k minúscula por K mayúscula.
-    rut = rut.replace(/k/g, 'K');
-    // Verifica si el RUT ya tiene un guion.
-    if (!rut.includes('-')) {
-        if (rut.length >= 8) {
-            rut = rut.slice(0, 8) + '-' + rut[8];
-        }
+  // Eliminar puntos.
+  rut = rut.replace(/\./g, "");
+  // Reemplazar k minúscula por K mayúscula.
+  rut = rut.replace(/k/g, "K");
+  // Verifica si el RUT ya tiene un guion.
+  if (!rut.includes("-")) {
+    if (rut.length >= 8) {
+      rut = rut.slice(0, 8) + "-" + rut[8];
     }
+  }
 
-    inputRutId.addEventListener('input', function () {
-        inputRutId.setCustomValidity('');
-    });
+  inputRutId.addEventListener("input", function () {
+    inputRutId.setCustomValidity("");
+  });
 
-    if (!RutValidator.validarRut(rut)) {
-        inputRutId.setCustomValidity('El RUT ingresado no es válido.');
-        inputRutId.reportValidity();
-        inputRutId.focus();
-    } else {
-        inputRutId.setCustomValidity('');
-        inputRutId.value = rut;
-    }
+  if (!RutValidator.validarRut(rut)) {
+    inputRutId.setCustomValidity("El RUT ingresado no es válido.");
+    inputRutId.reportValidity();
+    inputRutId.focus();
+  } else {
+    inputRutId.setCustomValidity("");
+    inputRutId.value = rut;
+  }
 }
 
 var RutValidator = {
-    validarRut: function (rutCompleto) {
-        rutCompleto = rutCompleto.replace("‐", "-");
-        if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto))
-            return false;
-        var partesRut = rutCompleto.split('-');
-        var digitoVerificador = partesRut[1];
-        var rutBase = partesRut[0];
+  validarRut: function (rutCompleto) {
+    rutCompleto = rutCompleto.replace("‐", "-");
+    if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto)) return false;
+    var partesRut = rutCompleto.split("-");
+    var digitoVerificador = partesRut[1];
+    var rutBase = partesRut[0];
 
-        return (RutValidator.calcularDV(rutBase) == digitoVerificador);
-    },
-    calcularDV: function (numeroRut) {
-        var multiplicador = 0,
-            sumar = 1;
-        for (; numeroRut; numeroRut = Math.floor(numeroRut / 10))
-            sumar = (sumar + numeroRut % 10 * (9 - multiplicador++ % 6)) % 11;
-        return sumar ? sumar - 1 : 'K';
-    }
+    return RutValidator.calcularDV(rutBase) == digitoVerificador;
+  },
+  calcularDV: function (numeroRut) {
+    var multiplicador = 0,
+      sumar = 1;
+    for (; numeroRut; numeroRut = Math.floor(numeroRut / 10))
+      sumar = (sumar + (numeroRut % 10) * (9 - (multiplicador++ % 6))) % 11;
+    return sumar ? sumar - 1 : "K";
+  },
 };
 
 /**
  *  Validar número de teléfono.
  */
 function validarTelefono(inputTelefono) {
+  if (inputTelefono.value === "") {
+    inputTelefono.value = "+";
+  }
 
-    if (inputTelefono.value === '') {
-        inputTelefono.value = '+';
+  inputTelefono.addEventListener("input", function () {
+    inputTelefono.value = inputTelefono.value.replace(/[^0-9\+]/g, "");
+    if (!inputTelefono.value.startsWith("+")) {
+      inputTelefono.value = "+" + inputTelefono.value.slice(1);
     }
 
-    inputTelefono.addEventListener('input', function () {
-        inputTelefono.value = inputTelefono.value.replace(/[^0-9\+]/g, '');
-        if (!inputTelefono.value.startsWith('+')) {
-            inputTelefono.value = '+' + inputTelefono.value.slice(1);
-        }
-
-        inputTelefono.setCustomValidity(inputTelefono.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');
-    });
+    inputTelefono.setCustomValidity(
+      inputTelefono.validity.patternMismatch
+        ? "Ingrese el número de teléfono completo."
+        : ""
+    );
+  });
 }
 
 /**
  *  Validar línea de crédito.
  */
+
 function formatearLineaCredito(inputLineaCredito) {
-    // Elimina cualquier carácter que no sea un número.
-    let value = inputLineaCredito.value.replace(/[^0-9]/g, "");
+  // Elimina cualquier carácter que no sea un número.
+  let value = inputLineaCredito.value.replace(/[^0-9]/g, "");
 
-    // Eliminar ceros a la izquierda.
-    value = value.replace(/^0+/, "");
+  // Eliminar ceros a la izquierda.
+  value = value.replace(/^0+/, "");
 
-    // Formatea con puntos como separadores de miles.
-    inputLineaCredito.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  // Formatea con puntos como separadores de miles.
+  inputLineaCredito.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+

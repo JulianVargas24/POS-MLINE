@@ -24,9 +24,11 @@ class ControladorRegiones{
 
 		return $respuesta;
 	
-    }
+    } 
+
 
     
     
-    
+
+
 }
