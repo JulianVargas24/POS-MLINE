@@ -241,6 +241,7 @@ if($xml){
           $notaafecta = ControladorNotaCredito::ctrMostrarNotasAfecta($item, $valor);
           $notaexenta = ControladorNotaCredito::ctrMostrarNotasExenta($item, $valor);
           $notaboleta = ControladorNotaCredito::ctrMostrarNotasBoleta($item, $valor);
+          $notaBoletaExenta = ControladorNotaCredito::ctrMostrarNotasBoletaExenta($item, $valor);
 
           $negocios = ControladorNegocios::ctrMostrarNegocios($item, $valor);
           $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
@@ -615,10 +616,10 @@ if($xml){
             }
             foreach ($notaafecta as $key => $value) {
 
-              // Reemplazar "Nota de Credito Afecta" por "Nota de Credito de una Boleta Afecta"
+              // Reemplazar "Nota de Credito Afecta" por "Nota de Credito de una Factura Afecta"
               $tipoDte = $value["tipo_dte"];
               if ($tipoDte == "Nota de Credito Afecta") {
-                  $tipoDte = "Nota de Credito de una Boleta Afecta";
+                  $tipoDte = "Nota de Credito de una Factura Afecta";
               }
 
               for($i = 0; $i < count($negocios); ++$i){
@@ -707,10 +708,10 @@ if($xml){
             }
             foreach ($notaboleta as $key => $value) {
 
-                // Reemplazar "Nota de Credito Boleta" por "Nota de Credito de una Boleta Exenta"
+                // Reemplazar "Nota de Credito Boleta" por "Nota de Credito de una Boleta Afecta"
                 $tipoDte = $value["tipo_dte"];
                 if ($tipoDte == "Nota de Credito Boleta") {
-                    $tipoDte = "Nota de Credito de una Boleta Exenta";
+                    $tipoDte = "Nota de Credito de una Boleta Afecta";
                 }
 
               for($i = 0; $i < count($negocios); ++$i){
@@ -889,6 +890,98 @@ if($xml){
                   $eliminarVentaExenta -> ctrEliminarVentaExenta();
           
             }
+            foreach ($notaBoletaExenta as $key => $value) {
+
+              // Reemplazar "Nota de Credito Boleta Exenta" por "Nota de Credito de una Boleta Exenta"
+              $tipoDte = $value["tipo_dte"];
+              if ($tipoDte == "Nota de Credito Boleta Exenta") {
+                  $tipoDte = "Nota de Credito de una Boleta Exenta";
+              }
+
+            for($i = 0; $i < count($negocios); ++$i){
+              if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
+                $negocio = $negocios[$i]["unidad_negocio"];
+              }
+            }
+            for($i = 0; $i < count($bodegas); ++$i){
+              if ($bodegas[$i]["id"] == $value["id_bodega"]) {
+                $bodega = $bodegas[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($clientes); ++$i){
+              if ($clientes[$i]["id"] == $value["id_cliente"]) {
+                $cliente = $clientes[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($plazos); ++$i){
+              if ($plazos[$i]["id"] == $value["id_plazo_pago"]) {
+                $plazo = $plazos[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($medios); ++$i){
+              if ($medios[$i]["id"] == $value["id_medio_pago"]) {
+                $medio = $medios[$i]["medio_pago"];
+              }
+              
+              }
+                      for($i = 0; $i < count($plantel); ++$i){
+                  if ($plantel[$i]["id"] == $value["id_vendedor"]) {
+                    $vendedor = $plantel[$i]["nombre"];
+                  }
+              }
+          
+
+            echo '<tr>
+
+
+                  <td>'.$value["codigo"].'</td>
+
+                  <td style="font-weight:bold;font-size:15px;color:black;">'.$tipoDte.'</td> <!-- Aquí usamos $tipoDte -->
+
+                  <td>'.$value["fecha_emision"].'</td>
+
+                  <td>'.$vendedor.'</td>
+
+                  <td>'.$negocio.'</td>
+
+                  <td>'.$bodega.'</td>      
+
+                  <td>'.$plazo.'</td>
+
+                  <td>'.$medio.'</td>
+
+                  <td>'.$cliente.'</td>
+
+                  <td style="width:20px;">'.$value["observacion"].'</td>
+    
+                  <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                  <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                  <td>$ '.$value["iva"].'</td>
+
+                  <td>
+
+                  <div class="btn-group">
+                
+                    <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+
+                    PDF
+
+                    </button>
+                    <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
+
+                   
+
+                  echo '</div>  
+
+                </td>
+
+
+                </tr>';
+
+                $eliminarVentaExenta = new ControladorVentaFactura();
+                $eliminarVentaExenta -> ctrEliminarVentaExenta();
+        
+          }
 
            
         ?>

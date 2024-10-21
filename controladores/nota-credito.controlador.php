@@ -49,7 +49,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito Afecta ha sido guardada correctamente",
+						  title: "La Nota de Credito de Factura Afecta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -111,7 +111,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito exenta ha sido guardada correctamente",
+						  title: "La Nota de Credito de Factura Exenta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -172,7 +172,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito  exenta ha sido guardada correctamente",
+						  title: "La Nota de Credito de Boleta Afecta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -192,7 +192,66 @@ class ControladorNotaCredito{
 
 	}
 
+    static public function ctrCrearNotaCreditoBoletaExenta(){
 
+		if(isset($_POST["nuevoCodigo"])){
+
+			   	$tabla = "nota_credito_boleta_exenta";
+
+                   $datos = array("codigo"=>$_POST["nuevoCodigo"],
+								"id_cliente"=>$_POST["nuevoClienteCotizacion"],
+                                "fecha_emision"=>$_POST["nuevaFechaEmision"],
+                                "fecha_vencimiento"=>$_POST["nuevaFechaVencimiento"],
+                                "id_unidad_negocio"=>$_POST["nuevoNegocio"],	
+                                "id_bodega"=>$_POST["nuevaBodega"],
+                                "subtotal"=>$_POST["nuevoSubtotal"],
+                                "descuento"=>$_POST["nuevoTotalDescuento"],
+                                "total_neto"=>$_POST["nuevoTotalNeto"],
+                                "iva"=>$_POST["nuevoTotalIva"],
+                                "total_final"=>$_POST["nuevoTotalFinal"],
+                                "id_medio_pago"=>$_POST["nuevoMedioPago"],
+                                "id_plazo_pago"=>$_POST["nuevoPlazoPago"],
+                                "observacion"=>$_POST["nuevaObservacion"],
+                                "folio_documento"=>$_POST["codigoBoleta"],
+                                "productos"=>$_POST["listaProductos"],
+                                "boleta"=>$_POST["codigoBoleta"]);
+			   	    $respuesta = ModeloNotaCredito::mdlIngresarNotaCreditoBoletaExenta($tabla, $datos);
+                   $respuesta1 = ModeloNotaCredito::mdlActualizarEstadoBoleta($datos);
+                   $productos = json_decode($datos["productos"], true);
+                
+                foreach($productos as $producto) {
+                    $datos = [
+                        "id_producto" => $producto["id"],
+                        "cantidad" => $producto["cantidad"],
+                        "descripcion" => $producto["descripcion"],
+                        "id_bodega" => $datos["id_bodega"],
+                        ];
+                    ModeloEntradasInventario::mdlEntradaPorCompra($datos);
+                }
+			   	if($respuesta == "ok"){
+					
+                    echo'<script>
+					swal({
+						  type: "success",
+						  title: "La Nota de Credito de Boleta Exenta ha sido guardada correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+
+									window.location = "ventas";
+
+									}
+								})
+
+					</script>';
+
+				}
+
+			
+		}
+
+	}
 
 
 
@@ -216,6 +275,14 @@ class ControladorNotaCredito{
 
 		return $respuesta;
     }
+    static public function ctrMostrarNotasBoletaExenta(){
+        $tabla = "nota_credito_boleta_exenta";
+
+		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
+
+		return $respuesta;
+    }
+
 
 	static public function ctrDescargarReporteNotaCreditoAfecta() {
 

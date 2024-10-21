@@ -69,7 +69,7 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Teléfono</th>
            <th>Region</th>
            <th>Comuna</th>
-           <th>Direccion</th>
+           <th>Dirección</th>
            <th>Actividad</th>
            <th>Ejecutivo</th>
            <th>Descuento</th>
@@ -603,7 +603,7 @@ MODAL EDITAR CLIENTE
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3f668d; color:white">
+        <div class="modal-header" style="background:#FFA500; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
