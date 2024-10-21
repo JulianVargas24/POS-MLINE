@@ -20,6 +20,9 @@ session_start();
 
   <link rel="icon" href="vistas/img/plantilla/pistola.png">
 
+  <!-- Agrega Font Awesome para el ícono (opcional) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
    <!--=====================================
   PLUGINS DE CSS
   ======================================-->
@@ -198,6 +201,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "cotizacion" ||
          $_GET["ruta"] == "cotizacion-exenta" ||
          $_GET["ruta"] == "editar-cotizacion" ||
+         $_GET["ruta"] == "editar-cotizacion-exenta" ||
          $_GET["ruta"] == "ventas" ||
          $_GET["ruta"] == "carga-inventario" ||
          $_GET["ruta"] == "crear-venta" ||
@@ -220,7 +224,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "nota-credito-exenta" || 
          $_GET["ruta"] == "nota-credito-boleta" ||
          $_GET["ruta"] == "nota-credito-boleta-exenta" ||  
-         $_GET["ruta"] == "nota-credito" ||         
+         $_GET["ruta"] == "prueba-vista" ||         
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";

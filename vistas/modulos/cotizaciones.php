@@ -74,6 +74,8 @@ if($xml){
           <?php
           if($_SESSION["perfil"]=="Administrador")
           ?> 
+          
+
         <div class="input-group">
 
           <button type="button" class="btn btn-default" id="daterange-cotizacion">
@@ -100,6 +102,8 @@ if($xml){
 
           </button>
 
+          <a href="cotizaciones"> <button class="btn btn-success ml-2"> <i class="fa fa-home"> </i> </button> </a>
+
         </div>
 
         <div class="box-tools pull-right">
@@ -115,7 +119,6 @@ if($xml){
   
       </div>
        
-
       <div class="box-body">
 
       
@@ -127,7 +130,7 @@ if($xml){
            
            <th>Folio</th>
            <th>Documento</th>
-           <th>Emision</th>
+           <th>Emisión</th>
            <th>Vencimiento</th>
            <th>Vendedor</th>
            <th>Unidad de Negocio</th>
@@ -325,13 +328,11 @@ if($xml){
 
                       </button>';
 
-                      if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
-
-                      
-                      echo '
-                            <button class="btn btn-warning btnEditarCotizacion" idCotizacion="'.$value["id"].'"><i class="fa fa-pencil"></i></button> ';
-
-                      }
+                      if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
+                        echo '<a href="index.php?ruta=editar-cotizacion-exenta&idCotizacion='.$value["id"].'" class="btn btn-warning btnEditarCotizacion">
+                                <i class="fa fa-pencil"></i>
+                              </a>';
+                    }
                       if($_SESSION["perfil"] == "Administrador"){
                      echo' <button class="btn btn-danger btnEliminarCotizacion" idCotizacion="'.$value["id"].'"><i class="fa fa-times"></i></button>';
 

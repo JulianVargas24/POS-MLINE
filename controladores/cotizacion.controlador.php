@@ -31,6 +31,12 @@ class ControladorCotizacion{
                                 "productos"=>$_POST["listaProductos"]);
 
 
+				// Imprimir los datos antes de insertarlos
+				/*echo '<pre>';
+				var_dump($datos);
+				echo '</pre>';
+				exit; */ // Terminar la ejecución para que no se inserten los datos aún.
+											
 			   	$respuesta = ModeloCotizacion::mdlIngresarCotizacion($tabla, $datos);
 
 			   	if($respuesta == "ok"){
@@ -38,7 +44,7 @@ class ControladorCotizacion{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Cotizacion ha sido guardada correctamente",
+						  title: "La Cotizacion afecta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -142,7 +148,7 @@ class ControladorCotizacion{
 			 echo'<script>
 			 swal({
 				   type: "success",
-				   title: "La Cotizacion ha sido actualizada correctamente",
+				   title: "La Cotizacion afecta ha sido actualizada correctamente",
 				   showConfirmButton: true,
 				   confirmButtonText: "Cerrar"
 				   }).then(function(result){
@@ -166,16 +172,16 @@ class ControladorCotizacion{
 
 			$tabla = "cotizaciones_exentas";
 
-			$datos = array("id"=>$_POST["idCotizacion"],
-						"codigo"=>$_POST["nuevoCodigo"],
+			$datos = array("codigo"=>$_POST["nuevoCodigo"],
 						 "id_cliente"=>$_POST["nuevoClienteCotizacion"],
+						 "id_vendedor"=>$_POST["nuevoVendedor"],
 						 "fecha_emision"=>$_POST["nuevaFechaEmision"],
 						 "fecha_vencimiento"=>$_POST["nuevaFechaVencimiento"],
 						 "id_unidad_negocio"=>$_POST["nuevoNegocio"],	
 						 "id_bodega"=>$_POST["nuevaBodega"],
 						 "subtotal"=>$_POST["nuevoSubtotal"],
 						 "descuento"=>$_POST["nuevoTotalDescuento"],
-						 "total_neto"=>$_POST["nuevoTotalNeto"],
+						 "exento"=>$_POST["nuevoTotalExento"],
 						 "iva"=>$_POST["nuevoTotalIva"],
 						 "total_final"=>$_POST["nuevoTotalFinal"],
 						 "id_medio_pago"=>$_POST["nuevoMedioPago"],
@@ -210,22 +216,29 @@ class ControladorCotizacion{
  		}
 	}
 
-	static public function ctrMostrarCotizaciones($item, $valor){
-
+	static public function ctrMostrarCotizaciones($item, $valor) {
 		$tabla = "cotizaciones";
-
-		$respuesta = ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor);
-
-		return $respuesta;
 	
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;    
+	
+		// Llamar a la función del modelo para obtener cotizaciones
+		return ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 	}
+	
 	static public function ctrMostrarCotizacionesExentas($item, $valor){
 
 		$tabla = "cotizaciones_exentas";
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;    
+	
+		// Llamar a la función del modelo para obtener cotizaciones
+		return ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+		//$respuesta = ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor);
 
-		$respuesta = ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor);
-
-		return $respuesta;
+		//return $respuesta;
 	
 	}
 	
@@ -244,7 +257,7 @@ class ControladorCotizacion{
 
 				swal({
 					  type: "success",
-					  title: "La Cotizacion ha sido borrada correctamente",
+					  title: "La Cotizacion afecta ha sido borrada correctamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar",
 					  closeOnConfirm: false
@@ -319,7 +332,7 @@ class ControladorCotizacion{
 
 
 			/*=============================================
-			CREAMOS EL ARCHIVO DE EXCEL
+			CREAMOS EL ARCHIVO DE EXCEL DE COTIZACION AFECTA
 			=============================================*/
 
 			$Name = $_GET["reporte"].'-cotizacion-afecta.xls';
@@ -444,7 +457,7 @@ class ControladorCotizacion{
 
 
 			/*=============================================
-			CREAMOS EL ARCHIVO DE EXCEL
+			CREAMOS EL ARCHIVO DE EXCEL DE COTIZACION EXENTA
 			=============================================*/
 
 			$Name = $_GET["reporte"].'-cotizacion-exenta.xls';
@@ -489,11 +502,19 @@ class ControladorCotizacion{
 				$negocio = ControladorNegocios::ctrMostrarNegocios("id", $item["id_unidad_negocio"]);
 				
 			
+					// Verifica que los resultados no sean falsos
+				$clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+				$vendedorNombre = isset($vendedor["nombre"]) ? $vendedor["nombre"] : "No disponible";
+				$bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+				$plazoNombre = isset($plazos["nombre"]) ? $plazos["nombre"] : "No disponible";
+				$medioNombre = isset($medios["medio_pago"]) ? $medios["medio_pago"] : "No disponible";
+				$negocioNombre = isset($negocio["unidad_negocio"]) ? $negocio["unidad_negocio"] : "No disponible";
+
 			 echo utf8_decode("<tr>
 			 			<td style='border:1px solid #eee;'>".$item["codigo"]."</td> 
-			 			<td style='border:1px solid #eee;'>".$cliente["nombre"]."</td>
-						 <td style='border:1px solid #eee;'>".$vendedor["nombre"]."</td>
-						 <td style='border:1px solid #eee;'>".$bodega["nombre"]."</td>
+						<td style='border:1px solid #eee;'>".$clienteNombre."</td>
+						<td style='border:1px solid #eee;'>".$vendedorNombre."</td>
+						<td style='border:1px solid #eee;'>".$bodegaNombre."</td>
 						
 						 <td style='border:1px solid #eee;'>");
 						 

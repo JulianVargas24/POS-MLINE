@@ -117,6 +117,7 @@ class imprimirFactura{
 				$detalle = ControladorVentas::ctrMostrarVentasAfectas($item, $valor);
 				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
 				$nombre = $receptor["nombre"];
+				$condicion = $matriz[0]["condicion_venta"];
 				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 				$documentoCliente = $detalle["documento"];
@@ -133,6 +134,7 @@ class imprimirFactura{
 				$detalle = ControladorVentas::ctrMostrarVentasExentas($item, $valor);
 				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
 				$nombre = $receptor["nombre"];
+				$condicion = $matriz[0]["condicion_venta"];
 				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
 				$documentoCliente = $detalle["documento"];
 				$folioDocumento = $detalle["folio_documento"];
@@ -140,6 +142,7 @@ class imprimirFactura{
 				$motivoDocumento = $detalle["motivo_documento"];
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 			break;
+			
 			case "Boleta_Exenta":
 				$item = "codigo";
 				$doc = "BOLETA EXENTA";
@@ -148,24 +151,22 @@ class imprimirFactura{
 				$detalle = ControladorVentas::ctrMostrarVentasBoletasExentas($item, $valor);
 				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
 				$nombre = $receptor["nombre"];
+				$condicion = $matriz[0]["condicion_venta"];
 				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
 				$documentoCliente = $detalle["documento"];
 				$folioDocumento = $detalle["folio_documento"];
 				$fechaDocumento = $detalle["fecha_documento"];
 				$motivoDocumento = $detalle["motivo_documento"];
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
-
-			break;
-			
-				
-				
-			
+			break;			
 		}
+
 			$fecha = date("d-m-Y",strtotime($detalle["fecha_emision"]));
 			$productos = json_decode($detalle["productos"], true);
 			$subtotal = number_format(intval(str_replace(',', '', $detalle["subtotal"])),0,  '', '.');
 			$iva = number_format(intval(str_replace(',', '', $detalle["iva"])),0,  '', '.');
 			$neto = number_format(intval(str_replace(',', '', $detalle["total_neto"])),0,  '', '.');
+
 			if($detalle["exento"]){
 				$exento = number_format(intval(str_replace(',', '', $detalle["exento"])),0,  '', '.');
 			}else{
@@ -191,6 +192,7 @@ class imprimirFactura{
 			// test Cell stretching
 			$pdf->Image('images/mline.png', 10, 11, 32, 32, 'PNG');
 
+			//CREACION DE LA PARTE SUPERIOR
 			$pdf->Ln(35);
 			$pdf->SetFont('helveticaB', '', 11);
 			$pdf->Cell(80,0, $matriz[0]["razon_social"], 0, 0, 'R');
@@ -215,8 +217,9 @@ class imprimirFactura{
 			$pdf->Cell(0, 5, $matriz[0]["email"], 0, 1, 'L');
 			$pdf->Ln(5);
 
-				$pdf->SetFont('helveticaB', '', 8);
-				$pdf->SetLineStyle(array('width' => 0.4, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+			//PRIMER CUADRO
+			$pdf->SetFont('helveticaB', '', 8);
+			$pdf->SetLineStyle(array('width' => 0.4, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 			$pdf->Cell(20, 7, 'Razon Social:', 1, 0, 'L');
 			$pdf->SetFont('helvetica', '', 8);
 			$pdf->Cell(120, 7, $nombre, 'LT', 0, 'L');
@@ -262,6 +265,8 @@ class imprimirFactura{
 			$pdf->SetFont('helvetica', '', 8);
 			$pdf->Cell(0, 7, $receptor["ejecutivo"], "LBR", 1, 'L');
 			$pdf->Ln(2);
+
+			//SEGUNDO CUADRO
 			if($documentoCliente){
 			$pdf->SetFont('helveticaB', '', 8);
 			$pdf->Cell(60, 5, 'Tipo Documento', 1, 0, 'L');
@@ -275,8 +280,7 @@ class imprimirFactura{
 			$pdf->Cell(0, 5, $motivoDocumento, 1, 1, 'L');
 		}
 			$pdf->Ln(1);
-
-
+			//Encabezados de la Tabla
 			$pdf->Ln(1);
 			$pdf->SetFont('helveticaB', '', 9);
 			$pdf->Cell(20, 5, 'Codigo', 1, 0, 'C');
@@ -286,6 +290,8 @@ class imprimirFactura{
 			$pdf->Cell(20, 5, 'Descuento', 1, 0, 'C');
 			$pdf->Cell(20, 5, 'IVA', 1, 0, 'C');
 			$pdf->Cell(0, 5, 'Total', 1, 1, 'C');
+
+			//Contenido de la Tabla
 			foreach($productos as $item){
 				$pdf->SetFont('helvetica', '', 8);
 				$pdf->Cell(20, 5, "", "LR", 0, "L");
@@ -295,11 +301,11 @@ class imprimirFactura{
 				$pdf->Cell(20, 5, number_format(intval(str_replace(',', '', $item["descuento"])),0,  '', '.'), "LR", 0, 'R');
 				$pdf->Cell(20, 5, number_format(intval(str_replace(',', '', $item["iva"])),0,  '', '.'), "LR", 0, 'R');
 				$pdf->Cell(0, 5, number_format(intval(str_replace(',', '', $item["total"])),0,  '', '.'), "LR", 1, 'R');
-
 			}
 			
-			if(count($productos) < 18){
-				for( $x = count($productos); $x <= 18; $x++){
+			//RELLENAR EL ESPACIO EN BLANCO
+			 if(count($productos) < 17){
+				for( $x = count($productos); $x <= 17; $x++){
 					$pdf->SetFont('helvetica', '', 9);
 				$pdf->Cell(20, 5,"", "LR", 0, 'C');
 				$pdf->Cell(60, 5,"", "LR", 0, 'C');
@@ -308,17 +314,18 @@ class imprimirFactura{
 				$pdf->Cell(20, 5, "", "LR", 0, 'C');
 				$pdf->Cell(20, 5, "", "LR", 0, 'C');
 				$pdf->Cell(0, 5, "", "LR", 1, 'C');
-
 			}
-
-				}
+				}  
 			
-
+			
 			//Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M')
 			// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 			
+
 			$pdf->Cell(0, 0, "", "T", 1);
-			$pdf->MultiCell(130, 35, $condicion, 1, "L", 0, 0, 10, 230);
+			//QUINTO CUADRO (IZQUIERDA CONDICIONES DE PAGO)
+			$pdf->MultiCell(130, 30, $condicion, 1, "L", 0, 0, 10, 229);			
+			//CUARTO CUADRO (DERECHA)
 			$pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
 			$pdf->Cell(10, 5, "", 0, 0, "C");	
 			$pdf->SetFont('helveticaB', '', 9);
@@ -344,6 +351,7 @@ class imprimirFactura{
 			$pdf->SetFont('helvetica', '', 9);
 			$pdf->Cell(0, 5, $neto, 1, 1, "R");
 			$pdf->SetFont('helveticaB', '', 9);
+
 			if($doc != "BOLETA EXENTA"){
 			$pdf->Cell(140, 5, "", 0, 0);
 			$pdf->Cell(20, 5, "I.V.A( 19% )", "TBL", 0, "L");

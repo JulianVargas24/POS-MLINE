@@ -81,7 +81,7 @@ class ControladorUsuarios{
 	}
 
 	/*=============================================
-	REGISTRO DE USUARIO
+	CREAR USUARIO
 	=============================================*/
 
 	static public function ctrCrearUsuario(){
@@ -136,7 +136,7 @@ class ControladorUsuarios{
 					}
 
 					if($_FILES["nuevaFoto"]["type"] == "image/png"){
-
+			
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 						=============================================*/

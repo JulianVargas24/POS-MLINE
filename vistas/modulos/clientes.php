@@ -69,7 +69,7 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Teléfono</th>
            <th>Region</th>
            <th>Comuna</th>
-           <th>Ciudad</th>
+           <th>Dirección</th>
            <th>Actividad</th>
            <th>Ejecutivo</th>
            <th>Descuento</th>
@@ -90,51 +90,38 @@ if($_SESSION["perfil"] == "Especial"){
           $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
 
           foreach ($clientes as $key => $value) {
-            
+            // Obtener los nombres de la región y la comuna
+            $regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
+            $comunaNombre = ControladorRegiones::ctrMostrarComunas('id', $value['comuna']);
 
+            // Asignar nombres o mostrar el ID si no se encuentra el nombre
+            $regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : ''.$value['region'];
+            $comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : ''.$value['comuna'];
+        
             echo '<tr>
-
                     <td>'.($key+1).'</td>
-
                     <td>'.$value["nombre"].'</td>
-
                     <td>'.$value["rut"].'</td>
-
                     <td>'.$value["email"].'</td>
-
                     <td>'.$value["telefono"].'</td>
-
-                    <td>'.$value["region"].'</td> 
-
-                    <td>'.$value["comuna"].'</td> 
-                    
+                    <td>'.$regionDisplay.'</td>
+                    <td>'.$comunaDisplay.'</td> 
                     <td>'.$value["direccion"].'</td>  
-
                     <td>'.$value["actividad"].'</td> 
-
                     <td>'.$value["ejecutivo"].'</td> 
-
                     <td>'.$value["factor_lista"].'%</td> 
-
                     <td>
-
-                      <div class="btn-group">
-                          
-                        <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
-
-                      if($_SESSION["perfil"] == "Administrador"){
-
-                          echo '<button class="btn btn-danger btnEliminarCliente" idCliente="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-
-                      }
-
-                      echo '</div>  
-
-                    </td>
-
-                  </tr>';
-          
+                        <div class="btn-group">
+                            <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
+        
+            if ($_SESSION["perfil"] == "Administrador") {
+                echo '<button class="btn btn-danger btnEliminarCliente" idCliente="'.$value["id"].'"><i class="fa fa-times"></i></button>';
             }
+        
+            echo '      </div>  
+                    </td>
+                  </tr>';
+        }
 
         ?>
    
@@ -213,7 +200,11 @@ MODAL AGREGAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoRutId" id="nuevoRutId" placeholder="Ingrese su RUT" required>
+                        <input type="text" class="form-control input" name="nuevoRutId" id="nuevoRutId" 
+                          placeholder="Ingrese su RUT" 
+                          required
+                          pattern="^(\d{1,2}\.\d{3}\.\d{3}-[\dkK])$" 
+                          title="El RUT debe tener el formato XX.XXX.XXX-X">
 
                       </div>
                   </div>
@@ -247,16 +238,10 @@ MODAL AGREGAR CLIENTE
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
                                 }
-
                                 ?>
             
                             </select>
@@ -274,20 +259,6 @@ MODAL AGREGAR CLIENTE
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
-
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
-
-                                    ?>
               
                                 </select>
 
@@ -339,7 +310,7 @@ MODAL AGREGAR CLIENTE
 
                       <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
                             
-                            <option value="">Seleccionar Tipo Cliente</option>
+                            <option value="">Seleccionar Tipo Producto</option>
                             <?php
     
                               $item = null;
@@ -411,8 +382,11 @@ MODAL AGREGAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                            <input type="tel" class="form-control input" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" required>
-
+                            <input type="tel" class="form-control input" name="nuevoTelefono"
+                                            placeholder="Ingresar teléfono" required
+                                            maxlength="12" pattern="^\+[0-9]{11}$"
+                                            title="Ingrese el número de teléfono completo incluido el +"
+                                            onfocus="validarTelefono(this)">
                           </div>
                       </div>
                       
@@ -423,7 +397,7 @@ MODAL AGREGAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                            <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar email" required>
+                            <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                           </div>
                       </div>
@@ -521,7 +495,7 @@ MODAL AGREGAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoEmailCobranza" placeholder="Ingresar correo" required>
+                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                       </div>
                   </div>
@@ -531,8 +505,11 @@ MODAL AGREGAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoFonoCobranza" placeholder="Ingresar fono" required>
-
+                        <input type="tel" class="form-control input" name="nuevoTelefono"
+                                            placeholder="Ingresar teléfono" required
+                                            maxlength="12" pattern="^\+[0-9]{11}$"
+                                            title="Ingrese el número de teléfono completo incluido el +"
+                                            onfocus="validarTelefono(this)">
                       </div>
                   </div>
                 
@@ -626,7 +603,7 @@ MODAL EDITAR CLIENTE
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3f668d; color:white">
+        <div class="modal-header" style="background:#FFA500; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -668,7 +645,11 @@ MODAL EDITAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarRutId" id="editarRutId" placeholder="Ingrese su RUT" required>
+                        <input type="text" class="form-control input" name="editarRutId" id="editarRutId" 
+                          placeholder="Ingrese su RUT" 
+                          required
+                          pattern="^(\d{1,2}\.\d{3}\.\d{3}-[\dkK])$" 
+                          title="El RUT debe tener el formato XX.XXX.XXX-X">
 
                       </div>
                   </div>
@@ -702,16 +683,9 @@ MODAL EDITAR CLIENTE
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $cliente['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
                                 }
-
                                 ?>
             
                             </select>
@@ -729,25 +703,14 @@ MODAL EDITAR CLIENTE
                                 <select class="form-control input" id="editarComuna" name="editarComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
-
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
-
-                                    ?>
               
                                 </select>
 
                             </div>
                       </div>
+
+                      <!-- Input hidden para la comuna actual -->
+                      <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
      
                     <div class="col-xs-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
@@ -794,7 +757,7 @@ MODAL EDITAR CLIENTE
 
                       <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
                             
-                            <option value="">Seleccionar Tipo Cliente</option>
+                            <option value="">Seleccionar Tipo Producto</option>
                             <?php
     
                               $item = null;
@@ -819,8 +782,8 @@ MODAL EDITAR CLIENTE
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
                       <select class="form-control input" id="editarFactor" name="editarFactor" required>
-                            
-                        <option value="1">PRECIO LISTA - 0%</option>
+
+                      <option value="">PRECIO LISTA - 0%</option>
                         <?php
 
                           $item = null;
@@ -835,6 +798,7 @@ MODAL EDITAR CLIENTE
 
                         ?>
                       </select>
+
 
                     </div>
                     </div>
@@ -866,8 +830,12 @@ MODAL EDITAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                            <input type="tel" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required>
-
+                            <input type="tel" class="form-control input" name="editarTelefono"
+                                            id="editarTelefono"
+                                            placeholder="Ingresar teléfono" required
+                                            maxlength="12" pattern="^\+[0-9]{11}$"
+                                            title="Ingrese el número de teléfono completo incluido el +"
+                                            onfocus="validarTelefono(this)">
                           </div>
                       </div>
                       
@@ -878,7 +846,7 @@ MODAL EDITAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                            <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required>
+                            <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                           </div>
                       </div>
@@ -976,7 +944,7 @@ MODAL EDITAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoEmailCobranza" placeholder="Ingresar correo" required>
+                        <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                       </div>
                   </div>
@@ -986,8 +954,12 @@ MODAL EDITAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoFonoCobranza" placeholder="Ingresar fono" required>
-
+                        <input type="tel" class="form-control input" name="editarTelefono"
+                                            id="editarTelefono"
+                                            placeholder="Ingresar teléfono" required
+                                            maxlength="12" pattern="^\+[0-9]{11}$"
+                                            title="Ingrese el número de teléfono completo incluido el +"
+                                            onfocus="validarTelefono(this)">
                       </div>
                   </div>
                 
@@ -1070,4 +1042,72 @@ MODAL EDITAR CLIENTE
 
 ?>
 
+<script>
+document.getElementById('nuevaRegion').addEventListener('change', function() {
+    var regionId = this.value; // Obtener el ID de la región seleccionada
 
+    // Verifica que haya una región seleccionada
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
+
+                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
+                var comunaSelect = document.getElementById('nuevaComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
+
+                // Rellenar las opciones del select de comunas
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
+                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        // Enviar el ID de la región seleccionada al servidor
+        xhr.send('regionId=' + regionId);
+    } else {
+        // Si no hay región seleccionada, limpiar el select de comunas
+        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+
+document.getElementById('editarRegion').addEventListener('change', function() {
+    var regionId = this.value;
+    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var comunas = JSON.parse(xhr.responseText);
+                var comunaSelect = document.getElementById('editarComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
+
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id;
+                    option.textContent = comuna.nombre;
+                    if (comuna.id == comunaActual) {
+                        option.selected = true; // Seleccionar la comuna actual
+                    }
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        xhr.send('regionId=' + regionId);
+    } else {
+        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+  </script>
