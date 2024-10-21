@@ -181,6 +181,8 @@ MODAL AGREGAR SUCURSAL
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">
+
+
                   <div class="col-lg-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
                     <div class="input-group">
@@ -189,6 +191,7 @@ MODAL AGREGAR SUCURSAL
                       <input type="text" class="form-control input" name="nuevaSucursal" id="nuevaSucursal" placeholder="Ingresar Nombre Sucursal" required>
                     </div>
                   </div>
+                  
                   <div class="col-lg-6 col-xs-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
                     <div class="input-group">
@@ -200,7 +203,7 @@ MODAL AGREGAR SUCURSAL
                   <div class="col-xs-6">
                         <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
                           <div class="input-group">
-                      
+                  
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
