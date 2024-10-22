@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar Centro de Costos
+      Administrar centro de costos
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar Centro de Costos</li>
+      <li class="active">Administrar centro de costos</li>
     
     </ol>
 
@@ -42,7 +42,7 @@ if($_SESSION["perfil"] == "Especial"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCentro">
           
-          Agregar Centro de Costo
+          Agregar centro de costos
 
         </button>
 
@@ -57,8 +57,8 @@ if($_SESSION["perfil"] == "Especial"){
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Centro de Costo</th>
-           <th>Codigo</th>
+           <th>Centro de costos</th>
+           <th>Código</th>
 
 
          </tr> 
@@ -146,7 +146,7 @@ MODAL AGREGAR CENTRO
 
             <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-            <h4 class="modal-title">Agregar Centro de Costo</h4>
+            <h4 class="modal-title">Agregar centro de costos</h4>
 
           </div>
 
@@ -162,24 +162,24 @@ MODAL AGREGAR CENTRO
               
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Centro de Costo</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Centro de costos</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoCentro" id="nuevoCentro" placeholder="Ingresar Centro" required>
+                        <input type="text" class="form-control input" name="nuevoCentro" id="nuevoCentro" placeholder="Ingresar centro" required>
 
                       </div>
               </div>
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Centro</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código de centro</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevoCodigoCentro" id="nuevoCodigoCentro" placeholder="Ingresar Codigo" required>
+                        <input type="number" class="form-control input" name="nuevoCodigoCentro" id="nuevoCodigoCentro" placeholder="Ingresar código" required>
 
                       </div>
               </div>
@@ -197,7 +197,7 @@ MODAL AGREGAR CENTRO
 
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-            <button type="submit" class="btn btn-primary" name="crear_centro">Agregar Centro</button>
+            <button type="submit" class="btn btn-primary" name="crear_centro">Agregar centro</button>
 
           </div>
 
@@ -236,7 +236,7 @@ MODAL EDITAR PROVEEDOR
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Centro de Costo</h4>
+          <h4 class="modal-title">Editar centro de costos</h4>
 
         </div>
 
@@ -252,7 +252,7 @@ MODAL EDITAR PROVEEDOR
 
             <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Centro de Costo</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Centro de costos</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -264,7 +264,7 @@ MODAL EDITAR PROVEEDOR
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Centro</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código de centro</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 

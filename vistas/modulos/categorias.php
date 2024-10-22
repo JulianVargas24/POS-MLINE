@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Vendedor"){
     
     <h1>
       
-      Administrar Categorías
+      Administrar categorías
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Vendedor"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar Categorías</li>
+      <li class="active">Administrar categorías</li>
     
     </ol>
 
@@ -42,7 +42,7 @@ if($_SESSION["perfil"] == "Vendedor"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
           
-          Agregar Categoría
+          Agregar categoría
 
         </button>
 
@@ -57,7 +57,7 @@ if($_SESSION["perfil"] == "Vendedor"){
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Categoria</th>
+           <th>Categoría</th>
            <th>Acciones</th>
 
          </tr> 
@@ -144,7 +144,7 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Categoría</h4>
+          <h4 class="modal-title">Agregar categoría</h4>
 
         </div>
 
@@ -159,7 +159,7 @@ MODAL AGREGAR CATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">
-            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Categoria</div>
+            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Categoría</div>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -182,7 +182,7 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" name="crear_categoria">Guardar Categoría</button>
+          <button type="submit" class="btn btn-primary" name="crear_categoria">Guardar categoría</button>
 
         </div>
 
@@ -221,7 +221,7 @@ MODAL EDITAR CATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Categoría</h4>
+          <h4 class="modal-title">Editar categoría</h4>
 
         </div>
 
@@ -236,7 +236,7 @@ MODAL EDITAR CATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">
-            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Categoria</div>
+            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Categoría</div>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -261,7 +261,7 @@ MODAL EDITAR CATEGORÍA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
         </div>
 

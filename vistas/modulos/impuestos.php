@@ -1,315 +1,325 @@
 <?php
 
-if($_SESSION["perfil"] == "Vendedor"){
+if ($_SESSION["perfil"] == "Vendedor") {
 
-  echo '<script>
+    echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-  return;
+    return;
 
 }
 
 ?>
 
-<div class="content-wrapper">
+    <div class="content-wrapper">
 
-  <section class="content-header">
-    
-    <h1>
-      
-    Administrar Impuestos
-    
-    </h1>
+        <section class="content-header">
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Impuestos</li>
-    
-    </ol>
+            <h1>
 
-  </section>
+                Administrar impuestos
 
-  <section class="content">
+            </h1>
 
-    <div class="box">
+            <ol class="breadcrumb">
 
-      <div class="box-header with-border">
-  
-  
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarImpuesto">
-            
-            Agregar Impuesto
+                <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-        </button>
+                <li class="active">Administrar impuestos</li>
+
+            </ol>
+
+        </section>
+
+        <section class="content">
+
+            <div class="box">
+
+                <div class="box-header with-border">
 
 
-      </div>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarImpuesto">
 
-      <div class="box-body">
+                        Agregar impuesto
 
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Codigo</th>
-           <th>Impuesto</th>
-           <th>Porcentaje</th>
-           <th>Descripcion</th>
-           <th>Acciones</th>
+                    </button>
 
-         </tr> 
 
-        </thead>
+                </div>
 
-        <tbody>
+                <div class="box-body">
 
-        <?php
+                    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-          $item = null;
-          $valor = null;
+                        <thead>
 
-          $impuestos = ControladorImpuestos::ctrMostrarImpuestos($item, $valor);
+                        <tr>
 
-          foreach ($impuestos as $key => $value) {
-            
-           
-            echo ' <tr>
+                            <th style="width:10px">#</th>
+                            <th>Código</th>
+                            <th>Impuesto</th>
+                            <th>Porcentaje</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
 
-                    <td>'.($key+1).'</td>
-                    <td>'.$value["codigo"].'</td>
-                    <td>'.$value["nombre"].'</td>
-                    <td>'.$value["factor"].'%</td>
-                    <td>'.$value["descripcion"].'</td>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <?php
+
+                        $item = null;
+                        $valor = null;
+
+                        $impuestos = ControladorImpuestos::ctrMostrarImpuestos($item, $valor);
+
+                        foreach ($impuestos as $key => $value) {
+
+
+                            echo ' <tr>
+
+                    <td>' . ($key + 1) . '</td>
+                    <td>' . $value["codigo"] . '</td>
+                    <td>' . $value["nombre"] . '</td>
+                    <td>' . $value["factor"] . '%</td>
+                    <td>' . $value["descripcion"] . '</td>
                     <td>
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarImpuesto" idImpuesto="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarImpuesto"><i class="fa fa-pencil"></i></button>';
-                        if($_SESSION["perfil"] == "Administrador"){
+                        <button class="btn btn-warning btnEditarImpuesto" idImpuesto="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarImpuesto"><i class="fa fa-pencil"></i></button>';
+                            if ($_SESSION["perfil"] == "Administrador") {
 
-                            echo '<button class="btn btn-danger btnEliminarImpuesto" idImpuesto="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-  
-                          }
-  
-                        
-                      echo '</div>  
+                                echo '<button class="btn btn-danger btnEliminarImpuesto" idImpuesto="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+
+                            }
+
+
+                            echo '</div>  
 
                     </td>
 
                   </tr>';
-          }
+                        }
 
-        ?>
-        </tbody>
+                        ?>
+                        </tbody>
 
-</table>
-
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-
-
-<!--=====================================
-MODAL AGREGAR CATEGORÍA
-======================================-->
-
-<div id="modalAgregarImpuesto" class="modal fade" role="dialog">
-  
-<style>
-    .error{
-        color: red;
-        
-    }
-</style>
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <form role="form" method="post" id="form_nuevo_impuesto">
-
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#3f668d; color:white">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Agregar Impuesto</h4>
-
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-            
-            <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto</div>
-                    <div class="input-group">
-                    
-                      <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                      <input type="text" class="form-control input" name="nuevoImpuesto" id="nuevoImpuesto" placeholder="Ingresar Impuesto" required>
-
-                    </div>
-            </div>
-
-            <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor</div>
-                <div class="input-group">
-                
-                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                    <input type="text" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar Factor"  required>
+                    </table>
 
                 </div>
+
             </div>
-  
-                      
-          
-          </div>
 
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary" name="crear_impuesto">Agregar Impuesto</button>
-
-        </div>
-
-        <?php
-
-          $crearImpuesto = new ControladorImpuestos();
-          $crearImpuesto -> ctrCrearImpuesto();
-
-        ?>
-
-      </form>
+        </section>
 
     </div>
 
-  </div>
 
-</div>
+    <!--=====================================
+    MODAL AGREGAR CATEGORÍA
+    ======================================-->
 
-<!--=====================================
-MODAL EDITAR SUBCATEGORÍA
-======================================-->
+    <div id="modalAgregarImpuesto" class="modal fade" role="dialog">
 
-<div id="modalEditarImpuesto" class="modal fade" role="dialog">
-  
-  <div class="modal-dialog">
+        <style>
+            .error {
+                color: red;
 
-    <div class="modal-content">
+            }
+        </style>
+        <div class="modal-dialog">
 
-      <form role="form" method="post" id="form_editar_impuesto">
+            <div class="modal-content">
 
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+                <form role="form" method="post" id="form_nuevo_impuesto">
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <!--=====================================
+                    CABEZA DEL MODAL
+                    ======================================-->
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-header" style="background:#3f668d; color:white">
 
-          <h4 class="modal-title">Editar Lista</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-            
-            <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto</div>
-                    <div class="input-group">
-                    
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                        <input type="text" class="form-control input" id="editarImpuesto" name="editarImpuesto"  required>
-
-                        <input type="hidden" id="idImpuesto"  name="idImpuesto"  required>
+                        <h4 class="modal-title">Agregar impuesto</h4>
 
                     </div>
+
+                    <!--=====================================
+                    CUERPO DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-body">
+
+                        <div class="box-body">
+
+                            <!-- ENTRADA PARA EL NOMBRE -->
+
+                            <div class="form-group">
+                                <div class="d-inline-block bg-primary"
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto
+                                </div>
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                    <input type="text" class="form-control input" name="nuevoImpuesto"
+                                           id="nuevoImpuesto" placeholder="Ingresar impuesto" required>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="d-inline-block bg-primary"
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor
+                                </div>
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                    <input type="text" class="form-control input" id="nuevoFactor" name="nuevoFactor"
+                                           placeholder="Ingresar factor" required>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!--=====================================
+                    PIE DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                        <button type="submit" class="btn btn-primary" name="crear_impuesto">Agregar impuesto</button>
+
+                    </div>
+
+                    <?php
+
+                    $crearImpuesto = new ControladorImpuestos();
+                    $crearImpuesto->ctrCrearImpuesto();
+
+                    ?>
+
+                </form>
+
             </div>
 
-            
-            <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor</div>
-                <div class="input-group">
-                
-                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                    <input type="text" class="form-control input" id="editarFactor" name="editarFactor"  required>
-
-                </div>
-            </div>
-  
-          </div>
-
         </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-
-        </div>
-
-      <?php
-
-          $editarImpuesto = new ControladorImpuestos();
-          $editarImpuesto -> ctrEditarImpuesto();
-
-        ?> 
-
-      </form>
 
     </div>
 
-  </div>
+    <!--=====================================
+    MODAL EDITAR SUBCATEGORÍA
+    ======================================-->
 
-</div>
+    <div id="modalEditarImpuesto" class="modal fade" role="dialog">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <form role="form" method="post" id="form_editar_impuesto">
+
+                    <!--=====================================
+                    CABEZA DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-header" style="background:#3c8dbc; color:white">
+
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        <h4 class="modal-title">Editar lista</h4>
+
+                    </div>
+
+                    <!--=====================================
+                    CUERPO DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-body">
+
+                        <div class="box-body">
+
+                            <!-- ENTRADA PARA EL NOMBRE -->
+
+                            <div class="form-group">
+                                <div class="d-inline-block bg-primary"
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto
+                                </div>
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                    <input type="text" class="form-control input" id="editarImpuesto"
+                                           name="editarImpuesto" required>
+
+                                    <input type="hidden" id="idImpuesto" name="idImpuesto" required>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="d-inline-block bg-primary"
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor
+                                </div>
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                    <input type="text" class="form-control input" id="editarFactor" name="editarFactor"
+                                           required>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!--=====================================
+                    PIE DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+                    </div>
+
+                    <?php
+
+                    $editarImpuesto = new ControladorImpuestos();
+                    $editarImpuesto->ctrEditarImpuesto();
+
+                    ?>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 
 <?php
 
-  $borrarImpuesto = new ControladorImpuestos();
-  $borrarImpuesto -> ctrBorrarImpuesto();
+$borrarImpuesto = new ControladorImpuestos();
+$borrarImpuesto->ctrBorrarImpuesto();
 
 ?>
