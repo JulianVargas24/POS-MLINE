@@ -92,7 +92,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>
                                                             <input type="text" class="form-control" id="traerDireccion" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -116,7 +116,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">                
-                                                        <span class="input-group-addon">Telefono</span>
+                                                        <span class="input-group-addon">Teléfono</span>
                                                             <input type="text" class="form-control" id="traerTelefono" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -140,7 +140,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Orden</h4>
                                             <div class="row" style="margin-bottom:5px;">
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             
@@ -914,7 +914,7 @@ input[type=number] {
               </div>
             </div>
             <div class="row">
-              <h3 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
+              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
                 <div class="box box-warning">
                   <div class="box-body">
                       <div class="col-xs-12">

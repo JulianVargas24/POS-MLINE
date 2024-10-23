@@ -58,7 +58,7 @@ if($_SESSION["perfil"] == "Especial"){
            
            <th style="width:10px">#</th>
            <th>Nombre</th>
-           <th>Rut</th>
+           <th>RUT</th>
            <th>Empresa</th>
            <th>Email</th>
            <th>Teléfono</th>
@@ -174,7 +174,7 @@ MODAL AGREGAR PERSONAL
           <div class="box-body">
 
             <!-- ENTRADA PARA LOS DATOS PERSONAL -->
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos Personal</h4>
+            <h4 class="box-title text-center" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos Personal</h4>
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">              
@@ -228,7 +228,7 @@ MODAL AGREGAR PERSONAL
                     </div>            
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                     <div class="col-lg-4 col-xs-6">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold;margin-top:15px;">Fono</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold;margin-top:15px;">Teléfono</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -345,7 +345,7 @@ MODAL AGREGAR PERSONAL
               </div>
             </div>
             <div class="row">
-              <h3 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
+              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
                 <div class="box box-warning">
                   <div class="box-body">
                       <div class="col-xs-12">
@@ -490,7 +490,7 @@ MODAL AGREGAR PERSONAL
           <div class="box-body">
 
             <!-- ENTRADA PARA LOS DATOS PERSONAL -->
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos Personal</h4>
+            <h4 class="box-title text-center" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos Personal</h4>
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">              
@@ -545,7 +545,7 @@ MODAL AGREGAR PERSONAL
                     </div>            
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                     <div class="col-lg-4 col-xs-6">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold;margin-top:15px;">Fono</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold;margin-top:15px;">Teléfono</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -662,7 +662,7 @@ MODAL AGREGAR PERSONAL
               </div>
             </div>
             <div class="row">
-              <h3 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
+              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
                 <div class="box box-warning">
                   <div class="box-body">
                       <div class="col-xs-12">
@@ -863,7 +863,7 @@ MODAL AGREGAR PERSONAL
                     </div>            
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                     <div class="col-lg-4 col-xs-6">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold;margin-top:15px;">Fono</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold;margin-top:15px;">Teléfono</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -980,7 +980,7 @@ MODAL AGREGAR PERSONAL
               </div>
             </div>
             <div class="row">
-              <h3 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
+              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
                 <div class="box box-warning">
                   <div class="box-body">
                       <div class="col-xs-12">

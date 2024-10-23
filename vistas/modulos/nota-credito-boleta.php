@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      NOTA DE CREDITO BOLETA AFECTA
+      NOTA DE CRÉDITO BOLETA AFECTA
     
     </h1>
 
@@ -124,7 +124,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>
                                                             <input type="text" class="form-control" id="traerDireccionEditar" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -148,7 +148,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">                
-                                                        <span class="input-group-addon">Telefono</span>
+                                                        <span class="input-group-addon">Teléfono</span>
                                                             <input type="text" class="form-control" id="traerTelefonoEditar" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -177,10 +177,10 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                             <div class="box box-info">
                                     <div class="box-body">
-                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Nota de Credito</h4>
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Nota de Crédito</h4>
                                             <div class="row" style="margin-bottom:5px;">
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             
@@ -268,7 +268,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         $atributo= "nota_credito";
                                         $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
                                         ?>
-                                         <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:green;">NOTA DE CREDITO</h4>
+                                         <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:green;">NOTA DE CRÉDITO</h4>
                                         <div class="row" style="margin-top:2px;">
                                             <div class="col-xs-7">
                                                  <div class="form-group">
@@ -314,32 +314,32 @@ if($_SESSION["perfil"] == "Especial"){
                                         <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Productos Seleccionados</h4>
                                         <div class="row" style="padding:5px 15px">
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descripcion</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descripción</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Cantidad</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Cantidad</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Precio U</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Precio U</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Subtotal</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Subtotal</h5>
                                             </div>
 
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descuento</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descuento</h5>
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Neto</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Neto</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">IVA</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">IVA</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Otros Imp.</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Otros Imp.</h5>
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:12px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Final</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Final</h5>
                                             </div>
                                             
                                         </div>
@@ -558,7 +558,7 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-lg-5"> <a href="ventas">                 
                         <button type="button" class="btn btn-default">Salir</button>
                     </a>
-                    <button type="submit" class="btn btn-primary">Guardar Nota Credito</button>     
+                    <button type="submit" class="btn btn-primary">Guardar Nota Crédito</button>
                         </div>
 
                     

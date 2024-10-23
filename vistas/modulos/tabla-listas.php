@@ -43,7 +43,7 @@ if($_SESSION["perfil"] == "Vendedor"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarTablaLista">
             
-            Agregar Tabla para Lista
+            Agregar Tabla para Listas
 
         </button>
 
@@ -142,7 +142,7 @@ MODAL AGREGAR RUBRO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Tabla Lista</h4>
+          <h4 class="modal-title">Agregar Tabla para Listas</h4>
 
         </div>
 
@@ -157,12 +157,12 @@ MODAL AGREGAR RUBRO
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Tabla Lista</div>
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Tabla para Listas</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevaTablaLista" id="nuevaTablaLista" placeholder="Ingresar Tabla Lista" required>
+                      <input type="text" class="form-control input" name="nuevaTablaLista" id="nuevaTablaLista" placeholder="Ingresar Tabla para Listas" required>
 
                     </div>
             </div>
@@ -183,7 +183,7 @@ MODAL AGREGAR RUBRO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" name="crear_rubro">Agregar Tabla Lista</button>
+          <button type="submit" class="btn btn-primary" name="crear_rubro">Agregar Tabla para Listas</button>
 
         </div>
 
@@ -222,7 +222,7 @@ MODAL EDITAR SUBCATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Tabla para Lista</h4>
+          <h4 class="modal-title">Editar Tabla para Listas</h4>
 
         </div>
 
@@ -237,7 +237,7 @@ MODAL EDITAR SUBCATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Nombre</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Nombre</div>
                     <div class="input-group">
                     
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 

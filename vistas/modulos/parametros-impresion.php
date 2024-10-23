@@ -89,7 +89,7 @@
                    
                                         
                                     
-                   <button type="button" class="btn btn-default">Salir</button>
+                   <button type="button" class="btn btn-default" onclick="window.location.href='inicio';">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>                 
                 </form>
                                    

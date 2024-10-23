@@ -172,7 +172,7 @@ MODAL AGREGAR PRODUCTO
                 </div>  
                 <div class="form-group row">
                     <div class="col-xs-6">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Categoria</div> 
+                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Categoría</div>
                         <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-th"></i></span> 
                           <select class="form-control input" id="nuevaCategoria" name="nuevaCategoria" required>
@@ -204,7 +204,7 @@ MODAL AGREGAR PRODUCTO
 
                           <select class="form-control input" id="nuevaSubcategoria" name="nuevaSubcategoria" required>
                             
-                            <option value="">Seleccionar Subcategoria</option>
+                            <option value="">Seleccionar Subcategoría</option>
 
                             <?php
 
@@ -249,12 +249,12 @@ MODAL AGREGAR PRODUCTO
                     </div>
                   </div>
                   <div class="col-xs-6">
-                  <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Stock Minimo</div>
+                  <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Stock Mínimo</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
-                      <input type="number" class="form-control input" name="nuevoStockMin" min="0" placeholder="Stock Minimo" required>
+                      <input type="number" class="form-control input" name="nuevoStockMin" min="0" placeholder="Stock Mínimo" required>
 
                     </div>
                   </div>
@@ -335,7 +335,7 @@ MODAL AGREGAR PRODUCTO
                 <div class="form-group row"> 
                 
                     <div class="col-xs-4">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Codigo de Producto</div>
+                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Código de Producto</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-code"></i></span> 
@@ -554,7 +554,7 @@ MODAL EDITAR PRODUCTO
                 </div>  
                 <div class="form-group row">
                     <div class="col-xs-6">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Categoria</div> 
+                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Categoría</div>
                         <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-th"></i></span> 
                           <select class="form-control input" id="editarCategoria" name="editarCategoria" required>
@@ -579,14 +579,14 @@ MODAL EDITAR PRODUCTO
                     </div>                 
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                     <div class="col-xs-6">
-                      <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Subcategoria</div> 
+                      <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Subcategoría</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
                           <select class="form-control input" id="editarSubcategoria" name="editarSubcategoria" required>
                             
-                            <option value="">Seleccionar Subcategoria</option>
+                            <option value="">Seleccionar Subcategoría</option>
 
                             <?php
 
@@ -626,17 +626,17 @@ MODAL EDITAR PRODUCTO
                     
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
-                      <input type="text" class="form-control input" id="editarStockAlerta" name="editarStockAlerta" min="0" placeholder="Alerta de Stock" required>
+                      <input type="number" class="form-control input" id="editarStockAlerta" name="editarStockAlerta" min="0" placeholder="Alerta de Stock" required>
 
                     </div>
                   </div>
                   <div class="col-xs-6">
-                  <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Stock Minimo</div>
+                  <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Stock Mínimo</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
-                      <input type="text" class="form-control input" id="editarStockMin" name="editarStockMin" min="0" placeholder="Stock Minimo" required>
+                      <input type="number" class="form-control input" id="editarStockMin" name="editarStockMin" min="0" placeholder="Stock Mínimo" required>
 
                     </div>
                   </div>
@@ -717,7 +717,7 @@ MODAL EDITAR PRODUCTO
                 <div class="form-group row"> 
                 
                     <div class="col-xs-4">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Codigo de Producto</div>
+                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Código de Producto</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-code"></i></span> 

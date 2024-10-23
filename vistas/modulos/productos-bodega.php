@@ -108,10 +108,10 @@ if($_SESSION["perfil"] == "Vendedor"){
                                    
                                    <tr>
                                      
-                                     <th>Descripcion</th>
+                                     <th>Descripción</th>
                                      <th>Stock</th>
                                      <th>Alerta de Stock</th>
-                                     <th>Stock Minimo</th>
+                                     <th>Stock Mínimo</th>
                                   
                           
                                    </tr> 
@@ -268,7 +268,7 @@ MODAL VER DETALLE PRODUCTO
               </div>
             <div class="box box-success">
                             <div class="box-title">
-                            <h2 style="font-weight:bold">ENTRADAS</h4></div>
+                            <h4 style="font-weight:bold">ENTRADAS</h4></div>
               <div class="box-body">
                 <div class="form-group row"> 
                     <div class="col-xs-4">
@@ -322,7 +322,7 @@ MODAL VER DETALLE PRODUCTO
             </div>
             <div class="box box-warning">
                             <div class="box-title">
-                            <h2 style="font-weight:bold">SALIDAS</h4></div>
+                            <h4 style="font-weight:bold">SALIDAS</h4></div>
               <div class="box-body">
                 <div class="form-group row"> 
                     <div class="col-xs-4">

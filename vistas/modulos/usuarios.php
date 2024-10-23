@@ -181,7 +181,7 @@ MODAL AGREGAR USUARIO
             <div class="form-group">
 
                <label for="nuevoNombre" class="display-2"></label>
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Nombre</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Nombre</div>
               <div class="input-group"> 
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -210,7 +210,7 @@ MODAL AGREGAR USUARIO
             <!-- ENTRADA PARA EL USUARIO -->
 
              <div class="form-group">
-              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Usuario</div>
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Usuario</div>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
@@ -224,7 +224,7 @@ MODAL AGREGAR USUARIO
             <!-- ENTRADA PARA LA CONTRASEÑA -->
 
              <div class="form-group">
-             <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Contraseña</div>
+             <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Contraseña</div>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
@@ -238,7 +238,7 @@ MODAL AGREGAR USUARIO
             <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
 
             <div class="form-group">
-            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Perfil</div>
+            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Perfil</div>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
@@ -340,7 +340,7 @@ MODAL EDITAR USUARIO
             <!-- ENTRADA PARA EL NOMBRE -->
         
             <div class="form-group">
-              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Nombre</div>
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Nombre</div>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -370,9 +370,9 @@ MODAL EDITAR USUARIO
             <!-- ENTRADA PARA EL USUARIO -->
 
              <div class="form-group">
-             <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Usuario</div>
+             <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Usuario</div>
               <div class="input-group">
-              
+
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
                 <input type="text" class="form-control input-lg" id="editarUsuario"  name="editarUsuario" value="" readonly>
@@ -384,12 +384,12 @@ MODAL EDITAR USUARIO
             <!-- ENTRADA PARA LA CONTRASEÑA -->
 
              <div class="form-group">
-             <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Contraseña</div>  
+             <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Contraseña</div>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
 
-                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Escribir Contraseña(Opcional)">
+                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Escribir contraseña (opcional)">
 
                 <input type="hidden" id="passwordActual" name="passwordActual">
 
@@ -400,7 +400,7 @@ MODAL EDITAR USUARIO
             <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
 
             <div class="form-group">
-            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Perfil</div>
+            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Perfil</div>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 

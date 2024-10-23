@@ -93,7 +93,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>
                                                             <input type="text" class="form-control" id="traerDireccion" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -117,7 +117,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">                
-                                                        <span class="input-group-addon">Telefono</span>
+                                                        <span class="input-group-addon">Teléfono</span>
                                                             <input type="text" class="form-control" id="traerTelefono" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -146,11 +146,11 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                                         <div class="box box-info">
                                                 <div class="box-body">
-                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Emision</h4>
+                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Emisión</h4>
                                                         <div class="row" style="margin-bottom:5px;">
                                                         
                                                             <div class="col-xs-6">
-                                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                                <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
                                                                 <div class="form-group">
                                                                     <div class="input-group">
                                                                         
@@ -284,7 +284,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                         <div class="col-xs-6">
                                                                             <div class="form-group">
                                                                                 <div class="input-group">
-                                                                                <span class="input-group-addon" style="background-color:green; color:white; font-weight:bold">F.EMISION</span>
+                                                                                <span class="input-group-addon" style="background-color:green; color:white; font-weight:bold">F.EMISIÓN</span>
                                                                                     <input type="date" class="form-control" name="nuevaFechaDocumento" id="nuevaFechaDocumento">
                                                                                 </div>
                                                                             </div>
@@ -327,7 +327,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                 </div>
                                             </div> 
                                         </div>
-                                        <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">RAZON REFERENCIA:</h4>
+                                        <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">RAZÓN REFERENCIA:</h4>
                                         <div class="row" style="margin-top:5px;">
                                             <div class="col-xs-12">
                                                  <div class="form-group">
@@ -470,32 +470,32 @@ if($_SESSION["perfil"] == "Especial"){
                                         <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Productos Seleccionados</h4>
                                         <div class="row" style="padding:5px 15px">
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descripcion</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descripción</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Cantidad</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Cantidad</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Precio U</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Precio U</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Subtotal</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Subtotal</h5>
                                             </div>
 
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descuento</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descuento</h5>
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Neto</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Neto</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">IVA</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">IVA</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Otros Imp.</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Otros Imp.</h5>
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:12px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Final</h4>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Final</h5>
                                             </div>
                                             
                                         </div>
@@ -749,7 +749,7 @@ MODAL VER COTIZACIONES
                 <div class="modal-header" style="background:#3c8dbc; color:white">
 
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">Cotizaciones</h4>
+                    <h4 class="modal-title">Cotizaciones</h4>
 
 
                 </div>
@@ -768,10 +768,10 @@ MODAL VER COTIZACIONES
          <tr>
            
            <th>Folio</th>
-           <th>Emision</th>
+           <th>Emisión</th>
            <th>Vencimiento</th>
            <th>Cliente</th>
-           <th>Observacion</th>
+           <th>Observación</th>
            <th>Total</th>
            <th>Acciones</th>
          </tr> 
@@ -876,8 +876,8 @@ MODAL VER COTIZACIONES
                         <th style="width:10px">#</th>
                         <th>Folio</th>
                         <th>Nombre</th>
-                        <th>Fecha Emision</th>
-                        <th>Observacion</th>
+                        <th>Fecha Emisión</th>
+                        <th>Observación</th>
                         <th>Acciones</th>
 
 

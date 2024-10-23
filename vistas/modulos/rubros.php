@@ -61,7 +61,7 @@ if($_SESSION["perfil"] == "Vendedor"){
            <th style="width:10px">#</th>
 
            <th>Nombre</th>
-           <th>Descripcion</th>
+           <th>Descripción</th>
            <th>Acciones</th>
 
          </tr> 
@@ -161,7 +161,7 @@ MODAL AGREGAR RUBRO
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Rubro</div>
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Rubro</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -172,12 +172,12 @@ MODAL AGREGAR RUBRO
             </div>
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descripcion</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Descripción</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                    <input type="text" class="form-control input" id="nuevaDescripcion" name="nuevaDescripcion" placeholder="Ingresar Descripcion"  required>
+                    <input type="text" class="form-control input" id="nuevaDescripcion" name="nuevaDescripcion" placeholder="Ingresar Descripción"  required>
 
                 </div>
             </div>
@@ -250,7 +250,7 @@ MODAL EDITAR SUBCATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Rubro</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Rubro</div>
                     <div class="input-group">
                     
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -264,7 +264,7 @@ MODAL EDITAR SUBCATEGORÍA
 
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descripcion</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Descripción</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 

@@ -57,7 +57,7 @@ if($_SESSION["perfil"] == "Especial"){
            
            <th style="width:10px">#</th>
            <th>Tipo de Producto</th>
-           <th>Codigo</th>
+           <th>Código</th>
 
 
          </tr> 
@@ -161,7 +161,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
               
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Tipo de Producto</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Tipo de Producto</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -173,12 +173,12 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Producto</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de Producto</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevoCodigoProducto" id="nuevoCodigoProducto" placeholder="Ingresar Codigo de Producto" required>
+                        <input type="number" class="form-control input" name="nuevoCodigoProducto" id="nuevoCodigoProducto" placeholder="Ingresar Código de Producto" required>
 
                       </div>
               </div>
@@ -246,7 +246,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
             <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Tipo de Producto</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Tipo de Producto</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -258,7 +258,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Producto</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de Producto</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 

@@ -12,7 +12,7 @@
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Parametros</li>
+      <li class="active">Parámetros</li>
     
     </ol>
 
@@ -30,7 +30,7 @@
                         <div class="col-xs-4">
                                         <div class="box box-info">
                                                 <div class="box-body">
-                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Parametros Generales</h4>
+                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Parámetros Generales</h4>
                                                         <div class="row" style="margin-bottom:5px;">
                                                             
                                                             <div class="col-xs-12">
@@ -42,7 +42,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-4">
-                                                                <div class="d-block" style="font-size:14px;font-weight:bold">Tipo punto de venta</div>
+                                                                <div class="d-block" style="font-size:14px;font-weight:bold">Tipo Punto de Venta</div>
                                                                 <div class="form-group">
                                                                     <div class="input-group">
                                                                         
@@ -81,7 +81,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-4">
-                                                                <div class="d-block" style="font-size:14px;font-weight:bold"> Cliente Credito Bloqueado</div>
+                                                                <div class="d-block" style="font-size:14px;font-weight:bold"> Cliente Crédito Bloqueado</div>
                                                                 <div class="form-group">
                                                                     <div class="input-group">
                                                                         
@@ -138,7 +138,7 @@
                             <div class="box box-info">
                                     <div class="box-body">
                                     
-                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos Condicion Venta/Pago</h4>
+                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos Condición Venta/Pago</h4>
                                         <div class="row" style="margin-bottom:5px;">
                                             <div class="col-xs-12">
                                             <textarea name="nuevaCondicionVenta" id="nuevaCondicionVenta" cols="50" rows="6">
@@ -169,7 +169,7 @@
                    
                                         
                                     
-                   <button type="button" class="btn btn-default">Salir</button>
+                   <button type="button" class="btn btn-default" onclick="window.location.href='inicio';">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>                 
                 </form>
 

@@ -61,8 +61,8 @@ if($_SESSION["perfil"] == "Especial"){
                                     
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <label for="">Fecha Emision</label>
-                                                <input type="hidden" name="listaProductos" id="listaProductos">
+                                                <label for="">Fecha Emisión</label>
+                                                <input type="text" name="listaProductos" id="listaProductos">
                                                 <input type="date" class="form-control input-sm" name="nuevaFecha" id="nuevaFecha">
                                             </div>
                                         </div>
@@ -144,6 +144,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                     $item = null;
                                                                     $valor = null;
 
+
                                                                     $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
                                                                     foreach ($plantel as $key => $value) {
@@ -208,7 +209,7 @@ if($_SESSION["perfil"] == "Especial"){
                                     
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <label for="">Fecha Emision</label>
+                                                <label for="">Fecha Emisión</label>
                                                 <input type="text" name="listaProductos1" id="listaProductos1">
                                                 <input type="date" class="form-control input-sm" name="nuevaFecha1" id="nuevaFecha1">
                                             </div>
@@ -345,7 +346,7 @@ if($_SESSION["perfil"] == "Especial"){
                                 
                             </div>
                             
-                             <!-- Botones en BODEGA a ORDEN de TRABAJO -->
+                            <!-- Botones en BODEGA a ORDEN de TRABAJO -->
                             <button type="button" class="btn btn-default" onclick="window.location.href='salida';">Salir</button>
                             <button type="submit" class="btn btn-primary">Guardar Salida</button>
                     </form>     

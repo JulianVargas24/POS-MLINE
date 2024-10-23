@@ -111,14 +111,14 @@ if($xml){
            
            <th>Folio</th>
            <th>Tipo DTE</th>
-           <th>Emision</th>
+           <th>Emisión</th>
            <th>Vendedor</th>
            <th>Unidad de Negocio</th>
            <th>Bodega</th>
            <th>Plazo de Pago</th>
            <th>Medio de Pago</th>
            <th>Cliente</th>
-           <th>Observacion</th>
+           <th>Observación</th>
            <th>Total</th>
            <th>Pagado</th>
            <th>Pendiente</th>

@@ -12,7 +12,7 @@
 
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Parametros</li>
+            <li class="active">Parámetros</li>
 
         </ol>
 
@@ -61,7 +61,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="font-size:16px;">Cotizacion Afecta</td>
+                                                        <td style="font-size:16px;">Cotización Afecta</td>
                                                         <td>
                                                             <input
                                                             value="<?php echo ModeloParametrosDocumentos::mdlMostrarFolio("cotizaciones", "cotizacion"); ?>"
@@ -71,7 +71,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="font-size:16px;">Cotizacion Exenta</td>
+                                                        <td style="font-size:16px;">Cotización Exenta</td>
                                                         <td>
                                                             <input
                                                             value="<?php echo ModeloParametrosDocumentos::mdlMostrarFolio("cotizaciones_exentas", "cotizacion_exenta"); ?>"
@@ -121,7 +121,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="font-size:16px;">Nota de Debito</td>
+                                                        <td style="font-size:16px;">Nota de Débito</td>
                                                         <td>
                                                             <input
                                                             value="<?php echo ModeloParametrosDocumentos::mdlMostrarFolio("nota_credito", "nota_credito"); ?>"
@@ -131,7 +131,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="font-size:16px;">Nota de Credito</td>
+                                                        <td style="font-size:16px;">Nota de Crédito</td>
                                                         <td>
                                                             <input
                                                             value="<?php echo ModeloParametrosDocumentos::mdlMostrarFolio("nota_credito", "nota_credito"); ?>"
@@ -200,7 +200,7 @@
 
 
 
-                    <button type="reset" class="btn btn-default">Salir</button>
+                    <button type="reset" class="btn btn-default" onclick="window.location.href='inicio';">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 </form>
 

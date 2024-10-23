@@ -56,7 +56,7 @@ if($_SESSION["perfil"] == "Especial"){
            
            <th style="width:10px">#</th>
            <th>Tipo de Campaña</th>
-           <th>Codigo</th>
+           <th>Código</th>
 
 
          </tr> 
@@ -160,7 +160,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
               
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Tipo de Campaña</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Tipo de Campaña</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -172,12 +172,12 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Campaña</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de Campaña</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevoCodigoCliente" id="nuevoCodigoCliente" placeholder="Ingresar Codigo de Campaña" required>
+                        <input type="number" class="form-control input" name="nuevoCodigoCliente" id="nuevoCodigoCliente" placeholder="Ingresar Código de Campaña" required>
 
                       </div>
               </div>
@@ -250,7 +250,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
             <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Tipo de Cliente</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Tipo de Cliente</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -262,7 +262,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Cliente</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de Cliente</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
