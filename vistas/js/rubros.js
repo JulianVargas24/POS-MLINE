@@ -40,14 +40,14 @@ $(".tablas").on("click", ".btnEliminarRubro", function(){
     var idRubro = $(this).attr("idRubro");
 
     swal({
-        title: '¿Está seguro de borrar esta Rubro?',
-        text: "¡Si no lo está puede cancelar la acción!",
+        title: '¿Está seguro de borrar este Rubro?',
+        text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar Rubro!'
+        confirmButtonText: 'Sí, borrar rubro'
     }).then(function(result){
 
         if(result.value){

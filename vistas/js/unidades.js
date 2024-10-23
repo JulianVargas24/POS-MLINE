@@ -39,14 +39,14 @@ $(".tablas").on("click", ".btnEliminarUnidad", function(){
 	 var idUnidad = $(this).attr("idUnidad");
 
 	 swal({
-	 	title: '¿Está seguro de borrar la Unidad?',
-	 	text: "¡Si no lo está puede cancelar la acción!",
+	 	title: '¿Está seguro de borrar esta Unidad?',
+	 	text: "Si no lo está, puede cancelar la acción.",
 	 	type: 'warning',
 	 	showCancelButton: true,
 	 	confirmButtonColor: '#3085d6',
 	 	cancelButtonColor: '#d33',
 	 	cancelButtonText: 'Cancelar',
-	 	confirmButtonText: 'Si, borrar categoría!'
+	 	confirmButtonText: 'Sí, borrar unidad'
 	 }).then(function(result){
 
 	 	if(result.value){

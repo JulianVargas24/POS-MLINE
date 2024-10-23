@@ -1383,14 +1383,14 @@ $(".tablas").on("click", ".btnEliminarCotizacion", function(){
   var idCotizacion = $(this).attr("idCotizacion");
 
   swal({
-        title: '¿Está seguro de borrar la Cotizacion?',
-        text: "¡Si no lo está puede cancelar la accíón!",
+        title: '¿Está seguro de borrar esta Cotización?',
+        text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar Cotizacion!'
+        confirmButtonText: 'Sí, borrar cotización'
       }).then(function(result){
         if (result.value) {
           

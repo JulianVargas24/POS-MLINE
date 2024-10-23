@@ -36,14 +36,14 @@ $(".tablas").on("click", ".btnEliminarTablaLista", function(){
 	 var idTablaLista = $(this).attr("idTablaLista");
 
 	 swal({
-	 	title: '¿Está seguro de borrar la Tabla para Lista?',
-	 	text: "¡Si no lo está puede cancelar la acción!",
+	 	title: '¿Está seguro de borrar esta Tabla para Listas?',
+	 	text: "Si no lo está, puede cancelar la acción.",
 	 	type: 'warning',
 	 	showCancelButton: true,
 	 	confirmButtonColor: '#3085d6',
 	 	cancelButtonColor: '#d33',
 	 	cancelButtonText: 'Cancelar',
-	 	confirmButtonText: 'Si, borrar Tabla para Lista!'
+	 	confirmButtonText: 'Sí, borrar tabla para listas'
 	 }).then(function(result){
 
 	 	if(result.value){
