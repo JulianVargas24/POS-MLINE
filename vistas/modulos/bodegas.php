@@ -80,13 +80,7 @@ if($_SESSION["perfil"] == "Especial"){
           $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
 
           foreach ($bodegas as $key => $value) {
-            // Obtener los nombres de la región y la comuna
-            $regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
-            $comunaNombre = ControladorRegiones::ctrMostrarComunas('id', $value['comuna']);
-
-            // Asignar nombres o mostrar el ID si no se encuentra el nombre
-            $regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : ''.$value['region'];
-            $comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : ''.$value['comuna'];
+            
 
             echo '<tr>
 
@@ -94,9 +88,9 @@ if($_SESSION["perfil"] == "Especial"){
 
                     <td>'.$value["nombre"].'</td>
 
-                    <td>'.$regionDisplay.'</td>
+                    <td>'.$value["region"].'</td>
 
-                    <td>'.$comunaDisplay.'</td>
+                    <td>'.$value["comuna"].'</td>
 
                     <td>'.$value["direccion"].'</td>
 
@@ -112,8 +106,6 @@ if($_SESSION["perfil"] == "Especial"){
                       <div class="btn-group">
                           
                         <button class="btn btn-warning btnEditarBodega" data-toggle="modal" data-target="#modalEditarBodega" idBodega="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
-                        // Supongamos que tienes un botón con id "editarBodegaBtn" para editar la bodega
-
 
                       if($_SESSION["perfil"] == "Administrador"){
 
@@ -128,7 +120,6 @@ if($_SESSION["perfil"] == "Especial"){
                   </tr>';
           
             }
-            
 
            
         ?>
@@ -207,21 +198,23 @@ MODAL AGREGAR BODEGA
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
-                                foreach ($regiones as $region) {
-                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
-                                }
-                                ?>
 
-                            </select>
+                                $item = null;
+                                $valor = null;
+
+                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
+
+                                foreach ($regiones as $key => $value){
+                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                }
+
+                                ?>
             
-                            
+                            </select>
 
 
                           </div>
                       </div>   
-
-
                   <!-- ENTRADA PARA LA CIUDAD -->
                       <div class="col-lg-6" style="margin-top:10px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
@@ -232,11 +225,23 @@ MODAL AGREGAR BODEGA
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
->
+
+                                    <?php
+
+                                    $item = null;
+                                    $valor = null;
+
+                                    
+                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
+
+                                    foreach ($comunas as $key => $value){
+                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
+                                    }
+
+                                    ?>
               
                                 </select>
-                                
-                                
+
                             </div>
                       </div>
                    
@@ -276,16 +281,7 @@ MODAL AGREGAR BODEGA
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <!-- Esta funcion permite que se pueda ingresar solo numeros con un minimo y maximo de 9 -->
-                        <input type="tel" class="form-control input" name="nuevoTelefono"
-                                            placeholder="Ingresar teléfono" required
-                                            maxlength="12" pattern="^\+[0-9]{11}$"
-                                            title="Ingrese el número de teléfono completo."
-                                            onfocus="validarTelefono(this)">
-
-
-
-
+                        <input type="tel" class="form-control input" name="nuevoTelefono" placeholder="Ingresar teléfono" required>
 
                       </div>
                   </div>
@@ -296,8 +292,7 @@ MODAL AGREGAR BODEGA
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
-
+                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required>
 
                       </div>
                     </div>                 
@@ -400,9 +395,16 @@ MODAL EDITAR PROVEEDOR
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-                                foreach ($regiones as $region) {
-                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $bodegas['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
+
+                                $item = null;
+                                $valor = null;
+
+                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
+
+                                foreach ($regiones as $key => $value){
+                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
                                 }
+
                                 ?>
             
                             </select>
@@ -422,18 +424,23 @@ MODAL EDITAR PROVEEDOR
 
                             <option value="">Seleccionar Comuna</option>
 
+                                    <?php
+
+                                    $item = null;
+                                    $valor = null;
+
                                     
+                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
+
+                                    foreach ($comunas as $key => $value){
+                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
+                                    }
+
+                                    ?>
                           </select>
-                          
-                          
 
                           </div>
-                      </div>
-
-                      <!-- Input hidden para la comuna actual -->
-                      <input type="hidden" id="comunaActual" value="<?php echo $bodegas['comuna']; ?>">
-                      
-                      
+                      </div>                 
                     <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                       <div class="col-lg-6" style="margin-top:10px;">
                       <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
@@ -470,11 +477,7 @@ MODAL EDITAR PROVEEDOR
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required
-                          maxlength="12" pattern="^\+[0-9]{11}$"
-                          title="Ingrese el número de teléfono completo."
-                          onfocus="validarTelefono(this)">   
-
+                        <input type="text" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required>
 
                       </div>
                   </div>
@@ -485,7 +488,7 @@ MODAL EDITAR PROVEEDOR
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                        <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required>
 
                       </div>
                     </div>                 
@@ -536,78 +539,7 @@ MODAL EDITAR PROVEEDOR
 
   $eliminarBodega = new ControladorBodegas();
   $eliminarBodega -> ctrEliminarBodega();
-  
 
 ?>
-
-<script>
-document.getElementById('nuevaRegion').addEventListener('change', function() {
-    var regionId = this.value; // Obtener el ID de la región seleccionada
-
-    // Verifica que haya una región seleccionada
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
-
-                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
-                var comunaSelect = document.getElementById('nuevaComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
-
-                // Rellenar las opciones del select de comunas
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
-                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
-                    comunaSelect.appendChild(option);
-                });
-            }
-        };
-
-        // Enviar el ID de la región seleccionada al servidor
-        xhr.send('regionId=' + regionId);
-    } else {
-        // Si no hay región seleccionada, limpiar el select de comunas
-        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
-});
-
-document.getElementById('editarRegion').addEventListener('change', function() {
-    var regionId = this.value;
-    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
-
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var comunas = JSON.parse(xhr.responseText);
-                var comunaSelect = document.getElementById('editarComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
-
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id;
-                    option.textContent = comuna.nombre;
-                    if (comuna.id == comunaActual) {
-                        option.selected = true; // Seleccionar la comuna actual
-                    }
-                    comunaSelect.appendChild(option);
-                });
-            }
-        };
-
-        xhr.send('regionId=' + regionId);
-    } else {
-        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
-});
-  </script>
 
 

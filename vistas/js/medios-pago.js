@@ -34,18 +34,18 @@ $(".tablas").on("click", ".btnEliminarMedio", function(){
 
 	 swal({
 	 	title: '¿Está seguro de borrar el medio de pago?',
-	 	text: "¡Si no lo está, puede cancelar la acción!",
+	 	text: "¡Si no lo está puede cancelar la acción!",
 	 	type: 'warning',
 	 	showCancelButton: true,
 	 	confirmButtonColor: '#3085d6',
 	 	cancelButtonColor: '#d33',
 	 	cancelButtonText: 'Cancelar',
-	 	confirmButtonText: 'Sí, borrar medio de pago'
+	 	confirmButtonText: 'Si, borrar medio de pago!'
 	 }).then(function(result){
 
 	 	if(result.value){
 
-	 		window.location = "index.php?ruta=medios-pago&idMedio="+idMedio;
+	 		window.location = "index.php?ruta=medios-pagos&idMedio="+idMedio;
 
 	 	}
 

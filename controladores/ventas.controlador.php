@@ -160,90 +160,6 @@ class ControladorVentas{
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos, $listaProductos);
 
 			if($respuesta == "ok"){
-
-				// $impresora = "epson20";
-
-				// $conector = new WindowsPrintConnector($impresora);
-
-				// $imprimir = new Printer($conector);
-
-				// $imprimir -> text("Hola Mundo"."\n");
-
-				// $imprimir -> cut();
-
-				// $imprimir -> close();
-
-				/**$impresora = "epson20";
-
-				$conector = new WindowsPrintConnector($impresora);
-
-				$printer = new Printer($conector);
-
-				$printer -> setJustification(Printer::JUSTIFY_CENTER);
-
-				$printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
-
-				$printer -> feed(1); //Alimentamos el papel 1 vez*/
-
-				/**$printer -> text("Inventory System"."\n");//Nombre de la empresa
-
-				$printer -> text("NIT: 71.759.963-9"."\n");//Nit de la empresa
-
-				$printer -> text("Dirección: Calle 44B 92-11"."\n");//Dirección de la empresa
-
-				$printer -> text("Teléfono: 300 786 52 49"."\n");//Teléfono de la empresa
-
-				$printer -> text("FACTURA N.".$_POST["nuevaVenta"]."\n");//Número de factura
-
-				$printer -> feed(1); //Alimentamos el papel 1 vez*/
-
-				/**$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
-
-				$tablaVendedor = "usuarios";
-				$item = "id";
-				$valor = $_POST["idVendedor"];
-
-				$traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
-
-				$printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
-
-				$printer -> feed(1); //Alimentamos el papel 1 vez*/
-
-				/**foreach ($listaProductos as $key => $value) {
-
-					$printer->setJustification(Printer::JUSTIFY_LEFT);
-
-					$printer->text($value["descripcion"]."\n");//Nombre del producto
-
-					$printer->setJustification(Printer::JUSTIFY_RIGHT);
-
-					$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
-
-				}
-
-				$printer -> feed(1); //Alimentamos el papel 1 vez*/			
-				
-				/**$printer->text("NETO: $ ".number_format($_POST["nuevoPrecioNeto"],2)."\n"); //ahora va el neto
-
-				$printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
-
-				$printer->text("--------\n");
-
-				$printer->text("TOTAL: $ ".number_format($_POST["totalVenta"],2)."\n"); //ahora va el total
-
-				$printer -> feed(1); //Alimentamos el papel 1 vez*/	
-
-				/**$printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
-
-				$printer -> feed(3); //Alimentamos el papel 3 veces*/
-
-				/**$printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
-
-				$printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
-
-				$printer -> close();*/
-
-	
 				echo'<script>
 
 				localStorage.removeItem("rango");
@@ -639,7 +555,7 @@ class ControladorVentas{
             CREAMOS EL ARCHIVO DE EXCEL
             =============================================*/
 
-            $Name = $_GET["reporte"] . '-venta-factura-afecta.xls';
+            $Name = $_GET["reporte"] . '-venta-generales.xls';
 
             header('Expires: 0');
             header('Cache-control: private');
@@ -1205,11 +1121,11 @@ class ControladorVentas{
 
 	}
 
-	public function ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal){
+	static public function ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal){
 		$respuesta = ModeloVentas::mdlSumaTotalVentasPorFecha($fechaInicial, $fechaFinal);
 		return $respuesta;
 	}
-
+	
 	/*=============================================
 	DESCARGAR XML
 	=============================================*/

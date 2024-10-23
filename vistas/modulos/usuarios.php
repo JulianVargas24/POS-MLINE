@@ -215,7 +215,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="nuevoUsuario" required>
+                <input type="text" class="form-control input-lg" name="nuevoUsuario" id=nuevoUsuario placeholder="Ingresar usuario" id="nuevoUsuario" required>
 
               </div>
 
@@ -229,7 +229,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
 
-                <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder="Ingresar contraseña" required>
+                <input type="password" class="form-control input-lg" name="nuevoPassword" id=nuevoPassword placeholder="Ingresar contraseña" required>
 
               </div>
 
@@ -243,7 +243,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoPerfil">
+                <select class="form-control input-lg" name="nuevoPerfil" id=nuevoPerfil>
                   
                   <option value="">Selecionar perfil</option>
 
@@ -265,7 +265,7 @@ MODAL AGREGAR USUARIO
               
               <div class="panel">SUBIR FOTO</div>
 
-              <input type="file" class="nuevaFoto" name="nuevaFoto">
+              <input type="file" class="nuevaFoto" name="nuevaFoto" id=nuevoFoto>
 
               <p class="help-block">Peso máximo de la foto 2MB</p>
 

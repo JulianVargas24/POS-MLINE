@@ -44,7 +44,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                             <div class="form-group">
                                 <div class="input-group">
-                                    <label for="">Fecha Emisión</label>
+                                    <label for="">Fecha Emision</label>
                                     <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">
                                 </div>
                             </div>
@@ -179,8 +179,8 @@ if ($_SESSION["perfil"] == "Especial") {
             </div>
 
 
-            <!-- Botones en TODAS LAS OPCIONES DE AJUSTES -->
-            <button type="button" class="btn btn-default" onclick="window.location.href='ajuste';">Salir</button>
+
+            <button type="button" class="btn btn-default">Salir</button>
             <button type="submit" class="btn btn-primary">Aplicar Ajustes</button>
         </div>
 

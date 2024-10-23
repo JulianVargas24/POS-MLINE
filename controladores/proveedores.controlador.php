@@ -1,41 +1,37 @@
 <?php
 
-class ControladorProveedores
-{
+class ControladorProveedores{
 
-    /*=============================================
-    CREAR PROVEEDORES
-    =============================================*/
+	/*=============================================
+	CREAR PROVEEDORES
+	=============================================*/
 
-    static public function ctrCrearProveedores()
-    {
+	static public function ctrCrearProveedores(){
 
-        if (isset($_POST["nuevoProveedor"])) {
+		if(isset($_POST["nuevoProveedor"])){
 
-            $tabla = "proveedores";
+			   	$tabla = "proveedores";
 
-            $datos = array(
-                "razon_social" => $_POST["nuevoProveedor"],
-                "rut" => $_POST["nuevoRutId"],
-                "comuna" => $_POST["nuevaComuna"],
-                "region" => $_POST["nuevaRegion"],
-                "pais" => $_POST["nuevoPais"],
-                "nro_cuenta" => $_POST["nuevoNroCuenta"],
-                "banco" => $_POST["nuevoBanco"],
-                "telefono" => $_POST["nuevoTelefono"],
-                "email" => $_POST["nuevoEmail"],
-                "actividad" => $_POST["nuevaActividad"],
-                "ejecutivo" => $_POST["nuevoEjecutivo"],
-                "rubros" => $_POST["nuevoRubro"],
-                "direccion" => $_POST["nuevaDireccion"],
-                "id_plazo" => $_POST["nuevoPlazo"]
-            );
+			   	$datos = array("razon_social"=>$_POST["nuevoProveedor"],
+                               "rut"=>$_POST["nuevoRutId"],
+							   "comuna"=>$_POST["nuevaComuna"],
+							   "region"=>$_POST["nuevaRegion"],
+							   "pais"=>$_POST["nuevoPais"],
+                               "nro_cuenta"=>$_POST["nuevoNroCuenta"],	
+                               "banco"=>$_POST["nuevoBanco"],
+                               "telefono"=>$_POST["nuevoTelefono"],
+							   "email"=>$_POST["nuevoEmail"],
+							   "actividad"=>$_POST["nuevaActividad"],
+							   "ejecutivo"=>$_POST["nuevoEjecutivo"],
+							   	"rubros"=>$_POST["nuevoRubro"],
+								"direccion"=>$_POST["nuevaDireccion"],
+								"id_plazo"=>$_POST["nuevoPlazo"]);
 
-            $respuesta = ModeloProveedores::mdlIngresarProveedor($tabla, $datos);
+			   	$respuesta = ModeloProveedores::mdlIngresarProveedor($tabla, $datos);
 
-            if ($respuesta == "ok") {
-
-                echo '<script>
+			   	if($respuesta == "ok"){
+					
+					echo'<script>
 					
 					swal({
 						  type: "success",
@@ -51,58 +47,59 @@ class ControladorProveedores
 								})
 
 					</script>';
-            }
-        }
-    }
 
-    /*=============================================
-    MOSTRAR PROVEEDORES
-    =============================================*/
+				}
 
-    static public function ctrMostrarProveedores($item, $valor)
-    {
+			
+		}
 
-        $tabla = "proveedores";
+	}
 
-        $respuesta = ModeloProveedores::mdlMostrarProveedores($tabla, $item, $valor);
+	/*=============================================
+	MOSTRAR PROVEEDORES
+	=============================================*/
 
-        return $respuesta;
-    }
+	static public function ctrMostrarProveedores($item, $valor){
 
-    /*=============================================
-    EDITAR PROVEEDORES
-    =============================================*/
+		$tabla = "proveedores";
 
-    static public function ctrEditarProveedor()
-    {
+		$respuesta = ModeloProveedores::mdlMostrarProveedores($tabla, $item, $valor);
 
-        if (isset($_POST["editarProveedor"])) {
+		return $respuesta;
 
-            $tabla = "proveedores";
+	}
 
-            $datos = array(
-                "id" => $_POST["idProveedor"],
-                "razon_social" => $_POST["editarProveedor"],
-                "rut" => $_POST["editarRutId"],
-                "comuna" => $_POST["editarComuna"],
-                "region" => $_POST["editarRegion"],
-                "pais" => $_POST["editarPais"],
-                "nro_cuenta" => $_POST["editarNroCuenta"],
-                "banco" => $_POST["editarBanco"],
-                "telefono" => $_POST["editarTelefono"],
-                "email" => $_POST["editarEmail"],
-                "actividad" => $_POST["editarActividad"],
-                "ejecutivo" => $_POST["editarEjecutivo"],
-                "rubros" => $_POST["editarRubro"],
-                "direccion" => $_POST["editarDireccion"],
-                "id_plazo" => $_POST["editarPlazo"]
-            );
+	/*=============================================
+	EDITAR PROVEEDORES
+	=============================================*/
 
+	static public function ctrEditarProveedor(){
 
-            $respuesta = ModeloProveedores::mdlEditarProveedor($tabla, $datos);
+		if(isset($_POST["editarProveedor"])){
 
-            if ($respuesta == "ok") {
-                echo '<script>
+			   	$tabla = "proveedores";
+
+			   	$datos = array(	"id"=>$_POST["idProveedor"],
+				   "razon_social"=>$_POST["editarProveedor"],
+				   "rut"=>$_POST["editarRutId"],
+				   "comuna"=>$_POST["editarComuna"],
+				   "region"=>$_POST["editarRegion"],
+				   "pais"=>$_POST["editarPais"],
+				   "nro_cuenta"=>$_POST["editarNroCuenta"],	
+				   "banco"=>$_POST["editarBanco"],
+				   "telefono"=>$_POST["editarTelefono"],
+				   "email"=>$_POST["editarEmail"],
+				   "actividad"=>$_POST["editarActividad"],
+				   "ejecutivo"=>$_POST["editarEjecutivo"],
+				   "rubros"=>$_POST["editarRubro"],
+					"direccion"=>$_POST["editarDireccion"],
+					"id_plazo"=>$_POST["editarPlazo"]);
+
+				
+			   	$respuesta = ModeloProveedores::mdlEditarProveedor($tabla, $datos);
+
+			   	if($respuesta == "ok"){
+					echo'<script>
 					
 					swal({
 						  type: "success",
@@ -118,27 +115,30 @@ class ControladorProveedores
 								})
 
 					</script>';
-            }
-        }
-    }
 
-    /*=============================================
-    ELIMINAR PROVEEDORES
-    =============================================*/
+				}
 
-    static public function ctrEliminarProveedores()
-    {
 
-        if (isset($_GET["idProveedor"])) {
+		}
 
-            $tabla = "proveedores";
-            $datos = $_GET["idProveedor"];
+	}
 
-            $respuesta = ModeloProveedores::mdlBorrarProveedor($tabla, $datos);
+	/*=============================================
+	ELIMINAR PROVEEDORES
+	=============================================*/
 
-            if ($respuesta == "ok") {
+	static public function ctrEliminarProveedores(){
 
-                echo '<script>
+		if(isset($_GET["idProveedor"])){
+
+			$tabla ="proveedores";
+			$datos = $_GET["idProveedor"];
+
+			$respuesta = ModeloProveedores::mdlBorrarProveedor($tabla, $datos);
+
+			if($respuesta == "ok"){
+
+				echo'<script>
 
 				swal({
 					  type: "success",
@@ -155,12 +155,14 @@ class ControladorProveedores
 							})
 
 				</script>';
-            }
-        }
-    }
 
-    static public function ctrDescargarReporteProveedores()
-    {
+			}		
+
+		}
+
+	}
+
+	static public function ctrDescargarReporteProveedores() {
 
         if (isset($_GET["reporte"])) {
 
@@ -213,6 +215,8 @@ class ControladorProveedores
             foreach ($proveedores as $row => $item) {
 
 
+
+
                 echo utf8_decode("<tr>
                         <td style='border:1px solid #eee;'>" . $item["razon_social"] . "</td> 
                         <td style='border:1px solid #eee;'>" . $item["rut"] . "</td>
@@ -234,4 +238,6 @@ class ControladorProveedores
             echo "</table>";
         }
     }
+
 }
+

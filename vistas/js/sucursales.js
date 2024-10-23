@@ -60,22 +60,3 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
 
 
 })
-
-const regiones = [
-	["Tarapaca", "I"],
-	["Antofagasta", "II"],
-	["Atacama", "III"],
-	["Coquimbo", "IV"],
-	["Valparaiso", "V"],
-	["Libertador General Bernardo O'Higgins", "VI"],
-	["Maule", "VII"],
-	["Biobio", "VIII"],
-	["La Araucania", "IX"],
-	["Los Lagos", "X"],
-	["Aysen del General Carlos Ibañez del Campo", "XI"],
-	["Magallanes y Antartica Chilena", "XII"],
-	["Metropolitana de Santiago", "RM"],
-	["Los Rios", "XIV"],
-	["Arica y Parinacota", "XV"],
-	["Ñuble", "XVI"]
-]

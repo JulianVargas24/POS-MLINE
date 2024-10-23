@@ -10,12 +10,10 @@ class ModeloImpuestos{
 
 	static public function mdlIngresarImpuesto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, factor, descripcion, codigo) VALUES (:nombre, :factor, :descripcion, :codigo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, factor) VALUES (:nombre, :factor)");
 
         $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
         $stmt->bindParam(":factor", $datos["factor"], PDO::PARAM_INT);
-		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 
@@ -91,9 +89,6 @@ class ModeloImpuestos{
 		$stmt = null;
 
 	}
-
-
-	
 	
 
 	/*=============================================
@@ -102,12 +97,10 @@ class ModeloImpuestos{
 
 	static public function mdlEditarImpuesto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, factor = :factor, descripcion = :descripcion, codigo = :codigo WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, factor = :factor WHERE id = :id");
 
         $stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
         $stmt -> bindParam(":factor", $datos["factor"], PDO::PARAM_INT);
-		$stmt -> bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt -> bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
         $stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
 

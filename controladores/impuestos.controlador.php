@@ -14,9 +14,7 @@ class ControladorImpuestos{
 				$tabla = "impuestos";
 
 				$datos = array("nombre" => $_POST["nuevoImpuesto"],
-								"factor" => $_POST["nuevoFactor"],
-								"descripcion" => $_POST["nuevoDescripcion"],
-								"codigo" => $_POST["nuevoCodigo"]);
+								"factor" => $_POST["nuevoFactor"]);
 
 				$respuesta = ModeloImpuestos::mdlIngresarImpuesto($tabla, $datos);
 
@@ -69,16 +67,6 @@ class ControladorImpuestos{
 	
 	}
 
-	//static public function ctrMostrarDescripcion($item, $valor){
-
-	//	$tabla = "descripcion";
-
-	//	$respuesta = ModeloImpuestos::mdlMostrarDescripcion($tabla, $item, $valor);
-
-	//	return $respuesta;
-	
-	//}
-
 	/*=============================================
 	EDITAR IMPUESTO
 	=============================================*/
@@ -91,11 +79,9 @@ class ControladorImpuestos{
 
 				$tabla = "impuestos";
 
-                $datos = array("id"=>$_POST["idImpuesto"],								
+                $datos = array("id"=>$_POST["idImpuesto"],
                                "nombre"=>$_POST["editarImpuesto"],
                                "factor"=>$_POST["editarFactor"],
-							   "descripcion"=>$_POST["editarDescripcion"],
-							   "codigo" => $_POST["editarCodigo"]
                                );
 
 

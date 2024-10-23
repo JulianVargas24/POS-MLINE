@@ -8,9 +8,7 @@ class ControladorRegiones {
     static public function ctrMostrarRegiones($item, $valor) {
         $tabla = "regiones";
         $respuesta = ModeloRegiones::mdlMostrarRegiones($tabla, $item, $valor);
-        
         return $respuesta;
-
     }
 
     /*=============================================

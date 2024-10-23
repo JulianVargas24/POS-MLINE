@@ -127,7 +127,7 @@ class ControladorMatrices{
 	}
 
 	/*=============================================
-	ELIMINAR MATRIZ
+	ELIMINAR PROVEEDORES
 	=============================================*/
 
 	static public function ctrEliminarMatriz(){
@@ -140,6 +140,7 @@ class ControladorMatrices{
 			$respuesta = ModeloMatrices::mdlBorrarMatriz($tabla, $datos);
 
 			if($respuesta == "ok"){
+
 				echo'<script>
 
 				swal({
@@ -149,10 +150,13 @@ class ControladorMatrices{
 					  confirmButtonText: "Cerrar",
 					  closeOnConfirm: false
 					  }).then(function(result){
-							if (result.value) {
+								if (result.value) {
+
 								window.location = "matriz";
-                            }
-						})
+
+								}
+							})
+
 				</script>';
 
 			}		
@@ -202,8 +206,7 @@ class ControladorMatrices{
 	}
 
 }
-
-}
+	}
 
 
 

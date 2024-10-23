@@ -56,7 +56,7 @@ if($xml){
 
           <button class="btn btn-primary">
             
-            Crear Venta con Boleta
+            Crear Venta con Boleta Afecta
 
           </button>
 
@@ -111,7 +111,7 @@ if($xml){
            
            <th>Folio</th>
            <th>Tipo DTE</th>
-           <th>Emision</th>
+           <th>Emisión</th>
            <th>Vendedor</th>
            <th>Unidad de Negocio</th>
            <th>Bodega</th>
@@ -232,14 +232,16 @@ if($xml){
 
           $item = null;
           $valor = null;
-
+          //VENTAS
           $ventas = ControladorVentas::ctrMostrarVentasBoletas($item, $valor);
           $boletasExentas = ControladorVentas::ctrMostrarVentasBoletasExentas($item, $valor);
           $afectas = ControladorVentas::ctrMostrarVentasAfectas($item, $valor);
           $exentas = ControladorVentas::ctrMostrarVentasExentas($item, $valor);
+          //NOTAS DE CREDITO
           $notaafecta = ControladorNotaCredito::ctrMostrarNotasAfecta($item, $valor);
           $notaexenta = ControladorNotaCredito::ctrMostrarNotasExenta($item, $valor);
           $notaboleta = ControladorNotaCredito::ctrMostrarNotasBoleta($item, $valor);
+          $notaBoletaExenta = ControladorNotaCredito::ctrMostrarNotasBoletaExenta($item, $valor);
 
           $negocios = ControladorNegocios::ctrMostrarNegocios($item, $valor);
           $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
@@ -248,7 +250,15 @@ if($xml){
           $medios = ControladorMediosPago::ctrMostrarMedios($item,$valor);
           $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
+          // MOSTRAR VENTAS CON BOLETA AFECTAS
             foreach ($ventas as $key => $value) {
+
+                // Reemplazar "Venta con Boleta" por "Venta con Boleta Afecta"
+                $tipoDte = $value["tipo_dte"];
+                if ($tipoDte == "Venta con Boleta") {
+                    $tipoDte = "Venta con Boleta Afecta";
+                }
+
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -287,7 +297,7 @@ if($xml){
 
                     <td>'.$value["codigo"].'</td>
 
-                    <td style="color:black;font-weight:bold;">'.$value["tipo_dte"].'</td>
+                    <td style="font-weight:bold;font-size:15px;color:black;">'.$tipoDte.'</td> <!-- Aquí usamos $tipoDte -->
 
                     <td>'.$value["fecha_emision"].'</td>
 
@@ -304,10 +314,10 @@ if($xml){
                     <td>'.$cliente.'</td>
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
-      
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
-                    <td>$ '.$value["pendiente"].'</td>
+
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
 
                     <td>
 
@@ -390,8 +400,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -419,6 +429,13 @@ if($xml){
           
             }
             foreach ($afectas as $key => $value) {
+
+                // Reemplazar "Factura Afecta" por "Venta con factura afecta"
+                $tipoDte = $value["tipo_dte"];
+                if ($tipoDte == "Factura Afecta") {
+                    $tipoDte = "Venta con Factura Afecta";
+                }
+
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -457,7 +474,7 @@ if($xml){
 
                     <td>'.$value["codigo"].'</td>
 
-                    <td style="color:black;font-weight:bold;">'.$value["tipo_dte"].'</td>
+                    <td style="font-weight:bold;font-size:15px;color:black;">'.$tipoDte.'</td> <!-- Aquí usamos $tipoDte -->
 
                     <td>'.$value["fecha_emision"].'</td>
 
@@ -474,10 +491,10 @@ if($xml){
                     <td>'.$cliente.'</td>
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
-      
+
                     <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
-                    <td>$ '.$value["pendiente"].'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
 
                     <td>
 
@@ -504,6 +521,13 @@ if($xml){
           
             }
             foreach ($exentas as $key => $value) {
+              
+              // Reemplazar "Factura Exenta" por "Venta con factura exenta"
+              $tipoDte = $value["tipo_dte"];
+              if ($tipoDte == "Factura Exenta") {
+                  $tipoDte = "Venta con Factura Exenta";
+              }
+
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -542,7 +566,7 @@ if($xml){
 
                     <td>'.$value["codigo"].'</td>
 
-                    <td style="color:black;font-weight:bold;">'.$value["tipo_dte"].'</td>
+                    <td style="font-weight:bold;font-size:15px;color:black;">'.$tipoDte.'</td> <!-- Aquí usamos $tipoDte -->
 
                     <td>'.$value["fecha_emision"].'</td>
 
@@ -560,8 +584,9 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
+                    
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -590,6 +615,13 @@ if($xml){
           
             }
             foreach ($notaafecta as $key => $value) {
+
+              // Reemplazar "Nota de Credito Afecta" por "Nota de Credito de una Factura Afecta"
+              $tipoDte = $value["tipo_dte"];
+              if ($tipoDte == "Nota de Credito Afecta") {
+                  $tipoDte = "Nota de Credito de una Factura Afecta";
+              }
+
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -628,7 +660,7 @@ if($xml){
 
                     <td>'.$value["codigo"].'</td>
 
-                    <td style="color:black;font-weight:bold;">'.$value["tipo_dte"].'</td>
+                    <td style="font-weight:bold;font-size:15px;color:black;">'.$tipoDte.'</td> <!-- Aquí usamos $tipoDte -->
 
                     <td>'.$value["fecha_emision"].'</td>
 
@@ -646,8 +678,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ 0</td>
 
                     <td>
@@ -675,6 +707,13 @@ if($xml){
           
             }
             foreach ($notaboleta as $key => $value) {
+
+                // Reemplazar "Nota de Credito Boleta" por "Nota de Credito de una Boleta Afecta"
+                $tipoDte = $value["tipo_dte"];
+                if ($tipoDte == "Nota de Credito Boleta") {
+                    $tipoDte = "Nota de Credito de una Boleta Afecta";
+                }
+
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -713,7 +752,7 @@ if($xml){
 
                     <td>'.$value["codigo"].'</td>
 
-                    <td style="color:black;font-weight:bold;">'.$value["tipo_dte"].'</td>
+                    <td style="font-weight:bold;font-size:15px;color:black;">'.$tipoDte.'</td> <!-- Aquí usamos $tipoDte -->
 
                     <td>'.$value["fecha_emision"].'</td>
 
@@ -731,8 +770,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ 0</td>
 
                     <td>
@@ -760,6 +799,13 @@ if($xml){
           
             }
             foreach ($notaexenta as $key => $value) {
+
+                // Reemplazar "Nota de Credito Exenta" por "Nota de Credito de una Factura Exenta"
+                $tipoDte = $value["tipo_dte"];
+                if ($tipoDte == "Nota de Credito Exenta") {
+                    $tipoDte = "Nota de Credito de una Factura Exenta";
+                }
+
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -798,7 +844,7 @@ if($xml){
 
                     <td>'.$value["codigo"].'</td>
 
-                    <td style="color:black;font-weight:bold;">'.$value["tipo_dte"].'</td>
+                    <td style="font-weight:bold;font-size:15px;color:black;">'.$tipoDte.'</td> <!-- Aquí usamos $tipoDte -->
 
                     <td>'.$value["fecha_emision"].'</td>
 
@@ -816,8 +862,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["iva"].'</td>
 
                     <td>
@@ -844,6 +890,98 @@ if($xml){
                   $eliminarVentaExenta -> ctrEliminarVentaExenta();
           
             }
+            foreach ($notaBoletaExenta as $key => $value) {
+
+              // Reemplazar "Nota de Credito Boleta Exenta" por "Nota de Credito de una Boleta Exenta"
+              $tipoDte = $value["tipo_dte"];
+              if ($tipoDte == "Nota de Credito Boleta Exenta") {
+                  $tipoDte = "Nota de Credito de una Boleta Exenta";
+              }
+
+            for($i = 0; $i < count($negocios); ++$i){
+              if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
+                $negocio = $negocios[$i]["unidad_negocio"];
+              }
+            }
+            for($i = 0; $i < count($bodegas); ++$i){
+              if ($bodegas[$i]["id"] == $value["id_bodega"]) {
+                $bodega = $bodegas[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($clientes); ++$i){
+              if ($clientes[$i]["id"] == $value["id_cliente"]) {
+                $cliente = $clientes[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($plazos); ++$i){
+              if ($plazos[$i]["id"] == $value["id_plazo_pago"]) {
+                $plazo = $plazos[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($medios); ++$i){
+              if ($medios[$i]["id"] == $value["id_medio_pago"]) {
+                $medio = $medios[$i]["medio_pago"];
+              }
+              
+              }
+                      for($i = 0; $i < count($plantel); ++$i){
+                  if ($plantel[$i]["id"] == $value["id_vendedor"]) {
+                    $vendedor = $plantel[$i]["nombre"];
+                  }
+              }
+          
+
+            echo '<tr>
+
+
+                  <td>'.$value["codigo"].'</td>
+
+                  <td style="font-weight:bold;font-size:15px;color:black;">'.$tipoDte.'</td> <!-- Aquí usamos $tipoDte -->
+
+                  <td>'.$value["fecha_emision"].'</td>
+
+                  <td>'.$vendedor.'</td>
+
+                  <td>'.$negocio.'</td>
+
+                  <td>'.$bodega.'</td>      
+
+                  <td>'.$plazo.'</td>
+
+                  <td>'.$medio.'</td>
+
+                  <td>'.$cliente.'</td>
+
+                  <td style="width:20px;">'.$value["observacion"].'</td>
+    
+                  <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                  <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                  <td>$ '.$value["iva"].'</td>
+
+                  <td>
+
+                  <div class="btn-group">
+                
+                    <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+
+                    PDF
+
+                    </button>
+                    <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
+
+                   
+
+                  echo '</div>  
+
+                </td>
+
+
+                </tr>';
+
+                $eliminarVentaExenta = new ControladorVentaFactura();
+                $eliminarVentaExenta -> ctrEliminarVentaExenta();
+        
+          }
 
            
         ?>
