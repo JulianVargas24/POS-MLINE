@@ -161,7 +161,7 @@ MODAL AGREGAR RUBRO
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 10px;">Nombre de Plazo</div>
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 12px;">Nombre de Plazo</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -172,7 +172,7 @@ MODAL AGREGAR RUBRO
             </div>
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 10px;">Número de Días</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 12px;">Número de Días</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
