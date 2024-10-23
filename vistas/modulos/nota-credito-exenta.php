@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      NOTA DE CREDITO DE FACTURA EXENTA
+      NOTA DE CRÉDITO DE FACTURA EXENTA
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Nota de Credito de Factura Exenta</li>
+      <li class="active">Nota de Crédito de Factura Exenta</li>
     
     </ol>
 
