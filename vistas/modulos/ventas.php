@@ -663,14 +663,9 @@ if($xml){
 
                     <div class="btn-group">
                     
-                      <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+                      <button class="btn btn-info btnImprimirNotaCreditoFacturaAfecta" codigoVenta="'.$value["codigo"].'">PDF</button>
 
-                      PDF
-
-                      </button>
-                      <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
-
-                     
+                      <!--<button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>-->';
 
                     echo '</div>  
 
@@ -749,14 +744,9 @@ if($xml){
 
                     <div class="btn-group">
                   
-                      <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+                    <button  class="btn btn-info btnImprimirNotaCreditoBoletaAfecta" codigoVenta="'.$value["codigo"].'">PDF</button>
 
-                      PDF
-
-                      </button>
-                      <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
-
-                     
+                    <!--<button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>-->';
 
                     echo '</div>  
 
@@ -835,14 +825,9 @@ if($xml){
 
                     <div class="btn-group">
                   
-                      <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+                      <button class="btn btn-info btnImprimirNotaCreditoFacturaExenta" codigoVenta="'.$value["codigo"].'">PDF</button>
 
-                      PDF
-
-                      </button>
-                      <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
-
-                     
+                      <!--<button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>-->';
 
                     echo '</div>  
 
@@ -921,14 +906,9 @@ if($xml){
 
                   <div class="btn-group">
                 
-                    <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+                    <button  class="btn btn-info btnImprimirNotaCreditoBoletaExenta" codigoVenta="'.$value["codigo"].'">PDF</button>
 
-                    PDF
-
-                    </button>
-                    <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
-
-                   
+                    <!--<button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>-->';
 
                   echo '</div>  
 
@@ -964,6 +944,50 @@ if($xml){
 
 </div>
 
+<script>
+$(document).ready(function() {
+  $(".tablas").on("click", ".btnImprimirNotaCreditoBoletaExenta", function(){
 
+  var codigoVenta= $(this).attr("codigoVenta");
+  var tipoDocumento = "Nota_Credito_Boleta_Exenta";
+
+  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
+
+})
+});
+
+$(document).ready(function() {
+  $(".tablas").on("click", ".btnImprimirNotaCreditoBoletaAfecta", function(){
+
+  var codigoVenta= $(this).attr("codigoVenta");
+  var tipoDocumento = "Nota_Credito_Boleta_Afecta";
+
+  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
+
+})
+});
+
+$(document).ready(function() {
+  $(".tablas").on("click", ".btnImprimirNotaCreditoFacturaAfecta", function(){
+
+  var codigoVenta= $(this).attr("codigoVenta");
+  var tipoDocumento = "Nota_Credito_Factura_Afecta";
+
+  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
+
+})
+});
+
+$(document).ready(function() {
+  $(".tablas").on("click", ".btnImprimirNotaCreditoFacturaExenta", function(){
+
+  var codigoVenta= $(this).attr("codigoVenta");
+  var tipoDocumento = "Nota_Credito_Factura_Exenta";
+
+  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
+
+})
+});
+</script>
 
 

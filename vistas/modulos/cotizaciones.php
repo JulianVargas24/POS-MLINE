@@ -54,7 +54,7 @@ if($xml){
 
           <button class="btn btn-danger">
             
-           Crear Cotizacion Afecta
+           Crear Cotización Afecta
 
           </button>
 
@@ -63,7 +63,7 @@ if($xml){
 
           <button class="btn btn-warning">
             
-          Crear Cotizacion Exenta
+          Crear Cotización Exenta
 
           </button>
 
