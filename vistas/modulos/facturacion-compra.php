@@ -615,8 +615,10 @@ if ($_SESSION["perfil"] == "Especial") {
                     </div>
             </div>
 
-            <button type="button" class="btn btn-default">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Compra</button>
+            <a href="ordenes-compra">
+                <button type="button" class="btn btn-default">Salir</button>
+            </a>
+            <button type="submit" class="btn btn-primary">Facturar Compra</button>
 
             <?php
 
