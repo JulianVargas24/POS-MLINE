@@ -178,24 +178,26 @@ MODAL AGREGAR SUCURSAL
           <div class="box-body">
 
             <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Sucursal</h4>
-              <div class="box box-info">
-                <div class="box-body">                
-                  <div class="form-group row">              
-                    <div class="col-lg-6">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
-                      <div class="input-group">
-                          
-                          <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-                          
-                          <input type="text" class="form-control input" name="nuevaSucursal" id="nuevaSucursal" placeholder="Ingresar Nombre Sucursal" required>
+            <div class="box box-info">
+              <div class="box-body">                
+                <div class="form-group row">
+
+
+                  <div class="col-lg-6">
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
+                    <div class="input-group">
 
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
-                        <div class="input-group">
-                        
-                          <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+                  </div>
+                  
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese Pais" required value="Chile">
+                    </div>
+                  </div>
 
                           <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese Pais" required value="Chile">
 
@@ -204,7 +206,7 @@ MODAL AGREGAR SUCURSAL
                       <div class="col-lg-6">
                         <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold;margin-top:10px">Region</div>
                           <div class="input-group">
-                      
+                  
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>

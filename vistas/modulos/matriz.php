@@ -36,14 +36,14 @@ if($_SESSION["perfil"] == "Especial"){
 
   <section class="content">
 
-    <div class="box">
+  <div class="box">
 
-      <div class="box-header with-border">
-      <?php
-        if($_SESSION["nombre"] == "MLINE"){
-          echo '<button class="btn btn-primary" data-toggle="modal" data-target="#modalCrearMatriz">
-          
-         Crear Matriz
+    <div class="box-header with-border">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#modalCrearMatriz">
+    
+        Crear Matriz
+
+    </button>
 
         </button>';
         }
@@ -51,7 +51,7 @@ if($_SESSION["perfil"] == "Especial"){
         
         
 
-      </div>
+  </div>  
 
       <div class="box-body">
         
@@ -109,30 +109,21 @@ if($_SESSION["perfil"] == "Especial"){
 
                     <td>
 
-                    <div class="btn-group">';
-                       if($_SESSION["perfil"] == "Administrador" && $_SESSION["nombre"] == "MLINE"){
-                       
-                     echo '<button class="btn btn-warning btnEditarMatriz" idMatriz="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarMatriz"><i class="fa fa-pencil"></i></button>
-                     
+                        <div class="btn-group">
+                      
+                        <button class="btn btn-warning btnEditarMatriz" data-toggle="modal" data-target="#modalEditarMatriz" idMatriz="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
 
-                      <button class="btn btn-danger btnEliminarMatriz" idMatriz="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                      if($_SESSION["perfil"] == "Administrador"){
 
-                      }if($_SESSION["perfil"] == "Administrador"){
-                        echo '<button class="btn btn-success btnEditarMatrizCliente" idMatrizCliente="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarMatrizCliente"><i class="fa fa-pencil"></i></button>';
+                          echo '<button class="btn btn-danger btnEliminarMatriz" idMatriz="'.$value["id"].'"><i class="fa fa-times"></i></button>';
 
                       }
-
-                      
-                    echo '</div>  
-
-                  </td>
-
-
-                    
-
-                  </tr>';
           
-            }
+                        echo '</div>  
+          
+                              </td>
+                            </tr>';
+                      }
 
         ?>
    
@@ -162,174 +153,8 @@ if($_SESSION["perfil"] == "Especial"){
     
     <div class="modal-dialog modal-lg">
 
-      <div class="modal-content">
+<div id="modalCrearMatriz" class="modal fade" role="dialog">
 
-        <form role="form" method="post" id="form_nueva_matriz" enctype="multipart/form-data">
-
-      
-
-          <div class="modal-header" style="background:#3f668d; color:white">
-
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-            <h4 class="modal-title">Crear Matriz</h4>
-
-          </div>
-
-
-          <div class="modal-body">
-
-            <div class="box-body">
-              
-              <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos Matriz</h4>
-              <div class="box box-info">
-                <div class="box-body">                
-                    <div class="form-group row">              
-                      <div class="col-lg-5">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Razon Social</div>
-                        <div class="input-group">
-                        
-                          <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-
-                          <input type="text" class="form-control input" name="nuevaMatriz" id="nuevaMatriz" placeholder="Ingrese Razon Social" required>
-
-                        </div>
-                      </div>             
-                      <div class="col-lg-5 col-xs-offset-1">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Region</div>
-                        <div class="input-group">
-                        
-                          <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
-
-                          <input type="text" class="form-control input" name="nuevaRegion" id="nuevaRegion" placeholder="Ingrese Region" required>
-
-                        </div>
-                      </div>
-                      <div class="col-lg-5">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Direccion</div>
-                          <div class="input-group">
-                          
-                          <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
-
-                          <input type="text" class="form-control input" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese Direccion" required>
-
-                          </div>
-                      </div>
-                      <div class="col-lg-5 col-xs-offset-1">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Ejecutivo</div>
-                            <div class="input-group">
-                            
-                              <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-
-                              <input type="text" class="form-control input" name="nuevoEjecutivo" id="nuevoEjecutivo" placeholder="Ingresar Ejecutivo" required>
-
-                            </div>
-                      </div>
-                      <div class="col-lg-5">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Numero de Telefono</div>
-                          <div class="input-group">
-                          
-                            <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
-
-                            <input type="tel" class="form-control input" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" required>
-
-                          </div>
-                      </div>
-                      <div class="col-lg-5 col-xs-offset-1">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electronico</div>
-                          <div class="input-group">
-                          
-                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-
-                            <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar Email" required>
-
-                          </div>
-                      </div>
-                      <div class="col-lg-5">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Actividad</div>
-                          <div class="input-group">
-                          
-                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-
-                            <input type="text" class="form-control input" name="nuevaActividad" id="nuevaActividad" placeholder="Ingresar Actividad" required>
-
-                          </div>
-                      </div>
-                    <div>
-                </div>
-              </div>    
-              <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Servicio</h4>
-                <div class="box box-success">
-                  <div class="box-body">
-                    <div class="form-group row">
-                        <div class="col-lg-5 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha Inicio Servicio</div>
-                            <div class="input-group">
-                            
-                              <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-
-                              <input type="date" class="form-control input" name="nuevaActividad" id="nuevoInicio" placeholder="Ingresar Actividad" required>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-xs-offset-1">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha Vcto Servicio</div>
-                            <div class="input-group">
-                            
-                              <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-
-                              <input type="date" class="form-control input" name="nuevaActividad" id="nuevaActividad" placeholder="Ingresar Actividad" required>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Cliente</div>
-                            <div class="input-group">
-                            
-                              <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-
-                              <input type="text" class="form-control input" name="nuevaActividad" id="nuevaActividad" placeholder="Ingresar Actividad" required>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-xs-offset-1 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Producto</div>
-                            <div class="input-group">
-                            
-                              <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-
-                              <input type="text" class="form-control input" name="nuevaActividad" id="nuevaActividad" placeholder="Ingresar Actividad" required>
-
-                            </div>
-                        </div>
-                    </div>    
-                  </div>
-                </div>  
-            </div>
-
-          </div>
-
-
-              <div class="modal-footer">
-
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-                <button type="submit" class="btn btn-primary text-center">Guardar Matriz</button>
-
-              </div>
-        
-
-        </form>
- 
-
-      </div>
-
-    </div>
-
-  </div>
- --> 
-<div id="modalCrearMatriz" class="modal fade" role="dialog">  
-  
   <div class="modal-dialog modal-lg">
 
     <div class="modal-content">
@@ -366,17 +191,25 @@ if($_SESSION["perfil"] == "Especial"){
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                          <input type="text" class="form-control input" name="nuevaMatriz" id="nuevaMatriz" placeholder="Ingrese Razon Social" required>
+                  <!-- Razón Social -->
+                  <div class="col-lg-6 col-xs-6">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Razon Social</div>
+                        <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                      <input type="text" class="form-control" name="nuevaMatriz" id="nuevaMatriz" placeholder="Ingrese Razón Social" required>
+                    </div>
+                  </div>
 
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-xs-6 ">
+                  <!-- RUT -->
+                  <div class="col-lg-6 col-xs-6 ">
                         <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">RUT</div>
                         <div class="input-group">
-                        
-                          <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                      <input type="text" class="form-control input" name="editarRut" id="editarRut"  placeholder="Ingresar Rut" required onblur="formatearRut(this)">
+                    </div>
+                  </div>
 
-                          <input type="text" class="form-control input" name="nuevoRut" id="nuevoRut" placeholder="Ejemplo: 76948123-5" required>
+                  
 
                         </div>
                       </div>              
@@ -402,14 +235,9 @@ if($_SESSION["perfil"] == "Especial"){
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
                                 }
 
                                 ?>
@@ -429,20 +257,6 @@ if($_SESSION["perfil"] == "Especial"){
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
-
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
-
-                                    ?>
               
                                 </select>
 
@@ -455,27 +269,77 @@ if($_SESSION["perfil"] == "Especial"){
                           
                           <span class="input-group-addon"><i class="fa fa-bookmark"></i></span> 
 
-                          <input type="text" class="form-control input" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese Direccion" required>
+                   
+                  <!-- País -->
+                  <div class="col-lg-6 col-xs-6">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Pais</div>
+                        <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                      <input type="text" class="form-control" name="nuevoPais" id="nuevoPais" placeholder="Ingrese País" required value="Chile">
+                    </div>
+                  </div>    
 
-                          </div>
-                      </div>
-                      <div class="col-lg-6 col-xs-6 ">
+                  <!-- Dirección -->
+                  <div class="col-lg-6 col-xs-6">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Direccion</div>
+                          <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
+                      <input type="text" class="form-control" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese Dirección" required>
+                    </div>
+                  </div>
+
+                  <!-- Ejecutivo -->
+                  <div class="col-lg-6 col-xs-6 ">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Ejecutivo</div>
                             <div class="input-group">
-                            
-                              <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                      <input type="text" class="form-control" name="nuevoEjecutivo" id="nuevoEjecutivo" placeholder="Ingresar Ejecutivo" required>
+                    </div>
+                  </div>
 
-                              <input type="text" class="form-control input" name="nuevoEjecutivo" id="nuevoEjecutivo" placeholder="Ingresar Ejecutivo" required>
-
-                            </div>
-                      </div>
-                      <div class="col-lg-6">
+                  <!-- Teléfono -->
+                  <div class="col-lg-6">
                         <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Numero de Telefono</div>
+                        <div class="input-group">
+                          
+                          <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
+                          <input type="tel" class="form-control input" name="nuevoTelefono" id="nuevoTelefono" 
+                          placeholder="Ingresar teléfono" required
+                          maxlength="12"
+                          pattern="^\+[0-9]{11}$"
+                          title="Ingrese el número de teléfono completo."
+                          onfocus="if (this.value === '') { this.value = '+'; }"
+                          oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
+                          if (!this.value.startsWith('+')) {
+                          this.value = '+' + this.value.slice(1);
+                          }
+                          this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' 
+                          : '');">
+
+                        </div>
+                  </div>
+
+                  <!-- Correo Electrónico -->
+                  <div class="col-lg-6 col-xs-6 ">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electronico</div>
                           <div class="input-group">
                           
-                            <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail"
+                            placeholder="Ingresar email" required
+                            pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
+                            title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                    </div>
+                  </div>
 
-                            <input type="tel" class="form-control input" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" required>
+                  <!-- Actividad -->
+                  <div class="col-lg-6 col-xs-6 ">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Actividad</div>
+                          <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-industry"></i></span>
+                      <input type="text" class="form-control" name="nuevaActividad" id="nuevaActividad" placeholder="Ingresar Actividad" required>
+                    </div>
+                  </div>
 
                           </div>
                       </div>
@@ -514,21 +378,27 @@ if($_SESSION["perfil"] == "Especial"){
                             
                               <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                              <input type="date" class="form-control input" name="nuevoInicio" id="nuevoInicio"  required>
+                  <!-- Fecha Inicio Servicio -->
+                  <div class="col-lg-5 ">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha Inicio Servicio</div>
+                            <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      <input type="date" class="form-control" name="nuevoInicio" id="nuevoInicio" required>
+                    </div>
+                  </div>
+                </div> 
 
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-xs-offset-1">
+                  <!-- Fecha Vcto Servicio -->
+                  <div class="col-lg-5 col-xs-offset-1">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha Vcto Servicio</div>
                             <div class="input-group">
-                            
-                              <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      <input type="date" class="form-control" name="nuevoVencimiento" id="nuevoVencimiento" required>
+                    </div>
+                  </div>
 
-                              <input type="date" class="form-control input" name="nuevoVencimiento" id="nuevoVencimiento" required>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
+                  <!-- Tipo Cliente -->
+                  <div class="col-lg-5">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Cliente</div>
                             <div class="input-group">
                             
@@ -537,13 +407,25 @@ if($_SESSION["perfil"] == "Especial"){
                               <select class="form-control input" id="nuevoTipoCliente" name="nuevoTipoCliente" required>
           
                               <option value="">Tipo de Cliente</option>
-                              <option value="SERCOTEC">SERCOTEC </option>
-                              <option value="Otro">Otro</option>
+                              <?php
+
+                                $item = null;
+                                $valor = null;
+
+                                $campaña = ControladorTipoClientes::ctrMostrarTipoClientes($item, $valor);
+
+                                foreach ($campaña as $key => $value){
+                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
+                                }
+
+                                ?>
                               </select>
 
                             </div>
-                        </div>
-                        <div class="col-lg-5 col-xs-offset-1 ">
+                  </div>
+
+                  <!-- Tipo Producto -->
+                  <div class="col-lg-5 col-xs-offset-1 ">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Producto</div>
                             <div class="input-group">
                             
@@ -552,15 +434,25 @@ if($_SESSION["perfil"] == "Especial"){
                               <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
           
                               <option value="">Tipo de Producto </option>
-                              <option value="POS PyMe">POS PyMe </option>
-                              <option value="POS Basico">POS Basico</option>
+                              <?php
+
+                                $item = null;
+                                $valor = null;
+
+                                $producto= ControladorTipoProductos::ctrMostrarTipoProductos($item, $valor);
+
+                                foreach ($producto as $key => $value){
+                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
+                                }
+
+                                ?>
                               </select>
                             </div>
-                        </div>
-                    </div>    
                   </div>
-                </div> 
 
+                </div>
+              </div>
+            </div>
 
            
   
@@ -646,20 +538,12 @@ if($_SESSION["perfil"] == "Especial"){
                           <input type="text" class="form-control input" name="editarRut" id="editarRut"  required>
 
                         </div>
-                      </div>              
-                      <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Pais</div>
-                        <div class="input-group">
-                        
-                          <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
-
-                          <input type="text" class="form-control input" name="editarPais" id="editarPais" required >
-
-                        </div>
                       </div>
-                         
-                      <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Region</div>
+                    
+                      
+                      <!-- REGION -->
+                      <div class="col-xs-6">
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -669,14 +553,8 @@ if($_SESSION["perfil"] == "Especial"){
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $cliente['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
                                 }
 
                                 ?>
@@ -696,25 +574,28 @@ if($_SESSION["perfil"] == "Especial"){
                                 <select class="form-control input" id="editarComuna" name="editarComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
-
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
-
-                                    ?>
               
                                 </select>
 
                             </div>
                       </div>
+
+                      <!-- PAIS -->
+                      <div class="col-lg-6 col-xs-6">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Pais</div>
+                        <div class="input-group">
+                        
+                          <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+
+                          <input type="text" class="form-control input" name="editarPais" id="editarPais" required >
+
+                        </div>
+                      </div>s
+
+                      <!-- Input hidden para la comuna actual -->
+
+                      <!-- Dirección -->
+                      <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
                       
                       <div class="col-lg-6 col-xs-6">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Direccion</div>
@@ -796,7 +677,7 @@ if($_SESSION["perfil"] == "Especial"){
                             </div>
                         </div>
                         <div class="col-lg-5">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Campaña</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Cliente</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
