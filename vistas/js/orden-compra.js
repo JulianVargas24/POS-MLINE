@@ -1265,12 +1265,9 @@ $(".tablas").on("click", ".btnEliminarOrdenCompra", function () {
         confirmButtonText: 'Si, borrar orden!'
     }).then(function (result) {
         if (result.value) {
-
-            window.location = "index.php?ruta=compras&idOrdenCompra=" + idOrdenCompra;
+            window.location = "index.php?ruta=ordenes-compra&idOrdenCompra=" + idOrdenCompra;
         }
-
     })
-
 })
 
 $("#nuevoProveedor").change(function () {
