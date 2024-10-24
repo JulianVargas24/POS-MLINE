@@ -20,7 +20,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
             <h1>
 
-                Administrar listas de precio
+                Administrar listas de precios
 
             </h1>
 
@@ -149,7 +149,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                             <div class="form-group">
 
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Medida
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Medida
                                 </div>
                                 <div class="input-group">
 
@@ -229,7 +229,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                             <div class="form-group">
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Lista
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Lista
                                 </div>
                                 <div class="input-group">
 
@@ -246,7 +246,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                             <div class="form-group">
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descuento
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descuento
                                 </div>
                                 <div class="input-group">
 

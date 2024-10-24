@@ -18,14 +18,14 @@ if ($_SESSION["perfil"] == "Especial") {
     <section class="content-header">
 
         <h1>
-            Administrar Órdenes de Compra
+            Administrar órdenes de compra
         </h1>
 
         <ol class="breadcrumb">
 
             <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Administrar Orden Compra</li>
+            <li class="active">Administrar órdenes de compra</li>
 
         </ol>
 

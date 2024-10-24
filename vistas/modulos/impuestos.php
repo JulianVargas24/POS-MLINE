@@ -163,7 +163,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                             <div class="form-group">
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto
                                 </div>
                                 <div class="input-group">
 
@@ -177,7 +177,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                             <div class="form-group">
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Factor
                                 </div>
                                 <div class="input-group">
 
@@ -241,7 +241,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                        <h4 class="modal-title">Editar lista</h4>
+                        <h4 class="modal-title">Editar impuesto</h4>
 
                     </div>
 
@@ -257,7 +257,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                             <div class="form-group">
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto
                                 </div>
                                 <div class="input-group">
 
@@ -274,7 +274,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                             <div class="form-group">
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Factor
                                 </div>
                                 <div class="input-group">
 

@@ -16,14 +16,14 @@ if ($_SESSION["perfil"] == "Especial") {
     <section class="content-header">
 
         <h1 style="color:green;font-weight:bold">
-            Orden de Compra
+            Orden de compra
         </h1>
 
         <ol class="breadcrumb">
 
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Crear Orden de Compra</li>
+            <li class="active">Crear orden de compra</li>
 
         </ol>
 
@@ -38,7 +38,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-info">
                                 <div class="box-body">
                                     <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Proveedor Asociado
+                                        Proveedor asociado
                                     </h2>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-xs-12">
@@ -131,7 +131,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-info">
                                 <div class="box-body">
                                     <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Datos de Orden
+                                        Datos de orden
                                     </h2>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-xs-6">
@@ -370,7 +370,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="box-body">
                                     <div class="row nuevoProducto">
                                         <h2 class="box-title text-center" style="font-weight:bold; font-size:20px;">
-                                            Productos Seleccionados
+                                            Productos seleccionados
                                         </h2>
                                         <div class="row" style="padding:5px 15px">
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
@@ -503,7 +503,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <div class="box box-danger">
                                         <div class="box-body">
                                             <h3 class="box-title" style="font-weight:bold; font-size:20px;">
-                                                Condición de Pago</h3>
+                                                Condición de pago</h3>
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <div class="form-group"></div>
@@ -512,7 +512,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px;">Plazo de Pago
+                                                         style="background-color:#3c8dbc;font-size:15px;">Plazo de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
@@ -583,7 +583,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="box-header with-border"></div>
                                 <div class="box-body">
                                     <h3 class="box-title text-center" style="font-weight:bold; font-size:20px;">
-                                        Productos para Seleccionar</h3>
+                                        Productos para seleccionar</h3>
                                     <table class="table table-bordered table-striped dt-responsive tablaCompras">
                                         <thead>
                                         <tr>
@@ -599,13 +599,12 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
+                    <a href="compras">
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar orden</button>
+                </form>
             </div>
-
-            <a href="compras">
-                <button type="button" class="btn btn-default">Salir</button>
-            </a>
-            <button type="submit" class="btn btn-primary">Guardar Orden</button>
-            </form>
 
             <?php
             $agregarOrdenCompra = new ControladorOrdenCompra();
@@ -613,6 +612,7 @@ if ($_SESSION["perfil"] == "Especial") {
             ?>
 
         </div>
+    </section>
 </div>
 
 <div id="modalVerOrdenCompra" class="modal fade" role="dialog">
