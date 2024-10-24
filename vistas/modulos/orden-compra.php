@@ -1,280 +1,269 @@
 <?php
-if ($_SESSION["perfil"] == "Especial") {
 
-    echo '<script>
+if($_SESSION["perfil"] == "Especial"){
+
+  echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-    return;
+  return;
+
 }
+
 ?>
 
 <div class="content-wrapper">
 
-    <section class="content-header">
+  <section class="content-header">
+    
+    <h1 style="color:green;font-weight:bold">
+      
+      ORDEN DE COMPRA
+    
+    </h1>
 
-        <h1 style="color:green;font-weight:bold">
-            Orden de Compra
-        </h1>
+    <ol class="breadcrumb">
+      
+      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      
+      <li class="active">Crear Orden</li>
+    
+    </ol>
 
-        <ol class="breadcrumb">
-
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-            <li class="active">Crear Orden de Compra</li>
-
-        </ol>
-
-    </section>
+  </section>
 
     <section class="content">
         <div class="box">
             <div class="box-body">
                 <form role="form" method="post" class="formularioOrdenCompra">
+
                     <div class="row">
                         <div class="col-xs-5">
                             <div class="box box-info">
-                                <div class="box-body">
-                                    <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Proveedor Asociado
-                                    </h2>
-                                    <div class="row" style="margin-bottom:5px;">
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <div class="input-group" style="display:block;">
-                                                    <select class="form-control" id="nuevoProveedor"
-                                                            name="nuevoProveedor" required>
+                                    <div class="box-body">
+                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Proveedor Asociado</h4>
+                                        <div class="row" style="margin-bottom:5px;">
+                                            <div class="col-xs-12">
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="input-group" style="display:block;">                
+                                                        <select class="form-control" id="nuevoProveedor" name="nuevoProveedor" required>
 
-                                                        <option value="">Seleccionar proveedor</option>
+                                                            <option value="">Seleccionar Proveedor</option>
 
-                                                        <?php
-                                                        $item = null;
-                                                        $valor = null;
+                                                            <?php
 
-                                                        $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
+                                                            $item = null;
+                                                            $valor = null;
 
-                                                        foreach ($proveedores as $key => $value) {
+                                                            $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
 
-                                                            echo '<option class="seleccionarProveedor" value="' . $value["id"] . '">' . $value["razon_social"] . ' </option>';
-                                                        }
-                                                        ?>
+                                                            foreach ($proveedores as $key => $value) {
 
-                                                    </select>
-                                                </div>
+                                                                echo '<option class="seleccionarProveedor" value="'.$value["id"].'">'.$value["razon_social"].' </option>';
+
+                                                            }
+
+                                                            ?>
+
+                                                        </select>
+
+                                                        </div>
+                                                    </div> 
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input type="hidden" id="traerIdProveedor">
-                                                    <span class="input-group-addon"> <i class="fa fa-address-card"></i> RUT</span>
-                                                    <input type="text" class="form-control" id="traerRutProveedor"
-                                                           value="" readonly>
-                                                </div>
+                                        <div class="row"> 
+                                            <div class="col-xs-6">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="hidden" id="traerIdProveedor">
+                                                            <span class="input-group-addon"> <i class="fa fa-address-card"></i> RUT</span>                
+                                                            <input type="text" class="form-control" id="traerRutProveedor" value="" readonly >
+                                                        </div>
+                                                    </div> 
                                             </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">Dirección</span>
-                                                    <input type="text" class="form-control" id="traerDireccionProveedor"
-                                                           value="" readonly>
-                                                </div>
+                                            <div class="col-xs-6">                                                  
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                        <span class="input-group-addon">Direccion</span>                
+                                                            <input type="text" class="form-control" id="traerDireccionProveedor" value="" readonly>
+                                                        </div>
+                                                    </div> 
                                             </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">Actividad</span>
-                                                    <input type="text" class="form-control" id="traerActividadProveedor"
-                                                           value="" readonly>
-                                                </div>
+                                            <div class="col-xs-6">   
+                                                    <div class="form-group">
+                                                        <div class="input-group">   
+                                                            <span class="input-group-addon">Actividad</span>             
+                                                            <input type="text" class="form-control" id="traerActividadProveedor" value="" readonly>
+                                                        </div>
+                                                    </div> 
                                             </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">Ejecutivo</span>
-                                                    <input type="text" class="form-control" id="traerEjecutivoProveedor"
-                                                           value="" readonly>
-                                                </div>
+                                            <div class="col-xs-6">                                  
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Ejecutivo</span>                
+                                                            <input type="text" class="form-control" id="traerEjecutivoProveedor" value="" readonly>
+                                                        </div>
+                                                    </div> 
                                             </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">Teléfono</span>
-                                                    <input type="text" class="form-control" id="traerTelefonoProveedor"
-                                                           value="" readonly>
-                                                </div>
+                                            <div class="col-xs-6">                                                  
+                                                    <div class="form-group">
+                                                        <div class="input-group">                
+                                                        <span class="input-group-addon">Telefono</span>
+                                                            <input type="text" class="form-control" id="traerTelefonoProveedor" value="" readonly>
+                                                        </div>
+                                                    </div> 
                                             </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"> <i
-                                                                class="fa fa-at"></i> Correo</span>
-                                                    <input type="text" class="form-control" id="traerEmailProveedor"
-                                                           value="" readonly>
-                                                </div>
+                                            <div class="col-xs-6">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                        <span class="input-group-addon"> <i class="fa fa-at"></i> Correo</span>                
+                                                            <input type="text" class="form-control" id="traerEmailProveedor" value="" readonly>
+                                                        </div>
+                                                    </div> 
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                         <div class="col-xs-4">
                             <div class="box box-info">
-                                <div class="box-body">
-                                    <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Datos de Orden
-                                    </h2>
-                                    <div class="row" style="margin-bottom:5px;">
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input type="date" class="form-control input-sm"
-                                                           name="nuevaFechaEmision" id="nuevaFechaEmision"
-                                                           value="<?php echo date("Y-m-d"); ?>" required
-                                                           onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
+                                    <div class="box-body">
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Orden</h4>
+                                            <div class="row" style="margin-bottom:5px;">
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" value="<?php echo date("Y-m-d");?>">
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input type="hidden" id="nuevoEstado" name="nuevoEstado"
-                                                           value="Abierta">
-                                                    <input type="date" class="form-control input-sm"
-                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                                                           required
-                                                           onchange="validarFechas('nuevaFechaEmision', this.id)">
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Fecha Venc.</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="hidden" id="nuevoEstado" name="nuevoEstado" value="Abierta">
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                                
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Centro de Costo</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                        <select class="form-control input" id="nuevoCentro" name="nuevoCentro" required>
+                
+                                                            <option value="">Seleccionar Centro</option>
 
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Centro de costo</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <select class="form-control input" id="nuevoCentro"
-                                                            name="nuevoCentro" required>
+                                                            <?php
 
-                                                        <option value="">Seleccionar centro</option>
+                                                            $item = null;
+                                                            $valor = null;
 
-                                                        <?php
-                                                        $item = null;
-                                                        $valor = null;
+                                                            $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
 
-                                                        $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+                                                            foreach ($centros as $key => $value) {
+                                                            echo '<option value="'.$value["id"].'">'.$value["centro"].'</option>';
+                                                            }
 
-                                                        foreach ($centros as $key => $value) {
-                                                            echo '<option value="' . $value["id"] . '">' . $value["centro"] . '</option>';
-                                                        }
-                                                        ?>
-
-                                                    </select>
+                                                            ?>
+                                            
+                                                        </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega de destino</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <select class="form-control input" id="nuevaBodega"
-                                                            name="nuevaBodega" required>
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Bodega Destino</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                        <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
+                
+                                                            <option value="">Seleccionar Bodega</option>
 
-                                                        <option value="">Seleccionar bodega</option>
+                                                            <?php
 
-                                                        <?php
-                                                        $item = null;
-                                                        $valor = null;
+                                                            $item = null;
+                                                            $valor = null;
 
-                                                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                                                            $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
 
-                                                        foreach ($bodegas as $key => $value) {
-                                                            echo '<option  value="' . $value["id"] . '">' . $value["nombre"] . ' </option>';
-                                                        }
-                                                        ?>
+                                                            foreach ($bodegas as $key => $value) {
+                                                            echo '<option  value="'.$value["id"].'">'.$value["nombre"].' </option>';
+                                                            }
 
-                                                    </select>
+                                                            ?>
+                                            
+                                                        </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                
                                             </div>
-                                        </div>
+                                        
                                     </div>
-                                </div>
                             </div>
                         </div>
-
+                        
                         <div class="col-xs-3">
-                            <div class="box box-info">
+                           <div class="box box-info">
                                 <div class="box-body">
+                                <?php 
 
-                                    <?php
-                                    $tabla = "orden_compra";
-                                    $atributo = "orden_compra";
-                                    $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
-                                    ?>
+                                $tabla = "orden_compra";
+                                $atributo= "orden_compra";
+                                $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
 
-                                    <h2 class="box-title"
-                                        style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
-                                        ORDEN DE COMPRA
-                                    </h2>
-                                    <div class="row" style="margin-top:2px;">
-                                        <div class="col-xs-7">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"
-                                                          style="background-color:red; color:white; font-weight:bold">FOLIO</span>
-                                                    <input type="text" style="font-weight:bold; font-size:16px;"
-                                                           class="form-control" name="nuevoCodigo" id="nuevoCodigo"
-                                                           value=" <?php echo $folio + 1; ?>" readonly required>
+                                ?>
+                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:red;"> ORDEN DE COMPRA</h4>
+                                        <div class="row" style="margin-top:2px;">
+                                            <div class="col-xs-7">
+                                                 <div class="form-group">
+                                                        <div class="input-group">
+                                                        <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
+                                                            <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo" id="nuevoCodigo" value=" <?php echo $folio + 1; ?>" readonly required>
+                                                        </div>
                                                 </div>
                                             </div>
+                                            
                                         </div>
-                                    </div>
-                                    <h2 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">
-                                        ASIGNAR A
-                                    </h2>
-                                    <div class="row" style="margin-top:5px;">
-                                        <div class="col-xs-7">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"
-                                                          style="background-color:green;color:white;font-weight:bold;padding-left:15px;">Vestuario</span>
-                                                    <select class="form-control input-sm" id="nuevoFolioOT"
-                                                            name="nuevoFolioOT" required>
-                                                        <option value="0">No aplica</option>
+                                        <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">ASIGNAR A</h4>
+                                        <div class="row" style="margin-top:5px;">
+                                                <div class="col-xs-7">
+                                                    <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold;padding-left:15px;">Vestuario</span>
+                                                                <select class="form-control input-sm" id="nuevoFolioOT" name="nuevoFolioOT" required >
+                                                                <option value="0">NO APLICA</option>
+                                                                <?php
 
-                                                        <?php
-                                                        $item = null;
-                                                        $valor = null;
+                                                                $item = null;
+                                                                $valor = null;
 
-                                                        $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
+                                                                $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
 
-                                                        foreach ($vestuarios as $key => $value) {
-                                                            echo '<option  value="' . $value["codigo"] . '">' . $value["codigo"] . ' </option>';
-                                                        }
-                                                        ?>
+                                                                foreach ($vestuarios as $key => $value) {
+                                                                echo '<option  value="'.$value["codigo"].'">'.$value["codigo"].' </option>';
+                                                                }
 
-                                                    </select>
+                                                                ?>
+                                                                    
+                                                
+                                                                </select>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                <button type="button" data-toggle="modal" data-target="#modalVerOrdenVestuario" class="btn btn-primary">Ver Todo</button>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <button type="button" data-toggle="modal"
-                                                    data-target="#modalVerOrdenVestuario" class="btn btn-primary">
-                                                Ver todo
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!--
+                                            <!--
                                         <div class="row" style="margin-top:5px;">
                                             <div class="col-xs-7">
                                                  <div class="form-group">
@@ -282,16 +271,18 @@ if ($_SESSION["perfil"] == "Especial") {
                                                             <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold;">O. Trabajo</span>
                                                             <select class="form-control input-sm" id="traerOrde" required disabled>
 
-                                    <?php
-                                    $item = null;
-                                    $valor = null;
+                                                                <?php
 
-                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
+                                                                    $item = null;
+                                                                    $valor = null;
 
-                                    foreach ($rubros as $key => $value) {
-                                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                    }
-                                    ?>
+                                                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
+
+                                                                    foreach ($rubros as $key => $value) {
+                                                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
+                                                                    }
+
+                                                                ?>
                                                                 
                                             
                                                             </select>
@@ -309,17 +300,19 @@ if ($_SESSION["perfil"] == "Especial") {
                                                             <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold; padding-left:5px;">Producción</span>
                                                             <select class="form-control input-sm" id="nuevoRubro" required disabled>
 
-                                    <?php
-                                    $item = null;
-                                    $valor = null;
+                                                                <?php
 
-                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
+                                                                    $item = null;
+                                                                    $valor = null;
 
-                                    foreach ($rubros as $key => $value) {
-                                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                    }
-                                    ?>
+                                                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
 
+                                                                    foreach ($rubros as $key => $value) {
+                                                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
+                                                                    }
+
+                                                                ?>
+                                                                
                                             
                                                             </select>
                                                         </div>
@@ -337,17 +330,19 @@ if ($_SESSION["perfil"] == "Especial") {
                                                             <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold; padding-left:22px;">O. Taller</span>
                                                             <select class="form-control input-sm" id="nuevoRubro" required disabled>
 
-                                    <?php
-                                    $item = null;
-                                    $valor = null;
+                                                                <?php
 
-                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
+                                                                    $item = null;
+                                                                    $valor = null;
 
-                                    foreach ($rubros as $key => $value) {
-                                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                    }
-                                    ?>
+                                                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
 
+                                                                    foreach ($rubros as $key => $value) {
+                                                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
+                                                                    }
+
+                                                                ?>
+                                                                
                                             
                                                             </select>
                                                         </div>
@@ -358,57 +353,49 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>-->
                                 </div>
-                            </div>
+                           </div>
                         </div>
                     </div>
-
+                                                                    
+                        
                     <div class="row">
-
+        
                         <div class="col-lg-8 col-xs-12">
-
+                            
                             <div class="box box-success">
                                 <div class="box-body">
                                     <div class="row nuevoProducto">
-                                        <h2 class="box-title text-center" style="font-weight:bold; font-size:20px;">
-                                            Productos Seleccionados
-                                        </h2>
+                                        <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Productos Seleccionados</h4>
                                         <div class="row" style="padding:5px 15px">
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Descripción</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descripcion</h4>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Cantidad</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Cantidad</h4>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Precio U</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Precio U</h4>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Subtotal</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Subtotal</h4>
                                             </div>
+
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Descuento</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descuento</h4>
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Total Neto</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Neto</h4>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    IVA</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">IVA</h4>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Otros Imp.</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Otros Imp.</h4>
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:12px">
-                                                <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Total Final</p>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Final</h4>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -417,237 +404,250 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="col-xs-6">
                                     <div class="box box-info">
                                         <div class="box-body">
-                                            <h3 class="box-title" style="font-weight:bold; font-size:20px;">Totales</h3>
-
-                                            <div class="row">
-                                                <div class="col-xs-7">
-
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="padding:0px 8px">Subtotal</span>
-                                                            <input style="font-size:16px;" type="text"
-                                                                   class="form-control" id="nuevoSubtotal" total=""
-                                                                   name="nuevoSubtotal" value="" readonly>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="padding:0px 2px">Descuento</span>
-                                                            <input style="font-size:16px;" type="text"
-                                                                   class="form-control" id="nuevoTotalDescuento"
-                                                                   total="" name="nuevoTotalDescuento" value=""
-                                                                   readonly>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="padding:0px 3px">Total Neto</span>
-                                                            <input style="font-size:16px;" type="text"
-                                                                   class="form-control" id="nuevoTotalNeto"
-                                                                   name="nuevoTotalNeto" total="" value="" readonly>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">Exento</span>
-                                                            <input style="font-size:18px;" type="text"
-                                                                   class="form-control" readonly>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xs-7">
-
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="padding:0px 15px">% IVA</span>
-                                                            <input style="font-size:16px;" type="text"
-                                                                   class="form-control" id="nuevoTotalIva"
-                                                                   name="nuevoTotalIva" total="" value="" readonly>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="padding:0px">Otros Imp.</span>
-                                                            <input style="font-size:18px;" type="text"
-                                                                   class="form-control" value="" readonly>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xs-7">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon"
-                                                                  style="color:black; font-weight:bold; padding:0px 15px">Total</span>
-                                                            <input style="font-size:16px;" type="text"
-                                                                   class="form-control input" id="nuevoTotalFinal"
-                                                                   name="nuevoTotalFinal" total="" readonly required>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <h4 class="box-title" style="font-weight:bold; font-size:20px;">Totales</h4>
+                                            
+                                                <div class="row">
+                                                            <div class="col-xs-7">
+                              
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon" style="padding:0px 8px">Subtotal</span>                
+                                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoSubtotal" total="" name="nuevoSubtotal" value="" readonly>
+                                                                        </div>
+                                                                    </div> 
+                                                            </div>
+                                                            <div class="col-xs-7">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon" style="padding:0px 2px">Descuento</span>                
+                                                                            <input style="font-size:16px;" type="text" class="form-control"  id="nuevoTotalDescuento" total="" name="nuevoTotalDescuento" value="" readonly>
+                                                                        </div>
+                                                                    </div> 
+                                                            </div>
+                                                            <div class="col-xs-7">
+                                                                    
+                                                                    <div class="form-group">
+                                                                        <div class="input-group"> 
+                                                                            <span class="input-group-addon" style="padding:0px 3px">Total Neto</span>               
+                                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoTotalNeto" name="nuevoTotalNeto" total="" value="" readonly>
+                                                                        </div>
+                                                                    </div> 
+                                                            </div>
+                                                            <div class="col-xs-7">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">                
+                                                                            <span class="input-group-addon">Exento</span>
+                                                                            <input style="font-size:18px;" type="text" class="form-control"  readonly>
+                                                                        </div>
+                                                                    </div> 
+                                                            </div>
+                                                            
+                                                            <div class="col-xs-7">
+                                                                   
+                                                                    <div class="form-group">
+                                                                        <div class="input-group" >
+                                                                            <span class="input-group-addon" style="padding:0px 15px">% IVA</span>                
+                                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoTotalIva" name="nuevoTotalIva" total="" value="" readonly>
+                                                                        </div>
+                                                                    </div> 
+                                                            </div>
+                                                            <div class="col-xs-7">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon" style="padding:0px">Otros Imp.</span>                
+                                                                            <input style="font-size:18px;" type="text" class="form-control" value="" readonly>
+                                                                        </div>
+                                                                    </div> 
+                                                            </div>
+                                                            <div class="col-xs-7">
+                                                                    
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                        <span class="input-group-addon" style="color:black; font-weight:bold; padding:0px 15px">Total</span>                
+                                                                        <input style="font-size:16px;" type="text" class="form-control input" id="nuevoTotalFinal" name="nuevoTotalFinal" total="" readonly required>
+                                                                        
+                                                                        </div>
+                                                                    </div> 
+                                                            </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>      
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-6">       
                                     <div class="box box-danger">
-                                        <div class="box-body">
-                                            <h3 class="box-title" style="font-weight:bold; font-size:20px;">
-                                                Condición de Pago</h3>
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <div class="form-group"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px;">Plazo de Pago
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group" style="display:block;">
-                                                            <select class="form-control input" id="nuevoPlazoPago"
-                                                                    name="nuevoPlazoPago" required>
-
-                                                                <option value="">Seleccionar plazo de pago</option>
-
-                                                                <?php
-                                                                $item = null;
-                                                                $valor = null;
-
-                                                                $plazos = ControladorPlazos::ctrMostrarPlazos($item, $valor);
-
-                                                                foreach ($plazos as $key => $value) {
-                                                                    echo '<option  value="' . $value["id"] . '">' . $value["nombre"] . ' </option>';
-                                                                }
-                                                                ?>
-
-                                                            </select>
+                                                <div class="box-body">
+                                                <h4 class="box-title" style="font-weight:bold; font-size:20px;">Condición de Pago</h4>
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            
+                                                                <div class="form-group">
+                                                                    
+                                                                </div> 
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px;">Medios de Pago
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group" style="display:block;">
-                                                            <select name="nuevoMedioPago" id="nuevoMedioPago"
-                                                                    class="form-control">
-                                                                <option value="">Seleccionar medio de pago</option>
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px;">Plazo de Pago</div>
+                                                                <div class="form-group">
+                                                                    <div class="input-group" style="display:block;">                                                
+                                                                            <select class="form-control input" id="nuevoPlazoPago" name="nuevoPlazoPago" required>
+                                                                            
+                                                                                <option value="">Seleccionar Plazo de Pago</option>
 
-                                                                <?php
-                                                                $item = null;
-                                                                $valor = null;
+                                                                                <?php
 
-                                                                $medios = ControladorMediosPago::ctrMostrarMedios($item, $valor);
+                                                                                $item = null;
+                                                                                $valor = null;
 
-                                                                foreach ($medios as $key => $value) {
-                                                                    echo '<option  value="' . $value["id"] . '">' . $value["medio_pago"] . ' </option>';
-                                                                }
-                                                                ?>
+                                                                                $plazos = ControladorPlazos::ctrMostrarPlazos($item, $valor);
 
-                                                            </select>
+                                                                                foreach ($plazos as $key => $value) {
+                                                                                echo '<option  value="'.$value["id"].'">'.$value["nombre"].' </option>';
+                                                                                }
+
+                                                                                ?>
+                                                            
+                                                                            </select>
+                                                                        
+                                                                    </div> 
+                                                                </div> 
                                                         </div>
+                                                        <div class="col-xs-6">
+                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px;">Medios de Pago</div>
+                                                                <div class="form-group">
+                                                                <div class="input-group" style="display:block;">                
+                                                                        <select name="nuevoMedioPago" id="nuevoMedioPago" class="form-control">
+                                                                            <option value="">Seleccionar Medio de Pago:</option>
+                                                                            <?php
+
+                                                                            $item = null;
+                                                                            $valor = null;
+
+                                                                            $medios = ControladorMediosPago::ctrMostrarMedios($item, $valor);
+
+                                                                            foreach ($medios as $key => $value) {
+                                                                            echo '<option  value="'.$value["id"].'">'.$value["medio_pago"].' </option>';
+                                                                            }
+
+                                                                            ?>
+                                                                            
+                                                                        </select>
+                                                                    </div>
+                                                                </div> 
+                                                        </div>
+                                                    
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="box box-warning">
                                         <div class="box-body">
-                                            <h3 class="box-title" style="font-weight:bold; font-size:20px;">
-                                                Observaciones</h3>
-                                            <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
-                                                      rows="6"></textarea>
-                                            <input type="hidden" id="listaProductos" name="listaProductos">
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
+                                        <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>
+                                        <input type="text" id="listaProductos" name="listaProductos"> 
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div>     
+                            </div>        
+                            
+                            
                         </div>
 
+                    
+                    
                         <div class="col-lg-4 col-xs-12 ">
+                                
+                                            <div class="box box-success">
+                                                <div class="box-header with-border"></div>
+                                                    <div class="box-body">
+                                                        <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
+                                                        <table  class="table table-bordered table-striped dt-responsive tablaCompras">
+                                                    
+                                                        
+                                                            <thead>
 
-                            <div class="box box-success">
-                                <div class="box-header with-border"></div>
-                                <div class="box-body">
-                                    <h3 class="box-title text-center" style="font-weight:bold; font-size:20px;">
-                                        Productos para Seleccionar</h3>
-                                    <table class="table table-bordered table-striped dt-responsive tablaCompras">
-                                        <thead>
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Imagen</th>
-                                            <th>Código</th>
-                                            <th>Nombre</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                                                                <tr>
+                                                                <th style="width: 10px">#</th>
+                                                                <th>Imagen</th>
+                                                                <th>Código</th>
+                                                                <th>Nombre</th>
+                                                                <th>Acciones</th>
+                                                                </tr>
+
+                                                            </thead>
+
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
                     </div>
+                                        
+                                    
+                    <a href="compras">                 
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar Orden</button>                 
+                </form>
+                    <?php
+
+                        $agregarOrdenCompra = new ControladorOrdenCompra();
+                        $agregarOrdenCompra -> ctrCrearOrdenCompra();
+
+                    ?>
             </div>
-
-            <a href="compras">
-                <button type="button" class="btn btn-default">Salir</button>
-            </a>
-            <button type="submit" class="btn btn-primary">Guardar Orden</button>
-            </form>
-
-            <?php
-            $agregarOrdenCompra = new ControladorOrdenCompra();
-            $agregarOrdenCompra->ctrCrearOrdenCompra();
-            ?>
-
         </div>
-</div>
+    </section>
 
+</div>
 <div id="modalVerOrdenCompra" class="modal fade" role="dialog">
+  
     <div class="modal-dialog modal-lg">
+
         <div class="modal-content">
             <form role="form" method="post" id="form_editar_plantel">
 
-                <!--=====================================
+                    <!--=====================================
                     CABEZA DEL MODAL
                     ======================================-->
 
                 <div class="modal-header" style="background:#3c8dbc; color:white">
+
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Órdenes de Compra</h4>
+
+                    <h4 class="modal-title">Ordenes de Compra</h4>
+
                 </div>
 
-                <!--=====================================
+                    <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
 
                 <div class="modal-body">
+
                     <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+                        
                         <thead>
+                        
                         <tr>
-                            <th style="width:10px">#</th>
-                            <th>Folio</th>
-                            <th>Proveedor</th>
-                            <th>Fecha Emision</th>
-                            <th>Total Final</th>
-                            <th>Observacion</th>
-                        </tr>
+                        
+                        <th style="width:10px">#</th>
+                        <th>Folio</th>
+                        <th>Proveedor</th>
+                        <th>Fecha Emision</th>
+                        <th>Total Final</th>
+                        <th>Observacion</th>
+
+
+
+                        </tr> 
+
                         </thead>
+
                         <tbody>
 
                         <?php
+
                         $item = null;
                         $valor = null;
 
@@ -655,135 +655,173 @@ if ($_SESSION["perfil"] == "Especial") {
                         $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
 
                         foreach ($ordenCompra as $key => $value) {
-                            for ($i = 0; $i < count($proveedores); ++$i) {
+                            for($i = 0; $i < count($proveedores); ++$i){
                                 if ($proveedores[$i]["id"] == $value["id_proveedor"]) {
-                                    $proveedor = $proveedores[$i]["razon_social"];
+                                  $proveedor = $proveedores[$i]["razon_social"];
                                 }
-                            }
+                              }
 
                             echo '<tr>
 
-                                    <td>' . ($key + 1) . '</td>
+                                    <td>'.($key+1).'</td>
 
-                                    <td>' . $value["codigo"] . '</td>
+                                    <td>'.$value["codigo"].'</td>
 
-                                    <td>' . $proveedor . '</td>
+                                    <td>'.$proveedor.'</td>
 
-                                    <td>' . $value["fecha_emision"] . '</td>
+                                    <td>'.$value["fecha_emision"].'</td>
 
-                                    <td>' . $value["total_final"] . '</td>
+                                    <td>'.$value["total_final"].'</td>
 
-                                    <td>' . $value["observacion"] . '</td>
+                                    <td>'.$value["observacion"].'</td>
 
                                 </tr>';
-                        }
-                        ?>
+                        
+                            }
 
+                        
+                        ?>
+                
                         </tbody>
+
                     </table>
+
                 </div>
 
-                <!--=====================================
+                    <!--=====================================
                     PIE DEL MODAL
                     ======================================-->
 
                 <div class="modal-footer">
+
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
                     <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
                 </div>
+
             </form>
+                                                 
         </div>
+
     </div>
+
 </div>
-
 <div id="modalVerOrdenVestuario" class="modal fade" role="dialog">
-
+  
     <div class="modal-dialog modal-lg">
 
         <div class="modal-content">
             <form role="form" method="post" id="form_editar_plantel">
 
-                <!--=====================================
+                    <!--=====================================
                     CABEZA DEL MODAL
                     ======================================-->
 
                 <div class="modal-header" style="background:#3c8dbc; color:white">
+
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Órdenes de Vestuario</h4>
+
+                    <h4 class="modal-title">Ordenes de Vestuario</h4>
+
                 </div>
 
-                <!--=====================================
+                    <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
 
                 <div class="modal-body">
+
                     <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+                        
                         <thead>
+                        
                         <tr>
-                            <th style="width:10px">#</th>
-                            <th>Folio</th>
-                            <th>Nombre</th>
-                            <th>Fecha Emision</th>
-                            <th>Observacion</th>
-                            <th>Acciones</th>
-                        </tr>
+                        
+                        <th style="width:10px">#</th>
+                        <th>Folio</th>
+                        <th>Nombre</th>
+                        <th>Fecha Emision</th>
+                        <th>Observacion</th>
+                        <th>Acciones</th>
+
+
+
+                        </tr> 
+
                         </thead>
+
                         <tbody>
 
                         <?php
+
                         $item = null;
                         $valor = null;
 
                         $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
 
                         foreach ($vestuarios as $key => $value) {
+                            
 
                             echo '<tr>
 
-                                    <td>' . ($key + 1) . '</td>
+                                    <td>'.($key+1).'</td>
 
-                                    <td>' . $value["folio"] . '</td>
+                                    <td>'.$value["folio"].'</td>
 
-                                    <td>' . $value["nombre_orden"] . '</td>
+                                    <td>'.$value["nombre_orden"].'</td>
 
-                                    <td>' . $value["fecha_emision"] . '</td>
+                                    <td>'.$value["fecha_emision"].'</td>
 
-                                    <td>' . $value["observacion"] . '</td>
+                                    <td>'.$value["observacion"].'</td>
 
                                     <td> <button type="button" class="btn btn-warning">TRAER</button> </td>
 
                                 </tr>';
-                        }
-                        ?>
+                        
+                            }
 
+                        
+                        ?>
+                
                         </tbody>
+
                     </table>
+
                 </div>
 
-                <!--=====================================
+                    <!--=====================================
                     PIE DEL MODAL
                     ======================================-->
 
                 <div class="modal-footer">
+
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
                     <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
                 </div>
 
             </form>
+                                                 
         </div>
+
     </div>
+
 </div>
 
+
+
 <style>
-    .error {
-        color: red;
+  .error{
+    color: red;
+    
     }
-
-    textarea {
-        resize: none;
+  textarea {
+    resize: none;
     }
-
     input[type=number] {
-        -moz-appearance: textfield;
+    -moz-appearance: textfield;
     }
+
 </style>

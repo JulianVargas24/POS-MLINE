@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      BOLETA EXENTA
+      CREAR VENTA CON BOLETA EXENTA
     
     </h1>
 
@@ -93,7 +93,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>                
                                                             <input type="text" class="form-control" id="traerDireccion" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -146,29 +146,54 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                                         <div class="box box-info">
                                                 <div class="box-body">
-                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Emision</h4>
+                                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Emisión</h4>
                                                         <div class="row" style="margin-bottom:5px;">
                                                         
-                                                            <div class="col-xs-6">
-                                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
-                                                                <div class="form-group">
-                                                                    <div class="input-group">
-                                                                        
-                                                                        <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" value="<?php echo date("Y-m-d");?>">
-                                                                    </div>
-                                                                </div>
+                                                        <div class="col-xs-6"> <!-- Abre el primer div -->
+                                                            <div class="d-block" style="font-size:14px;">Fecha Emisión</div> <!-- Abre y cierra el segundo div -->
+                                                            <div class="form-group"> <!-- Abre el tercer div -->
+                                                                <div class="input-group"> <!-- Abre el cuarto div -->
+                                                                    <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" 
+                                                                    value="<?php echo date('Y-m-d'); ?>" required 
+                                                                    onchange="validarFechas(this.id, 'nuevaFechaVencimiento')"> <!-- Input correctamente cerrado -->
+                                                                </div> <!-- Cierra el cuarto div -->
+                                                            </div> <!-- Cierra el tercer div -->
+                                                        </div> <!-- Cierra el primer div -->
 
-                                                            </div>
                                                             <div class="col-xs-6">
                                                                 <div class="d-block" style="font-size:14px;">Fecha Venc.</div>
                                                                 <div class="form-group">
                                                                     <div class="input-group">
-
-                                                                        <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
+                                                                    <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento" 
+                                                                    required 
+                                                                    onchange="validarFechas('nuevaFechaEmision', this.id)">
+                                                                        
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header" style="background: #dc3545; color: white;"> <!-- Fondo rojo para errores -->
+                                                                            <h4 class="modal-title" id="alertModalLabel">
+                                                                                <i class="fas fa-exclamation-circle"></i> <!-- Ícono de error -->
+                                                                                Error
+                                                                            </h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body" style="font-size: 16px;"> <!-- Tamaño de fuente más grande -->
+                                                                            La fecha de vencimiento no puede ser anterior a la fecha de emisión.
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <div class="col-xs-6">
                                                                 <div class="d-block" style="font-size:14px;">Unidad de Negocio</div>
                                                                 <div class="form-group">
@@ -452,8 +477,8 @@ if($_SESSION["perfil"] == "Especial"){
                                     <div class="box box-warning">
                                         <div class="box-body">
                                         <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
-                                        <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>
-                                        <input type="text" name="listaProductos" id="listaProductos">
+                                        <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>                                                     
+                                        <input type="hidden" name="listaProductos" id="listaProductos">
                                         </div>
                                     </div>
                                 </div>     
@@ -499,18 +524,32 @@ if($_SESSION["perfil"] == "Especial"){
                     </a>
                     <button type="submit" class="btn btn-primary">Guardar Venta</button>                 
                 </form>
-                                    <?php
+                <?php
 
-                                        $agregarVentaExenta = new ControladorVentaBoleta();
-                                        echo $agregarVentaExenta -> ctrCrearVentaBoletaExenta();
+                    $agregarVentaExenta = new ControladorVentaBoleta();
+                    $agregarVentaExenta -> ctrCrearVentaBoletaExenta();
 
-                                    ?>
+                ?>
             </div>
         </div>
     </section>
 
 </div>
 
+<script>
+function validarFechas(fechaInicioId, fechaFinId) {
+    const fechaInicio = document.getElementById(fechaInicioId).value;
+    const fechaFin = document.getElementById(fechaFinId).value;
+
+    // Asegúrate de que ambas fechas tengan un valor
+    if (fechaInicio && fechaFin) {
+        if (new Date(fechaInicio) > new Date(fechaFin)) {
+            $('#alertModal').modal('show'); // Mostrar la ventana modal
+            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
+        }
+    }
+}
+</script>
 
 <style>
   .error{

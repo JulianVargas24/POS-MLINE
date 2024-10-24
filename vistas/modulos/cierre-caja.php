@@ -201,7 +201,11 @@ $sumaTotalFinal = $sumaTotalFA + $sumaTotalFE + $sumaTotalBA + $sumaTotalBE;
                                       PIE DEL MODAL
                                       ======================================-->
 
-                                      
+                                      <div class="modal-footer">
+
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                                      </div>
 
                                     </form>
 

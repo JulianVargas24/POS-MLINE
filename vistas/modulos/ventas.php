@@ -56,7 +56,7 @@ if($xml){
 
           <button class="btn btn-primary">
             
-            Crear Venta con Boleta
+            Crear Venta con Boleta Afecta
 
           </button>
 
@@ -111,7 +111,7 @@ if($xml){
            
            <th>Folio</th>
            <th>Tipo DTE</th>
-           <th>Emision</th>
+           <th>Emisión</th>
            <th>Vendedor</th>
            <th>Unidad de Negocio</th>
            <th>Bodega</th>
@@ -232,14 +232,16 @@ if($xml){
 
           $item = null;
           $valor = null;
-
-          $ventas = ControladorVentas::ctrMostrarVentasBoletas($item, $valor);
+          //VENTAS
+          $boletasAfectas = ControladorVentas::ctrMostrarVentasBoletas($item, $valor);
           $boletasExentas = ControladorVentas::ctrMostrarVentasBoletasExentas($item, $valor);
-          $afectas = ControladorVentas::ctrMostrarVentasAfectas($item, $valor);
-          $exentas = ControladorVentas::ctrMostrarVentasExentas($item, $valor);
-          $notaafecta = ControladorNotaCredito::ctrMostrarNotasAfecta($item, $valor);
-          $notaexenta = ControladorNotaCredito::ctrMostrarNotasExenta($item, $valor);
-          $notaboleta = ControladorNotaCredito::ctrMostrarNotasBoleta($item, $valor);
+          $facturasAfectas = ControladorVentas::ctrMostrarVentasAfectas($item, $valor);
+          $facturasExentas = ControladorVentas::ctrMostrarVentasExentas($item, $valor);
+          //NOTAS DE CREDITO
+          $notasFacturaAfecta = ControladorNotaCredito::ctrMostrarNotasAfecta($item, $valor);
+          $notasFacturaExenta = ControladorNotaCredito::ctrMostrarNotasExenta($item, $valor);
+          $notasBoletaAfecta = ControladorNotaCredito::ctrMostrarNotasBoleta($item, $valor);
+          $notasBoletaExenta = ControladorNotaCredito::ctrMostrarNotasBoletaExenta($item, $valor);
 
           $negocios = ControladorNegocios::ctrMostrarNegocios($item, $valor);
           $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
@@ -248,7 +250,9 @@ if($xml){
           $medios = ControladorMediosPago::ctrMostrarMedios($item,$valor);
           $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
-            foreach ($ventas as $key => $value) {
+          // MOSTRAR VENTAS CON BOLETA AFECTAS
+            foreach ($boletasAfectas as $key => $value) {                
+
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -304,10 +308,10 @@ if($xml){
                     <td>'.$cliente.'</td>
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
-      
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
-                    <td>$ '.$value["pendiente"].'</td>
+
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
 
                     <td>
 
@@ -333,6 +337,7 @@ if($xml){
                   $eliminarVentaBoleta -> ctrEliminarVentaBoleta();
           
             }
+            //MOSTRAR VENTAS CON BOLETAS EXENTAS
             foreach ($boletasExentas as $key => $value) {
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
@@ -390,8 +395,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -418,7 +423,8 @@ if($xml){
                   $eliminarVentaBoleta -> ctrEliminarVentaBoleta();
           
             }
-            foreach ($afectas as $key => $value) {
+            //MOSTRAR VENTAS CON FACTURACION AFECTAS
+            foreach ($facturasAfectas as $key => $value) {
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -474,10 +480,10 @@ if($xml){
                     <td>'.$cliente.'</td>
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
-      
+
                     <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
-                    <td>$ '.$value["pendiente"].'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
 
                     <td>
 
@@ -503,7 +509,8 @@ if($xml){
                   $eliminarVentaAfecta -> ctrEliminarVentaAfecta();
           
             }
-            foreach ($exentas as $key => $value) {
+            //MOSTRAR VENTAS FACTURA EXENTA
+            foreach ($facturasExentas as $key => $value) {
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -560,8 +567,9 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["pagado"].'</td>
+                    
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -589,7 +597,8 @@ if($xml){
                   $eliminarVentaExenta -> ctrEliminarVentaExenta();
           
             }
-            foreach ($notaafecta as $key => $value) {
+            //MOSTRAR NOTAS CREDITO DE FACTURA AFECTA
+            foreach ($notasFacturaAfecta as $key => $value) {
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -646,22 +655,17 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ 0</td>
 
                     <td>
 
                     <div class="btn-group">
                     
-                      <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+                      <button class="btn btn-info btnImprimirNotaCreditoFacturaAfecta" codigoVenta="'.$value["codigo"].'">PDF</button>
 
-                      PDF
-
-                      </button>
-                      <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
-
-                     
+                      <!--<button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>-->';
 
                     echo '</div>  
 
@@ -674,7 +678,8 @@ if($xml){
                   $eliminarVentaExenta -> ctrEliminarVentaExenta();
           
             }
-            foreach ($notaboleta as $key => $value) {
+            //MOSTRAR NOTA CREDITO BOLETA AFECTA
+            foreach ($notasBoletaAfecta as $key => $value) {
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -731,22 +736,17 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ 0</td>
 
                     <td>
 
                     <div class="btn-group">
                   
-                      <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+                    <button  class="btn btn-info btnImprimirNotaCreditoBoletaAfecta" codigoVenta="'.$value["codigo"].'">PDF</button>
 
-                      PDF
-
-                      </button>
-                      <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
-
-                     
+                    <!--<button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>-->';
 
                     echo '</div>  
 
@@ -759,7 +759,8 @@ if($xml){
                   $eliminarVentaExenta -> ctrEliminarVentaExenta();
           
             }
-            foreach ($notaexenta as $key => $value) {
+            //MOSTRAR NOTA CREDITO FACTURA EXENTA
+            foreach ($notasFacturaExenta as $key => $value) {
               for($i = 0; $i < count($negocios); ++$i){
                 if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
                   $negocio = $negocios[$i]["unidad_negocio"];
@@ -816,22 +817,17 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
                     <td>$ '.$value["iva"].'</td>
 
                     <td>
 
                     <div class="btn-group">
                   
-                      <button disabled class="btn btn-info btnImprimirVentaExenta" codigoVenta="'.$value["codigo"].'">
+                      <button class="btn btn-info btnImprimirNotaCreditoFacturaExenta" codigoVenta="'.$value["codigo"].'">PDF</button>
 
-                      PDF
-
-                      </button>
-                      <button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>';
-
-                     
+                      <!--<button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>-->';
 
                     echo '</div>  
 
@@ -844,6 +840,87 @@ if($xml){
                   $eliminarVentaExenta -> ctrEliminarVentaExenta();
           
             }
+            //MOSTAR NOTA CREDITO BOLETA EXENTA
+            foreach ($notasBoletaExenta as $key => $value) {
+            for($i = 0; $i < count($negocios); ++$i){
+              if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
+                $negocio = $negocios[$i]["unidad_negocio"];
+              }
+            }
+            for($i = 0; $i < count($bodegas); ++$i){
+              if ($bodegas[$i]["id"] == $value["id_bodega"]) {
+                $bodega = $bodegas[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($clientes); ++$i){
+              if ($clientes[$i]["id"] == $value["id_cliente"]) {
+                $cliente = $clientes[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($plazos); ++$i){
+              if ($plazos[$i]["id"] == $value["id_plazo_pago"]) {
+                $plazo = $plazos[$i]["nombre"];
+              }
+            }
+            for($i = 0; $i < count($medios); ++$i){
+              if ($medios[$i]["id"] == $value["id_medio_pago"]) {
+                $medio = $medios[$i]["medio_pago"];
+              }
+              
+              }
+                      for($i = 0; $i < count($plantel); ++$i){
+                  if ($plantel[$i]["id"] == $value["id_vendedor"]) {
+                    $vendedor = $plantel[$i]["nombre"];
+                  }
+              }
+          
+
+            echo '<tr>
+
+
+                  <td>'.$value["codigo"].'</td>
+
+                  <td style="color:black;font-weight:bold;">'.$value["tipo_dte"].'</td>
+
+                  <td>'.$value["fecha_emision"].'</td>
+
+                  <td>'.$vendedor.'</td>
+
+                  <td>'.$negocio.'</td>
+
+                  <td>'.$bodega.'</td>      
+
+                  <td>'.$plazo.'</td>
+
+                  <td>'.$medio.'</td>
+
+                  <td>'.$cliente.'</td>
+
+                  <td style="width:20px;">'.$value["observacion"].'</td>
+    
+                  <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
+                  <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                  <td>$ '.$value["iva"].'</td>
+
+                  <td>
+
+                  <div class="btn-group">
+                
+                    <button  class="btn btn-info btnImprimirNotaCreditoBoletaExenta" codigoVenta="'.$value["codigo"].'">PDF</button>
+
+                    <!--<button disabled  class="btn btn-warning btnNotaVentaExenta" idVenta="'.$value["id"].'">N.D</button>-->';
+
+                  echo '</div>  
+
+                </td>
+
+
+                </tr>';
+
+                $eliminarVentaExenta = new ControladorVentaFactura();
+                $eliminarVentaExenta -> ctrEliminarVentaExenta();
+        
+          }
 
            
         ?>
@@ -867,6 +944,50 @@ if($xml){
 
 </div>
 
+<script>
+$(document).ready(function() {
+  $(".tablas").on("click", ".btnImprimirNotaCreditoBoletaExenta", function(){
 
+  var codigoVenta= $(this).attr("codigoVenta");
+  var tipoDocumento = "Nota_Credito_Boleta_Exenta";
+
+  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
+
+})
+});
+
+$(document).ready(function() {
+  $(".tablas").on("click", ".btnImprimirNotaCreditoBoletaAfecta", function(){
+
+  var codigoVenta= $(this).attr("codigoVenta");
+  var tipoDocumento = "Nota_Credito_Boleta_Afecta";
+
+  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
+
+})
+});
+
+$(document).ready(function() {
+  $(".tablas").on("click", ".btnImprimirNotaCreditoFacturaAfecta", function(){
+
+  var codigoVenta= $(this).attr("codigoVenta");
+  var tipoDocumento = "Nota_Credito_Factura_Afecta";
+
+  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
+
+})
+});
+
+$(document).ready(function() {
+  $(".tablas").on("click", ".btnImprimirNotaCreditoFacturaExenta", function(){
+
+  var codigoVenta= $(this).attr("codigoVenta");
+  var tipoDocumento = "Nota_Credito_Factura_Exenta";
+
+  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
+
+})
+});
+</script>
 
 

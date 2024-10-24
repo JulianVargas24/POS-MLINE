@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      NOTA DE CREDITO AFECTA
+      NOTA DE CRÉDITO  DE FACTURA AFECTA
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Crear Nota de Credito</li>
+      <li class="active">Nota de Crédito de Factura Afecta</li>
     
     </ol>
 
@@ -124,7 +124,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>                
                                                             <input type="text" class="form-control" id="traerDireccionEditar" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -180,7 +180,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Nota de Credito</h4>
                                             <div class="row" style="margin-bottom:5px;">
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             
