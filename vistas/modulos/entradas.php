@@ -48,15 +48,15 @@ if($_SESSION["perfil"] == "Especial"){
                                 <!-- Bodega a Bodega inhabilitada (en caso de que se necesite de nuevo se descomenta) -->
                                 <!-- <input type="radio" name="tipoEntrada" value="bodega"> -->
                                 <!-- <label for="radio1" style="font-weight:normal;">Bodega a Bodega</label> -->
-                            </div>                                                                    
-                            <div class="input-group">  
+                            </div>
+                            <div class="input-group">
                                 <input type="radio" name="tipoEntrada" value="manual" >
-                                <label for="radio2" style="font-weight:normal;">Ingreso manual a Bodega</label>
+                                <label for="radio2" style="font-weight:normal;">Ingreso Manual a Bodega</label>
                             </div>
                             <div class="input-group">
                                 <!-- Orden de Trabajo a Bodega inhabilitada (en caso de que se necesite de nuevo se descomenta) -->
                                 <!-- <input type="radio" name="tipoEntrada" value="orden" > -->
-                                <!-- <label for="radio3" style="font-weight:normal;">Orden de Trabajo a Bodega </label> -->
+                                <!-- <label for="radio3" style="font-weight:normal;">Orden de Trabajo a Bodega</label> -->
                             </div>
                             <div class="input-group">
                                 <input type="radio" name="tipoEntrada" value="carga" >
@@ -71,8 +71,8 @@ if($_SESSION["perfil"] == "Especial"){
                         
                             <div class="form-group">
                                 <div class="input-group">
-                                    <label for="">Fecha Emision</label>
-                                    <input type="hidden" name="listaProductos" id="listaProductos">
+                                    <label for="">Fecha Emisión</label>
+                                    <input type="text" name="listaProductos" id="listaProductos">
                                     <input type="date" class="form-control input-sm" name="nuevaFecha" id="nuevaFecha">
                                 </div>
                             </div>
@@ -218,7 +218,7 @@ if($_SESSION["perfil"] == "Especial"){
                         
                             <div class="form-group">
                                 <div class="input-group">
-                                    <label for="">Fecha Emision</label>
+                                    <label for="">Fecha Emisión</label>
                                     <input type="text" name="listaProductos1" id="listaProductos1">
                                     <input type="date" class="form-control input-sm" name="nuevaFecha1" id="nuevaFecha1">
                                 </div>
@@ -365,8 +365,8 @@ if($_SESSION["perfil"] == "Especial"){
                         
                             <div class="form-group">
                                 <div class="input-group">
-                                <label for="">Fecha Emision</label>
-                                <input type="text" name="listaProductos2" id="listaProductos2"> 
+                                <label for="">Fecha Emisión</label>
+                                <input type="text" name="listaProductos2" id="listaProductos2">
                                     <input type="date" class="form-control input-sm" name="nuevaFecha2" id="nuevaFecha2">
                                 </div>
                             </div>
@@ -511,7 +511,7 @@ if($_SESSION["perfil"] == "Especial"){
                         
                             <div class="form-group">
                                 <div class="input-group">
-                                    <label for="">Fecha Emision</label>
+                                    <label for="">Fecha Emisión</label>
                                     <input type="text" name="listaProductos3" id="listaProductos3">
                                     <input type="date" class="form-control input-sm" name="nuevaFecha3" id="nuevaFecha3">
                                 </div>
