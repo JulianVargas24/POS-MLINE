@@ -162,7 +162,7 @@ MODAL AGREGAR RUBRO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Nombre producto
+                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Nombre producto
                             </div>
                             <div class="input-group">
 
@@ -178,7 +178,7 @@ MODAL AGREGAR RUBRO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Precio producto
+                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Precio producto
                             </div>
                             <div class="input-group">
 
