@@ -54,6 +54,7 @@ class ModeloRegiones{
 			return []; // Devuelve un array vacío en caso de error
 		}
 	}
-	
+
+
 }
 
