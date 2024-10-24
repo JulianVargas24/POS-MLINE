@@ -39,7 +39,11 @@ if($_SESSION["perfil"] == "Vendedor"){
     <div class="box">
 
       <div class="box-header with-border">
-  
+
+      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarBanco">
+          Agregar Banco
+
+        </button>
 
       </div>
 
@@ -54,7 +58,7 @@ if($_SESSION["perfil"] == "Vendedor"){
            <th style="width:10px">#</th>
            <th>Bancos</th>
            <th>Codigo SBIF</th>
-
+           <th>Acciones</th>
 
          </tr> 
 
@@ -79,7 +83,22 @@ if($_SESSION["perfil"] == "Vendedor"){
                     <td>'.$value["nombre_banco"].'</td>
 
                     <td>'.$value["codigo"].'</td>
-                    
+
+                    <td>
+
+                      <div class="btn-group">
+                      
+                        <button class="btn btn-warning btnEditarBanco" data-toggle="modal" data-target="#modalEditarBanco" idBanco="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
+
+                      if($_SESSION["perfil"] == "Administrador"){
+
+                          echo '<button class="btn btn-danger btnEliminarBanco" idBanco="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+
+                      }
+
+                      echo '</div>  
+
+                    </td>
 
                   </tr>';
           }
@@ -100,10 +119,10 @@ if($_SESSION["perfil"] == "Vendedor"){
 
 
 <!--=====================================
-MODAL AGREGAR CATEGORÍA
+MODAL AGREGAR BANCO
 ======================================-->
 
-<div id="modalAgregarUnidad" class="modal fade" role="dialog">
+<div id="modalAgregarBanco" class="modal fade" role="dialog">
   
 <style>
     .error{
@@ -115,7 +134,7 @@ MODAL AGREGAR CATEGORÍA
 
     <div class="modal-content">
 
-      <form role="form" method="post" id="form_nueva_unidad">
+      <form role="form" method="post" id="form_nuevo_Banco">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -125,7 +144,7 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Unidad</h4>
+          <h4 class="modal-title">Agregar Banco</h4>
 
         </div>
 
@@ -141,17 +160,24 @@ MODAL AGREGAR CATEGORÍA
             
             <div class="form-group">
                 
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Medida</div>
+                    <div class="d-inline-block bg-primary" style="text-indent: 12px;background-color:#3c8dbc;font-size:16px;font-weight:bold">Banco</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevaMedida" id="nuevaMedida" placeholder="Ingresar Medida" required>
+                      <input type="text" class="form-control input" name="nuevoBanco" id="nuevoBanco" placeholder="Ingresar Banco" required>
 
                     </div>
                 </div>
-                      
-          
+
+                <div class="form-group">
+                            <div class="d-inline-block bg-primary" style="text-indent: 12px;font-size:16px;font-weight:bold">Código SBIF</div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                                <input type="text" class="form-control input" name="nuevoCodigoSBIF" id="nuevoCodigoSBIF" placeholder="Ingresar Código SBIF" required>
+                            </div>
+                        </div>
+
           </div>
 
         </div>
@@ -164,14 +190,19 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" name="crear_medida">Agregar Medida</button>
+          <button type="submit" class="btn btn-primary" name="crear_Banco">Agregar Banco</button>
 
         </div>
 
         <?php
 
-          $crearUnidad = new ControladorUnidades();
-          $crearUnidad -> ctrCrearUnidad();
+          if(isset($_POST["crear_Banco"])){
+            $nombreBanco = $_POST["nuevoBanco"];
+            $codigoSBIF = $_POST["nuevoCodigoSBIF"];
+            
+            $crearBanco = new ControladorBancos();
+            $crearBanco -> ctrCrearBanco($nombreBanco, $codigoSBIF);
+          }
 
         ?>
 
@@ -184,26 +215,26 @@ MODAL AGREGAR CATEGORÍA
 </div>
 
 <!--=====================================
-MODAL EDITAR SUBCATEGORÍA
+MODAL EDITAR BANCO
 ======================================-->
 
-<div id="modalEditarUnidad" class="modal fade" role="dialog">
+<div id="modalEditarBanco" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
     <div class="modal-content">
 
-      <form role="form" method="post" id="form_editar_unidad">
+      <form role="form" method="post" id="form_editar_Banco">
 
         <!--=====================================
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#3f668d; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Unidad de Medida</h4>
+          <h4 class="modal-title">Editar Banco</h4>
 
         </div>
 
@@ -218,19 +249,31 @@ MODAL EDITAR SUBCATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">
-            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Medida</div>
+                
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Banco</div>
               <div class="input-group">
-              
+                
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <input type="text" class="form-control input" id="editarMedida" name="editarMedida"  required>
+                <input type="text" class="form-control input" name="editarBanco" id="editarBanco" placeholder="Ingresar Banco" required>
 
-                 <input type="hidden" id="idUnidad"  name="idUnidad"  required>
+                <input type="hidden" id="idBanco" name="idBanco" required>
 
+              </div>
+            </div>
+
+            <!-- ENTRADA PARA EL CÓDIGO SBIF -->
+            <div class="form-group">
+              <div class="d-inline-block bg-primary" style="font-size:16px;font-weight:bold">Código SBIF</div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                
+                <input type="text" class="form-control input" name="editarCodigoSBIF" id="editarCodigoSBIF" placeholder="Ingresar Código SBIF" required>
+                
               </div>
 
             </div>
-  
+
           </div>
 
         </div>
@@ -243,16 +286,18 @@ MODAL EDITAR SUBCATEGORÍA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary" >Guardar cambios</button>
 
         </div>
 
-      <?php
+        <?php
 
-          $editarUnidad = new ControladorUnidades();
-          $editarUnidad -> ctrEditarUnidad();
+            
+            $editarBanco = new ControladorBancos();
+            $editarBanco -> ctrEditarBanco();
+          
 
-        ?> 
+        ?>
 
       </form>
 
@@ -262,9 +307,10 @@ MODAL EDITAR SUBCATEGORÍA
 
 </div>
 
+
 <?php
 
-  $borrarUnidad = new ControladorUnidades();
-  $borrarUnidad -> ctrBorrarUnidad();
+    $eliminarBanco = new ControladorBancos();
+    $eliminarBanco -> ctrEliminarBanco();
 
 ?>
