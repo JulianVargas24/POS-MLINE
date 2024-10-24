@@ -208,7 +208,7 @@ MODAL AGREGAR CLIENTE
                     
                       <span class="input-group-addon"><i class="fa fa-calculator"></i></span>
 
-                        <input type="number" class="form-control input" name="nuevaComision" id="nuevaComision" placeholder="Ingrese Comision" min="0" step="0.01" required>
+                        <input type="number" class="form-control input" name="nuevaComision" id="nuevaComision" placeholder="Ingrese Comision" min="0" max="100" step="0.01" required>
 
 
                     </div>
@@ -328,7 +328,7 @@ MODAL EDITAR CLIENTE
                     
                       <span class="input-group-addon"><i class="fa fa-calculator"></i></span>
 
-                        <input type="number" class="form-control input" name="editarComision" id="editarComision" placeholder="Ingrese Comision" min="0" step="0.01" required>
+                        <input type="number" class="form-control input" name="editarComision" id="editarComision" placeholder="Ingrese Comision" min="0" max="100" step="0.01" required>
 
 
                     </div>
