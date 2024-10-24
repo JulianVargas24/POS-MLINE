@@ -1,33 +1,21 @@
 <?php
 if ($_SESSION["perfil"] == "Especial") {
-
-    echo '<script>
-
-    window.location = "inicio";
-
-  </script>';
-
+    echo '<script>window.location = "inicio";</script>';
     return;
-
 }
 ?>
 
 <div class="content-wrapper">
 
     <section class="content-header">
-
         <h1 style="color:green;font-weight:bold">
             Editar Compra
         </h1>
 
         <ol class="breadcrumb">
-
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
             <li class="active">Editar compra</li>
-
         </ol>
-
     </section>
 
     <section class="content">
@@ -61,11 +49,9 @@ if ($_SESSION["perfil"] == "Especial") {
                     $valorMedio = $compra["id_medio_pago"];
                     $medio = ControladorMediosPago::ctrMostrarMedios($itemMedio, $valorMedio);
 
-
                     // $porcentajeImpuesto =  $venta["impuesto"] * 100 / $venta["neto"];
-
-
                     ?>
+
                     <div class="row">
                         <div class="col-xs-5">
                             <div class="box box-info">
@@ -95,11 +81,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         foreach ($proveedores as $key => $value) {
 
                                                             echo '<option disabled class="seleccionarProveedor" value="' . $value["id"] . '">' . $value["razon_social"] . ' </option>';
-
                                                         }
 
                                                         ?>
-
                                                     </select>
 
                                                 </div>
@@ -185,14 +169,11 @@ if ($_SESSION["perfil"] == "Especial") {
                                                            value="<?php echo $compra["fecha_emision"]; ?>">
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input type="hidden" id="nuevoEstado" name="nuevoEstado"
-                                                           value="Abierta">
                                                     <input type="date" class="form-control input-sm"
                                                            name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
                                                            value="<?php echo $compra["fecha_vencimiento"]; ?>"
@@ -200,7 +181,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="col-xs-6">
                                             <div class="d-block" style="font-size:14px;">Centro de Costo</div>
                                             <div class="form-group">
@@ -238,7 +218,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                                 value="<?php echo $bodega["id"]; ?>"><?php echo $bodega["nombre"]; ?></option>
                                                         <optgroup label="---Cambiar Bodega--"></optgroup>
 
-
                                                         <?php
 
                                                         $item = null;
@@ -260,7 +239,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-xs-3">
                             <div class="box box-info">
                                 <div class="box-body">
@@ -279,21 +257,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                            value="<?php echo $compra["codigo"]; ?>" readonly
                                                            required>
                                                 </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"
-                                                          style="background-color:red; color:white; font-weight:bold">STATUS</span>
-                                                    <select class="form-control input" id="nuevoEstado"
-                                                            name="nuevoEstado" required>
-                                                        <option selected
-                                                                value="<?php echo $compra["estado"]; ?>"><?php echo $compra["estado"]; ?></option>
-                                                        <optgroup label="---Cambiar estado de la compra--"></optgroup>
-
-                                                        <option value="Abierta">Abierta</option>
-                                                        <option value="Cerrada">Cerrada</option>
-
-
-                                                    </select>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -301,15 +264,11 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-
                         <div class="col-lg-8 col-xs-12">
-
                             <div class="box box-success">
                                 <div class="box-body">
                                     <div class="row nuevoProducto">
-
                                         <h2 class="box-title text-center" style="font-weight:bold; font-size:20px;">
                                             Productos Seleccionados
                                         </h2>
@@ -402,8 +361,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                               <input type="text" class="form-control nuevoTotalProducto" name="nuevoTotalProducto" min="0" value="' . $value["total"] . '" readonly required>
                                           </div>
                                         </div>';
-
-
                                         }
 
                                         ?>
@@ -415,10 +372,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <div class="box box-info">
                                         <div class="box-body">
                                             <h3 class="box-title" style="font-weight:bold; font-size:20px;">Totales</h3>
-
                                             <div class="row">
                                                 <div class="col-xs-7">
-
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <span class="input-group-addon" style="padding:0px 8px">Subtotal</span>
@@ -499,9 +454,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 Condición de Pago</h3>
                                             <div class="row">
                                                 <div class="col-xs-12">
-
                                                     <div class="form-group">
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -512,6 +465,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
+
                                                             <select class="form-control input" id="nuevoPlazoPago"
                                                                     name="nuevoPlazoPago" required>
                                                                 <option selected
@@ -530,7 +484,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                                 }
 
                                                                 ?>
-
                                                             </select>
 
                                                         </div>
@@ -547,6 +500,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                                 <option selected
                                                                         value="<?php echo $medio["id"]; ?>"><?php echo $medio["medio_pago"]; ?></option>
                                                                 <optgroup label="---Cambiar Medio de Pago--"></optgroup>
+
                                                                 <?php
 
                                                                 $item = null;
@@ -579,9 +533,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-xs-12 ">
-
                             <div class="box box-success">
                                 <div class="box-header with-border"></div>
                                 <div class="box-body">
@@ -607,7 +559,7 @@ if ($_SESSION["perfil"] == "Especial") {
             <a href="compras">
                 <button type="button" class="btn btn-default">Salir</button>
             </a>
-            <button type="submit" class="btn btn-primary">Editar Compra</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
             <?php
 
@@ -631,5 +583,4 @@ if ($_SESSION["perfil"] == "Especial") {
     input[type=number] {
         -moz-appearance: textfield;
     }
-
 </style>
