@@ -542,6 +542,74 @@ MODAL EDITAR PROVEEDOR
 
 ?>
 
+<script>
+document.getElementById('nuevaRegion').addEventListener('change', function() {
+    var regionId = this.value; // Obtener el ID de la región seleccionada
 
+    // Verifica que haya una región seleccionada
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
+
+                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
+                var comunaSelect = document.getElementById('nuevaComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
+
+                // Rellenar las opciones del select de comunas
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
+                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        // Enviar el ID de la región seleccionada al servidor
+        xhr.send('regionId=' + regionId);
+    } else {
+        // Si no hay región seleccionada, limpiar el select de comunas
+        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+
+document.getElementById('editarRegion').addEventListener('change', function() {
+    var regionId = this.value;
+    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+
+    if (regionId !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'controladores/procesar_comunas.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var comunas = JSON.parse(xhr.responseText);
+                var comunaSelect = document.getElementById('editarComuna');
+                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
+
+                comunas.forEach(function(comuna) {
+                    var option = document.createElement('option');
+                    option.value = comuna.id;
+                    option.textContent = comuna.nombre;
+                    if (comuna.id == comunaActual) {
+                        option.selected = true; // Seleccionar la comuna actual
+                    }
+                    comunaSelect.appendChild(option);
+                });
+            }
+        };
+
+        xhr.send('regionId=' + regionId);
+    } else {
+        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+    }
+});
+  </script>
 
 
