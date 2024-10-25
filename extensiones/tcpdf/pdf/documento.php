@@ -30,6 +30,9 @@ require_once "../../../modelos/matrices.modelo.php";
 require_once "../../../controladores/medios-pago.controlador.php";
 require_once "../../../modelos/medios-pago.modelo.php";
 
+require_once "../../../controladores/nota-credito.controlador.php";
+require_once "../../../modelos/nota-credito.modelo.php";
+
 class imprimirFactura{
 
 	public $codigo;
@@ -131,15 +134,15 @@ class imprimirFactura{
 				$doc = "NOTA DE CRÉDITO DE FACTURACIÓN AFECTA";
 				$valor = $this->codigo;
 				$id = "id";
-				$detalle = ControladorVentas::ctrMostrarVentasBoletasExentas($item, $valor);
+				$detalle = ControladorNotaCredito::ctrMostrarNotasAfecta($item, $valor);
 				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
 				$nombre = $receptor["nombre"];
 				$condicion = $matriz[0]["condicion_venta"];
 				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
-				$documentoCliente = $detalle["documento"];
-				$folioDocumento = $detalle["folio_documento"];
-				$fechaDocumento = $detalle["fecha_documento"];
-				$motivoDocumento = $detalle["motivo_documento"];
+				$documentoCliente = $detalle[""];
+				$folioDocumento = $detalle[""];
+				$fechaDocumento = $detalle[""];
+				$motivoDocumento = $detalle[""];
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 			break;
 
@@ -165,15 +168,15 @@ class imprimirFactura{
 				$doc = "NOTA DE CRÉDITO DE FACTURACIÓN EXENTA";
 				$valor = $this->codigo;
 				$id = "id";
-				$detalle = ControladorVentas::ctrMostrarVentasBoletasExentas($item, $valor);
+				$detalle = ControladorNotaCredito::ctrMostrarNotasExenta($item, $valor);
 				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
 				$nombre = $receptor["nombre"];
 				$condicion = $matriz[0]["condicion_venta"];
 				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
-				$documentoCliente = $detalle["documento"];
-				$folioDocumento = $detalle["folio_documento"];
-				$fechaDocumento = $detalle["fecha_documento"];
-				$motivoDocumento = $detalle["motivo_documento"];
+				$documentoCliente = $detalle[""];
+				$folioDocumento = $detalle[""];
+				$fechaDocumento = $detalle[""];
+				$motivoDocumento = $detalle[""];
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 			break;
 
@@ -199,15 +202,15 @@ class imprimirFactura{
 				$doc = "NOTA DE CRÉDITO DE BOLETA EXENTA";
 				$valor = $this->codigo;
 				$id = "id";
-				$detalle = ControladorVentas::ctrMostrarVentasBoletasExentas($item, $valor);
+				$detalle = ControladorNotaCredito::ctrMostrarNotasBoletaExenta($item, $valor);
 				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
 				$nombre = $receptor["nombre"];
 				$condicion = $matriz[0]["condicion_venta"];
 				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
-				$documentoCliente = $detalle["documento"];
-				$folioDocumento = $detalle["folio_documento"];
-				$fechaDocumento = $detalle["fecha_documento"];
-				$motivoDocumento = $detalle["motivo_documento"];
+				$documentoCliente = $detalle[""];
+				$folioDocumento = $detalle[""];
+				$fechaDocumento = $detalle[""];
+				$motivoDocumento = $detalle[""];
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 			break;
 
@@ -216,15 +219,15 @@ class imprimirFactura{
 				$doc = "NOTA DE CRÉDITO DE BOLETA AFECTA";
 				$valor = $this->codigo;
 				$id = "id";
-				$detalle = ControladorVentas::ctrMostrarVentasBoletasExentas($item, $valor);
+				$detalle = ControladorNotaCredito::ctrMostrarNotasBoleta($item, $valor);
 				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
 				$nombre = $receptor["nombre"];
 				$condicion = $matriz[0]["condicion_venta"];
 				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
-				$documentoCliente = $detalle["documento"];
-				$folioDocumento = $detalle["folio_documento"];
-				$fechaDocumento = $detalle["fecha_documento"];
-				$motivoDocumento = $detalle["motivo_documento"];
+				$documentoCliente = $detalle[""];
+				$folioDocumento = $detalle[""];
+				$fechaDocumento = $detalle[""];
+				$motivoDocumento = $detalle[""];
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 			break;
 		}
@@ -437,7 +440,35 @@ class imprimirFactura{
 
 			//$pdf->Output('factura.pdf', 'D');
 			ob_end_clean();
-			$pdf->Output('factura.pdf');
+			// Dependiendo del valor de $doc, cambiar el nombre del archivo
+			if ($doc == "ORDEN DE COMPRA") {
+				$nombreArchivo = "Orden_Compra.pdf";
+			} elseif ($doc == "FACTURA DE COMPRA") {
+				$nombreArchivo = "Factura_Compra.pdf";
+			} elseif ($doc == "COTIZACION AFECTA") {
+				$nombreArchivo = "Cotizacion_Afecta.pdf";
+			} elseif ($doc == "COTIZACION EXENTA") {
+				$nombreArchivo = "Cotizacion_Exenta.pdf";
+			} elseif ($doc == "FACTURACION AFECTA") {
+				$nombreArchivo = "Factura_Afecta.pdf";
+			} elseif ($doc == "NOTA DE CRÉDITO DE FACTURACIÓN AFECTA") {
+				$nombreArchivo = "Nota_Credito_Factura_Afecta.pdf";
+			} elseif ($doc == "FACTURACION EXENTA") {
+				$nombreArchivo = "Factura_Exenta.pdf";
+			} elseif ($doc == "NOTA DE CRÉDITO DE FACTURACIÓN EXENTA") {
+				$nombreArchivo = "Nota_Credito_Factura_Exenta.pdf";
+			} elseif ($doc == "BOLETA EXENTA") {
+				$nombreArchivo = "Boleta_Exenta.pdf";
+			} elseif ($doc == "NOTA DE CRÉDITO DE BOLETA EXENTA") {
+				$nombreArchivo = "Nota_Credito_Boleta_Exenta.pdf";
+			} elseif ($doc == "NOTA DE CRÉDITO DE BOLETA AFECTA") {
+				$nombreArchivo = "Nota_Credito_Boleta_Afecta.pdf";
+			} else {
+				$nombreArchivo = "Documento.pdf"; // Nombre por defecto en caso de no coincidir
+			}
+
+			// Descargar el PDF con el nombre dinámico
+			$pdf->Output($nombreArchivo, 'I'); // 'I' para abrir en navegador, 'D' para descargar directamente
 
 		
 		
