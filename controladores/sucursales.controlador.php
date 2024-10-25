@@ -68,7 +68,7 @@ class ControladorSucursales{
 	}
 
 	/*=============================================
-	EDITAR PROVEEDORES
+	EDITAR SUCURSALES
 	=============================================*/
 
 	static public function ctrEditarSucursal(){
@@ -77,15 +77,16 @@ class ControladorSucursales{
 
 			   	$tabla = "sucursales";
 
-				   $datos = array("nombre"=>$_POST["nuevaSucursal"],
-				   "region"=>$_POST["nuevaRegion"],
-					"comuna"=>$_POST["nuevaComuna"],
-				   "pais"=>$_POST["nuevoPais"],
-				   "direccion"=>$_POST["nuevaDireccion"],	
-				   "jefe"=>$_POST["nuevoJefe"],
-				   "telefono"=>$_POST["nuevoTelefono"],
-				   "email"=>$_POST["nuevoEmail"],
-				   "bodega"=>$_POST["nuevaBodega"]);
+				   $datos = array("id"=>$_POST["idSucursal"],
+				   "nombre"=>$_POST["editarSucursal"],
+				   "region"=>$_POST["editarRegion"],
+					"comuna"=>$_POST["editarComuna"],
+				   "pais"=>$_POST["editarPais"],
+				   "direccion"=>$_POST["editarDireccion"],	
+				   "jefe"=>$_POST["editarJefe"],
+				   "telefono"=>$_POST["editarTelefono"],
+				   "email"=>$_POST["editarEmail"],
+				   "bodega"=>$_POST["editarBodega"]);
 								
 
 			   	$respuesta = ModeloSucursales::mdlEditarSucursal($tabla, $datos);
@@ -116,7 +117,7 @@ class ControladorSucursales{
 	}
 
 	/*=============================================
-	ELIMINAR PROVEEDORES
+	ELIMINAR SUCURSALES
 	=============================================*/
 
 	static public function ctrEliminarSucursal(){
