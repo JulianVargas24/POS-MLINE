@@ -342,7 +342,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- A partir de aquí empieza la sona segura para colocar los botones Salir y Guardar Entrada. -->
+                                    <!-- A partir de aquí empieza la sona segura para colocar los botones. -->
                                 </div>
                             </div>
                             <!-- Botones en INGRESO MANUAL a BODEGA -->
@@ -353,10 +353,10 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>
                 </div>
             </form>
-            <form role="form" method="post" class="formularioEntradaInventario" id="orden">    
+            <form role="form" method="post" class="formularioEntradaInventario" id="orden">
                 <div class="row" style="margin-bottom:5px;">
                     <div class="col-xs-5">
-                        
+
                             <div class="form-group">
                                 <div class="input-group">
                                 <label for="">Fecha Emisión</label>
