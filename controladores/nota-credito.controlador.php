@@ -255,27 +255,27 @@ class ControladorNotaCredito{
 
 
 
-    static public function  ctrMostrarNotasAfecta(){
+    static public function  ctrMostrarNotasAfecta($item, $valor){
         $tabla = "nota_credito";
 		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
 
 		return $respuesta;
     }
-    static public function ctrMostrarNotasExenta(){
+    static public function ctrMostrarNotasExenta($item, $valor){
         $tabla = "nota_credito_exenta";
 
 		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
 
 		return $respuesta;
     }
-    static public function ctrMostrarNotasBoleta(){
+    static public function ctrMostrarNotasBoleta($item, $valor){
         $tabla = "nota_credito_boleta";
 
 		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
 
 		return $respuesta;
     }
-    static public function ctrMostrarNotasBoletaExenta(){
+    static public function ctrMostrarNotasBoletaExenta($item, $valor){
         $tabla = "nota_credito_boleta_exenta";
 
 		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
