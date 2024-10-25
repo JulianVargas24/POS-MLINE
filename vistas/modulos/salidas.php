@@ -190,17 +190,12 @@ if($_SESSION["perfil"] == "Especial"){
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Botones en SALIDA MANUAL -->
+                                        <button type="button" class="btn btn-default" onclick="window.location.href='salida';">Salir</button>
+                                        <button type="submit" class="btn btn-primary">Guardar Salida</button>
                                     </div>
                                 </div>
-
-
-                                                
-                                
                             </div>
-                            
-                            <!-- Botones en SALIDA MANUAL -->
-                            <button type="button" class="btn btn-default" onclick="window.location.href='salida';">Salir</button>
-                            <button type="submit" class="btn btn-primary">Guardar Salida</button>
                     </form>
                     <form role="form" method="post" class="formularioEntradaInventario" id="orden">    
                             <div class="row" style="margin-bottom:5px;">
@@ -337,17 +332,12 @@ if($_SESSION["perfil"] == "Especial"){
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Botones en BODEGA a ORDEN de TRABAJO -->
+                                        <button type="button" class="btn btn-default" onclick="window.location.href='salida';">Salir</button>
+                                        <button type="submit" class="btn btn-primary">Guardar Salida</button>
                                     </div>
                                 </div>
-
-
-                                                
-                                
                             </div>
-                            
-                            <!-- Botones en BODEGA a ORDEN de TRABAJO -->
-                            <button type="button" class="btn btn-default" onclick="window.location.href='salida';">Salir</button>
-                            <button type="submit" class="btn btn-primary">Guardar Salida</button>
                     </form>     
                         <?php
                     $agregarSalida = new ControladorSalidasInventario();
