@@ -203,8 +203,7 @@ MODAL AGREGAR CLIENTE
                         <input type="text" class="form-control input" name="nuevoRutId" id="nuevoRutId" 
                           placeholder="Ingrese su RUT" 
                           required
-                          pattern="^(\d{1,2}\.\d{3}\.\d{3}-[\dkK])$" 
-                          title="El RUT debe tener el formato XX.XXX.XXX-X">
+                          onblur="formatearRut(this)">
 
                       </div>
                   </div>
