@@ -342,7 +342,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- A partir de aquí empieza la sona segura para colocar los botones. -->
+                                    <!-- A partir de aquí empieza la sona segura para colocar los botones Salir y Guardar Entrada. -->
                                 </div>
                             </div>
                             <!-- Botones en INGRESO MANUAL a BODEGA -->
