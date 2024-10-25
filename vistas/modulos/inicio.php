@@ -5,7 +5,7 @@ $valor = null;
 $orden = "id";
 $fechaInicial = $_GET["fechaInicial"];
 $fechaFinal = $_GET["fechaFinal"];
-//$ventas = ControladorVentas::ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal);
+/**$ventas = ControladorVentas::ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal);
 
 $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 $totalCategorias = count($categorias);
@@ -21,7 +21,7 @@ $totalProveedores = count($proveedores);
 $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);/$totalUsuarios = count($usuarios) - 1;
 
 $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor, $orden);
-$totalBodegas = count($bodegas);
+$totalBodegas = count($bodegas);**/
 ?>
 <div class="content-wrapper">
 
