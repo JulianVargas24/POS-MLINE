@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1 style="color:green;font-weight:bold">
       
-      EDITAR COTIZACION
+      EDITAR COTIZACIÓN AFECTA
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Editar Cotizacion</li>
+      <li class="active">Editar Cotización Afecta</li>
     
     </ol>
 
@@ -120,7 +120,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>                
                                                             <input type="text" class="form-control" id="traerDireccionEditar" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -173,10 +173,10 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                             <div class="box box-info">
                                     <div class="box-body">
-                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Cotizacion</h4>
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Cotización</h4>
                                             <div class="row" style="margin-bottom:5px;">
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             
@@ -256,7 +256,7 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-3">
                            <div class="box box-info">
                                 <div class="box-body">
-                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:red;"> COTIZACION</h4>
+                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:red;"> COTIZACIÓN</h4>
                                         <div class="row" style="margin-top:2px;">
                                             <div class="col-xs-7">
                                                  <div class="form-group">
@@ -532,7 +532,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <div class="box-body">
                                         <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
                                         <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"><?php echo $cotizacion["observacion"]; ?></textarea>
-                                        <input type="text" id="listaProductos" name="listaProductos"> 
+                                        <!-- <input type="text" id="listaProductos" name="listaProductos"> -->
                                         </div>
                                     </div>
                                 </div>     
@@ -573,8 +573,10 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>
                                         
                                     
-                   <button type="button" class="btn btn-default">Salir</button>
-                    <button type="submit" class="btn btn-primary">Editar Cotizacion</button>                 
+                    <a href="cotizaciones">                 
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>                 
                 </form>
                     <?php
 
