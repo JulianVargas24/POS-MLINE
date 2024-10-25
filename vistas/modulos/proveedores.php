@@ -14,6 +14,8 @@ if($_SESSION["perfil"] == "Especial"){
 
 ?>
 
+<script src="/..js/validarRUT.js" defer></script>
+
 <div class="content-wrapper">
 
   <section class="content-header">
@@ -117,6 +119,7 @@ if($_SESSION["perfil"] == "Especial"){
                     <td>
 
                       <div class="btn-group">
+
                         <button class="btn btn-warning btnEditarProveedor" data-toggle="modal" data-target="#modalEditarProveedor" idProveedor="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
 
                       if($_SESSION["perfil"] == "Administrador"){
@@ -555,19 +558,23 @@ MODAL EDITAR PROVEEDOR
                           </div>
                       </div>
                   <!-- ENTRADA PARA EL RUT ID -->
-                      <div class="col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">RUT</div>
-                          <div class="input-group">
-                            
-                            <span class="input-group-addon"><i class="fa fa-key"></i></span> 
-
-                            <input type="text"  class="form-control input" name="editarRutId" id="editarRutId" placeholder="Ingresar Rut">
-
-                          </div>
-                        </div>
-                      </div>
+                  <div class="col-xs-6">
+                                        <div class="d-inline-block text-center"
+                                             style="font-size:16px;font-weight:bold">
+                                            RUT
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                            <input type="text" class="form-control input" name="editarRutId"
+                                                   id="editarRutId" placeholder="Ingresar RUT"
+                                                   onblur="formatearRut('editarRutId', 'rutErrorEditar')">
+                                        </div>
+                                        <div id="rutErrorEditar" style="color: red; display: none;">
+                                            El RUT ingresado no es válido.
+                                        </div>
+                                    </div>
                 </div>
-                
+
                 <div class="form-group row">                
                   <!-- ENTRADA PARA LA ACTIVIDAD -->
                       <div class="col-xs-6">

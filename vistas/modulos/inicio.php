@@ -1,27 +1,31 @@
 <?php
 
-$item = null;
-$valor = null;
-$orden = "id";
-$fechaInicial = $_GET["fechaInicial"];
-$fechaFinal = $_GET["fechaFinal"];
+//$item = null;
+//$valor = null;
+//$orden = "id";
+//$fechaInicial = $_GET["fechaInicial"];
+//$fechaFinal = $_GET["fechaFinal"];
 //$ventas = ControladorVentas::ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal);
 
-$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-$totalCategorias = count($categorias);
+//$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+//$totalCategorias = count($categorias);
 
-$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);$totalClientes = count($clientes);
+//$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+//$totalClientes = count($clientes);
 
-$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
-$totalProductos = count($productos);
+//$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
+//$totalProductos = count($productos);
 
-$proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor, $orden);
-$totalProveedores = count($proveedores);
+//$proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor, $orden);
+//$totalProveedores = count($proveedores);
 
-$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);/$totalUsuarios = count($usuarios) - 1;
+//$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);
+//$totalUsuarios = count($usuarios) - 1;
 
-$bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor, $orden);
-$totalBodegas = count($bodegas);
+//$bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor, $orden);
+//$totalBodegas = count($bodegas);
+
+
 ?>
 <div class="content-wrapper">
 

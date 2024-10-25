@@ -61,7 +61,7 @@ if($_SESSION["perfil"] == "Vendedor"){
            <th style="width:10px">#</th>
 
            <th>Nombre</th>
-           <th>Días</th>
+           <th>Numero</th>
            <th>Acciones</th>
 
          </tr> 
@@ -161,23 +161,23 @@ MODAL AGREGAR RUBRO
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Nombre de Plazo</div>
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Plazo de Pago</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevoPlazo" id="nuevoPlazo" placeholder="Ingresar nombre de Plazo" required>
+                      <input type="text" class="form-control input" name="nuevoPlazo" id="nuevoPlazo" placeholder="Ingresar Plazo de Pago" required>
 
                     </div>
             </div>
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Número de Días</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Numero de Dias</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                    <input type="number" class="form-control input" id="nuevoNumero" name="nuevoNumero" placeholder="Ingresar número de Días"  required>
+                    <input type="text" class="form-control input" id="nuevoNumero" name="nuevoNumero" placeholder="Ingresar Numero de Dias"  required>
 
                 </div>
             </div>
@@ -250,7 +250,7 @@ MODAL EDITAR SUBCATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Nombre de Plazo</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Plazo de Pago</div>
                     <div class="input-group">
                     
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -264,7 +264,7 @@ MODAL EDITAR SUBCATEGORÍA
 
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Número de Días</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Numero</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
