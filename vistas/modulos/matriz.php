@@ -60,6 +60,7 @@ if ($_SESSION["perfil"] == "Especial") {
               <th>Actividad</th>
               <th>Region</th>
               <th>Comuna</th>
+              <th>Pais</th>
               <th>Direccion</th>
               <th>Ejecutivo</th>
               <th>Telefono</th>
@@ -94,19 +95,20 @@ if ($_SESSION["perfil"] == "Especial") {
 
               echo '<tr>
 
-                    <td>' . $value["razon_social"] . '</td>
-                    <td>' . $value["rut"] . '</td> 
-                    <td>' . $value["actividad"] . '</td>
-                    <td>' . $value["region"] . '</td>
+                    <td>'.$value["razon_social"].'</td>
+                    <td>'.$value["rut"].'</td> 
+                    <td>'.$value["actividad"].'</td>
                     <td>'.$regionDisplay.'</td>
-                    <td>'.$comunaDisplay.'</td>  
-                    <td>' . $value["ejecutivo"] . '</td> 
-                    <td>' . $value["telefono"] . '</td> 
-                    <td>' . $value["email"] . '</td>
-                    <td>' . $value["fecha_inicio"] . '</td> 
-                    <td>' . $value["fecha_vencimiento"] . '</td> 
-                    <td>' . $value["tipo_cliente"] . '</td> 
-                    <td>' . $value["tipo_producto"] . '</td>  
+                    <td>'.$comunaDisplay.'</td>
+                    <td>'.$value["pais"].'</td>  
+                    <td>'.$value["direccion"].'</td>  
+                    <td>'.$value["ejecutivo"].'</td> 
+                    <td>'.$value["telefono"].'</td> 
+                    <td>'.$value["email"].'</td>
+                    <td>'.$value["fecha_inicio"].'</td> 
+                    <td>'.$value["fecha_vencimiento"].'</td> 
+                    <td>'.$value["tipo_cliente"].'</td> 
+                    <td>'.$value["tipo_producto"].'</td> 
 
                     <td>
 
@@ -163,7 +165,7 @@ if ($_SESSION["perfil"] == "Especial") {
         ======================================-->
         <div class="modal-header" style="background:#3f668d; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Matriz</h4>
+          <h4 class="modal-title">Crear Matriz</h4>
         </div>
 
         <!--=====================================
@@ -191,7 +193,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">RUT</div>
                         <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input type="text" class="form-control input" name="editarRut" id="editarRut"  placeholder="Ingresar Rut" required onblur="formatearRut(this)">
+                      <input type="text" class="form-control input" name="nuevoRut" id="nuevoRut"  placeholder="Ingresar Rut" required onblur="formatearRut(this)">
                     </div>
                   </div>
 
@@ -312,7 +314,8 @@ if ($_SESSION["perfil"] == "Especial") {
                 </div>
               </div>
             </div>
-
+ 
+            <!-- Actividad -->
             <h4 class="box-title" style="font-weight:bold; margin-bottom: 10px;">Datos de Servicio</h4>
             <div class="box box-success">
               <div class="box-body">
@@ -428,7 +431,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
     <div class="modal-content">
 
-      <form role="form" method="post" id="form_nueva_matriz">
+      <form role="form" method="post" id="form_editar_matriz">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -500,7 +503,8 @@ if ($_SESSION["perfil"] == "Especial") {
                             </select>
 
                           </div>
-                      </div>   
+                      </div>
+
                   <!-- CIUDAD -->
                       <div class="col-xs-6">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
@@ -527,9 +531,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <input type="text" class="form-control input" name="editarPais" id="editarPais" required >
 
                         </div>
-                      </div>s
-
-                      <!-- Input hidden para la comuna actual -->
+                      </div>
 
                       <!-- Dirección -->
                       <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
@@ -623,7 +625,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             
                               <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                              <input type="date" class="form-control input" name="editarFechaInicio" id="editarFechaInicio"  required>
+                              <input type="date" class="form-control input" name="editarInicio" id="editarInicio"  required>
 
                             </div>
                         </div>
@@ -635,7 +637,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             
                               <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                              <input type="date" class="form-control input" name="editarFechaVencimiento" id="editarFechaVencimiento" required>
+                              <input type="date" class="form-control input" name="editarVencimiento" id="editarVencimiento" required>
 
                             </div>
                         </div>
