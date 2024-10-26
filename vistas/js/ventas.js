@@ -1188,7 +1188,6 @@ $(".tablas").on("click", ".btnImprimirTicket", function(){
 
 })
 
-
 /*=============================================
 RANGO DE FECHAS COTIZACIONES
 =============================================*/

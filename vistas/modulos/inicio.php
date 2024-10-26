@@ -1,31 +1,28 @@
 <?php
 
-//$item = null;
-//$valor = null;
-//$orden = "id";
-//$fechaInicial = $_GET["fechaInicial"];
-//$fechaFinal = $_GET["fechaFinal"];
-//$ventas = ControladorVentas::ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal);
+$item = null;
+$valor = null;
+$orden = "id";
+$fechaInicial = $_GET["fechaInicial"];
+$fechaFinal = $_GET["fechaFinal"];
+$ventas = ControladorVentas::ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal);
 
-//$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-//$totalCategorias = count($categorias);
+$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+$totalCategorias = count($categorias);
 
-//$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
-//$totalClientes = count($clientes);
+$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);$totalClientes = count($clientes);
 
-//$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
-//$totalProductos = count($productos);
+$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
+$totalProductos = count($productos);
 
-//$proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor, $orden);
-//$totalProveedores = count($proveedores);
+$proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor, $orden);
+$totalProveedores = count($proveedores);
 
-//$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);
-//$totalUsuarios = count($usuarios) - 1;
+$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);
+$totalUsuarios = count($usuarios) - 1;
 
-//$bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor, $orden);
-//$totalBodegas = count($bodegas);
-
-
+$bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor, $orden);
+$totalBodegas = count($bodegas);
 ?>
 <div class="content-wrapper">
 
@@ -206,30 +203,6 @@
           
           </div>
 
-          <!--
-          <div class="box-tools pull-right">
-
-              <?php
-
-              if(isset($_GET["fechaInicial"])){
-
-                echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial='.$_GET["fechaInicial"].'&fechaFinal='.$_GET["fechaFinal"].'">';
-
-              }else{
-
-                echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte">';
-
-              }         
-
-              ?>
-            
-              <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
-
-              </a>
-
-            </div> 
-            -->
-      
       </div>
     <!-- RANGO DE FECHA Y REPORTE DE EXCEL PRUEBA --> 
 

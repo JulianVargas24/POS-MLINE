@@ -128,7 +128,6 @@ class ModeloSucursales{
 		$stmt = null;
 
 	}
-	
 
 }
 
