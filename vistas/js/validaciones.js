@@ -2,7 +2,6 @@
  *  Validar RUT chileno.
  *  Esta función verifica si el RUT ingresado es válido con el dígito verificador y formateando su estructura.
  */
-
 function formatearRut(inputRutId) {
   let rut = inputRutId.value.trim();
 
@@ -75,7 +74,6 @@ function validarTelefono(inputTelefono) {
 /**
  *  Validar línea de crédito.
  */
-
 function formatearLineaCredito(inputLineaCredito) {
   // Elimina cualquier carácter que no sea un número.
   let value = inputLineaCredito.value.replace(/[^0-9]/g, "");
@@ -87,4 +85,20 @@ function formatearLineaCredito(inputLineaCredito) {
   inputLineaCredito.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
+/**
+ *  Validar el inicio y cierre de las fechas.
+ */
+function validarFechas(idComienzo, idCierre) {
+  const fechaComienzoInput = document.getElementById(idComienzo);
+  const fechaCierreInput = document.getElementById(idCierre);
 
+  const fechaComienzo = new Date(fechaComienzoInput.value);
+  const fechaCierre = new Date(fechaCierreInput.value);
+
+  if (fechaComienzo > fechaCierre) {
+    fechaCierreInput.value = "";
+    fechaCierreInput.focus();
+    return false;
+  }
+  return true;
+}
