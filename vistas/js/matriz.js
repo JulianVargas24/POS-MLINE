@@ -5,6 +5,7 @@ $(".tablas").on("click", ".btnEditarMatriz", function() {
     var idMatriz = $(this).attr("idMatriz");
     var datos = new FormData();
     datos.append("idMatriz", idMatriz);
+    console.log(idMatriz, "matriz");
 
     $.ajax({
         url: "ajax/matriz.ajax.php",
@@ -60,21 +61,3 @@ $(".tablas").on("click", ".btnEliminarMatriz", function(){
     })
 })
 
-const regiones = [
-	["Tarapaca", "I"],
-	["Antofagasta", "II"],
-	["Atacama", "III"],
-	["Coquimbo", "IV"],
-	["Valparaiso", "V"],
-	["Libertador General Bernardo O'Higgins", "VI"],
-	["Maule", "VII"],
-	["Biobio", "VIII"],
-	["La Araucania", "IX"],
-	["Los Lagos", "X"],
-	["Aysen del General Carlos Ibañez del Campo", "XI"],
-	["Magallanes y Antartica Chilena", "XII"],
-	["Metropolitana de Santiago", "RM"],
-	["Los Rios", "XIV"],
-	["Arica y Parinacota", "XV"],
-	["Ñuble", "XVI"]
-]

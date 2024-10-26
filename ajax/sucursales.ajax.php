@@ -19,20 +19,15 @@ class AjaxSucursales{
 		$respuesta = ControladorSucursales::ctrMostrarSucursales($item, $valor);
 
 		echo json_encode($respuesta);
-
-
 	}
-
 }
 
 /*=============================================
 EDITAR SUCURSAL
 =============================================*/	
-
-if(isset($_POST["idSucursal"])){
-
+if(isset($_POST["idSucursal"]))
+{
 	$sucursal = new AjaxSucursales();
     $sucursal -> idSucursal = $_POST["idSucursal"];
 	$sucursal -> ajaxEditarSucursal();
-
 }

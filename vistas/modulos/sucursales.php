@@ -105,7 +105,6 @@ if($_SESSION["perfil"] == "Especial"){
                     <td>'.$value["bodega"].'</td>
 
                     <td>'.$value["jefe"].'</td>
-                          
 
                     <td>'.$value["telefono"].'</td>
 
@@ -129,9 +128,8 @@ if($_SESSION["perfil"] == "Especial"){
 
                   </tr>';
           
-            }
-
-           
+          }
+          
         ?>
    
         </tbody>
@@ -241,7 +239,11 @@ MODAL AGREGAR SUCURSAL
               
                                 </select>
                     </div>
-                  </div>   
+                  </div> 
+                  
+                  <!-- Input hidden para la comuna actual -->
+                  <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
+
 
                   <!-- ENTRADA PARA LA DIRECCIÓN -->                           
                   <div class="col-lg-6" style="margin-top:10px;">
@@ -352,7 +354,6 @@ MODAL AGREGAR SUCURSAL
 
 <!--=====================================
 MODAL EDITAR SUCURSAL
-
 ======================================-->
 
 <div id="modalEditarSucursal" class="modal fade" role="dialog">
@@ -386,7 +387,8 @@ MODAL EDITAR SUCURSAL
             <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Sucursal</h4>
               <div class="box box-info">
                 <div class="box-body">                
-                  <div class="form-group row">              
+                  <div class="form-group row">
+                                  
                     <div class="col-lg-6">
                       <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
                       <div class="input-group">
@@ -646,4 +648,4 @@ document.getElementById('editarRegion').addEventListener('change', function() {
         document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
     }
 });
-  </script>
+</script>

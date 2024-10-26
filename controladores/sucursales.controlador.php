@@ -77,7 +77,8 @@ class ControladorSucursales{
 
 			   	$tabla = "sucursales";
 
-				   $datos = array("id"=>$_POST["idSucursal"],
+				   $datos = array(
+					"id"=>$_POST["idSucursal"],
 				   "nombre"=>$_POST["editarSucursal"],
 				   "region"=>$_POST["editarRegion"],
 					"comuna"=>$_POST["editarComuna"],
@@ -86,7 +87,8 @@ class ControladorSucursales{
 				   "jefe"=>$_POST["editarJefe"],
 				   "telefono"=>$_POST["editarTelefono"],
 				   "email"=>$_POST["editarEmail"],
-				   "bodega"=>$_POST["editarBodega"]);
+				   "bodega"=>$_POST["editarBodega"]
+				);
 								
 
 			   	$respuesta = ModeloSucursales::mdlEditarSucursal($tabla, $datos);
