@@ -50,13 +50,13 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                 <?php
 
-                                if (isset($_GET["fechaInicial"])) {
+                            if (isset($_GET["fechaInicial"])) {
 
-                                    echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
-                                } else {
+                                echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
+                            } else {
 
-                                    echo 'Rango de fecha';
-                                }
+                                echo 'Rango de fecha';
+                            }
 
                                 ?>
                             </span>
@@ -88,68 +88,68 @@ if ($_SESSION["perfil"] == "Especial") {
 
                     <thead>
 
-                    <tr>
-                        <th>Folio</th>
-                        <th>Tipo de documento</th>
-                        <th>Proveedor</th>
-                        <th>Emisión</th>
-                        <th>Vencimiento</th>
-                        <th>Centro de costo</th>
-                        <th>Bodega</th>
-                        <th>Estado de orden</th>
-                        <th>Plazo de pago</th>
-                        <th>Medio de pago</th>
-                        <th>Observación</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
-                    </tr>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Tipo de documento</th>
+                            <th>Proveedor</th>
+                            <th>Emisión</th>
+                            <th>Vencimiento</th>
+                            <th>Centro de costo</th>
+                            <th>Bodega</th>
+                            <th>Estado de orden</th>
+                            <th>Plazo de pago</th>
+                            <th>Medio de pago</th>
+                            <th>Observación</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
 
                     </thead>
 
                     <tbody>
 
-                    <?php
+                        <?php
 
-                    $item = null;
-                    $valor = null;
+                        $item = null;
+                        $valor = null;
 
-                    $ordenCompra = ControladorOrdenCompra::ctrMostrarOrdenCompra($item, $valor);
-                    $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
-                    $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
-                    $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
-                    $plazos = ControladorPlazos::ctrMostrarPlazos($item, $valor);
-                    $medios = ControladorMediosPago::ctrMostrarMedios($item, $valor);
+                        $ordenCompra = ControladorOrdenCompra::ctrMostrarOrdenCompra($item, $valor);
+                        $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                        $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
+                        $plazos = ControladorPlazos::ctrMostrarPlazos($item, $valor);
+                        $medios = ControladorMediosPago::ctrMostrarMedios($item, $valor);
 
-                    foreach ($ordenCompra as $key => $value) {
+                        foreach ($ordenCompra as $key => $value) {
 
-                        for ($i = 0; $i < count($centros); ++$i) {
-                            if ($centros[$i]["id"] == $value["id_centro"]) {
-                                $centro = $centros[$i]["centro"];
+                            for ($i = 0; $i < count($centros); ++$i) {
+                                if ($centros[$i]["id"] == $value["id_centro"]) {
+                                    $centro = $centros[$i]["centro"];
+                                }
                             }
-                        }
-                        for ($i = 0; $i < count($bodegas); ++$i) {
-                            if ($bodegas[$i]["id"] == $value["id_bodega"]) {
-                                $bodega = $bodegas[$i]["nombre"];
+                            for ($i = 0; $i < count($bodegas); ++$i) {
+                                if ($bodegas[$i]["id"] == $value["id_bodega"]) {
+                                    $bodega = $bodegas[$i]["nombre"];
+                                }
                             }
-                        }
-                        for ($i = 0; $i < count($proveedores); ++$i) {
-                            if ($proveedores[$i]["id"] == $value["id_proveedor"]) {
-                                $proveedor = $proveedores[$i]["razon_social"];
+                            for ($i = 0; $i < count($proveedores); ++$i) {
+                                if ($proveedores[$i]["id"] == $value["id_proveedor"]) {
+                                    $proveedor = $proveedores[$i]["razon_social"];
+                                }
                             }
-                        }
-                        for ($i = 0; $i < count($plazos); ++$i) {
-                            if ($plazos[$i]["id"] == $value["id_plazo_pago"]) {
-                                $plazo = $plazos[$i]["nombre"];
+                            for ($i = 0; $i < count($plazos); ++$i) {
+                                if ($plazos[$i]["id"] == $value["id_plazo_pago"]) {
+                                    $plazo = $plazos[$i]["nombre"];
+                                }
                             }
-                        }
-                        for ($i = 0; $i < count($medios); ++$i) {
-                            if ($medios[$i]["id"] == $value["id_medio_pago"]) {
-                                $medio = $medios[$i]["medio_pago"];
+                            for ($i = 0; $i < count($medios); ++$i) {
+                                if ($medios[$i]["id"] == $value["id_medio_pago"]) {
+                                    $medio = $medios[$i]["medio_pago"];
+                                }
                             }
-                        }
 
-                        if ($value["estado"] != "Cerrada") {
-                            echo '<tr>
+                            if ($value["estado"] != "Cerrada") {
+                                echo '<tr>
 
 
                     <td>' . $value["codigo"] . '</td> 
@@ -187,23 +187,23 @@ if ($_SESSION["perfil"] == "Especial") {
                       PDF
                       </button>';
 
-                            if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
-                                echo '
+                                if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
+                                    echo '
                                 <button class="btn btn-success btnFacturarOrdenCompra" idOrdenCompra="' . $value["codigo"] . '">Facturar</button>
                                 <button class="btn btn-warning btnEditarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-pencil"></i></button> ';
-                            }
-                            if ($_SESSION["perfil"] == "Administrador") {
-                                echo ' <button class="btn btn-danger btnEliminarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-                            }
-                            echo '</div>
+                                }
+                                if ($_SESSION["perfil"] == "Administrador") {
+                                    echo ' <button class="btn btn-danger btnEliminarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+                                }
+                                echo '</div>
 
                   </td>
 
                   </tr>';
+                            }
                         }
-                    }
 
-                    ?>
+                        ?>
 
                     </tbody>
 
