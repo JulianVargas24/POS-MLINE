@@ -5,7 +5,7 @@ require_once "conexion.php";
 class ModeloSucursales{
 
 	/*=============================================
-	CREAR PROVEEDOR
+	CREAR SUCURSALES
 	=============================================*/
 
 	static public function mdlIngresarSucursal($tabla, $datos){
@@ -37,7 +37,7 @@ class ModeloSucursales{
 	}
 
 	/*=============================================
-	MOSTRAR PROVEEDORES
+	MOSTRAR SUCURSALES
 	=============================================*/
 
 	static public function mdlMostrarSucursales($tabla, $item, $valor){
@@ -69,7 +69,7 @@ class ModeloSucursales{
 	}
 
 	/*=============================================
-	EDITAR PROVEEDOR
+	EDITAR SUCURSALES
 	=============================================*/
 
 	static public function mdlEditarSucursal($tabla, $datos){
@@ -104,7 +104,7 @@ class ModeloSucursales{
 	}
 
 	/*=============================================
-	BORRAR PROVEEDOR
+	BORRAR SUCURSALES
 	=============================================*/
 
 	static public function mdlBorrarSucursal($tabla, $datos){
@@ -128,6 +128,7 @@ class ModeloSucursales{
 		$stmt = null;
 
 	}
+	
 
 }
 
