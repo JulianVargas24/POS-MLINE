@@ -138,7 +138,7 @@ $sumaTotalFinal = $sumaTotalFA + $sumaTotalFE + $sumaTotalBA + $sumaTotalBE;
                                           
                                                   <div class="box box-success">
                                                           <div class="box-title">
-                                                              <h2 style="font-weight:bold">VENTAS DEL DIA</h4>
+                                                              <h4 style="font-weight:bold">VENTAS DEL DIA</h4>
                                                           </div>
                                                           <div class="box-body">
                                                               <div class="form-group row">
@@ -201,11 +201,7 @@ $sumaTotalFinal = $sumaTotalFA + $sumaTotalFE + $sumaTotalBA + $sumaTotalBE;
                                       PIE DEL MODAL
                                       ======================================-->
 
-                                      <div class="modal-footer">
-
-                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-                                      </div>
+                                      
 
                                     </form>
 
@@ -320,7 +316,7 @@ MODAL VER DETALLE PRODUCTO
               </div>
             <div class="box box-success">
                             <div class="box-title">
-                            <h2 style="font-weight:bold">ENTRADAS</h4></div>
+                            <h4 style="font-weight:bold">ENTRADAS</h4></div>
               <div class="box-body">
                 <div class="form-group row"> 
                     <div class="col-xs-4">
@@ -374,7 +370,7 @@ MODAL VER DETALLE PRODUCTO
             </div>
             <div class="box box-warning">
                             <div class="box-title">
-                            <h2 style="font-weight:bold">SALIDAS</h4></div>
+                            <h4 style="font-weight:bold">SALIDAS</h4></div>
               <div class="box-body">
                 <div class="form-group row"> 
                     <div class="col-xs-4">
