@@ -169,7 +169,7 @@ if ($_SESSION["perfil"] == "Especial") {
         </div>
 
         <!--=====================================
-        CUERPO DEL MODAL, REGION, CIUDAD, DIRECCION
+        CUERPO DEL MODAL
         ======================================-->
         <div class="modal-body">
           <div class="box-body">
@@ -495,10 +495,14 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
+
+                                $item = null;
+                                $valor = null;
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
                                 foreach ($regiones as $region) {
-                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $cliente['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
-                                }
-                                ?>
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
+                                  }
+                                  ?>
             
                             </select>
 
