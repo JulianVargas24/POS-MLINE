@@ -251,52 +251,53 @@ CUERPO DOCUMENTO
 
     ?>
 
-}
+    }
 
-?>
+    ?>
 
-<script src="vistas/js/plantilla.js"></script>
-<script src="vistas/js/usuarios.js"></script>
-<script src="vistas/js/proveedores.js"></script>
-<script src="vistas/js/categorias.js"></script>
-<script src="vistas/js/subcategorias.js"></script>
-<script src="vistas/js/listas.js"></script>
-<script src="vistas/js/unidades.js"></script>
-<script src="vistas/js/productos.js"></script>
-<script src="vistas/js/clientes.js"></script>
-<script src="vistas/js/ventas.js"></script>
-<script src="vistas/js/bodegas.js"></script>
-<script src="vistas/js/orden-compra.js"></script>
-<script src="vistas/js/orden-vestuario.js"></script>
-<script src="vistas/js/entradas.js"></script>
-<script src="vistas/js/salidas.js"></script>
-<script src="vistas/js/impuestos.js"></script>
-<script src="vistas/js/rubros.js"></script>
-<script src="vistas/js/plazos.js"></script>
-<script src="vistas/js/Historialventas.js"></script>
-<script src="vistas/js/reportes.js"></script>
-<script src="vistas/js/centros.js"></script>
-<script src="vistas/js/negocios.js"></script>
-<script src="vistas/js/tabla-listas.js"></script>
-<script src="vistas/js/sucursales.js"></script>
-<script src="vistas/js/personal.js"></script>
-<script src="vistas/js/medios-pago.js"></script>
-<script src="vistas/js/venta-factura.js"></script>
-<script src="vistas/js/venta-boleta.js"></script>
-<script src="vistas/js/compras.js"></script>
-<script src="vistas/js/cotizacion.js"></script>
-<script src="vistas/js/cotizacion-exenta.js"></script>
-<script src="vistas/js/venta-exenta.js"></script>
-<script src="vistas/js/boleta-exenta.js"></script>
-<script src="vistas/js/plantel.js"></script>
-<script src="vistas/js/tipo-productos.js"></script>
-<script src="vistas/js/tipo-clientes.js"></script>
-<script src="vistas/js/matriz.js"></script>
-<script src="vistas/js/ajustes.js"></script>
-<script src="vistas/js/lista-precios.js"></script>
-<script src="vistas/js/carga-inicial.js"></script>
-<script src="vistas/js/validaciones.js"></script>
-<script src="vistas/js/bancos.js"></script>
+    <script src="vistas/js/plantilla.js"></script>
+    <script src="vistas/js/usuarios.js"></script>
+    <script src="vistas/js/proveedores.js"></script>
+    <script src="vistas/js/categorias.js"></script>
+    <script src="vistas/js/subcategorias.js"></script>
+    <script src="vistas/js/listas.js"></script>
+    <script src="vistas/js/unidades.js"></script>
+    <script src="vistas/js/productos.js"></script>
+    <script src="vistas/js/clientes.js"></script>
+    <script src="vistas/js/ventas.js"></script>
+    <script src="vistas/js/bodegas.js"></script>
+    <script src="vistas/js/orden-compra.js"></script>
+    <script src="vistas/js/orden-vestuario.js"></script>
+    <script src="vistas/js/entradas.js"></script>
+    <script src="vistas/js/salidas.js"></script>
+    <script src="vistas/js/impuestos.js"></script>
+    <script src="vistas/js/rubros.js"></script>
+    <script src="vistas/js/plazos.js"></script>
+    <script src="vistas/js/Historialventas.js"></script>
+    <script src="vistas/js/reportes.js"></script>
+    <script src="vistas/js/centros.js"></script>
+    <script src="vistas/js/negocios.js"></script>
+    <script src="vistas/js/tabla-listas.js"></script>
+    <script src="vistas/js/sucursales.js"></script>
+    <script src="vistas/js/personal.js"></script>
+    <script src="vistas/js/medios-pago.js"></script>
+    <script src="vistas/js/venta-factura.js"></script>
+    <script src="vistas/js/venta-boleta.js"></script>
+    <script src="vistas/js/compras.js"></script>
+    <script src="vistas/js/cotizacion.js"></script>
+    <script src="vistas/js/cotizacion-exenta.js"></script>
+    <script src="vistas/js/venta-exenta.js"></script>
+    <script src="vistas/js/boleta-exenta.js"></script>
+    <script src="vistas/js/plantel.js"></script>
+    <script src="vistas/js/tipo-productos.js"></script>
+    <script src="vistas/js/tipo-clientes.js"></script>
+    <script src="vistas/js/matriz.js"></script>
+    <script src="vistas/js/ajustes.js"></script>
+    <script src="vistas/js/lista-precios.js"></script>
+    <script src="vistas/js/carga-inicial.js"></script>
+    <script src="vistas/js/validaciones.js"></script>
+    <script src="vistas/js/bancos.js"></script>
+    <script src="vistas/js/cotizaciones.js"></script>
 </body>
 
 </html>

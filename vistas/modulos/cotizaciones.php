@@ -78,7 +78,7 @@ if($xml){
 
         <div class="input-group">
 
-          <button type="button" class="btn btn-default" id="daterange-cotizacion">
+          <button type="button" class="btn btn-default" id="daterange-cotizaciones">
           
             <span>
               <i class="fa fa-calendar"></i> 
@@ -101,8 +101,6 @@ if($xml){
             <i class="fa fa-caret-down"></i>
 
           </button>
-
-          <a href="cotizaciones"> <button class="btn btn-success ml-2"> <i class="fa fa-home"> </i> </button> </a>
 
         </div>
 
