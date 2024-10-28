@@ -204,7 +204,7 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>
 
 
-                                    
+
                     
                 </div>
                 
@@ -336,33 +336,27 @@ if($_SESSION["perfil"] == "Especial"){
                                                             <th>Nombre</th>
                                                             <th>Acciones</th>
                                                             </tr>
-
                                                         </thead>
-
                                                     </table>
-                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- A partir de aquí empieza la sona segura para colocar los botones de Salir y de Guardar Entrada. -->
                                 </div>
                             </div>
+                            <!-- Botones en INGRESO MANUAL a BODEGA -->
+                            <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
+                            <button type="submit" class="btn btn-primary">Guardar Entrada</button>
+                            <!-- De aquí para abajo empieza la línea separadora de la sección. -->
                         </div>
                     </div>
-
-
-                                    
-                    
                 </div>
-                
-                <!-- Botones en INGRESO MANUAL a BODEGA -->
-                <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
-                <button type="submit" class="btn btn-primary">Guardar Entrada</button>
             </form>
-            <form role="form" method="post" class="formularioEntradaInventario" id="orden">    
+            <form role="form" method="post" class="formularioEntradaInventario" id="orden">
                 <div class="row" style="margin-bottom:5px;">
                     <div class="col-xs-5">
-                        
+
                             <div class="form-group">
                                 <div class="input-group">
                                 <label for="">Fecha Emisión</label>
@@ -543,7 +537,7 @@ if($_SESSION["perfil"] == "Especial"){
                     </div>
                 
                 </div>
-                
+
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box box-info">
@@ -616,7 +610,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="box-header with-border"></div>
                                                 <div class="box-body">
                                                     <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
-                                                    
+
                                                     <table  class="table table-bordered table-striped dt-responsive tablaEntradas4">
                                                 
                                                     
@@ -629,28 +623,24 @@ if($_SESSION["perfil"] == "Especial"){
                                                             <th>Nombre</th>
                                                             <th>Acciones</th>
                                                             </tr>
-
                                                         </thead>
-
                                                     </table>
-                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- A partir de aquí empieza la sona segura para colocar los botones de Salir y de Guardar Entrada.  -->
                                 </div>
                             </div>
+                            <!-- Botones en CARGA de PRODUCTO -->
+                            <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
+                            <button type="submit" class="btn btn-primary">Guardar Entrada</button>
+                            <!-- De aquí para abajo empieza la línea separadora de la sección. -->
                         </div>
                     </div>
-
-
-                                    
-                    
                 </div>
-                
-                <!-- Botones en CARGA de PRODUCTO -->
-                <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
-                <button type="submit" class="btn btn-primary">Guardar Entrada</button>
+
+
             </form>
             
             
@@ -664,7 +654,7 @@ if($_SESSION["perfil"] == "Especial"){
 
     </div>
 
-    
+
 
   </section>
 

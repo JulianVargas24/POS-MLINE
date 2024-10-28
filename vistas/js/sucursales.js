@@ -1,3 +1,4 @@
+
 $(".tablas").on("click", ".btnEliminarSucursal", function(){
 
     var idSucursal = $(this).attr("idSucursal");
@@ -25,11 +26,10 @@ $(".tablas").on("click", ".btnEliminarSucursal", function(){
 
 
 $(".tablas").on("click", ".btnEditarSucursal", function(){
-
 	var idSucursal = $(this).attr("idSucursal");
-
 	var datos = new FormData();
 	datos.append("idSucursal", idSucursal);
+	console.log(idSucursal, "sucursal");
 
 	$.ajax({
 		url: "ajax/sucursales.ajax.php",
@@ -51,8 +51,7 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
             $("#editarTelefono").val(respuesta["telefono"]);
 			$("#editarEmail").val(respuesta["email"]);
 			$("#editarJefe").val(respuesta["jefe"]);
-          
-           
+        
 
      	}
 
@@ -61,21 +60,4 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
 
 })
 
-const regiones = [
-	["Tarapaca", "I"],
-	["Antofagasta", "II"],
-	["Atacama", "III"],
-	["Coquimbo", "IV"],
-	["Valparaiso", "V"],
-	["Libertador General Bernardo O'Higgins", "VI"],
-	["Maule", "VII"],
-	["Biobio", "VIII"],
-	["La Araucania", "IX"],
-	["Los Lagos", "X"],
-	["Aysen del General Carlos Ibañez del Campo", "XI"],
-	["Magallanes y Antartica Chilena", "XII"],
-	["Metropolitana de Santiago", "RM"],
-	["Los Rios", "XIV"],
-	["Arica y Parinacota", "XV"],
-	["Ñuble", "XVI"]
-]
+

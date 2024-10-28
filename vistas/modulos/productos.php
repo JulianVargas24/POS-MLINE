@@ -249,7 +249,7 @@ MODAL AGREGAR PRODUCTO
                     </div>
                   </div>
                   <div class="col-xs-6">
-                  <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Stock Mínimo</div>
+                  <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Stock Minimo</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
@@ -335,7 +335,7 @@ MODAL AGREGAR PRODUCTO
                 <div class="form-group row"> 
                 
                     <div class="col-xs-4">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Código de Producto</div>
+                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Codigo de Producto</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-code"></i></span> 
@@ -631,7 +631,7 @@ MODAL EDITAR PRODUCTO
                     </div>
                   </div>
                   <div class="col-xs-6">
-                  <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Stock Mínimo</div>
+                  <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Stock Minimo</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
@@ -717,7 +717,7 @@ MODAL EDITAR PRODUCTO
                 <div class="form-group row"> 
                 
                     <div class="col-xs-4">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Código de Producto</div>
+                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Codigo de Producto</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-code"></i></span> 

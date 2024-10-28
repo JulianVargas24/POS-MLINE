@@ -212,24 +212,29 @@ class ControladorClientes{
 	
                     </tr>");
 
-            foreach ($clientes as $row => $item) {
+					foreach ($clientes as $row => $value) {
+						require_once 'C:/xampp/htdocs/POS-MLINE/controladores/regiones.controlador.php';
+						require_once 'C:/xampp/htdocs/POS-MLINE/modelos/regiones.modelo.php';
 
+						// Obtener los nombres de la región y la comuna
+						$regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
+						$comunaNombre = ControladorRegiones::ctrMostrarComunas('id', $value['comuna']);
+			
+						// Asignar nombres o mostrar el ID si no se encuentra el nombre
+						$regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : ''.$value['region'];
+						$comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : ''.$value['comuna'];
 
-
-
-                echo utf8_decode("<tr>
-                        <td style='border:1px solid #eee;'>" . $item["nombre"] . "</td> 
-                        <td style='border:1px solid #eee;'>" . $item["rut"] . "</td>
-						 <td style='border:1px solid #eee;'>" . $item["email"] . "</td>
-						 <td style='border:1px solid #eee;'>" . $item["telefono"] . "</td>
-						 <td style='border:1px solid #eee;'>" . $item["region"] . "</td>
-						 <td style='border:1px solid #eee;'>" . $item["comuna"] . "</td>
-						 <td style='border:1px solid #eee;'>" . $item["direccion"] . "</td>
-						 <td style='border:1px solid #eee;'>" . $item["actividad"] . "</td>
-                        
-	
-		 			</tr>");
-            }
+						echo utf8_decode("<tr>
+								<td style='border:1px solid #eee;'>" . $value["nombre"] . "</td> 
+								<td style='border:1px solid #eee;'>" . $value["rut"] . "</td>
+								<td style='border:1px solid #eee;'>" . $value["email"] . "</td>
+								<td style='border:1px solid #eee;'>" . $value["telefono"] . "</td>
+								<td style='border:1px solid #eee;'>" . $regionDisplay . "</td>
+								<td style='border:1px solid #eee;'>" . $comunaDisplay . "</td>
+								<td style='border:1px solid #eee;'>" . $value["direccion"] . "</td>
+								<td style='border:1px solid #eee;'>" . $value["actividad"] . "</td>
+							</tr>");
+					}
 
 
             echo "</table>";

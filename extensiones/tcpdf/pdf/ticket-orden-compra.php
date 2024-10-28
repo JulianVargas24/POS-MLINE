@@ -42,10 +42,10 @@ class imprimirOrdenCompra
         $respuestaProveedor = ControladorProveedores::ctrMostrarProveedores($itemProveedor, $valorProveedor);
 
         //TRAEMOS LA INFORMACIÓN DEL VENDEDOR
-        $itemVendedor = "id";
+        /*$itemVendedor = "id";
         $valorVendedor = $respuestaOrden["id_vendedor"];
 
-        $respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
+        $respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);*/
 
         // REQUERIMOS LA CLASE TCPDF
         require_once('tcpdf_include.php');
@@ -72,8 +72,6 @@ class imprimirOrdenCompra
                 <strong>Sistema POS</strong>
                 <br>                
                 Proveedor: $respuestaProveedor[razon_social]
-                <br>
-                Vendedor: $respuestaVendedor[nombre]
                 <br>
             </div>
         </td>

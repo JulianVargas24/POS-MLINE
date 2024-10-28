@@ -108,10 +108,10 @@ if($_SESSION["perfil"] == "Vendedor"){
                                    
                                    <tr>
                                      
-                                     <th>Descripción</th>
+                                     <th>Descripcion</th>
                                      <th>Stock</th>
                                      <th>Alerta de Stock</th>
-                                     <th>Stock Mínimo</th>
+                                     <th>Stock Minimo</th>
                                   
                           
                                    </tr> 

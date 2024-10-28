@@ -5,7 +5,7 @@ $(".tablas").on("click", ".btnEditarMatriz", function() {
     var idMatriz = $(this).attr("idMatriz");
     var datos = new FormData();
     datos.append("idMatriz", idMatriz);
-    console.log(idMatriz, "idmatriz");
+    console.log(idMatriz, "matriz");
 
     $.ajax({
         url: "ajax/matriz.ajax.php",
@@ -60,3 +60,4 @@ $(".tablas").on("click", ".btnEliminarMatriz", function(){
         }
     })
 })
+

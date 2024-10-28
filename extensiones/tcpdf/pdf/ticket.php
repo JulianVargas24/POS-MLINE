@@ -14,51 +14,51 @@ require_once "../../../modelos/productos.modelo.php";
 
 class imprimirFactura
 {
-    public $codigo;
+	public $codigo;
 
-    public function traerImpresionFactura()
-    {
-        //TRAEMOS LA INFORMACIÓN DE LA VENTA
-        $itemVenta = "codigo";
-        $valorVenta = $this->codigo;
+	public function traerImpresionFactura()
+	{
+		//TRAEMOS LA INFORMACIÓN DE LA VENTA
+		$itemVenta = "codigo";
+		$valorVenta = $this->codigo;
 
-        $respuestaVenta = ControladorVentas::ctrMostrarVentasBoletas($itemVenta, $valorVenta);
+		$respuestaVenta = ControladorVentas::ctrMostrarVentasBoletas($itemVenta, $valorVenta);
 
-        $fecha = $respuestaVenta["fecha_emision"];
-        $productos = json_decode($respuestaVenta["productos"], true);
-        $subtotal = $respuestaVenta["subtotal"];
-        $neto = $respuestaVenta["total_neto"];
-        $iva = $respuestaVenta["iva"];
-        $descuento = $respuestaVenta["descuento"];
-        $total = $respuestaVenta["total_final"];
-        $metodo_pago = $respuestaVenta["metodo_pago"];
-        $total_pagado = number_format($respuestaVenta["total_pagado"], 0);
-        $total_pendiente_pago = number_format($respuestaVenta["total_pendiente_pago"], 0);
+		$fecha = $respuestaVenta["fecha_emision"];
+		$productos = json_decode($respuestaVenta["productos"], true);
+		$subtotal = $respuestaVenta["subtotal"];
+		$neto = $respuestaVenta["total_neto"];
+		$iva = $respuestaVenta["iva"];
+		$descuento = $respuestaVenta["descuento"];
+		$total = $respuestaVenta["total_final"];
+		$metodo_pago = $respuestaVenta["metodo_pago"];
+		$total_pagado = number_format($respuestaVenta["total_pagado"], 0);
+		$total_pendiente_pago = number_format($respuestaVenta["total_pendiente_pago"], 0);
 
-        //TRAEMOS LA INFORMACIÓN DEL CLIENTE
-        $itemCliente = "id";
-        $valorCliente = $respuestaVenta["id_cliente"];
+		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
+		$itemCliente = "id";
+		$valorCliente = $respuestaVenta["id_cliente"];
 
-        $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+		$respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
 
-        //TRAEMOS LA INFORMACIÓN DEL VENDEDOR
-        $itemVendedor = "id";
-        $valorVendedor = $respuestaVenta["id_vendedor"];
+		//TRAEMOS LA INFORMACIÓN DEL VENDEDOR
+		$itemVendedor = "id";
+		$valorVendedor = $respuestaVenta["id_vendedor"];
 
-        $respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
+		$respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
 
-        //REQUERIMOS LA CLASE TCPDF
-        require_once('tcpdf_include.php');
+		//REQUERIMOS LA CLASE TCPDF
+		require_once('tcpdf_include.php');
 
-        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-        $pdf->setPrintHeader(false);
-        $pdf->setPrintFooter(false);
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
 
-        $pdf->AddPage('P', 'A7');
+		$pdf->AddPage('P', 'A7');
 
-        //---------------------------------------------------------
-        $bloque1 = <<<EOF
+		//---------------------------------------------------------
+		$bloque1 = <<<EOF
 
 <table style="font-size:9px; text-align:center">
 	<tr>
@@ -80,12 +80,12 @@ class imprimirFactura
 	</tr>
 </table>
 EOF;
-        $pdf->writeHTML($bloque1, false, false, false, false, '');
-        // ---------------------------------------------------------
-        foreach ($productos as $key => $item) {
-            $valorUnitario = number_format($item["total"], 0);
-            $precioTotal = number_format($item["total"], 0);
-            $bloque2 = <<<EOF
+		$pdf->writeHTML($bloque1, false, false, false, false, '');
+		// ---------------------------------------------------------
+		foreach ($productos as $key => $item) {
+			$valorUnitario = number_format($item["total"], 0);
+			$precioTotal = number_format($item["total"], 0);
+			$bloque2 = <<<EOF
 
 <table style="font-size:8.5px; line-height:7px;">
 	<tr>
@@ -100,10 +100,10 @@ EOF;
 </table>
 
 EOF;
-            $pdf->writeHTML($bloque2, false, false, false, false, '');
-        }
-        // ---------------------------------------------------------
-        $bloque3 = <<<EOF
+			$pdf->writeHTML($bloque2, false, false, false, false, '');
+		}
+		// ---------------------------------------------------------
+		$bloque3 = <<<EOF
 <table style="font-size:9px; text-align:right">
 	<tr>
 		<td style="width:80px;font-size:7px;">
@@ -153,14 +153,14 @@ EOF;
 </table>
 
 EOF;
-        $pdf->writeHTML($bloque3, false, false, false, false, '');
-        // ---------------------------------------------------------
-        //SALIDA DEL ARCHIVO
+		$pdf->writeHTML($bloque3, false, false, false, false, '');
+		// ---------------------------------------------------------
+		//SALIDA DEL ARCHIVO
 
-        //$pdf->Output('factura.pdf', 'D');
-        ob_end_clean();
-        $pdf->Output('factura.pdf');
-    }
+		//$pdf->Output('factura.pdf', 'D');
+		ob_end_clean();
+		$pdf->Output('factura.pdf');
+	}
 }
 
 $factura = new imprimirFactura();

@@ -2,79 +2,78 @@
 
 if ($_SESSION["perfil"] == "Especial") {
 
-    echo '<script>
+  echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-    return;
-
+  return;
 }
 
 ?>
 
 <div class="content-wrapper">
 
-    <section class="content-header">
+  <section class="content-header">
 
-        <h1>
-            Administrar Centro de Costos
-        </h1>
+    <h1>
+      Administrar Centro de Costos
+    </h1>
 
-        <ol class="breadcrumb">
+    <ol class="breadcrumb">
 
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Administrar Centro de Costos</li>
+      <li class="active">Administrar Centro de Costos</li>
 
-        </ol>
+    </ol>
 
-    </section>
+  </section>
 
-    <section class="content">
+  <section class="content">
 
-        <div class="box">
+    <div class="box">
 
-            <div class="box-header with-border">
+      <div class="box-header with-border">
 
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCentro">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCentro">
 
-                    Agregar Centro de Costo
+          Agregar Centro de Costo
 
-                </button>
+        </button>
 
-            </div>
+      </div>
 
-            <div class="box-body">
+      <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-                    <thead>
+          <thead>
 
-                    <tr>
+            <tr>
 
-                        <th style="width:10px">#</th>
-                        <th>Centro de costo</th>
-                        <th>Código</th>
+              <th style="width:10px">#</th>
+              <th>Centro de costo</th>
+              <th>Código</th>
 
-                    </tr>
+            </tr>
 
-                    </thead>
+          </thead>
 
-                    <tbody>
+          <tbody>
 
-                    <?php
+            <?php
 
-                    $item = null;
-                    $valor = null;
+            $item = null;
+            $valor = null;
 
-                    $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+            $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
 
-                    foreach ($centros as $key => $value) {
+            foreach ($centros as $key => $value) {
 
 
-                        echo '<tr>
+              echo '<tr>
 
                     <td>' . ($key + 1) . '</td>
 
@@ -89,32 +88,30 @@ if ($_SESSION["perfil"] == "Especial") {
                           
                         <button class="btn btn-warning btnEditarCentro" data-toggle="modal" data-target="#modalEditarCentro" idCentro="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
 
-                        if ($_SESSION["perfil"] == "Administrador") {
+              if ($_SESSION["perfil"] == "Administrador") {
 
-                            echo '<button class="btn btn-danger btnEliminarCentro" idCentro="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+                echo '<button class="btn btn-danger btnEliminarCentro" idCentro="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+              }
 
-                        }
-
-                        echo '</div>
+              echo '</div>
 
                     </td>
 
                   </tr>';
+            }
 
-                    }
 
+            ?>
 
-                    ?>
+          </tbody>
 
-                    </tbody>
+        </table>
 
-                </table>
+      </div>
 
-            </div>
+    </div>
 
-        </div>
-
-    </section>
+  </section>
 
 </div>
 
@@ -123,93 +120,93 @@ MODAL AGREGAR CENTRO
 ======================================-->
 <div id="modalAgregarCentro" class="modal fade" role="dialog">
 
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
-    <div class="modal-dialog">
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+  <div class="modal-dialog">
 
-        <div class="modal-content">
+    <div class="modal-content">
 
-            <form role="form" method="post" id="form_nuevo_centro">
+      <form role="form" method="post" id="form_nuevo_centro">
 
-                <!--=====================================
+        <!--=====================================
                 CABEZA DEL MODAL
                 ======================================-->
 
-                <div class="modal-header" style="background:#3f668d; color:white">
+        <div class="modal-header" style="background:#3f668d; color:white">
 
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                    <h4 class="modal-title">Agregar Centro de Costo</h4>
+          <h4 class="modal-title">Agregar Centro de Costo</h4>
 
-                </div>
+        </div>
 
-                <!--=====================================
+        <!--=====================================
                 CUERPO DEL MODAL
                 ======================================-->
 
-                <div class="modal-body">
+        <div class="modal-body">
 
-                    <div class="box-body">
+          <div class="box-body">
 
-                        <!-- ENTRADA PARA EL NOMBRE -->
+            <!-- ENTRADA PARA EL NOMBRE -->
 
-                        <div class="form-group">
+            <div class="form-group">
 
-                            <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Centro de costo
-                            </div>
-                            <div class="input-group">
+              <div class="d-inline-block bg-primary"
+                style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Centro de costo
+              </div>
+              <div class="input-group">
 
-                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                <input type="text" class="form-control input" name="nuevoCentro" id="nuevoCentro"
-                                       placeholder="Ingresar Centro" required>
+                <input type="text" class="form-control input" name="nuevoCentro" id="nuevoCentro"
+                  placeholder="Ingresar Centro" required>
 
-                            </div>
-                        </div>
+              </div>
+            </div>
 
-                        <div class="form-group">
+            <div class="form-group">
 
-                            <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código de centro
-                            </div>
-                            <div class="input-group">
+              <div class="d-inline-block bg-primary"
+                style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código de centro
+              </div>
+              <div class="input-group">
 
-                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                <input type="text" class="form-control input" name="nuevoCodigoCentro"
-                                       id="nuevoCodigoCentro" placeholder="Ingresar Codigo" required
-                                       pattern="[0-9]+"
-                                       oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <input type="text" class="form-control input" name="nuevoCodigoCentro"
+                  id="nuevoCodigoCentro" placeholder="Ingresar Codigo" required
+                  pattern="[0-9]+"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <!--=====================================
+        <!--=====================================
                 PIE DEL MODAL
                 ======================================-->
-                <div class="modal-footer">
+        <div class="modal-footer">
 
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                    <button type="submit" class="btn btn-primary" name="crear_centro">Agregar Centro</button>
+          <button type="submit" class="btn btn-primary" name="crear_centro">Agregar Centro</button>
 
-                </div>
-
-                <?php
-
-                $crearCentro = new ControladorCentros();
-                $crearCentro->ctrCrearCentro();
-
-                ?>
-
-            </form>
         </div>
+
+        <?php
+
+        $crearCentro = new ControladorCentros();
+        $crearCentro->ctrCrearCentro();
+
+        ?>
+
+      </form>
     </div>
+  </div>
 </div>
 
 <!--=====================================
@@ -217,85 +214,85 @@ MODAL EDITAR PROVEEDOR
 ======================================-->
 <div id="modalEditarCentro" class="modal fade" role="dialog">
 
-    <div class="modal-dialog">
+  <div class="modal-dialog">
 
-        <div class="modal-content">
+    <div class="modal-content">
 
-            <form role="form" method="post" id="form_editar_centro">
+      <form role="form" method="post" id="form_editar_centro">
 
-                <!--=====================================
+        <!--=====================================
                 CABEZA DEL MODAL
                 ======================================-->
-                <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#3c8dbc; color:white">
 
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                    <h4 class="modal-title">Editar Centro de Costo</h4>
+          <h4 class="modal-title">Editar Centro de Costo</h4>
 
-                </div>
+        </div>
 
-                <!--=====================================
+        <!--=====================================
                 CUERPO DEL MODAL
                 ======================================-->
-                <div class="modal-body">
+        <div class="modal-body">
 
-                    <div class="box-body">
+          <div class="box-body">
 
-                        <!-- ENTRADA PARA EL NOMBRE -->
+            <!-- ENTRADA PARA EL NOMBRE -->
 
-                        <div class="form-group">
+            <div class="form-group">
 
-                            <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Centro de costo
-                            </div>
-                            <div class="input-group">
+              <div class="d-inline-block bg-primary"
+                style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Centro de costo
+              </div>
+              <div class="input-group">
 
-                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                <input type="text" class="form-control input" id="editarCentro" name="editarCentro"
-                                       required>
-                                <input type="hidden" id="idCentro" name="idCentro" required>
-                            </div>
-                        </div>
+                <input type="text" class="form-control input" id="editarCentro" name="editarCentro"
+                  required>
+                <input type="hidden" id="idCentro" name="idCentro" required>
+              </div>
+            </div>
 
-                        <div class="form-group">
+            <div class="form-group">
 
-                            <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código de centro
-                            </div>
-                            <div class="input-group">
+              <div class="d-inline-block bg-primary"
+                style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código de centro
+              </div>
+              <div class="input-group">
 
-                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                <input type="text" class="form-control input" id="editarCodigoCentro"
-                                       name="editarCodigoCentro" required pattern="[0-9]+"
-                                       oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <input type="text" class="form-control input" id="editarCodigoCentro"
+                  name="editarCodigoCentro" required pattern="[0-9]+"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <!--=====================================
+        <!--=====================================
                 PIE DEL MODAL
                 ======================================-->
-                <div class="modal-footer">
+        <div class="modal-footer">
 
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
-                </div>
-
-                <?php
-
-                $editarCentro = new ControladorCentros();
-                $editarCentro->ctrEditarCentro();
-
-                ?>
-
-            </form>
         </div>
+
+        <?php
+
+        $editarCentro = new ControladorCentros();
+        $editarCentro->ctrEditarCentro();
+
+        ?>
+
+      </form>
     </div>
+  </div>
 </div>
 
 <?php
