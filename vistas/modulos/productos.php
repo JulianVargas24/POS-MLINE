@@ -626,7 +626,7 @@ MODAL EDITAR PRODUCTO
                     
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
-                      <input type="text" class="form-control input" id="editarStockAlerta" name="editarStockAlerta" min="0" placeholder="Alerta de Stock" required>
+                      <input type="number" class="form-control input" id="editarStockAlerta" name="editarStockAlerta" min="0" placeholder="Alerta de Stock" required>
 
                     </div>
                   </div>
@@ -636,7 +636,7 @@ MODAL EDITAR PRODUCTO
                     
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
-                      <input type="text" class="form-control input" id="editarStockMin" name="editarStockMin" min="0" placeholder="Stock Minimo" required>
+                      <input type="number" class="form-control input" id="editarStockMin" name="editarStockMin" min="0" placeholder="Stock Minimo" required>
 
                     </div>
                   </div>
