@@ -298,5 +298,6 @@ CUERPO DOCUMENTO
 <script src="vistas/js/ajustes.js"></script>
 <script src="vistas/js/lista-precios.js"></script>
 <script src="vistas/js/carga-inicial.js"></script>
+<script src="vistas/js/cotizaciones.js"></script>
 </body>
 </html>
