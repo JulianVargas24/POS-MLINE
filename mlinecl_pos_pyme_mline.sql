@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 26-09-2024 a las 10:46:52
--- Versión del servidor: 10.6.18-MariaDB-cll-lve
--- Versión de PHP: 8.1.28
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 28-10-2024 a las 18:42:16
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -115,12 +115,12 @@ INSERT INTO `bancos` (`id`, `nombre_banco`, `codigo`) VALUES
 
 CREATE TABLE `bodegas` (
   `id` int(11) NOT NULL,
-  `nombre` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `region` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `comuna` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `direccion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `jefe` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `telefono` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `nombre` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `region` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `comuna` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `direccion` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `jefe` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `email` tinytext DEFAULT NULL,
   `pais` varchar(255) NOT NULL DEFAULT 'Chile'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -158,7 +158,7 @@ CREATE TABLE `categorias` (
   `id` int(11) NOT NULL,
   `categoria` text NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -215,7 +215,7 @@ CREATE TABLE `clientes` (
   `pais` varchar(255) NOT NULL DEFAULT 'Chile',
   `comuna` varchar(255) NOT NULL,
   `region` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
@@ -227,7 +227,9 @@ INSERT INTO `clientes` (`id`, `nombre`, `rut`, `email`, `telefono`, `direccion`,
 (4, 'Comercial y Servicios Generales SpA', '76.164.831-4', 'operaciones@segproject.cl', '51882212', 'Madrid 1235', 0, '0000-00-00 00:00:00', '2021-12-09 15:07:25', 'Obras de Ingeniería.', 'Anthony Tovar', 1, 7, 1, 'Chile', 'Santiago', 'Metropolitana de Santiago'),
 (5, 'NEUMASERVICE SPA', '76.340.654-7', '0', '0', 'Ecuador 1069', 0, '0000-00-00 00:00:00', '2022-02-07 13:49:58', 'Serviteca', '0', 1, 7, 1, 'Chile', 'Puerto Montt', 'Los Lagos'),
 (6, 'Servicios Gastronómicos Austral SPA', '76.608.115-0', '0', '0', 'Pedro Montt 179', 0, '0000-00-00 00:00:00', '2022-03-22 16:47:50', 'Restaurant', '0', 1, 7, 1, 'Chile', 'Puerto Montt', 'Los Lagos'),
-(7, 'PEPE', 'este es el rut del c', 'hola como estas? correo', 'este es el numero', 'avenida jose', 0, '0000-00-00 00:00:00', '2024-09-09 14:59:05', 'EJECUTIVO', 'pedro', 1, 7, 1, 'EL MUNDO', 'Arica', 'Los Lagos');
+(7, 'PEPE', '12.254.336-7', 'hola@gmail.com', '+12345678910', 'avenida jose', 0, '0000-00-00 00:00:00', '2024-10-17 20:15:06', 'EJECUTIVO', 'pedro', 1, 7, 2, 'EL MUNDO', '95', '7'),
+(21, 'JUAN', '14.254.254-7', 'hola@gmail.com', '+12345678910', 'avenida jose', 0, '0000-00-00 00:00:00', '2024-10-17 21:30:11', 'SUPER JERENTE', 'CARL', 1, 7, 2, 'Chile', '260', '11'),
+(23, 'SOCIAL', '12.258.254-4', 'hola@gmail.com', '+12345678910', 'avenida jose', 0, '0000-00-00 00:00:00', '2024-10-18 12:36:00', 'EJECUTIVO', 'pedro', 1, 7, 2, 'Chile', '296', '13');
 
 -- --------------------------------------------------------
 
@@ -265,7 +267,8 @@ INSERT INTO `compras` (`id`, `codigo`, `id_proveedor`, `fecha_emision`, `id_cent
 (4, 1313131, 2, '2024-09-09', 3, 2, 1, 2, '[{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"5\",\"precio\":\"20000\",\"descuento\":\"10000\",\"iva\":\"17100\",\"total\":\"107100\"},{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"15\",\"precio\":\"50000\",\"descuento\":\"5000\",\"iva\":\"141550\",\"total\":\"886550\"}]', 'BBBBBBBBBBBB', '850,000', '835,000', '15,000', '158,650', '993650', 0),
 (5, 0, 2, '2024-09-04', 3, 2, 1, 2, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"10000\",\"descuento\":\"0\",\"iva\":\"1900\",\"total\":\"11900\"},{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"10000\",\"descuento\":\"0\",\"iva\":\"1900\",\"total\":\"11900\"}]', 'BBBBBBBBBBBBB', '20,000', '20,000', '0', '3,800', '23800', 0),
 (6, 1112233344, 1, '2024-09-10', 1, 1, 1, 2, '[{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"214137\",\"descuento\":\"0\",\"iva\":\"40686\",\"total\":\"254823\"},{\"id\":\"9\",\"descripcion\":\"Gabinete Impresora\",\"cantidad\":\"1\",\"precio\":\"91773\",\"descuento\":\"0\",\"iva\":\"17437\",\"total\":\"109210\"}]', '', '305,910', '305,910', '0', '58,123', '364,033', 49),
-(7, 1, 2, '2024-09-10', 3, 2, 5, 6, 'Observación.', 'Observación', '', '', '', '', '', 0);
+(7, 1, 2, '2024-09-10', 3, 2, 5, 6, 'Observación.', 'Observación', '', '', '', '', '', 0),
+(8, 1, 2, '2024-10-06', 3, 2, 1, 3, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"361000\",\"total\":\"2261000\"}]', 'holaa', '1,900,000', '1,900,000', '0', '361,000', '2261000', 0);
 
 -- --------------------------------------------------------
 
@@ -277,7 +280,7 @@ CREATE TABLE `comunas` (
   `id` int(11) UNSIGNED NOT NULL,
   `nombre` varchar(255) NOT NULL DEFAULT '',
   `region_id` int(11) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `comunas`
@@ -655,7 +658,7 @@ CREATE TABLE `cotizaciones` (
   `total_final` varchar(255) NOT NULL,
   `observacion` varchar(255) NOT NULL DEFAULT 'Sin Observacion',
   `productos` varchar(1000) NOT NULL DEFAULT 'SIN PRODUCTOS',
-  `tipo_dte` text NOT NULL DEFAULT 'Cotizacion Afecta',
+  `tipo_dte` text NOT NULL DEFAULT 'Cotización Afecta',
   `estado` text NOT NULL DEFAULT 'Abierta'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -664,12 +667,13 @@ CREATE TABLE `cotizaciones` (
 --
 
 INSERT INTO `cotizaciones` (`id`, `codigo`, `id_cliente`, `fecha_emision`, `fecha_vencimiento`, `id_vendedor`, `id_unidad_negocio`, `id_bodega`, `id_medio_pago`, `id_plazo_pago`, `subtotal`, `descuento`, `total_neto`, `iva`, `total_final`, `observacion`, `productos`, `tipo_dte`, `estado`) VALUES
-(2, 2, 3, '2021-11-19', '2021-11-26', 7, 2, 1, 2, 3, '1,330,512', '215,340', '1,115,172', '211,883', '1,327,055', '', '[{\"id\":\"6\",\"descripcion\":\"Reloj Comedor LAN\",\"cantidad\":\"1\",\"precio\":\"584493\",\"descuento\":\"0\",\"iva\":\"111054\",\"total\":\"695547\"},{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"301475\",\"descuento\":\"0\",\"iva\":\"57280\",\"total\":\"358755\"},{\"id\":\"8\",\"descripcion\":\"Gabinete Reloj Casino\",\"cantidad\":\"1\",\"precio\":\"215340\",\"descuento\":\"215340\",\"iva\":\"0\",\"total\":\"0\"},{\"id\":\"9\",\"descripcion\":\"Gabinete Impresora\",\"cantidad\":\"1\",\"precio\":\"129204\",\"descuento\":\"0\",\"iva\":\"24549\",\"total\":\"153753\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"100000\",\"descuento\":\"0\",\"iva\":\"19000\",\"total\":\"119000\"}]', 'Cotizacion Afecta', 'Abierta'),
-(3, 3, 5, '2022-02-07', '2022-02-14', 7, 2, 1, 2, 1, '24,773', '0', '24,773', '4,707', '29,480', 'La facturación mensual la realiza Victoria SPA directamente con el cliente.', '[{\"id\":\"14\",\"descripcion\":\"Control Asistencia Geovictoria mensual\",\"cantidad\":\"7\",\"precio\":\"3539\",\"descuento\":\"0\",\"iva\":\"4707\",\"total\":\"29480\"}]', 'Cotizacion Afecta', 'Abierta'),
-(6, 6, 5, '2022-02-07', '2022-02-14', 7, 2, 1, 2, 1, '180,000', '0', '180,000', '34,200', '214,200', '', '[{\"id\":\"13\",\"descripcion\":\"Huellero URU4500 + Configuración + Instalación\",\"cantidad\":\"1\",\"precio\":\"180000\",\"descuento\":\"0\",\"iva\":\"34200\",\"total\":\"214200\"}]', 'Cotizacion Afecta', 'Abierta'),
-(10, 8, 1, '2022-04-06', '2022-04-15', 7, 2, 1, 2, 3, '363,044', '0', '363,044', '68,979', '432,023', '', '[{\"id\":\"15\",\"descripcion\":\"CÁMARA IP  WIFI + MICRO SD + 12V\",\"cantidad\":\"1\",\"precio\":\"62250\",\"descuento\":\"0\",\"iva\":\"11828\",\"total\":\"74078\"},{\"id\":\"16\",\"descripcion\":\"NVRC936_NVRC921 - Grabador de vídeo NVR H.265\",\"cantidad\":\"1\",\"precio\":\"98300\",\"descuento\":\"0\",\"iva\":\"18677\",\"total\":\"116977\"},{\"id\":\"17\",\"descripcion\":\"WD10PURZ - Disco Duro 1TB para Video\",\"cantidad\":\"1\",\"precio\":\"88644\",\"descuento\":\"0\",\"iva\":\"16842.36\",\"total\":\"105486.36\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"80000\",\"descuento\":\"0\",\"iva\":\"15200\",\"total\":\"95200\"},{\"id\":\"18\",\"descripcion\":\"Tarjeta Memoria Micro SD\",\"cantidad\":\"1\",\"precio\":\"21850\",\"descuento\":\"0\",\"iva\":\"4151.5\",\"total\":\"26001.5\"},{\"id\":\"19\",\"descripcion\":\"Despacho\",\"cantidad\":\"1\",\"precio\":\"12000\",\"descuento\":\"0\",\"iva\":\"2280\",\"total\":\"14280\"}]', 'Cotizacion Afecta', 'Abierta'),
-(11, 9, 1, '2022-04-06', '2022-04-15', 7, 2, 1, 2, 3, '162,100', '0', '162,100', '30,800', '192,900', '', '[{\"id\":\"15\",\"descripcion\":\"CÁMARA IP  WIFI + MICRO SD + 12V\",\"cantidad\":\"1\",\"precio\":\"62250\",\"descuento\":\"0\",\"iva\":\"11828\",\"total\":\"74078\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"70000\",\"descuento\":\"0\",\"iva\":\"13300\",\"total\":\"83300\"},{\"id\":\"18\",\"descripcion\":\"Tarjeta Memoria Micro SD\",\"cantidad\":\"1\",\"precio\":\"21850\",\"descuento\":\"0\",\"iva\":\"4152\",\"total\":\"26002\"},{\"id\":\"19\",\"descripcion\":\"Despacho\",\"cantidad\":\"1\",\"precio\":\"8000\",\"descuento\":\"0\",\"iva\":\"1520\",\"total\":\"9520\"}]', 'Cotizacion Afecta', 'Abierta'),
-(12, 10, 6, '2022-04-19', '2022-04-26', 7, 2, 1, 2, 1, '80,000', '0', '80,000', '15,200', '95,200', '', '[{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"80000\",\"descuento\":\"0\",\"iva\":\"15200\",\"total\":\"95200\"}]', 'Cotizacion Afecta', 'Abierta');
+(2, 2, 3, '2021-11-19', '2021-11-26', 7, 2, 1, 2, 3, '1,330,512', '215,340', '1,115,172', '211,883', '1,327,055', '', '[{\"id\":\"6\",\"descripcion\":\"Reloj Comedor LAN\",\"cantidad\":\"1\",\"precio\":\"584493\",\"descuento\":\"0\",\"iva\":\"111054\",\"total\":\"695547\"},{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"301475\",\"descuento\":\"0\",\"iva\":\"57280\",\"total\":\"358755\"},{\"id\":\"8\",\"descripcion\":\"Gabinete Reloj Casino\",\"cantidad\":\"1\",\"precio\":\"215340\",\"descuento\":\"215340\",\"iva\":\"0\",\"total\":\"0\"},{\"id\":\"9\",\"descripcion\":\"Gabinete Impresora\",\"cantidad\":\"1\",\"precio\":\"129204\",\"descuento\":\"0\",\"iva\":\"24549\",\"total\":\"153753\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"100000\",\"descuento\":\"0\",\"iva\":\"19000\",\"total\":\"119000\"}]', 'Cotización Afecta', 'Cerrada'),
+(3, 3, 5, '2022-02-07', '2022-02-14', 7, 2, 1, 2, 1, '24,773', '0', '24,773', '4,707', '29,480', 'La facturación mensual la realiza Victoria SPA directamente con el cliente.', '[{\"id\":\"14\",\"descripcion\":\"Control Asistencia Geovictoria mensual\",\"cantidad\":\"7\",\"precio\":\"3539\",\"descuento\":\"0\",\"iva\":\"4707\",\"total\":\"29480\"}]', 'Cotización Afecta', 'Cerrada'),
+(6, 6, 5, '2022-02-07', '2022-02-14', 7, 2, 1, 2, 1, '180,000', '0', '180,000', '34,200', '214,200', '', '[{\"id\":\"13\",\"descripcion\":\"Huellero URU4500 + Configuración + Instalación\",\"cantidad\":\"1\",\"precio\":\"180000\",\"descuento\":\"0\",\"iva\":\"34200\",\"total\":\"214200\"}]', 'Cotización Afecta', 'Cerrada'),
+(10, 8, 1, '2022-04-06', '2022-04-15', 7, 2, 1, 2, 3, '363,044', '0', '363,044', '68,979', '432,023', '', '[{\"id\":\"15\",\"descripcion\":\"CÁMARA IP  WIFI + MICRO SD + 12V\",\"cantidad\":\"1\",\"precio\":\"62250\",\"descuento\":\"0\",\"iva\":\"11828\",\"total\":\"74078\"},{\"id\":\"16\",\"descripcion\":\"NVRC936_NVRC921 - Grabador de vídeo NVR H.265\",\"cantidad\":\"1\",\"precio\":\"98300\",\"descuento\":\"0\",\"iva\":\"18677\",\"total\":\"116977\"},{\"id\":\"17\",\"descripcion\":\"WD10PURZ - Disco Duro 1TB para Video\",\"cantidad\":\"1\",\"precio\":\"88644\",\"descuento\":\"0\",\"iva\":\"16842.36\",\"total\":\"105486.36\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"80000\",\"descuento\":\"0\",\"iva\":\"15200\",\"total\":\"95200\"},{\"id\":\"18\",\"descripcion\":\"Tarjeta Memoria Micro SD\",\"cantidad\":\"1\",\"precio\":\"21850\",\"descuento\":\"0\",\"iva\":\"4151.5\",\"total\":\"26001.5\"},{\"id\":\"19\",\"descripcion\":\"Despacho\",\"cantidad\":\"1\",\"precio\":\"12000\",\"descuento\":\"0\",\"iva\":\"2280\",\"total\":\"14280\"}]', 'Cotización Afecta', 'Cerrada'),
+(11, 9, 1, '2022-04-06', '2022-04-15', 7, 2, 1, 2, 3, '162,100', '0', '162,100', '30,800', '192,900', '', '[{\"id\":\"15\",\"descripcion\":\"CÁMARA IP  WIFI + MICRO SD + 12V\",\"cantidad\":\"1\",\"precio\":\"62250\",\"descuento\":\"0\",\"iva\":\"11828\",\"total\":\"74078\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"70000\",\"descuento\":\"0\",\"iva\":\"13300\",\"total\":\"83300\"},{\"id\":\"18\",\"descripcion\":\"Tarjeta Memoria Micro SD\",\"cantidad\":\"1\",\"precio\":\"21850\",\"descuento\":\"0\",\"iva\":\"4152\",\"total\":\"26002\"},{\"id\":\"19\",\"descripcion\":\"Despacho\",\"cantidad\":\"1\",\"precio\":\"8000\",\"descuento\":\"0\",\"iva\":\"1520\",\"total\":\"9520\"}]', 'Cotización Afecta', 'Cerrada'),
+(12, 10, 6, '2022-04-19', '2022-04-26', 7, 2, 1, 2, 1, '80,000', '0', '80,000', '15,200', '95,200', '', '[{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"80000\",\"descuento\":\"0\",\"iva\":\"15200\",\"total\":\"95200\"}]', 'Cotización Afecta', 'Cerrada'),
+(20, 11, 6, '2024-10-06', '2024-10-06', 7, 5, 1, 3, 4, '180,000', '0', '180,000', '34,200', '214,200', '', '[{\"id\":\"13\",\"descripcion\":\"Huellero URU4500 + Configuración + Instalación\",\"cantidad\":\"1\",\"precio\":\"180000\",\"descuento\":\"0\",\"iva\":\"34200\",\"total\":\"214200\"}]', 'Cotización Afecta', 'Abierta');
 
 -- --------------------------------------------------------
 
@@ -695,7 +699,7 @@ CREATE TABLE `cotizaciones_exentas` (
   `total_final` varchar(255) NOT NULL,
   `observacion` varchar(255) NOT NULL DEFAULT 'Sin Observacion',
   `productos` varchar(1000) NOT NULL DEFAULT 'SIN PRODUCTOS',
-  `tipo_dte` text NOT NULL DEFAULT 'Cotizacion Exenta',
+  `tipo_dte` text NOT NULL DEFAULT 'Cotización Exenta',
   `estado` text NOT NULL DEFAULT 'Abierta'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -704,20 +708,20 @@ CREATE TABLE `cotizaciones_exentas` (
 --
 
 INSERT INTO `cotizaciones_exentas` (`id`, `codigo`, `id_cliente`, `fecha_emision`, `fecha_vencimiento`, `id_vendedor`, `id_unidad_negocio`, `id_bodega`, `id_medio_pago`, `id_plazo_pago`, `subtotal`, `descuento`, `exento`, `iva`, `total_final`, `observacion`, `productos`, `tipo_dte`, `estado`) VALUES
-(1, 1, 1, '2021-10-06', '2021-10-31', 7, 2, 1, 3, 10, '2,927,890', '0', '2,927,890', '0', '2,927,890', 'CONDICION DE PAGO 6 CUOTAS', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"2927890\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"2927890\"}]', 'Cotizacion Exenta', 'Abierta'),
-(2, 2, 1, '2021-10-06', '2021-10-29', 7, 2, 1, 2, 10, '2,927,880', '0', '2,927,880', '0', '2,927,880', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"2927880\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"2927880\"}]', 'Cotizacion Exenta', 'Abierta'),
-(3, 3, 1, '2021-10-14', '2021-10-21', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 1 de 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotizacion Exenta', 'Abierta'),
-(4, 4, 1, '2021-10-14', '2021-10-21', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 1\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotizacion Exenta', 'Abierta'),
-(5, 5, 1, '2021-10-15', '2021-10-22', 7, 2, 1, 2, 1, '1,900,000', '0', '1,900,000', '0', '1,900,000', 'Contra Orden de Compra', '[{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"1900000\"}]', 'Cotizacion Exenta', 'Abierta'),
-(6, 6, 1, '2021-10-18', '2021-10-22', 7, 2, 1, 2, 1, '1,900,000', '190,000', '1,710,000', '0', '1,710,000', '', '[{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"190000\",\"iva\":\"0\",\"total\":\"1710000\"}]', 'Cotizacion Exenta', 'Abierta'),
-(7, 7, 1, '2021-11-09', '2021-11-16', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 2\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotizacion Exenta', 'Abierta'),
-(8, 8, 1, '2021-12-01', '2021-12-06', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 3\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotizacion Exenta', 'Abierta'),
-(9, 9, 4, '2021-12-09', '2021-12-17', 7, 2, 1, 2, 1, '7,500,000', '500,000', '7,000,000', '0', '7,000,000', '', '[{\"id\":\"11\",\"descripcion\":\"Software Gestion Segproject\",\"cantidad\":\"1\",\"precio\":\"7500000\",\"descuento\":\"500000\",\"iva\":\"0\",\"total\":\"7000000\"}]', 'Cotizacion Exenta', 'Abierta'),
-(10, 10, 1, '2021-12-20', '2021-12-23', 7, 2, 1, 2, 1, '800,000', '0', '800,000', '0', '800,000', '', '[{\"id\":\"12\",\"descripcion\":\"Mejoras Software Viveres\",\"cantidad\":\"1\",\"precio\":\"800000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"800000\"}]', 'Cotizacion Exenta', 'Abierta'),
-(11, 11, 1, '2022-01-04', '2022-01-05', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 4\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotizacion Exenta', 'Abierta'),
-(12, 12, 1, '2022-02-02', '2022-02-10', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 5\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotizacion Exenta', 'Abierta'),
-(13, 13, 1, '2022-03-07', '2022-03-11', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotizacion Exenta', 'Abierta'),
-(14, 14, 2, '2024-09-10', '2024-09-21', 7, 4, 1, 1, 1, '23,287,980,000', '0', '23,287,980,000', '0', '23,287,980,000', 'aaaaaaaa', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1000\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980000\"},{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"12000\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"22800000000\"}]', 'Cotizacion Exenta', 'Abierta');
+(1, 1, 1, '2021-10-06', '2021-10-31', 7, 2, 1, 3, 10, '2,927,890', '0', '2,927,890', '0', '2,927,890', 'CONDICION DE PAGO 6 CUOTAS', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"2927890\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"2927890\"}]', 'Cotización Exenta', 'Cerrada'),
+(2, 2, 0, '2021-10-06', '2021-10-29', 0, 6, 1, 2, 10, '2,927,880', '0', '', '0', '2,927,880', '', '', 'Cotización Exenta', 'Abierta'),
+(3, 3, 1, '2021-10-14', '2021-10-21', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 1 de 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
+(4, 4, 1, '2021-10-14', '2021-10-21', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 1\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
+(5, 5, 1, '2021-10-15', '2021-10-22', 7, 2, 1, 2, 1, '1,900,000', '0', '1,900,000', '0', '1,900,000', 'Contra Orden de Compra', '[{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"1900000\"}]', 'Cotización Exenta', 'Abierta'),
+(6, 6, 1, '2021-10-18', '2021-10-22', 7, 2, 1, 2, 1, '1,900,000', '190,000', '1,710,000', '0', '1,710,000', '', '[{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"190000\",\"iva\":\"0\",\"total\":\"1710000\"}]', 'Cotización Exenta', 'Abierta'),
+(7, 7, 1, '2021-11-09', '2021-11-16', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 2\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
+(8, 8, 0, '2021-12-01', '2021-12-06', 0, 5, 1, 2, 1, '487,980', '0', '', '0', '487,980', 'unidad de negocio 1', '', 'Cotización Exenta', 'Abierta'),
+(9, 9, 4, '2021-12-09', '2021-12-17', 0, 6, 1, 2, 1, '7,500,000', '500,000', '', '0', '7,000,000', 'unidad de negocio 2', '', 'Cotización Exenta', 'Abierta'),
+(10, 10, 1, '2021-12-20', '2021-12-23', 7, 2, 1, 2, 1, '800,000', '0', '800,000', '0', '800,000', '', '[{\"id\":\"12\",\"descripcion\":\"Mejoras Software Viveres\",\"cantidad\":\"1\",\"precio\":\"800000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"800000\"}]', 'Cotización Exenta', 'Abierta'),
+(11, 11, 1, '2022-01-04', '2022-01-05', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 4\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
+(12, 12, 1, '2022-02-02', '2022-02-10', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 5\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
+(13, 13, 1, '2022-03-07', '2022-03-11', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
+(15, 14, 2, '2024-10-06', '2024-10-06', 7, 5, 2, 2, 1, '487,980', '0', '487,980', '0', '487,980', 'COTIZACION 2024', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta');
 
 -- --------------------------------------------------------
 
@@ -822,7 +826,37 @@ INSERT INTO `entrada_producto` (`id`, `id_producto`, `id_entrada`, `cantidad`, `
 (21, 7, 1, 1, 'Impresora Termica Fiscal', 1),
 (22, 5, 2, 1, 'Licencia Aptusoft', 1),
 (23, 4, 2, 1, 'Soporte Informático', 1),
-(24, 3, 2, 1, 'Asesoría Obtención Patente Cafetería Cermaq PMC', 1);
+(24, 3, 2, 1, 'Asesoría Obtención Patente Cafetería Cermaq PMC', 1),
+(25, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 2),
+(26, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(27, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(28, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(29, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(30, 12, NULL, 1, 'Mejoras Software Viveres', 1),
+(31, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(32, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(33, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(34, 14, NULL, 1, 'Control Asistencia Geovictoria mensual', 1),
+(35, 13, NULL, 1, 'Huellero URU4500 + Configuración + Instalación', 1),
+(36, 13, NULL, 1, 'Huellero URU4500 + Configuración + Instalación', 2),
+(37, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(38, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(39, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 1),
+(40, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 1),
+(41, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 2),
+(42, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(43, 1, NULL, 1, 'Desarrollo Software Vive Cermaq', 1),
+(44, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(45, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(46, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(47, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(48, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(49, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(50, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(51, 7, NULL, 1, 'Impresora Termica Fiscal', 1),
+(52, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(53, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(54, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 2);
 
 -- --------------------------------------------------------
 
@@ -886,7 +920,7 @@ INSERT INTO `impuestos` (`id`, `nombre`, `factor`, `codigo`, `descripcion`) VALU
 
 CREATE TABLE `lista_precios` (
   `id` int(11) NOT NULL,
-  `nombre_lista` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `nombre_lista` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `factor` int(5) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -983,9 +1017,16 @@ CREATE TABLE `nota_credito` (
   `observacion` varchar(255) NOT NULL,
   `fecha_emision` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
-  `tipo_dte` text NOT NULL DEFAULT 'Nota de Credito Afecta',
+  `tipo_dte` text NOT NULL DEFAULT 'Nota de Crédito de Factura Afecta',
   `folio_documento` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `nota_credito`
+--
+
+INSERT INTO `nota_credito` (`id`, `codigo`, `id_cliente`, `id_unidad_negocio`, `id_bodega`, `productos`, `id_plazo_pago`, `id_medio_pago`, `subtotal`, `descuento`, `total_neto`, `iva`, `total_final`, `observacion`, `fecha_emision`, `fecha_vencimiento`, `tipo_dte`, `folio_documento`) VALUES
+(5, 1, 5, 6, 2, '[{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"15000000\",\"descuento\":\"0\",\"iva\":\"2850000\",\"total\":\"17850000\"}]', 1, 2, '15,000,000', '0', '15,000,000', '2,850,000', '17850000', 'FACTURA AFECTA', '2024-10-23', '2024-11-01', 'Nota de Crédito de Factura Afecta', 3);
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1051,7 @@ CREATE TABLE `nota_credito_boleta` (
   `observacion` varchar(255) NOT NULL,
   `fecha_emision` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
-  `tipo_dte` text NOT NULL DEFAULT 'Nota de Credito Boleta',
+  `tipo_dte` text NOT NULL DEFAULT 'Nota de Crédito Boleta Afecta',
   `folio_documento` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1019,9 +1060,7 @@ CREATE TABLE `nota_credito_boleta` (
 --
 
 INSERT INTO `nota_credito_boleta` (`id`, `codigo`, `id_cliente`, `id_unidad_negocio`, `id_bodega`, `productos`, `id_plazo_pago`, `id_medio_pago`, `subtotal`, `descuento`, `total_neto`, `iva`, `total_final`, `observacion`, `fecha_emision`, `fecha_vencimiento`, `tipo_dte`, `folio_documento`) VALUES
-(1, 1, 1, 2, 1, '', 3, 1, '', '', '', '', '', 'la condición del pago a sido efectiva', '2024-09-09', '2024-09-20', 'Nota de Credito Boleta', 1),
-(2, 1, 7, 2, 2, '[{\"id\":\"20\",\"descripcion\":\"SUPER CAJA\",\"cantidad\":\"1\",\"precio\":\"20000\",\"descuento\":\"0\",\"iva\":\"3800\",\"total\":\"23800\"}]', 1, 1, '20,000', '0', '20,000', '3,800', '23800', 'muy buenas observaciones A++', '2024-09-09', '2024-09-10', 'Nota de Credito Boleta', 3),
-(3, 1, 7, 2, 2, '[{\"id\":\"20\",\"descripcion\":\"SUPER CAJA\",\"cantidad\":\"1\",\"precio\":\"20000\",\"descuento\":\"0\",\"iva\":\"3800\",\"total\":\"23800\"}]', 10, 1, '20,000', '0', '20,000', '3,800', '23800', 'PAGADO', '2024-09-09', '2024-09-11', 'Nota de Credito Boleta', 3);
+(20, 1, 6, 6, 1, '[{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"301475\",\"descuento\":\"0\",\"iva\":\"57280.25\",\"total\":\"358755.25\"}]', 4, 1, '301,475', '0', '301,475', '57,280', '358755.25', 'BOLETA AFECTA', '2024-10-23', '2024-10-23', 'Nota de Crédito Boleta Afecta', 8);
 
 -- --------------------------------------------------------
 
@@ -1040,13 +1079,22 @@ CREATE TABLE `nota_credito_boleta_exenta` (
   `id_medio_pago` int(11) NOT NULL,
   `subtotal` varchar(255) NOT NULL,
   `descuento` varchar(255) NOT NULL DEFAULT '0',
+  `total_neto` varchar(255) NOT NULL,
+  `iva` varchar(255) NOT NULL,
   `total_final` varchar(255) NOT NULL,
   `observacion` varchar(255) NOT NULL,
   `fecha_emision` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
-  `tipo_dte` text NOT NULL DEFAULT 'Nota de Credito Boleta Exenta',
+  `tipo_dte` text NOT NULL DEFAULT 'Nota de Crédito de Boleta Exenta',
   `folio_documento` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `nota_credito_boleta_exenta`
+--
+
+INSERT INTO `nota_credito_boleta_exenta` (`id`, `codigo`, `id_cliente`, `id_unidad_negocio`, `id_bodega`, `productos`, `id_plazo_pago`, `id_medio_pago`, `subtotal`, `descuento`, `total_neto`, `iva`, `total_final`, `observacion`, `fecha_emision`, `fecha_vencimiento`, `tipo_dte`, `folio_documento`) VALUES
+(5, 1, 2, 5, 1, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 4, 1, '487,980', '0', '487,980', '0', '487980', 'BOLETA EXENTA', '2024-10-06', '2024-10-31', 'Nota de Crédito de Boleta Exenta', 1);
 
 -- --------------------------------------------------------
 
@@ -1071,9 +1119,16 @@ CREATE TABLE `nota_credito_exenta` (
   `observacion` varchar(255) NOT NULL,
   `fecha_emision` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
-  `tipo_dte` text NOT NULL DEFAULT 'Nota de Credito Exenta',
+  `tipo_dte` text NOT NULL DEFAULT 'Nota de Crédito de Factura Exenta',
   `folio_documento` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `nota_credito_exenta`
+--
+
+INSERT INTO `nota_credito_exenta` (`id`, `codigo`, `id_cliente`, `id_unidad_negocio`, `id_bodega`, `productos`, `id_plazo_pago`, `id_medio_pago`, `subtotal`, `descuento`, `exento`, `iva`, `total_final`, `observacion`, `fecha_emision`, `fecha_vencimiento`, `tipo_dte`, `folio_documento`) VALUES
+(4, 1, 3, 6, 2, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 1, 3, '487,980', '0', '487,980', '0', '487980', 'FACTURA EXENTA', '2024-10-23', '2024-10-30', 'Nota de Crédito de Factura Exenta', 14);
 
 -- --------------------------------------------------------
 
@@ -1141,7 +1196,8 @@ INSERT INTO `orden_vestuario` (`id`, `codigo`, `fecha_emision`, `fecha_vencimien
 (4, 4, '2024-09-10', '2024-09-12', 3, 2, 7, 'hola ordden', 'orden de vestuario', '[{\"id\":\"19\",\"nombre\":\"Prueba01\",\"rut\":\"elrutcambio\",\"empresa\":\"PEPE\",\"medidas\":[{\"busto\":\"120\",\"cintura\":\"120\",\"cadera\":\"120\",\"ancho_espalda\":\"120\",\"talle_delantero\":\"120\",\"talle_espalda\":\"120\",\"largo_manga\":\"120\",\"largo_blusa\":\"120\",\"largo_guillete\":\"120\",\"largo_chaqueta\":\"120\",\"largo_polera\":\"120\",\"largo_parka\":\"120\",\"largo_polar\":\"120\",\"largo_vestido\":\"120\",\"pantalon_cintura\":\"120\",\"pantalon_cadera\":\"120\",\"pantalon_tiro\":\"120\",\"pantalon_enterpierna\":\"120\",\"largo_pantalon\":\"120\",\"falda_cintura\":\"120\",\"falda_cadera\":\"120\",\"largo_falda\":\"120\"}]}]'),
 (5, 5, '2024-09-10', '2024-09-11', 1, 1, 7, 'nueva orden', 'cambios asignados', '[{\"id\":\"19\",\"nombre\":\"Prueba01\",\"rut\":\"elrutcambio\",\"empresa\":\"PEPE\",\"medidas\":[{\"busto\":\"120\",\"cintura\":\"120\",\"cadera\":\"120\",\"ancho_espalda\":\"120\",\"talle_delantero\":\"120\",\"talle_espalda\":\"120\",\"largo_manga\":\"120\",\"largo_blusa\":\"120\",\"largo_guillete\":\"120\",\"largo_chaqueta\":\"120\",\"largo_polera\":\"120\",\"largo_parka\":\"120\",\"largo_polar\":\"120\",\"largo_vestido\":\"120\",\"pantalon_cintura\":\"120\",\"pantalon_cadera\":\"120\",\"pantalon_tiro\":\"120\",\"pantalon_enterpierna\":\"120\",\"largo_pantalon\":\"120\",\"falda_cintura\":\"120\",\"falda_cadera\":\"120\",\"largo_falda\":\"120\"}]}]'),
 (6, 6, '2024-09-10', '2024-09-10', 3, 2, 7, 'cambio 18:23', 'cambio asignado 18:23', '[{\"id\":\"19\",\"nombre\":\"Prueba01\",\"rut\":\"elrutcambio\",\"empresa\":\"PEPE\",\"medidas\":[{\"busto\":\"120\",\"cintura\":\"120\",\"cadera\":\"120\",\"ancho_espalda\":\"120\",\"talle_delantero\":\"120\",\"talle_espalda\":\"120\",\"largo_manga\":\"120\",\"largo_blusa\":\"120\",\"largo_guillete\":\"120\",\"largo_chaqueta\":\"120\",\"largo_polera\":\"120\",\"largo_parka\":\"120\",\"largo_polar\":\"120\",\"largo_vestido\":\"120\",\"pantalon_cintura\":\"120\",\"pantalon_cadera\":\"120\",\"pantalon_tiro\":\"120\",\"pantalon_enterpierna\":\"120\",\"largo_pantalon\":\"120\",\"falda_cintura\":\"120\",\"falda_cadera\":\"120\",\"largo_falda\":\"120\"}]}]'),
-(7, 7, '2024-09-10', '2024-09-10', 3, 1, 7, 'orden de cambio', 'cambio 23', '[{\"id\":\"19\",\"nombre\":\"Prueba01\",\"rut\":\"elrutcambio\",\"empresa\":\"PEPE\",\"medidas\":[{\"busto\":\"120\",\"cintura\":\"120\",\"cadera\":\"120\",\"ancho_espalda\":\"120\",\"talle_delantero\":\"120\",\"talle_espalda\":\"120\",\"largo_manga\":\"120\",\"largo_blusa\":\"120\",\"largo_guillete\":\"120\",\"largo_chaqueta\":\"120\",\"largo_polera\":\"120\",\"largo_parka\":\"120\",\"largo_polar\":\"120\",\"largo_vestido\":\"120\",\"pantalon_cintura\":\"120\",\"pantalon_cadera\":\"120\",\"pantalon_tiro\":\"120\",\"pantalon_enterpierna\":\"120\",\"largo_pantalon\":\"120\",\"falda_cintura\":\"120\",\"falda_cadera\":\"120\",\"largo_falda\":\"120\"}]},{\"id\":\"20\",\"nombre\":\"PRUEBA02\",\"rut\":\"hola RUT\",\"empresa\":\"Servicios Gastronómicos Austral SPA\",\"medidas\":[{\"busto\":\"120\",\"cintura\":\"120\",\"cadera\":\"120\",\"ancho_espalda\":\"120\",\"talle_delantero\":\"120\",\"talle_espalda\":\"120\",\"largo_manga\":\"120\",\"largo_blusa\":\"120\",\"largo_guillete\":\"120\",\"largo_chaqueta\":\"120\",\"largo_polera\":\"120\",\"largo_parka\":\"120\",\"largo_polar\":\"120\",\"largo_vestido\":\"120\",\"pantalon_cintura\":\"120\",\"pantalon_cadera\":\"120\",\"pantalon_tiro\":\"120\",\"pantalon_enterpierna\":\"120\",\"largo_pantalon\":\"120\",\"falda_cintura\":\"120\",\"falda_cadera\":\"120\",\"largo_falda\":\"120\"}]}]');
+(7, 7, '2024-09-10', '2024-09-10', 3, 1, 7, 'orden de cambio', 'cambio 23', '[{\"id\":\"19\",\"nombre\":\"Prueba01\",\"rut\":\"elrutcambio\",\"empresa\":\"PEPE\",\"medidas\":[{\"busto\":\"120\",\"cintura\":\"120\",\"cadera\":\"120\",\"ancho_espalda\":\"120\",\"talle_delantero\":\"120\",\"talle_espalda\":\"120\",\"largo_manga\":\"120\",\"largo_blusa\":\"120\",\"largo_guillete\":\"120\",\"largo_chaqueta\":\"120\",\"largo_polera\":\"120\",\"largo_parka\":\"120\",\"largo_polar\":\"120\",\"largo_vestido\":\"120\",\"pantalon_cintura\":\"120\",\"pantalon_cadera\":\"120\",\"pantalon_tiro\":\"120\",\"pantalon_enterpierna\":\"120\",\"largo_pantalon\":\"120\",\"falda_cintura\":\"120\",\"falda_cadera\":\"120\",\"largo_falda\":\"120\"}]},{\"id\":\"20\",\"nombre\":\"PRUEBA02\",\"rut\":\"hola RUT\",\"empresa\":\"Servicios Gastronómicos Austral SPA\",\"medidas\":[{\"busto\":\"120\",\"cintura\":\"120\",\"cadera\":\"120\",\"ancho_espalda\":\"120\",\"talle_delantero\":\"120\",\"talle_espalda\":\"120\",\"largo_manga\":\"120\",\"largo_blusa\":\"120\",\"largo_guillete\":\"120\",\"largo_chaqueta\":\"120\",\"largo_polera\":\"120\",\"largo_parka\":\"120\",\"largo_polar\":\"120\",\"largo_vestido\":\"120\",\"pantalon_cintura\":\"120\",\"pantalon_cadera\":\"120\",\"pantalon_tiro\":\"120\",\"pantalon_enterpierna\":\"120\",\"largo_pantalon\":\"120\",\"falda_cintura\":\"120\",\"falda_cadera\":\"120\",\"largo_falda\":\"120\"}]}]'),
+(8, 8, '2024-10-02', '2024-10-17', 3, 1, 7, 'nueva orden', 'hola', '[{\"id\":\"19\",\"nombre\":\"Prueba01\",\"rut\":\"elrutcambio\",\"empresa\":\"PEPE\",\"medidas\":[{\"busto\":\"120\",\"cintura\":\"120\",\"cadera\":\"120\",\"ancho_espalda\":\"120\",\"talle_delantero\":\"120\",\"talle_espalda\":\"120\",\"largo_manga\":\"120\",\"largo_blusa\":\"120\",\"largo_guillete\":\"120\",\"largo_chaqueta\":\"120\",\"largo_polera\":\"120\",\"largo_parka\":\"120\",\"largo_polar\":\"120\",\"largo_vestido\":\"120\",\"pantalon_cintura\":\"120\",\"pantalon_cadera\":\"120\",\"pantalon_tiro\":\"120\",\"pantalon_enterpierna\":\"120\",\"largo_pantalon\":\"120\",\"falda_cintura\":\"120\",\"falda_cadera\":\"120\",\"largo_falda\":\"120\"}]}]');
 
 -- --------------------------------------------------------
 
@@ -1307,7 +1363,7 @@ CREATE TABLE `productos` (
   `id_rubro` int(11) NOT NULL,
   `tipo_producto` varchar(255) NOT NULL DEFAULT 'Afecto',
   `id_tabla_lista` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -1334,8 +1390,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `codigo`, `codigoBarra`, `descrip
 (18, 40, '731410986250', '', 'Tarjeta Memoria Micro SD', 'vistas/img/productos/default/anonymous.png', 0, 0, 21850, 0, '2022-04-06 14:44:49', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
 (19, 38, '714682359010', '', 'Despacho', 'vistas/img/productos/default/anonymous.png', 0, 0, 12000, 0, '2022-05-04 01:14:50', 0, 0, 1, 3, 9, 8, 'Afecto', 0),
 (20, 8, '823401019657', '', 'SUPER CAJA', 'vistas/img/productos/823401019657/279.jpg', 0, 10000, 20000, 0, '2024-09-09 15:09:35', 10, 10, 1, 10, 1, 7, 'Afecto', 0),
-(22, 8, '420576810913', '', 'AAAAAAAA', 'vistas/img/productos/420576810913/285.jpg', 0, 11, 22, 0, '2024-09-10 20:20:43', 1111, 9, 1, 10, 1, 7, 'Afecto', 0),
-(23, 40, '954836072103', '', 'ñ', 'vistas/img/productos/954836072103/411.jpg', 0, 6, 133, 0, '2024-09-10 20:48:21', 1, 3, 1, 10, 2, 7, 'Exento', 0);
+(24, 36, '164210538079', '', 'Producto 50', 'vistas/img/productos/164210538079/501.jpg', 0, 1000, 20000, 0, '2024-10-08 15:43:57', 10, 10, 1, 10, 1, 9, 'Afecto', 0);
 
 -- --------------------------------------------------------
 
@@ -1359,7 +1414,7 @@ CREATE TABLE `proveedores` (
   `region` varchar(255) NOT NULL,
   `direccion` varchar(255) NOT NULL DEFAULT 'No Especificada',
   `id_plazo` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `proveedores`
@@ -1379,7 +1434,7 @@ CREATE TABLE `regiones` (
   `id` int(11) UNSIGNED NOT NULL,
   `nombre` varchar(128) NOT NULL DEFAULT '',
   `ordinal` varchar(4) NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `regiones`
@@ -1488,7 +1543,66 @@ INSERT INTO `salida_producto` (`id`, `id_producto`, `id_salida`, `cantidad`, `de
 (17, 3, NULL, 12222, 'Asesoría Obtención Patente Cafetería Cermaq PMC', 1),
 (18, 1, NULL, 1, 'Desarrollo Software Vive Cermaq', 1),
 (19, 1, NULL, 10000, 'Desarrollo Software Vive Cermaq cuota 6', 2),
-(20, 3, NULL, 10000, 'Asesoría Obtención Patente Cafetería Cermaq PMC', 2);
+(20, 3, NULL, 10000, 'Asesoría Obtención Patente Cafetería Cermaq PMC', 2),
+(21, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 1),
+(22, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 3),
+(23, 6, NULL, 1, 'Reloj Comedor LAN', 1),
+(24, 7, NULL, 1, 'Impresora Termica Fiscal', 1),
+(25, 8, NULL, 1, 'Gabinete Reloj Casino', 1),
+(26, 9, NULL, 1, 'Gabinete Impresora', 1),
+(27, 10, NULL, 1, 'Instalación y Configuración Equipo', 1),
+(28, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 1),
+(29, 1, NULL, 1, 'Desarrollo Software Vive Cermaq', 1),
+(30, 1, NULL, 1, 'Desarrollo Software Vive Cermaq', 1),
+(31, 15, NULL, 1, 'CÁMARA IP  WIFI + MICRO SD + 12V', 1),
+(32, 16, NULL, 1, 'NVRC936_NVRC921 - Grabador de vídeo NVR H.265', 1),
+(33, 17, NULL, 1, 'WD10PURZ - Disco Duro 1TB para Video', 1),
+(34, 10, NULL, 1, 'Instalación y Configuración Equipo', 1),
+(35, 18, NULL, 1, 'Tarjeta Memoria Micro SD', 1),
+(36, 19, NULL, 1, 'Despacho', 1),
+(37, 3, NULL, 1, 'Asesoría Obtención Patente Cafetería Cermaq PMC', 1),
+(38, 1, NULL, 1, 'Desarrollo Software Vive Cermaq', 1),
+(39, 1, NULL, 1, 'Desarrollo Software Vive Cermaq', 2),
+(40, 15, NULL, 1, 'CÁMARA IP  WIFI + MICRO SD + 12V', 1),
+(41, 10, NULL, 1, 'Instalación y Configuración Equipo', 1),
+(42, 18, NULL, 1, 'Tarjeta Memoria Micro SD', 1),
+(43, 19, NULL, 1, 'Despacho', 1),
+(44, 10, NULL, 1, 'Instalación y Configuración Equipo', 1),
+(45, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 2),
+(46, 12, NULL, 1, 'Mejoras Software Viveres', 1),
+(47, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 2),
+(48, 11, NULL, 1, 'Software Gestion Segproject', 2),
+(49, 1, NULL, 1, 'Desarrollo Software Vive Cermaq', 1),
+(50, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 1 de 6', 1),
+(51, 13, NULL, 1, 'Huellero URU4500 + Configuración + Instalación', 3),
+(52, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 3),
+(53, 3, NULL, 1, 'Asesoría Obtención Patente Cafetería Cermaq PMC', 2),
+(54, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(55, 1, NULL, 1, 'Desarrollo Software Vive Cermaq', 1),
+(56, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(57, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(58, 5, NULL, 1, 'Licencia Aptusoft', 2),
+(59, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(60, 13, NULL, 1, 'Huellero URU4500 + Configuración + Instalación', 2),
+(61, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(62, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(63, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(64, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(65, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(66, 12, NULL, 1, 'Mejoras Software Viveres', 1),
+(67, 3, NULL, 1, 'Asesoría Obtención Patente Cafetería Cermaq PMC', 1),
+(68, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(69, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(70, 1, NULL, 1, 'Desarrollo Software Vive Cermaq cuota 6', 1),
+(71, 13, NULL, 1, 'Huellero URU4500 + Configuración + Instalación', 2),
+(72, 8, NULL, 1, 'Gabinete Reloj Casino', 1),
+(73, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 1),
+(74, 14, NULL, 1, 'Control Asistencia Geovictoria mensual', 1),
+(75, 13, NULL, 1, 'Huellero URU4500 + Configuración + Instalación', 1),
+(76, 7, NULL, 1, 'Impresora Termica Fiscal', 1),
+(77, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(78, 2, NULL, 1, 'Soporte mensual Vive Cermaq', 2),
+(79, 8, NULL, 1, 'Gabinete Reloj Casino', 2);
 
 -- --------------------------------------------------------
 
@@ -1499,7 +1613,7 @@ INSERT INTO `salida_producto` (`id`, `id_producto`, `id_salida`, `cantidad`, `de
 CREATE TABLE `subcategorias` (
   `id` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
-  `subcategoria` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `subcategoria` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1626,7 +1740,7 @@ INSERT INTO `tipo_productos` (`id`, `nombre`, `codigo`) VALUES
 
 CREATE TABLE `unidades` (
   `id` int(11) NOT NULL,
-  `medida` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL
+  `medida` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1658,7 +1772,8 @@ CREATE TABLE `unidades_negocio` (
 --
 
 INSERT INTO `unidades_negocio` (`id`, `codigo`, `unidad_negocio`) VALUES
-(4, 2147483647, 'asdfdd');
+(5, 1, 'NEGOCIO 01'),
+(6, 2, 'NEGOCIO 02');
 
 -- --------------------------------------------------------
 
@@ -1668,15 +1783,15 @@ INSERT INTO `unidades_negocio` (`id`, `codigo`, `unidad_negocio`) VALUES
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nombre` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `usuario` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `password` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `perfil` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `foto` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `nombre` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `password` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `perfil` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `foto` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `estado` int(11) NOT NULL,
   `ultimo_login` datetime NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -1684,7 +1799,9 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
 (74, 'MLINE', 'MLINE', '$2a$07$asxx54ahjppf45sd87a5aur5IvEaFbOa7GTslHYyfAWFYQ.na1lde', 'Administrador', '', 1, '0000-00-00 00:00:00', '2020-12-13 20:05:36'),
-(83, 'Fernando Torres Flores', 'admin', '$2a$07$asxx54ahjppf45sd87a5au7TK/8oGAnh/guLnXHOatR5mMTcaM3O.', 'Especial', 'vistas/img/usuarios/admin/777.png', 1, '0000-00-00 00:00:00', '2024-09-26 13:43:12');
+(83, 'Fernando Torres Flores', 'admin', '$2a$07$asxx54ahjppf45sd87a5au7TK/8oGAnh/guLnXHOatR5mMTcaM3O.', 'Especial', 'vistas/img/usuarios/admin/847.jpg', 1, '0000-00-00 00:00:00', '2024-10-08 18:31:30'),
+(84, 'BUBU', 'EL JEFE DE LOS CIELOS', '$2a$07$asxx54ahjppf45sd87a5auHIQYGlJDrSxoxt4D/VgD2F/lbh6TmWa', 'Vendedor', 'vistas/img/usuarios/EL JEFE DE LOS CIELOS/332.jpg', 1, '0000-00-00 00:00:00', '2024-10-04 23:34:59'),
+(85, 'BUBU', 'prueba01', '$2a$07$asxx54ahjppf45sd87a5auyDdoZLbwUoMFg2e/pfKJV1p2LFHJ8QS', 'Especial', 'vistas/img/usuarios/prueba01/783.jpg', 1, '0000-00-00 00:00:00', '2024-10-18 11:27:57');
 
 -- --------------------------------------------------------
 
@@ -1708,7 +1825,7 @@ CREATE TABLE `ventas` (
   `costo_extra` int(11) NOT NULL,
   `observacion` varchar(100) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ventas`
@@ -1793,7 +1910,7 @@ CREATE TABLE `venta_afecta` (
   `documento` varchar(255) NOT NULL,
   `fecha_documento` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
-  `tipo_dte` varchar(255) NOT NULL DEFAULT 'Factura Afecta',
+  `tipo_dte` varchar(255) NOT NULL DEFAULT 'Venta con Factura Afecta',
   `folio_documento` int(11) DEFAULT 0,
   `razon_documento` varchar(255) NOT NULL DEFAULT 'NO APLICA',
   `motivo_documento` varchar(255) NOT NULL DEFAULT 'NO APLICA',
@@ -1805,8 +1922,8 @@ CREATE TABLE `venta_afecta` (
 --
 
 INSERT INTO `venta_afecta` (`id`, `codigo`, `id_cliente`, `id_unidad_negocio`, `id_bodega`, `id_vendedor`, `productos`, `id_plazo_pago`, `id_medio_pago`, `subtotal`, `descuento`, `total_neto`, `iva`, `total_final`, `pagado`, `observacion`, `fecha_emision`, `pendiente`, `documento`, `fecha_documento`, `fecha_vencimiento`, `tipo_dte`, `folio_documento`, `razon_documento`, `motivo_documento`, `estado`) VALUES
-(1, 1, 3, 2, 1, 7, '', 4, 2, '', '', '', '', '', '0', '', '2024-09-09', '0', 'Nota de Venta', '2024-09-09', '2024-09-30', 'Factura Afecta', 25982, 'color rojo', 'objetivo tapado', 'SIN NC'),
-(2, 2, 0, 4, 1, 8, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"2927890\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"2927890\"}]', 10, 3, '2,927,890', '0', '2,927,890', '0', '2,927,890', '0', 'CONDICION DE PAGO 6 CUOTAS', '2021-10-06', '2927890', 'Nota de Venta', '0000-00-00', '2021-10-31', 'Factura Afecta', 1232321, '', '', 'SIN NC');
+(23, 3, 5, 6, 2, 10, '[{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"15000000\",\"descuento\":\"0\",\"iva\":\"2850000\",\"total\":\"17850000\"}]', 1, 2, '15,000,000', '0', '15,000,000', '2,850,000', '17850000', '1000000', '', '2024-10-23', '16850000', 'Nota de Venta', '2024-10-23', '2024-11-01', 'Venta con Factura Afecta', 2, 'impresion', 'trabajo', 'Cerrada'),
+(24, 4, 7, 6, 2, 12, '[{\"id\":\"8\",\"descripcion\":\"Gabinete Reloj Casino\",\"cantidad\":\"1\",\"precio\":\"215340\",\"descuento\":\"0\",\"iva\":\"40914.6\",\"total\":\"256254.6\"}]', 5, 2, '215,340', '0', '215,340', '40,915', '256254.6', '25000', '', '2024-10-25', '231255', 'NO APLICA', '2024-10-25', '2024-10-31', 'Venta con Factura Afecta', 1, 'trabajo', 'sucursal', 'SIN NC');
 
 -- --------------------------------------------------------
 
@@ -1833,7 +1950,7 @@ CREATE TABLE `venta_boleta` (
   `observacion` varchar(255) NOT NULL,
   `fecha_emision` date NOT NULL,
   `pendiente` varchar(255) NOT NULL,
-  `tipo_dte` text NOT NULL DEFAULT 'Venta con Boleta',
+  `tipo_dte` text NOT NULL DEFAULT 'Venta con Boleta Afecta',
   `estado` varchar(25) NOT NULL DEFAULT 'SIN NC'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1842,9 +1959,7 @@ CREATE TABLE `venta_boleta` (
 --
 
 INSERT INTO `venta_boleta` (`id`, `codigo`, `id_cliente`, `id_unidad_negocio`, `id_bodega`, `id_vendedor`, `productos`, `id_plazo_pago`, `id_medio_pago`, `subtotal`, `descuento`, `total_neto`, `iva`, `total_final`, `pagado`, `observacion`, `fecha_emision`, `pendiente`, `tipo_dte`, `estado`) VALUES
-(1, 1, 1, 2, 1, 7, '', 3, 1, '', '', '', '', '', '0', '', '2024-09-09', '0', 'Venta con Boleta', 'SIN NC'),
-(2, 2, 4, 2, 1, 7, '[{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"3\",\"precio\":\"1500000\",\"descuento\":\"10\",\"iva\":\"854998\",\"total\":\"5354988\"},{\"id\":\"5\",\"descripcion\":\"Licencia Aptusoft\",\"cantidad\":\"1\",\"precio\":\"50000\",\"descuento\":\"0\",\"iva\":\"9500\",\"total\":\"59500\"},{\"id\":\"9\",\"descripcion\":\"Gabinete Impresora\",\"cantidad\":\"1\",\"precio\":\"129204\",\"descuento\":\"0\",\"iva\":\"24549\",\"total\":\"153753\"}]', 1, 1, '4,679,204', '10', '4,679,194', '889,047', '5568241', '150000', 'no hay observaciones', '2024-09-09', '0', 'Venta con Boleta', 'SIN NC'),
-(3, 3, 7, 2, 2, 7, '[{\"id\":\"20\",\"descripcion\":\"SUPER CAJA\",\"cantidad\":\"1\",\"precio\":\"20000\",\"descuento\":\"0\",\"iva\":\"3800\",\"total\":\"23800\"}]', 1, 0, '20,000', '0', '20,000', '3,800', '23800', '20000', 'muy buenas observaciones A++', '2024-09-09', '3800', 'Venta con Boleta', 'SIN NC');
+(15, 8, 6, 6, 1, 7, '[{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"301475\",\"descuento\":\"0\",\"iva\":\"57280.25\",\"total\":\"358755.25\"}]', 4, 1, '301,475', '0', '301,475', '57,280', '358755.25', '150000', '', '2024-10-23', '208755', 'Venta con Boleta Afecta', 'SIN NC');
 
 -- --------------------------------------------------------
 
@@ -1878,9 +1993,8 @@ CREATE TABLE `venta_boleta_exenta` (
 --
 
 INSERT INTO `venta_boleta_exenta` (`id`, `codigo`, `id_cliente`, `id_unidad_negocio`, `id_bodega`, `id_vendedor`, `productos`, `id_plazo_pago`, `id_medio_pago`, `total_final`, `pagado`, `observacion`, `fecha_emision`, `pendiente`, `tipo_dte`, `estado`, `descuento`, `subtotal`) VALUES
-(1, 1, 2, 2, 1, 7, '', 1, 1, '', '0', '', '2024-09-09', '0', 'Venta con Boleta Exenta', 'SIN NC', '', ''),
-(2, 2, 2, 4, 1, 7, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1000\",\"precio\":\"487980\",\"descuento\":\"200\",\"iva\":\"0\",\"total\":\"487979800\"},{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"12222\",\"precio\":\"1900000\",\"descuento\":\"1500\",\"iva\":\"0\",\"total\":\"23221798500\"}]', 1, 1, '23709778300', '20', 'aaaaaaaaaaa', '2024-09-10', '23,709,778,280', 'Venta con Boleta Exenta', 'SIN NC', '1,700', '23,709,780,000'),
-(3, 3, 4, 4, 2, 8, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"10000\",\"precio\":\"487980\",\"descuento\":\"300\",\"iva\":\"0\",\"total\":\"4879799700\"},{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"10000\",\"precio\":\"1900000\",\"descuento\":\"100\",\"iva\":\"0\",\"total\":\"18999999900\"}]', 1, 1, '23879799600', '2', 'AAAAAAAAAA', '2024-09-10', '23,879,799,598', 'Venta con Boleta Exenta', 'SIN NC', '400', '23,879,800,000');
+(9, 1, 2, 5, 1, 7, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 4, 1, '487980', '350000', '', '2024-10-06', '137,980', 'Venta con Boleta Exenta', 'SIN NC', '0', '487,980'),
+(11, 3, 4, 5, 1, 10, '[{\"id\":\"12\",\"descripcion\":\"Mejoras Software Viveres\",\"cantidad\":\"1\",\"precio\":\"800000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"800000\"}]', 1, 2, '800000', '0', '', '2024-10-14', '800,000', 'Venta con Boleta Exenta', 'SIN NC', '0', '800,000');
 
 -- --------------------------------------------------------
 
@@ -1909,7 +2023,7 @@ CREATE TABLE `venta_exenta` (
   `documento` varchar(255) NOT NULL,
   `fecha_documento` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
-  `tipo_dte` text NOT NULL DEFAULT 'Factura Exenta',
+  `tipo_dte` text NOT NULL DEFAULT 'Venta con Factura Exenta',
   `exento` varchar(255) NOT NULL,
   `motivo_documento` varchar(255) NOT NULL DEFAULT 'FACTURACION',
   `estado` varchar(25) NOT NULL DEFAULT 'SIN NC',
@@ -1922,8 +2036,8 @@ CREATE TABLE `venta_exenta` (
 --
 
 INSERT INTO `venta_exenta` (`id`, `codigo`, `id_cliente`, `id_unidad_negocio`, `id_bodega`, `id_vendedor`, `productos`, `id_plazo_pago`, `id_medio_pago`, `subtotal`, `descuento`, `iva`, `total_final`, `pagado`, `observacion`, `fecha_emision`, `pendiente`, `documento`, `fecha_documento`, `fecha_vencimiento`, `tipo_dte`, `exento`, `motivo_documento`, `estado`, `folio_documento`, `razon_documento`) VALUES
-(1, 12, 2, 4, 1, 8, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1000\",\"precio\":\"487980\",\"descuento\":\"300\",\"iva\":\"0\",\"total\":\"487979700\"},{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"2000\",\"precio\":\"1900000\",\"descuento\":\"200\",\"iva\":\"0\",\"total\":\"3799999800\"}]', 4, 1, '4,287,980,000', '500', '0', '4287979500', '0', 'aaaaaaaaaaa', '2024-09-10', '4,287,979,500', 'NO APLICA', '0000-00-00', '2024-09-13', 'Factura Exenta', '4,287,979,500', '', 'SIN NC', 1232321, ''),
-(2, 13, 2, 4, 1, 7, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"200000\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"97596000000\"},{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"111111\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"211110900000\"}]', 1, 1, '308,706,900,000', '0', '0', '308706900000', '308706899996', 'aaaaaaaaaaa', '2024-09-10', '4', 'NO APLICA', '0000-00-00', '2024-09-21', 'Factura Exenta', '308,706,900,000', '', 'SIN NC', 0, '');
+(9, 14, 3, 6, 2, 7, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 1, 3, '487,980', '0', '0', '487980', '48000', '', '2024-10-23', '439,980', 'Nota de Venta', '2024-10-23', '2024-10-30', 'Venta con Factura Exenta', '487,980', 'juan', 'Cerrada', 2, 'pedro'),
+(10, 15, 7, 5, 3, 12, '[{\"id\":\"12\",\"descripcion\":\"Mejoras Software Viveres\",\"cantidad\":\"1\",\"precio\":\"800000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"800000\"}]', 5, 2, '800,000', '0', '0', '800000', '100000', '', '2024-10-25', '700,000', 'Cotización', '2024-10-25', '2024-10-30', 'Venta con Factura Exenta', '800,000', 'trabajo', 'SIN NC', 2, 'super trabajo');
 
 --
 -- Índices para tablas volcadas
@@ -2280,13 +2394,13 @@ ALTER TABLE `centros_costo`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `comunas`
@@ -2298,13 +2412,13 @@ ALTER TABLE `comunas`
 -- AUTO_INCREMENT de la tabla `cotizaciones`
 --
 ALTER TABLE `cotizaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `cotizaciones_exentas`
 --
 ALTER TABLE `cotizaciones_exentas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `documentos`
@@ -2322,7 +2436,7 @@ ALTER TABLE `entradas`
 -- AUTO_INCREMENT de la tabla `entrada_producto`
 --
 ALTER TABLE `entrada_producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_ventas`
@@ -2358,25 +2472,25 @@ ALTER TABLE `medios_pago`
 -- AUTO_INCREMENT de la tabla `nota_credito`
 --
 ALTER TABLE `nota_credito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_credito_boleta`
 --
 ALTER TABLE `nota_credito_boleta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_credito_boleta_exenta`
 --
 ALTER TABLE `nota_credito_boleta_exenta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_credito_exenta`
 --
 ALTER TABLE `nota_credito_exenta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_compra`
@@ -2388,7 +2502,7 @@ ALTER TABLE `orden_compra`
 -- AUTO_INCREMENT de la tabla `orden_vestuario`
 --
 ALTER TABLE `orden_vestuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `parametros_documentos`
@@ -2418,7 +2532,7 @@ ALTER TABLE `plazos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
@@ -2448,7 +2562,7 @@ ALTER TABLE `salidas`
 -- AUTO_INCREMENT de la tabla `salida_producto`
 --
 ALTER TABLE `salida_producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT de la tabla `subcategorias`
@@ -2496,13 +2610,13 @@ ALTER TABLE `unidades`
 -- AUTO_INCREMENT de la tabla `unidades_negocio`
 --
 ALTER TABLE `unidades_negocio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
@@ -2514,25 +2628,25 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `venta_afecta`
 --
 ALTER TABLE `venta_afecta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `venta_boleta`
 --
 ALTER TABLE `venta_boleta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `venta_boleta_exenta`
 --
 ALTER TABLE `venta_boleta_exenta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `venta_exenta`
 --
 ALTER TABLE `venta_exenta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
