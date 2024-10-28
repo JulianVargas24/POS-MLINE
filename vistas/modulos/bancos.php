@@ -250,7 +250,7 @@ MODAL EDITAR BANCO
             
             <div class="form-group">
                 
-              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Banco</div>
+              <div class="d-inline-block bg-primary" style="text-indent: 12px;background-color:#3c8dbc;font-size:16px;font-weight:bold">Banco</div>
               <div class="input-group">
                 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -264,7 +264,7 @@ MODAL EDITAR BANCO
 
             <!-- ENTRADA PARA EL CÓDIGO SBIF -->
             <div class="form-group">
-              <div class="d-inline-block bg-primary" style="font-size:16px;font-weight:bold">Código SBIF</div>
+              <div class="d-inline-block bg-primary" style="text-indent: 12px;font-size:16px;font-weight:bold">Código SBIF</div>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
                 

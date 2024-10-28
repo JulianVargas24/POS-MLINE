@@ -60,4 +60,3 @@ $(".tablas").on("click", ".btnEliminarMatriz", function(){
         }
     })
 })
-
