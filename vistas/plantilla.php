@@ -224,6 +224,7 @@ CUERPO DOCUMENTO
                 $_GET["ruta"] == "nota-credito-boleta" ||
                 $_GET["ruta"] == "nota-credito-boleta-exenta" ||
                 $_GET["ruta"] == "nota-credito" ||
+                $_GET["ruta"] == "prueba-admin-orden-produccion" ||
                 $_GET["ruta"] == "salir"
             ) {
 
