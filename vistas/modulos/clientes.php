@@ -1042,6 +1042,7 @@ MODAL EDITAR CLIENTE
 ?>
 
 <script>
+//FILTRADOR DE NUEVA COMUNA Y REGION 
 document.getElementById('nuevaRegion').addEventListener('change', function() {
     var regionId = this.value; // Obtener el ID de la región seleccionada
 
@@ -1077,6 +1078,7 @@ document.getElementById('nuevaRegion').addEventListener('change', function() {
     }
 });
 
+//FILTRADOR DE EDITAR COMUNA Y REGION
 document.getElementById('editarRegion').addEventListener('change', function() {
     var regionId = this.value;
     var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual

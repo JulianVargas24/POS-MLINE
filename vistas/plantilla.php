@@ -298,6 +298,7 @@ CUERPO DOCUMENTO
     <script src="vistas/js/validaciones.js"></script>
     <script src="vistas/js/bancos.js"></script>
     <script src="vistas/js/cotizaciones.js"></script>
+    <script src="vistas/js/nota-credito.js"></script>
 </body>
 
 </html>
