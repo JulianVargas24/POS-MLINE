@@ -182,7 +182,7 @@ MODAL AGREGAR RUBRO
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                    <input type="text" class="form-control input" id="editarPrecioProducto" name="editarPrecioProducto"  required>
+                    <input type="number" class="form-control input" id="editarPrecioProducto" min=0 name="editarPrecioProducto"  required>
 
                 </div>
             </div>
