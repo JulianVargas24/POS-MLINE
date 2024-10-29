@@ -62,10 +62,6 @@ if($xml){
 
         </a>
 
-        <a href="prueba-admin-orden-produccion">
-        <button class="btn btn-success" style="margin-top:5px">PRUEBA VISUAL DE ADMIN OTP</button>
-        </a>
-
       </div>
 
       <div class="box-tools pull-right" style="margin-bottom:5px">

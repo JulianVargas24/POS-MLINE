@@ -514,7 +514,7 @@
 						</li>
 						<li>
 
-						<a href="administrador-O.T.P">
+						<a href="admin-orden-produccion">
 							
 							<i class="fa fa-circle-o"></i>
 							<span>Administrador O.T.P</span>
