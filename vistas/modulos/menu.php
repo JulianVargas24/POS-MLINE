@@ -460,6 +460,17 @@
 
 					</a>
 						<ul class="treeview-menu">
+
+						<li>
+		
+						<span style= "color: #f0f0f0";>
+							
+							<i class="tittle"></i>
+							<span>OTV Vestuario</span>
+
+						</span>
+
+						</li>
 						<li>
 		
 						<a href="orden-trabajo">
@@ -491,7 +502,38 @@
 						</a>
 
 					</li>
+					<li>
+		
+						<span style= "color: #f0f0f0";>
+							
+							<i class="tittle"></i>
+							<span>OTP Producción</span>
 
+						</span>
+
+						</li>
+						<li>
+
+						<a href="administrador-O.T.P">
+							
+							<i class="fa fa-circle-o"></i>
+							<span>Administrador O.T.P</span>
+
+						</a>
+
+						<li>
+						<li>
+
+						<a href="orden-produccion">
+							
+							<i class="fa fa-circle-o"></i>
+							<span>Orden de Producción</span>
+
+						</a>
+
+						<li>
+
+					
 						</ul>
 				</li>';
 
