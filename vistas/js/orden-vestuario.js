@@ -363,85 +363,85 @@ $(".nuevoPersonal").on("click", ".btnEditarMedidasPersonal", function(){
                                         Busto
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${busto}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${busto}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Cintura
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${cintura}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${cintura}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Cadera
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${cadera}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${cadera}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Ancho Espalda
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${ancho_espalda}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${ancho_espalda}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Talle Delantero
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${talle_delantero}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${talle_delantero}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Talle Espalda
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${talle_espalda}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${talle_espalda}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Manga
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_manga}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_manga}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Blusa
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_blusa}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_blusa}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Guillete
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_guillete}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_guillete}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Chaqueta
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_chaqueta}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_chaqueta}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Polera
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_polera}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_polera}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Parka
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_parka}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_parka}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Polar
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_polar}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_polar}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Vestido
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_vestido}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_vestido}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xs-4">
@@ -453,49 +453,49 @@ $(".nuevoPersonal").on("click", ".btnEditarMedidasPersonal", function(){
                                         Cintura
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_cintura}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_cintura}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Cadera
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_cadera}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_cadera}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Tiro
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_tiro}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_tiro}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Entrepierna
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_entrepierna}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_entrepierna}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Contorno Muslo
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_muslo}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_muslo}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Contorno Rodilla
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_rodilla}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_rodilla}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Contorno Basta
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_basta}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${pantalon_basta}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Total
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_pantalon}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_pantalon}" readonly>
                                     </div>
                                     <div class="col-xs-12">
                                         <h4 style="font-weight:bold;color:green;">Falda</h4> 
@@ -504,19 +504,19 @@ $(".nuevoPersonal").on("click", ".btnEditarMedidasPersonal", function(){
                                         Cintura
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${falda_cadera}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${falda_cadera}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Cadera
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${falda_cintura}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${falda_cintura}" readonly>
                                     </div>
                                     <div class="col-xs-6">
                                         Largo Total 
                                     </div>
                                     <div class="col-xs-6">
-                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_falda}">
+                                        <input class="form-control input-sm" type="text" name="" id="" value="${largo_falda}" readonly> 
                                     </div>
                                 
                                 </div>

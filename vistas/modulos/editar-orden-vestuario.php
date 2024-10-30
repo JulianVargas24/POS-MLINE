@@ -323,8 +323,8 @@ if($_SESSION["perfil"] == "Especial"){
                                                     <input type="text"  class="form-control nuevaEmpresaPersonal"   name="nuevaEmpresaPersonal" value="'.$value['empresa'].'" readonly required>
                                                 </div>
                                                 <div class="col-xs-2 btngroup" style="padding-right:0px">
-                                                <button type="button"  idPersonal="'.$value["id"].'" data-dismiss="modal" class="btn btn-warning btnEditarMedidasPersonal">Editar</button>
-                                                <button type="button" data-toggle="modal" data-target="#modalVerMedidas" idPersonal="'.$value["id"].'" data-dismiss="modal" class="btn btn-success btnVerPersonal">Ver</button>
+                                                <button type="button"  idPersonal="'.$value["id"].'" data-dismiss="modal" class="btn btn-success btnEditarMedidasPersonal">Ver</button>
+                                                <button type="button" data-toggle="modal" data-target="#modalVerMedidas" idPersonal="'.$value["id"].'" data-dismiss="modal" class="btn btn-warning btnVerPersonal">Editar</button>
                                         </div>
                                                 </div>';
                                             }
