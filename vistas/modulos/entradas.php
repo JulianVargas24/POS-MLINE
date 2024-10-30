@@ -1,14 +1,14 @@
 <?php
 
-if($_SESSION["perfil"] == "Especial"){
+if ($_SESSION["perfil"] == "Especial") {
 
-  echo '<script>
+    echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-  return;
+    return;
 
 }
 
@@ -16,33 +16,33 @@ if($_SESSION["perfil"] == "Especial"){
 
 <div class="content-wrapper">
 
-  <section class="content-header">
-    
-  <h1 style="color:green;font-weight:bold">
-      
-      ENTRADA
-    
-    </h1>
+    <section class="content-header">
+
+        <h1 style="color:green;font-weight:bold">
+
+            ENTRADA
+
+        </h1>
 
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Formulario Entrada</li>
-    
-    </ol>
+        <ol class="breadcrumb">
 
-  </section>
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-  <section class="content">
+            <li class="active">Formulario entrada</li>
 
-    <div class="box box-success">
+        </ol>
 
-        <div class="box-body">
-        <div class="row" style="margin-bottom:5px;">
+    </section>
+
+    <section class="content">
+
+        <div class="box box-success">
+
+            <div class="box-body">
+                <div class="row" style="margin-bottom:5px;">
                     <div class="col-xs-5">
-                        <label for="">Tipo de Entrada</label>
+                        <label for="">Tipo de entrada</label>
                         <div class="form-group">
                             <div class="input-group">
                                 <!-- Bodega a Bodega inhabilitada (en caso de que se necesite de nuevo se descomenta) -->
@@ -50,8 +50,8 @@ if($_SESSION["perfil"] == "Especial"){
                                 <!-- <label for="radio1" style="font-weight:normal;">Bodega a Bodega</label> -->
                             </div>
                             <div class="input-group">
-                                <input type="radio" name="tipoEntrada" value="manual" >
-                                <label for="radio2" style="font-weight:normal;">Ingreso Manual a Bodega</label>
+                                <input type="radio" name="tipoEntrada" value="manual">
+                                <label for="radio2" style="font-weight:normal;">Ingreso manual a bodega</label>
                             </div>
                             <div class="input-group">
                                 <!-- Orden de Trabajo a Bodega inhabilitada (en caso de que se necesite de nuevo se descomenta) -->
@@ -59,285 +59,310 @@ if($_SESSION["perfil"] == "Especial"){
                                 <!-- <label for="radio3" style="font-weight:normal;">Orden de Trabajo a Bodega</label> -->
                             </div>
                             <div class="input-group">
-                                <input type="radio" name="tipoEntrada" value="carga" >
-                                <label for="radio3" style="font-weight:normal;">Carga de Producto</label>
+                                <input type="radio" name="tipoEntrada" value="carga">
+                                <label for="radio3" style="font-weight:normal;">Carga de producto</label>
                             </div>
                         </div>
                     </div>
-        
-            <form role="form" method="post" class="formularioEntradaInventario" id="bodega">    
-                <div class="row" style="margin-bottom:5px;">
-                    <div class="col-xs-5">
-                        
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <label for="">Fecha Emisión</label>
-                                    <input type="text" name="listaProductos" id="listaProductos">
-                                    <input type="date" class="form-control input-sm" name="nuevaFecha" id="nuevaFecha">
+
+                    <form role="form" method="post" class="formularioEntradaInventario" id="bodega">
+                        <div class="row" style="margin-bottom:5px;">
+                            <div class="col-xs-5">
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label for="">Fecha emisión</label>
+                                        <input type="hidden" name="listaProductos" id="listaProductos">
+                                        <input type="date" class="form-control input-sm" name="nuevaFecha"
+                                               id="nuevaFecha">
+                                    </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="col-xs-2 col-xs-offset-5">
-                        <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">ENTRADA</div>
-                        <?php
+                            <div class="col-xs-2 col-xs-offset-5">
+                                <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">ENTRADA</div>
+                                <?php
                                 $tabla = "entradas";
-                                $atributo= "entrada_inventario";
+                                $atributo = "entrada_inventario";
                                 $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
-                        ?>
-                            <div class="form-group">
-                                <div class="input-group">
-                                <span class="input-group-addon">Folio</span>
-                                 <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo" id="nuevoCodigo" value="<?php echo $folio + 1 ?>" readonly required>
+                                ?>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Folio</span>
+                                        <input type="text" style="font-weight:bold; font-size:16px;"
+                                               class="form-control" name="nuevoCodigo" id="nuevoCodigo"
+                                               value="<?php echo $folio + 1 ?>" readonly required>
+                                    </div>
                                 </div>
                             </div>
-                    </div>
 
-                </div>
+                        </div>
 
-                
-                <div class="col-xs-5">
-                    <label for="">Observaciones</label>
-                    <div class="form-group">
-                    <textarea name="nuevaObservacion" id="nuevaObservacion" cols="40" rows="2"></textarea>
 
-                    </div>
-                
-                </div>
-                
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box box-info">
-                            <h4 class="box-title">Bodega a Bodega</h4>
-                            <div class="box-body">
-                                <div class="row">
-                                        <div class="col-xs-6">
+                        <div class="col-xs-5">
+                            <label for="">Observaciones</label>
+                            <div class="form-group">
+                                <textarea name="nuevaObservacion" id="nuevaObservacion" cols="40" rows="2"></textarea>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box box-info">
+                                    <h4 class="box-title">Bodega a bodega</h4>
+                                    <div class="box-body">
+                                        <div class="row">
                                             <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega Origen</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                <input type="hidden" name="nuevoTipoEntrada" id="nuevoTipoEntrada" value="Bodega a Bodega">
-                                                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
+                                                <div class="col-xs-6">
+                                                    <div class="d-block" style="font-size:14px;">Bodega origen</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="hidden" name="nuevoTipoEntrada"
+                                                                   id="nuevoTipoEntrada" value="Bodega a Bodega">
+                                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
 
-                                                    <select style="padding-left:0px" class="form-control input" id="nuevoValorTipoEntrada" name="nuevoValorTipoEntrada" required>
-                                                        
-                                                    <option value="">Seleccionar Bodega</option>
-                                                    <?php
+                                                            <select style="padding-left:0px" class="form-control input"
+                                                                    id="nuevoValorTipoEntrada"
+                                                                    name="nuevoValorTipoEntrada" required>
 
-                                                        $item = null;
-                                                        $valor = null;
+                                                                <option value="">Seleccionar bodega</option>
+                                                                <?php
 
-                                                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                                                                $item = null;
+                                                                $valor = null;
 
-                                                        foreach ($bodegas as $key => $value) {
-                                                        
-                                                        echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                                                        }
+                                                                $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
 
-                                                    ?>
-                                                    </select>
+                                                                foreach ($bodegas as $key => $value) {
+
+                                                                    echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="d-block" style="font-size:14px;">Bodega destino</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+
+                                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                                            <select style="padding-left:0px" class="form-control input"
+                                                                    id="nuevaBodegaDestino" name="nuevaBodegaDestino"
+                                                                    required>
+
+                                                                <option value="">Seleccionar bodega</option>
+                                                                <?php
+
+                                                                $item = null;
+                                                                $valor = null;
+
+                                                                $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+
+                                                                foreach ($bodegas as $key => $value) {
+
+                                                                    echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-12 nuevoProductoEntrada1">
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="box box-success">
+                                                        <div class="box-header with-border"></div>
+                                                        <div class="box-body">
+                                                            <h4 class="box-title text-center"
+                                                                style="font-weight:bold; font-size:20px;"> Productos
+                                                                para seleccionar</h4>
 
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega Destino</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    
-                                                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
+                                                            <table class="table table-bordered table-striped dt-responsive tablaEntradas1">
 
-                                                    <select style="padding-left:0px" class="form-control input" id="nuevaBodegaDestino" name="nuevaBodegaDestino" required>
-                                                        
-                                                    <option value="">Seleccionar Bodega</option>
-                                                    <?php
 
-                                                        $item = null;
-                                                        $valor = null;
+                                                                <thead>
 
-                                                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                                                                <tr>
+                                                                    <th style="width: 10px">#</th>
+                                                                    <th>Imagen</th>
+                                                                    <th>Código</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Acciones</th>
+                                                                </tr>
 
-                                                        foreach ($bodegas as $key => $value) {
-                                                        
-                                                        echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                                                        }
+                                                                </thead>
 
-                                                    ?>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                            </table>
 
-                                        </div>
-                                        <div class="col-xs-12 nuevoProductoEntrada1">
-                                        </div>
-                                </div>
-                                <div class="row">                                        
-                                    <div class="col-xs-6">
-                                        <div class="box box-success">
-                                            <div class="box-header with-border"></div>
-                                                <div class="box-body">
-                                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
-                                                    
-                                                    <table  class="table table-bordered table-striped dt-responsive tablaEntradas1">
-                                                
-                                                    
-                                                        <thead>
-
-                                                            <tr>
-                                                            <th style="width: 10px">#</th>
-                                                            <th>Imagen</th>
-                                                            <th>Código</th>
-                                                            <th>Nombre</th>
-                                                            <th>Acciones</th>
-                                                            </tr>
-
-                                                        </thead>
-
-                                                    </table>
-                                                    
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
-                    </div>
 
+                        <!-- Botones en BODEGA a BODEGA -->
+                        <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir
+                        </button>
+                        <button type="submit" class="btn btn-primary">Guardar entrada</button>
+                    </form>
+                    <form role="form" method="post" class="formularioEntradaInventario" id="manual">
+                        <div class="row" style="margin-bottom:5px;">
+                            <div class="col-xs-5">
 
-
-                    
-                </div>
-                
-                <!-- Botones en BODEGA a BODEGA -->
-                <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
-                <button type="submit" class="btn btn-primary">Guardar Entrada</button>
-            </form>
-            <form role="form" method="post" class="formularioEntradaInventario" id="manual">    
-                <div class="row" style="margin-bottom:5px;">
-                    <div class="col-xs-5">
-                        
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <label for="">Fecha Emisión</label>
-                                    <input type="text" name="listaProductos1" id="listaProductos1">
-                                    <input type="date" class="form-control input-sm" name="nuevaFecha1" id="nuevaFecha1">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label for="">Fecha emisión</label>
+                                        <input type="text" name="listaProductos1" id="listaProductos1">
+                                        <input type="date" class="form-control input-sm" name="nuevaFecha1"
+                                               id="nuevaFecha1">
+                                    </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="col-xs-2 col-xs-offset-5">
-                        <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">ENTRADA</div>
-                        <?php
+                            <div class="col-xs-2 col-xs-offset-5">
+                                <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">ENTRADA</div>
+                                <?php
                                 $tabla = "entradas";
-                                $atributo= "entrada_inventario";
+                                $atributo = "entrada_inventario";
                                 $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
-                        ?>
-                            <div class="form-group">
-                                <div class="input-group">
-                                <span class="input-group-addon">Folio</span>
-                                 <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo1" id="nuevoCodigo1" value="<?php echo $folio + 1 ?>" readonly required>
+                                ?>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Folio</span>
+                                        <input type="text" style="font-weight:bold; font-size:16px;"
+                                               class="form-control" name="nuevoCodigo1" id="nuevoCodigo1"
+                                               value="<?php echo $folio + 1 ?>" readonly required>
+                                    </div>
                                 </div>
                             </div>
-                    </div>
 
-                </div>
+                        </div>
 
-                
-                <div class="col-xs-5">
-                    <label for="">Observaciones</label>
-                    <div class="form-group">
-                    <textarea name="nuevaObservacion1" id="nuevaObservacion1" cols="40" rows="2"></textarea>
 
-                    </div>
-                
-                </div>
-                
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box box-info">
-                            <h4 class="box-title">Ingreso Manual a Bodega</h4>
-                            <div class="box-body">
-                                <div class="row">
-                                        <div class="col-xs-6">
+                        <div class="col-xs-5">
+                            <label for="">Observaciones</label>
+                            <div class="form-group">
+                                <textarea name="nuevaObservacion1" id="nuevaObservacion1" cols="40" rows="2"></textarea>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box box-info">
+                                    <h4 class="box-title">Ingreso manual a bodega</h4>
+                                    <div class="box-body">
+                                        <div class="row">
                                             <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Ingresado por:</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                <input type="hidden" name="nuevoTipoEntrada1" id="nuevoTipoEntrada1" value="Ingreso Manual a Bodega">
-                                                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
+                                                <div class="col-xs-6">
+                                                    <div class="d-block" style="font-size:14px;">Ingresado por:</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="hidden" name="nuevoTipoEntrada1"
+                                                                   id="nuevoTipoEntrada1"
+                                                                   value="Ingreso Manual a Bodega">
+                                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
 
-                                                    <select style="padding-left:0px" class="form-control input" id="nuevoValorTipoEntrada1" name="nuevoValorTipoEntrada1" required>
-                                                        
-                                                    <option value="">Seleccionar Plantel</option>
-                                                    <?php
+                                                            <select style="padding-left:0px" class="form-control input"
+                                                                    id="nuevoValorTipoEntrada1"
+                                                                    name="nuevoValorTipoEntrada1" required>
 
-                                                        $item = null;
-                                                        $valor = null;
+                                                                <option value="">Seleccionar plantel</option>
+                                                                <?php
 
-                                                        $bodegas = ControladorPlantel::ctrMostrarPlantel($item, $valor);
+                                                                $item = null;
+                                                                $valor = null;
 
-                                                        foreach ($bodegas as $key => $value) {
-                                                        
-                                                        echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                                                        }
+                                                                $bodegas = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
-                                                    ?>
-                                                    </select>
+                                                                foreach ($bodegas as $key => $value) {
+
+                                                                    echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="d-block" style="font-size:14px;">Bodega destino</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+
+                                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                                            <select style="padding-left:0px" class="form-control input"
+                                                                    id="nuevaBodegaDestino1" name="nuevaBodegaDestino1"
+                                                                    required>
+
+                                                                <option value="">Seleccionar bodega</option>
+                                                                <?php
+
+                                                                $item = null;
+                                                                $valor = null;
+
+                                                                $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+
+                                                                foreach ($bodegas as $key => $value) {
+
+                                                                    echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-12 nuevoProductoEntrada2">
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="box box-success">
+                                                        <div class="box-header with-border"></div>
+                                                        <div class="box-body">
+                                                            <h4 class="box-title text-center"
+                                                                style="font-weight:bold; font-size:20px;"> Productos
+                                                                para seleccionar</h4>
 
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega Destino</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    
-                                                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
+                                                            <table class="table table-bordered table-striped dt-responsive tablaEntradas2">
 
-                                                    <select style="padding-left:0px" class="form-control input" id="nuevaBodegaDestino1" name="nuevaBodegaDestino1" required>
-                                                        
-                                                    <option value="">Seleccionar Bodega</option>
-                                                    <?php
 
-                                                        $item = null;
-                                                        $valor = null;
+                                                                <thead>
 
-                                                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                                                                <tr>
+                                                                    <th style="width: 10px">#</th>
+                                                                    <th>Imagen</th>
+                                                                    <th>Código</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Acciones</th>
+                                                                </tr>
 
-                                                        foreach ($bodegas as $key => $value) {
-                                                        
-                                                        echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                                                        }
+                                                                </thead>
 
-                                                    ?>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                            </table>
 
-                                        </div>
-                                        <div class="col-xs-12 nuevoProductoEntrada2">
-                                        </div>
-                                </div>
-                                <div class="row">                                        
-                                    <div class="col-xs-6">
-                                        <div class="box box-success">
-                                            <div class="box-header with-border"></div>
-                                                <div class="box-body">
-                                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
-                                                    
-                                                    <table  class="table table-bordered table-striped dt-responsive tablaEntradas2">
-                                                
-                                                    
-                                                        <thead>
-
-                                                            <tr>
-                                                            <th style="width: 10px">#</th>
-                                                            <th>Imagen</th>
-                                                            <th>Código</th>
-                                                            <th>Nombre</th>
-                                                            <th>Acciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -345,286 +370,312 @@ if($_SESSION["perfil"] == "Especial"){
                                     <!-- A partir de aquí empieza la sona segura para colocar los botones de Salir y de Guardar Entrada. -->
                                 </div>
                             </div>
-                            <!-- Botones en INGRESO MANUAL a BODEGA -->
-                            <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
-                            <button type="submit" class="btn btn-primary">Guardar Entrada</button>
-                            <!-- De aquí para abajo empieza la línea separadora de la sección. -->
+
+
                         </div>
-                    </div>
-                </div>
-            </form>
-            <form role="form" method="post" class="formularioEntradaInventario" id="orden">
-                <div class="row" style="margin-bottom:5px;">
-                    <div class="col-xs-5">
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                <label for="">Fecha Emisión</label>
-                                <input type="text" name="listaProductos2" id="listaProductos2">
-                                    <input type="date" class="form-control input-sm" name="nuevaFecha2" id="nuevaFecha2">
+                        <!-- Botones en INGRESO MANUAL a BODEGA -->
+                        <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir
+                        </button>
+                        <button type="submit" class="btn btn-primary">Guardar entrada</button>
+                    </form>
+                    <form role="form" method="post" class="formularioEntradaInventario" id="orden">
+                        <div class="row" style="margin-bottom:5px;">
+                            <div class="col-xs-5">
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label for="">Fecha emisión</label>
+                                        <input type="text" name="listaProductos2" id="listaProductos2">
+                                        <input type="date" class="form-control input-sm" name="nuevaFecha2"
+                                               id="nuevaFecha2">
+                                    </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="col-xs-2 col-xs-offset-5">
-                        <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">ENTRADA</div>
-                        <?php
+                            <div class="col-xs-2 col-xs-offset-5">
+                                <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">ENTRADA</div>
+                                <?php
                                 $tabla = "entradas";
-                                $atributo= "entrada_inventario";
+                                $atributo = "entrada_inventario";
                                 $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
-                        ?>
-                            <div class="form-group">
-                                <div class="input-group">
-                                <span class="input-group-addon">Folio</span>
-                                 <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo2" id="nuevoCodigo2" value="<?php echo $folio + 1 ?>" readonly required>
+                                ?>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Folio</span>
+                                        <input type="text" style="font-weight:bold; font-size:16px;"
+                                               class="form-control" name="nuevoCodigo2" id="nuevoCodigo2"
+                                               value="<?php echo $folio + 1 ?>" readonly required>
+                                    </div>
                                 </div>
                             </div>
-                    </div>
 
-                </div>
+                        </div>
 
-                
-                <div class="col-xs-5">
-                    <label for="">Observaciones</label>
-                    <div class="form-group">
-                    <textarea name="nuevaObservacion2" id="nuevaObservacion2" cols="40" rows="2"></textarea>
-                    </div>
-                
-                </div>
-                
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box box-info">
-                            <h4 class="box-title">Orden de Trabajo a Bodega</h4>
-                            <div class="box-body">
-                                <div class="row">
-                                        <div class="col-xs-6">
+
+                        <div class="col-xs-5">
+                            <label for="">Observaciones</label>
+                            <div class="form-group">
+                                <textarea name="nuevaObservacion2" id="nuevaObservacion2" cols="40" rows="2"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box box-info">
+                                    <h4 class="box-title">Orden de trabajo a bodega</h4>
+                                    <div class="box-body">
+                                        <div class="row">
                                             <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Orden de Trabajo</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                <input type="hidden" name="nuevoTipoEntrada2" id="nuevoTipoEntrada2" value="Orden de Trabajo a Bodega">
-                                                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
+                                                <div class="col-xs-6">
+                                                    <div class="d-block" style="font-size:14px;">Orden de trabajo</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="hidden" name="nuevoTipoEntrada2"
+                                                                   id="nuevoTipoEntrada2"
+                                                                   value="Orden de Trabajo a Bodega">
+                                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
 
-                                                    <select style="padding-left:0px" class="form-control input" id="nuevoValorTipoEntrada2" name="nuevoValorTipoEntrada2" required>
-                                                        
-                                                    <option value="">Seleccionar O.T</option>
-                                                    <?php
+                                                            <select style="padding-left:0px" class="form-control input"
+                                                                    id="nuevoValorTipoEntrada2"
+                                                                    name="nuevoValorTipoEntrada2" required>
 
-                                                        $item = null;
-                                                        $valor = null;
+                                                                <option value="">Seleccionar O.T</option>
+                                                                <?php
 
-                                                        $orden = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
+                                                                $item = null;
+                                                                $valor = null;
 
-                                                        foreach ($orden as $key => $value) {
-                                                        
-                                                        echo '<option value="'.$value["id"].'">'.$value["nombre_orden"].'</option>';
-                                                        }
+                                                                $orden = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
 
-                                                    ?>
-                                                    </select>
+                                                                foreach ($orden as $key => $value) {
+
+                                                                    echo '<option value="' . $value["id"] . '">' . $value["nombre_orden"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="d-block" style="font-size:14px;">Bodega destino</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+
+                                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                                            <select style="padding-left:0px" class="form-control input"
+                                                                    id="nuevaBodegaDestino2" name="nuevaBodegaDestino2"
+                                                                    required>
+
+                                                                <option value="">Seleccionar bodega</option>
+                                                                <?php
+
+                                                                $item = null;
+                                                                $valor = null;
+
+                                                                $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+
+                                                                foreach ($bodegas as $key => $value) {
+
+                                                                    echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-12 nuevoProductoEntrada3">
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="box box-success">
+                                                        <div class="box-header with-border"></div>
+                                                        <div class="box-body">
+                                                            <h4 class="box-title text-center"
+                                                                style="font-weight:bold; font-size:20px;"> Productos
+                                                                para seleccionar</h4>
 
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega Destino</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    
-                                                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
+                                                            <table class="table table-bordered table-striped dt-responsive tablaEntradas3">
 
-                                                    <select style="padding-left:0px" class="form-control input" id="nuevaBodegaDestino2" name="nuevaBodegaDestino2" required>
-                                                        
-                                                    <option value="">Seleccionar Bodega</option>
-                                                    <?php
 
-                                                        $item = null;
-                                                        $valor = null;
+                                                                <thead>
 
-                                                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                                                                <tr>
+                                                                    <th style="width: 10px">#</th>
+                                                                    <th>Imagen</th>
+                                                                    <th>Código</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Acciones</th>
+                                                                </tr>
 
-                                                        foreach ($bodegas as $key => $value) {
-                                                        
-                                                        echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                                                        }
+                                                                </thead>
 
-                                                    ?>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                            </table>
 
-                                        </div>
-                                        <div class="col-xs-12 nuevoProductoEntrada3">
-                                        </div>
-                                </div>
-                                <div class="row">                                        
-                                    <div class="col-xs-6">
-                                        <div class="box box-success">
-                                            <div class="box-header with-border"></div>
-                                                <div class="box-body">
-                                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
-                                                    
-                                                    <table  class="table table-bordered table-striped dt-responsive tablaEntradas3">
-                                                
-                                                    
-                                                        <thead>
-
-                                                            <tr>
-                                                            <th style="width: 10px">#</th>
-                                                            <th>Imagen</th>
-                                                            <th>Código</th>
-                                                            <th>Nombre</th>
-                                                            <th>Acciones</th>
-                                                            </tr>
-
-                                                        </thead>
-
-                                                    </table>
-                                                    
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
-                    </div>
 
+                        <!-- Botones en ORDEN de TRABAJO a BODEGA -->
+                        <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir
+                        </button>
+                        <button type="submit" class="btn btn-primary">Guardar entrada</button>
+                    </form>
+                    <form role="form" method="post" class="formularioEntradaInventario" id="carga">
+                        <div class="row" style="margin-bottom:5px;">
+                            <div class="col-xs-5">
 
-                                    
-                    
-                </div>
-                
-                <!-- Botones en ORDEN de TRABAJO a BODEGA -->
-                <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
-                <button type="submit" class="btn btn-primary">Guardar Entrada</button>
-            </form>
-            <form role="form" method="post" class="formularioEntradaInventario" id="carga">    
-                <div class="row" style="margin-bottom:5px;">
-                    <div class="col-xs-5">
-                        
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <label for="">Fecha Emisión</label>
-                                    <input type="text" name="listaProductos3" id="listaProductos3">
-                                    <input type="date" class="form-control input-sm" name="nuevaFecha3" id="nuevaFecha3">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label for="">Fecha emisión</label>
+                                        <input type="text" name="listaProductos3" id="listaProductos3">
+                                        <input type="date" class="form-control input-sm" name="nuevaFecha3"
+                                               id="nuevaFecha3">
+                                    </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="col-xs-2 col-xs-offset-5">
-                        <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">ENTRADA</div>
-                        <?php
+                            <div class="col-xs-2 col-xs-offset-5">
+                                <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">ENTRADA</div>
+                                <?php
                                 $tabla = "entradas";
-                                $atributo= "entrada_inventario";
+                                $atributo = "entrada_inventario";
                                 $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
-                        ?>
-                            <div class="form-group">
-                                <div class="input-group">
-                                <span class="input-group-addon">Folio</span>
-                                 <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo3" id="nuevoCodigo3" value="<?php echo $folio + 1 ?>" readonly required>
+                                ?>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Folio</span>
+                                        <input type="text" style="font-weight:bold; font-size:16px;"
+                                               class="form-control" name="nuevoCodigo3" id="nuevoCodigo3"
+                                               value="<?php echo $folio + 1 ?>" readonly required>
+                                    </div>
                                 </div>
                             </div>
-                    </div>
 
-                </div>
+                        </div>
 
-                
-                <div class="col-xs-5">
-                    <label for="">Observaciones</label>
-                    <div class="form-group">
-                    <textarea name="nuevaObservacion3" id="nuevaObservacion3" cols="40" rows="2"></textarea>
 
-                    </div>
-                
-                </div>
+                        <div class="col-xs-5">
+                            <label for="">Observaciones</label>
+                            <div class="form-group">
+                                <textarea name="nuevaObservacion3" id="nuevaObservacion3" cols="40" rows="2"></textarea>
 
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box box-info">
-                            <h4 class="box-title">Carga Inicial de Productos</h4>
-                            <div class="box-body">
-                                <div class="row">
-                                        <div class="col-xs-6">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box box-info">
+                                    <h4 class="box-title">Carga inicial de productos</h4>
+                                    <div class="box-body">
+                                        <div class="row">
                                             <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Ingresado por:</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                <input type="hidden" name="nuevoTipoEntrada3" id="nuevoTipoEntrada3" value="Carga Inicial">
-                                                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
+                                                <div class="col-xs-6">
+                                                    <div class="d-block" style="font-size:14px;">Ingresado por:</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="hidden" name="nuevoTipoEntrada3"
+                                                                   id="nuevoTipoEntrada3" value="Carga Inicial">
+                                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
 
-                                                    <select style="padding-left:0px" class="form-control input" id="nuevoValorTipoEntrada3" name="nuevoValorTipoEntrada3" required>
-                                                        
-                                                    <option value="">Seleccionar Plantel</option>
-                                                    <?php
+                                                            <select style="padding-left:0px" class="form-control input"
+                                                                    id="nuevoValorTipoEntrada3"
+                                                                    name="nuevoValorTipoEntrada3" required>
 
-                                                        $item = null;
-                                                        $valor = null;
+                                                                <option value="">Seleccionar plantel</option>
+                                                                <?php
 
-                                                        $bodegas = ControladorPlantel::ctrMostrarPlantel($item, $valor);
+                                                                $item = null;
+                                                                $valor = null;
 
-                                                        foreach ($bodegas as $key => $value) {
-                                                        
-                                                        echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                                                        }
+                                                                $bodegas = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
-                                                    ?>
-                                                    </select>
+                                                                foreach ($bodegas as $key => $value) {
+
+                                                                    echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="d-block" style="font-size:14px;">Bodega destino</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+
+                                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                                            <select style="padding-left:0px" class="form-control input"
+                                                                    id="nuevaBodegaDestino3" name="nuevaBodegaDestino3"
+                                                                    required>
+
+                                                                <option value="">Seleccionar bodega</option>
+                                                                <?php
+
+                                                                $item = null;
+                                                                $valor = null;
+
+                                                                $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+
+                                                                foreach ($bodegas as $key => $value) {
+
+                                                                    echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-12 nuevoProductoEntrada4">
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div class="box box-success">
+                                                        <div class="box-header with-border"></div>
+                                                        <div class="box-body">
+                                                            <h4 class="box-title text-center"
+                                                                style="font-weight:bold; font-size:20px;"> Productos
+                                                                para seleccionar</h4>
 
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega Destino</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    
-                                                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
+                                                            <table class="table table-bordered table-striped dt-responsive tablaEntradas4">
 
-                                                    <select style="padding-left:0px" class="form-control input" id="nuevaBodegaDestino3" name="nuevaBodegaDestino3" required>
-                                                        
-                                                    <option value="">Seleccionar Bodega</option>
-                                                    <?php
 
-                                                        $item = null;
-                                                        $valor = null;
+                                                                <thead>
 
-                                                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                                                                <tr>
+                                                                    <th style="width: 10px">#</th>
+                                                                    <th>Imagen</th>
+                                                                    <th>Código</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Acciones</th>
+                                                                </tr>
 
-                                                        foreach ($bodegas as $key => $value) {
-                                                        
-                                                        echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                                                        }
+                                                                </thead>
 
-                                                    ?>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                            </table>
 
-                                        </div>
-                                        <div class="col-xs-12 nuevoProductoEntrada4">
-                                        </div>
-                                </div>
-                                <div class="row">                                        
-                                    <div class="col-xs-6">
-                                        <div class="box box-success">
-                                            <div class="box-header with-border"></div>
-                                                <div class="box-body">
-                                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
-
-                                                    <table  class="table table-bordered table-striped dt-responsive tablaEntradas4">
-                                                
-                                                    
-                                                        <thead>
-
-                                                            <tr>
-                                                            <th style="width: 10px">#</th>
-                                                            <th>Imagen</th>
-                                                            <th>Código</th>
-                                                            <th>Nombre</th>
-                                                            <th>Acciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -632,74 +683,71 @@ if($_SESSION["perfil"] == "Especial"){
                                     <!-- A partir de aquí empieza la sona segura para colocar los botones de Salir y de Guardar Entrada.  -->
                                 </div>
                             </div>
-                            <!-- Botones en CARGA de PRODUCTO -->
-                            <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir</button>
-                            <button type="submit" class="btn btn-primary">Guardar Entrada</button>
-                            <!-- De aquí para abajo empieza la línea separadora de la sección. -->
+
+
                         </div>
-                    </div>
+
+                        <!-- Botones en CARGA de PRODUCTO -->
+                        <button type="button" class="btn btn-default" onclick="window.location.href='entrada';">Salir
+                        </button>
+                        <button type="submit" class="btn btn-primary">Guardar entrada</button>
+                    </form>
+
+
+                    <?php
+                    $agregarEntrada = new ControladorEntradasInventario();
+                    echo $agregarEntrada->ctrCrearEntrada();
+                    ?>
+
                 </div>
 
-
-            </form>
-            
-            
-
-                <?php
-                    $agregarEntrada = new ControladorEntradasInventario();
-                  echo $agregarEntrada -> ctrCrearEntrada();
-                ?>     
-                
-        </div>
-
-    </div>
+            </div>
 
 
-
-  </section>
+    </section>
 
 </div>
 
 
 <style>
-  .error{
-    color: red;
-  }
+    .error {
+        color: red;
+    }
 </style>
 <script>
-$(document).ready(function(){
-            $("#bodega").hide();
-            $("#orden").hide();
-            $("#manual").hide();
-            $("#carga").hide();
-            $("#tabla").hide();
-    $('input[type="radio"]').click(function(){
-        var inputValue = $(this).attr("value");
-        if(inputValue=='bodega'){
-            $("#bodega").show();
-            $("#tabla").show();
-            $("#orden").hide();
-            $("#carga").hide();
-            $("#manual").hide();
-        }else if(inputValue=='orden'){
-            $("#bodega").hide();
-            $("#tabla").show();
-            $("#orden").show();
-            $("#carga").hide();
-            $("#manual").hide();
-        }else if(inputValue=='manual'){
-            $("#bodega").hide();
-            $("#carga").hide();
-            $("#orden").hide();
-            $("#manual").show();
-        }else if(inputValue=='carga'){
-            $("#carga").show();
-            $("#bodega").hide();
-            $("#orden").hide();
-            $("#manual").hide();
-        }
+    $(document).ready(function () {
+        $("#bodega").hide();
+        $("#orden").hide();
+        $("#manual").hide();
+        $("#carga").hide();
+        $("#tabla").hide();
+        $('input[type="radio"]').click(function () {
+            var inputValue = $(this).attr("value");
+            if (inputValue == 'bodega') {
+                $("#bodega").show();
+                $("#tabla").show();
+                $("#orden").hide();
+                $("#carga").hide();
+                $("#manual").hide();
+            } else if (inputValue == 'orden') {
+                $("#bodega").hide();
+                $("#tabla").show();
+                $("#orden").show();
+                $("#carga").hide();
+                $("#manual").hide();
+            } else if (inputValue == 'manual') {
+                $("#bodega").hide();
+                $("#carga").hide();
+                $("#orden").hide();
+                $("#manual").show();
+            } else if (inputValue == 'carga') {
+                $("#carga").show();
+                $("#bodega").hide();
+                $("#orden").hide();
+                $("#manual").hide();
+            }
+        });
     });
-});
 </script>
 
 

@@ -5,7 +5,7 @@ $(".tablas").on("click", ".btnEditarMatriz", function() {
     var idMatriz = $(this).attr("idMatriz");
     var datos = new FormData();
     datos.append("idMatriz", idMatriz);
-    console.log(idMatriz, "matriz");
+    console.log(idMatriz, "idmatriz");
 
     $.ajax({
         url: "ajax/matriz.ajax.php",
@@ -46,8 +46,8 @@ $(".tablas").on("click", ".btnEliminarMatriz", function(){
     var idMatriz = $(this).attr("idMatriz");
 
     swal({
-        title: '¿Está seguro de borrar esta matriz?',
-        text: "¡Si no lo está, puede cancelar la acción!",
+        title: '¿Está seguro de borrar esta Matriz?',
+        text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

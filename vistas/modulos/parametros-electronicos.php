@@ -89,19 +89,19 @@
                                         <div class="row" style="margin-bottom:5px;">
                                             <div class="col-xs-12">
                                                 <div class="input-group">   
-                                                        <label for="">Actividad Economica</label>
+                                                        <label for="">Actividad Económica</label>
                                                         <input type="text" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">     
                                                 </div>
                                                 <div class="input-group">
-                                                        <label for="">Fecha de Resolucion</label>
+                                                        <label for="">Fecha de Resolución</label>
                                                         <input type="text" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">     
                                                 </div>
                                                 <div class="input-group">
-                                                        <label for="">N° de Resolucion</label>
+                                                        <label for="">N° de Resolución</label>
                                                         <input type="text" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">     
                                                 </div>
                                                 <div class="input-group">
-                                                        <label for="">RUT En Via</label>
+                                                        <label for="">RUT En Vía</label>
                                                         <input type="text" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">     
                                                 </div>
                                                     
@@ -119,7 +119,7 @@
                    
                                         
                                     
-                   <button type="button" class="btn btn-default">Salir</button>
+                   <button type="button" class="btn btn-default" onclick="window.location.href='inicio';">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>                 
                 </form>
                                    

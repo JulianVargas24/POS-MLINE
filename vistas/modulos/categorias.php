@@ -1,14 +1,14 @@
 <?php
 
-if($_SESSION["perfil"] == "Vendedor"){
+if ($_SESSION["perfil"] == "Vendedor") {
 
-  echo '<script>
+    echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-  return;
+    return;
 
 }
 
@@ -16,103 +16,103 @@ if($_SESSION["perfil"] == "Vendedor"){
 
 <div class="content-wrapper">
 
-  <section class="content-header">
-    
-    <h1>
-      
-      Administrar Categorías
-    
-    </h1>
+    <section class="content-header">
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Categorías</li>
-    
-    </ol>
+        <h1>
 
-  </section>
+            Administrar categorías
 
-  <section class="content">
+        </h1>
 
-    <div class="box">
+        <ol class="breadcrumb">
 
-      <div class="box-header with-border">
-  
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
-          
-          Agregar Categoría
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-        </button>
+            <li class="active">Administrar categorías</li>
 
-      </div>
+        </ol>
 
-      <div class="box-body">
-        
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Categoria</th>
-           <th>Acciones</th>
+    </section>
 
-         </tr> 
+    <section class="content">
 
-        </thead>
+        <div class="box">
 
-        <tbody>
+            <div class="box-header with-border">
 
-        <?php
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
 
-          $item = null;
-          $valor = null;
+                    Agregar categoría
 
-          $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-          
+                </button>
 
-          foreach ($categorias as $key => $value) {
-           
-            echo ' <tr>
+            </div>
 
-                    <td>'.($key+1).'</td>
+            <div class="box-body">
 
-                    <td>'.$value["categoria"].'</td>
+                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+
+                    <thead>
+
+                    <tr>
+
+                        <th style="width:10px">#</th>
+                        <th>Categoría</th>
+                        <th>Acciones</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <?php
+
+                    $item = null;
+                    $valor = null;
+
+                    $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+
+                    foreach ($categorias as $key => $value) {
+
+                        echo ' <tr>
+
+                    <td>' . ($key + 1) . '</td>
+
+                    <td>' . $value["categoria"] . '</td>
                     
 
                     <td>
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarCategoria" idCategoria="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>';
+                        <button class="btn btn-warning btnEditarCategoria" idCategoria="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>';
 
-                        if($_SESSION["perfil"] == "Administrador"){
+                        if ($_SESSION["perfil"] == "Administrador") {
 
-                          echo '<button class="btn btn-danger btnEliminarCategoria" idCategoria="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                            echo '<button class="btn btn-danger btnEliminarCategoria" idCategoria="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
 
                         }
 
-                      echo '</div>  
+                        echo '</div>  
 
                     </td>
 
                   </tr>';
-          }
+                    }
 
-        ?>
+                    ?>
 
-        </tbody>
+                    </tbody>
 
-       </table>
+                </table>
 
-      </div>
+            </div>
 
-    </div>
+        </div>
 
-  </section>
+    </section>
 
 </div>
 
@@ -123,81 +123,83 @@ MODAL AGREGAR CATEGORÍA
 <div id="modalAgregarCategoria" class="modal fade" role="dialog">
 
 
-  
     <style>
-        .error{
+        .error {
             color: red;
-            
+
         }
     </style>
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <div class="modal-content">
+        <div class="modal-content">
 
-      <form role="form" method="post" id="form_nueva_categoria">
+            <form role="form" method="post" id="form_nueva_categoria">
 
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+                <!--=====================================
+                CABEZA DEL MODAL
+                ======================================-->
 
-        <div class="modal-header" style="background:#3f668d; color:white">
+                <div class="modal-header" style="background:#3f668d; color:white">
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Categoría</h4>
+                    <h4 class="modal-title">Agregar categoría</h4>
+
+                </div>
+
+                <!--=====================================
+                CUERPO DEL MODAL
+                ======================================-->
+
+                <div class="modal-body">
+
+                    <div class="box-body">
+
+                        <!-- ENTRADA PARA EL NOMBRE -->
+
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Categoría
+                            </div>
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <input type="text" class="form-control input" name="nuevaCategoria"
+                                       placeholder="Ingresar categoría" required>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--=====================================
+                PIE DEL MODAL
+                ======================================-->
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                    <button type="submit" class="btn btn-primary" name="crear_categoria">Guardar categoría</button>
+
+                </div>
+
+                <?php
+
+                $crearCategoria = new ControladorCategorias();
+                $crearCategoria->ctrCrearCategoria();
+
+                ?>
+
+            </form>
 
         </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-            
-            <div class="form-group">
-            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Categoria</div>
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                <input type="text" class="form-control input" name="nuevaCategoria" placeholder="Ingresar categoría" required>
-
-              </div>
-
-            </div>
-  
-          </div>
-
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary" name="crear_categoria">Guardar Categoría</button>
-
-        </div>
-
-        <?php
-
-          $crearCategoria = new ControladorCategorias();
-          $crearCategoria -> ctrCrearCategoria();
-
-        ?>
-
-      </form>
 
     </div>
-
-  </div>
 
 </div>
 
@@ -206,84 +208,87 @@ MODAL EDITAR CATEGORÍA
 ======================================-->
 
 <div id="modalEditarCategoria" class="modal fade" role="dialog">
-  
-  <div class="modal-dialog">
 
-    <div class="modal-content">
+    <div class="modal-dialog">
 
-      <form role="form" method="post" id="form_editar_categoria">
+        <div class="modal-content">
 
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+            <form role="form" method="post" id="form_editar_categoria">
 
-        <div class="modal-header" style="background:#3f668d; color:white">
+                <!--=====================================
+                CABEZA DEL MODAL
+                ======================================-->
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-header" style="background:#3f668d; color:white">
 
-          <h4 class="modal-title">Editar Categoría</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4 class="modal-title">Editar categoría</h4>
+
+                </div>
+
+                <!--=====================================
+                CUERPO DEL MODAL
+                ======================================-->
+
+                <div class="modal-body">
+
+                    <div class="box-body">
+
+                        <!-- ENTRADA PARA EL NOMBRE -->
+
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Categoría
+                            </div>
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <input type="text" class="form-control input" name="editarCategoria"
+                                       id="editarCategoria" required>
+
+                                <input type="hidden" name="idCategoria" id="idCategoria" required>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--=====================================
+                PIE DEL MODAL
+                ======================================-->
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+                </div>
+
+                <?php
+
+                $editarCategoria = new ControladorCategorias();
+                $editarCategoria->ctrEditarCategoria();
+
+                ?>
+
+            </form>
 
         </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-            
-            <div class="form-group">
-            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Categoria</div>
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                <input type="text" class="form-control input" name="editarCategoria" id="editarCategoria" required>
-
-                 <input type="hidden"  name="idCategoria" id="idCategoria" required>
-
-              </div>
-
-            </div>
-  
-          </div>
-
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-
-        </div>
-
-      <?php
-
-          $editarCategoria = new ControladorCategorias();
-          $editarCategoria -> ctrEditarCategoria();
-
-        ?> 
-
-      </form>
 
     </div>
-
-  </div>
 
 </div>
 
 <?php
 
-  $borrarCategoria = new ControladorCategorias();
-  $borrarCategoria -> ctrBorrarCategoria();
+$borrarCategoria = new ControladorCategorias();
+$borrarCategoria->ctrBorrarCategoria();
 
 ?>
 

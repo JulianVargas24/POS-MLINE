@@ -31,7 +31,7 @@ if($xml){
     
     <h1>
       
-      Administrar Ventas
+      Administrar ventas
     
     </h1>
 
@@ -39,7 +39,7 @@ if($xml){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar Ventas</li>
+      <li class="active">Administrar ventas</li>
     
     </ol>
 
@@ -56,7 +56,7 @@ if($xml){
 
           <button class="btn btn-primary">
             
-            Crear Venta con Boleta Afecta
+            Crear venta con boleta afecta
 
           </button>
 
@@ -65,7 +65,7 @@ if($xml){
 
           <button class="btn btn-danger">
             
-            Crear Venta con Boleta Exenta
+            Crear venta con boleta exenta
 
           </button>
 
@@ -74,7 +74,7 @@ if($xml){
 
           <button class="btn btn-success">
             
-           Crear Venta con Factura Afecta
+           Crear venta con factura afecta
 
           </button>
 
@@ -83,7 +83,7 @@ if($xml){
 
           <button class="btn btn-warning">
             
-           Crear Venta con Factura Exenta
+           Crear venta con factura exenta
 
           </button>
 
@@ -94,7 +94,7 @@ if($xml){
 
       <div class="box-tools pull-right" style="margin-bottom:5px">
           <a href="vistas/modulos/descargar-reporte-ventas.php?reporte=reporte">
-            <button class="btn btn-success" style="margin-top:5px;margin-right:2px;">Reporte: Ventas General</button>
+            <button class="btn btn-success" style="margin-top:5px;margin-right:2px;">Reporte: ventas general</button>
           </a>
           
           
@@ -113,12 +113,12 @@ if($xml){
            <th>Tipo DTE</th>
            <th>Emisión</th>
            <th>Vendedor</th>
-           <th>Unidad de Negocio</th>
+           <th>Unidad de negocio</th>
            <th>Bodega</th>
-           <th>Plazo de Pago</th>
-           <th>Medio de Pago</th>
+           <th>Plazo de pago</th>
+           <th>Medio de pago</th>
            <th>Cliente</th>
-           <th>Observacion</th>
+           <th>Observación</th>
            <th>Total</th>
            <th>Pagado</th>
            <th>Pendiente</th>

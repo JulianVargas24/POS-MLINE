@@ -12,21 +12,18 @@ if ($_SESSION["perfil"] == "Especial") {
 ?>
 
 <div class="content-wrapper">
-
     <section class="content-header">
-
         <h1 style="color:green;font-weight:bold">
-            Facturar Compra (Sin documento previo)
+            Facturar compra (Sin documento previo)
         </h1>
 
         <ol class="breadcrumb">
 
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Crear Compra</li>
+            <li class="active">Crear compra</li>
 
         </ol>
-
     </section>
 
     <section class="content">
@@ -131,7 +128,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-info">
                                 <div class="box-body">
                                     <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Datos de Compra
+                                        Datos de compra
                                     </h2>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-xs-6">
@@ -215,6 +212,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="col-xs-3">
                             <div class="box box-info">
                                 <div class="box-body">
+                                    <h4 class="box-title"
+                                        style="color:#39b616;font-weight:bold; font-size:21px; color:red;"> FACTURA DE COMPRA</h4>
                                     <h2 class="box-title"
                                         style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
                                         FACTURA DE COMPRA
@@ -285,7 +284,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:12px">
                                                 <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Total Final</p>
+                                                    Total final</p>
                                             </div>
                                         </div>
                                     </div>
@@ -378,7 +377,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <div class="box box-danger">
                                         <div class="box-body">
                                             <h3 class="box-title" style="font-weight:bold; font-size:20px;">
-                                                Condición de Pago
+                                                Condición de pago
                                             </h3>
                                             <div class="row">
                                                 <div class="col-xs-12">
@@ -388,7 +387,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                        style="background-color:#3c8dbc;font-size:15px;">Plazo de Pago
+                                                        style="background-color:#3c8dbc;font-size:15px;">Plazo de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
@@ -414,7 +413,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                        style="background-color:#3c8dbc;font-size:15px;">Medios de Pago
+                                                        style="background-color:#3c8dbc;font-size:15px;">Medios de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
@@ -459,7 +458,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="box-header with-border"></div>
                                 <div class="box-body">
                                     <h2 class="box-title text-center" style="font-weight:bold; font-size:20px;">
-                                        Productos para Seleccionar
+                                        Productos para seleccionar
                                     </h2>
                                     <table class="table table-bordered table-striped dt-responsive tablaCompras">
                                         <thead>
@@ -476,20 +475,21 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
+                    <a href="compras">
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar compra</button>
+                </form>
             </div>
 
-            <a href="compras">
-                <button type="button" class="btn btn-default">Salir</button>
-            </a>
-            <button type="submit" class="btn btn-primary">Guardar Compra</button>
-            </form>
-
             <?php
+
             $agregarCompra = new ControladorCompra();
             $agregarCompra->ctrCrearCompra();
-            ?>
 
+            ?>
         </div>
+    </section>
 </div>
 
 <div id="modalVerOrdenCompra" class="modal fade" role="dialog">
@@ -498,31 +498,28 @@ if ($_SESSION["perfil"] == "Especial") {
             <form role="form" method="post" id="form_editar_plantel">
 
                 <!--=====================================
-                    CABEZA DEL MODAL
-                    ======================================-->
-
+                CABEZA DEL MODAL
+                ======================================-->
                 <div class="modal-header" style="background:#3c8dbc; color:white">
-                    <button type="button" class="close" data-dismiss="modal">&times;
-                    </button>
-                    <h2 class="modal-title">Órdenes de Compra</h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title">Órdenes de compra</h2>
                 </div>
 
                 <!--=====================================
-                    CUERPO DEL MODAL
-                    ======================================-->
-
+                CUERPO DEL MODAL
+                ======================================-->
                 <div class="modal-body">
-                    <table class="table table-bordered table-striped dt-responsive tablas"
-                        width="100%">
+                    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                         <thead>
-                            <tr>
-                                <th style="width:10px">#</th>
-                                <th>Folio</th>
-                                <th>Proveedor</th>
-                                <th>Fecha Emisión</th>
-                                <th>Total Final</th>
-                                <th>Observación</th>
-                            </tr>
+                        <tr>
+                            <th style="width:10px">#</th>
+                            <th>Folio</th>
+                            <th>Proveedor</th>
+                            <th>Fecha emisión</th>
+                            <th>Total final</th>
+                            <th>Observación</th>
+                        </tr>
+
                         </thead>
                         <tbody>
 
@@ -563,15 +560,12 @@ if ($_SESSION["perfil"] == "Especial") {
                 </div>
 
                 <!--=====================================
-                    PIE DEL MODAL
-                    ======================================-->
+                PIE DEL MODAL
+                ======================================-->
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left"
-                        data-dismiss="modal">Salir
-                    </button>
-                    <button type="submit" class="btn btn-primary">Guardar cambios
-                    </button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
                 </div>
             </form>
         </div>
@@ -579,36 +573,32 @@ if ($_SESSION["perfil"] == "Especial") {
 </div>
 
 <div id="modalVerOrdenVestuario" class="modal fade" role="dialog">
-
     <div class="modal-dialog modal-lg">
-
         <div class="modal-content">
             <form role="form" method="post" id="form_editar_plantel">
 
                 <!--=====================================
-                    CABEZA DEL MODAL
-                    ======================================-->
-
+                CABEZA DEL MODAL
+                ======================================-->
                 <div class="modal-header" style="background:#3c8dbc; color:white">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title">Órdenes de Vestuario</h2>
+                    <h2 class="modal-title">Ordenes de vestuario</h2>
                 </div>
 
                 <!--=====================================
-                    CUERPO DEL MODAL
-                    ======================================-->
-
+                CUERPO DEL MODAL
+                ======================================-->
                 <div class="modal-body">
                     <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                         <thead>
-                            <tr>
-                                <th style="width:10px">#</th>
-                                <th>Folio</th>
-                                <th>Nombre</th>
-                                <th>Fecha Emisión</th>
-                                <th>Observación</th>
-                                <th>Acciones</th>
-                            </tr>
+                        <tr>
+                            <th style="width:10px">#</th>
+                            <th>Folio</th>
+                            <th>Nombre</th>
+                            <th>Fecha emisión</th>
+                            <th>Observación</th>
+                            <th>Acciones</th>
+                        </tr>
                         </thead>
                         <tbody>
 
@@ -633,7 +623,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <td>' . $value["observacion"] . '</td>
 
                                     <td> <button type="button" class="btn btn-warning">TRAER</button> </td>
-
                                 </tr>';
                             }
                             ?>
@@ -650,7 +639,6 @@ if ($_SESSION["perfil"] == "Especial") {
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar cambios</button>
                 </div>
-
             </form>
         </div>
     </div>

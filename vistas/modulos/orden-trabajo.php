@@ -56,7 +56,7 @@ if($xml){
 
           <button class="btn btn-primary">
             
-            Crear Orden de Vestuario
+            Crear orden de vestuario
 
           </button>
 
@@ -68,7 +68,7 @@ if($xml){
 
       <div class="box-tools pull-right" style="margin-bottom:5px">
           <a href="vistas/modulos/descargar-reporte-orden-vestuario.php?reporte=reporte">
-            <button class="btn btn-success" style="margin-top:5px">Reporte Excel: Orden de Vestuario</button>
+            <button class="btn btn-success" style="margin-top:5px">Reporte Excel: orden de vestuario</button>
           </a>
 
 
@@ -84,12 +84,12 @@ if($xml){
            
            <th>Folio</th>
            <th>Tipo DTE</th>
-           <th>Emision</th>
-           <th>Unidad de Negocio</th>
+           <th>Emisión</th>
+           <th>Unidad de negocio</th>
            <th>Bodega</th>
            <th>Cliente</th>
-           <th>Nombre Orden</th>
-           <th>Observacion</th>
+           <th>Nombre orden</th>
+           <th>Observación</th>
 
            <th>Acciones</th>
          </tr> 

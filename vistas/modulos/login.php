@@ -11,7 +11,7 @@
   </div>
 
     <h3 style="color:#6161f2;font-family:sans-serif;" class="text-center">Bienvenido</h3>
-    <h4 class="box-title login-box-msg">Ingresa al Sistema</h4>
+    <h4 class="box-title login-box-msg">Ingresa al sistema</h4>
 
     <form method="post">
 
@@ -38,7 +38,7 @@
         </div>
 
         <div class="text-center help">
-          <h5 id="problem" class="login" style="margin-top:50px;">¿Algun problema para iniciar tu sesion?</h5>
+          <h5 id="problem" class="login" style="margin-top:50px;">¿Algún problema para iniciar sesión?</h5>
           <img src="vistas/img/plantilla/sistemaPOS.png" class="img-responsive"  style="margin-top:10px;width:150px;height:80px;display:initial">
         </div>
 

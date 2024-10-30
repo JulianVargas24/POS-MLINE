@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar Clientes
+      Administrar clientes
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar Clientes</li>
+      <li class="active">Administrar clientes</li>
     
     </ol>
 
@@ -41,12 +41,12 @@ if($_SESSION["perfil"] == "Especial"){
       <div class="box-header with-border"> 
       
       <a href="vistas/modulos/descargar-reporte-clientes.php?reporte=reporte">
-            <button class="btn btn-success">Descargar Reporte Clientes en Excel</button>
+            <button class="btn btn-success">Descargar reporte clientes en Excel</button>
           </a>
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCliente">
           
-          Agregar Cliente
+          Agregar cliente
 
         </button>
         
@@ -162,7 +162,7 @@ MODAL AGREGAR CLIENTE
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Cliente</h4>
+          <h4 class="modal-title">Agregar cliente</h4>
 
         </div>
 
@@ -257,7 +257,7 @@ MODAL AGREGAR CLIENTE
 
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
               
                                 </select>
 
@@ -265,7 +265,7 @@ MODAL AGREGAR CLIENTE
                       </div>
      
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
@@ -276,14 +276,14 @@ MODAL AGREGAR CLIENTE
                     </div>
                     
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo Campaña</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo campaña</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
                       <select class="form-control input" id="nuevoTipoCliente" name="nuevoTipoCliente" required>
                             
-                        <option value="">Seleccionar Tipo Cliente</option>
+                        <option value="">Seleccionar tipo cliente</option>
                         <?php
 
                           $item = null;
@@ -302,14 +302,14 @@ MODAL AGREGAR CLIENTE
                     </div>
                     </div>
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo Producto</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo producto</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-file"></i></span> 
 
                       <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
                             
-                            <option value="">Seleccionar Tipo Producto</option>
+                            <option value="">Seleccionar tipo producto</option>
                             <?php
     
                               $item = null;
@@ -328,7 +328,7 @@ MODAL AGREGAR CLIENTE
                     </div>
                     </div>
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Lista de Precio Asignada</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Lista de precio asignada</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -358,7 +358,7 @@ MODAL AGREGAR CLIENTE
             </div>
              <!-- ENTRADA PARA STOCK -->
 
-            <h4 class="box-title" style="font-weight:bold;">Datos de Contacto</h4>      
+            <h4 class="box-title" style="font-weight:bold;">Datos de contacto</h4>      
             <div class="box box-warning">
               <div class="box-body">
                 <div class="form-group row">
@@ -376,7 +376,7 @@ MODAL AGREGAR CLIENTE
                   
                   <!-- ENTRADA PARA EL TELEFONO-->
                       <div class="col-xs-4">
-                        <div class="d-block" style="font-size:16px;font-weight:bold">Numero de Telefono</div>
+                        <div class="d-block" style="font-size:16px;font-weight:bold">Numero de teléfono</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -391,7 +391,7 @@ MODAL AGREGAR CLIENTE
                       
                   <!-- ENTRADA PARA EL EMAIL-->
                       <div class="col-xs-4">
-                        <div class="d-block" style="font-size:16px;font-weight:bold">Correo Electronico</div>
+                        <div class="d-block" style="font-size:16px;font-weight:bold">Correo electrónico</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
@@ -406,19 +406,19 @@ MODAL AGREGAR CLIENTE
             </div>
              <!-- ENTRADA PARA EL CÓDIGO -->
 
-             <h4 class="box-title" style="font-weight:bold;">Datos de Credito y Cobranza</h4>
+             <h4 class="box-title" style="font-weight:bold;">Datos de crédito y cobranza</h4>
             <div class="box box-success">
               <div class="box-body">
                 <div class="form-group row"> 
                   <div class="col-xs-4">
-                      <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Plazo de Pago</div>
+                      <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Plazo de pago</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-code"></i></span> 
                           
                             <select class="form-control input" id="nuevoPlazo" name="nuevoPlazo" required>
                             
-                            <option value="">Seleccionar Plazo de Pago</option>
+                            <option value="">Seleccionar plazo de pago</option>
 
                             <?php
 
@@ -464,13 +464,13 @@ MODAL AGREGAR CLIENTE
                     </div>
                   </div>
                   <div class="col-xs-4">
-                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Estado de Cliente en Sistema</div>
+                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Estado de cliente en sistema</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
                       <select class="form-control input" id="nuevoEstado" name="nuevoEstado" required>
           
-                      <option value="">Seleccionar Estado: </option>
+                      <option value="">Seleccionar estado: </option>
                       <option value="activo">Activo </option>  
                       <option value="inactivo">Inactivo</option>
                       </select>
@@ -479,7 +479,7 @@ MODAL AGREGAR CLIENTE
                 </div>
                 <div class="form-group row">                 
                   <div class="col-xs-4">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contacto Cobranza</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contacto cobranza</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -489,7 +489,7 @@ MODAL AGREGAR CLIENTE
                       </div>
                   </div>
                   <div class="col-xs-4 ">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Correo Electronico</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Correo electrónico</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
@@ -515,7 +515,7 @@ MODAL AGREGAR CLIENTE
                 </div>
                 <div class="form-group row">                 
                   <div class="col-xs-3">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold;">Linea de Credito</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold;">Línea de crédito</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-money"></i></span> 
@@ -525,7 +525,7 @@ MODAL AGREGAR CLIENTE
                       </div>
                   </div>
                   <div class="col-xs-3">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Bloqueo para Credito</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Bloqueo para crédito</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-bank"></i></span> 
@@ -538,7 +538,7 @@ MODAL AGREGAR CLIENTE
                       </div>
                   </div>
                   <div class="col-xs-6">
-                  <div class="d-block text-center" style="font-size:16px;font-weight:bold">Observacion de Cobranza</div>
+                  <div class="d-block text-center" style="font-size:16px;font-weight:bold">Observacion de cobranza</div>
                           <textarea style="border-width:1px;border-color:blue" class="form-control input" name="" id="" cols="6" rows="3"></textarea>
                   </div>
                   
@@ -556,7 +556,7 @@ MODAL AGREGAR CLIENTE
 
               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-              <button type="submit" class="btn btn-primary text-center">Guardar Cliente</button>
+              <button type="submit" class="btn btn-primary text-center">Guardar cliente</button>
 
             </div>
           </div>
@@ -624,12 +624,12 @@ MODAL EDITAR CLIENTE
             
 
             <!-- ENTRADA PARA LOS DATOS CLIENTE -->
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos Cliente</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos cliente</h4>
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-4">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Razon Social</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Razon social</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -662,7 +662,7 @@ MODAL EDITAR CLIENTE
                     </div>                 
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->
                   <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -672,14 +672,14 @@ MODAL EDITAR CLIENTE
                     </div>
                   </div>
                   <div class="col-xs-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="editarRegion" name="editarRegion" required>
                                                                             
-                                <option  value="">Seleccionar Region</option>
+                                <option  value="">Seleccionar región</option>
 
                                 <?php
                                 foreach ($regiones as $region) {
@@ -701,7 +701,7 @@ MODAL EDITAR CLIENTE
 
                                 <select class="form-control input" id="editarComuna" name="editarComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
               
                                 </select>
 
@@ -717,20 +717,20 @@ MODAL EDITAR CLIENTE
                     
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                      <input type="text" class="form-control input" name="editarDireccion" id="editarDireccion" placeholder="Ingrese Direccion" required>
+                      <input type="text" class="form-control input" name="editarDireccion" id="editarDireccion" placeholder="Ingrese dirección" required>
 
                     </div>
                     </div>
                     
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo Campaña</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo campaña</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
                       <select class="form-control input" id="nuevoTipoCliente" name="nuevoTipoCliente" required>
                             
-                        <option value="">Seleccionar Tipo Cliente</option>
+                        <option value="">Seleccionar tipo de cliente</option>
                         <?php
 
                           $item = null;
@@ -749,14 +749,14 @@ MODAL EDITAR CLIENTE
                     </div>
                     </div>
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo Producto</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo producto</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-file"></i></span> 
 
                       <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
                             
-                            <option value="">Seleccionar Tipo Producto</option>
+                            <option value="">Seleccionar tipo producto</option>
                             <?php
     
                               $item = null;
@@ -775,7 +775,7 @@ MODAL EDITAR CLIENTE
                     </div>
                     </div>
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Lista de Precio Asignada</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Lista de precio asignada</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -806,7 +806,7 @@ MODAL EDITAR CLIENTE
             </div>
              <!-- ENTRADA PARA STOCK -->
 
-            <h4 class="box-title" style="font-weight:bold;">Datos de Contacto</h4>      
+            <h4 class="box-title" style="font-weight:bold;">Datos de contacto</h4>      
             <div class="box box-warning">
               <div class="box-body">
                 <div class="form-group row">
@@ -824,7 +824,7 @@ MODAL EDITAR CLIENTE
                   
                   <!-- ENTRADA PARA EL TELEFONO-->
                       <div class="col-xs-4">
-                        <div class="d-block" style="font-size:16px;font-weight:bold">Numero de Telefono</div>
+                        <div class="d-block" style="font-size:16px;font-weight:bold">Número de teléfono</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -840,7 +840,7 @@ MODAL EDITAR CLIENTE
                       
                   <!-- ENTRADA PARA EL EMAIL-->
                       <div class="col-xs-4">
-                        <div class="d-block" style="font-size:16px;font-weight:bold">Correo Electronico</div>
+                        <div class="d-block" style="font-size:16px;font-weight:bold">Correo electrónico</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
@@ -855,19 +855,19 @@ MODAL EDITAR CLIENTE
             </div>
              <!-- ENTRADA PARA EL CÓDIGO -->
 
-             <h4 class="box-title" style="font-weight:bold;">Datos de Credito y Cobranza</h4>
+             <h4 class="box-title" style="font-weight:bold;">Datos de crédito y cobranza</h4>
             <div class="box box-success">
               <div class="box-body">
                 <div class="form-group row"> 
                   <div class="col-xs-4">
-                      <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Plazo de Pago</div>
+                      <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Plazo de pago</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-code"></i></span> 
                           
                             <select class="form-control input" id="editarPlazo" name="editarPlazo" required>
                             
-                            <option value="">Seleccionar Plazo de Pago</option>
+                            <option value="">Seleccionar plazo de pago</option>
 
                             <?php
 
@@ -895,7 +895,7 @@ MODAL EDITAR CLIENTE
 
                       <select class="form-control input" id="editarVendedor" name="editarVendedor" required>
                             
-                        <option value="">Seleccionar Vendedor</option>
+                        <option value="">Seleccionar vendedor</option>
                         <?php
 
                           $item = null;
@@ -913,13 +913,13 @@ MODAL EDITAR CLIENTE
                     </div>
                   </div>
                   <div class="col-xs-4">
-                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Estado de Cliente en Sistema</div>
+                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Estado de cliente en sistema</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
                       <select class="form-control input" id="nuevoEstado" name="nuevoEstado" required>
           
-                      <option value="">Seleccionar Estado: </option>
+                      <option value="">Seleccionar estado: </option>
                       <option value="activo">Activo </option>  
                       <option value="inactivo">Inactivo</option>
                       </select>
@@ -928,7 +928,7 @@ MODAL EDITAR CLIENTE
                 </div>
                 <div class="form-group row">                 
                   <div class="col-xs-4">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contacto Cobranza</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contacto cobranza</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -938,7 +938,7 @@ MODAL EDITAR CLIENTE
                       </div>
                   </div>
                   <div class="col-xs-4 ">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Correo Electronico</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Correo electrónico</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
@@ -965,30 +965,30 @@ MODAL EDITAR CLIENTE
                 </div>
                 <div class="form-group row">                 
                   <div class="col-xs-3">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold;">Linea de Credito</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold;">Linea de crédito</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-money"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar Linea de Credito" required>
+                        <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar línea de crédito" required>
 
                       </div>
                   </div>
                   <div class="col-xs-3">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Bloqueo para Credito</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Bloqueo para crédito</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-bank"></i></span> 
 
                         <select class="form-control input" name="" id="">
                         <option value="No">No</option>
-                        <option value="Si">Si</option>
+                        <option value="Si">Sí</option>
                         </select>
 
                       </div>
                   </div>
                   <div class="col-xs-6">
-                  <div class="d-block text-center" style="font-size:16px;font-weight:bold">Observacion de Cobranza</div>
+                  <div class="d-block text-center" style="font-size:16px;font-weight:bold">Observación de cobranza</div>
                           <textarea style="border-width:1px;border-color:blue" class="form-control input" name="" id="" cols="6" rows="3"></textarea>
                   </div>
                   
@@ -1006,7 +1006,7 @@ MODAL EDITAR CLIENTE
 
               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-              <button type="submit" class="btn btn-primary text-center">Guardar Cliente</button>
+              <button type="submit" class="btn btn-primary text-center">Guardar cliente</button>
 
             </div>
           </div>

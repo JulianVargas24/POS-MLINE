@@ -1,16 +1,15 @@
 <?php
 
 
+if ($_SESSION["perfil"] == "Especial") {
 
-if($_SESSION["perfil"] == "Especial"){
-
-  echo '<script>
+    echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-  return;
+    return;
 
 }
 
@@ -18,132 +17,129 @@ if($_SESSION["perfil"] == "Especial"){
 ?>
 <div class="content-wrapper">
 
-  <section class="content-header"> 
-    
-    <h1>
-      
-      Administrar Entradas
-    </h1>
+    <section class="content-header">
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Entradas</li>
-    
-    </ol>
+        <h1>
 
-  </section>
+            Administrar entradas
+        </h1>
 
-  <section class="content">
+        <ol class="breadcrumb">
 
-    <div class="box">
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-      <div class="box-header with-border">
+            <li class="active">Administrar entradas</li>
 
-        <a href="entradas">
+        </ol>
 
-          <button class="btn btn-primary">
-            
-           Crear Entrada
+    </section>
 
-          </button>
+    <section class="content">
 
-        </a>
+        <div class="box">
+
+            <div class="box-header with-border">
+
+                <a href="entradas">
+
+                    <button class="btn btn-primary">
+
+                        Crear entrada
+
+                    </button>
+
+                </a>
 
 
-      </div>
-     
-       
+            </div>
 
-      <div class="box-body">
 
-      
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-       
-        <thead>
-         
-         <tr>
-           
-           <th>Folio</th>
-           <th>Movimiento</th>
-           <th>Emision</th>
-           <th>Bodega Destino</th>
-           <th>Origen</th>
-           <th>Observaciones</th>
+            <div class="box-body">
 
-         </tr> 
 
-        </thead>
+                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-        <tbody>
+                    <thead>
 
-        <?php
+                    <tr>
 
-          $item = null;
-          $valor = null;
+                        <th>Folio</th>
+                        <th>Movimiento</th>
+                        <th>Emisión</th>
+                        <th>Bodega de destino</th>
+                        <th>Origen</th>
+                        <th>Observaciones</th>
 
-          $entradas = ControladorEntradasInventario::ctrMostrarEntradas($item, $valor);
-          $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
-          $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
+                    </tr>
 
-            foreach ($entradas as $key => $value) {
-                for($i = 0; $i < count($bodegas); ++$i){
-                    if ($bodegas[$i]["id"] == $value["id_bodega_destino"]) {
-                      $bodega = $bodegas[$i]["nombre"];
-                    }
-                  }
-                  if($value["tipo_entrada"] == "Bodega a Bodega"){
-                    for($i = 0; $i < count($bodegas); ++$i){
-                        if ($bodegas[$i]["id"] == $value["valor_tipo_entrada"]) {
-                          $origen = $bodegas[$i]["nombre"];
+                    </thead>
+
+                    <tbody>
+
+                    <?php
+
+                    $item = null;
+                    $valor = null;
+
+                    $entradas = ControladorEntradasInventario::ctrMostrarEntradas($item, $valor);
+                    $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                    $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
+
+                    foreach ($entradas as $key => $value) {
+                        for ($i = 0; $i < count($bodegas); ++$i) {
+                            if ($bodegas[$i]["id"] == $value["id_bodega_destino"]) {
+                                $bodega = $bodegas[$i]["nombre"];
+                            }
                         }
-                      }
-                  }else if($value["tipo_entrada"] == "Ingreso Manual a Bodega"){
-                    for($i = 0; $i < count($plantel); ++$i){
-                        if ($plantel[$i]["id"] == $value["valor_tipo_entrada"]) {
-                          $origen = $plantel[$i]["nombre"];
+                        if ($value["tipo_entrada"] == "Bodega a Bodega") {
+                            for ($i = 0; $i < count($bodegas); ++$i) {
+                                if ($bodegas[$i]["id"] == $value["valor_tipo_entrada"]) {
+                                    $origen = $bodegas[$i]["nombre"];
+                                }
+                            }
+                        } else if ($value["tipo_entrada"] == "Ingreso Manual a Bodega") {
+                            for ($i = 0; $i < count($plantel); ++$i) {
+                                if ($plantel[$i]["id"] == $value["valor_tipo_entrada"]) {
+                                    $origen = $plantel[$i]["nombre"];
+                                }
+                            }
                         }
-                      }
-                  }
-            
-
-              echo '<tr>
 
 
-                    <td>'.$value["codigo"].'</td>
+                        echo '<tr>
 
-                    <td style="font-weight:bold;font-size:15px;color:black;">'.$value["tipo_entrada"].'</td>
 
-                    <td>'.$value["fecha_emision"].'</td>
+                    <td>' . $value["codigo"] . '</td>
 
-                    <td>'.$bodega.'</td>
+                    <td style="font-weight:bold;font-size:15px;color:black;">' . $value["tipo_entrada"] . '</td>
+
+                    <td>' . $value["fecha_emision"] . '</td>
+
+                    <td>' . $bodega . '</td>
                     
-                    <td>'.$origen.'</td>
+                    <td>' . $origen . '</td>
 
-                    <td>'.$value["observaciones"].'</td>
+                    <td>' . $value["observaciones"] . '</td>
                     
 
 
                   </tr>';
-          
-            }
 
-            
+                    }
 
-           
-        ?>
-   
-        </tbody>
 
-       </table>
-           
+                    ?>
 
-      </div>
+                    </tbody>
 
-    </div>
+                </table>
 
-  </section>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </div>
 

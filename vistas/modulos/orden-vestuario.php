@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Crear Orden de Vestuario</li>
+      <li class="active">Crear orden de vestuario</li>
     
     </ol>
 
@@ -48,7 +48,7 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-5">
                             <div class="box box-info">
                                     <div class="box-body">
-                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Cliente Asociado</h4>
+                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Cliente asociado</h4>
                                         <div class="row" style="margin-bottom:5px;">
                                             <div class="col-xs-12">
                                                     
@@ -56,7 +56,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                         <div class="input-group" style="display:block;">                
                                                         <select class="form-control" id="nuevoCliente" name="nuevoCliente" required>
 
-                                                            <option value="">Seleccionar Cliente</option>
+                                                            <option value="">Seleccionar cliente</option>
 
                                                             <?php
 
@@ -92,7 +92,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Direccion</span>                
+                                                        <span class="input-group-addon">Dirección</span>
                                                             <input type="text" class="form-control" id="traerDireccion" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -116,7 +116,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">                
-                                                        <span class="input-group-addon">Telefono</span>
+                                                        <span class="input-group-addon">Teléfono</span>
                                                             <input type="text" class="form-control" id="traerTelefono" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -137,10 +137,10 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                             <div class="box box-info">
                                     <div class="box-body">
-                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Orden</h4>
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de orden</h4>
                                             <div class="row" style="margin-bottom:5px;">
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha Emision</div>
+                                                <div class="d-block" style="font-size:14px;">Fecha emisión</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             
@@ -150,7 +150,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                 </div>
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha Venc.</div>
+                                                <div class="d-block" style="font-size:14px;">Fecha venc.</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
 
@@ -160,12 +160,12 @@ if($_SESSION["perfil"] == "Especial"){
                                                 </div>
                                                 
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Centro de Costo</div>
+                                                <div class="d-block" style="font-size:14px;">Centro de costo</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                         <select class="form-control input" id="nuevoCentro" name="nuevoCentro" required>
                 
-                                                            <option value="">Seleccionar Centro</option>
+                                                            <option value="">Seleccionar centro</option>
 
                                                             <?php
 
@@ -185,7 +185,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Bodega Destino</div>
+                                                <div class="d-block" style="font-size:14px;">Bodega destino</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                         <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
@@ -290,7 +290,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="box box-success">
                                                 <div class="box-header with-border"></div>
                                                     <div class="box-body">
-                                                        <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Personal para Seleccionar</h4>
+                                                        <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Personal para seleccionar</h4>
                                                         <table  class="table table-bordered table-striped dt-responsive tablaPersonal">
                                                             <thead>
                                                                 <tr>
@@ -327,7 +327,7 @@ if($_SESSION["perfil"] == "Especial"){
                     <a href="orden-trabajo">                 
                         <button type="button" class="btn btn-default">Salir</button>
                 </a>
-                    <button type="submit" class="btn btn-primary">Guardar Orden</button>                 
+                    <button type="submit" class="btn btn-primary">Guardar orden</button>
                 </form>
                         <?php
 
@@ -362,12 +362,12 @@ input[type=number] {
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <form role="form" method="post" id="form_editar_medidas" enctype="multipart/form-data">
-                <h1>Prueba Agregar Medidas</h1>
+                <h1>Prueba agregar medidas</h1>
                     <div class="box box-info">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Superiores</h4>
+                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas superiores</h4>
                                     <div class="col-xs-6">
                                         Busto
                                     </div>
@@ -387,67 +387,67 @@ input[type=number] {
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Ancho Espalda
+                                        Ancho espalda
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Talle Delantero
+                                        Talle delantero
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Talle Espalda
+                                        Talle espalda
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo de Manga
+                                        Largo de manga
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo Total Blusa
+                                        Largo Total blusa
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo Total Guillete
+                                        Largo Total guillete
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo Total Chaqueta
+                                        Largo Total chaqueta
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo Total Polera
+                                        Largo total polera
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo Total Parka
+                                        Largo total parka
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo Total Polar
+                                        Largo total polar
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo Total Vestido
+                                        Largo total vestido
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
@@ -456,7 +456,7 @@ input[type=number] {
                                 <div class="col-xs-6">
                                     <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
                                     <div class="col-xs-12">
-                                        <h4 style="font-weight:bold;color:green;">Pantalon</h4>
+                                        <h4 style="font-weight:bold;color:green;">Pantalón</h4>
                                     </div>
                                     <div class="col-xs-6">
                                         Cintura
@@ -528,7 +528,7 @@ input[type=number] {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-                            <button type="submit" class="btn btn-primary text-center">Editar Medidas</button>
+                            <button type="submit" class="btn btn-primary text-center">Editar medidas</button>
                         </div>
                     </div>
             </form>
@@ -540,12 +540,12 @@ input[type=number] {
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form role="form" method="post" id="form_editar_medidas" enctype="multipart/form-data">
-                <h1>Prueba Editar Medidas</h1>
+                <h1>Prueba editar medidas</h1>
                     <div class="box box-info">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Superiores</h4>
+                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas superiores</h4>
                                     <div class="col-xs-6">
                                         Busto
                                     </div>
@@ -571,19 +571,19 @@ input[type=number] {
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Talle Delantero
+                                        Talle delantero
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Talle Espalda
+                                        Talle espalda
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
                                     </div>
                                     <div class="col-xs-6">
-                                        Largo de Manga
+                                        Largo de manga
                                     </div>
                                     <div class="col-xs-6">
                                         <input class="form-control input-sm" type="text" name="" id="">
@@ -914,7 +914,7 @@ input[type=number] {
               </div>
             </div>
             <div class="row">
-              <h3 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
+              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
                 <div class="box box-warning">
                   <div class="box-body">
                       <div class="col-xs-12">

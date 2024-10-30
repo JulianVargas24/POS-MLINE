@@ -5,13 +5,13 @@ $(".tablas").on("click", ".btnEliminarSucursal", function(){
 
     swal({
         title: '¿Está seguro de borrar esta Sucursal?',
-        text: "¡Si no lo está puede cancelar la acción!",
+        text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar Sucursal!'
+        confirmButtonText: 'Sí, borrar sucursal'
     }).then(function(result){
 
         if(result.value){
@@ -60,4 +60,21 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
 
 })
 
-
+const regiones = [
+	["Tarapaca", "I"],
+	["Antofagasta", "II"],
+	["Atacama", "III"],
+	["Coquimbo", "IV"],
+	["Valparaiso", "V"],
+	["Libertador General Bernardo O'Higgins", "VI"],
+	["Maule", "VII"],
+	["Biobio", "VIII"],
+	["La Araucania", "IX"],
+	["Los Lagos", "X"],
+	["Aysen del General Carlos Ibañez del Campo", "XI"],
+	["Magallanes y Antartica Chilena", "XII"],
+	["Metropolitana de Santiago", "RM"],
+	["Los Rios", "XIV"],
+	["Arica y Parinacota", "XV"],
+	["Ñuble", "XVI"]
+]

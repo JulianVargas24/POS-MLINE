@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar Sucursales
+      Administrar sucursales
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar Sucursales</li>
+      <li class="active">Administrar sucursales</li>
     
     </ol>
 
@@ -42,7 +42,7 @@ if($_SESSION["perfil"] == "Especial"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarSucursal">
           
-          Agregar Sucursal
+          Agregar sucursal
 
         </button>
 
@@ -58,11 +58,11 @@ if($_SESSION["perfil"] == "Especial"){
            
            <th style="width:10px">#</th>
            <th>Sucursal</th>
-           <th>Region</th>
+           <th>Región</th>
            <th>Comuna</th>
-           <th>Direccion</th>
-           <th>Bodega Asociada</th>
-           <th>Jefe Encargado</th>
+           <th>Dirección</th>
+           <th>Bodega asociada</th>
+           <th>Jefe encargado</th>
            <th>Teléfono</th>
            <th>Email</th>
            <th>Acciones</th>
@@ -169,7 +169,7 @@ MODAL AGREGAR SUCURSAL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Sucursal</h4>
+          <h4 class="modal-title">Agregar sucursal</h4>
 
 
         </div>
@@ -182,18 +182,18 @@ MODAL AGREGAR SUCURSAL
 
           <div class="box-body">
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Sucursal</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de sucursal</h4>
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">
 
 
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre sucursal</div>
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-                      <input type="text" class="form-control input" name="nuevaSucursal" id="nuevaSucursal" placeholder="Ingresar Nombre Sucursal" required>
+                      <input type="text" class="form-control input" name="nuevaSucursal" id="nuevaSucursal" placeholder="Ingresar nombre sucursal" required>
                     </div>
                   </div>
                   
@@ -201,12 +201,12 @@ MODAL AGREGAR SUCURSAL
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
-                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese Pais" required value="Chile">
+                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese país" required value="Chile">
                     </div>
                   </div>
 
                   <div class="col-xs-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                   
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -235,7 +235,7 @@ MODAL AGREGAR SUCURSAL
 
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
               
                                 </select>
                     </div>
@@ -250,17 +250,17 @@ MODAL AGREGAR SUCURSAL
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                      <input type="text" class="form-control input" name="nuevaDireccion" placeholder="Ingresar Dirección" required>
+                      <input type="text" class="form-control input" name="nuevaDireccion" placeholder="Ingresar dirección" required>
                     </div>
                   </div>
 
                   <!-- ENTRADA PARA LA BODEGA --> 
                   <div class="col-lg-6" style="margin-top:10px;">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega Asociada</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega asociada</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
                       <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
-                        <option value="">Seleccionar Bodega</option>
+                        <option value="">Seleccionar bodega</option>
                         <?php
                           $item = null;
                           $valor = null;
@@ -276,16 +276,16 @@ MODAL AGREGAR SUCURSAL
               </div>
             </div>
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Contacto</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de contacto</h4>
             <div class="box box-success">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe Encargado</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-                      <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" placeholder="Ingresar Encargado" required>
+                      <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" placeholder="Ingresar encargado" required>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -309,7 +309,7 @@ MODAL AGREGAR SUCURSAL
                 </div>
                 
                 <div class="col-lg-6" style="margin-top:10px;">
-                  <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
+                  <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
                   <div class="input-group">
                     
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -333,7 +333,7 @@ MODAL AGREGAR SUCURSAL
           
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Sucursal</button>
+          <button type="submit" class="btn btn-primary">Guardar sucursal</button>
         
         </div>
       
@@ -372,7 +372,7 @@ MODAL EDITAR SUCURSAL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Sucursal</h4>
+          <h4 class="modal-title">Editar sucursal</h4>
 
         </div>
 
@@ -384,13 +384,13 @@ MODAL EDITAR SUCURSAL
 
           <div class="box-body">
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Sucursal</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de sucursal</h4>
               <div class="box box-info">
                 <div class="box-body">                
                   <div class="form-group row">
                                   
                     <div class="col-lg-6">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre sucursal</div>
                       <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -400,7 +400,7 @@ MODAL EDITAR SUCURSAL
                         </div>
                     </div>
                     <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -413,14 +413,14 @@ MODAL EDITAR SUCURSAL
                       <!-- ENTRADA PARA LA REGION -->
 
                       <div class="col-xs-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="editarRegion" name="editarRegion" required>
                                                                             
-                            <option  value="">Seleccionar Region</option>
+                            <option  value="">Seleccionar región</option>
 
                                 <?php
 
@@ -446,7 +446,7 @@ MODAL EDITAR SUCURSAL
 
                                 <select class="form-control input" id="editarComuna" name="editarComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
 
                                   
                                 </select>
@@ -461,16 +461,16 @@ MODAL EDITAR SUCURSAL
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                      <input type="text" class="form-control input" name="editarDireccion" placeholder="Ingresar Dirección" required>
+                      <input type="text" class="form-control input" name="editarDireccion" placeholder="Ingresar dirección" required>
                     </div>
                   </div>
 
                   <div class="col-lg-6" style="margin-top:10px;">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega Asociada</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega asociada</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
                       <select class="form-control input" id="editarBodega" name="editarBodega" required>
-                        <option value="">Seleccionar Bodega</option>
+                        <option value="">Seleccionar bodega</option>
                         <?php
                           $item = null;
                           $valor = null;
@@ -486,12 +486,12 @@ MODAL EDITAR SUCURSAL
               </div>  
             </div>
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Contacto</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de contacto</h4>
             <div class="box box-success">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe Encargado</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -521,7 +521,7 @@ MODAL EDITAR SUCURSAL
 
                  
                     <div class="col-lg-6" style="margin-top:10px;">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
                       <div class="input-group">
                         
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>

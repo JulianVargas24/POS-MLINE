@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Formulario Salida</li>
+      <li class="active">Formulario salida</li>
     
     </ol>
 
@@ -42,7 +42,7 @@ if($_SESSION["perfil"] == "Especial"){
 
         <div class="row" style="margin-bottom:5px;">
             <div class="col-xs-5">
-                        <label for="">Tipo de Salida</label>
+                        <label for="">Tipo de salida</label>
                         <div class="form-group">
                                                                 
                             <div class="input-group">  
@@ -51,7 +51,7 @@ if($_SESSION["perfil"] == "Especial"){
                             </div>
                             <div class="input-group">
                                 <input type="radio" name="tipoEntrada" value="orden">
-                                <label for="radio3" style="font-weight:normal;">Bodega a Orden de Trabajo</label>
+                                <label for="radio3" style="font-weight:normal;">Bodega a orden de trabajo</label>
                             </div>
                         </div>
                     </div>
@@ -97,12 +97,12 @@ if($_SESSION["perfil"] == "Especial"){
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="box box-info">
-                                        <h4 class="box-title">Salida Manual</h4>
+                                        <h4 class="box-title">Salida manual</h4>
                                         <div class="box-body">
                                             <div class="row">
                                                     <div class="col-xs-6">
                                                         <div class="col-xs-6">
-                                                        <div class="d-block" style="font-size:14px;">Bodega Origen</div>
+                                                        <div class="d-block" style="font-size:14px;">Bodega origen</div>
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                             <input type="hidden" name="nuevoTipoSalida" id="nuevoTipoSalida" value="Salida Manual">
@@ -110,7 +110,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                                 <select style="padding-left:0px" class="form-control input" id="nuevaBodegaOrigen" name="nuevaBodegaOrigen" required>
                                                                     
-                                                                <option value="">Seleccionar Bodega</option>
+                                                                <option value="">Seleccionar bodega</option>
                                                                 <?php
 
                                                                     $item = null;
@@ -130,7 +130,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <div class="d-block" style="font-size:14px;">Salida Manual:</div>
+                                                        <div class="d-block" style="font-size:14px;">Salida manual:</div>
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 
@@ -165,7 +165,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                     <div class="box box-success">
                                                         <div class="box-header with-border"></div>
                                                             <div class="box-body">
-                                                                <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
+                                                                <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para seleccionar</h4>
                                                                 
                                                                 <table  class="table table-bordered table-striped dt-responsive tablaSalidas">
                                                             
@@ -192,7 +192,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         </div>
                                         <!-- Botones en SALIDA MANUAL -->
                                         <button type="button" class="btn btn-default" onclick="window.location.href='salida';">Salir</button>
-                                        <button type="submit" class="btn btn-primary">Guardar Salida</button>
+                                        <button type="submit" class="btn btn-primary">Guardar salida</button>
                                     </div>
                                 </div>
                             </div>
@@ -239,12 +239,12 @@ if($_SESSION["perfil"] == "Especial"){
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="box box-info">
-                                        <h4 class="box-title">Bodega a Orden de Trabajo</h4>
+                                        <h4 class="box-title">Bodega a orden de trabajo</h4>
                                         <div class="box-body">
                                             <div class="row">
                                                     <div class="col-xs-6">
                                                         <div class="col-xs-6">
-                                                        <div class="d-block" style="font-size:14px;">Bodega Origen</div>
+                                                        <div class="d-block" style="font-size:14px;">Bodega origen</div>
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                             <input type="hidden" name="nuevoTipoSalida1" id="nuevoTipoSalida1" value="Bodega a O.T">
@@ -252,7 +252,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                                 <select style="padding-left:0px" class="form-control input" id="nuevaBodegaOrigen1" name="nuevaBodegaOrigen1" required>
                                                                     
-                                                                <option value="">Seleccionar Bodega</option>
+                                                                <option value="">Seleccionar bodega</option>
                                                                 <?php
 
                                                                     $item = null;
@@ -272,7 +272,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <div class="d-block" style="font-size:14px;">Orden de Trabajo</div>
+                                                        <div class="d-block" style="font-size:14px;">Orden de trabajo</div>
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 
@@ -307,7 +307,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                     <div class="box box-success">
                                                         <div class="box-header with-border"></div>
                                                             <div class="box-body">
-                                                                <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
+                                                                <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para seleccionar</h4>
                                                                 
                                                                 <table  class="table table-bordered table-striped dt-responsive tablaSalidas1">
                                                             

@@ -11,11 +11,11 @@ if ($_SESSION["perfil"] == "Especial") {
 
   <section class="content-header">
     <h1>
-      Administrar Proveedores
+      Administrar proveedores
     </h1>
     <ol class="breadcrumb">
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Administrar Proveedor</li>
+      <li class="active">Administrar proveedor</li>
     </ol>
   </section>
 
@@ -25,13 +25,13 @@ if ($_SESSION["perfil"] == "Especial") {
 
       <div class="box-header with-border">
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProveedor">
-          Agregar Proveedor
+          Agregar proveedor
         </button>
       </div>
 
       <div class="box-tools pull-right" style="margin-bottom:5px">
         <a href="vistas/modulos/descargar-reporte-proveedores.php?reporte=reporte">
-          <button class="btn btn-success">Descargar Reporte Proveedores en Excel</button>
+          <button class="btn btn-success">Descargar reporte proveedores en Excel</button>
         </a>
       </div>
 
@@ -40,11 +40,11 @@ if ($_SESSION["perfil"] == "Especial") {
           <thead>
             <tr>
               <th style="width:10px">#</th>
-              <th>Razón Social</th>
+              <th>Razón social</th>
               <th>RUT</th>
               <th>Actividad</th>
               <th>Región</th>
-              <th>Nro. Cuenta</th>
+              <th>Nro. cuenta</th>
               <th>Banco</th>
               <th>Ejecutivo</th>
               <th>Teléfono</th>
@@ -143,7 +143,7 @@ MODAL AGREGAR PROVEEDOR
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Proveedor</h4>
+          <h4 class="modal-title">Agregar proveedor</h4>
 
         </div>
 
@@ -156,7 +156,7 @@ MODAL AGREGAR PROVEEDOR
           <div class="box-body">
 
             <h4 class="box-title" style="font-weight:bold;">
-              Datos de Proveedor
+              Datos de proveedor
             </h4>
             <div class="box box-success">
 
@@ -330,7 +330,7 @@ MODAL AGREGAR PROVEEDOR
 
             </div>
           </div>
-          <h4 class="box-title" style="font-weight:bold;">Datos de Pago</h4>
+          <h4 class="box-title" style="font-weight:bold;">Datos de pago</h4>
           <div class="box box-info">
             <div class="box-body">
               <div class="form-group row">
@@ -427,14 +427,14 @@ MODAL AGREGAR PROVEEDOR
 
             </div>
           </div>
-          <h4 class="box-title" style="font-weight:bold;">Datos de Contacto</h4>
+          <h4 class="box-title" style="font-weight:bold;">Datos de contacto</h4>
           <div class="box box-warning">
             <div class="box-body">
               <div class="form-group row">
                 <!-- ENTRADA PARA EL TELEFONO-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Número de Teléfono
+                    Número de teléfono
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
@@ -490,15 +490,12 @@ MODAL AGREGAR PROVEEDOR
           <button type="submit" class="btn btn-primary ">Guardar proveedor</button>
 
         </div>
+      </form>  
     </div>
 
     <!--=====================================
             PIE DEL MODAL
             ======================================-->
-
-
-    </form>
-
     <?php
 
     $crearProveedor = new ControladorProveedores();
@@ -507,8 +504,6 @@ MODAL AGREGAR PROVEEDOR
     ?>
 
   </div>
-
-</div>
 
 </div>
 
@@ -719,7 +714,7 @@ MODAL EDITAR PROVEEDOR
 
             </div>
           </div>
-          <h4 class="box-title" style="font-weight:bold;">Datos de Pago</h4>
+          <h4 class="box-title" style="font-weight:bold;">Datos de pago</h4>
           <div class="box box-info">
             <div class="box-body">
               <div class="form-group row">
@@ -815,7 +810,7 @@ MODAL EDITAR PROVEEDOR
 
             </div>
           </div>
-          <h4 class="box-title" style="font-weight:bold;">Datos de Contacto</h4>
+          <h4 class="box-title" style="font-weight:bold;">Datos de contacto</h4>
           <div class="box box-warning">
             <div class="box-body">
               <div class="form-group row">
@@ -878,14 +873,12 @@ MODAL EDITAR PROVEEDOR
           <button type="submit" class="btn btn-primary ">Guardar proveedor</button>
 
         </div>
+      </form>  
     </div>
 
     <!--=====================================
             PIE DEL MODAL
             ======================================-->
-
-
-    </form>
 
     <?php
 
@@ -895,8 +888,6 @@ MODAL EDITAR PROVEEDOR
     ?>
 
   </div>
-
-</div>
 
 </div>
 
