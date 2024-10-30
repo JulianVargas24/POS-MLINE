@@ -113,6 +113,46 @@ class ControladorOrdenVestuario{
 		}
 	}
 
+	static public function ctrEliminarOrdenVestuario() {
+
+		if (isset($_GET["idOrdenVestuario"])) {
+	
+			$tabla = "orden_vestuario";
+			$datos = $_GET["idOrdenVestuario"];
+	
+			// Llamamos al modelo para eliminar la orden en la base de datos
+			$respuesta = ModeloOrdenVestuario::mdlEliminarOrdenVestuario($tabla, $datos);
+	
+			if ($respuesta == "ok") {
+				echo '<script>
+					swal({
+						type: "success",
+						title: "La Orden de Vestuario ha sido eliminada correctamente",    
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then(function(result){
+						if (result.value) {
+							window.location = "orden-trabajo";
+						}
+					});
+				</script>';
+			} else {
+				echo '<script>
+					swal({
+						type: "error",
+						title: "Error al eliminar la Orden de Vestuario",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then(function(result){
+						if (result.value) {
+							window.location = "orden-trabajo";
+						}
+					});
+				</script>';
+			}
+		}
+	}
+
 
     static public function ctrMostrarOrdenVestuario($item, $valor){
 

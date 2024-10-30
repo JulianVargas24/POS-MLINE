@@ -73,6 +73,22 @@ class ModeloOrdenVestuario{
 		$stmt = null;
 	}
 
+	static public function mdlEliminarOrdenVestuario($tabla, $idOrdenVestuario) {
+
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		$stmt->bindParam(":id", $idOrdenVestuario, PDO::PARAM_INT);
+	
+		if ($stmt->execute()) {
+			return "ok";
+		} else {
+			return "error";
+		}
+	
+		$stmt->close();
+		$stmt = null;
+	}
+
+
     static public function mdlMostrarOrdenVestuario($tabla, $item, $valor){
 
 		if($item != null){

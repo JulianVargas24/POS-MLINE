@@ -663,7 +663,7 @@ $("#seleccionarCliente").select2();
 
 
 /*=============================================
-LISTAR PERSONAL
+EDITAR ORDEN DE VESTUARIO
 =============================================*/
 
 $(".tablas").on("click", ".btnEditarOrdenVestuario", function(){
@@ -674,3 +674,28 @@ $(".tablas").on("click", ".btnEditarOrdenVestuario", function(){
 
 
 })
+
+/*=============================================
+Eliminar ORDEN DE VESTUARIO
+=============================================*/
+
+$(".tablas").on("click", ".btnEliminarOrdenVestuario", function(){
+    
+    var idOrdenVestuario = $(this).attr("idOrdenVestuario");
+
+    swal({
+        title: "¿Está seguro de borrar la Orden de Vestuario?",
+        text: "¡Si no lo está puede cancelar la acción!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Sí, borrar orden!"
+    }).then(function(result) {
+        if (result.value) {
+            // Redirige al controlador de eliminación
+            window.location = "index.php?ruta=orden-trabajo&idOrdenVestuario="+idOrdenVestuario;
+        }
+    });
+});

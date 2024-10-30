@@ -297,8 +297,8 @@ if($xml){
        </table>
        <?php
 
-        $eliminarVenta = new ControladorVentas();
-        $eliminarVenta -> ctrEliminarVenta();
+        $eliminarOrdenVestuario = new ControladorOrdenVestuario();
+        $eliminarOrdenVestuario -> ctrEliminarOrdenVestuario();
 
         ?>
      
@@ -310,7 +310,6 @@ if($xml){
   </section>
 
 </div>
-
 
 
 
