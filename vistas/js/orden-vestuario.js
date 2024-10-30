@@ -143,8 +143,8 @@ $(".tablaPersonal tbody").on("click", "button.agregarPersonal", function(){
                                         <input class="form-control falda-cintura" type="hidden" name="" id="" value="${falda_cintura}">
                                         <input class="form-control largo-falda" type="hidden" name="" id="" value="${largo_falda}">
                                     <div class="col-xs-2 btngroup" style="padding-right:0px">
-                                            <button type="button"  idPersonal="${idPersonal}" data-dismiss="modal" class="btn btn-warning btnEditarMedidasPersonal">Editar</button>
-                                            <button type="button" data-toggle="modal" data-target="#modalVerMedidas" idPersonal="${idPersonal}" data-dismiss="modal" class="btn btn-success btnVerPersonal">Ver</button>
+                                            <button type="button"  idPersonal="${idPersonal}" data-dismiss="modal" class="btn btn-info btnEditarMedidasPersonal">Mostrar</button>
+                                            <button type="button" data-toggle="modal" data-target="#modalVerMedidas" idPersonal="${idPersonal}" data-dismiss="modal" class="btn btn-warning btnVerPersonal">Editar</button>
                                     </div>
                                 </div>
 
