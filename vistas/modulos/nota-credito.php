@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      NOTA DE CREDITO  DE FACTURA AFECTA
+      NOTA DE CRÉDITO DE FACTURA AFECTA
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Nota de Credito de Factura Afecta</li>
+      <li class="active">Nota de Crédito de Factura Afecta</li>
     
     </ol>
 
@@ -184,7 +184,9 @@ if($_SESSION["perfil"] == "Especial"){
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             
-                                                            <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" value="<?php echo $venta["fecha_emision"];?>">
+                                                        <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" 
+                                                                        value="<?php echo date("Y-m-d");?>"required 
+                                                                        onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                         </div>
                                                     </div>
 
@@ -194,11 +196,35 @@ if($_SESSION["perfil"] == "Especial"){
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <input type="hidden" id="nuevoEstado" name="nuevoEstado" value="Abierta">
-                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento" value="<?php echo $venta["fecha_vencimiento"];?>">
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                                        required onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 
+                                                 <!-- Modal -->
+                                                            <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header" style="background: #dc3545; color: white;"> <!-- Fondo rojo para errores -->
+                                                                            <h4 class="modal-title" id="alertModalLabel">
+                                                                                <i class="fas fa-exclamation-circle"></i> <!-- Ícono de error -->
+                                                                                Error
+                                                                            </h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body" style="font-size: 16px;"> <!-- Tamaño de fuente más grande -->
+                                                                            La fecha de vencimiento no puede ser anterior a la fecha de emisión.
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>           
+
                                                 <div class="col-xs-6">
                                                 <div class="d-block" style="font-size:14px;">Unidad de Negocio</div>
                                                     <div class="form-group">
@@ -580,13 +606,20 @@ $agregarNotaCredito -> ctrCrearNotaCredito();
 
 </div>
 
-<!--=====================================
-MODAL VER COTIZACIONES
-======================================-->
+<script>
+function validarFechas(fechaInicioId, fechaFinId) {
+    const fechaInicio = document.getElementById(fechaInicioId).value;
+    const fechaFin = document.getElementById(fechaFinId).value;
 
-
-
-
+    // Asegúrate de que ambas fechas tengan un valor
+    if (fechaInicio && fechaFin) {
+        if (new Date(fechaInicio) > new Date(fechaFin)) {
+            $('#alertModal').modal('show'); // Mostrar la ventana modal
+            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
+        }
+    }
+}
+</script>
 
 <style>
   .error{

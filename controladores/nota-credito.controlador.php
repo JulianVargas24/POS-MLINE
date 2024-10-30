@@ -49,7 +49,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito de Factura Afecta ha sido guardada correctamente",
+						  title: "La Nota de Crédito de Factura Afecta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -111,7 +111,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito de Factura Exenta ha sido guardada correctamente",
+						  title: "La Nota de Crédito de Factura Exenta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -172,7 +172,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito de Boleta Afecta ha sido guardada correctamente",
+						  title: "La Nota de Crédito de Boleta Afecta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -233,7 +233,7 @@ class ControladorNotaCredito{
                     echo'<script>
 					swal({
 						  type: "success",
-						  title: "La Nota de Credito de Boleta Exenta ha sido guardada correctamente",
+						  title: "La Nota de Crédito de Boleta Exenta ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -255,27 +255,27 @@ class ControladorNotaCredito{
 
 
 
-    static public function  ctrMostrarNotasAfecta(){
+    static public function  ctrMostrarNotasAfecta($item, $valor){
         $tabla = "nota_credito";
 		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
 
 		return $respuesta;
     }
-    static public function ctrMostrarNotasExenta(){
+    static public function ctrMostrarNotasExenta($item, $valor){
         $tabla = "nota_credito_exenta";
 
 		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
 
 		return $respuesta;
     }
-    static public function ctrMostrarNotasBoleta(){
+    static public function ctrMostrarNotasBoleta($item, $valor){
         $tabla = "nota_credito_boleta";
 
 		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
 
 		return $respuesta;
     }
-    static public function ctrMostrarNotasBoletaExenta(){
+    static public function ctrMostrarNotasBoletaExenta($item, $valor){
         $tabla = "nota_credito_boleta_exenta";
 
 		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
@@ -306,7 +306,7 @@ class ControladorNotaCredito{
             CREAMOS EL ARCHIVO DE EXCEL
             =============================================*/
 
-            $Name = $_GET["reporte"] . '-nota-credito-afecta.xls';
+            $Name = $_GET["reporte"] . '-nota-crédito-afecta.xls';
 
             header('Expires: 0');
             header('Cache-control: private');
@@ -422,7 +422,7 @@ class ControladorNotaCredito{
             CREAMOS EL ARCHIVO DE EXCEL
             =============================================*/
 
-            $Name = $_GET["reporte"] . '-nota-credito-boleta.xls';
+            $Name = $_GET["reporte"] . '-nota-crédito-boleta.xls';
 
             header('Expires: 0');
             header('Cache-control: private');
@@ -538,7 +538,7 @@ class ControladorNotaCredito{
             CREAMOS EL ARCHIVO DE EXCEL
             =============================================*/
 
-            $Name = $_GET["reporte"] . '-nota-credito-exenta.xls';
+            $Name = $_GET["reporte"] . '-nota-crédito-exenta.xls';
 
             header('Expires: 0');
             header('Cache-control: private');

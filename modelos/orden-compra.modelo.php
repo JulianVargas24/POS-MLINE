@@ -6,8 +6,8 @@ class ModeloOrdenCompra
 {
 
 	/*=============================================
-	CREAR ORDEN COMPRA
-	=============================================*/
+    CREAR ORDEN COMPRA
+    =============================================*/
 
 	static public function mdlIngresarOrdenCompra($tabla, $datos)
 	{
@@ -34,28 +34,27 @@ class ModeloOrdenCompra
 
 		if ($stmt->execute()) {
 
-            if ($con->lastInsertId() > 0) {
-                foreach ($datos["productos"] as $producto) {
-                    $datos = [
-                        "id_producto" => $producto["id"],
-                        "id_entrada" => $con->lastInsertId(),
-                        "tipo_entrada" => "orden_compra",
-                        "cantidad" => $producto["cantidad"],
-                        "descripcion" => $producto["descripcion"],
-                        // TODO cambiar id_bodega por nombre del dato en formulario
-                        "id_bodega" => $datos["id_bodega"],
+			if ($con->lastInsertId() > 0) {
+				foreach ($datos["productos"] as $producto) {
+					$datos = [
+						"id_producto" => $producto["id"],
+						"id_entrada" => $con->lastInsertId(),
+						"tipo_entrada" => "orden_compra",
+						"cantidad" => $producto["cantidad"],
+						"descripcion" => $producto["descripcion"],
+						// TODO cambiar id_bodega por nombre del dato en formulario
+						"id_bodega" => $datos["id_bodega"],
 
-                    ];
-                    ModeloEntradasInventario::mdlEntradaPorCompra($datos);
-                }
-            }
+					];
+					ModeloEntradasInventario::mdlEntradaPorCompra($datos);
+				}
+			}
 
 			return "ok";
 		} else {
 
 			return "error";
 		}
-
 	}
 
 	static public function mdlEditarOrdenCompra($tabla, $datos)
@@ -81,8 +80,6 @@ class ModeloOrdenCompra
 		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
 
 
-
-
 		if ($stmt->execute()) {
 
 			return "ok";
@@ -95,29 +92,33 @@ class ModeloOrdenCompra
 		$stmt = null;
 	}
 
-	static public function mdlMostrarOrdenCompra($tabla, $item, $valor)
+	static public function mdlMostrarOrdenCompra($tabla, $item, $valor, $fechaInicial = null, $fechaFinal = null)
 	{
+		if ($fechaInicial && $fechaFinal) {
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_emision BETWEEN :fechaInicial AND :fechaFinal");
 
-		if ($item != null) {
-
+			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
+			$stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
+		} elseif ($item != null) {
+			// Filtra por el campo específico
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
-
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+		} else {
+			// Devuelve todas las órdenes de compra
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		}
 
-			$stmt->execute();
+		$stmt->execute();
 
+		if ($fechaInicial && $fechaFinal) {
+			return $stmt->fetchAll();
+		} elseif ($item != null) {
 			return $stmt->fetch();
 		} else {
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-
-			$stmt->execute();
-
 			return $stmt->fetchAll();
 		}
 
 		$stmt->close();
-
 		$stmt = null;
 	}
 

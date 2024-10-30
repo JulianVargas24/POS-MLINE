@@ -1,29 +1,24 @@
 /*=============================================
 ELIMINAR LISTA
 =============================================*/
-$(".tablas").on("click", ".btnEliminarSubcategoria", function(){
+$(".tablas").on("click", ".btnEliminarListas", function(){
 
-    var id_subcategoria = $(this).attr("id_subcategoria");
+    var idLista = $(this).attr("idLista");
 
     swal({
-        title: '¿Está seguro de borrar la subcategoría?',
-        text: "¡Si no lo está puede cancelar la acción!",
+        title: '¿Está seguro de borrar la lista de precios?',
+        text: "¡Si no lo está, puede cancelar la acción!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar subcategoría!'
+        confirmButtonText: 'Sí, borrar lista de precios'
     }).then(function(result){
-
         if(result.value){
-
-            window.location = "index.php?ruta=subcategorias&id_subcategoria="+id_subcategoria;
-
+            window.location = "index.php?ruta=listas&idLista="+idLista;
         }
-
     })
-
 })
 
 /*=============================================
@@ -50,8 +45,5 @@ $(".tablas").on("click", ".btnEditarListas", function(){
              $("#idLista").val(respuesta["id"]);
 
      	}
-
 	})
-
-
 })

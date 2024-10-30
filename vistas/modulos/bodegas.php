@@ -80,7 +80,13 @@ if($_SESSION["perfil"] == "Especial"){
           $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
 
           foreach ($bodegas as $key => $value) {
-            
+            // Obtener los nombres de la región y la comuna
+            $regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
+            $comunaNombre = ControladorRegiones::ctrMostrarComunas('id', $value['comuna']);
+
+            // Asignar nombres o mostrar el ID si no se encuentra el nombre
+            $regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : ''.$value['region'];
+            $comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : ''.$value['comuna'];
 
             echo '<tr>
 
@@ -88,9 +94,9 @@ if($_SESSION["perfil"] == "Especial"){
 
                     <td>'.$value["nombre"].'</td>
 
-                    <td>'.$value["region"].'</td>
+                    <td>'.$regionDisplay.'</td>
 
-                    <td>'.$value["comuna"].'</td>
+                    <td>'.$comunaDisplay.'</td>
 
                     <td>'.$value["direccion"].'</td>
 
@@ -106,6 +112,8 @@ if($_SESSION["perfil"] == "Especial"){
                       <div class="btn-group">
                           
                         <button class="btn btn-warning btnEditarBodega" data-toggle="modal" data-target="#modalEditarBodega" idBodega="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
+                        // Supongamos que tienes un botón con id "editarBodegaBtn" para editar la bodega
+
 
                       if($_SESSION["perfil"] == "Administrador"){
 
@@ -120,6 +128,7 @@ if($_SESSION["perfil"] == "Especial"){
                   </tr>';
           
             }
+            
 
            
         ?>
@@ -198,23 +207,21 @@ MODAL AGREGAR BODEGA
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
                                 }
-
                                 ?>
-            
+
                             </select>
+            
+                            
 
 
                           </div>
                       </div>   
+
+
                   <!-- ENTRADA PARA LA CIUDAD -->
                       <div class="col-lg-6" style="margin-top:10px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
@@ -225,23 +232,11 @@ MODAL AGREGAR BODEGA
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
                                     <option value="">Seleccionar Comuna</option>
-
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
-
-                                    ?>
+>
               
                                 </select>
-
+                                
+                                
                             </div>
                       </div>
                    
@@ -281,7 +276,16 @@ MODAL AGREGAR BODEGA
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="tel" class="form-control input" name="nuevoTelefono" placeholder="Ingresar teléfono" required>
+                        <!-- Esta funcion permite que se pueda ingresar solo numeros con un minimo y maximo de 9 -->
+                        <input type="tel" class="form-control input" name="nuevoTelefono"
+                                            placeholder="Ingresar teléfono" required
+                                            maxlength="12" pattern="^\+[0-9]{11}$"
+                                            title="Ingrese el número de teléfono completo."
+                                            onfocus="validarTelefono(this)">
+
+
+
+
 
                       </div>
                   </div>
@@ -292,7 +296,8 @@ MODAL AGREGAR BODEGA
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required>
+                        <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+
 
                       </div>
                     </div>                 
@@ -395,16 +400,9 @@ MODAL EDITAR PROVEEDOR
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                                foreach ($regiones as $key => $value){
-                                echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' '.$value["ordinal"].' </option>';
+                                foreach ($regiones as $region) {
+                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $bodegas['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
                                 }
-
                                 ?>
             
                             </select>
@@ -424,23 +422,18 @@ MODAL EDITAR PROVEEDOR
 
                             <option value="">Seleccionar Comuna</option>
 
-                                    <?php
-
-                                    $item = null;
-                                    $valor = null;
-
                                     
-                                    $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                                    foreach ($comunas as $key => $value){
-                                    echo '<option  value="'.$value["nombre"].'">'.$value["nombre"].' </option>';
-                                    }
-
-                                    ?>
                           </select>
+                          
+                          
 
                           </div>
-                      </div>                 
+                      </div>
+
+                      <!-- Input hidden para la comuna actual -->
+                      <input type="hidden" id="comunaActual" value="<?php echo $bodegas['comuna']; ?>">
+                      
+                      
                     <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                       <div class="col-lg-6" style="margin-top:10px;">
                       <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
@@ -477,7 +470,11 @@ MODAL EDITAR PROVEEDOR
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required>
+                        <input type="text" class="form-control input" name="editarTelefono" id="editarTelefono" placeholder="Ingresar teléfono" required
+                          maxlength="12" pattern="^\+[0-9]{11}$"
+                          title="Ingrese el número de teléfono completo."
+                          onfocus="validarTelefono(this)">   
+
 
                       </div>
                   </div>
@@ -488,7 +485,7 @@ MODAL EDITAR PROVEEDOR
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                        <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required>
+                        <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                       </div>
                     </div>                 
@@ -539,6 +536,7 @@ MODAL EDITAR PROVEEDOR
 
   $eliminarBodega = new ControladorBodegas();
   $eliminarBodega -> ctrEliminarBodega();
+  
 
 ?>
 

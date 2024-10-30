@@ -30,6 +30,9 @@ require_once "../../../modelos/matrices.modelo.php";
 require_once "../../../controladores/medios-pago.controlador.php";
 require_once "../../../modelos/medios-pago.modelo.php";
 
+require_once "../../../controladores/nota-credito.controlador.php";
+require_once "../../../modelos/nota-credito.modelo.php";
+
 class imprimirFactura{
 
 	public $codigo;
@@ -126,6 +129,23 @@ class imprimirFactura{
 				$motivoDocumento = $detalle["motivo_documento"];
 			break;
 
+			case "Nota_Credito_Factura_Afecta":
+				$item = "codigo";
+				$doc = "NOTA DE CRÉDITO DE FACTURACIÓN AFECTA";
+				$valor = $this->codigo;
+				$id = "id";
+				$detalle = ControladorNotaCredito::ctrMostrarNotasAfecta($item, $valor);
+				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
+				$nombre = $receptor["nombre"];
+				$condicion = $matriz[0]["condicion_venta"];
+				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
+				$documentoCliente = $detalle[""];
+				$folioDocumento = $detalle[""];
+				$fechaDocumento = $detalle[""];
+				$motivoDocumento = $detalle[""];
+				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+			break;
+
 			case "Factura_Exenta":
 				$item = "codigo";
 				$doc = "FACTURACION EXENTA";
@@ -142,7 +162,24 @@ class imprimirFactura{
 				$motivoDocumento = $detalle["motivo_documento"];
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 			break;
-			
+					
+			case "Nota_Credito_Factura_Exenta":
+				$item = "codigo";
+				$doc = "NOTA DE CRÉDITO DE FACTURACIÓN EXENTA";
+				$valor = $this->codigo;
+				$id = "id";
+				$detalle = ControladorNotaCredito::ctrMostrarNotasExenta($item, $valor);
+				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
+				$nombre = $receptor["nombre"];
+				$condicion = $matriz[0]["condicion_venta"];
+				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
+				$documentoCliente = $detalle[""];
+				$folioDocumento = $detalle[""];
+				$fechaDocumento = $detalle[""];
+				$motivoDocumento = $detalle[""];
+				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+			break;
+
 			case "Boleta_Exenta":
 				$item = "codigo";
 				$doc = "BOLETA EXENTA";
@@ -159,6 +196,40 @@ class imprimirFactura{
 				$motivoDocumento = $detalle["motivo_documento"];
 				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 			break;			
+
+			case "Nota_Credito_Boleta_Exenta":
+				$item = "codigo";
+				$doc = "NOTA DE CRÉDITO DE BOLETA EXENTA";
+				$valor = $this->codigo;
+				$id = "id";
+				$detalle = ControladorNotaCredito::ctrMostrarNotasBoletaExenta($item, $valor);
+				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
+				$nombre = $receptor["nombre"];
+				$condicion = $matriz[0]["condicion_venta"];
+				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
+				$documentoCliente = $detalle[""];
+				$folioDocumento = $detalle[""];
+				$fechaDocumento = $detalle[""];
+				$motivoDocumento = $detalle[""];
+				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+			break;
+
+			case "Nota_Credito_Boleta_Afecta":
+				$item = "codigo";
+				$doc = "NOTA DE CRÉDITO DE BOLETA AFECTA";
+				$valor = $this->codigo;
+				$id = "id";
+				$detalle = ControladorNotaCredito::ctrMostrarNotasBoleta($item, $valor);
+				$receptor = ControladorClientes::ctrMostrarClientes($id, $detalle["id_cliente"]);
+				$nombre = $receptor["nombre"];
+				$condicion = $matriz[0]["condicion_venta"];
+				$mediopago = ControladorMediosPago::ctrMostrarMedios($id, $detalle["id_medio_pago"]);
+				$documentoCliente = $detalle[""];
+				$folioDocumento = $detalle[""];
+				$fechaDocumento = $detalle[""];
+				$motivoDocumento = $detalle[""];
+				$border = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+			break;
 		}
 
 			$fecha = date("d-m-Y",strtotime($detalle["fecha_emision"]));
@@ -220,11 +291,11 @@ class imprimirFactura{
 			//PRIMER CUADRO
 			$pdf->SetFont('helveticaB', '', 8);
 			$pdf->SetLineStyle(array('width' => 0.4, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
-			$pdf->Cell(20, 7, 'Razon Social:', 1, 0, 'L');
+			$pdf->Cell(20, 7, 'Razón Social:', 1, 0, 'L');
 			$pdf->SetFont('helvetica', '', 8);
 			$pdf->Cell(120, 7, $nombre, 'LT', 0, 'L');
 			$pdf->SetFont('helveticaB', '', 8);
-			$pdf->Cell(20, 7, 'Emision:', 1, 0, 'L');
+			$pdf->Cell(20, 7, 'Emisión:', 1, 0, 'L');
 			$pdf->SetFont('helvetica', '', 8);
 			$pdf->Cell(0, 7, $detalle["fecha_emision"], "RT", 1, 'L');
 
@@ -233,12 +304,12 @@ class imprimirFactura{
 			$pdf->SetFont('helvetica', '', 8);
 			$pdf->Cell(120, 7, $receptor["rut"], 'L', 0, 'L');
 			$pdf->SetFont('helveticaB', '', 8);
-			$pdf->Cell(20, 7, 'Telefono:', 1, 0, 'L');
+			$pdf->Cell(20, 7, 'Teléfono:', 1, 0, 'L');
 			$pdf->SetFont('helvetica', '', 8);
 			$pdf->Cell(0, 7, $receptor["telefono"], "R", 1, 'L');
 
 			$pdf->SetFont('helveticaB', '', 8);
-			$pdf->Cell(20, 7, 'Direccion', 1, 0, 'L');
+			$pdf->Cell(20, 7, 'Dirección', 1, 0, 'L');
 			$pdf->SetFont('helvetica', '', 8);
 			$pdf->Cell(120, 7, $receptor["direccion"], 'L', 0, 'L');
 			$pdf->SetFont('helveticaB', '', 8);
@@ -247,7 +318,7 @@ class imprimirFactura{
 			$pdf->Cell(0, 7, $mediopago["medio_pago"], 'R', 1, 'L');
 			
 			$pdf->SetFont('helveticaB', '', 8);
-			$pdf->Cell(20, 7, 'Region', 1, 0, 'L');
+			$pdf->Cell(20, 7, 'Región', 1, 0, 'L');
 			$pdf->SetFont('helvetica', '', 8);
 			$pdf->Cell(120, 7, $receptor["region"], "L", 0, 'L');
 			$pdf->SetFont('helveticaB', '', 8);
@@ -283,8 +354,8 @@ class imprimirFactura{
 			//Encabezados de la Tabla
 			$pdf->Ln(1);
 			$pdf->SetFont('helveticaB', '', 9);
-			$pdf->Cell(20, 5, 'Codigo', 1, 0, 'C');
-			$pdf->Cell(60, 5, 'Descripcion', 1, 0, 'C');
+			$pdf->Cell(20, 5, 'Código', 1, 0, 'C');
+			$pdf->Cell(60, 5, 'Descripción', 1, 0, 'C');
 			$pdf->Cell(30, 5, 'Valor', 1, 0, 'C');
 			$pdf->Cell(20, 5, 'Cantidad', 1, 0, 'C');
 			$pdf->Cell(20, 5, 'Descuento', 1, 0, 'C');
@@ -369,7 +440,35 @@ class imprimirFactura{
 
 			//$pdf->Output('factura.pdf', 'D');
 			ob_end_clean();
-			$pdf->Output('factura.pdf');
+			// Dependiendo del valor de $doc, cambiar el nombre del archivo
+			if ($doc == "ORDEN DE COMPRA") {
+				$nombreArchivo = "Orden_Compra.pdf";
+			} elseif ($doc == "FACTURA DE COMPRA") {
+				$nombreArchivo = "Factura_Compra.pdf";
+			} elseif ($doc == "COTIZACION AFECTA") {
+				$nombreArchivo = "Cotizacion_Afecta.pdf";
+			} elseif ($doc == "COTIZACION EXENTA") {
+				$nombreArchivo = "Cotizacion_Exenta.pdf";
+			} elseif ($doc == "FACTURACION AFECTA") {
+				$nombreArchivo = "Factura_Afecta.pdf";
+			} elseif ($doc == "NOTA DE CRÉDITO DE FACTURACIÓN AFECTA") {
+				$nombreArchivo = "Nota_Credito_Factura_Afecta.pdf";
+			} elseif ($doc == "FACTURACION EXENTA") {
+				$nombreArchivo = "Factura_Exenta.pdf";
+			} elseif ($doc == "NOTA DE CRÉDITO DE FACTURACIÓN EXENTA") {
+				$nombreArchivo = "Nota_Credito_Factura_Exenta.pdf";
+			} elseif ($doc == "BOLETA EXENTA") {
+				$nombreArchivo = "Boleta_Exenta.pdf";
+			} elseif ($doc == "NOTA DE CRÉDITO DE BOLETA EXENTA") {
+				$nombreArchivo = "Nota_Credito_Boleta_Exenta.pdf";
+			} elseif ($doc == "NOTA DE CRÉDITO DE BOLETA AFECTA") {
+				$nombreArchivo = "Nota_Credito_Boleta_Afecta.pdf";
+			} else {
+				$nombreArchivo = "Documento.pdf"; // Nombre por defecto en caso de no coincidir
+			}
+
+			// Descargar el PDF con el nombre dinámico
+			$pdf->Output($nombreArchivo, 'I'); // 'I' para abrir en navegador, 'D' para descargar directamente
 
 		
 		

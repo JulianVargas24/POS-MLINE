@@ -54,7 +54,7 @@ if($xml){
 
           <button class="btn btn-danger">
             
-           Crear Cotizacion Afecta
+           Crear Cotización Afecta
 
           </button>
 
@@ -63,7 +63,7 @@ if($xml){
 
           <button class="btn btn-warning">
             
-          Crear Cotizacion Exenta
+          Crear Cotización Exenta
 
           </button>
 
@@ -78,7 +78,7 @@ if($xml){
 
         <div class="input-group">
 
-          <button type="button" class="btn btn-default" id="daterange-cotizacion">
+          <button type="button" class="btn btn-default" id="daterange-cotizaciones">
           
             <span>
               <i class="fa fa-calendar"></i> 
@@ -101,8 +101,6 @@ if($xml){
             <i class="fa fa-caret-down"></i>
 
           </button>
-
-          <a href="cotizaciones"> <button class="btn btn-success ml-2"> <i class="fa fa-home"> </i> </button> </a>
 
         </div>
 
