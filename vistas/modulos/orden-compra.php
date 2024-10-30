@@ -16,7 +16,7 @@ if ($_SESSION["perfil"] == "Especial") {
     <section class="content-header">
 
         <h1 style="color:green;font-weight:bold">
-            Orden de compra
+            Orden de Compra
         </h1>
 
         <ol class="breadcrumb">
@@ -538,7 +538,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px;">Medios de Pago
+                                                         style="background-color:#3c8dbc;font-size:15px;">Medios de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
@@ -626,7 +626,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                 <div class="modal-header" style="background:#3c8dbc; color:white">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Órdenes de Compra</h4>
+                    <h4 class="modal-title">Órdenes de compra</h4>
                 </div>
 
                 <!--=====================================
@@ -640,9 +640,9 @@ if ($_SESSION["perfil"] == "Especial") {
                             <th style="width:10px">#</th>
                             <th>Folio</th>
                             <th>Proveedor</th>
-                            <th>Fecha Emision</th>
-                            <th>Total Final</th>
-                            <th>Observacion</th>
+                            <th>Fecha emisión</th>
+                            <th>Total final</th>
+                            <th>Observación</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -661,7 +661,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 }
                             }
 
-                            echo '<tr>
+                                echo '<tr>
 
                                     <td>' . ($key + 1) . '</td>
 
@@ -709,7 +709,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                 <div class="modal-header" style="background:#3c8dbc; color:white">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Órdenes de Vestuario</h4>
+                    <h4 class="modal-title">Órdenes de vestuario</h4>
                 </div>
 
                 <!--=====================================
@@ -719,26 +719,26 @@ if ($_SESSION["perfil"] == "Especial") {
                 <div class="modal-body">
                     <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                         <thead>
-                        <tr>
-                            <th style="width:10px">#</th>
-                            <th>Folio</th>
-                            <th>Nombre</th>
-                            <th>Fecha Emision</th>
-                            <th>Observacion</th>
-                            <th>Acciones</th>
-                        </tr>
+                            <tr>
+                                <th style="width:10px">#</th>
+                                <th>Folio</th>
+                                <th>Nombre</th>
+                                <th>Fecha Emision</th>
+                       Ob       <th>Observacion</th>
+                                <th>Acciones</th>
+                            </tr>
                         </thead>
                         <tbody>
 
-                        <?php
-                        $item = null;
-                        $valor = null;
+                            <?php
+                            $item = null;
+                            $valor = null;
 
-                        $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
+                            $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
 
-                        foreach ($vestuarios as $key => $value) {
+                            foreach ($vestuarios as $key => $value) {
 
-                            echo '<tr>
+                                echo '<tr>
 
                                     <td>' . ($key + 1) . '</td>
 
@@ -753,8 +753,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <td> <button type="button" class="btn btn-warning">TRAER</button> </td>
 
                                 </tr>';
-                        }
-                        ?>
+                            }
+                            ?>
 
                         </tbody>
                     </table>

@@ -20,7 +20,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <h1 style="color:green;font-weight:bold">
 
-            EDITAR COTIZACIÓN
+            EDITAR COTIZACIÓN AFECTA
 
         </h1>
 
@@ -28,7 +28,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Editar cotización</li>
+            <li class="active">Editar cotización afecta</li>
 
         </ol>
 
@@ -637,21 +637,22 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
+                                        
+                                    
+                    <a href="cotizaciones">                 
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>                 
+                </form>
+                    <?php
+
+                        $editarCotizacion = new ControladorCotizacion();
+                        $editarCotizacion -> ctrEditarCotizacion();
+
+                    ?>
             </div>
-
-
-            <button type="button" class="btn btn-default">Salir</button>
-            <button type="submit" class="btn btn-primary">Editar cotizacion</button>
-            </form>
-            <?php
-
-            $editarCotizacion = new ControladorCotizacion();
-            $editarCotizacion->ctrEditarCotizacion();
-
-            ?>
         </div>
-</div>
-</section>
+    </section>
 
 </div>
 

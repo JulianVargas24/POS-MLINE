@@ -47,7 +47,7 @@
                             , 'parametros-impresion', 'bancos', 'sucursales', 'matriz', 'tabla-listas']) . '">
                             <a href="#">
                                 <i class="fa fa-cog"></i>
-                                <span>Parametros</span>
+                                <span>Parámetros</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
@@ -68,7 +68,7 @@
                                 <li class="' . isActive($paginaActual, 'parametros-impresion') . '">
                                     <a href="parametros-impresion">
                                         <i class="' . marcarCirculo($paginaActual, 'parametros-impresion') . '"></i>
-                                        <span>Impresion</span>
+                                        <span>Impresión</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'bancos') . '">
@@ -92,7 +92,7 @@
                                 <li class="' . isActive($paginaActual, 'tabla-listas') . '">
                                     <a href="tabla-listas">
                                         <i class="' . marcarCirculo($paginaActual, 'tabla-listas') . '"></i>
-                                            <span>Tabla para Listas</span>
+                                            <span>Tabla para listas</span>
                                     </a>
                                 </li>											
                             </ul>
@@ -110,13 +110,13 @@
                                 <li class="' . isActive($paginaActual, 'categorias') . '">
                                     <a href="categorias">
                                         <i class="' . marcarCirculo($paginaActual, 'categorias') . '"></i>
-                                            <span>Categorias</span>
+                                            <span>Categorías</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'subcategorias') . '">			
                                     <a href="subcategorias">
                                         <i class="' . marcarCirculo($paginaActual, 'subcategorias') . '"></i>
-                                            <span>Subcategorias</span>
+                                            <span>Subcategorías</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'bodegas') . '">
@@ -128,13 +128,13 @@
                                 <li class="' . isActive($paginaActual, 'plazos') . '">
                                     <a href="plazos">
                                         <i class="' . marcarCirculo($paginaActual, 'plazos') . '"></i>
-                                            <span>Plazo de Pago</span>
+                                            <span>Plazo de pago</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'listas') . '">
                                     <a href="listas">
                                         <i class="' . marcarCirculo($paginaActual, 'listas') . '"></i>
-                                            <span>Lista de Precios</span>
+                                            <span>Lista de precios</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'unidades') . '">
@@ -146,7 +146,7 @@
                                 <li class="' . isActive($paginaActual, 'medios-pago') . '">
                                     <a href="medios-pago">
                                         <i class="' . marcarCirculo($paginaActual, 'medios-pago') . '"></i>
-                                            <span>Medios de Pago</span>
+                                            <span>Medios de pago</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'impuestos') . '">
@@ -182,13 +182,13 @@
                                 <li class="' . isActive($paginaActual, 'centro-costo') . '">		
                                     <a href="centro-costo">										
                                         <i class="' . marcarCirculo($paginaActual, 'centro-costo') . '"></i>
-                                        <span>Centro de Costos</span>	
+                                        <span>Centro de costos</span>	
                                     </a>	
                                 </li>		
                                 <li class="' . isActive($paginaActual, 'compras') . '">		
                                     <a href="compras">											
                                         <i class="' . marcarCirculo($paginaActual, 'compras') . '"></i>
-                                        <span>Admin. Compras</span>		
+                                        <span>Admin. compras</span>		
                                     </a>		
                                 </li>
                                 <li class="' . isActive($paginaActual, 'ordenes-compra') . '">
@@ -218,13 +218,13 @@
                                 <li class="' . isActive($paginaActual, 'entrada') . '">		
                                     <a href="entrada">									
                                         <i class="' . marcarCirculo($paginaActual, 'entrada') . '"></i>
-                                        <span>Entrada</span>
+                                        <span>Entradas</span>
                                     </a>							
                                 </li>
                                 <li class="' . isActive($paginaActual, 'salida') . '">	
                                     <a href="salida">									
                                         <i class="' . marcarCirculo($paginaActual, 'salida') . '"></i>
-                                        <span>Salida</span>
+                                        <span>Salidas</span>
                                     </a>
                                 </li>							
                                 <li class="' . isActive($paginaActual, 'ajuste') . '">		
@@ -245,7 +245,7 @@
                             , 'orden-vestuario']) . '">
                             <a href="#">
                                 <i class="fa fa-file"></i>						
-                                <span>Orden de Trabajo</span>						
+                                <span>Orden de trabajo</span>						
                                 <span class="pull-right-container">						    
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
@@ -260,13 +260,13 @@
                                 <li class="' . isActive($paginaActual, 'personal') . '">		
                                     <a href="personal">							
                                         <i class="' . marcarCirculo($paginaActual, 'personal') . '"></i>
-                                        <span>Personal Vestuario</span>
+                                        <span>Personal vestuario</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'orden-vestuario') . '">
                                     <a href="orden-vestuario">							
                                         <i class="' . marcarCirculo($paginaActual, 'orden-vestuario') . '"></i>
-                                        <span>Orden de Vestuario</span>
+                                        <span>Orden de vestuario</span>
                                     </a>
                                 </li>					
                             </ul>
@@ -304,49 +304,49 @@
                             <li class="' . isActive($paginaActual, 'ventas') . '">
                                 <a href="ventas">							
                                     <i class="' . marcarCirculo($paginaActual, 'ventas') . '"></i>
-                                    <span>Administrar Ventas</span>
+                                    <span>Administrar ventas</span>
                                 </a>
                             </li>
                             <li class="' . isActive($paginaActual, 'cotizaciones') . '">
                                 <a href="cotizaciones">							
                                     <i class="' . marcarCirculo($paginaActual, 'cotizaciones') . '"></i>
-                                    <span>Admin. Cotizaciones</span>
+                                    <span>Admin. cotizaciones</span>
                                 </a>
                             </li>										
                             <li class="' . isActive($paginaActual, 'cotizacion') . '">
                                 <a href="cotizacion">							
                                     <i class="' . marcarCirculo($paginaActual, 'cotizacion') . '"></i>
-                                    <span>Cotizacion Afecta</span>
+                                    <span>Cotización afecta</span>
                                 </a>
                             </li>
                             <li class="' . isActive($paginaActual, 'cotizacion-exenta') . '">
                                 <a href="cotizacion-exenta">							
                                     <i class="' . marcarCirculo($paginaActual, 'cotizacion-exenta') . '"></i>
-                                    <span>Cotizacion Exenta</span>
+                                    <span>Cotización exenta</span>
                                 </a>
                             </li>
                             <li class="' . isActive($paginaActual, 'venta-boleta') . '">
                                 <a href="venta-boleta">							
                                     <i class="' . marcarCirculo($paginaActual, 'venta-boleta') . '"></i>
-                                    <span>Boleta Afecta</span>
+                                    <span>Boleta afecta</span>
                                 </a>
                             </li>
                             <li class="' . isActive($paginaActual, 'boleta-exenta') . '">
                                 <a href="boleta-exenta">							
                                     <i class="' . marcarCirculo($paginaActual, 'boleta-exenta') . '"></i>
-                                    <span>Boleta Exenta</span>
+                                    <span>Boleta exenta</span>
                                 </a>
                             </li>
                             <li class="' . isActive($paginaActual, 'venta-factura') . '">
                                 <a href="venta-factura">					
                                     <i class="' . marcarCirculo($paginaActual, 'venta-factura') . '"></i>
-                                    <span>Venta Factura Afecta</span>
+                                    <span>Venta Factura afecta</span>
                                 </a>
                             </li>
                             <li class="' . isActive($paginaActual, 'venta-factura-exenta') . '">
                                 <a href="venta-factura-exenta">						
                                     <i class="' . marcarCirculo($paginaActual, 'venta-factura-exenta') . '"></i>
-                                    <span>Venta Factura Exenta</span>
+                                    <span>Venta Factura exenta</span>
                                 </a>
                             </li>
                         </ul>    
@@ -377,25 +377,25 @@
                             <li class="' . isActive($paginaActual, 'unidad-negocio') . '">
                                 <a href="unidad-negocio">							
                                     <i class="' . marcarCirculo($paginaActual, 'unidad-negocio') . '"></i>
-                                    <span>Unidad de Negocios</span>
+                                    <span>Unidad de negocios</span>
                                 </a>
                             </li>
                             <li class="' . isActive($paginaActual, 'lista-precios') . '">
                                 <a href="lista-precios">							
                                     <i class="' . marcarCirculo($paginaActual, 'lista-precios') . '"></i>
-                                    <span>Lista de Precios</span>
+                                    <span>Lista de precios</span>
                                 </a>
                             </li>
                             <li class="' . isActive($paginaActual, 'tipo-cliente') . '">
                                 <a href="tipo-cliente">							
                                     <i class="' . marcarCirculo($paginaActual, 'tipo-cliente') . '"></i>
-                                    <span>Tipo Campaña</span>
+                                    <span>Tipos de campaña</span>
                                 </a>
                             </li>								
                             <li class="' . isActive($paginaActual, 'tipo-producto') . '">
                                 <a href="tipo-producto">						
                                     <i class="' . marcarCirculo($paginaActual, 'tipo-producto') . '"></i>
-                                    <span>Tipo Producto</span>
+                                    <span>Tipos de productos</span>
                                 </a>
                             </li>
                         </ul>
@@ -404,7 +404,7 @@
             echo '<li class="treeview ' . isActive($paginaActual, 'cierre-caja') . '">
                         <a href="#">    
                             <i class="fa fa-shopping-bag"></i>                        
-                            <span>Tesoreria</span>                        
+                            <span>Tesorería</span>                        
                             <span class="pull-right-container">                        
                                 <i class="fa fa-angle-left pull-right"></i>    
                             </span>   
@@ -413,7 +413,7 @@
                             <li class="' . isActive($paginaActual, 'cierre-caja') . '">  
                                 <a href="cierre-caja">                                
                                     <i class="' . marcarCirculo($paginaActual, 'cierre-caja') . '"></i>
-                                    <span>Cierre de Caja</span>   
+                                    <span>Cierre de caja</span>   
                                 </a> 
                             </li>
                         </ul>  

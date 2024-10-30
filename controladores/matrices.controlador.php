@@ -3,7 +3,7 @@
 class ControladorMatrices{
 
 	/*=============================================
-	CREAR SUCURSAL
+	CREAR MATRIZ
 	=============================================*/
 
 	static public function ctrCrearMatriz(){
@@ -32,6 +32,7 @@ class ControladorMatrices{
 			   	if($respuesta == "ok"){
 					
 					echo'<script>
+						console.log("'.$datos["comuna"].', '.$datos["region"].'")
 					swal({
 						  type: "success",
 						  title: "La Matriz ha sido guardada correctamente",
@@ -69,7 +70,7 @@ class ControladorMatrices{
 	}
 
 	/*=============================================
-	EDITAR PROVEEDORES
+	EDITAR MATRIZ
 	=============================================*/
 
 	static public function ctrEditarMatriz(){
@@ -79,20 +80,20 @@ class ControladorMatrices{
 				$tabla = "matrices";
 
                 $datos = array("id"=>$_POST["idMatriz"],
-                               "razon_social"=>$_POST["editarMatriz"],
-							   "rut"=>$_POST["editarRut"],
-							   "pais"=>$_POST["editarPais"],
-							   "region"=>$_POST["editarRegion"],
-							   "comuna"=>$_POST["editarComuna"],
-							   "direccion"=>$_POST["editarDireccion"],
-							   "ejecutivo"=>$_POST["editarEjecutivo"],
-							   "telefono"=>$_POST["editarTelefono"],
-							   "email"=>$_POST["editarEmail"],
-							   "actividad"=>$_POST["editarActividad"],
-							   "fecha_inicio"=>$_POST["editarFechaInicio"],
-							   "fecha_vencimiento"=>$_POST["editarFechaVencimiento"],
-								"tipo_cliente"=>$_POST["editarTipoCliente"],
-								"tipo_producto"=>$_POST["editarTipoProducto"]);
+					"razon_social"=>$_POST["editarMatriz"],
+					"rut"=>$_POST["editarRut"],
+					"pais"=>$_POST["editarPais"],
+                    "region"=>$_POST["editarRegion"],
+                	"comuna"=>$_POST["editarComuna"],
+                    "direccion"=>$_POST["editarDireccion"],	
+                    "ejecutivo"=>$_POST["editarEjecutivo"],
+                    "telefono"=>$_POST["editarTelefono"],
+                    "email"=>$_POST["editarEmail"],
+                    "actividad"=>$_POST["editarActividad"],
+                    "fecha_inicio"=>$_POST["editarInicio"],
+                    "fecha_vencimiento"=>$_POST["editarVencimiento"],
+					"tipo_cliente"=>$_POST["editarTipoCliente"],
+					"tipo_producto"=>$_POST["editarTipoProducto"]);
 
 
 				$respuesta = ModeloMatrices::mdlEditarMatriz($tabla, $datos);
@@ -127,7 +128,7 @@ class ControladorMatrices{
 	}
 
 	/*=============================================
-	ELIMINAR PROVEEDORES
+	ELIMINAR MATRIZ
 	=============================================*/
 
 	static public function ctrEliminarMatriz(){
@@ -140,7 +141,6 @@ class ControladorMatrices{
 			$respuesta = ModeloMatrices::mdlBorrarMatriz($tabla, $datos);
 
 			if($respuesta == "ok"){
-
 				echo'<script>
 
 				swal({
@@ -150,13 +150,10 @@ class ControladorMatrices{
 					  confirmButtonText: "Cerrar",
 					  closeOnConfirm: false
 					  }).then(function(result){
-								if (result.value) {
-
+							if (result.value) {
 								window.location = "matriz";
-
-								}
-							})
-
+                            }
+						})
 				</script>';
 
 			}		
@@ -165,48 +162,4 @@ class ControladorMatrices{
 
 	}
 
-
-	static public function ctrEditarCondicionVenta(){
-
-		if(isset($_POST["nuevaCondicionVenta"])){
-
-			$tabla = "matrices";
-
-			$datos = array("id"=>4,
-						   "condicion_venta"=>$_POST["nuevaCondicionVenta"]);
-
-
-			$respuesta = ModeloMatrices::mdlEditarCondicionVenta($tabla, $datos);
-
-			if($respuesta == "ok"){
-
-				echo'<script>
-				
-				
-				swal({
-					  type: "success",
-					  title: "Parametros Generales actualizados.",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar"
-					  }).then(function(result){
-								if (result.value) {
-
-								window.location = "parametros-generales";
-
-								}
-							})
-
-				</script>';
-
-			}
-
-
-		
-
-	}
-
 }
-	}
-
-
-

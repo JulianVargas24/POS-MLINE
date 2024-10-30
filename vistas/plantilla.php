@@ -7,6 +7,7 @@ session_start();
 
 <!DOCTYPE html>
 <html>
+
 <head>
 
     <meta charset="utf-8">
@@ -39,7 +40,7 @@ session_start();
 
     <!-- Google Font -->
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <!-- DataTables -->
     <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
@@ -128,172 +129,175 @@ CUERPO DOCUMENTO
 
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
 
-<?php
+    <?php
 
-if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
+    if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
 
-    echo '<div class="wrapper">';
+        echo '<div class="wrapper">';
 
-    /*=============================================
+        /*=============================================
     CABEZOTE
     =============================================*/
 
-    include "modulos/cabezote.php";
+        include "modulos/cabezote.php";
 
-    /*=============================================
+        /*=============================================
     MENU
     =============================================*/
 
-    include "modulos/menu.php";
+        include "modulos/menu.php";
 
-    /*=============================================
+        /*=============================================
     CONTENIDO
     =============================================*/
 
-    if (isset($_GET["ruta"])) {
+        if (isset($_GET["ruta"])) {
 
-        if ($_GET["ruta"] == "inicio" ||
-            $_GET["ruta"] == "usuarios" ||
-            $_GET["ruta"] == "proveedores" ||
-            $_GET["ruta"] == "categorias" ||
-            $_GET["ruta"] == "subcategorias" ||
-            $_GET["ruta"] == "unidades" ||
-            $_GET["ruta"] == "listas" ||
-            $_GET["ruta"] == "bodegas" ||
-            $_GET["ruta"] == "impuestos" ||
-            $_GET["ruta"] == "kardex" ||
-            $_GET["ruta"] == "compras" ||
-            $_GET["ruta"] == "compra" ||
-            $_GET["ruta"] == "bancos" ||
-            $_GET["ruta"] == "crear-compra" ||
-            $_GET["ruta"] == "orden-compra" ||
-            $_GET["ruta"] == "editar-orden-compra" ||
-            $_GET["ruta"] == "orden-vestuario" ||
-            $_GET["ruta"] == "personal" ||
-            $_GET["ruta"] == "orden-trabajo" ||
-            $_GET["ruta"] == "parametros-generales" ||
-            $_GET["ruta"] == "parametros-documentos" ||
-            $_GET["ruta"] == "parametros-electronicos" ||
-            $_GET["ruta"] == "parametros-impresion" ||
-            $_GET["ruta"] == "rubros" ||
-            $_GET["ruta"] == "sucursales" ||
-            $_GET["ruta"] == "matriz" ||
-            $_GET["ruta"] == "plazos" ||
-            $_GET["ruta"] == "entrada" ||
-            $_GET["ruta"] == "nota-credito" ||
-            $_GET["ruta"] == "salida" ||
-            $_GET["ruta"] == "ajuste" ||
-            $_GET["ruta"] == "entradas" ||
-            $_GET["ruta"] == "salidas" ||
-            $_GET["ruta"] == "ajustes" ||
-            $_GET["ruta"] == "centro-costo" ||
-            $_GET["ruta"] == "unidad-negocio" ||
-            $_GET["ruta"] == "productos" ||
-            $_GET["ruta"] == "plantel" ||
-            $_GET["ruta"] == "clientes" ||
-            $_GET["ruta"] == "venta-factura" ||
-            $_GET["ruta"] == "venta-factura-exenta" ||
-            $_GET["ruta"] == "venta-boleta" ||
-            $_GET["ruta"] == "boleta-exenta" ||
-            $_GET["ruta"] == "cotizacion" ||
-            $_GET["ruta"] == "cotizacion-exenta" ||
-            $_GET["ruta"] == "editar-cotizacion" ||
-            $_GET["ruta"] == "ventas" ||
-            $_GET["ruta"] == "carga-inventario" ||
-            $_GET["ruta"] == "crear-venta" ||
-            $_GET["ruta"] == "editar-venta" ||
-            $_GET["ruta"] == "historial-venta" ||
-            $_GET["ruta"] == "medios-pago" ||
-            $_GET["ruta"] == "tipo-cliente" ||
-            $_GET["ruta"] == "tipo-producto" ||
-            $_GET["ruta"] == "reportes" ||
-            $_GET["ruta"] == "ordenes-compra" ||
-            $_GET["ruta"] == "cierre-caja" ||
-            $_GET["ruta"] == "cotizaciones" ||
-            $_GET["ruta"] == "tabla-listas" ||
-            $_GET["ruta"] == "lista-precios" ||
-            $_GET["ruta"] == "productos-bodega" ||
-            $_GET["ruta"] == "editar-orden-vestuario" ||
-            $_GET["ruta"] == "facturacion-afecta" ||
-            $_GET["ruta"] == "facturacion-exenta" ||
-            $_GET["ruta"] == "facturacion-compra" ||
-            $_GET["ruta"] == "nota-credito-exenta" ||
-            $_GET["ruta"] == "nota-credito-boleta" ||
-            $_GET["ruta"] == "nota-credito-boleta-exenta" ||
-            $_GET["ruta"] == "nota-credito" ||
-            $_GET["ruta"] == "salir") {
+            if (
+                $_GET["ruta"] == "inicio" ||
+                $_GET["ruta"] == "usuarios" ||
+                $_GET["ruta"] == "proveedores" ||
+                $_GET["ruta"] == "categorias" ||
+                $_GET["ruta"] == "subcategorias" ||
+                $_GET["ruta"] == "unidades" ||
+                $_GET["ruta"] == "listas" ||
+                $_GET["ruta"] == "bodegas" ||
+                $_GET["ruta"] == "impuestos" ||
+                $_GET["ruta"] == "kardex" ||
+                $_GET["ruta"] == "compras" ||
+                $_GET["ruta"] == "editar-compra" ||
+                $_GET["ruta"] == "compra" ||
+                $_GET["ruta"] == "bancos" ||
+                $_GET["ruta"] == "crear-compra" ||
+                $_GET["ruta"] == "orden-compra" ||
+                $_GET["ruta"] == "editar-orden-compra" ||
+                $_GET["ruta"] == "orden-vestuario" ||
+                $_GET["ruta"] == "personal" ||
+                $_GET["ruta"] == "orden-trabajo" ||
+                $_GET["ruta"] == "parametros-generales" ||
+                $_GET["ruta"] == "parametros-documentos" ||
+                $_GET["ruta"] == "parametros-electronicos" ||
+                $_GET["ruta"] == "parametros-impresion" ||
+                $_GET["ruta"] == "rubros" ||
+                $_GET["ruta"] == "sucursales" ||
+                $_GET["ruta"] == "matriz" ||
+                $_GET["ruta"] == "plazos" ||
+                $_GET["ruta"] == "entrada" ||
+                $_GET["ruta"] == "nota-credito" ||
+                $_GET["ruta"] == "salida" ||
+                $_GET["ruta"] == "ajuste" ||
+                $_GET["ruta"] == "entradas" ||
+                $_GET["ruta"] == "salidas" ||
+                $_GET["ruta"] == "ajustes" ||
+                $_GET["ruta"] == "centro-costo" ||
+                $_GET["ruta"] == "unidad-negocio" ||
+                $_GET["ruta"] == "productos" ||
+                $_GET["ruta"] == "plantel" ||
+                $_GET["ruta"] == "clientes" ||
+                $_GET["ruta"] == "venta-factura" ||
+                $_GET["ruta"] == "venta-factura-exenta" ||
+                $_GET["ruta"] == "venta-boleta" ||
+                $_GET["ruta"] == "boleta-exenta" ||
+                $_GET["ruta"] == "cotizacion" ||
+                $_GET["ruta"] == "cotizacion-exenta" ||
+                $_GET["ruta"] == "editar-cotizacion" ||
+                $_GET["ruta"] == "ventas" ||
+                $_GET["ruta"] == "carga-inventario" ||
+                $_GET["ruta"] == "crear-venta" ||
+                $_GET["ruta"] == "editar-venta" ||
+                $_GET["ruta"] == "historial-venta" ||
+                $_GET["ruta"] == "medios-pago" ||
+                $_GET["ruta"] == "tipo-cliente" ||
+                $_GET["ruta"] == "tipo-producto" ||
+                $_GET["ruta"] == "reportes" ||
+                $_GET["ruta"] == "ordenes-compra" ||
+                $_GET["ruta"] == "cierre-caja" ||
+                $_GET["ruta"] == "cotizaciones" ||
+                $_GET["ruta"] == "tabla-listas" ||
+                $_GET["ruta"] == "lista-precios" ||
+                $_GET["ruta"] == "productos-bodega" ||
+                $_GET["ruta"] == "editar-orden-vestuario" ||
+                $_GET["ruta"] == "facturacion-afecta" ||
+                $_GET["ruta"] == "facturacion-exenta" ||
+                $_GET["ruta"] == "facturacion-compra" ||
+                $_GET["ruta"] == "nota-credito-exenta" ||
+                $_GET["ruta"] == "nota-credito-boleta" ||
+                $_GET["ruta"] == "nota-credito-boleta-exenta" ||
+                $_GET["ruta"] == "nota-credito" ||
+                $_GET["ruta"] == "salir"
+            ) {
 
-            include "modulos/" . $_GET["ruta"] . ".php";
+                include "modulos/" . $_GET["ruta"] . ".php";
+            } else {
 
+                include "modulos/404.php";
+            }
         } else {
 
-            include "modulos/404.php";
-
+            include "modulos/inicio.php";
         }
 
-    } else {
-
-        include "modulos/inicio.php";
-
-    }
-
-    /*=============================================
+        /*=============================================
     FOOTER
     =============================================*/
 
-    include "modulos/footer.php";
+        include "modulos/footer.php";
 
-    echo '</div>';
+        echo '</div>';
+    } else {
 
-} else {
+        include "modulos/login.php";
+    }
 
-    include "modulos/login.php";
+    ?>
 
-}
+    }
 
-?>
+    ?>
 
-<script src="vistas/js/plantilla.js"></script>
-<script src="vistas/js/usuarios.js"></script>
-<script src="vistas/js/proveedores.js"></script>
-<script src="vistas/js/categorias.js"></script>
-<script src="vistas/js/subcategorias.js"></script>
-<script src="vistas/js/listas.js"></script>
-<script src="vistas/js/unidades.js"></script>
-<script src="vistas/js/productos.js"></script>
-<script src="vistas/js/clientes.js"></script>
-<script src="vistas/js/ventas.js"></script>
-<script src="vistas/js/bodegas.js"></script>
-<script src="vistas/js/orden-compra.js"></script>
-<script src="vistas/js/orden-vestuario.js"></script>
-<script src="vistas/js/entradas.js"></script>
-<script src="vistas/js/salidas.js"></script>
-<script src="vistas/js/impuestos.js"></script>
-<script src="vistas/js/rubros.js"></script>
-<script src="vistas/js/plazos.js"></script>
-<script src="vistas/js/Historialventas.js"></script>
-<script src="vistas/js/reportes.js"></script>
-<script src="vistas/js/centros.js"></script>
-<script src="vistas/js/negocios.js"></script>
-<script src="vistas/js/tabla-listas.js"></script>
-<script src="vistas/js/sucursales.js"></script>
-<script src="vistas/js/personal.js"></script>
-<script src="vistas/js/medios-pago.js"></script>
-<script src="vistas/js/venta-factura.js"></script>
-<script src="vistas/js/venta-boleta.js"></script>
-<script src="vistas/js/compras.js"></script>
-<script src="vistas/js/cotizacion.js"></script>
-<script src="vistas/js/cotizacion-exenta.js"></script>
-<script src="vistas/js/venta-exenta.js"></script>
-<script src="vistas/js/boleta-exenta.js"></script>
-<script src="vistas/js/plantel.js"></script>
-<script src="vistas/js/tipo-productos.js"></script>
-<script src="vistas/js/tipo-clientes.js"></script>
-<script src="vistas/js/matriz.js"></script>
-<script src="vistas/js/ajustes.js"></script>
-<script src="vistas/js/lista-precios.js"></script>
-<script src="vistas/js/carga-inicial.js"></script>
-<script src="vistas/js/validaciones.js"></script>
-
+    <script src="vistas/js/plantilla.js"></script>
+    <script src="vistas/js/usuarios.js"></script>
+    <script src="vistas/js/proveedores.js"></script>
+    <script src="vistas/js/categorias.js"></script>
+    <script src="vistas/js/subcategorias.js"></script>
+    <script src="vistas/js/listas.js"></script>
+    <script src="vistas/js/unidades.js"></script>
+    <script src="vistas/js/productos.js"></script>
+    <script src="vistas/js/clientes.js"></script>
+    <script src="vistas/js/ventas.js"></script>
+    <script src="vistas/js/bodegas.js"></script>
+    <script src="vistas/js/orden-compra.js"></script>
+    <script src="vistas/js/orden-vestuario.js"></script>
+    <script src="vistas/js/entradas.js"></script>
+    <script src="vistas/js/salidas.js"></script>
+    <script src="vistas/js/impuestos.js"></script>
+    <script src="vistas/js/rubros.js"></script>
+    <script src="vistas/js/plazos.js"></script>
+    <script src="vistas/js/Historialventas.js"></script>
+    <script src="vistas/js/reportes.js"></script>
+    <script src="vistas/js/centros.js"></script>
+    <script src="vistas/js/negocios.js"></script>
+    <script src="vistas/js/tabla-listas.js"></script>
+    <script src="vistas/js/sucursales.js"></script>
+    <script src="vistas/js/personal.js"></script>
+    <script src="vistas/js/medios-pago.js"></script>
+    <script src="vistas/js/venta-factura.js"></script>
+    <script src="vistas/js/venta-boleta.js"></script>
+    <script src="vistas/js/compras.js"></script>
+    <script src="vistas/js/cotizacion.js"></script>
+    <script src="vistas/js/cotizacion-exenta.js"></script>
+    <script src="vistas/js/venta-exenta.js"></script>
+    <script src="vistas/js/boleta-exenta.js"></script>
+    <script src="vistas/js/plantel.js"></script>
+    <script src="vistas/js/tipo-productos.js"></script>
+    <script src="vistas/js/tipo-clientes.js"></script>
+    <script src="vistas/js/matriz.js"></script>
+    <script src="vistas/js/ajustes.js"></script>
+    <script src="vistas/js/lista-precios.js"></script>
+    <script src="vistas/js/carga-inicial.js"></script>
+    <script src="vistas/js/validaciones.js"></script>
+    <script src="vistas/js/bancos.js"></script>
+    <script src="vistas/js/cotizaciones.js"></script>
 </body>
+
 </html>

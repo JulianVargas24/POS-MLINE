@@ -476,11 +476,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                     </div>
                                     <div class="box box-warning">
                                         <div class="box-body">
-                                            <h4 class="box-title" style="font-weight:bold; font-size:20px;">
-                                                Observaciones</h4>
-                                            <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
-                                                      rows="6"></textarea>
-                                            <input type="text" name="listaProductos" id="listaProductos">
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
+                                        <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>                                                     
+                                        <input type="hidden" name="listaProductos" id="listaProductos">
                                         </div>
                                     </div>
                                 </div>
@@ -518,26 +516,39 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
+                                        
+                                    
+                    <a href="ventas">                 
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar Venta</button>                 
+                </form>
+                <?php
+
+                    $agregarVentaExenta = new ControladorVentaBoleta();
+                    $agregarVentaExenta -> ctrCrearVentaBoletaExenta();
+
+                ?>
             </div>
-
-
-            <a href="ventas">
-                <button type="button" class="btn btn-default">Salir</button>
-            </a>
-            <button type="submit" class="btn btn-primary">Guardar venta</button>
-            </form>
-            <?php
-
-            $agregarVentaExenta = new ControladorVentaBoleta();
-            echo $agregarVentaExenta->ctrCrearVentaBoletaExenta();
-
-            ?>
         </div>
-</div>
-</section>
+    </section>
 
 </div>
 
+<script>
+function validarFechas(fechaInicioId, fechaFinId) {
+    const fechaInicio = document.getElementById(fechaInicioId).value;
+    const fechaFin = document.getElementById(fechaFinId).value;
+
+    // Asegúrate de que ambas fechas tengan un valor
+    if (fechaInicio && fechaFin) {
+        if (new Date(fechaInicio) > new Date(fechaFin)) {
+            $('#alertModal').modal('show'); // Mostrar la ventana modal
+            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
+        }
+    }
+}
+</script>
 
 <style>
     .error {

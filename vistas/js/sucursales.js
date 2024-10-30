@@ -1,3 +1,4 @@
+
 $(".tablas").on("click", ".btnEliminarSucursal", function(){
 
     var idSucursal = $(this).attr("idSucursal");
@@ -25,11 +26,10 @@ $(".tablas").on("click", ".btnEliminarSucursal", function(){
 
 
 $(".tablas").on("click", ".btnEditarSucursal", function(){
-
 	var idSucursal = $(this).attr("idSucursal");
-
 	var datos = new FormData();
 	datos.append("idSucursal", idSucursal);
+	console.log(idSucursal, "sucursal");
 
 	$.ajax({
 		url: "ajax/sucursales.ajax.php",
@@ -51,8 +51,7 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
             $("#editarTelefono").val(respuesta["telefono"]);
 			$("#editarEmail").val(respuesta["email"]);
 			$("#editarJefe").val(respuesta["jefe"]);
-          
-           
+        
 
      	}
 

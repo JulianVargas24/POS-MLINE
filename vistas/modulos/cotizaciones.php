@@ -245,14 +245,14 @@ if ($xml) {
 
                             echo '</div>  
 
-                  </td>
+                            </td>
 
 
-                  </tr>';
-                        }
+                            </tr>';}
 
-                    }
+                  }
 
+                  //MOSTRAR COTIZACION EXENTA
                     foreach ($exentas as $key2 => $value) {
                         for ($i = 0; $i < count($negocios); ++$i) {
                             if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
@@ -287,43 +287,43 @@ if ($xml) {
                         }
 
                         if ($value["estado"] != "Cerrada") {
-                            echo '<tr>
+                            
+                          echo '<tr>
 
+                          <td>' . $value["codigo"] . '</td>
 
-                    <td>' . $value["codigo"] . '</td>
+                          <td style="font-weight:bold;font-size:15px; color:black;">' . $value["tipo_dte"] . '</td>
 
-                    <td style="font-weight:bold;font-size:15px; color:black;">' . $value["tipo_dte"] . '</td>
+                          <td>' . $value["fecha_emision"] . '</td>
 
-                    <td>' . $value["fecha_emision"] . '</td>
+                          <td>' . $value["fecha_vencimiento"] . '</td>
 
-                    <td>' . $value["fecha_vencimiento"] . '</td>
+                          <td>' . $vendedor . '</td>
 
-                    <td>' . $vendedor . '</td>
+                          <td>' . $negocio . '</td>
 
-                    <td>' . $negocio . '</td>
+                          <td>' . $bodega . '</td>      
 
-                    <td>' . $bodega . '</td>      
+                          <td>' . $plazo . '</td>
 
-                    <td>' . $plazo . '</td>
+                          <td>' . $medio . '</td>
 
-                    <td>' . $medio . '</td>
+                          <td>' . $cliente . '</td>
 
-                    <td>' . $cliente . '</td>
+                          <td>' . $value["observacion"] . '</td>
+            
+                          <td>$ ' . $value["total_final"] . '</td>
+                          <td>
 
-                    <td>' . $value["observacion"] . '</td>
-      
-                    <td>$ ' . $value["total_final"] . '</td>
-                    <td>
+                          <div class="btn-group">
 
-                    <div class="btn-group">
+                          <button class="btn btn-success btnFacturarCotizacionExenta" idCotizacion="' . $value["codigo"] . '">Facturar</button>
+                              
+                            <button  class="btn btn-info btnImprimirCotizacionExenta" codigoCotizacion="' . $value["codigo"] . '">
 
-                    <button class="btn btn-success btnFacturarCotizacionExenta" idCotizacion="' . $value["codigo"] . '">Facturar</button>
-                        
-                      <button  class="btn btn-info btnImprimirCotizacionExenta" codigoCotizacion="' . $value["codigo"] . '">
+                            PDF
 
-                      PDF
-
-                      </button>';
+                            </button>';
 
                             if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
 
@@ -340,10 +340,9 @@ if ($xml) {
 
                             echo '</div>  
 
-                  </td>
+                            </td>
 
-
-                  </tr>';
+                            </tr>';
 
 
                         }
@@ -362,6 +361,12 @@ if ($xml) {
 
                 ?>
 
+                <?php
+
+                $eliminarCotizacionExenta = new ControladorCotizacion();
+                $eliminarCotizacionExenta -> ctrEliminarCotizacionExenta();
+
+                ?>
 
             </div>
 

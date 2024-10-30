@@ -1019,6 +1019,20 @@ MODAL VER COTIZACIONES
 
 </div>
 
+<script>
+function validarFechas(fechaInicioId, fechaFinId) {
+    const fechaInicio = document.getElementById(fechaInicioId).value;
+    const fechaFin = document.getElementById(fechaFinId).value;
+
+    // Asegúrate de que ambas fechas tengan un valor
+    if (fechaInicio && fechaFin) {
+        if (new Date(fechaInicio) > new Date(fechaFin)) {
+            $('#alertModal').modal('show'); // Mostrar la ventana modal
+            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
+        }
+    }
+}
+</script>
 
 <style>
     .error {

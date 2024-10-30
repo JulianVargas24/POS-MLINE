@@ -185,43 +185,64 @@ if ($_SESSION["perfil"] == "Especial") {
                         </div>
                         <div class="col-xs-4">
                             <div class="box box-info">
-                                <div class="box-body">
-                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de
-                                        cotización</h4>
-                                    <div class="row" style="margin-bottom:5px;">
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha emisión</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
+                                    <div class="box-body">
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de cotización</h4>
+                                            <div class="row" style="margin-bottom:5px;">
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Fecha emisión</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" readonly 
+                                                            value="<?php echo $cotizacion["fecha_emision"];?>" required 
+                                                            onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
+                                                        </div>
+                                                    </div>
 
                                                     <input type="date" class="form-control input-sm"
                                                            name="nuevaFechaEmision" id="nuevaFechaEmision" readonly
                                                            value="<?php echo $cotizacion["fecha_emision"]; ?>">
                                                 </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input type="hidden" id="nuevoEstado" name="nuevoEstado"
-                                                           value="Abierta">
-                                                    <input type="date" class="form-control input-sm"
-                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                                                           value="<?php echo $cotizacion["fecha_vencimiento"]; ?>">
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Fecha venc.</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="hidden" id="nuevoEstado" name="nuevoEstado" value="Abierta">
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento" 
+                                                            value="<?php echo $cotizacion["fecha_vencimiento"];?>"required onchange="validarFechas('nuevaFechaEmision', this.id)">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Unidad de negocio</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <select class="form-control input" id="nuevoNegocio"
-                                                            name="nuevoNegocio" required>
-                                                        <option selected
-                                                                value="<?php echo $unidad["id"]; ?>"><?php echo $unidad["unidad_negocio"]; ?></option>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header" style="background: #dc3545; color: white;"> <!-- Fondo rojo para errores -->
+                                                                            <h4 class="modal-title" id="alertModalLabel">
+                                                                                <i class="fas fa-exclamation-circle"></i> <!-- Ícono de error -->
+                                                                                Error
+                                                                            </h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body" style="font-size: 16px;"> <!-- Tamaño de fuente más grande -->
+                                                                            La fecha de vencimiento no puede ser anterior a la fecha de emisión.
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Unidad de Negocio</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                        <select class="form-control input" id="nuevoNegocio" name="nuevoNegocio" required>
+                                                        <option selected value="<?php echo $unidad["id"];?>"><?php echo $unidad["unidad_negocio"];?></option>
                                                         <optgroup label="---Cambiar Unidad de Negocio--"></optgroup>
 
                                                         <?php
@@ -415,15 +436,12 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                             </div>
                                         </div>
-
-                                    </div>
-                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">RAZÓN
-                                        REFERENCIA:</h4>
-                                    <div class="row" style="margin-top:5px;">
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <textarea id="nuevaRazonDocumento" name="nuevaRazonDocumento" cols="30"
-                                                          rows="8"></textarea>
+                                        <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">RAZÓN REFERENCIA:</h4>
+                                        <div class="row" style="margin-top:5px;">
+                                            <div class="col-xs-12">
+                                                 <div class="form-group">
+                                                        <textarea id="nuevaRazonDocumento" name="nuevaRazonDocumento"  cols="30" rows="8"></textarea>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -753,11 +771,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                     </div>
                                     <div class="box box-warning">
                                         <div class="box-body">
-                                            <h4 class="box-title" style="font-weight:bold; font-size:20px;">
-                                                Observaciones</h4>
-                                            <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
-                                                      rows="6"><?php echo $cotizacion["observacion"]; ?></textarea>
-                                            <input type="text" id="listaProductos" name="listaProductos">
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
+                                        <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"><?php echo $cotizacion["observacion"]; ?></textarea>
+                                        <input type="hidden" id="listaProductos" name="listaProductos"> 
                                         </div>
                                     </div>
                                 </div>
@@ -808,10 +824,25 @@ if ($_SESSION["perfil"] == "Especial") {
 
             ?>
         </div>
-</div>
+    </div>
 </section>
 
 </div>
+
+<script>
+function validarFechas(fechaInicioId, fechaFinId) {
+    const fechaInicio = document.getElementById(fechaInicioId).value;
+    const fechaFin = document.getElementById(fechaFinId).value;
+
+    // Asegúrate de que ambas fechas tengan un valor
+    if (fechaInicio && fechaFin) {
+        if (new Date(fechaInicio) > new Date(fechaFin)) {
+            $('#alertModal').modal('show'); // Mostrar la ventana modal
+            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
+        }
+    }
+}
+</script>
 
 
 <style>

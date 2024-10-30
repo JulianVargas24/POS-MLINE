@@ -8,8 +8,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
   </script>';
 
-    return;
-
+  return;
 }
 
 ?>
@@ -79,18 +78,18 @@ if ($_SESSION["perfil"] == "Especial") {
 
                             echo '<tr>
 
-                    <td>' . ($key + 1) . '</td>
+                                  <td>' . ($key + 1) . '</td>
 
-                    <td>' . $value["centro"] . '</td>
+                                  <td>' . $value["centro"] . '</td>
 
-                    <td>' . $value["codigo"] . '</td>
+                                  <td>' . $value["codigo"] . '</td>
 
 
-                    <td>
+                                  <td>
 
-                      <div class="btn-group">
+                                    <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarCentro" data-toggle="modal" data-target="#modalEditarCentro" idCentro="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
+                                      <button class="btn btn-warning btnEditarCentro" data-toggle="modal" data-target="#modalEditarCentro" idCentro="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
 
                             if ($_SESSION["perfil"] == "Administrador") {
 
@@ -100,9 +99,9 @@ if ($_SESSION["perfil"] == "Especial") {
 
                             echo '</div>  
 
-                    </td>
+                                  </td>
 
-                  </tr>';
+                                  </tr>';
 
                         }
 
@@ -310,11 +309,8 @@ if ($_SESSION["perfil"] == "Especial") {
                     ?>
 
                 </form>
-
             </div>
-
         </div>
-
     </div>
 
 <?php

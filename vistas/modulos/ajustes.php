@@ -173,4 +173,3 @@ if ($_SESSION["perfil"] == "Especial") {
         color: red;
     }
 </style>
-

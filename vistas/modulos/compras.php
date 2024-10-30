@@ -1,12 +1,10 @@
 <?php
 
 if ($_SESSION["perfil"] == "Especial") {
-
-    echo '<script>
-        window.location = "inicio";
-    </script>';
-
-    return;
+  echo '<script>
+    window.location = "inicio";
+  </script>';
+  return;
 }
 
 ?>
@@ -54,49 +52,35 @@ if ($_SESSION["perfil"] == "Especial") {
                     ?>
                     <div class="input-group">
 
-                        <button type="button" class="btn btn-default" id="daterange-orden-compra">
+                        <button type="button" class="btn btn-default" id="daterange-compras">
 
-              <span>
-                <i class="fa fa-calendar"></i>
-
-                <?php
-
-                if (isset($_GET["fechaInicial"])) {
-
-                    echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
-                } else {
-
-                    echo 'Rango de fecha';
-                }
-
-                ?>
-              </span>
-
-                            <i class="fa fa-caret-down"></i>
-
-                        </button>
-
+                        <span>
+                          <i class="fa fa-calendar"></i>
+                          <?php
+                        if (isset($_GET["fechaInicial"])) {
+                          echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
+                        } else {
+                          echo 'Rango de fecha';
+                        }
+                          ?>
+                        </span><i class="fa fa-caret-down"></i></button>
                     </div>
 
                     <div class="box-tools pull-right">
 
-                        <?php
+                    <?php
+                    if (isset($_GET["fechaInicial"])) {
+                      echo '<a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte&fechaInicial=' . $_GET["fechaInicial"] . '&fechaFinal=' . $_GET["fechaFinal"] . '">';
+                    } else {
+                      echo '<a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte">';
+                    }
+                    ?>
 
-                        if (isset($_GET["fechaInicial"])) {
+                    <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
 
-                            echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial=' . $_GET["fechaInicial"] . '&fechaFinal=' . $_GET["fechaFinal"] . '">';
-                        } else {
+                    </a>
 
-                            echo '<a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte">';
-                        }
-
-                        ?>
-
-                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
-
-                        </a>
-
-                    </div>
+                  </div>
 
                 </div>
                 <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
@@ -121,8 +105,10 @@ if ($_SESSION["perfil"] == "Especial") {
 
 
                     <?php
+
                     $item = null;
                     $valor = null;
+
                     $compras = ControladorCompra::ctrMostrarCompras($item, $valor);
                     $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
                     $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
@@ -160,38 +146,41 @@ if ($_SESSION["perfil"] == "Especial") {
 
                         echo '<tr>
 
+                          <td>' . $value["codigo"] . '</td> 
+                          
+                          <td>' . $proveedor . '</td>
 
-            <td>' . $value["codigo"] . '</td> 
-            
-            <td>' . $proveedor . '</td>
-
-            <td>' . $value["fecha_emision"] . '</td>
-
-
-            <td>' . $centro . '</td>
-
-            <td>' . $bodega . '</td>      
+                          <td>' . $value["fecha_emision"] . '</td>
 
 
-            <td>' . $medio . '</td>
+                          <td>' . $centro . '</td>
 
-            <td>' . $value["observacion"] . '</td>
+                          <td>' . $bodega . '</td>      
 
-            <td>$ ' . $value["total_final"] . '</td>
-            <td>
 
-            <div class="btn-group">
-              <button class="btn btn-info btnImprimirCompra"  codigoCompra="' . $value["codigo"] . '">
-              PDF
-              </button>';
+                          <td>' . $medio . '</td>
+
+                          <td>' . $value["observacion"] . '</td>
+
+                          <td>$ ' . $value["total_final"] . '</td>
+                          <td>
+
+                          <div class="btn-group">
+                            <button class="btn btn-info btnImprimirCompra"  codigoCompra="' . $value["codigo"] . '">
+                            PDF
+                            </button>';
+
+                        if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
+                          echo '<button class="btn btn-warning btnEditarCompra" idCompra="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
+                        }
 
                         if ($_SESSION["perfil"] == "Administrador") {
-                            echo ' <button class="btn btn-danger btnEliminarCompra" idCompra="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+                          echo ' <button class="btn btn-danger btnEliminarCompra" idCompra="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
                         }
 
                         echo '</div>  
-          </td>
-          </tr>';
+                            </td>
+                            </tr>';
                     }
 
                     ?>

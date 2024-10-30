@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      BOLETA AFECTA
+       CREAR VENTA CON BOLETA AFECTA
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Crear venta con boleta</li>
+      <li class="active">Crear venta con boleta afecta</li>
     
     </ol>
 
@@ -179,7 +179,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                     <div class="input-group">
                                                                     <select class="form-control input" id="nuevoNegocio" name="nuevoNegocio" required>
                             
-                                                                        <option value="">Seleccionar Unidades</option>
+                                                                        <option value="">Seleccionar unidades</option>
 
                                                                         <?php
 
@@ -485,6 +485,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>
                                         <input type="hidden" name="listaProductos" id="listaProductos">
                                         </div>
+                                        
                                     </div>
                                 </div>     
                             </div>        
@@ -531,8 +532,8 @@ if($_SESSION["perfil"] == "Especial"){
                 </form>
                 <?php
 
-                $VentaBoleta = new ControladorVentaBoleta();
-                $VentaBoleta -> ctrCrearVentaBoleta();   
+                    $VentaBoleta = new ControladorVentaBoleta();
+                    $VentaBoleta -> ctrCrearVentaBoleta();   
 
                 ?>
             </div>

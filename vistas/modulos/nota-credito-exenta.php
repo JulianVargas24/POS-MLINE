@@ -20,7 +20,7 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      NOTA DE CRÉDITO EXENTA
+      NOTA DE CRÉDITO DE FACTURA EXENTA
     
     </h1>
 
@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Crear Nota de Crédito Exenta</li>
+      <li class="active">Nota de crédito de factura exenta</li>
     
     </ol>
 
@@ -78,7 +78,7 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-5">
                             <div class="box box-info">
                                     <div class="box-body">
-                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Cliente Asociado</h4>
+                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Cliente asociado</h4>
                                         <div class="row" style="margin-bottom:5px;">
                                             <div class="col-xs-12">
                                                     
@@ -124,7 +124,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Dirección</span>
+                                                        <span class="input-group-addon">Dirección</span>                
                                                             <input type="text" class="form-control" id="traerDireccionEditar" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -164,7 +164,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">Lista Precio</span>                
+                                                        <span class="input-group-addon">Lista precio</span>                
                                                             <input type="text" class="form-control" id="traerListaEditar" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -177,30 +177,56 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-xs-4">
                             <div class="box box-info">
                                     <div class="box-body">
-                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Nota de Crédito</h4>
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de nota de crédito</h4>
                                             <div class="row" style="margin-bottom:5px;">
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
+                                                <div class="d-block" style="font-size:14px;">Fecha emisión</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             
-                                                            <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" value="<?php echo $venta["fecha_emision"];?>">
+                                                        <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" 
+                                                                        value="<?php echo date("Y-m-d");?>"required 
+                                                                        onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                         </div>
                                                     </div>
 
                                                 </div>
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha Venc.</div>
+                                                <div class="d-block" style="font-size:14px;">Fecha venc.</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <input type="hidden" id="nuevoEstado" name="nuevoEstado" value="Abierta">
-                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento" value="<?php echo $venta["fecha_vencimiento"];?>">
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                                        required onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 
+                                                 <!-- Modal -->
+                                                 <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header" style="background: #dc3545; color: white;"> <!-- Fondo rojo para errores -->
+                                                                            <h4 class="modal-title" id="alertModalLabel">
+                                                                                <i class="fas fa-exclamation-circle"></i> <!-- Ícono de error -->
+                                                                                Error
+                                                                            </h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body" style="font-size: 16px;"> <!-- Tamaño de fuente más grande -->
+                                                                            La fecha de vencimiento no puede ser anterior a la fecha de emisión.
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                
+
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Unidad de Negocio</div>
+                                                <div class="d-block" style="font-size:14px;">Unidad de negocio</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                         <select class="form-control input" id="nuevoNegocio" name="nuevoNegocio" readonly required>
@@ -225,7 +251,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Bodega Destino</div>
+                                                <div class="d-block" style="font-size:14px;">Bodega destino</div>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                         <select class="form-control input" id="nuevaBodega" name="nuevaBodega" readonly required>
@@ -311,7 +337,7 @@ if($_SESSION["perfil"] == "Especial"){
                                     <div class="row nuevoProducto">
 
 
-                                        <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Productos Seleccionados</h4>
+                                        <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Productos seleccionados</h4>
                                         <div class="row" style="padding:5px 15px">
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
                                                 <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descripción</h5>
@@ -330,7 +356,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                 <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Descuento</h5>
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Exento</h5>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total exento</h5>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
                                                 <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">IVA</h5>
@@ -339,7 +365,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                 <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Otros Imp.</h5>
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:12px">
-                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total Final</h5>
+                                                <h5 style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">Total final</h5>
                                             </div>
                                             
                                         </div>
@@ -431,7 +457,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                     
                                                                     <div class="form-group">
                                                                         <div class="input-group"> 
-                                                                            <span class="input-group-addon" style="padding:0px 3px">Total Neto</span>               
+                                                                            <span class="input-group-addon" style="padding:0px 3px">Total neto</span>               
                                                                             <input style="font-size:16px;" type="text" class="form-control" value="0"  readonly>
                                                                         </div>
                                                                     </div> 
@@ -479,7 +505,7 @@ if($_SESSION["perfil"] == "Especial"){
                                 <div class="col-xs-6">       
                                     <div class="box box-danger">
                                                 <div class="box-body">
-                                                <h4 class="box-title" style="font-weight:bold; font-size:20px;">Condición de Pago</h4>
+                                                <h4 class="box-title" style="font-weight:bold; font-size:20px;">Condición de pago</h4>
                                                     <div class="row">
                                                         <div class="col-xs-12">
                                                             
@@ -516,7 +542,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                 </div> 
                                                         </div>
                                                         <div class="col-xs-6">
-                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px;">Medios de Pago</div>
+                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px;">Medios de pago</div>
                                                                 <div class="form-group">
                                                                 <div class="input-group" style="display:block;">                
                                                                         <select name="nuevoMedioPago" id="nuevoMedioPago" class="form-control">
@@ -558,7 +584,7 @@ if($_SESSION["perfil"] == "Especial"){
                         <div class="col-lg-5"> <a href="ventas">                 
                         <button type="button" class="btn btn-default">Salir</button>
                     </a>
-                    <button type="submit" class="btn btn-primary">Guardar Nota Exenta</button>     
+                    <button type="submit" class="btn btn-primary">Guardar nota exenta</button>     
                         </div>     
                 </form>
                                     <?php
@@ -573,13 +599,20 @@ $agregarNotaCredito -> ctrCrearNotaCreditoExenta();
 
 </div>
 
-<!--=====================================
-MODAL VER COTIZACIONES
-======================================-->
+<script>
+function validarFechas(fechaInicioId, fechaFinId) {
+    const fechaInicio = document.getElementById(fechaInicioId).value;
+    const fechaFin = document.getElementById(fechaFinId).value;
 
-
-
-
+    // Asegúrate de que ambas fechas tengan un valor
+    if (fechaInicio && fechaFin) {
+        if (new Date(fechaInicio) > new Date(fechaFin)) {
+            $('#alertModal').modal('show'); // Mostrar la ventana modal
+            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
+        }
+    }
+}
+</script>
 
 <style>
   .error{

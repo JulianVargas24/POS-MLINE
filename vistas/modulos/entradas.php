@@ -56,7 +56,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="input-group">
                                 <!-- Orden de Trabajo a Bodega inhabilitada (en caso de que se necesite de nuevo se descomenta) -->
                                 <!-- <input type="radio" name="tipoEntrada" value="orden" > -->
-                                <!-- <label for="radio3" style="font-weight:normal;">Orden de Trabajo a Bodega </label> -->
+                                <!-- <label for="radio3" style="font-weight:normal;">Orden de Trabajo a Bodega</label> -->
                             </div>
                             <div class="input-group">
                                 <input type="radio" name="tipoEntrada" value="carga">
@@ -367,6 +367,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- A partir de aquí empieza la sona segura para colocar los botones de Salir y de Guardar Entrada. -->
                                 </div>
                             </div>
 
@@ -679,6 +680,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- A partir de aquí empieza la sona segura para colocar los botones de Salir y de Guardar Entrada.  -->
                                 </div>
                             </div>
 

@@ -28,7 +28,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Crear cotización</li>
+            <li class="active">Crear cotización afecta</li>
 
         </ol>
 
@@ -571,6 +571,21 @@ if ($_SESSION["perfil"] == "Especial") {
 </section>
 
 </div>
+
+<script>
+function validarFechas(fechaInicioId, fechaFinId) {
+    const fechaInicio = document.getElementById(fechaInicioId).value;
+    const fechaFin = document.getElementById(fechaFinId).value;
+
+    // Asegúrate de que ambas fechas tengan un valor
+    if (fechaInicio && fechaFin) {
+        if (new Date(fechaInicio) > new Date(fechaFin)) {
+            $('#alertModal').modal('show'); // Mostrar la ventana modal
+            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
+        }
+    }
+}
+</script>
 
 <!--=====================================
 MODAL AGREGAR PRODUCTO
