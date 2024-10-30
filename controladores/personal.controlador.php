@@ -160,6 +160,76 @@ class ControladorPersonal{
 
 	}
 
+	static public function ctrEditarPersonalOrdenVestuario(){
+
+		if(isset($_POST["editarPersonal"])){
+
+			
+
+			   	$tabla = "personal";
+
+			   	$datos = array("id"=>$_POST["idPersonal"],
+			   				   "nombre"=>$_POST["editarPersonal"],
+					           "rut"=>$_POST["editarRutId"],
+					           "email"=>$_POST["editarEmail"],
+					           "telefono"=>$_POST["editarTelefono"],
+							   "empresa"=>$_POST["editarEmpresa"],
+							   "busto"=>$_POST["editarBusto"],
+							   "cintura"=>$_POST["editarCintura"],
+							   "cadera"=>$_POST["editarCadera"],
+							"ancho_espalda"=>$_POST["editarAnchoEspalda"],
+							"talle_delantero"=>$_POST["editarTalleDelantero"],
+							"talle_espalda"=>$_POST["editarTalleEspalda"],
+							"largo_manga"=>$_POST["editarLargoManga"],
+							"largo_blusa"=>$_POST["editarLargoBlusa"],
+							"largo_guillete"=>$_POST["editarLargoGuillete"],
+							"largo_chaqueta"=>$_POST["editarLargoChaqueta"],
+							"largo_polera"=>$_POST["editarLargoPolera"],
+							"largo_parka"=>$_POST["editarLargoParka"],
+							"largo_polar"=>$_POST["editarLargoPolar"],
+							"largo_vestido"=>$_POST["editarLargoVestido"],
+							"pantalon_cintura"=>$_POST["editarCinturaPantalon"],
+							"pantalon_cadera"=>$_POST["editarCaderaPantalon"],
+							"pantalon_tiro"=>$_POST["editarTiroPantalon"],
+							"pantalon_entrepierna"=>$_POST["editarEntrepiernaPantalon"],
+							"pantalon_muslo"=>$_POST["editarMusloPantalon"],
+							"pantalon_rodilla"=>$_POST["editarRodillaPantalon"],
+							"pantalon_basta"=>$_POST["editarBastaPantalon"],
+							"largo_pantalon"=>$_POST["editarLargoPantalon"],
+							"falda_cintura"=>$_POST["editarCinturaFalda"],
+							"falda_cadera"=>$_POST["editarCaderaFalda"],
+							"largo_falda"=>$_POST["editarLargoFalda"]);
+
+			   	$respuesta = ModeloPersonal::mdlEditarPersonal($tabla, $datos);
+
+			   	if($respuesta == "ok"){
+
+					echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "Las Medidas han sido cambiadas correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+
+									window.location = "index.php?ruta=editar-orden-vestuario&idOrdenVestuario='.$_GET["idOrdenVestuario"].'";
+
+
+									}
+								})
+
+					</script>';
+
+				}
+
+			
+
+		}
+
+	}
+
 	/*=============================================
 	ELIMINAR PERSONAL
 	=============================================*/
