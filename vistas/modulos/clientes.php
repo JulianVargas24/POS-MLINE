@@ -520,7 +520,8 @@ MODAL AGREGAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-money"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar Linea de Credito" required>
+                        <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar Linea de Credito" 
+                        required oninput="formatearLineaCredito(this)">
 
                       </div>
                   </div>
@@ -645,10 +646,7 @@ MODAL EDITAR CLIENTE
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
                         <input type="text" class="form-control input" name="editarRutId" id="editarRutId" 
-                          placeholder="Ingrese su RUT" 
-                          required
-                          pattern="^(\d{1,2}\.\d{3}\.\d{3}-[\dkK])$" 
-                          title="El RUT debe tener el formato XX.XXX.XXX-X">
+                          placeholder="Ingrese su RUT" required onblur="formatearRut(this)">
 
                       </div>
                   </div>
@@ -845,7 +843,8 @@ MODAL EDITAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                            <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                            <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" 
+                            required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                           </div>
                       </div>
@@ -970,7 +969,8 @@ MODAL EDITAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-money"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar Linea de Credito" required>
+                        <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar Linea de Credito" required
+                        oninput="formatearLineaCredito(this)">
 
                       </div>
                   </div>
