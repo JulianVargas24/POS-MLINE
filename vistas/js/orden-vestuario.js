@@ -531,7 +531,7 @@ $(".nuevoPersonal").on("click", ".btnEditarMedidasPersonal", function(){
 
          })
 })
-
+  
 function listarPersonal(){
 	var listaPersonal = [];
 	var nombre = $(".nuevoNombrePersonal");
