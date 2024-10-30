@@ -257,9 +257,19 @@ if($_SESSION["perfil"] == "Especial"){
                                                         </div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
-                                       
+                                        <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">NOMBRE DE ORDEN</h4>
+                                    <div class="row" style="margin-top:5px;">
+                                            <div class="col-xs-10">
+                                                 <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                                            <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoNombreOrden" id="nuevoNombreOrden" value="<?php echo $ordenVestuario['nombre_orden']; ?>" required>
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                    </div>                                       
                                 </div>
                            </div>
                         </div>
@@ -371,8 +381,8 @@ if($_SESSION["perfil"] == "Especial"){
                 </form>
                     <?php
 
-                        $editarOrdenCompra = new ControladorOrdenCompra();
-                        $editarOrdenCompra -> ctrEditarOrdenCompra();
+                    $editarOrdenVestuario = new ControladorOrdenVestuario();
+                    $editarOrdenVestuario -> ctrEditarOrdenVestuario();
 
                     ?>
             </div>

@@ -34,7 +34,7 @@ class ControladorOrdenVestuario{
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "orden-vestuario";
+									window.location = "orden-trabajo";
 
 									}
 								})
@@ -47,6 +47,72 @@ class ControladorOrdenVestuario{
 		}
 
     }
+
+	static public function ctrEditarOrdenVestuario() {
+
+		if (isset($_POST["nuevoCodigo"])) {
+	
+			$tabla = "orden_vestuario";
+	
+			// Crear un array con los datos del formulario
+			$datos = array(
+				"codigo" => $_POST["nuevoCodigo"],
+				"fecha_emision" => $_POST["nuevaFechaEmision"],
+				"nombre_orden" => $_POST["nuevoNombreOrden"],
+				"fecha_vencimiento" => $_POST["nuevaFechaVencimiento"],
+				"id_centro" => $_POST["nuevoCentro"],    
+				"id_bodega" => $_POST["nuevaBodega"],
+				"id_cliente" => $_POST["nuevoCliente"],
+				"observacion" => $_POST["nuevaObservacion"],
+				"personal" => $_POST["listaPersonal"]
+			);
+	
+			// Verificamos si estamos en modo de edición (si el ID existe en el formulario)
+			if (isset($_POST["idOrdenVestuario"]) && !empty($_POST["idOrdenVestuario"])) {
+				
+				// Agregar el id al array de datos para la edición
+				$datos["id"] = $_POST["idOrdenVestuario"];
+				
+				// Llamar al método para editar la orden de vestuario
+				$respuesta = ModeloOrdenVestuario::mdlEditarOrdenVestuario($tabla, $datos);
+				
+				if ($respuesta == "ok") {
+					echo '<script>
+						swal({
+							type: "success",
+							title: "La Orden de Vestuario ha sido editada correctamente",    
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						}).then(function(result) {
+							if (result.value) {
+								window.location = "orden-trabajo";
+							}
+						});
+					</script>';
+				}
+	
+			} else {
+				// Si no hay ID, se crea una nueva orden
+				$respuesta = ModeloOrdenVestuario::mdlIngresarOrdenVestuario($tabla, $datos);
+	
+				if ($respuesta == "ok") {
+					echo '<script>
+						swal({
+							type: "success",
+							title: "La Orden de Vestuario ha sido guardada correctamente",    
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						}).then(function(result) {
+							if (result.value) {
+								window.location = "orden-trabajo";
+							}
+						});
+					</script>';
+				}
+			}
+		}
+	}
+
 
     static public function ctrMostrarOrdenVestuario($item, $valor){
 
