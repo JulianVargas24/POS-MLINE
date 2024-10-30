@@ -196,6 +196,7 @@ MODAL AGREGAR CLIENTE
                                             <input type="text" class="form-control input" name="nuevoRutId"
                                                    id="nuevoRutId" placeholder="Ingrese su RUT" required
                                                    onblur="formatearRut(this)">
+                                                   
 
                                         </div>
                                     </div>
@@ -327,7 +328,7 @@ MODAL EDITAR CLIENTE
 
                                             <input type="text" class="form-control input" name="editarRutId"
                                                    id="editarRutId" placeholder="Ingrese su RUT" required required
-                                                   onblur="formatearRut(this)">
+                                                   onblur="formatearRut(this)" oninput="verificarRutExistente(this.value)">
 
                                         </div>
                                     </div>

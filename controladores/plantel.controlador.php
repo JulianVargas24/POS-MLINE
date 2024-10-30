@@ -3,44 +3,55 @@
 class ControladorPlantel{
 
 
-    static public function ctrCrearPlantel(){
-
-		if(isset($_POST["nuevoNombre"])){
-
-			   	$tabla = "plantel";
-
-			   	$datos = array("nombre"=>$_POST["nuevoNombre"],
-                               "rut"=>$_POST["nuevoRutId"],
-                               "cargo"=>$_POST["nuevoCargo"],
-							   "comision"=>$_POST["nuevaComision"]);
-
-			   	$respuesta = ModeloPlantel::mdlIngresarPlantel($tabla, $datos);
-
-			   	if($respuesta == "ok"){
-
-					echo'<script>
-
-					swal({
-						  type: "success",
-						  title: "El Plantel ha sido agregado correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
-
+    static public function ctrCrearPlantel() {
+		if (isset($_POST["nuevoNombre"])) {
+	
+			$tabla = "plantel";
+			$rut = $_POST["nuevoRutId"];
+	
+			// Verificar si el RUT ya existe
+			if (ModeloPlantel::verificarRut($rut)) {
+				echo '<script>
+						swal({
+							  type: "error",
+							  title: "Este RUT ya está registrado",
+							  showConfirmButton: true,
+							  confirmButtonText: "Cerrar"
+							}).then(function(result) {
+								if (result.value) {
 									window.location = "plantel";
-
-									}
-								})
-
-					</script>';
-
-				}
-
-			
+								}
+							});
+					  </script>';
+				return; // Detiene el proceso si el RUT ya existe
+			}
+	
+			$datos = array(
+				"nombre" => $_POST["nuevoNombre"],
+				"rut" => $rut,
+				"cargo" => $_POST["nuevoCargo"],
+				"comision" => $_POST["nuevaComision"]
+			);
+	
+			$respuesta = ModeloPlantel::mdlIngresarPlantel($tabla, $datos);
+	
+			if ($respuesta == "ok") {
+				echo '<script>
+						swal({
+							  type: "success",
+							  title: "El Plantel ha sido agregado correctamente",
+							  showConfirmButton: true,
+							  confirmButtonText: "Cerrar"
+							}).then(function(result) {
+								if (result.value) {
+									window.location = "plantel";
+								}
+							});
+					  </script>';
+			}
 		}
-
 	}
+	
 
     static public function ctrMostrarPlantel($item, $valor){
 
@@ -129,4 +140,7 @@ class ControladorPlantel{
 		}
 
 	}
+	public static function verificarRut($rut) {
+        return ModeloPlantel::verificarRut($rut); // Llamada al modelo
+    }
 }

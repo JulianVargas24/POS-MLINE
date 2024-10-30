@@ -106,4 +106,14 @@ class ModeloPlantel{
 
 	}
 
+	public static function verificarRut($rut) {
+		$db = Conexion::conectar(); // Conexión a la base de datos
+		$sql = "SELECT COUNT(*) as total FROM plantel WHERE rut = :rut";
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':rut', $rut, PDO::PARAM_STR);
+		$stmt->execute();
+		$resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $resultado['total'] > 0; // Retorna true si el RUT ya existe
+	}
+
 }
