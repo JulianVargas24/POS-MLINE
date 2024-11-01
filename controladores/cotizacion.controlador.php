@@ -317,25 +317,23 @@ class ControladorCotizacion{
 
 			$tabla = "cotizaciones";
 
-			if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
-
-				$ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
-
-			}else{
-
-				$item = null;
-				$valor = null;
-
-				$cotizaciones = ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor);
-
-			}
-
+			// Obtener las fechas de la URL
+			$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+			$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
+	
+			// Obtener las cotizaciones del modelo
+			$cotizaciones = ModeloCotizacion::mdlMostrarCotizaciones($tabla, null, null, $fechaInicial, $fechaFinal);	
 
 			/*=============================================
 			CREAMOS EL ARCHIVO DE EXCEL DE COTIZACION AFECTA
 			=============================================*/
 
-			$Name = $_GET["reporte"].'-cotizacion-afecta.xls';
+			 // Nombre del archivo incluyendo fechas si están disponibles
+			 $Name = $_GET["reporte"] . '-cotizacion-afecta';
+			 if ($fechaInicial && $fechaFinal) {
+				 $Name .= '-desde-' . $fechaInicial . '-hasta-' . $fechaFinal;
+			 }
+			 $Name .= '.xls';
 
 			header('Expires: 0');
 			header('Cache-control: private');
@@ -442,25 +440,23 @@ class ControladorCotizacion{
 
 			$tabla = "cotizaciones_exentas";
 
-			if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
-
-				$ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
-
-			}else{
-
-				$item = null;
-				$valor = null;
-
-				$cotizaciones = ModeloCotizacion::mdlMostrarCotizaciones($tabla, $item, $valor);
-
-			}
-
+			// Obtener las fechas de la URL
+			$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+			$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
+	
+			// Obtener las cotizaciones del modelo
+			$cotizaciones = ModeloCotizacion::mdlMostrarCotizaciones($tabla, null, null, $fechaInicial, $fechaFinal);	
 
 			/*=============================================
 			CREAMOS EL ARCHIVO DE EXCEL DE COTIZACION EXENTA
 			=============================================*/
 
-			$Name = $_GET["reporte"].'-cotizacion-exenta.xls';
+			// Nombre del archivo incluyendo fechas si están disponibles
+			$Name = $_GET["reporte"] . '-cotizacion-exenta';
+			if ($fechaInicial && $fechaFinal) {
+				$Name .= '-desde-' . $fechaInicial . '-hasta-' . $fechaFinal;
+			}
+			$Name .= '.xls';
 
 			header('Expires: 0');
 			header('Cache-control: private');
