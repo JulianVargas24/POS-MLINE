@@ -15,9 +15,11 @@ class ControladorVentas{
 
 		$tabla = "venta_boleta";
 
-		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
- 
-		return $respuesta;
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;  
+
+		return ModeloVentas::mdlMostrarVentas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
 	}
 
@@ -25,9 +27,11 @@ class ControladorVentas{
 
 		$tabla = "venta_boleta_exenta";
 
-		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
- 
-		return $respuesta;
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null; 
+
+		return ModeloVentas::mdlMostrarVentas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
 	}
 
@@ -35,9 +39,11 @@ class ControladorVentas{
 
 		$tabla = "venta_afecta";
 
-		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
- 
-		return $respuesta;
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null; 
+
+		return ModeloVentas::mdlMostrarVentas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
 	}
 
@@ -45,9 +51,11 @@ class ControladorVentas{
 
 		$tabla = "venta_exenta";
 
-		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
- 
-		return $respuesta;
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null; 
+
+		return ModeloVentas::mdlMostrarVentas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
 	}
 

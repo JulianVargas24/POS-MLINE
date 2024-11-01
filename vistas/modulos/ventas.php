@@ -92,14 +92,49 @@ if($xml){
 
       </div>
 
+      <div class="box-header with-border">
+          <?php
+          if($_SESSION["perfil"]=="Administrador")
+          ?> 
+          
+
+        <div class="input-group">
+
+          <button type="button" class="btn btn-default" id="daterange-ventas">
+          
+            <span>
+              <i class="fa fa-calendar"></i> 
+
+              <?php
+
+                if(isset($_GET["fechaInicial"])){
+
+                  echo $_GET["fechaInicial"]." - ".$_GET["fechaFinal"];
+                
+                }else{
+                
+                  echo 'Rango de fecha';
+
+                }
+
+              ?>
+            </span>
+
+            <i class="fa fa-caret-down"></i>
+
+          </button>
+
+        </div>
+
       <div class="box-tools pull-right" style="margin-bottom:5px">
           <a href="vistas/modulos/descargar-reporte-ventas.php?reporte=reporte">
             <button class="btn btn-success" style="margin-top:5px;margin-right:2px;">Reporte: Ventas General</button>
           </a>
-          
-          
+      </div>
 
       </div>
+
+
 
       <div class="box-body">
         
