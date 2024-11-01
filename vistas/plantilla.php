@@ -223,7 +223,8 @@ CUERPO DOCUMENTO
                 $_GET["ruta"] == "nota-credito-exenta" ||
                 $_GET["ruta"] == "nota-credito-boleta" ||
                 $_GET["ruta"] == "nota-credito-boleta-exenta" ||
-                $_GET["ruta"] == "nota-credito" ||
+                $_GET["ruta"] == "editar-cotizacion-exenta" ||
+                $_GET["ruta"] == "editar-cotizacion" ||
                 $_GET["ruta"] == "salir"
             ) {
 
