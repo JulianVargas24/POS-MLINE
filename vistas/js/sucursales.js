@@ -41,7 +41,14 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
      	dataType:"json",
      	success: function(respuesta){
 			console.log("respuesta", respuesta);
-            $("#idSucursal").val(respuesta["id"]);
+			$.ajax({
+				url: './vistas/modulos/obtenerRegiones.php',
+				data: { id: respuesta["region"] },
+				type: 'POST',
+				success: function(response) {
+				  console.log(response)
+					$('#editarComuna').html(response);
+					$("#idSucursal").val(respuesta["id"]);
             $("#editarSucursal").val(respuesta["nombre"]);
             $("#editarBodega").val(respuesta["bodega"]);
             $("#editarPais").val(respuesta["pais"]);
@@ -51,6 +58,9 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
             $("#editarTelefono").val(respuesta["telefono"]);
 			$("#editarEmail").val(respuesta["email"]);
 			$("#editarJefe").val(respuesta["jefe"]);
+				}
+			});
+            
         
 
      	}
