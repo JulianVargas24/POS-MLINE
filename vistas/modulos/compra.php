@@ -212,8 +212,6 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="col-xs-3">
                             <div class="box box-info">
                                 <div class="box-body">
-                                    <h4 class="box-title"
-                                        style="color:#39b616;font-weight:bold; font-size:21px; color:red;"> FACTURA DE COMPRA</h4>
                                     <h2 class="box-title"
                                         style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
                                         FACTURA DE COMPRA
@@ -511,14 +509,14 @@ if ($_SESSION["perfil"] == "Especial") {
                 <div class="modal-body">
                     <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                         <thead>
-                        <tr>
-                            <th style="width:10px">#</th>
-                            <th>Folio</th>
-                            <th>Proveedor</th>
-                            <th>Fecha emisión</th>
-                            <th>Total final</th>
-                            <th>Observación</th>
-                        </tr>
+                            <tr>
+                                <th style="width:10px">#</th>
+                                <th>Folio</th>
+                                <th>Proveedor</th>
+                                <th>Fecha emisión</th>
+                                <th>Total final</th>
+                                <th>Observación</th>
+                            </tr>
 
                         </thead>
                         <tbody>
@@ -591,14 +589,14 @@ if ($_SESSION["perfil"] == "Especial") {
                 <div class="modal-body">
                     <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                         <thead>
-                        <tr>
-                            <th style="width:10px">#</th>
-                            <th>Folio</th>
-                            <th>Nombre</th>
-                            <th>Fecha emisión</th>
-                            <th>Observación</th>
-                            <th>Acciones</th>
-                        </tr>
+                            <tr>
+                                <th style="width:10px">#</th>
+                                <th>Folio</th>
+                                <th>Nombre</th>
+                                <th>Fecha emisión</th>
+                                <th>Observación</th>
+                                <th>Acciones</th>
+                            </tr>
                         </thead>
                         <tbody>
 
