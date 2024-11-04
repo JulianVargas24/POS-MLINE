@@ -19,7 +19,9 @@ $(".tablas").on("click", ".btnEditarProveedor", function () {
         url: "./vistas/modulos/obtenerRegiones.php",
         data: { id: respuesta["region"] },
         type: "POST",
-        success: function (respuesta) {
+        success: function (response) {
+          console.log(response);
+          $("#editarComuna").html(response);
           $("#idProveedor").val(respuesta["id"]);
           $("#editarProveedor").val(respuesta["razon_social"]);
           $("#editarRutId").val(respuesta["rut"]);
@@ -47,14 +49,14 @@ $(".tablas").on("click", ".btnEliminarProveedor", function () {
   var idProveedor = $(this).attr("idProveedor");
 
   swal({
-    title: "¿Está seguro de borrar este Proveedor?",
-    text: "Si no lo está, puede cancelar la acción.",
+    title: "¿Está seguro de borrar Este Proveedor?",
+    text: "¡Si no lo está puede cancelar la acción!",
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     cancelButtonText: "Cancelar",
-    confirmButtonText: "Sí, borrar proveedor",
+    confirmButtonText: "Si, borrar Proveedor!",
   }).then(function (result) {
     if (result.value) {
       window.location = "index.php?ruta=proveedores&idProveedor=" + idProveedor;
