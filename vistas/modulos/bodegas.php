@@ -400,10 +400,14 @@ MODAL EDITAR PROVEEDOR
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
+
+                                $item = null;
+                                $valor = null;
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
                                 foreach ($regiones as $region) {
-                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $bodegas['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
-                                }
-                                ?>
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
+                                  }
+                                  ?>
             
                             </select>
 
@@ -541,73 +545,105 @@ MODAL EDITAR PROVEEDOR
 ?>
 
 <script>
-document.getElementById('nuevaRegion').addEventListener('change', function() {
-    var regionId = this.value; // Obtener el ID de la región seleccionada
+// document.getElementById('nuevaRegion').addEventListener('change', function() {
+//     var regionId = this.value; // Obtener el ID de la región seleccionada
 
-    // Verifica que haya una región seleccionada
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//     // Verifica que haya una región seleccionada
+//     if (regionId !== "") {
+//         var xhr = new XMLHttpRequest();
+//         xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
+//         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
+//         xhr.onload = function() {
+//             if (xhr.status === 200) {
+//                 console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
 
-                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
-                var comunaSelect = document.getElementById('nuevaComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
+//                 var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
+//                 var comunaSelect = document.getElementById('nuevaComuna');
+//                 comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
 
-                // Rellenar las opciones del select de comunas
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
-                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
-                    comunaSelect.appendChild(option);
-                });
+//                 // Rellenar las opciones del select de comunas
+//                 comunas.forEach(function(comuna) {
+//                     var option = document.createElement('option');
+//                     option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
+//                     option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
+//                     comunaSelect.appendChild(option);
+//                 });
+//             }
+//         };
+
+//         // Enviar el ID de la región seleccionada al servidor
+//         xhr.send('regionId=' + regionId);
+//     } else {
+//         // Si no hay región seleccionada, limpiar el select de comunas
+//         document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+//     }
+// });
+
+// document.getElementById('editarRegion').addEventListener('change', function() {
+//     var regionId = this.value;
+//     var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+
+//     if (regionId !== "") {
+//         var xhr = new XMLHttpRequest();
+//         xhr.open('POST', 'controladores/procesar_comunas.php', true);
+//         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+//         xhr.onload = function() {
+//             if (xhr.status === 200) {
+//                 var comunas = JSON.parse(xhr.responseText);
+//                 var comunaSelect = document.getElementById('editarComuna');
+//                 comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
+
+//                 comunas.forEach(function(comuna) {
+//                     var option = document.createElement('option');
+//                     option.value = comuna.id;
+//                     option.textContent = comuna.nombre;
+//                     if (comuna.id == comunaActual) {
+//                         option.selected = true; // Seleccionar la comuna actual
+//                     }
+//                     comunaSelect.appendChild(option);
+//                 });
+//             }
+//         };
+
+//         xhr.send('regionId=' + regionId);
+//     } else {
+//         document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+//     }
+// });
+$(document).ready(function() {
+    $('#nuevaRegion').change(function() {
+        var selectedValue = $(this).val();
+
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#nuevaComuna').html(response);
             }
-        };
-
-        // Enviar el ID de la región seleccionada al servidor
-        xhr.send('regionId=' + regionId);
-    } else {
-        // Si no hay región seleccionada, limpiar el select de comunas
-        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
 
-document.getElementById('editarRegion').addEventListener('change', function() {
-    var regionId = this.value;
-    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
 
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+$(document).ready(function() {
+    $('#editarRegion').change(function() {
+        var selectedValue = $(this).val();
 
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var comunas = JSON.parse(xhr.responseText);
-                var comunaSelect = document.getElementById('editarComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
-
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id;
-                    option.textContent = comuna.nombre;
-                    if (comuna.id == comunaActual) {
-                        option.selected = true; // Seleccionar la comuna actual
-                    }
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#editarComuna').html(response);
             }
-        };
-
-        xhr.send('regionId=' + regionId);
-    } else {
-        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
-  </script>
+</script>
 
 
