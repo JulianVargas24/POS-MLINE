@@ -26,9 +26,9 @@ if($_SESSION["perfil"] == "Especial"){
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar clientes</li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Ventas</li>
+      <li class="active">Clientes</li>
     
     </ol>
 
@@ -180,17 +180,17 @@ MODAL AGREGAR CLIENTE
             
 
             <!-- ENTRADA PARA LOS DATOS CLIENTE -->
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos Cliente</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos del cliente</h4>
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-4">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Razon Social</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Razón Social</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevoCliente" id="nuevoCliente" placeholder="Ingrese Razon Social" required>
+                      <input type="text" class="form-control input" name="nuevoCliente" id="nuevoCliente" placeholder="Ingrese razón social" required>
 
                     </div>
                   </div>
@@ -212,29 +212,29 @@ MODAL AGREGAR CLIENTE
                         <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Actividad</div> 
                         <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-                          <input type="text" class="form-control input" name="nuevaActividad" id="nuevaActividad" placeholder="Ingrese su Actividad" required>
+                          <input type="text" class="form-control input" name="nuevaActividad" id="nuevaActividad" placeholder="Ingrese su actividad" required>
                         </div>
                     </div>                 
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->
                   <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese Pais" required value="Chile">
+                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese el país" required value="Chile">
 
                     </div>
                   </div>
                   <div class="col-xs-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
                                                                             
-                                <option  value="">Seleccionar Region</option>
+                                <option  value="">Seleccionar región</option>
 
                                 <?php
                                 $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
@@ -270,7 +270,7 @@ MODAL AGREGAR CLIENTE
                     
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese Direccion" required>
+                      <input type="text" class="form-control input" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese dirección" required>
 
                     </div>
                     </div>
@@ -606,7 +606,7 @@ MODAL EDITAR CLIENTE
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Cliente</h4>
+          <h4 class="modal-title">Editar cliente</h4>
 
         </div>
 
@@ -624,17 +624,17 @@ MODAL EDITAR CLIENTE
             
 
             <!-- ENTRADA PARA LOS DATOS CLIENTE -->
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos cliente</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos del cliente</h4>
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-4">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Razon social</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Razón social</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
                       <input type="hidden" id="idCliente" name="idCliente">
-                      <input type="text" class="form-control input" name="editarCliente" id="editarCliente" placeholder="Ingrese Razon Social" required>
+                      <input type="text" class="form-control input" name="editarCliente" id="editarCliente" placeholder="Ingrese razón social" required>
 
                     </div>
                   </div>
@@ -657,7 +657,7 @@ MODAL EDITAR CLIENTE
                         <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Actividad</div> 
                         <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-                          <input type="text" class="form-control input" name="editarActividad" id="editarActividad" placeholder="Ingrese su Actividad" required>
+                          <input type="text" class="form-control input" name="editarActividad" id="editarActividad" placeholder="Ingrese su actividad" required>
                         </div>
                     </div>                 
                   <!-- ENTRADA PARA LA SUBCATEGORIA -->
@@ -667,7 +667,7 @@ MODAL EDITAR CLIENTE
                     
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
-                      <input type="text" class="form-control input" name="editarPais" id="editarPais" placeholder="Ingrese Pais" required value="Chile">
+                      <input type="text" class="form-control input" name="editarPais" id="editarPais" placeholder="Ingrese el país" required value="Chile">
 
                     </div>
                   </div>
@@ -712,18 +712,18 @@ MODAL EDITAR CLIENTE
                       <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
      
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                      <input type="text" class="form-control input" name="editarDireccion" id="editarDireccion" placeholder="Ingrese dirección" required>
+                      <input type="text" class="form-control input" name="editarDireccion" id="editarDireccion" placeholder="Ingrese la dirección" required>
 
                     </div>
                     </div>
                     
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo campaña</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo de campaña</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -749,14 +749,14 @@ MODAL EDITAR CLIENTE
                     </div>
                     </div>
                     <div class="col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo producto</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo de producto</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-file"></i></span> 
 
                       <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
                             
-                            <option value="">Seleccionar tipo producto</option>
+                            <option value="">Seleccionar tipo de producto</option>
                             <?php
     
                               $item = null;
@@ -965,7 +965,7 @@ MODAL EDITAR CLIENTE
                 </div>
                 <div class="form-group row">                 
                   <div class="col-xs-3">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold;">Linea de crédito</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold;">Línea de crédito</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-money"></i></span> 

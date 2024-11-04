@@ -20,15 +20,15 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar Personal
+      Administrar personal vestuario
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Personal</li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Orden de trabajo</li>
+      <li class="active">Personal vestuario</li>
     
     </ol>
 
@@ -42,7 +42,7 @@ if($_SESSION["perfil"] == "Especial"){
   
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarPersonal">
           
-          Agregar Personal
+          Agregar personal
 
         </button>
 
@@ -161,7 +161,7 @@ MODAL AGREGAR PERSONAL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Personal</h4>
+          <h4 class="modal-title">Agregar personal</h4>
 
         </div>
 
@@ -174,7 +174,7 @@ MODAL AGREGAR PERSONAL
           <div class="box-body">
 
             <!-- ENTRADA PARA LOS DATOS PERSONAL -->
-            <h4 class="box-title text-center" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos Personal</h4>
+            <h4 class="box-title text-center" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos personal</h4>
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">              
@@ -184,7 +184,7 @@ MODAL AGREGAR PERSONAL
                     
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                      <input type="text" class="form-control input-sm" name="nuevoPersonal" id="nuevoPersonal" placeholder="Ingrese Nombre" required>
+                      <input type="text" class="form-control input-sm" name="nuevoPersonal" id="nuevoPersonal" placeholder="Ingrese el nombre" required>
 
                     </div>
                   </div>
@@ -207,7 +207,7 @@ MODAL AGREGAR PERSONAL
 
                             <select class="form-control input-sm" id="nuevaEmpresa" name="nuevaEmpresa" required>
                             
-                                <option value="">Seleccionar Empresa</option>
+                                <option value="">Seleccionar empresa</option>
 
                                 <?php
 
@@ -233,7 +233,7 @@ MODAL AGREGAR PERSONAL
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                            <input type="tel" class="form-control input-sm" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar Teléfono" required>
+                            <input type="tel" class="form-control input-sm" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" required>
 
                           </div>
                     </div>
@@ -243,7 +243,7 @@ MODAL AGREGAR PERSONAL
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                            <input type="text" class="form-control input-sm" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar Email" required>
+                            <input type="text" class="form-control input-sm" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar email" required>
 
                           </div>
                     </div>
@@ -251,7 +251,7 @@ MODAL AGREGAR PERSONAL
               </div>  
             </div>
             <div class="row">
-              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Superiores</h4>
+              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas superiores</h4>
               <div class="box box-success">
                 <div class="box-body">
                   <div class="col-xs-12">
@@ -259,85 +259,85 @@ MODAL AGREGAR PERSONAL
                       <div class="col-xs-3" style="margin: 8px 0px;">
                         <div class="d-block text-center" style="font-size:16px;font-weight:bold">Busto</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaBusto" id="nuevaBusto"  placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaBusto" id="nuevaBusto"  placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
                         <div class="d-block text-center" style="font-size:16px;font-weight:bold">Cintura</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaCintura" id="nuevaCintura"  placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaCintura" id="nuevaCintura"  placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
                         <div class="d-block text-center" style="font-size:16px;font-weight:bold">Cadera</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaCadera"  id="nuevaCadera" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaCadera"  id="nuevaCadera" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Ancho Espalda</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Ancho espalda</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaAnchoEspalda" id="nuevaAnchoEspalda" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaAnchoEspalda" id="nuevaAnchoEspalda" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Talle Delantero</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Talle delantero</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaTalleDelantero" id="nuevaTalleDelantero" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaTalleDelantero" id="nuevaTalleDelantero" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Talle Espalda</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Talle espalda</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaTalleEspalda" id="nuevaTalleEspalda" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaTalleEspalda" id="nuevaTalleEspalda" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Manga</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo manga</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaLargoManga" id="nuevaLargoManga" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaLargoManga" id="nuevaLargoManga" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Blusa</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo blusa</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaLargoBlusa" id="nuevaLargoBlusa" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaLargoBlusa" id="nuevaLargoBlusa" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Guillete</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo guillete</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaLargoGuillete" id="nuevaLargoGuillete" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaLargoGuillete" id="nuevaLargoGuillete" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Chaqueta</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo chaqueta</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaLargoChaqueta" id="nuevaLargoChaqueta" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaLargoChaqueta" id="nuevaLargoChaqueta" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Polera</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo polera</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaLargoPolera" id="nuevaLargoPolera" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaLargoPolera" id="nuevaLargoPolera" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Parka</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo parka</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaLargoParka" id="nuevaLargoParka" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaLargoParka" id="nuevaLargoParka" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Polar</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo polar</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaLargoPolar" id="nuevaLargoPolar" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaLargoPolar" id="nuevaLargoPolar" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                       <div class="col-xs-3" style="margin: 8px 0px;">
-                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Vestido</div>
+                        <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo vestido</div>
                           <div class="input-group">
-                            <input type="text" class="form-control input-sm" name="nuevaLargoVestido" id="nuevaLargoVestido" placeholder="Ingresar Talla en Centimetros">
+                            <input type="text" class="form-control input-sm" name="nuevaLargoVestido" id="nuevaLargoVestido" placeholder="Ingresar talla en centímetros">
                           </div>
                       </div>
                   </div>
@@ -345,59 +345,59 @@ MODAL AGREGAR PERSONAL
               </div>
             </div>
             <div class="row">
-              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas Inferiores</h4>
+              <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;">Medidas inferiores</h4>
                 <div class="box box-warning">
                   <div class="box-body">
                       <div class="col-xs-12">
                         <div class="col-xs-12">
-                            <h4 style="font-weight:bold;color:green;font-size:24px;">Pantalon</h4>
+                            <h4 style="font-weight:bold;color:green;font-size:24px;">Pantalón</h4>
                         </div>
                         <div class="col-xs-3" style="margin: 8px 0px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Cintura</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaCinturaPantalon" id="nuevaCinturaPantalon" placeholder="Ingresar Talla en Centimetros" >
+                              <input type="text" class="form-control input-sm" name="nuevaCinturaPantalon" id="nuevaCinturaPantalon" placeholder="Ingresar talla en centímetros" >
                             </div>
                         </div>
                         <div class="col-xs-3" style="margin: 8px 0px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Cadera</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaCaderaPantalon" id="nuevaCaderaPantalon" placeholder="Ingresar Talla en Centimetros" >
+                              <input type="text" class="form-control input-sm" name="nuevaCaderaPantalon" id="nuevaCaderaPantalon" placeholder="Ingresar talla en centímetros" >
                             </div>
                         </div>
                         <div class="col-xs-3" style="margin: 8px 0px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Tiro</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaTiroPantalon" id="nuevaTiroPantalon" placeholder="Ingresar Talla en Centimetros" >
+                              <input type="text" class="form-control input-sm" name="nuevaTiroPantalon" id="nuevaTiroPantalon" placeholder="Ingresar talla en centímetros" >
                             </div>
                         </div>
                         <div class="col-xs-3" style="margin: 8px 0px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Entrepierna</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaEntrepiernaPantalon" id="nuevaEntrepiernaPantalon" placeholder="Ingresar Talla en Centimetros" >
+                              <input type="text" class="form-control input-sm" name="nuevaEntrepiernaPantalon" id="nuevaEntrepiernaPantalon" placeholder="Ingresar talla en centímetros" >
                             </div>
                         </div>
                         <div class="col-xs-3" style="margin: 8px 0px;">
-                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contorno Muslo</div>
+                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contorno muslo</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaMusloPantalon" id="nuevaMusloPantalon" placeholder="Ingresar Talla en Centimetros" >
+                              <input type="text" class="form-control input-sm" name="nuevaMusloPantalon" id="nuevaMusloPantalon" placeholder="Ingresar talla en centímetros" >
                             </div>
                         </div>
                         <div class="col-xs-3" style="margin: 8px 0px;">
-                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contorno Rodilla</div>
+                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contorno rodilla</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaRodillaPantalon" id="nuevaRodillaPantalon" placeholder="Ingresar Talla en Centimetros" >
+                              <input type="text" class="form-control input-sm" name="nuevaRodillaPantalon" id="nuevaRodillaPantalon" placeholder="Ingresar talla en centímetros" >
                             </div>
                         </div>
                         <div class="col-xs-3" style="margin: 8px 0px;">
-                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contorno Basta</div>
+                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Contorno basta</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaBastaPantalon" id="nuevaBastaPantalon" placeholder="Ingresar Talla en Centimetros" >
+                              <input type="text" class="form-control input-sm" name="nuevaBastaPantalon" id="nuevaBastaPantalon" placeholder="Ingresar talla en centímetros" >
                             </div>
                         </div>
                         <div class="col-xs-3" style="margin: 8px 0px;">
-                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Total</div>
+                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo total</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaLargoPantalon" id="nuevaLargoPantalon" placeholder="Ingresar Talla en Centimetros" >
+                              <input type="text" class="form-control input-sm" name="nuevaLargoPantalon" id="nuevaLargoPantalon" placeholder="Ingresar talla en centímetros" >
                             </div>
                       </div>
                       </div>
@@ -408,19 +408,19 @@ MODAL AGREGAR PERSONAL
                         <div class="col-xs-3">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Cintura</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaCinturaFalda" id="nuevaCinturaFalda" placeholder="Ingresar Talla en Centimetros">
+                              <input type="text" class="form-control input-sm" name="nuevaCinturaFalda" id="nuevaCinturaFalda" placeholder="Ingresar talla en centímetros">
                             </div>
                         </div>
                         <div class="col-xs-3">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Cadera</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaCaderaFalda"  id="nuevaCaderaFalda" placeholder="Ingresar Talla en Centimetros">
+                              <input type="text" class="form-control input-sm" name="nuevaCaderaFalda"  id="nuevaCaderaFalda" placeholder="Ingresar talla en centímetros">
                             </div>
                         </div>
                         <div class="col-xs-3">
-                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo Total</div>
+                          <div class="d-block text-center" style="font-size:16px;font-weight:bold">Largo total</div>
                             <div class="input-group">
-                              <input type="text" class="form-control input-sm" name="nuevaLargoFalda" id="nuevaLargoFalda" placeholder="Ingresar Talla en Centimetros">
+                              <input type="text" class="form-control input-sm" name="nuevaLargoFalda" id="nuevaLargoFalda" placeholder="Ingresar talla en centímetros">
                             </div>
                         </div>
                       </div>
@@ -432,7 +432,7 @@ MODAL AGREGAR PERSONAL
 
               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-              <button type="submit" class="btn btn-primary text-center">Guardar Personal</button>
+              <button type="submit" class="btn btn-primary text-center">Guardar personal</button>
 
             </div>
           </div>

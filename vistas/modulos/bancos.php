@@ -26,9 +26,11 @@ if($_SESSION["perfil"] == "Vendedor"){
 
         <ol class="breadcrumb">
 
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
 
-            <li class="active">Administrar bancos</li>
+            <li>Parámetros</li>
+
+            <li class="active">Bancos</li>
 
         </ol>
 
@@ -41,7 +43,7 @@ if($_SESSION["perfil"] == "Vendedor"){
       <div class="box-header with-border">
 
       <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarBanco">
-          Agregar Banco
+          Agregar banco
 
         </button>
 

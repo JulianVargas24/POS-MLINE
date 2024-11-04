@@ -19,9 +19,10 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-            <li class="active">Crear compra</li>
+            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Adquisiciones</li>
+            <li>Admin. compras</li>
+            <li class="active">Agregar compra</li>
 
         </ol>
     </section>
@@ -35,7 +36,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-info">
                                 <div class="box-body">
                                     <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Proveedor Asociado
+                                        Proveedor asociado
                                     </h2>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-xs-12">
@@ -135,7 +136,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                         name="nuevaFechaEmision" id="nuevaFechaEmision"
                                                         value="<?php echo date("Y-m-d"); ?>" required
                                                         onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
@@ -148,7 +149,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <input type="hidden" id="nuevoEstado" name="nuevoEstado"
                                                         value="Abierta">
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                         name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
                                                         required
                                                         onchange="validarFechas('nuevaFechaEmision', this.id)">
@@ -212,8 +213,6 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="col-xs-3">
                             <div class="box box-info">
                                 <div class="box-body">
-                                    <h4 class="box-title"
-                                        style="color:#39b616;font-weight:bold; font-size:21px; color:red;"> FACTURA DE COMPRA</h4>
                                     <h2 class="box-title"
                                         style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
                                         FACTURA DE COMPRA

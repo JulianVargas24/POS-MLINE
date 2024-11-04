@@ -16,14 +16,15 @@ if ($_SESSION["perfil"] == "Especial") {
     <section class="content-header">
 
         <h1 style="color:green;font-weight:bold">
-            Orden de Compra
+            Orden de compra
         </h1>
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-            <li class="active">Crear orden de compra</li>
+            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Adquisiciones</li>
+            <li>Administrar O.C.</li>
+            <li class="active">Agregar orden de compra</li>
 
         </ol>
 
@@ -138,7 +139,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                            name="nuevaFechaEmision" id="nuevaFechaEmision"
                                                            value="<?php echo date("Y-m-d"); ?>" required
                                                            onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
@@ -151,7 +152,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <input type="hidden" id="nuevoEstado" name="nuevoEstado"
                                                            value="Abierta">
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                            name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
                                                            required
                                                            onchange="validarFechas('nuevaFechaEmision', this.id)">

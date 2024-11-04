@@ -39,9 +39,9 @@ $sumaTotalFinal = $sumaTotalFA + $sumaTotalFE + $sumaTotalBA + $sumaTotalBE;
 
         <ol class="breadcrumb">
 
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-            <li class="active">Cierre de Caja</li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Tesorería</li>
+            <li class="active">Cierre de caja</li>
             <button class="btnGenerarCierre"> 1</button>
         </ol>
 

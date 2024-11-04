@@ -26,9 +26,9 @@ if($_SESSION["perfil"] == "Especial"){
 
     <ol class="breadcrumb">
       
-      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Crear venta con factura afecta</li>
+      <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Ventas</li>
+      <li class="active">Venta con factura afecta</li>
     
     </ol>
 
@@ -154,7 +154,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                 <div class="form-group">
                                                                     <div class="input-group">
                                                                         
-                                                                        <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" 
+                                                                        <input type="date" class="form-control input" name="nuevaFechaEmision" id="nuevaFechaEmision"
                                                                         value="<?php echo date("Y-m-d");?>"required 
                                                                         onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                                     </div>
@@ -166,7 +166,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                 <div class="form-group">
                                                                     <div class="input-group">
 
-                                                                        <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                                        <input type="date" class="form-control input" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
                                                                         required onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                                     </div>
                                                                 </div>
@@ -738,24 +738,22 @@ if($_SESSION["perfil"] == "Especial"){
                                                 </div>
                                             </div>
                                     </div>
-                    </div>
-                                        
-                                    
                     <a href="ventas">                 
                         <button type="button" class="btn btn-default">Salir</button>
                     </a>
                     <button type="submit" class="btn btn-primary">Guardar venta</button>
-                </form>
-                <?php
+
+                    <?php
 
                     $agregarVentaAfecta = new ControladorVentaFactura();
                     $agregarVentaAfecta -> ctrCrearVentaAfecta();
 
-                ?>
+                    ?>
+
+                </form>
             </div>
         </div>
     </section>
-
 </div>
 
 <!--=====================================

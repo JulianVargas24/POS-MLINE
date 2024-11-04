@@ -1,0 +1,42 @@
+Index: controladores/menu.controlador.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nclass ControladorMenu {\r\n    public static function ctrObtenerMenu($perfilUsuario, $paginaActual) {\r\n        // Define los elementos del menú, los usuarios y las rutas\r\n        $menuItems = [\r\n            'inicio' => [\r\n                'icono' => 'fa-home',\r\n                'titulo' => 'Inicio',\r\n                'perfiles' => ['Administrador']\r\n            ],\r\n            'configuraciones' => [\r\n                'icono' => 'fa-user',\r\n                'titulo' => 'Configuraciones',\r\n                'perfiles' => ['Administrador', 'Especial'],\r\n                'submenu' => [\r\n                    'usuarios' => 'Usuarios',\r\n                    'plantel' => 'Plantel'\r\n                ]\r\n            ],\r\n            'parametros' => [\r\n                'icono' => 'fa-cog',\r\n                'titulo' => 'Parámetros',\r\n                'perfiles' => ['Administrador', 'Especial'],\r\n                'submenu' => [\r\n                    'parametros-generales' => 'Generales',\r\n                    'parametros-documentos' => 'Documentos',\r\n                    'parametros-impresion' => 'Impresión',\r\n                    'bancos' => 'Bancos',\r\n                    'sucursales' => 'Sucursales',\r\n                    'matriz' => 'Matriz',\r\n                    'tabla-listas' => 'Tabla para listas'\r\n                ]\r\n            ],\r\n            'maestro' => [\r\n                'icono' => 'fa-archive',\r\n                'titulo' => 'Maestro',\r\n                'perfiles' => ['Administrador', 'Especial'],\r\n                'submenu' => [\r\n                    'categorias' => 'Categorías',\r\n                    'subcategorias' => 'Subcategorías',\r\n                    'bodegas' => 'Bodegas',\r\n                    'plazos' => 'Plazos de pago',\r\n                    'lista-precios' => 'Listas de precios',\r\n                    'unidades' => 'Unidades',\r\n                    'medios-pago' => 'Medios de pago',\r\n                    'impuestos' => 'Impuestos',\r\n                    'rubros' => 'Rubros'\r\n                ]\r\n            ],\r\n            'adquisiciones' => [\r\n                'icono' => 'fa-bank',\r\n                'titulo' => 'Adquisiciones',\r\n                'perfiles' => ['Administrador', 'Especial'],\r\n                'submenu' => [\r\n                    'proveedores' => 'Proveedores',\r\n                    'centro-costo' => 'Centro de costos',\r\n                    'compras' => 'Admin. compras',\r\n                    'ordenes-compra' => 'Administrador O.C.'\r\n                ]\r\n            ],\r\n            'inventario' => [\r\n                'icono' => 'fa-shopping-cart',\r\n                'titulo' => 'Inventario',\r\n                'perfiles' => ['Administrador', 'Especial'],\r\n                'submenu' => [\r\n                    'productos' => 'Productos',\r\n                    'entrada' => 'Entradas',\r\n                    'salida' => 'Salidas',\r\n                    'ajustes' => 'Ajustes',\r\n                    'productos-bodega' => 'Productos-bodega'\r\n                ]\r\n            ],\r\n            'orden-trabajo' => [\r\n                'icono' => 'fa-file',\r\n                'titulo' => 'Orden de trabajo',\r\n                'perfiles' => ['Administrador', 'Especial'],\r\n                'submenu' => [\r\n                    'orden-trabajo' => 'Administrador O.T.',\r\n                    'personal' => 'Personal vestuario',\r\n                    'orden-vestuario' => 'Orden de vestuario'\r\n                ]\r\n            ],\r\n            'ventas' => [\r\n                'icono' => 'fa-users',\r\n                'titulo' => 'Ventas',\r\n                'perfiles' => ['Administrador', 'Vendedor'],\r\n                'submenu' => [\r\n                    'clientes' => 'Clientes',\r\n                    'ventas' => 'Administrar ventas',\r\n                    'cotizaciones' => 'Admin. cotizaciones',\r\n                    'cotizacion' => 'Cotización afecta',\r\n                    'cotizacion-exenta' => 'Cotización exenta',\r\n                    'venta-boleta' => 'Boleta afecta',\r\n                    'boleta-exenta' => 'Boleta exenta',\r\n                    'venta-factura' => 'Venta factura afecta',\r\n                    'venta-factura-exenta' => 'Venta factura exenta'\r\n                ]\r\n            ],\r\n            'comercial' => [\r\n                'icono' => 'fa-address-book',\r\n                'titulo' => 'Comercial',\r\n                'perfiles' => ['Administrador', 'Vendedor'],\r\n                'submenu' => [\r\n                    'unidad-negocio' => 'Unidad de negocios',\r\n                    'lista-precios' => 'Lista de precios',\r\n                    'tipo-cliente' => 'Tipo de campaña',\r\n                    'tipo-producto' => 'Tipo de producto'\r\n                ]\r\n            ],\r\n            'tesoreria' => [\r\n                'icono' => 'fa-shopping-bag',\r\n                'titulo' => 'Tesorería',\r\n                'perfiles' => ['Administrador', 'Especial'],\r\n                'submenu' => [\r\n                    'cierre-caja' => 'Cierre de caja'\r\n                ]\r\n            ]\r\n        ];\r\n\r\n        // Filtrar el menú según el perfil del usuario\r\n        $menuFiltrado = [];\r\n        foreach ($menuItems as $rutas => $item) {\r\n            if (in_array($perfilUsuario, $item['perfiles'])) {\r\n                $menuFiltrado[$rutas] = $item;\r\n            }\r\n        }\r\n\r\n        return $menuFiltrado;\r\n    }\r\n}
+===================================================================
+diff --git a/controladores/menu.controlador.php b/controladores/menu.controlador.php
+--- a/controladores/menu.controlador.php	(revision 661260314ba4ee5b1bd7a47bdb13c515709c4e5f)
++++ b/controladores/menu.controlador.php	(date 1730324716814)
+@@ -41,7 +41,7 @@
+                     'subcategorias' => 'Subcategorías',
+                     'bodegas' => 'Bodegas',
+                     'plazos' => 'Plazos de pago',
+-                    'lista-precios' => 'Listas de precios',
++                    'listas' => 'Listas de precios',
+                     'unidades' => 'Unidades',
+                     'medios-pago' => 'Medios de pago',
+                     'impuestos' => 'Impuestos',
+@@ -76,9 +76,21 @@
+                 'titulo' => 'Orden de trabajo',
+                 'perfiles' => ['Administrador', 'Especial'],
+                 'submenu' => [
+-                    'orden-trabajo' => 'Administrador O.T.',
+-                    'personal' => 'Personal vestuario',
+-                    'orden-vestuario' => 'Orden de vestuario'
++                    'otv-vestuario' => [
++                        'titulo' => 'OTV Vestuario',
++                        'submenu2' => [
++                            'orden-trabajo' => 'Administrador O.T.V',
++                            'personal' => 'Personal Vestuario',
++                            'orden-vestuario' => 'Orden de Vestuario'
++                        ]
++                    ],
++                    'otp-produccion' => [
++                        'titulo' => 'OTP Producción',
++                        'submenu2' => [
++                            'admin-orden-produccion' => 'Administrador O.T.P',
++                            'orden-produccion' => 'Orden de Producción'
++                        ]
++                    ]
+                 ]
+             ],
+             'ventas' => [

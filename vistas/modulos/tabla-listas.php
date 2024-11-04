@@ -26,9 +26,11 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
             <ol class="breadcrumb">
 
-                <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
 
-                <li class="active">Administrar tabla para listas</li>
+                <li>Parámetros</li>
+
+                <li class="active">Tabla para listas</li>
 
             </ol>
 

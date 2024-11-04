@@ -26,9 +26,9 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <ol class="breadcrumb">
 
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-            <li class="active">Administrar entradas</li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Inventario</li>
+            <li class="active">Entradas</li>
 
         </ol>
 

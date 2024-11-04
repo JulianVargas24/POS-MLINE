@@ -28,7 +28,9 @@ if ($_SESSION["perfil"] == "Especial") {
 
             <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Administrar plantel</li>
+            <li>Configuraciones</li>
+
+            <li class="active">Plantel</li>
 
         </ol>
 

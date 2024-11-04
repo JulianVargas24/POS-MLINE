@@ -37,8 +37,8 @@ if($xml){
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Orden de trabajo</li>
       <li class="active">Administrar O.T</li>
     
     </ol>
