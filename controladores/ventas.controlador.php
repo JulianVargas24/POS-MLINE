@@ -552,6 +552,7 @@ class ControladorVentas{
 			$boletaExenta = ModeloVentas::mdlMostrarVentas("venta_boleta_exenta", null, null, $fechaInicial, $fechaFinal);
 			$notacredito = ModeloVentas::mdlMostrarVentas("nota_credito", null, null, $fechaInicial, $fechaFinal);
 			$notacreditoboleta = ModeloVentas::mdlMostrarVentas("nota_credito_boleta", null, null, $fechaInicial, $fechaFinal);
+			$notacreditoboletaexenta = ModeloVentas::mdlMostrarVentas("nota_credito_boleta_exenta", null, null, $fechaInicial, $fechaFinal);
 			$notacreditoexenta = ModeloVentas::mdlMostrarVentas("nota_credito_exenta", null, null, $fechaInicial, $fechaFinal);
 
 
@@ -1109,6 +1110,80 @@ class ControladorVentas{
 								</tr>");
 						}
 					echo utf8_decode("<tr><td>-</td></tr>");
+					echo utf8_decode(" <tr><td>NOTA DE CREDITO DE BOLETA EXENTA (". count($notacreditoboletaexenta).")</td></tr>
+						<tr> 
+						<td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td> 
+						<td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>ID PRODUCTO</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>PRODUCTOS</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>PRECIO PRODUCTO</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>METODO DE PAGO</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>SUBTOTAL</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>DESCUENTO</td>	
+						<td style='font-weight:bold; border:1px solid #eee;'>TOTAL_NETO</td>	
+						<td style='font-weight:bold; border:1px solid #eee;'>IVA</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>TOTAL FINAL</td>			
+						<td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISION</td>		
+						</tr>");
+
+						foreach ($notacreditoboletaexenta as $row => $item) {
+
+							$cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+			
+							$bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["id_bodega"]);
+							$plazos = ControladorPlazos::ctrMostrarPlazos("id", $item["id_plazo_pago"]);
+							$medios = ControladorMediosPago::ctrMostrarMedios("id", $item["id_medio_pago"]);
+							$negocio = ControladorNegocios::ctrMostrarNegocios("id", $item["id_unidad_negocio"]);
+			
+			
+							echo utf8_decode("<tr>
+									<td style='border:1px solid #eee;'>" . $item["codigo"] . "</td> 
+									<td style='border:1px solid #eee;'>" . $cliente["nombre"] . "</td>
+			
+									 <td style='border:1px solid #eee;'>" . $bodega["nombre"] . "</td>
+									
+									 <td style='border:1px solid #eee;'>");
+			
+							$productos =  json_decode($item["productos"], true);
+			
+			
+							foreach ($productos as $key => $valueProductos) {
+			
+								echo utf8_decode($valueProductos["id"] . "<br>");
+							}
+							echo utf8_decode("</td><td style='border:1px solid #eee;'>");   
+							foreach ($productos as $key => $valueProductos) {
+			
+								echo utf8_decode($valueProductos["cantidad"] . "<br>");
+							}
+							
+			
+							echo utf8_decode("</td><td style='border:1px solid #eee;'>");
+			
+							foreach ($productos as $key => $valueProductos) {
+			
+								echo utf8_decode($valueProductos["descripcion"] . "<br>");
+							}
+			
+							echo utf8_decode("</td><td style='border:1px solid #eee;'> $ ");
+			
+							foreach ($productos as $key => $valueProductos) {
+			
+								echo number_format($valueProductos["precio"], 0,  '', '.') . "<br>";
+							}
+			
+							echo utf8_decode("</td>
+								 <td style='border:1px solid #eee;'>" . $medios["medio_pago"] . "</td>
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["subtotal"])), 0,  '', '.') . "</td>
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["descuento"])), 0,  '', '.') . "</td>	
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["total_neto"])), 0,  '', '.') . "</td>	
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["iva"])), 0,  '', '.') . "</td>	
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["total_final"])), 0,  '', '.') . "</td>
+								<td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>		
+								</tr>");
+						}
 
 
             echo "</table>";
