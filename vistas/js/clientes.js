@@ -18,7 +18,14 @@ $(".tablas").on("click", ".btnEditarCliente", function(){
       processData: false,
       dataType:"json",
       success:function(respuesta){
-      
+        console.log("respuesta", respuesta);
+        $.ajax({
+          url: './vistas/modulos/obtenerRegiones.php',
+          data: { id: respuesta["region"] },
+          type: 'POST',
+          success: function(response) {
+            console.log(response)
+            $('#editarComuna').html(response);
       	$("#idCliente").val(respuesta["id"]);
 	       $("#editarCliente").val(respuesta["nombre"]);
 	       $("#editarRutId").val(respuesta["rut"]);
@@ -32,13 +39,12 @@ $(".tablas").on("click", ".btnEditarCliente", function(){
          $("#editarActividad").val(respuesta["actividad"]);
          $("#editarPlazo").val(respuesta["id_plazo"]);
          $("#editarVendedor").val(respuesta["id_vendedor"]);
-          
-	  }
-
-  	})
-
-})
-
+          }
+        });
+      }
+    })
+  })
+  
 /*=============================================
 ELIMINAR CLIENTE
 =============================================*/
