@@ -5,7 +5,6 @@ $(".tablas").on("click", ".btnEditarProveedor", function () {
   var idProveedor = $(this).attr("idProveedor");
   var datos = new FormData();
   datos.append("idProveedor", idProveedor);
-
   $.ajax({
     url: "ajax/proveedores.ajax.php",
     method: "POST",
@@ -20,7 +19,6 @@ $(".tablas").on("click", ".btnEditarProveedor", function () {
         data: { id: respuesta["region"] },
         type: "POST",
         success: function (response) {
-          console.log(response);
           $("#editarComuna").html(response);
           $("#idProveedor").val(respuesta["id"]);
           $("#editarProveedor").val(respuesta["razon_social"]);
@@ -49,14 +47,14 @@ $(".tablas").on("click", ".btnEliminarProveedor", function () {
   var idProveedor = $(this).attr("idProveedor");
 
   swal({
-    title: "¿Está seguro de borrar Este Proveedor?",
-    text: "¡Si no lo está puede cancelar la acción!",
+    title: "¿Está seguro de borrar este Proveedor?",
+    text: "Si no lo está, puede cancelar la acción.",
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     cancelButtonText: "Cancelar",
-    confirmButtonText: "Si, borrar Proveedor!",
+    confirmButtonText: "Sí, borrar proveedor",
   }).then(function (result) {
     if (result.value) {
       window.location = "index.php?ruta=proveedores&idProveedor=" + idProveedor;
