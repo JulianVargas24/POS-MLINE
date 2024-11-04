@@ -10,9 +10,11 @@
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
 
-            <li class="active">Parámetros</li>
+            <li>Parámetros</li>
+
+            <li class="active">Generales</li>
 
         </ol>
 

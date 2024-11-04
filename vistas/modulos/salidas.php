@@ -20,14 +20,15 @@ if($_SESSION["perfil"] == "Especial"){
     
   <h1 style="color:green;font-weight:bold">
       
-      SALIDAS
+      FORMULARIO SALIDA
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Inventario</li>
+      <li><a href="salida">Salidas</a></li>
       <li class="active">Formulario salida</li>
     
     </ol>

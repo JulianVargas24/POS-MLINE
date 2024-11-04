@@ -13,10 +13,11 @@ if ($_SESSION["perfil"] == "Especial") {
 
 <div class="content-wrapper">
     <section class="content-header">
-        <h1 style="color:green;font-weight:bold">BOLETA EXENTA</h1>
+        <h1 style="color:green;font-weight:bold">VENTA CON BOLETA EXENTA</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li class="active">Crear venta con boleta exenta</li>
+            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Ventas</li>
+            <li class="active">Boleta exenta</li>
         </ol>
     </section>
 
@@ -151,7 +152,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                            name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
                                                 </div>
                                             </div>

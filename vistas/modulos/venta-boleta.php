@@ -26,9 +26,9 @@ if($_SESSION["perfil"] == "Especial"){
 
     <ol class="breadcrumb">
       
-      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Crear venta con boleta afecta</li>
+      <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Ventas</li>
+      <li class="active">Boleta afecta</li>
     
     </ol>
 
@@ -522,24 +522,23 @@ if($_SESSION["perfil"] == "Especial"){
                                                 </div>
                                             </div>
                                     </div>
-                    </div>
-                                        
-                                    
+
                     <a href="ventas">                 
                         <button type="button" class="btn btn-default">Salir</button>
                     </a>
                     <button type="submit" class="btn btn-primary">Guardar venta</button>
-                </form>
-                <?php
+
+                    <?php
 
                     $VentaBoleta = new ControladorVentaBoleta();
-                    $VentaBoleta -> ctrCrearVentaBoleta();   
+                    $VentaBoleta -> ctrCrearVentaBoleta();
 
-                ?>
+                    ?>
+
+                </form>
             </div>
         </div>
     </section>
-
 </div>
 
 

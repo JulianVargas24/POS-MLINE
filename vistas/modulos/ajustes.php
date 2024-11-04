@@ -12,13 +12,15 @@ if ($_SESSION["perfil"] == "Especial") {
 <div class="content-wrapper">
     <section class="content-header">
         <h1 style="color:green;font-weight:bold">
-            AJUSTES
+            FORMULARIO AJUSTES
         </h1>
 
         <ol class="breadcrumb">
             <li>
-                <a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a>
+                <a href="inicio"><i class="fa fa-home"></i>Inicio</a>
             </li>
+            <li>Inventario</li>
+            <li><a href="ajuste">Ajustes</a></li>
             <li class="active">Formulario ajustes</li>
         </ol>
     </section>

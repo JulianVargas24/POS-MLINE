@@ -14,8 +14,9 @@ if ($_SESSION["perfil"] == "Especial") {
       Administrar proveedores
     </h1>
     <ol class="breadcrumb">
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Administrar proveedor</li>
+      <li><a href="inicio"><i class="fa fa-home"></i> Inicio</a></li>
+      <li>Adquisiciones</li>
+      <li class="active">Proveedores</li>
     </ol>
   </section>
 

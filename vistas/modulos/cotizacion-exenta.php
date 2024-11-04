@@ -25,9 +25,9 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-            <li class="active">Crear cotización exenta</li>
+            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Ventas</li>
+            <li class="active">Cotización exenta</li>
 
         </ol>
 
@@ -158,11 +158,11 @@ if ($_SESSION["perfil"] == "Especial") {
                                         cotización</h4>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha emisión</div>
+                                            <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
                                             <div class="form-group">
                                                 <div class="input-group">
 
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                            name="nuevaFechaEmision" id="nuevaFechaEmision"
                                                            value="<?php echo date("Y-m-d"); ?>">
                                                 </div>
@@ -174,7 +174,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
 
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                            name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
                                                 </div>
                                             </div>
@@ -207,7 +207,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega origen</div>
+                                            <div class="d-block" style="font-size:14px;">Bodega de origen</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevaBodega"
@@ -543,24 +543,22 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
+
+                    <a href="cotizaciones">
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar cotización exenta</button>
+
+                    <?php
+
+                    $agregarCotizacionExenta = new ControladorCotizacion();
+                    $agregarCotizacionExenta->ctrCrearCotizacionExenta();
+
+                    ?>
+                </form>
             </div>
-
-
-            <a href="cotizaciones">
-                <button type="button" class="btn btn-default">Salir</button>
-            </a>
-            <button type="submit" class="btn btn-primary">Guardar cotización exenta</button>
-            </form>
-            <?php
-
-            $agregarCotizacionExenta = new ControladorCotizacion();
-            $agregarCotizacionExenta->ctrCrearCotizacionExenta();
-
-            ?>
         </div>
-</div>
-</section>
-
+    </section>
 </div>
 
 <script>

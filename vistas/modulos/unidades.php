@@ -20,15 +20,15 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
             <h1>
 
-                Administrar unidades
+                Administrar unidades de medida
 
             </h1>
 
             <ol class="breadcrumb">
 
-                <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-                <li class="active">Administrar unidades</li>
+                <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+                <li>Maestro</li>
+                <li class="active">Unidades de medida</li>
 
             </ol>
 

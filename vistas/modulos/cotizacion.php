@@ -26,9 +26,9 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-            <li class="active">Crear cotización afecta</li>
+            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Ventas</li>
+            <li class="active">Cotización afecta</li>
 
         </ol>
 
@@ -163,7 +163,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
 
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                            name="nuevaFechaEmision" id="nuevaFechaEmision"
                                                            value="<?php echo date("Y-m-d"); ?>">
                                                 </div>
@@ -175,7 +175,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
 
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                            name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
                                                 </div>
                                             </div>
@@ -553,23 +553,22 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
+
+                    <a href="cotizaciones">
+                        <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar cotización afecta</button>
+
+                    <?php
+
+                    $agregarCotizacion = new ControladorCotizacion();
+                    $agregarCotizacion->ctrCrearCotizacion();
+
+                    ?>
+                </form>
             </div>
-
-            <a href="cotizaciones">
-                <button type="button" class="btn btn-default">Salir</button>
-            </a>
-            <button type="submit" class="btn btn-primary">Guardar cotización afecta</button>
-            </form>
-            <?php
-
-            $agregarCotizacion = new ControladorCotizacion();
-            $agregarCotizacion->ctrCrearCotizacion();
-
-            ?>
         </div>
-</div>
-</section>
-
+    </section>
 </div>
 
 <script>
