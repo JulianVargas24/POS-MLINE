@@ -127,7 +127,7 @@ if($xml){
         </div>
 
       <div class="box-tools pull-right" style="margin-bottom:5px">
-          <a href="vistas/modulos/descargar-reporte-ventas.php?reporte=reporte">
+          <a href="vistas/modulos/descargar-reporte-ventas.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
             <button class="btn btn-success" style="margin-top:5px;margin-right:2px;">Reporte: Ventas General</button>
           </a>
       </div>

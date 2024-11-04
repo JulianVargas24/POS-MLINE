@@ -541,29 +541,30 @@ class ControladorVentas{
 
             $tabla = "venta_afecta";
 
-            if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
-
-                $ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
-            } else {
-
-                $item = null;
-                $valor = null;
-
-                $ventas = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
-				$exentas = ModeloVentas::mdlMostrarVentas("venta_exenta", $item, $valor);
-				$boletas = ModeloVentas::mdlMostrarVentas("venta_boleta", $item, $valor);
-				$boletaExenta = ModeloVentas::mdlMostrarVentas("venta_boleta_exenta", $item, $valor);
-				$notacredito = ModeloVentas::mdlMostrarVentas("nota_credito", $item, $valor);
-				$notacreditoboleta = ModeloVentas::mdlMostrarVentas("nota_credito_boleta", $item, $valor);
-				$notacreditoexenta = ModeloVentas::mdlMostrarVentas("nota_credito_exenta", $item, $valor);
-            }
+            // Obtener las fechas de la URL
+			$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+			$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
+	
+			// Obtener las ventas del modelo
+			$ventas = ModeloVentas::mdlMostrarVentas($tabla, null, null, $fechaInicial, $fechaFinal);
+			$exentas = ModeloVentas::mdlMostrarVentas("venta_exenta", null, null, $fechaInicial, $fechaFinal);
+			$boletas = ModeloVentas::mdlMostrarVentas("venta_boleta", null, null, $fechaInicial, $fechaFinal);
+			$boletaExenta = ModeloVentas::mdlMostrarVentas("venta_boleta_exenta", null, null, $fechaInicial, $fechaFinal);
+			$notacredito = ModeloVentas::mdlMostrarVentas("nota_credito", null, null, $fechaInicial, $fechaFinal);
+			$notacreditoboleta = ModeloVentas::mdlMostrarVentas("nota_credito_boleta", null, null, $fechaInicial, $fechaFinal);
+			$notacreditoexenta = ModeloVentas::mdlMostrarVentas("nota_credito_exenta", null, null, $fechaInicial, $fechaFinal);
 
 
             /*=============================================
             CREAMOS EL ARCHIVO DE EXCEL
             =============================================*/
 
-            $Name = $_GET["reporte"] . '-venta-generales.xls';
+            // Nombre del archivo incluyendo fechas si están disponibles
+			$Name = $_GET["reporte"] . '-ventas-generales';
+			if ($fechaInicial && $fechaFinal) {
+				$Name .= '-desde-' . $fechaInicial . '-hasta-' . $fechaFinal;
+			}
+			$Name .= '.xls';
 
             header('Expires: 0');
             header('Cache-control: private');
