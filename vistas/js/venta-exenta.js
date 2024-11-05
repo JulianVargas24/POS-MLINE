@@ -1367,7 +1367,7 @@ $(".tablas").on("click", ".btnEliminarCotizacion", function(){
   var idCotizacion = $(this).attr("idCotizacion");
 
   swal({
-        title: '¿Está seguro de borrar esta Cotización?',
+        title: '¿Está seguro de borrar esta cotización?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,
@@ -1452,7 +1452,7 @@ $(".tablas").on("click", ".btnEliminarVentaExenta", function(){
 	var idExenta = $(this).attr("idExenta");
 
 	swal({
-		title: '¿Está seguro de borrar esta Venta Exenta?',
+		title: '¿Está seguro de borrar esta venta exenta?',
 		text: "Si no lo está, puede cancelar la acción.",
 		type: 'warning',
 		showCancelButton: true,

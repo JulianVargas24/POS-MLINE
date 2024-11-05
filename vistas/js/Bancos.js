@@ -35,7 +35,7 @@ $(".tablas").on("click", ".btnEliminarBanco", function() {
     var idBanco = $(this).attr("idBanco");
     
     swal({
-        title: '¿Está seguro de borrar este Banco?',
+        title: '¿Está seguro de borrar este banco?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

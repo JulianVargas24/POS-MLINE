@@ -36,7 +36,7 @@ $(".tablas").on("click", ".btnEliminarTablaLista", function(){
 	 var idTablaLista = $(this).attr("idTablaLista");
 
 	 swal({
-	 	title: '¿Está seguro de borrar esta Tabla para Listas?',
+	 	title: '¿Está seguro de borrar esta tabla para listas?',
 	 	text: "Si no lo está, puede cancelar la acción.",
 	 	type: 'warning',
 	 	showCancelButton: true,

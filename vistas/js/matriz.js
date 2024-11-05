@@ -46,7 +46,7 @@ $(".tablas").on("click", ".btnEliminarMatriz", function(){
     var idMatriz = $(this).attr("idMatriz");
 
     swal({
-        title: '¿Está seguro de borrar esta Matriz?',
+        title: '¿Está seguro de borrar esta matriz?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

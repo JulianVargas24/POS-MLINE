@@ -33,7 +33,12 @@ $sumaTotalFinal = $sumaTotalFA + $sumaTotalFE + $sumaTotalBA + $sumaTotalBE;
 
         <h1>
 
-            Cierre de caja al <?php echo $fechaCierre; ?>
+            Cierre de caja
+            <?php 
+            if (!empty($fechaCierre)) {
+            echo "al " . $fechaCierre;
+            } 
+            ?>
 
         </h1>
 

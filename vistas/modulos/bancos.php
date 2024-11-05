@@ -146,7 +146,7 @@ MODAL AGREGAR BANCO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Banco</h4>
+          <h4 class="modal-title">Agregar banco</h4>
 
         </div>
 
@@ -192,7 +192,7 @@ MODAL AGREGAR BANCO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" name="crear_Banco">Agregar Banco</button>
+          <button type="submit" class="btn btn-primary" name="crear_Banco">Agregar banco</button>
 
         </div>
 
@@ -236,7 +236,7 @@ MODAL EDITAR BANCO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Banco</h4>
+          <h4 class="modal-title">Editar banco</h4>
 
         </div>
 

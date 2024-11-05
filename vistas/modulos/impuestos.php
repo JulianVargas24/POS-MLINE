@@ -163,7 +163,7 @@ MODAL AGREGAR CATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Código</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -174,7 +174,7 @@ MODAL AGREGAR CATEGORÍA
             </div>
             
             <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto</div>
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -186,7 +186,7 @@ MODAL AGREGAR CATEGORÍA
             
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Porcentaje</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Porcentaje</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -197,7 +197,7 @@ MODAL AGREGAR CATEGORÍA
             </div>
 
             <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descripción</div>
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -277,7 +277,7 @@ MODAL EDITAR SUBCATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Código</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -288,7 +288,7 @@ MODAL EDITAR SUBCATEGORÍA
             </div>
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto</div>
                     <div class="input-group">
                     
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -302,7 +302,7 @@ MODAL EDITAR SUBCATEGORÍA
 
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Factor</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -313,7 +313,7 @@ MODAL EDITAR SUBCATEGORÍA
             </div>
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descripción</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
                 <div class="input-group">
                     
                   <span class="input-group-addon"><i class="fa fa-th"></i></span> 

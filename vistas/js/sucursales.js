@@ -4,7 +4,7 @@ $(".tablas").on("click", ".btnEliminarSucursal", function(){
     var idSucursal = $(this).attr("idSucursal");
 
     swal({
-        title: '¿Está seguro de borrar esta Sucursal?',
+        title: '¿Está seguro de borrar esta sucursal?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

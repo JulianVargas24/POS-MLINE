@@ -1132,7 +1132,7 @@ $(".tablas").on("click", ".btnEliminarVenta", function(){
   var idVenta = $(this).attr("idVenta");
 
   swal({
-        title: '¿Está seguro de borrar esta Venta?',
+        title: '¿Está seguro de borrar esta venta?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

@@ -280,7 +280,7 @@ MODAL AGREGAR PROVEEDOR
                 </div>
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Rubro Principal
+                    Rubro principal
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-apple"></i></span>
@@ -316,7 +316,7 @@ MODAL AGREGAR PROVEEDOR
                 <!-- ENTRADA PARA EL N° CUENTA BANCARIA-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Número de Cuenta
+                    Número de cuenta
                   </div>
                   <div class="input-group">
 
@@ -363,7 +363,7 @@ MODAL AGREGAR PROVEEDOR
                 <!-- ENTRADA PARA LÍNEA DE CRÉDITO-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Línea de Crédito
+                    Línea de crédito
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-ticket"></i></span>
@@ -375,7 +375,7 @@ MODAL AGREGAR PROVEEDOR
                 <!-- ENTRADA PARA EL BANCO -->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Plazo de Pago
+                    Plazo de pago
                   </div>
                   <div class="input-group">
 
@@ -427,7 +427,7 @@ MODAL AGREGAR PROVEEDOR
                 <!-- ENTRADA PARA EL EMAIL-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Correo Electrónico
+                    Correo electrónico
                   </div>
                   <div class="input-group">
 
@@ -639,7 +639,7 @@ MODAL EDITAR PROVEEDOR
                 </div>
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Rubro Principal
+                    Rubro principal
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-apple"></i></span>
@@ -675,7 +675,7 @@ MODAL EDITAR PROVEEDOR
                 <!-- ENTRADA PARA EL N° CUENTA BANCARIA-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Número de Cuenta
+                    Número de cuenta
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-ticket"></i></span>
@@ -721,7 +721,7 @@ MODAL EDITAR PROVEEDOR
                 <!-- ENTRADA PARA LÍNEA DE CRÉDITO-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Línea de Crédito
+                    Línea de crédito
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-ticket"></i></span>
@@ -733,7 +733,7 @@ MODAL EDITAR PROVEEDOR
                 <!-- ENTRADA PARA EL BANCO -->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Plazo de Pago
+                    Plazo de pago
                   </div>
                   <div class="input-group">
 
@@ -771,7 +771,7 @@ MODAL EDITAR PROVEEDOR
                 <!-- ENTRADA PARA EL TELEFONO-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Número de Teléfono
+                    Número de teléfono
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
@@ -785,7 +785,7 @@ MODAL EDITAR PROVEEDOR
                 <!-- ENTRADA PARA EL EMAIL-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Correo Electrónico
+                    Correo electrónico
                   </div>
                   <div class="input-group">
 

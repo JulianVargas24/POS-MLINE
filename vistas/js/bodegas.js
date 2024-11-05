@@ -45,7 +45,7 @@ $(".tablas").on("click", ".btnEliminarBodega", function () {
   var idBodega = $(this).attr("idBodega");
 
   swal({
-    title: "¿Está seguro de borrar esta Bodega?",
+    title: "¿Está seguro de borrar esta bodega?",
     text: "Si no lo está, puede cancelar la acción.",
     type: "warning",
     showCancelButton: true,
