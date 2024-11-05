@@ -668,7 +668,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                 <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pagado</div>
                                                                 <div class="form-group">
                                                                     <div class="input-group" style="display:block;">                                                
-                                                                            <input class="form-control input" type="number" name="nuevoTotalPagado" id="nuevoTotalPagado" value="0" total="">
+                                                                            <input class="form-control input" type="text" name="nuevoTotalPagado" id="nuevoTotalPagado" value="0" total="">
                                                                         
                                                                     </div> 
                                                                 </div> 
