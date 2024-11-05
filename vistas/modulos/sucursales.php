@@ -191,7 +191,7 @@ MODAL AGREGAR SUCURSAL
 
 
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre sucursal</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre de sucursal</div>
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -200,7 +200,7 @@ MODAL AGREGAR SUCURSAL
                   </div>
                   
                   <div class="col-lg-6 col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
                       <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese país" required value="Chile">

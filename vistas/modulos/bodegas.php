@@ -199,14 +199,14 @@ MODAL AGREGAR BODEGA
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold;">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold;">Región</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
                                                                             
-                                <option  value="">Seleccionar Region</option>
+                                <option  value="">Seleccionar región</option>
 
                                 <?php
                                 $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
@@ -442,7 +442,7 @@ MODAL EDITAR PROVEEDOR
                       
                     <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                       <div class="col-lg-6" style="margin-top:10px;">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                       <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 

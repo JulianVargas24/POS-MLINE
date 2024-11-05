@@ -168,7 +168,7 @@
                             </ul>
                         </li>';
                     echo '<li class="treeview ' . isActive($paginaActual, ['proveedores', 'centro-costo'
-                            , 'compras', 'compra', 'ordenes-compra', 'orden-compra']) . '">		
+                            , 'compras', 'compra', 'editar-compra', 'ordenes-compra', 'orden-compra', 'editar-orden-compra']) . '">		
                             <a href="#">		
                                 <i class="fa fa-bank"></i>								
                                     <span>Adquisiciones</span>								
@@ -189,15 +189,15 @@
                                         <span>Centro de costos</span>	
                                     </a>	
                                 </li>		
-                                <li class="' . isActive($paginaActual, ['compras', 'compra']) . '">		
+                                <li class="' . isActive($paginaActual, ['compras', 'compra', 'editar-compra']) . '">		
                                     <a href="compras">											
-                                        <i class="' . marcarCirculo($paginaActual, ['compras', 'compra']) . '"></i>
+                                        <i class="' . marcarCirculo($paginaActual, ['compras', 'compra', 'editar-compra']) . '"></i>
                                         <span>Admin. compras</span>		
                                     </a>		
                                 </li>
-                                <li class="' . isActive($paginaActual, ['ordenes-compra', 'orden-compra']) . '">
+                                <li class="' . isActive($paginaActual, ['ordenes-compra', 'orden-compra', 'editar-orden-compra']) . '">
                                     <a href="ordenes-compra">											
-                                        <i class="' . marcarCirculo($paginaActual, ['ordenes-compra', 'orden-compra']) . '"></i>
+                                        <i class="' . marcarCirculo($paginaActual, ['ordenes-compra', 'orden-compra', 'editar-orden-compra']) . '"></i>
                                         <span>Administrar O.C</span>
                                     </a>
                                 </li>		

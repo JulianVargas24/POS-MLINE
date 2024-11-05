@@ -203,7 +203,7 @@ $(".tablas").on("click", ".btnEliminarUsuario", function(){
   var usuario = $(this).attr("usuario");
 
   swal({
-    title: '¿Está seguro de borrar este Usuario?',
+    title: '¿Está seguro de borrar este usuario?',
     text: "Si no lo está, puede cancelar la acción.",
     type: 'warning',
     showCancelButton: true,

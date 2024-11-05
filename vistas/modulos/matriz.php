@@ -529,7 +529,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                       <!-- PAIS -->
                       <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Pais</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">País</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-globe"></i></span> 

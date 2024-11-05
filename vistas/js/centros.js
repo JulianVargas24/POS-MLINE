@@ -40,7 +40,7 @@ $(".tablas").on("click", ".btnEliminarCentro", function(){
 	 var idCentro = $(this).attr("idCentro");
 
 	 swal({
-	 	title: '¿Está seguro de borrar el Centro de Costo?',
+	 	title: '¿Está seguro de borrar el centro de costos?',
 	 	text: "Si no lo está, puede cancelar la acción.",
 	 	type: 'warning',
 	 	showCancelButton: true,

@@ -1227,7 +1227,7 @@ $(".tablas").on("click", ".btnEliminarOrdenCompra", function () {
     var idOrdenCompra = $(this).attr("idOrdenCompra");
 
     swal({
-        title: '¿Está seguro de borrar esta Orden de Compra?',
+        title: '¿Está seguro de borrar esta orden de compra?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

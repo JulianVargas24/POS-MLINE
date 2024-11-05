@@ -47,7 +47,7 @@ $(".tablas").on("click", ".btnEliminarCliente", function(){
 	var idCliente = $(this).attr("idCliente");
 	
 	swal({
-        title: '¿Está seguro de borrar este Cliente?',
+        title: '¿Está seguro de borrar este cliente?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

@@ -1383,7 +1383,7 @@ $(".tablas").on("click", ".btnEliminarCotizacion", function(){
   var idCotizacion = $(this).attr("idCotizacion");
 
   swal({
-        title: '¿Está seguro de borrar esta Cotización?',
+        title: '¿Está seguro de borrar esta cotización?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

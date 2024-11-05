@@ -21,8 +21,8 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
+            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Adquisiciones</li>
             <li class="active">Editar orden</li>
 
         </ol>
@@ -178,7 +178,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
 
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                         name="nuevaFechaEmision" id="nuevaFechaEmision" readonly
                                                         value="<?php echo $ordenCompra["fecha_emision"]; ?>">
                                                 </div>
@@ -191,7 +191,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <input type="hidden" id="nuevoEstado" name="nuevoEstado"
                                                         value="Abierta">
-                                                    <input type="date" class="form-control input-sm"
+                                                    <input type="date" class="form-control input"
                                                         name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
                                                         value="<?php echo $ordenCompra["fecha_vencimiento"]; ?>"
                                                         onchange="validarFechas('nuevaFechaEmision', this.id)">
@@ -598,21 +598,23 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
+
+                    <a href="ordenes-compra">
+                    <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+                    <?php
+
+                    $editarOrdenCompra = new ControladorOrdenCompra();
+                    $editarOrdenCompra->ctrEditarOrdenCompra();
+
+                    ?>
+
+                </form>    
             </div>
-
-            <a href="ordenes-compra">
-                <button type="button" class="btn btn-default">Salir</button>
-            </a>
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-
-            <?php
-
-            $editarOrdenCompra = new ControladorOrdenCompra();
-            $editarOrdenCompra->ctrEditarOrdenCompra();
-
-            ?>
-
         </div>
+    </section>    
 </div>
 
 <style>

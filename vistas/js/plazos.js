@@ -40,7 +40,7 @@ $(".tablas").on("click", ".btnEliminarPlazo", function(){
     var idPlazo = $(this).attr("idPlazo");
 
     swal({
-        title: '¿Está seguro de borrar este Plazo?',
+        title: '¿Está seguro de borrar este plazo?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

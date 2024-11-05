@@ -40,7 +40,7 @@ $(".tablas").on("click", ".btnEliminarRubro", function(){
     var idRubro = $(this).attr("idRubro");
 
     swal({
-        title: '¿Está seguro de borrar este Rubro?',
+        title: '¿Está seguro de borrar este rubro?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

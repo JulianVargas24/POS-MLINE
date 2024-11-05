@@ -40,7 +40,7 @@ $(".tablas").on("click", ".btnEliminarPlantel", function(){
 	var idPlantel = $(this).attr("idPlantel");
 	
 	swal({
-        title: '¿Está seguro de borrar este Plantel?',
+        title: '¿Está seguro de borrar este plantel?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,
