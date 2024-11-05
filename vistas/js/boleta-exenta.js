@@ -664,9 +664,9 @@ function sumarTotales(){
 		arraySumaTotales.push(Number($(totalItem[i]).val()));
 	}
 
-	function sumaArrayTotales(total, numero){
-		return total + numero;
-	}
+    function sumaArrayTotales(total, numero){
+        return total + numero;
+    }
 
 	var sumaTotales = arraySumaTotales.reduce(sumaArrayTotales);
 
