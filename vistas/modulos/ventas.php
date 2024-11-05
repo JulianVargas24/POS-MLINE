@@ -346,7 +346,7 @@ if($xml){
 
                     <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
                     <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
+                    <td>$ '.$value["pendiente"].'</td>
 
                     <td>
 
@@ -518,7 +518,7 @@ if($xml){
 
                     <td>$ '.$value["total_final"].'</td>
                     <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
+                    <td>$ '.$value["pendiente"].'</td>
 
                     <td>
 
