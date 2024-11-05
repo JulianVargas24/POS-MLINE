@@ -184,7 +184,20 @@ $(".tablaVentaBoleta tbody").on("click", "button.agregarProducto", function(){
 	 
 	
 });
+//fortmato numerico en pagado
+$(document).ready(function() {
+    // Formatear el número cuando el campo pierde el foco
+    $("#nuevoTotalPagado").on("blur", function() {
+        var value = $(this).val().replace(/,/g, ''); // Quitar comas para convertir a número
+        $(this).val(formatNumber(value)); // Aplicar formato numérico
+    });
 
+    // Limpiar el formato cuando el campo obtiene el foco
+    $("#nuevoTotalPagado").on("focus", function() {
+        var value = $(this).val().replace(/,/g, ''); // Quitar comas para que el usuario pueda editar
+        $(this).val(value);
+    });
+});
 
 
 function cambios(){
