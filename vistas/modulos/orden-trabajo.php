@@ -31,7 +31,7 @@ if($xml){
     
     <h1>
       
-      Administrar O.T
+      Administrar O.T.V.
     
     </h1>
 
