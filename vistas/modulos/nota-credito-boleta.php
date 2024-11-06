@@ -467,7 +467,7 @@ if($_SESSION["perfil"] == "Especial"){
                                                                     <div class="form-group">
                                                                         <div class="input-group">
                                                                         <span class="input-group-addon" style="color:black; font-weight:bold; padding:0px 15px">Total</span>                
-                                                                        <input style="font-size:16px;" type="number" class="form-control input" id="nuevoTotalFinal" name="nuevoTotalFinal" total="" readonly required>
+                                                                        <input style="font-size:16px;" type="text" class="form-control input" id="nuevoTotalFinal" name="nuevoTotalFinal" total="" readonly required>
                                                                         
                                                                         </div>
                                                                     </div> 
