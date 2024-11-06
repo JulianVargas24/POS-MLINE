@@ -246,7 +246,7 @@
                             </ul>
                         </li>';
                     echo '<li class="treeview ' . isActive($paginaActual, ['orden-trabajo', 'personal'
-                            , 'orden-vestuario']) . '">
+                            , 'orden-vestuario', 'admin-orden-produccion']) . '">
                             <a href="#">
                                 <i class="fa fa-file"></i>						
                                 <span>Orden de trabajo</span>						
@@ -254,48 +254,45 @@
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu">
-                                <li class="treeview ' . isActive($paginaActual, ['orden-trabajo', 'personal', 'orden-vestuario']) . '">
-                                    
-                                    <li style="padding: 5px 15px; color: #fff;">
-                                        OT Vestuario
-                                    </li>
+                            <ul class="treeview-menu">    
+                                <li style="padding: 5px 15px; color: #fff;">
+                                    OT Vestuario
+                                </li>
                                                               
-                                    <li class="' . isActive($paginaActual, 'orden-trabajo') . '">
-                                        <a href="orden-trabajo">							
-                                            <i class="' . marcarCirculo($paginaActual, 'orden-trabajo') . '"></i>
-                                            <span>Administrador OTV</span>
-                                        </a>
-                                    </li>
-                                    <li class="' . isActive($paginaActual, 'personal') . '">		
-                                        <a href="personal">							
-                                            <i class="' . marcarCirculo($paginaActual, 'personal') . '"></i>
-                                            <span>Personal vestuario</span>
-                                        </a>
-                                    </li>
-                                    <li class="' . isActive($paginaActual, 'orden-vestuario') . '">
-                                        <a href="orden-vestuario">							
-                                            <i class="' . marcarCirculo($paginaActual, 'orden-vestuario') . '"></i>
-                                            <span>Orden de vestuario</span>
-                                        </a>
-                                    </li>
-                                    <li style="padding: 5px 15px; color: #fff;">
-                                        OT Producción
-                                    </li>
+                                <li class="' . isActive($paginaActual, 'orden-trabajo') . '">
+                                    <a href="orden-trabajo">							
+                                        <i class="' . marcarCirculo($paginaActual, 'orden-trabajo') . '"></i>
+                                        <span>Administrador OTV</span>
+                                    </a>
+                                </li>
+                                <li class="' . isActive($paginaActual, 'personal') . '">		
+                                     <a href="personal">							
+                                         <i class="' . marcarCirculo($paginaActual, 'personal') . '"></i>
+                                        <span>Personal vestuario</span>
+                                    </a>
+                                </li>
+                                <li class="' . isActive($paginaActual, 'orden-vestuario') . '">
+                                    <a href="orden-vestuario">							
+                                        <i class="' . marcarCirculo($paginaActual, 'orden-vestuario') . '"></i>
+                                        <span>Orden de vestuario</span>
+                                    </a>
+                                </li>
+                                <li style="padding: 5px 15px; color: #fff;">
+                                    OT Producción
+                                </li>
                                                               
-                                    <li class="' . isActive($paginaActual, 'orden-trabajo') . '">
-                                        <a href="admin-orden-produccion">							
-                                            <i class="' . marcarCirculo($paginaActual, 'orden-trabajo') . '"></i>
-                                            <span>Administrador OTP</span>
-                                        </a>
-                                    </li>
-                                    <li class="' . isActive($paginaActual, 'personal') . '">		
-                                        <a href="orden-produccion">							
-                                            <i class="' . marcarCirculo($paginaActual, 'personal') . '"></i>
-                                            <span>Orden de producción</span>
-                                        </a>
-                                    </li>                                     
-                                </li>				
+                                <li class="' . isActive($paginaActual, 'admin-orden-produccion') . '">
+                                    <a href="admin-orden-produccion">							
+                                        <i class="' . marcarCirculo($paginaActual, 'admin-orden-produccion') . '"></i>
+                                        <span>Administrador OTP</span>
+                                    </a>
+                                </li>
+                                <li class="' . isActive($paginaActual, 'personal') . '">		
+                                    <a href="orden-produccion">							
+                                        <i class="' . marcarCirculo($paginaActual, 'personal') . '"></i>
+                                        <span>Orden de producción</span>
+                                    </a>
+                                </li>                                                           			
                             </ul>
                         </li>';
                 }
