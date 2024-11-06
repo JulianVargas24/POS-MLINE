@@ -580,14 +580,6 @@ $agregarNotaCredito -> ctrCrearNotaCreditoBoleta();
 
 </div>
 
-<!--=====================================
-MODAL VER COTIZACIONES
-======================================-->
-
-
-
-
-
 <style>
   .error{
     color: red;

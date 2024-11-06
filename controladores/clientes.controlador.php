@@ -213,8 +213,8 @@ class ControladorClientes{
                     </tr>");
 
 					foreach ($clientes as $row => $value) {
-						require_once 'C:/xampp/htdocs/POS-MLINE/controladores/regiones.controlador.php';
-						require_once 'C:/xampp/htdocs/POS-MLINE/modelos/regiones.modelo.php';
+						require_once $_SERVER["DOCUMENT_ROOT"] . '/POS-MLINE/controladores/regiones.controlador.php';
+						require_once $_SERVER["DOCUMENT_ROOT"] . '/POS-MLINE/modelos/regiones.modelo.php';
 
 						// Obtener los nombres de la región y la comuna
 						$regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
