@@ -326,9 +326,9 @@ MODAL EDITAR CLIENTE
 
                                             <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
-                                            <input type="text" class="form-control input" name="editarRutId"
+                                            <input type="text" class="form-control input" name="editarRutId" data-id="123"
                                                    id="editarRutId" placeholder="Ingrese su RUT" required required
-                                                   onblur="formatearRut(this)" oninput="verificarRutExistente(this.value)">
+                                                   onblur="formatearRut(this)">
 
                                         </div>
                                     </div>

@@ -5,19 +5,15 @@
 function formatearRut(inputRutId) {
   let rut = inputRutId.value.trim();
 
-  // Eliminar puntos.
-  rut = rut.replace(/\./g, "");
-  // Reemplazar k minúscula por K mayúscula.
-  rut = rut.replace(/k/g, "K");
+  // Eliminar puntos y transformar "k" a mayúscula
+  rut = rut.replace(/\./g, "").replace(/k/g, "K");
 
-  // Verifica si el RUT ya tiene un guion.
-  if (!rut.includes("-")) {
-    if (rut.length >= 8) {
-      rut = rut.slice(0, 8) + "-" + rut[8];
-    }
+  // Verifica si el RUT ya tiene un guion
+  if (!rut.includes("-") && rut.length >= 8) {
+    rut = rut.slice(0, 8) + "-" + rut[8];
   }
 
-  // Validar RUT
+  // Validar el RUT
   if (!RutValidator.validarRut(rut)) {
     inputRutId.setCustomValidity("El RUT ingresado no es válido.");
     inputRutId.reportValidity();
@@ -28,28 +24,32 @@ function formatearRut(inputRutId) {
     inputRutId.value = rut;
 
     // Llamada AJAX para verificar si el RUT ya existe
-    verificarRutExistente(rut);
+    const idPlantel = inputRutId.dataset.id || null; // Obtener el ID del data-attribute si está en edición
+    verificarRutExistente(rut, idPlantel);
   }
 }
 
-function verificarRutExistente(rut) {
+function verificarRutExistente(rut, idPlantel = null) {
+  if (!rut.trim()) return;
+
   $.ajax({
-    url: "ajax/plantel.ajax.php", // Cambia esta ruta a la de tu archivo AJAX
+    url: "ajax/plantel.ajax.php",
     method: "POST",
-    data: { rut: rut },
+    data: { rut: rut, idPlantel: idPlantel },
     dataType: "json",
     success: function (response) {
-      const inputRutId = document.getElementById("nuevoRutId"); // Referencia al input del RUT
+      const inputRutId =
+        document.getElementById("nuevoRutId") ||
+        document.getElementById("editarRutId");
 
       if (response.existe) {
-        inputRutId.setCustomValidity("Este RUT ya está registrado.");
-        inputRutId.reportValidity(); // Muestra el mensaje de error
-        inputRutId.value = ""; // Limpiar el campo
+        inputRutId.setCustomValidity(
+          "Este RUT ya está registrado para otro usuario."
+        );
+        inputRutId.reportValidity(); // Mostrar el mensaje de error en el campo
         inputRutId.focus(); // Regresar el foco al input
       } else {
-        inputRutId.setCustomValidity(""); // Limpiar el mensaje de error
-        inputRutId.value = rut; // Puedes mantener el RUT si es válido
-        //alert("El RUT está disponible."); // Mensaje opcional para confirmar
+        inputRutId.setCustomValidity(""); // Limpiar mensaje de error si está disponible
       }
     },
     error: function (jqXHR, textStatus, errorThrown) {

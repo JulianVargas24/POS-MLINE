@@ -106,14 +106,25 @@ class ModeloPlantel{
 
 	}
 
-	public static function verificarRut($rut) {
-		$db = Conexion::conectar(); // Conexión a la base de datos
+	public static function verificarRut($rut, $id = null) {
+		$db = Conexion::conectar();
 		$sql = "SELECT COUNT(*) as total FROM plantel WHERE rut = :rut";
+		
+		// Si se está editando, excluye el ID actual de la búsqueda
+		if ($id !== null) {
+			$sql .= " AND id != :id";
+		}
+	
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam(':rut', $rut, PDO::PARAM_STR);
+	
+		if ($id !== null) {
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		}
+	
 		$stmt->execute();
 		$resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-		return $resultado['total'] > 0; // Retorna true si el RUT ya existe
+		return $resultado['total'] > 0;
 	}
 
 }

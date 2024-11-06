@@ -31,8 +31,4 @@ if (isset($_POST["idPlantel"])) {
     $plantel->ajaxEditarPlantel();
 }
 
-if (isset($_POST["rut"])) {
-    $rut = $_POST["rut"];
-    $existe = ControladorPlantel::verificarRut($rut); // Asegúrate de que esto funcione
-    echo json_encode(["existe" => $existe]);
-}
+
