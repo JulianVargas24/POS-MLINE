@@ -178,4 +178,31 @@ class ModeloOrdenProduccion
     }
 }
 
+  static public function mdlEliminarOrdenProduccionDetalle($tabla, $folioOrden) {
+      $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
+      $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_STR);
+
+      if ($stmt->execute()) {
+          return "ok";
+      } else {
+          return "error";
+      }
+
+      $stmt = null; // Cerrar la conexión
+  }
+
+  static public function mdlEliminarOrdenProduccion($tabla, $folioOrden) {
+      $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
+      $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_STR);
+
+      if ($stmt->execute()) {
+          return "ok";
+      } else {
+          return "error";
+      }
+
+      $stmt = null; // Cerrar la conexión
+  }
+
+
 }

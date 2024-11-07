@@ -78,7 +78,7 @@ if($xml){
       <div class="box-tools pull-right" style="margin-bottom:5px">
 
           <a href="#">
-            <button class="btn btn-success" style="margin-top:5px">Descargar Oreden de Producción</button>
+            <button class="btn btn-success" style="margin-top:5px">Descargar Orden de Producción</button>
           </a>
 
       </div>
@@ -201,12 +201,35 @@ foreach ($ordenesProduccion as $key => $orden) {
         ?>
                
         </tbody>
-        
+
+        <script>
+          $(".tablas").on("click", ".btnEliminarOrdenProduccion", function(){
+            
+            var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+
+            swal({
+                title: "¿Está seguro de borrar la Orden de Producción?",
+                text: "¡Si no lo está puede cancelar la acción!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Sí, borrar orden!"
+            }).then(function(result) {
+                if (result.value) {
+                    // Redirige al controlador de eliminación
+                    window.location = "index.php?ruta=administrar-orden-produccion&idOrdenProduccion="+idOrdenProduccion;
+                }
+            });
+          });
+        </script>
+
        </table>
        <?php
 
-        $eliminarVenta = new ControladorVentas();
-        $eliminarVenta -> ctrEliminarVenta();
+          $eliminarOrden = new ControladorOrdenProduccion();
+          $eliminarOrden->ctrEliminarOrdenProduccion();
 
         ?>
      

@@ -106,14 +106,73 @@ class ControladorOrdenProduccion
     return ($respuesta) ? $respuesta["folio_orden_produccion"] + 1 : 1;
   }
 
+    /**
+   * Mostrar todas las órdenes de producción
+   */
+  static public function ctrMostrarOrdenesProduccion($item, $valor)
+  {
+      $tabla = "orden_produccion";
+      $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+      return $respuesta;
+  }
+
+  
   /**
- * Mostrar todas las órdenes de producción
- */
-static public function ctrMostrarOrdenesProduccion($item, $valor)
-{
-    $tabla = "orden_produccion";
-    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
-    return $respuesta;
+   * Eliminar orden de produccion como su detalle
+   */
+  static public function ctrEliminarOrdenProduccion() {
+    if (isset($_GET["idOrdenProduccion"])) {
+        // Eliminar detalles de la orden de producción
+        $tablaDetalle = "orden_produccion_detalle";
+        $folioOrden = $_GET["idOrdenProduccion"];				
+  
+        $respuestaDetalle = ModeloOrdenProduccion::mdlEliminarOrdenProduccionDetalle($tablaDetalle, $folioOrden);
+
+        if ($respuestaDetalle == "ok") {
+            // Eliminar la orden de producción principal
+            $tabla = "orden_produccion";
+            $respuesta = ModeloOrdenProduccion::mdlEliminarOrdenProduccion($tabla, $folioOrden);
+
+            if ($respuesta == "ok") {
+                echo '<script>
+                    swal({
+                        type: "success",
+                        title: "La orden de producción ha sido eliminada correctamente",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                    }).then(function(result) {
+                        if (result.value) {
+                            window.location = "administrar-orden-produccion";
+                        }
+                    });
+                </script>';
+            } else {
+                echo '<script>
+                    swal({
+                        type: "error",
+                        title: "Error al eliminar la orden de producción",
+                        text: "Por favor, intente nuevamente",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                    });
+                </script>';
+            }
+        } else {
+            echo '<script>
+                swal({
+                    type: "error",
+                    title: "Error al eliminar los detalles de la orden de producción",
+                    text: "Por favor, intente nuevamente",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar"
+                });
+            </script>';
+        }
+    }
 }
+
+
+
+
 
 }
