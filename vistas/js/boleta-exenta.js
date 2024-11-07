@@ -180,7 +180,17 @@ $(".tablaVentaBoletaExenta tbody").on("click", "button.agregarProducto", functio
 	
 });
 
+/**
+ * dar formato numerico en  todas las notas de credito
+ * ademas en editar cotizacione
+ * */ 
 
+$(".nuevoPrecioProducto").number(true, 0);
+$(".nuevoTotalProducto").number(true, 0);
+$(".nuevoDescuentoProducto").number(true, 0);
+$(".nuevoPrecioUnitario").number(true, 0);
+$(".nuevoSubtotalProducto").number(true, 0);
+$(".nuevoIvaProducto").number(true, 0);
 
 
 
