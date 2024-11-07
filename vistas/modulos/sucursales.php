@@ -465,7 +465,7 @@ MODAL EDITAR SUCURSAL
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                      <input type="text" class="form-control input" name="editarDireccion" placeholder="Ingresar Dirección" required>
+                      <input type="text" class="form-control input" id="editarDireccion" name="editarDireccion" placeholder="Ingresar Dirección" required>
                     </div>
                   </div>
 
