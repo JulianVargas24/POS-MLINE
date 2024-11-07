@@ -13,15 +13,16 @@ class ControladorPlantel{
 			if (ModeloPlantel::verificarRut($rut)) {
 				echo '<script>
 						swal({
-							  type: "error",
-							  title: "Este RUT ya está registrado",
-							  showConfirmButton: true,
-							  confirmButtonText: "Cerrar"
-							}).then(function(result) {
-								if (result.value) {
-									window.location = "plantel";
-								}
-							});
+							type: "error",
+							title: "Este RUT ya está registrado",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						}).then(function(result) {
+							if (result.value) {
+								// Mostramos el modal de nuevo para que el usuario pueda seguir en el formulario
+								$("#modalAgregarPlantel").modal("show");
+							}
+						});
 					  </script>';
 				return; // Detiene el proceso si el RUT ya existe
 			}
@@ -112,17 +113,17 @@ class ControladorPlantel{
 			// Verificar si el RUT ya existe para otro registro
 			if (ModeloPlantel::verificarRut($datos["rut"], $datos["id"])) {
 				echo '<script>
-					swal({
-						type: "error",
-						title: "Este RUT ya está registrado para otro usuario.",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-					}).then(function(result) {
-						if (result.value) {
-							window.location = "plantel";
-						}
-					});
-				</script>';
+						swal({
+							type: "error",
+							title: "Este RUT ya está registrado para otro usuario.",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						}).then(function(result) {
+							if (result.value) {
+								// No se realiza ninguna acción para evitar recarga de página
+							}
+						});
+					  </script>';
 				return;
 			}
 	
