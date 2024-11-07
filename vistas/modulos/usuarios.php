@@ -221,7 +221,7 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                                <input type="text" class="form-control input-lg" name="nuevoUsuario"
+                                <input type="text" class="form-control" name="nuevoUsuario"
                                        placeholder="Ingresar usuario" id="nuevoUsuario" required>
 
                             </div>
@@ -239,7 +239,7 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                                <input type="password" class="form-control input-lg" name="nuevoPassword"
+                                <input type="password" class="form-control" name="nuevoPassword"
                                        placeholder="Ingresar contraseña" required>
 
                             </div>
@@ -257,7 +257,7 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                                <select class="form-control input-lg" name="nuevoPerfil">
+                                <select class="form-control" name="nuevoPerfil">
 
                                     <option value="">Selecionar perfil</option>
 
