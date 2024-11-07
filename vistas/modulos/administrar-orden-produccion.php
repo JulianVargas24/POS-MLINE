@@ -50,7 +50,7 @@ if($xml){
     <div class="box">
 
       <div class="box-header with-border">
-        <a href="#">
+        <a href="orden-produccion">
           <button class="btn btn-primary">
             Crear Orden de Producción
           </button>
@@ -92,13 +92,12 @@ if($xml){
         <tr>
            
            <th>Folio</th>
-           <th>Tipo DTE</th>
+           <th>Tipo de orden</th>
            <th>Emisión</th>
            <th>Unidad de Negocio</th>
            <th>Bodega</th>
            <th>Cliente</th>
            <th>Nombre Orden</th>
-           <th>Observación</th>
            <th>Acciones</th>
          </tr> 
 
@@ -110,39 +109,53 @@ if($xml){
 
           $item = null;
           $valor = null;
-          //var_dump($item, $valor);
-          $vestuario = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
-          //var_dump($vestuario);
+          
+          $ordenesProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
+          
           $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
           $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
           $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
-          $plazos = ControladorPlazos::ctrMostrarPlazos($item,$valor);
-          $medios = ControladorMediosPago::ctrMostrarMedios($item,$valor);
           $negocios = ControladorNegocios::ctrMostrarNegocios($item,$valor);
 
-          //var_dump($negocios, $centros, $bodegas, $clientes);
+          
 
-            foreach ($vestuario as $key => $value) {
-              for($i = 0; $i < count($negocios); ++$i){
-                if ($negocios[$i]["id"] == $value["id_unidad_negocio"]) {
-                  $negocio = $negocios[$i]["unidad_negocio"];
-                }
+            // Iterar sobre las órdenes de producción
+foreach ($ordenesProduccion as $key => $orden) {
+  $negocio = '';
+  $centro = '';
+  $bodega = '';
+  $cliente = '';
+
+              // Buscar y asignar el nombre de la unidad de negocio
+              foreach ($negocios as $neg) {
+                  if ($neg["id"] == $orden["id_unidad_negocio"]) {
+                      $negocio = $neg["unidad_negocio"];
+                      break;
+                  }
               }
-              for($i = 0; $i < count($centros); ++$i){
-                if ($centros[$i]["id"] == $value["id_centro"]) {
-                  $centro = $centros[$i]["centro"];
-                }
+
+              // Buscar y asignar el nombre del centro de costo
+              foreach ($centros as $cen) {
+                  if ($cen["id"] == $orden["centro_costo"]) {
+                      $centro = $cen["centro"];
+                      break;
+                  }
               }
-              
-              for($i = 0; $i < count($bodegas); ++$i){
-                if ($bodegas[$i]["id"] == $value["id_bodega"]) {
-                  $bodega = $bodegas[$i]["nombre"];
-                }
+
+              // Buscar y asignar el nombre de la bodega
+              foreach ($bodegas as $bod) {
+                  if ($bod["id"] == $orden["bodega_destino"]) {
+                      $bodega = $bod["nombre"];
+                      break;
+                  }
               }
-              for($i = 0; $i < count($clientes); ++$i){
-                if ($clientes[$i]["id"] == $value["id_cliente"]) {
-                  $cliente = $clientes[$i]["nombre"];
-                }
+
+              // Buscar y asignar el nombre del cliente
+              foreach ($clientes as $cli) {
+                  if ($cli["id"] == $orden["id_cliente"]) {
+                      $cliente = $cli["nombre"];
+                      break;
+                  }
               }
               
             
@@ -150,11 +163,11 @@ if($xml){
               echo '<tr>
 
 
-                    <td>'.$value["codigo"].'</td>
+                    <td>'.$orden["folio_orden_produccion"].'</td>
 
-                    <td style="color:black;font-weight:bold;">Orden de Vestuario</td>
+                    <td style="font-weight:bold;font-size:15px;color:black;">'.$orden["tipo_orden"].'</td>
 
-                    <td>'.$value["fecha_emision"].'</td>
+                    <td>'.$orden["fecha_emision"].'</td>
 
                     <td>'.$centro.'</td>
 
@@ -162,32 +175,16 @@ if($xml){
 
                     <td>'.$cliente.'</td>
 
-                    <td>'.$value["nombre_orden"].'</td>
-
-                    <td>'.$value["observacion"].'</td>
-
+                    <td>'.$orden["nombre_orden"].'</td>
 
                     <td>
 
-                    <div class="btn-group">
-                      <button disabled class="btn btn-success btnImprimirTicket" codigoVenta="'.$value["codigo"].'">
-
-                      Ticket
-
-                      </button>
-                        
-                      <button disabled class="btn btn-info btnImprimirFactura" codigoVenta="'.$value["codigo"].'">
-
-                      PDF
-
-                      </button>';
+                    <div class="btn-group">';
 
                       if($_SESSION["perfil"] == "Administrador"){
                      echo' 
-                     <button class="btn btn-warning btnEditarOrdenVestuario" idOrdenVestuario="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-                     <button class="btn btn-danger btnEliminarOrdenVestuario" idOrdenVestuario="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-
-
+                     <button class="btn btn-warning btnEditarOrdenProduccion" idOrdenProduccion="'.$orden["id"].'"><i class="fa fa-pencil"></i></button>
+                     <button class="btn btn-danger btnEliminarOrdenProduccion" idOrdenProduccion="'.$orden["id"].'"><i class="fa fa-times"></i></button>';
                     }
 
                     echo '</div>  

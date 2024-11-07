@@ -281,9 +281,9 @@
                                     OT Producción
                                 </li>
                                                               
-                                <li class="' . isActive($paginaActual, 'admin-orden-produccion') . '">
-                                    <a href="admin-orden-produccion">							
-                                        <i class="' . marcarCirculo($paginaActual, 'admin-orden-produccion') . '"></i>
+                                <li class="' . isActive($paginaActual, 'administrar-orden-produccion') . '">
+                                    <a href="administrar-orden-produccion">							
+                                        <i class="' . marcarCirculo($paginaActual, 'administrar-orden-produccion') . '"></i>
                                         <span>Administrador OTP</span>
                                     </a>
                                 </li>

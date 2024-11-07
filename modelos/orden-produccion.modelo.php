@@ -157,4 +157,25 @@ class ModeloOrdenProduccion
     $stmt->close();
     $stmt = null;
   }
+
+  static public function mdlMostrarOrdenesProduccion($tabla, $item, $valor)
+{
+    try {
+        $stmt = Conexion::conectar()->prepare(
+            $item != null ?
+            "SELECT * FROM $tabla WHERE $item = :$item" :
+            "SELECT * FROM $tabla"
+        );
+
+        if ($item != null) {
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(); // Retorna todas las filas
+    } catch (Exception $e) {
+        return "error: " . $e->getMessage();
+    }
+}
+
 }

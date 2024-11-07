@@ -105,4 +105,15 @@ class ControladorOrdenProduccion
     $respuesta = ModeloOrdenProduccion::mdlObtenerUltimoFolio($tabla);
     return ($respuesta) ? $respuesta["folio_orden_produccion"] + 1 : 1;
   }
+
+  /**
+ * Mostrar todas las órdenes de producción
+ */
+static public function ctrMostrarOrdenesProduccion($item, $valor)
+{
+    $tabla = "orden_produccion";
+    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+    return $respuesta;
+}
+
 }
