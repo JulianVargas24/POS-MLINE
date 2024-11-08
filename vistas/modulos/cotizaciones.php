@@ -75,7 +75,7 @@ if ($xml) {
                 ?>
                 <div class="input-group">
 
-                    <button type="button" class="btn btn-default" id="daterange-cotizacion">
+                    <button type="button" class="btn btn-default" id="daterange-cotizaciones">
           
             <span>
               <i class="fa fa-calendar"></i> 

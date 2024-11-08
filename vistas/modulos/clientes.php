@@ -40,10 +40,6 @@ if($_SESSION["perfil"] == "Especial"){
 
       <div class="box-header with-border"> 
       
-      <a href="vistas/modulos/descargar-reporte-clientes.php?reporte=reporte">
-            <button class="btn btn-success">Descargar reporte clientes en Excel</button>
-          </a>
-  
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCliente">
           
           Agregar cliente

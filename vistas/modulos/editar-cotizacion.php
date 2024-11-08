@@ -593,7 +593,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 Observaciones</h4>
                                             <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
                                                       rows="6"><?php echo $cotizacion["observacion"]; ?></textarea>
-                                            <input type="text" id="listaProductos" name="listaProductos">
+                                            <input type="hidden" id="listaProductos" name="listaProductos">
                                         </div>
                                     </div>
                                 </div>
