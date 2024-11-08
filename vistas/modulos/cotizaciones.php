@@ -324,17 +324,15 @@ if ($xml) {
                             </button>';
 
                             if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
-
-
-                                echo '
-                            <button class="btn btn-warning btnEditarCotizacion" idCotizacion="' . $value["id"] . '"><i class="fa fa-pencil"></i></button> ';
-
-                            }
-                            if ($_SESSION["perfil"] == "Administrador") {
-                                echo ' <button class="btn btn-danger btnEliminarCotizacion" idCotizacion="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-
-
-                            }
+                              echo '<a href="index.php?ruta=editar-cotizacion-exenta&idCotizacion='.$value["id"].'" class="btn btn-warning btnEditarCotizacion">
+                                      <i class="fa fa-pencil"></i>
+                                    </a>';
+                          }
+                            if($_SESSION["perfil"] == "Administrador"){
+                           echo' <button class="btn btn-danger btnEliminarCotizacion" idCotizacion="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+      
+      
+                          }
 
                             echo '</div>  
 
