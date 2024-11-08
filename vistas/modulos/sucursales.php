@@ -20,15 +20,17 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar Sucursales
+      Administrar sucursales
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+
+        <li>Parámetros</li>
       
-      <li class="active">Administrar Sucursales</li>
+      <li class="active">Sucursales</li>
     
     </ol>
 
@@ -42,7 +44,7 @@ if($_SESSION["perfil"] == "Especial"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarSucursal">
           
-          Agregar Sucursal
+          Agregar sucursal
 
         </button>
 
@@ -58,11 +60,11 @@ if($_SESSION["perfil"] == "Especial"){
            
            <th style="width:10px">#</th>
            <th>Sucursal</th>
-           <th>Region</th>
+           <th>Región</th>
            <th>Comuna</th>
-           <th>Direccion</th>
-           <th>Bodega Asociada</th>
-           <th>Jefe Encargado</th>
+           <th>Dirección</th>
+           <th>Bodega asociada</th>
+           <th>Jefe encargado</th>
            <th>Teléfono</th>
            <th>Email</th>
            <th>Acciones</th>
@@ -169,7 +171,7 @@ MODAL AGREGAR SUCURSAL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Sucursal</h4>
+          <h4 class="modal-title">Agregar sucursal</h4>
 
 
         </div>
@@ -182,31 +184,31 @@ MODAL AGREGAR SUCURSAL
 
           <div class="box-body">
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Sucursal</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de sucursal</h4>
             <div class="box box-info">
               <div class="box-body">                
                 <div class="form-group row">
 
 
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre de sucursal</div>
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-                      <input type="text" class="form-control input" name="nuevaSucursal" id="nuevaSucursal" placeholder="Ingresar Nombre Sucursal" required>
+                      <input type="text" class="form-control input" name="nuevaSucursal" id="nuevaSucursal" placeholder="Ingresar nombre sucursal" required>
                     </div>
                   </div>
                   
                   <div class="col-lg-6 col-xs-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
-                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese Pais" required value="Chile">
+                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais" placeholder="Ingrese país" required value="Chile">
                     </div>
                   </div>
 
                   <div class="col-xs-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                   
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -235,7 +237,7 @@ MODAL AGREGAR SUCURSAL
 
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
               
                                 </select>
                     </div>
@@ -250,17 +252,17 @@ MODAL AGREGAR SUCURSAL
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                      <input type="text" class="form-control input" name="nuevaDireccion" placeholder="Ingresar Dirección" required>
+                      <input type="text" class="form-control input" name="nuevaDireccion" placeholder="Ingresar dirección" required>
                     </div>
                   </div>
 
                   <!-- ENTRADA PARA LA BODEGA --> 
                   <div class="col-lg-6" style="margin-top:10px;">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega Asociada</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega asociada</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
                       <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
-                        <option value="">Seleccionar Bodega</option>
+                        <option value="">Seleccionar bodega</option>
                         <?php
                           $item = null;
                           $valor = null;
@@ -276,53 +278,57 @@ MODAL AGREGAR SUCURSAL
               </div>
             </div>
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Contacto</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de contacto</h4>
             <div class="box box-success">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe Encargado</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
+                        
+                          <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                      <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-                      <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" placeholder="Ingresar Encargado" required>
-                    </div>
+                          <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" required>
+
+                        </div>
                   </div>
+
                   <div class="col-lg-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Teléfono</div>
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
                       <input type="tel" class="form-control input" name="nuevoTelefono" id="nuevoTelefono" 
-                      placeholder="Ingresar teléfono" required 
+                      placeholder="Ingresar teléfono" required
                       maxlength="12"
                       pattern="^\+[0-9]{11}$"
                       title="Ingrese el número de teléfono completo."
                       onfocus="if (this.value === '') { this.value = '+'; }"
                       oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
                       if (!this.value.startsWith('+')) {
-                          this.value = '+' + this.value.slice(1);
+                      this.value = '+' + this.value.slice(1);
                       }
                       this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');">
+                      </div>
+                    </div>
+
+                 
+                    <div class="col-lg-6" style="margin-top:10px;">
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
+                      <div class="input-group">
+                        
+                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                      <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail" required
+                      placeholder="Ingresar email"
+                      pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
+                      title="El email debe contener un arroba (@) y un punto (.) después del arroba">
                     </div>
                   </div>
-                </div>
-                
-                <div class="col-lg-6" style="margin-top:10px;">
-                  <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
-                  <div class="input-group">
-                    
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail"
-                    placeholder="Ingresar email" required
-                    pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
-                    title="El email debe contener un arroba (@) y un punto (.) después del arroba">
-                  </div>
-                </div>
-              </div>                 
-            </div> 
-          </div>  
-
+                 
+                </div> 
+              </div>  
+            </div>
+          </div>
         </div>
 
         <!--=====================================
@@ -333,7 +339,7 @@ MODAL AGREGAR SUCURSAL
           
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Sucursal</button>
+          <button type="submit" class="btn btn-primary">Guardar sucursal</button>
         
         </div>
       
@@ -372,7 +378,7 @@ MODAL EDITAR SUCURSAL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Sucursal</h4>
+          <h4 class="modal-title">Editar sucursal</h4>
 
         </div>
 
@@ -384,13 +390,13 @@ MODAL EDITAR SUCURSAL
 
           <div class="box-body">
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Sucursal</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de sucursal</h4>
               <div class="box box-info">
                 <div class="box-body">                
                   <div class="form-group row">
                                   
                     <div class="col-lg-6">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Sucursal</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre sucursal</div>
                       <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -400,7 +406,7 @@ MODAL EDITAR SUCURSAL
                         </div>
                     </div>
                     <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Pais</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -413,14 +419,14 @@ MODAL EDITAR SUCURSAL
                       <!-- ENTRADA PARA LA REGION -->
 
                       <div class="col-xs-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="editarRegion" name="editarRegion" required>
                                                                             
-                            <option  value="">Seleccionar Region</option>
+                            <option  value="">Seleccionar región</option>
 
                                 <?php
 
@@ -446,7 +452,7 @@ MODAL EDITAR SUCURSAL
 
                                 <select class="form-control input" id="editarComuna" name="editarComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
 
                                   
                                 </select>
@@ -461,16 +467,16 @@ MODAL EDITAR SUCURSAL
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                      <input type="text" class="form-control input" name="editarDireccion" placeholder="Ingresar Dirección" required>
+                      <input type="text" class="form-control input" id="editarDireccion" name="editarDireccion" placeholder="Ingresar Dirección" required>
                     </div>
                   </div>
 
                   <div class="col-lg-6" style="margin-top:10px;">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega Asociada</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega asociada</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
                       <select class="form-control input" id="editarBodega" name="editarBodega" required>
-                        <option value="">Seleccionar Bodega</option>
+                        <option value="">Seleccionar bodega</option>
                         <?php
                           $item = null;
                           $valor = null;
@@ -486,12 +492,12 @@ MODAL EDITAR SUCURSAL
               </div>  
             </div>
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Contacto</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de contacto</h4>
             <div class="box box-success">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe Encargado</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -500,6 +506,7 @@ MODAL EDITAR SUCURSAL
 
                         </div>
                   </div>
+
                   <div class="col-lg-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Teléfono</div>
                     <div class="input-group">
@@ -521,7 +528,7 @@ MODAL EDITAR SUCURSAL
 
                  
                     <div class="col-lg-6" style="margin-top:10px;">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
                       <div class="input-group">
                         
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -531,16 +538,11 @@ MODAL EDITAR SUCURSAL
                       title="El email debe contener un arroba (@) y un punto (.) después del arroba">
                     </div>
                   </div>
-                                   
+                 
                 </div> 
               </div>  
             </div>
-
-
-           
-  
           </div>
-
         </div>
        
         <!--=====================================
@@ -581,71 +583,35 @@ MODAL EDITAR SUCURSAL
 ?>
 
 <script>
-document.getElementById('nuevaRegion').addEventListener('change', function() {
-    var regionId = this.value; // Obtener el ID de la región seleccionada
+$(document).ready(function() {
+    $('#nuevaRegion').change(function() {
+        var selectedValue = $(this).val();
 
-    // Verifica que haya una región seleccionada
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
-
-                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
-                var comunaSelect = document.getElementById('nuevaComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
-
-                // Rellenar las opciones del select de comunas
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
-                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#nuevaComuna').html(response);
             }
-        };
-
-        // Enviar el ID de la región seleccionada al servidor
-        xhr.send('regionId=' + regionId);
-    } else {
-        // Si no hay región seleccionada, limpiar el select de comunas
-        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
 
-document.getElementById('editarRegion').addEventListener('change', function() {
-    var regionId = this.value;
-    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+$(document).ready(function() {
+    $('#editarRegion').change(function() {
+        var selectedValue = $(this).val();
 
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var comunas = JSON.parse(xhr.responseText);
-                var comunaSelect = document.getElementById('editarComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
-
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id;
-                    option.textContent = comuna.nombre;
-                    if (comuna.id == comunaActual) {
-                        option.selected = true; // Seleccionar la comuna actual
-                    }
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#editarComuna').html(response);
             }
-        };
-
-        xhr.send('regionId=' + regionId);
-    } else {
-        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
 </script>

@@ -20,14 +20,14 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar Tipos de Campaña
+      Administrar tipos de campaña
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Tipos de Campaña</li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Comercial</li>
+      <li class="active">Tipos de campaña</li>
     
     </ol>
 
@@ -41,7 +41,7 @@ if($_SESSION["perfil"] == "Especial"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarTipoCliente">
           
-          Agregar Tipo de Campaña
+          Agregar tipo de campaña
 
         </button>
 
@@ -51,12 +51,12 @@ if($_SESSION["perfil"] == "Especial"){
         
        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
          
-        <theadCampaña
+        <thead>
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Tipo de Campaña</th>
-           <th>Codigo</th>
+           <th>Tipo de campaña</th>
+           <th>Código</th>
 
 
          </tr> 
@@ -144,7 +144,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
             <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-            <h4 class="modal-title">Agregar Tipo de Campaña</h4>
+            <h4 class="modal-title">Agregar tipo de campaña</h4>
 
           </div>
 
@@ -160,24 +160,24 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
               
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Tipo de Campaña</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Tipo de campaña</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                        <input type="text" class="form-control input" name="nuevoTipoCliente" id="nuevoTipoCliente" placeholder="Ingresar Tipo de Campaña" required>
+                        <input type="text" class="form-control input" name="nuevoTipoCliente" id="nuevoTipoCliente" placeholder="Ingresar tipo de campaña" required>
 
                       </div>
               </div>
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Campaña</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de campaña</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevoCodigoCliente" id="nuevoCodigoCliente" placeholder="Ingresar Codigo de Campaña" required>
+                        <input type="number" class="form-control input" name="nuevoCodigoCliente" id="nuevoCodigoCliente" placeholder="Ingresar código de campaña" required>
 
                       </div>
               </div>
@@ -195,7 +195,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-            <button type="submit" class="btn btn-primary" name="crear_negocio">Agregar Tipo de Campaña</button>
+            <button type="submit" class="btn btn-primary" name="crear_negocio">Agregar tipo de campaña</button>
 
           </div>
 
@@ -234,7 +234,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Tipo de Cliente</h4>
+          <h4 class="modal-title">Editar tipo de cliente</h4>
 
         </div>
 
@@ -250,7 +250,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
             <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Tipo de Cliente</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Tipo de cliente</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -262,7 +262,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Cliente</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de cliente</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 

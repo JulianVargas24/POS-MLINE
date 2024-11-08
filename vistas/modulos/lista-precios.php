@@ -1,14 +1,14 @@
 <?php
 
-if($_SESSION["perfil"] == "Vendedor"){
+if ($_SESSION["perfil"] == "Vendedor") {
 
-  echo '<script>
+    echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-  return;
+    return;
 
 }
 
@@ -16,116 +16,113 @@ if($_SESSION["perfil"] == "Vendedor"){
 
 <div class="content-wrapper">
 
-  <section class="content-header">
-    
-    <h1>
-      
-    Lista de Precios
-    
-    </h1>
+    <section class="content-header">
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Lista de Precios</li>
-    
-    </ol>
+        <h1>
 
-  </section>
+            Lista de precios
 
-  <section class="content">
+        </h1>
 
-    <div class="box">
+        <ol class="breadcrumb">
 
-      <div class="box-header with-border">
-  
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Comercial</li>
+            <li class="active">Lista de precios</li>
 
+        </ol>
+
+    </section>
+
+    <section class="content">
+
+        <div class="box">
+
+            <div class="box-header with-border">
 
 
-      </div>
+            </div>
 
-      <div class="box-body">
+            <div class="box-body">
 
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Codigo</th>
-           <th>Nombre</th>
-           <th>Tabla Lista</th>
-           <th>Clasificacion</th>
-           <th>Precio Lista Neto</th>
-           <th>Precio Lista con IVA</th>
-           <th>Editar Precio</th>
+                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-         </tr> 
+                    <thead>
 
-        </thead>
+                    <tr>
 
-        <tbody>
+                        <th style="width:10px">#</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Tabla lista</th>
+                        <th>Clasificación</th>
+                        <th>Precio lista neto</th>
+                        <th>Precio lista con IVA</th>
+                        <th>Editar precio</th>
 
-        <?php
+                    </tr>
 
-          $item = null;
-          $valor = null;
-          $orden = "id";
+                    </thead>
 
-          $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
-          $tablas = ControladorTablaListas::ctrMostrarTablaListas($item, $valor);
+                    <tbody>
 
-          foreach ($productos as $key => $value) {
+                    <?php
 
-            for($i = 0; $i < count($tablas); ++$i){
-                if ($tablas[$i]["id"] == $value["id_tabla_lista"]) {
-                  $tabla = $tablas[$i]["nombre"];
-                }
-              }
-            
-           
-            echo ' <tr>
+                    $item = null;
+                    $valor = null;
+                    $orden = "id";
 
-                    <td>'.($key+1).'</td>
-                    <td>'.$value["codigo"].'</td>
-                    <td>'.$value["descripcion"].'</td>
-                    <td>'.$tabla.'</td>
-                    <td>'.$value["tipo_producto"].'</td>
-                    <td> $ '.number_format($value["precio_venta"] , 0,  '', '.').'</td>';
-                    if($value["tipo_producto"] == "Afecto"){
-                    echo '<td> $ '.number_format(($value["precio_venta"]*1.19) , 0,  '', '.').'</td>';
-                }else{
-                    echo '<td style="font-weight:bold;"> $ '.number_format($value["precio_venta"] , 0,  '', '.').'</td>';
-                }
-                echo'
+                    $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
+                    $tablas = ControladorTablaListas::ctrMostrarTablaListas($item, $valor);
+
+                    foreach ($productos as $key => $value) {
+
+                        for ($i = 0; $i < count($tablas); ++$i) {
+                            if ($tablas[$i]["id"] == $value["id_tabla_lista"]) {
+                                $tabla = $tablas[$i]["nombre"];
+                            }
+                        }
+
+
+                        echo ' <tr>
+
+                    <td>' . ($key + 1) . '</td>
+                    <td>' . $value["codigo"] . '</td>
+                    <td>' . $value["descripcion"] . '</td>
+                    <td>' . $tabla . '</td>
+                    <td>' . $value["tipo_producto"] . '</td>
+                    <td> $ ' . number_format($value["precio_venta"], 0, '', '.') . '</td>';
+                        if ($value["tipo_producto"] == "Afecto") {
+                            echo '<td> $ ' . number_format(($value["precio_venta"] * 1.19), 0, '', '.') . '</td>';
+                        } else {
+                            echo '<td style="font-weight:bold;"> $ ' . number_format($value["precio_venta"], 0, '', '.') . '</td>';
+                        }
+                        echo '
 
                     <div class="btn-group">
                           <td>
-                            <button class="btn btn-warning btnEditarPrecioProducto"  idProducto="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarPrecio"><i class="fa fa-pencil"></i></button>';
-  
-                        
-                         echo '</td>
+                            <button class="btn btn-warning btnEditarPrecioProducto"  idProducto="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarPrecio"><i class="fa fa-pencil"></i></button>';
+
+
+                        echo '</td>
                       </div> 
                 
 
                   </tr>';
-          }
+                    }
 
-        ?>
-        </tbody>
+                    ?>
+                    </tbody>
 
-        </table>
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </div>
-
-</div>
-
-</section>
-
-</div>
-
 
 
 <!--=====================================
@@ -134,87 +131,93 @@ MODAL AGREGAR RUBRO
 
 
 <div id="modalEditarPrecio" class="modal fade" role="dialog">
-  
-  <div class="modal-dialog">
 
-    <div class="modal-content">
+    <div class="modal-dialog">
 
-      <form role="form" method="post" id="form_editar_impuesto">
+        <div class="modal-content">
 
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+            <form role="form" method="post" id="form_editar_impuesto">
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+                <!--=====================================
+                CABEZA DEL MODAL
+                ======================================-->
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-header" style="background:#3c8dbc; color:white">
 
-          <h4 class="modal-title">Editar Precio Producto</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-            
-            <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Nombre Producto</div>
-                    <div class="input-group">
-                    
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                        <input type="text" class="form-control input" id="editarNombreProducto" name="editarNombreProducto" readonly required>
-                        <input type="hidden" id="idProducto"  name="idProducto"  required>
-
-                    </div>
-            </div>
-
-            
-            <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Precio Producto</div>
-                <div class="input-group">
-                
-                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                    <input type="text" class="form-control input" id="editarPrecioProducto" name="editarPrecioProducto"  required>
+                    <h4 class="modal-title">Editar precio producto</h4>
 
                 </div>
-            </div>
-  
-          </div>
+
+                <!--=====================================
+                CUERPO DEL MODAL
+                ======================================-->
+
+                <div class="modal-body">
+
+                    <div class="box-body">
+
+                        <!-- ENTRADA PARA EL NOMBRE -->
+
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Nombre producto
+                            </div>
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <input type="text" class="form-control input" id="editarNombreProducto"
+                                       name="editarNombreProducto" readonly required>
+                                <input type="hidden" id="idProducto" name="idProducto" required>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Precio producto
+                            </div>
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <input type="text" class="form-control input" id="editarPrecioProducto"
+                                       name="editarPrecioProducto" required>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--=====================================
+                PIE DEL MODAL
+                ======================================-->
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+                </div>
+
+                <?php
+
+                $editarPrecio = new ControladorProductos();
+                $editarPrecio->ctrEditarPrecioProducto();
+
+                ?>
+
+            </form>
 
         </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-
-        </div>
-
-      <?php
-
-          $editarPrecio = new ControladorProductos();
-          $editarPrecio -> ctrEditarPrecioProducto();
-
-        ?> 
-
-      </form>
 
     </div>
-
-  </div>
 
 </div>
 

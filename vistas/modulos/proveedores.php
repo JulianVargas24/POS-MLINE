@@ -11,11 +11,12 @@ if ($_SESSION["perfil"] == "Especial") {
 
   <section class="content-header">
     <h1>
-      Administrar Proveedores
+      Administrar proveedores
     </h1>
     <ol class="breadcrumb">
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Administrar Proveedor</li>
+      <li><a href="inicio"><i class="fa fa-home"></i> Inicio</a></li>
+      <li>Adquisiciones</li>
+      <li class="active">Proveedores</li>
     </ol>
   </section>
 
@@ -25,13 +26,13 @@ if ($_SESSION["perfil"] == "Especial") {
 
       <div class="box-header with-border">
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProveedor">
-          Agregar Proveedor
+          Agregar proveedor
         </button>
       </div>
 
-      <div class="box-tools pull-right" style="margin-bottom:5px">
+      <div class="box-tools pull-right" style="margin-bottom:10px; padding-right: 10px;">
         <a href="vistas/modulos/descargar-reporte-proveedores.php?reporte=reporte">
-          <button class="btn btn-success">Descargar Reporte Proveedores en Excel</button>
+          <button class="btn btn-success">Descargar reporte en Excel</button>
         </a>
       </div>
 
@@ -40,11 +41,11 @@ if ($_SESSION["perfil"] == "Especial") {
           <thead>
             <tr>
               <th style="width:10px">#</th>
-              <th>Razón Social</th>
+              <th>Razón social</th>
               <th>RUT</th>
               <th>Actividad</th>
               <th>Región</th>
-              <th>Nro. Cuenta</th>
+              <th>Nro. cuenta</th>
               <th>Banco</th>
               <th>Ejecutivo</th>
               <th>Teléfono</th>
@@ -62,7 +63,13 @@ if ($_SESSION["perfil"] == "Especial") {
             $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
 
             foreach ($proveedores as $key => $value) {
+              // Obtener los nombres de la región y la comuna
+              $regionNombre = ControladorRegiones::ctrMostrarRegiones('id', $value['region']);
+              $comunaNombre = ControladorRegiones::ctrMostrarComunas('id', $value['comuna']);
 
+              // Asignar nombres o mostrar el ID si no se encuentra el nombre
+              $regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : '' . $value['region'];
+              $comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : '' . $value['comuna'];
 
               echo '<tr>
 
@@ -143,7 +150,7 @@ MODAL AGREGAR PROVEEDOR
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Proveedor</h4>
+          <h4 class="modal-title">Agregar proveedor</h4>
 
         </div>
 
@@ -156,7 +163,7 @@ MODAL AGREGAR PROVEEDOR
           <div class="box-body">
 
             <h4 class="box-title" style="font-weight:bold;">
-              Datos de Proveedor
+              Datos de proveedor
             </h4>
             <div class="box box-success">
 
@@ -227,29 +234,18 @@ MODAL AGREGAR PROVEEDOR
                     Región
                   </div>
                   <div class="input-group">
-
                     <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-
                     <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
-
                       <option value="">Seleccionar región</option>
 
                       <?php
-
-                      $item = null;
-                      $valor = null;
-
-                      $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                      foreach ($regiones as $key => $value) {
-                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' ' . $value["ordinal"] . ' </option>';
+                      $regiones = ControladorRegiones::ctrMostrarRegiones(null, null);
+                      foreach ($regiones as $region) {
+                        echo '<option value="' . $region["id"] . '">' . $region["nombre"] . '</option>';
                       }
-
                       ?>
 
                     </select>
-
-
                   </div>
                 </div>
                 <!-- ENTRADA PARA LA CIUDAD -->
@@ -258,31 +254,14 @@ MODAL AGREGAR PROVEEDOR
                     Comuna
                   </div>
                   <div class="input-group">
-
                     <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-
                     <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
-
                       <option value="">Seleccionar comuna</option>
-
-                      <?php
-
-                      $item = null;
-                      $valor = null;
-
-
-                      $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                      foreach ($comunas as $key => $value) {
-                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                      }
-
-                      ?>
-
                     </select>
-
                   </div>
                 </div>
+                <!-- Input hidden para la comuna actual -->
+                <input type="hidden" id="comunaActual" value="<?php echo $bodegas['comuna']; ?>">
               </div>
 
               <div class="form-group row">
@@ -301,7 +280,7 @@ MODAL AGREGAR PROVEEDOR
                 </div>
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Rubro Principal
+                    Rubro principal
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-apple"></i></span>
@@ -330,14 +309,14 @@ MODAL AGREGAR PROVEEDOR
 
             </div>
           </div>
-          <h4 class="box-title" style="font-weight:bold;">Datos de Pago</h4>
+          <h4 class="box-title" style="font-weight:bold;">Datos de pago</h4>
           <div class="box box-info">
             <div class="box-body">
               <div class="form-group row">
                 <!-- ENTRADA PARA EL N° CUENTA BANCARIA-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Número de Cuenta
+                    Número de cuenta
                   </div>
                   <div class="input-group">
 
@@ -384,7 +363,7 @@ MODAL AGREGAR PROVEEDOR
                 <!-- ENTRADA PARA LÍNEA DE CRÉDITO-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Línea de Crédito
+                    Línea de crédito
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-ticket"></i></span>
@@ -396,7 +375,7 @@ MODAL AGREGAR PROVEEDOR
                 <!-- ENTRADA PARA EL BANCO -->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Plazo de Pago
+                    Plazo de pago
                   </div>
                   <div class="input-group">
 
@@ -427,14 +406,14 @@ MODAL AGREGAR PROVEEDOR
 
             </div>
           </div>
-          <h4 class="box-title" style="font-weight:bold;">Datos de Contacto</h4>
+          <h4 class="box-title" style="font-weight:bold;">Datos de contacto</h4>
           <div class="box box-warning">
             <div class="box-body">
               <div class="form-group row">
                 <!-- ENTRADA PARA EL TELEFONO-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Número de Teléfono
+                    Número de teléfono
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
@@ -448,7 +427,7 @@ MODAL AGREGAR PROVEEDOR
                 <!-- ENTRADA PARA EL EMAIL-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Correo Electrónico
+                    Correo electrónico
                   </div>
                   <div class="input-group">
 
@@ -490,15 +469,12 @@ MODAL AGREGAR PROVEEDOR
           <button type="submit" class="btn btn-primary ">Guardar proveedor</button>
 
         </div>
+      </form>
     </div>
 
     <!--=====================================
             PIE DEL MODAL
             ======================================-->
-
-
-    </form>
-
     <?php
 
     $crearProveedor = new ControladorProveedores();
@@ -507,8 +483,6 @@ MODAL AGREGAR PROVEEDOR
     ?>
 
   </div>
-
-</div>
 
 </div>
 
@@ -620,23 +594,13 @@ MODAL EDITAR PROVEEDOR
                     <select class="form-control input" id="editarRegion" name="editarRegion"
                       required>
 
-                      <option value="">Seleccionar región</option>
-
                       <?php
-
-                      $item = null;
-                      $valor = null;
-
-                      $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-
-                      foreach ($regiones as $key => $value) {
-                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' ' . $value["ordinal"] . ' </option>';
+                      foreach ($regiones as $region) {
+                        echo '<option value="' . $region['id'] . '" ' . ($region['id'] == $bodegas['region'] ? 'selected' : '') . '>' . $region['nombre'] . '</option>';
                       }
-
                       ?>
 
                     </select>
-
 
                   </div>
                 </div>
@@ -651,27 +615,12 @@ MODAL EDITAR PROVEEDOR
 
                     <select class="form-control input" id="editarComuna" name="editarComuna"
                       required>
-
                       <option value="">Seleccionar comuna</option>
-
-                      <?php
-
-                      $item = null;
-                      $valor = null;
-
-
-                      $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
-
-                      foreach ($comunas as $key => $value) {
-                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                      }
-
-                      ?>
-
                     </select>
-
                   </div>
                 </div>
+                <!-- Input hidden para la comuna actual -->
+                <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
               </div>
 
               <div class="form-group row">
@@ -690,7 +639,7 @@ MODAL EDITAR PROVEEDOR
                 </div>
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Rubro Principal
+                    Rubro principal
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-apple"></i></span>
@@ -719,14 +668,14 @@ MODAL EDITAR PROVEEDOR
 
             </div>
           </div>
-          <h4 class="box-title" style="font-weight:bold;">Datos de Pago</h4>
+          <h4 class="box-title" style="font-weight:bold;">Datos de pago</h4>
           <div class="box box-info">
             <div class="box-body">
               <div class="form-group row">
                 <!-- ENTRADA PARA EL N° CUENTA BANCARIA-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Número de Cuenta
+                    Número de cuenta
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-ticket"></i></span>
@@ -772,7 +721,7 @@ MODAL EDITAR PROVEEDOR
                 <!-- ENTRADA PARA LÍNEA DE CRÉDITO-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Línea de Crédito
+                    Línea de crédito
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-ticket"></i></span>
@@ -784,7 +733,7 @@ MODAL EDITAR PROVEEDOR
                 <!-- ENTRADA PARA EL BANCO -->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Plazo de Pago
+                    Plazo de pago
                   </div>
                   <div class="input-group">
 
@@ -815,14 +764,14 @@ MODAL EDITAR PROVEEDOR
 
             </div>
           </div>
-          <h4 class="box-title" style="font-weight:bold;">Datos de Contacto</h4>
+          <h4 class="box-title" style="font-weight:bold;">Datos de contacto</h4>
           <div class="box box-warning">
             <div class="box-body">
               <div class="form-group row">
                 <!-- ENTRADA PARA EL TELEFONO-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Número de Teléfono
+                    Número de teléfono
                   </div>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
@@ -836,7 +785,7 @@ MODAL EDITAR PROVEEDOR
                 <!-- ENTRADA PARA EL EMAIL-->
                 <div class="col-xs-6">
                   <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Correo Electrónico
+                    Correo electrónico
                   </div>
                   <div class="input-group">
 
@@ -878,14 +827,12 @@ MODAL EDITAR PROVEEDOR
           <button type="submit" class="btn btn-primary ">Guardar proveedor</button>
 
         </div>
+      </form>
     </div>
 
     <!--=====================================
-            PIE DEL MODAL
-            ======================================-->
-
-
-    </form>
+    PIE DEL MODAL
+    ======================================-->
 
     <?php
 
@@ -898,9 +845,45 @@ MODAL EDITAR PROVEEDOR
 
 </div>
 
-</div>
-
 <?php
 $eliminarProveedor = new ControladorProveedores();
 $eliminarProveedor->ctrEliminarProveedores();
 ?>
+
+<script>
+  $(document).ready(function() {
+    $('#nuevaRegion').change(function() {
+      var selectedValue = $(this).val();
+
+      $.ajax({
+        url: './vistas/modulos/obtenerRegiones.php',
+        data: {
+          id: selectedValue
+        },
+        type: 'POST',
+        success: function(response) {
+          console.log(response)
+          $('#nuevaComuna').html(response);
+        }
+      });
+    });
+  });
+
+  $(document).ready(function() {
+    $('#editarRegion').change(function() {
+      var selectedValue = $(this).val();
+
+      $.ajax({
+        url: './vistas/modulos/obtenerRegiones.php',
+        data: {
+          id: selectedValue
+        },
+        type: 'POST',
+        success: function(response) {
+          console.log(response)
+          $('#editarComuna').html(response);
+        }
+      });
+    });
+  });
+</script>

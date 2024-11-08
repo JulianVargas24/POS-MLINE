@@ -34,14 +34,14 @@ $(".tablas").on("click", ".btnEliminarTipoCliente", function(){
 	 var idTipoCliente = $(this).attr("idTipoCliente");
 
 	 swal({
-	 	title: '¿Está seguro de borrar el Tipo de Cliente?',
-	 	text: "¡Si no lo está puede cancelar la acción!",
+	 	title: '¿Está seguro de borrar este tipo de cliente?',
+	 	text: "Si no lo está, puede cancelar la acción.",
 	 	type: 'warning',
 	 	showCancelButton: true,
 	 	confirmButtonColor: '#3085d6',
 	 	cancelButtonColor: '#d33',
 	 	cancelButtonText: 'Cancelar',
-	 	confirmButtonText: 'Si, borrar Tipo de Cliente!'
+	 	confirmButtonText: 'Sí, borrar tipo de cliente'
 	 }).then(function(result){
 
 	 	if(result.value){

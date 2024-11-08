@@ -7,7 +7,7 @@ $fechaInicial = $_GET["fechaInicial"];
 $fechaFinal = $_GET["fechaFinal"];
 $ventas = ControladorVentas::ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal);
 
-$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+/* $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 $totalCategorias = count($categorias);
 
 $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);$totalClientes = count($clientes);
@@ -22,7 +22,7 @@ $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);
 $totalUsuarios = count($usuarios) - 1;
 
 $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor, $orden);
-$totalBodegas = count($bodegas);
+$totalBodegas = count($bodegas); */
 ?>
 <div class="content-wrapper">
 
@@ -32,13 +32,13 @@ $totalBodegas = count($bodegas);
       
       Tablero
       
-      <small>Panel de Control</small>
+      <small>Panel de control</small>
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
       
       <li class="active">Tablero</li>
     

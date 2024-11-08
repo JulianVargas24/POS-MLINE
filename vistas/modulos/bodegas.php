@@ -20,15 +20,17 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar Bodegas
+      Administrar bodegas
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+
+        <li>Maestro</li>
       
-      <li class="active">Administrar Bodegas</li>
+      <li class="active">Bodegas</li>
     
     </ol>
 
@@ -42,7 +44,7 @@ if($_SESSION["perfil"] == "Especial"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarBodega">
           
-          Agregar Bodega
+          Agregar bodega
 
         </button>
 
@@ -58,10 +60,10 @@ if($_SESSION["perfil"] == "Especial"){
            
            <th style="width:10px">#</th>
            <th>Bodega</th>
-           <th>Region</th>
+           <th>Región</th>
            <th>Comuna</th>
-           <th>Direccion</th>
-           <th>Jefe Encargado</th>
+           <th>Dirección</th>
+           <th>Jefe encargado</th>
            <th>Teléfono</th>
            <th>Email</th>
            <th>Acciones</th>
@@ -170,7 +172,7 @@ MODAL AGREGAR BODEGA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Bodega</h4>
+          <h4 class="modal-title">Agregar bodega</h4>
 
         </div>
 
@@ -182,29 +184,29 @@ MODAL AGREGAR BODEGA
 
           <div class="box-body">
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Bodega</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de bodega</h4>
               <div class="box box-info">
                 <div class="box-body">                
                   <div class="form-group row">              
                     <div class="col-lg-6">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Bodega</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre bodega</div>
                       <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                          <input type="text" class="form-control input" name="nuevaBodega" placeholder="Ingresar Nombre Bodega" required>
+                          <input type="text" class="form-control input" name="nuevaBodega" placeholder="Ingresar nombre bodega" required>
 
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold;">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold;">Región</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
                                                                             
-                                <option  value="">Seleccionar Region</option>
+                                <option  value="">Seleccionar región</option>
 
                                 <?php
                                 $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
@@ -231,7 +233,7 @@ MODAL AGREGAR BODEGA
 
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
 >
               
                                 </select>
@@ -242,12 +244,12 @@ MODAL AGREGAR BODEGA
                    
                     <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                       <div class="col-lg-6" style="margin-top:10px;">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                       <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                            <input type="text" class="form-control input" name="nuevaDireccion" placeholder="Ingresar Direccion" required>
+                            <input type="text" class="form-control input" name="nuevaDireccion" placeholder="Ingresar dirección" required>
 
                           </div>
                       </div>
@@ -256,22 +258,22 @@ MODAL AGREGAR BODEGA
                 </div>  
               </div>
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Contacto</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de contacto</h4>
             <div class="box box-success">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe Encargado</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                          <input type="tel" class="form-control input" name="nuevoJefe" placeholder="Ingresar Encargado" required>
+                          <input type="tel" class="form-control input" name="nuevoJefe" placeholder="Ingresar encargado" required>
 
                         </div>
                   </div>
                   <div class="col-lg-6">
-                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Telefono</div> 
+                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Teléfono</div> 
                     <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -291,7 +293,7 @@ MODAL AGREGAR BODEGA
                   </div>
                  
                     <div class="col-lg-6" style="margin-top:10px;">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Correo Electronico</div> 
+                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Correo eléctronico</div> 
                         <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
@@ -323,7 +325,7 @@ MODAL AGREGAR BODEGA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Bodega</button>
+          <button type="submit" class="btn btn-primary">Guardar bodega</button>
 
         </div>
 
@@ -362,7 +364,7 @@ MODAL EDITAR PROVEEDOR
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Bodega</h4>
+          <h4 class="modal-title">Editar bodega</h4>
 
         </div>
 
@@ -374,23 +376,23 @@ MODAL EDITAR PROVEEDOR
 
           <div class="box-body">
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Bodega</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de bodega</h4>
               <div class="box box-info">
                 <div class="box-body">                
                   <div class="form-group row">              
                     <div class="col-lg-6">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre Bodega</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre bodega</div>
                       <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
                           <input type="hidden" name="idBodega" id="idBodega">
-                          <input type="text" class="form-control input" name="editarBodega" id="editarBodega" placeholder="Ingresar Nombre Bodega" required>
+                          <input type="text" class="form-control input" name="editarBodega" id="editarBodega" placeholder="Ingresar nombre bodega" required>
 
                         </div>
                     </div>
 
                     <div class="col-lg-6">
-                      <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Region</div> 
+                      <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Región</div> 
                       <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -400,10 +402,14 @@ MODAL EDITAR PROVEEDOR
                                 <option  value="">Seleccionar Region</option>
 
                                 <?php
+
+                                $item = null;
+                                $valor = null;
+                                $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
                                 foreach ($regiones as $region) {
-                                    echo '<option value="'.$region['id'].'" '.($region['id'] == $bodegas['region'] ? 'selected' : '').'>'.$region['nombre'].'</option>';
-                                }
-                                ?>
+                                    echo '<option value="'.$region["id"].'">'.$region["nombre"].'</option>';
+                                  }
+                                  ?>
             
                             </select>
 
@@ -420,7 +426,7 @@ MODAL EDITAR PROVEEDOR
 
                             <select class="form-control input" id="editarComuna" name="editarComuna" required>
 
-                            <option value="">Seleccionar Comuna</option>
+                            <option value="">Seleccionar comuna</option>
 
                                     
                           </select>
@@ -436,12 +442,12 @@ MODAL EDITAR PROVEEDOR
                       
                     <!-- ENTRADA PARA LA SUBCATEGORIA -->                           
                       <div class="col-lg-6" style="margin-top:10px;">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Direccion</div>
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                       <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                            <input type="text" class="form-control input" name="editarDireccion" id="editarDireccion" placeholder="Ingresar Direccion" required>
+                            <input type="text" class="form-control input" name="editarDireccion" id="editarDireccion" placeholder="Ingresar dirección" required>
 
                           </div>
                       </div>
@@ -450,22 +456,22 @@ MODAL EDITAR PROVEEDOR
                 </div>  
               </div>
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Contacto</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de contacto</h4>
             <div class="box box-success">
               <div class="box-body">                
                 <div class="form-group row">              
                   <div class="col-lg-6">
-                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe Encargado</div>
+                    <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                          <input type="tel" class="form-control input" name="editarJefe" id="editarJefe" placeholder="Ingresar Encargado" required>
+                          <input type="tel" class="form-control input" name="editarJefe" id="editarJefe" placeholder="Ingresar encargado" required>
 
                         </div>
                   </div>
                   <div class="col-lg-6">
-                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Telefono</div> 
+                    <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Teléfono</div> 
                     <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -480,7 +486,7 @@ MODAL EDITAR PROVEEDOR
                   </div>
                  
                     <div class="col-lg-6" style="margin-top:10px;">
-                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Correo Electronico</div> 
+                        <div class="d-inline-block  text-center" style="font-size:16px;font-weight:bold">Correo electrónico</div> 
                         <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
@@ -541,73 +547,105 @@ MODAL EDITAR PROVEEDOR
 ?>
 
 <script>
-document.getElementById('nuevaRegion').addEventListener('change', function() {
-    var regionId = this.value; // Obtener el ID de la región seleccionada
+// document.getElementById('nuevaRegion').addEventListener('change', function() {
+//     var regionId = this.value; // Obtener el ID de la región seleccionada
 
-    // Verifica que haya una región seleccionada
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//     // Verifica que haya una región seleccionada
+//     if (regionId !== "") {
+//         var xhr = new XMLHttpRequest();
+//         xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
+//         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
+//         xhr.onload = function() {
+//             if (xhr.status === 200) {
+//                 console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
 
-                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
-                var comunaSelect = document.getElementById('nuevaComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
+//                 var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
+//                 var comunaSelect = document.getElementById('nuevaComuna');
+//                 comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
 
-                // Rellenar las opciones del select de comunas
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
-                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
-                    comunaSelect.appendChild(option);
-                });
+//                 // Rellenar las opciones del select de comunas
+//                 comunas.forEach(function(comuna) {
+//                     var option = document.createElement('option');
+//                     option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
+//                     option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
+//                     comunaSelect.appendChild(option);
+//                 });
+//             }
+//         };
+
+//         // Enviar el ID de la región seleccionada al servidor
+//         xhr.send('regionId=' + regionId);
+//     } else {
+//         // Si no hay región seleccionada, limpiar el select de comunas
+//         document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+//     }
+// });
+
+// document.getElementById('editarRegion').addEventListener('change', function() {
+//     var regionId = this.value;
+//     var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+
+//     if (regionId !== "") {
+//         var xhr = new XMLHttpRequest();
+//         xhr.open('POST', 'controladores/procesar_comunas.php', true);
+//         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+//         xhr.onload = function() {
+//             if (xhr.status === 200) {
+//                 var comunas = JSON.parse(xhr.responseText);
+//                 var comunaSelect = document.getElementById('editarComuna');
+//                 comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
+
+//                 comunas.forEach(function(comuna) {
+//                     var option = document.createElement('option');
+//                     option.value = comuna.id;
+//                     option.textContent = comuna.nombre;
+//                     if (comuna.id == comunaActual) {
+//                         option.selected = true; // Seleccionar la comuna actual
+//                     }
+//                     comunaSelect.appendChild(option);
+//                 });
+//             }
+//         };
+
+//         xhr.send('regionId=' + regionId);
+//     } else {
+//         document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
+//     }
+// });
+$(document).ready(function() {
+    $('#nuevaRegion').change(function() {
+        var selectedValue = $(this).val();
+
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#nuevaComuna').html(response);
             }
-        };
-
-        // Enviar el ID de la región seleccionada al servidor
-        xhr.send('regionId=' + regionId);
-    } else {
-        // Si no hay región seleccionada, limpiar el select de comunas
-        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
 
-document.getElementById('editarRegion').addEventListener('change', function() {
-    var regionId = this.value;
-    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
 
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+$(document).ready(function() {
+    $('#editarRegion').change(function() {
+        var selectedValue = $(this).val();
 
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var comunas = JSON.parse(xhr.responseText);
-                var comunaSelect = document.getElementById('editarComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
-
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id;
-                    option.textContent = comuna.nombre;
-                    if (comuna.id == comunaActual) {
-                        option.selected = true; // Seleccionar la comuna actual
-                    }
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#editarComuna').html(response);
             }
-        };
-
-        xhr.send('regionId=' + regionId);
-    } else {
-        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
-  </script>
+</script>
 
 

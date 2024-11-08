@@ -23,7 +23,7 @@ class ControladorBancos {
                     echo '<script>
                     swal({
                         type: "success",
-                        title: "El banco ha sido guardado correctamente",
+                        title: "El Banco ha sido guardado correctamente",
                         showConfirmButton: true,
                         confirmButtonText: "Cerrar"
                     }).then((result) => {
@@ -38,7 +38,7 @@ class ControladorBancos {
                 echo '<script>
                 swal({
                     type: "error",
-                    title: "¡El banco no puede ir vacío o llevar caracteres especiales!",
+                    title: "¡El Banco no puede ir vacío o llevar caracteres especiales!",
                     showConfirmButton: true,
                     confirmButtonText: "Cerrar"
                 }).then((result) => {
@@ -86,7 +86,7 @@ class ControladorBancos {
                     echo '<script>
                     swal({
                         type: "success",
-                        title: "El banco ha sido editado correctamente",
+                        title: "El Banco ha sido editado correctamente",
                         showConfirmButton: true,
                         confirmButtonText: "Cerrar"
                     }).then((result) => {
@@ -101,7 +101,7 @@ class ControladorBancos {
                 echo '<script>
                 swal({
                     type: "error",
-                    title: "¡El banco no puede ir vacío o llevar caracteres especiales!",
+                    title: "¡El Banco no puede ir vacío o llevar caracteres especiales!",
                     showConfirmButton: true,
                     confirmButtonText: "Cerrar"
                 }).then((result) => {
@@ -133,7 +133,7 @@ class ControladorBancos {
             echo '<script>
                 swal({
                     type: "success",
-                    title: "El banco ha sido borrado correctamente",
+                    title: "El Banco ha sido borrado correctamente",
                     showConfirmButton: true,
                     confirmButtonText: "Cerrar"
                 }).then((result) => {

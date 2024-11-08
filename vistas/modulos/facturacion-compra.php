@@ -1,4 +1,4 @@
-<?php
+<s?php
 
 if ($_SESSION["perfil"] == "Especial") {
 
@@ -18,14 +18,14 @@ if ($_SESSION["perfil"] == "Especial") {
     <section class="content-header">
 
         <h1 style="color:green;font-weight:bold">
-            Facturar Compra
+            Facturar compra
         </h1>
 
         <ol class="breadcrumb">
 
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Facturar Compra</li>
+            <li class="active">Facturar compra</li>
 
         </ol>
 
@@ -72,7 +72,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-info">
                                 <div class="box-body">
                                     <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Proveedor Asociado
+                                        Proveedor asociado
                                     </h2>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-xs-12">
@@ -175,7 +175,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="box box-info">
                                 <div class="box-body">
                                     <h2 class="box-title" style="font-weight:bold; font-size:20px;">
-                                        Datos de Orden
+                                        Datos de órden
                                     </h2>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-xs-6">
@@ -282,6 +282,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         value="<?php echo $ordencompra["codigo"]; ?>" readonly
                                                         required>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -300,6 +301,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         class="form-control" name="nuevoCodigo" id="nuevoCodigo"
                                                         required>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -318,7 +320,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <div class="row nuevoProducto">
 
                                         <h2 class="box-title text-center" style="font-weight:bold; font-size:20px;">
-                                            Productos Seleccionados
+                                            Productos seleccionados
                                         </h2>
                                         <div class="row" style="padding:5px 15px">
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
@@ -343,7 +345,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:0px">
                                                 <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Total Neto</p>
+                                                    Total neto</p>
                                             </div>
                                             <div class="col-xs-1 text-center" style="padding-right:0px">
                                                 <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
@@ -355,7 +357,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                             <div class="col-xs-2 text-center" style="padding-right:12px">
                                                 <p style="background-color:#3c8dbc; color:white; border-radius:5px; padding: 5px 0px;">
-                                                    Total Final</p>
+                                                    Total final</p>
                                             </div>
                                         </div>
 
@@ -449,7 +451,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <span class="input-group-addon" style="padding:0px 3px">Total Neto</span>
+                                                            <span class="input-group-addon" style="padding:0px 3px">Total neto</span>
                                                             <input style="font-size:16px;" type="text"
                                                                 class="form-control" id="nuevoTotalNeto"
                                                                 name="nuevoTotalNeto" total="" value="" readonly>
@@ -507,7 +509,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                     <div class="box box-danger">
                                         <div class="box-body">
                                             <h3 class="box-title" style="font-weight:bold; font-size:20px;">
-                                                Condición de Pago</h3>
+                                                Condición de pago</h3>
                                             <div class="row">
                                                 <div class="col-xs-12">
 
@@ -519,7 +521,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                        style="background-color:#3c8dbc;font-size:15px;">Plazo de Pago
+                                                        style="background-color:#3c8dbc;font-size:15px;">Plazo de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
@@ -549,7 +551,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                        style="background-color:#3c8dbc;font-size:15px;">Medios de Pago
+                                                        style="background-color:#3c8dbc;font-size:15px;">Medios de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
@@ -613,21 +615,23 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
+
+                    <a href="ordenes-compra">
+                    <button type="button" class="btn btn-default">Salir</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Facturar Compra</button>
+                    
+                </form>
+                <?php
+
+                $guardarFacturacionCompra = new ControladorCompra();
+                $guardarFacturacionCompra->ctrCrearCompraConOrden();
+
+                ?>    
             </div>
 
-            <a href="ordenes-compra">
-                <button type="button" class="btn btn-default">Salir</button>
-            </a>
-            <button type="submit" class="btn btn-primary">Facturar Compra</button>
-
-            <?php
-
-            $guardarFacturacionCompra = new ControladorCompra();
-            $guardarFacturacionCompra->ctrCrearCompraConOrden();
-
-            ?>
-
         </div>
+    </section>    
 </div>
 
 <style>

@@ -47,8 +47,15 @@
                                 </li>						
                             </ul>
                           </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, ['parametros-generales', 'parametros-documentos'
-                            , 'parametros-impresion', 'bancos', 'sucursales', 'matriz', 'tabla-listas']) . '">
+                    echo '<li class="treeview ' . isActive($paginaActual, [
+                        'parametros-generales',
+                        'parametros-documentos',
+                        'parametros-impresion',
+                        'bancos',
+                        'sucursales',
+                        'matriz',
+                        'tabla-listas'
+                    ]) . '">
                             <a href="#">
                                 <i class="fa fa-cog"></i>
                                 <span>Parámetros</span>
@@ -101,8 +108,17 @@
                                 </li>											
                             </ul>
                         </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, ['categorias', 'subcategorias'
-                            , 'bodegas', 'plazos', 'listas', 'unidades', 'medios-pago', 'impuestos', 'rubros']) . '">
+                    echo '<li class="treeview ' . isActive($paginaActual, [
+                        'categorias',
+                        'subcategorias',
+                        'bodegas',
+                        'plazos',
+                        'listas',
+                        'unidades',
+                        'medios-pago',
+                        'impuestos',
+                        'rubros'
+                    ]) . '">
                             <a href="#">
                                 <i class="fa fa-archive"></i>
                                 <span>Maestro</span>
@@ -167,8 +183,16 @@
                                 </li>									
                             </ul>
                         </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, ['proveedores', 'centro-costo'
-                            , 'compras', 'compra', 'editar-compra', 'ordenes-compra', 'orden-compra', 'editar-orden-compra']) . '">		
+                    echo '<li class="treeview ' . isActive($paginaActual, [
+                        'proveedores',
+                        'centro-costo',
+                        'compras',
+                        'compra',
+                        'editar-compra',
+                        'ordenes-compra',
+                        'orden-compra',
+                        'editar-orden-compra'
+                    ]) . '">		
                             <a href="#">		
                                 <i class="fa fa-bank"></i>								
                                     <span>Adquisiciones</span>								
@@ -203,8 +227,16 @@
                                 </li>		
                             </ul>
                         </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, ['productos', 'entrada', 'entradas'
-                            , 'salida', 'salidas', 'ajuste', 'ajustes', 'productos-bodega']) . '">
+                    echo '<li class="treeview ' . isActive($paginaActual, [
+                        'productos',
+                        'entrada',
+                        'entradas',
+                        'salida',
+                        'salidas',
+                        'ajuste',
+                        'ajustes',
+                        'productos-bodega'
+                    ]) . '">
                             <a href="#">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Inventario</span>
@@ -245,8 +277,12 @@
                                 </li>						
                             </ul>
                         </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, ['orden-trabajo', 'personal'
-                            , 'orden-vestuario', 'admin-orden-produccion']) . '">
+                    echo '<li class="treeview ' . isActive($paginaActual, [
+                        'orden-trabajo',
+                        'personal',
+                        'orden-vestuario',
+                        'admin-orden-produccion'
+                    ]) . '">
                             <a href="#">
                                 <i class="fa fa-file"></i>						
                                 <span>Orden de trabajo</span>						
@@ -308,9 +344,17 @@
                     }
             */
             if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
-                echo '<li class="treeview ' . isActive($paginaActual, ['clientes', 'ventas'
-                        , 'cotizaciones', 'cotizacion', 'cotizacion-exenta', 'venta-boleta'
-                        , 'boleta-exenta', 'venta-factura', 'venta-factura-exenta']) . '">
+                echo '<li class="treeview ' . isActive($paginaActual, [
+                    'clientes',
+                    'ventas',
+                    'cotizaciones',
+                    'cotizacion',
+                    'cotizacion-exenta',
+                    'venta-boleta',
+                    'boleta-exenta',
+                    'venta-factura',
+                    'venta-factura-exenta'
+                ]) . '">
                         <a href="#">
                             <i class="fa fa-users"></i>
                             <span>Ventas</span>					
@@ -388,8 +432,12 @@
                     </a>
                 </li>
                 */
-                echo '<li class="treeview ' . isActive($paginaActual, ['unidad-negocio', 'lista-precios'
-                        , 'tipo-cliente', 'tipo-producto']) . '">
+                echo '<li class="treeview ' . isActive($paginaActual, [
+                    'unidad-negocio',
+                    'lista-precios',
+                    'tipo-cliente',
+                    'tipo-producto'
+                ]) . '">
                         <a href="#">
                             <i class="fa fa-address-book"></i>
                             <span>Comercial</span>

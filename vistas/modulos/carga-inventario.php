@@ -28,7 +28,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Formulario Carga de Inventario</li>
+      <li class="active">Formulario carga de inventario</li>
     
     </ol>
 
@@ -46,13 +46,13 @@ if($_SESSION["perfil"] == "Especial"){
                     
                         <div class="form-group">
                             <div class="input-group">
-                                <label for="">Fecha Emision</label>
-                                <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">
+                                <label for="">Fecha emisión</label>
+                                <input type="date" class="form-control input" name="nuevaFechaEmision" id="nuevaFechaEmision">
                             </div>
                         </div>
                 </div>
                 <div class="col-xs-2 col-xs-offset-5">
-                    <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">Carga de Inventario</div>
+                    <div class="d-block" style="font-size:16px;color:green;font-weight:bold;">Carga de inventario</div>
                         <div class="form-group">
                             <div class="input-group">
                             <span class="input-group-addon">Folio</span>
@@ -65,14 +65,14 @@ if($_SESSION["perfil"] == "Especial"){
 
             <div class="row" style="margin-bottom:5px;">
                 <div class="col-xs-5">
-                    <label for="">Tipo de Carga</label>
+                    <label for="">Tipo de carga</label>
                     <div class="form-group">
-                                                                    <div class="input-group">
-                                                                        <input type="radio" name="tipoCarga" value="bodega">
-                                                                        <label for="radio1" style="font-weight:normal;">Bodega</label>
-                                                                    </div>                                                                    
+                        <div class="input-group">
+                            <input type="radio" name="tipoCarga" value="bodega">
+                            <label for="radio1" style="font-weight:normal;">Bodega</label>
+                        </div>
                                                                     
-                                                                </div>
+                    </div>
                 </div>
                 <div class="col-xs-5">
                     <label for="">Observaciones</label>
@@ -87,12 +87,12 @@ if($_SESSION["perfil"] == "Especial"){
             <div class="row">
                 <div class="col-xs-12" id="ajuste">
                     <div class="box box-info">
-                        <h4 class="box-title">Carga de Inventario  </h4>
+                        <h4 class="box-title">Carga de inventario  </h4>
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-xs-6 bodegaOrigen">
                                     <div class="col-xs-6 ">
-                                        <div class="d-block" style="font-size:14px;">Bodega Origen</div>
+                                        <div class="d-block" style="font-size:14px;">Bodega de origen</div>
                                         <div class="form-group">
                                             <div class="input-group">
                                                 
@@ -100,7 +100,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                 <select style="padding-left:0px" class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
                                                     
-                                                <option value="">Seleccionar Bodega</option>
+                                                <option value="">Seleccionar bodega</option>
                                                 <?php
 
                                                     $item = null;
@@ -128,7 +128,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <div class="box box-success">
                                             <div class="box-header with-border"></div>
                                                 <div class="box-body">
-                                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
+                                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para seleccionar</h4>
                                                     <table  id="productos" class="table table-bordered table-striped dt-responsive tablaCarga">
                                                 
                                                     
@@ -157,7 +157,7 @@ if($_SESSION["perfil"] == "Especial"){
                 </div>
                 
                 <button type="button" class="btn btn-default">Salir</button>
-            <button type="submit" class="btn btn-primary">Aplicar Ajustes</button> 
+            <button type="submit" class="btn btn-primary">Aplicar ajustes</button>
             </div>
         
         </form>

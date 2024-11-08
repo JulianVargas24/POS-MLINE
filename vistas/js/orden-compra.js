@@ -34,39 +34,43 @@ $(".tablaCompras").DataTable({
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
 $(".tablaCompras tbody").on("click", "button.agregarProducto", function () {
-  var idProducto = $(this).attr("idProducto");
 
-  $(this).removeClass("btn-primary agregarProducto");
+    var idProducto = $(this).attr("idProducto");
 
-  $(this).addClass("btn-default");
+    $(this).removeClass("btn-primary agregarProducto");
 
-  var datos = new FormData();
-  datos.append("idProducto", idProducto);
+    $(this).addClass("btn-default");
 
-  $.ajax({
-    url: "ajax/productos.ajax.php",
-    method: "POST",
-    data: datos,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "json",
-    success: function (respuesta) {
-      var descripcion = respuesta["descripcion"];
-      var precio = respuesta["precio_compra"];
-      var impuesto = precio * 0.19;
-      var descuento = 0;
-      var total = Number(precio) + Number(impuesto);
+    var datos = new FormData();
+    datos.append("idProducto", idProducto);
 
-      $(".nuevoProducto").append(
-        `<div class="row" style="padding:5px 15px">
-				<!-- Descripción del producto -->
-			<div class="col-xs-2" style="padding-right:0px">
-				<div class="input-group">
-				<span class="input-group-addon">
-					<button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="${idProducto}"><i class="fa fa-times"></i></button>
-				</span>
-					<input type="text" class="form-control nuevaDescripcionProducto" idProducto="${idProducto}" name="agregarProducto" value="${descripcion}" readonly required>
+    $.ajax({
+
+        url: "ajax/productos.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+
+            var descripcion = respuesta["descripcion"];
+            var precio = respuesta["precio_compra"];
+            var impuesto = precio * 0.19;
+            var descuento = 0;
+            var total = Number(precio) + Number(impuesto);
+
+            $(".nuevoProducto").append(
+                `<div class="row" style="padding:5px 15px">
+			  	<!-- Descripción del producto -->
+				<div class="col-xs-2" style="padding-right:0px">
+					<div class="input-group">
+					<span class="input-group-addon">
+						<button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="${idProducto}"><i class="fa fa-times"></i></button>
+					</span>
+						<input type="text" class="form-control nuevaDescripcionProducto" idProducto="${idProducto}" name="agregarProducto" value="${descripcion}" readonly required>
+					</div>
 				</div>
 			</div>
 				<!-- Cantidad del producto -->
@@ -140,23 +144,19 @@ function cambios() {
 CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
 =============================================*/
 $(".tablaCompras").on("draw.dt", function () {
-  if (localStorage.getItem("quitarProducto") != null) {
-    var listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto"));
 
-    for (var i = 0; i < listaIdProductos.length; i++) {
-      $(
-        "button.recuperarBoton[idProducto='" +
-          listaIdProductos[i]["idProducto"] +
-          "']"
-      ).removeClass("btn-default");
-      $(
-        "button.recuperarBoton[idProducto='" +
-          listaIdProductos[i]["idProducto"] +
-          "']"
-      ).addClass("btn-primary agregarProducto");
+    if (localStorage.getItem("quitarProducto") != null) {
+
+        var listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto"));
+
+        for (var i = 0; i < listaIdProductos.length; i++) {
+
+            $("button.recuperarBoton[idProducto='" + listaIdProductos[i]["idProducto"] + "']").removeClass('btn-default');
+            $("button.recuperarBoton[idProducto='" + listaIdProductos[i]["idProducto"] + "']").addClass('btn-primary agregarProducto');
+        }
     }
-  }
-});
+})
+
 
 /*=============================================
 QUITAR PRODUCTOS DE LA VENTA Y RECUPERAR BOTÓN
@@ -221,79 +221,104 @@ AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS
 var numProducto = 0;
 
 $(".btnAgregarProducto").click(function () {
-  numProducto++;
 
-  var datos = new FormData();
-  datos.append("traerProductos", "ok");
+    numProducto++;
 
-  $.ajax({
-    url: "ajax/productos.ajax.php",
-    method: "POST",
-    data: datos,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "json",
-    success: function (respuesta) {
-      $(".nuevoProducto").append(
-        '<div class="row" style="padding:5px 15px">' +
-          "<!-- Descripción del producto -->" +
-          '<div class="col-xs-6" style="padding-right:0px">' +
-          '<div class="input-group">' +
-          '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto><i class="fa fa-times"></i></button></span>' +
-          '<select class="form-control nuevaDescripcionProducto" id="producto' +
-          numProducto +
-          '" idProducto name="nuevaDescripcionProducto" required>' +
-          "<option>Seleccione el producto</option>" +
-          "</select>" +
-          "</div>" +
-          "</div>" +
-          "<!-- Cantidad del producto -->" +
-          '<div class="col-xs-3 ingresoCantidad">' +
-          '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="0" stock nuevoStock required>' +
-          "</div>" +
-          "<!-- Precio del producto -->" +
-          '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
-          '<div class="input-group">' +
-          '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-          '<input type="text" class="form-control nuevoPrecioProducto" precioReal="" name="nuevoPrecioProducto" readonly required>' +
-          "</div>" +
-          "</div>" +
-          "</div>"
-      );
+    var datos = new FormData();
+    datos.append("traerProductos", "ok");
 
-      // AGREGAR LOS PRODUCTOS AL SELECT
+    $.ajax({
 
-      respuesta.forEach(funcionForEach);
+        url: "ajax/productos.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
 
-      function funcionForEach(item, index) {
-        if (item.stock != 0) {
-          $("#producto" + numProducto).append(
-            '<option idProducto="' +
-              item.id +
-              '" value="' +
-              item.descripcion +
-              '">' +
-              item.descripcion +
-              "</option>"
-          );
+            $(".nuevoProducto").append(
+                '<div class="row" style="padding:5px 15px">' +
+
+                '<!-- Descripción del producto -->' +
+
+                '<div class="col-xs-6" style="padding-right:0px">' +
+
+                '<div class="input-group">' +
+
+                '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto><i class="fa fa-times"></i></button></span>' +
+
+                '<select class="form-control nuevaDescripcionProducto" id="producto' + numProducto + '" idProducto name="nuevaDescripcionProducto" required>' +
+
+                '<option>Seleccione el producto</option>' +
+
+                '</select>' +
+
+                '</div>' +
+
+                '</div>' +
+
+                '<!-- Cantidad del producto -->' +
+
+                '<div class="col-xs-3 ingresoCantidad">' +
+
+                '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="0" stock nuevoStock required>' +
+
+                '</div>' +
+
+                '<!-- Precio del producto -->' +
+
+                '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
+
+                '<div class="input-group">' +
+
+                '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
+
+                '<input type="text" class="form-control nuevoPrecioProducto" precioReal="" name="nuevoPrecioProducto" readonly required>' +
+
+                '</div>' +
+
+                '</div>' +
+
+                '</div>');
+
+
+            // AGREGAR LOS PRODUCTOS AL SELECT
+
+            respuesta.forEach(funcionForEach);
+
+            function funcionForEach(item, index) {
+
+                if (item.stock != 0) {
+
+                    $("#producto" + numProducto).append(
+                        '<option idProducto="' + item.id + '" value="' + item.descripcion + '">' + item.descripcion + '</option>'
+                    )
+
+
+                }
+
+            }
+
+            // SUMAR TOTAL DE PRECIOS
+
+            sumarTotalPrecios()
+
+            // AGREGAR IMPUESTO
+
+            agregarImpuesto()
+
+            // PONER FORMATO AL PRECIO DE LOS PRODUCTOS
+
+            $(".nuevoPrecioProducto").number(true, 0);
+
+
         }
-      }
 
-      // SUMAR TOTAL DE PRECIOS
+    })
 
-      sumarTotalPrecios();
-
-      // AGREGAR IMPUESTO
-
-      agregarImpuesto();
-
-      // PONER FORMATO AL PRECIO DE LOS PRODUCTOS
-
-      $(".nuevoPrecioProducto").number(true, 0);
-    },
-  });
-});
+})
 
 /*=============================================
 SELECCIONAR PRODUCTO
@@ -459,37 +484,40 @@ $(".formularioOrdenCompra").on(
     $(this).attr("nuevoStock", nuevoStock);
 
     if (Number($(this).val()) > Number($(this).attr("stock"))) {
-      /*=============================================
-			SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
-			=============================================*/
 
-      $(this).val(0);
+        /*=============================================
+        SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
+        =============================================*/
 
-      $(this).attr("nuevoStock", $(this).attr("stock"));
+        $(this).val(0);
 
-      var precioFinal = $(this).val() * precio.attr("precioReal");
+        $(this).attr("nuevoStock", $(this).attr("stock"));
 
-      precio.val(precioFinal);
+        var precioFinal = $(this).val() * precio.attr("precioReal");
 
-      sumarTotalPrecios();
+        precio.val(precioFinal);
 
-      swal({
-        title: "La cantidad supera el Stock",
-        text: "¡Sólo hay " + $(this).attr("stock") + " unidades!",
-        type: "error",
-        confirmButtonText: "¡Cerrar!",
-      });
+        sumarTotalPrecios();
 
-      return;
+        swal({
+            title: "La cantidad supera el Stock",
+            text: "¡Sólo hay " + $(this).attr("stock") + " unidades!",
+            type: "error",
+            confirmButtonText: "¡Cerrar!"
+        });
+
+        return;
+
     }
 
     // SUMAR TOTAL DE PRECIOS
 
-    sumarTotalPrecios();
+    sumarTotalPrecios()
+
 
     // AGREGAR IMPUESTO
 
-    agregarImpuesto();
+    agregarImpuesto()
 
     // AGRUPAR PRODUCTOS EN FORMATO JSON
 
@@ -611,44 +639,44 @@ function restarVentas() {
 
 /*function restar3(){
 
-	var total = $("#TotalVenta").val();
+    var total = $("#TotalVenta").val();
 
-	var pagado  = $("#TotalPagado").val();
+    var pagado  = $("#TotalPagado").val();
 
-	var pendiente = Number(total - pagado);
+    var pendiente = Number(total - pagado);
 
-	$("#TotalPendientePago2").val(pendiente);
+    $("#TotalPendientePago2").val(pendiente);
 
 
 }
 
 function restar2(){
 
-	var total = $("#totalVenta").val();
+    var total = $("#totalVenta").val();
 
-	var pagado  = $("#TotalPagado").val();
+    var pagado  = $("#TotalPagado").val();
 
-	var pendiente = Number(total - pagado);
+    var pendiente = Number(total - pagado);
 
-	$("#TotalPendientePago").val(pendiente);
+    $("#TotalPendientePago").val(pendiente);
 
 
 }*/
 function sumarTotales() {
-  var totalItem = $(".nuevoTotalProducto");
-  var arraySumaTotales = [];
-  for (var i = 0; i < totalItem.length; i++) {
-    arraySumaTotales.push(Number($(totalItem[i]).val()));
-  }
+    var totalItem = $(".nuevoTotalProducto");
+    var arraySumaTotales = [];
+    for (var i = 0; i < totalItem.length; i++) {
+        arraySumaTotales.push(Number($(totalItem[i]).val()));
+    }
 
-  function sumaArrayTotales(total, numero) {
-    return total + numero;
-  }
+    function sumaArrayTotales(total, numero) {
+        return total + numero;
+    }
 
-  var sumaTotales = arraySumaTotales.reduce(sumaArrayTotales);
+    var sumaTotales = arraySumaTotales.reduce(sumaArrayTotales);
 
-  $("#nuevoTotalCompra").val(sumaTotales);
-  $("#nuevoTotalCompra").attr("total", sumaTotales);
+    $("#nuevoTotalCompra").val(sumaTotales);
+    $("#nuevoTotalCompra").attr("total", sumaTotales);
 }
 
 function sumarDescuentos() {
@@ -1195,50 +1223,54 @@ $(".tablaVentas").on("draw.dt", function () {
 BORRAR ORDEN COMPRA
 =============================================*/
 $(".tablas").on("click", ".btnEliminarOrdenCompra", function () {
-  var idOrdenCompra = $(this).attr("idOrdenCompra");
 
-  swal({
-    title: "¿Está seguro de borrar la Orden de Compra?",
-    text: "¡Si no lo está puede cancelar la accíón!",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "Si, borrar orden!",
-  }).then(function (result) {
-    if (result.value) {
-      window.location =
-        "index.php?ruta=ordenes-compra&idOrdenCompra=" + idOrdenCompra;
-    }
-  });
-});
+    var idOrdenCompra = $(this).attr("idOrdenCompra");
+
+    swal({
+        title: '¿Está seguro de borrar esta orden de compra?',
+        text: "Si no lo está, puede cancelar la acción.",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Sí, borrar orden'
+    }).then(function (result) {
+        if (result.value) {
+
+            window.location = "index.php?ruta=compras&idOrdenCompra=" + idOrdenCompra;
+        }
+
+    })
+
+})
 
 $("#nuevoProveedor").change(function () {
-  var idProveedor = $(this).val();
-  console.log(idProveedor);
-  var datos = new FormData();
-  datos.append("idProveedor", idProveedor);
 
-  $.ajax({
-    url: "ajax/proveedores.ajax.php",
-    method: "POST",
-    data: datos,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "json",
-    success: function (respuesta) {
-      console.log("respuesta", respuesta);
-      $("#traerIdProveedor").val(respuesta["id"]);
-      $("#traerRutProveedor").val(respuesta["rut"]);
-      $("#traerDireccionProveedor").val(respuesta["ciudad"]);
-      $("#traerTelefonoProveedor").val(respuesta["telefono"]);
-      $("#traerEmailProveedor").val(respuesta["email"]);
-      $("#traerActividadProveedor").val(respuesta["actividad"]);
-      $("#traerEjecutivoProveedor").val(respuesta["ejecutivo"]);
-    },
-  });
+    var idProveedor = $(this).val();
+    console.log(idProveedor);
+    var datos = new FormData();
+    datos.append("idProveedor", idProveedor);
+
+    $.ajax({
+        url: "ajax/proveedores.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            console.log("respuesta", respuesta);
+            $("#traerIdProveedor").val(respuesta["id"]);
+            $("#traerRutProveedor").val(respuesta["rut"]);
+            $("#traerDireccionProveedor").val(respuesta["ciudad"]);
+            $("#traerTelefonoProveedor").val(respuesta["telefono"]);
+            $("#traerEmailProveedor").val(respuesta["email"]);
+            $("#traerActividadProveedor").val(respuesta["actividad"]);
+            $("#traerEjecutivoProveedor").val(respuesta["ejecutivo"]);
+        },
+    });
 });
 
 /*=============================================
@@ -1286,79 +1318,68 @@ $(".tablas").on("click", ".btnImprimirTicketOrdenCompra", function () {
 RANGO DE FECHAS
 =============================================*/
 if (window.location.href.includes("ordenes-compra")) {
-  $("#daterange-orden-compra").daterangepicker(
-    {
-      ranges: {
-        Hoy: [moment(), moment()],
-        Ayer: [moment().subtract(1, "days"), moment().subtract(1, "days")],
-        "Últimos 7 días": [moment().subtract(6, "days"), moment()],
-        "Últimos 30 días": [moment().subtract(29, "days"), moment()],
-        "Este mes": [moment().startOf("month"), moment().endOf("month")],
-        "Último mes": [
-          moment().subtract(1, "month").startOf("month"),
-          moment().subtract(1, "month").endOf("month"),
-        ],
-      },
-      startDate: moment(),
-      endDate: moment(),
-    },
-    function (start, end) {
-      $("#daterange-orden-compra span").html(
-        start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY")
-      );
 
-      var fechaInicial = start.format("YYYY-MM-DD");
-      var fechaFinal = end.format("YYYY-MM-DD");
+    $('#daterange-orden-compra').daterangepicker(
+        {
+            ranges: {
+                'Hoy': [moment(), moment()],
+                'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Últimos 7 días': [moment().subtract(6, 'days'), moment()],
+                'Últimos 30 días': [moment().subtract(29, 'days'), moment()],
+                'Este mes': [moment().startOf('month'), moment().endOf('month')],
+                'Último mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            startDate: moment(),
+            endDate: moment()
+        },
+        function (start, end) {
+            $('#daterange-orden-compra span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 
-      var capturarRango = $("#daterange-orden-compra span").html();
+            var fechaInicial = start.format('YYYY-MM-DD');
+            var fechaFinal = end.format('YYYY-MM-DD');
 
-      localStorage.setItem("capturarRango", capturarRango);
+            var capturarRango = $("#daterange-orden-compra span").html();
 
-      window.location =
-        "index.php?ruta=ordenes-compra&fechaInicial=" +
-        fechaInicial +
-        "&fechaFinal=" +
-        fechaFinal;
-    }
-  );
+            localStorage.setItem("capturarRango", capturarRango);
 
-  /*=============================================
-	CAPTURAR HOY
-	=============================================*/
-  $(".ranges li").on("click", function () {
-    var textoHoy = $(this).attr("data-range-key");
+            window.location = "index.php?ruta=ordenes-compra&fechaInicial=" + fechaInicial + "&fechaFinal=" + fechaFinal;
+        }
+    );
 
-    if (textoHoy == "Hoy") {
-      var d = new Date();
+    /*=============================================
+    CAPTURAR HOY
+    =============================================*/
+    $(".ranges li").on("click", function () {
+        var textoHoy = $(this).attr("data-range-key");
 
-      function padToTwoDigits(number) {
-        return number < 10 ? "0" + number : number;
-      }
+        if (textoHoy == "Hoy") {
+            var d = new Date();
 
-      var dia = padToTwoDigits(d.getDate());
-      var mes = padToTwoDigits(d.getMonth() + 1);
-      var año = d.getFullYear();
+            function padToTwoDigits(number) {
+                return number < 10 ? '0' + number : number;
+            }
 
-      var fecha = año + "-" + mes + "-" + dia;
+            var dia = padToTwoDigits(d.getDate());
+            var mes = padToTwoDigits(d.getMonth() + 1);
+            var año = d.getFullYear();
 
-      localStorage.setItem("capturarRango", "Hoy");
+            var fecha = año + "-" + mes + "-" + dia;
 
-      window.location =
-        "index.php?ruta=ordenes-compra&fechaInicial=" +
-        fecha +
-        "&fechaFinal=" +
-        fecha;
-    }
-  });
+            localStorage.setItem("capturarRango", "Hoy");
 
-  /*=============================================
-	CANCELAR RANGO DE FECHAS
-	=============================================*/
-  $(".daterangepicker .range_inputs .cancelBtn").on("click", function () {
-    localStorage.removeItem("capturarRango");
-    localStorage.clear();
-    window.location = "ordenes-compra";
-  });
+            window.location = "index.php?ruta=ordenes-compra&fechaInicial=" + fecha + "&fechaFinal=" + fecha;
+        }
+    });
+
+    /*=============================================
+    CANCELAR RANGO DE FECHAS
+    =============================================*/
+    $(".daterangepicker .range_inputs .cancelBtn").on("click", function () {
+            localStorage.removeItem("capturarRango");
+            localStorage.clear();
+            window.location = "ordenes-compra";
+        }
+    );
 }
 
 /*=============================================

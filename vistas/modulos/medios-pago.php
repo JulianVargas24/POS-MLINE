@@ -1,89 +1,87 @@
 <?php
 
-if($_SESSION["perfil"] == "Especial"){
+if ($_SESSION["perfil"] == "Especial") {
 
-  echo '<script>
+    echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-  return;
+    return;
 
 }
 
 ?>
 
-<div class="content-wrapper">
+    <div class="content-wrapper">
 
-  <section class="content-header">
-    
-    <h1>
-      
-      Administrar Medios de Pago
-    
-    </h1>
+        <section class="content-header">
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Medio de Pago</li>
-    
-    </ol>
+            <h1>
 
-  </section>
+                Administrar medios de pago
 
-  <section class="content">
+            </h1>
 
-    <div class="box">
+            <ol class="breadcrumb">
 
-      <div class="box-header with-border">
-  
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMedioPago">
-          
-          Agregar Medio de Pago
+                <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+                <li>Maestro</li>
+                <li class="active">Medios de pago</li>
 
-        </button>
+            </ol>
 
-      </div>
+        </section>
 
-      <div class="box-body">
-        
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Medio de Pago</th>
-           <th>Acciones</th>
+        <section class="content">
 
+            <div class="box">
 
+                <div class="box-header with-border">
+
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMedioPago">
+
+                        Agregar medio de pago
+
+                    </button>
+
+                </div>
+
+                <div class="box-body">
+
+                    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+
+                        <thead>
+
+                        <tr>
+
+                            <th style="width:10px">#</th>
+                            <th>Medio de pago</th>
+                            <th>Acciones</th>
 
 
-         </tr> 
+                        </tr>
 
-        </thead>
+                        </thead>
 
-        <tbody>
+                        <tbody>
 
-        <?php
+                        <?php
 
-          $item = null;
-          $valor = null;
+                        $item = null;
+                        $valor = null;
 
-          $medios = ControladorMediosPago::ctrMostrarMedios($item, $valor);
+                        $medios = ControladorMediosPago::ctrMostrarMedios($item, $valor);
 
-          foreach ($medios as $key => $value) {
-            
+                        foreach ($medios as $key => $value) {
 
-            echo '<tr>
 
-                    <td>'.($key+1).'</td>
+                            echo '<tr>
 
-                    <td>'.$value["medio_pago"].'</td>
+                    <td>' . ($key + 1) . '</td>
+
+                    <td>' . $value["medio_pago"] . '</td>
 
 
                     
@@ -93,199 +91,206 @@ if($_SESSION["perfil"] == "Especial"){
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarMedio" data-toggle="modal" data-target="#modalEditarMedioPago" idMedio="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
+                        <button class="btn btn-warning btnEditarMedio" data-toggle="modal" data-target="#modalEditarMedioPago" idMedio="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
 
-                      if($_SESSION["perfil"] == "Administrador"){
+                            if ($_SESSION["perfil"] == "Administrador") {
 
-                          echo '<button class="btn btn-danger btnEliminarMedio" idMedio="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                                echo '<button class="btn btn-danger btnEliminarMedio" idMedio="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
 
-                      }
+                            }
 
-                      echo '</div>  
+                            echo '</div>  
 
                     </td>
 
                   </tr>';
-          
-            }
 
-           
-        ?>
-   
-        </tbody>
+                        }
 
-       </table>
 
-      </div>
+                        ?>
 
-    </div>
+                        </tbody>
 
-  </section>
+                    </table>
 
-</div>
+                </div>
 
-<!--=====================================
-MODAL AGREGAR UNIDAD DE NEGOCIO
-======================================-->
-<div id="modalAgregarMedioPago" class="modal fade" role="dialog">
-  
-  <style>
-      .error{
-          color: red;
-          
-      }
-  </style>
-    <div class="modal-dialog">
-
-      <div class="modal-content">
-
-        <form role="form" method="post" id="form_nuevo_medio">
-
-          <!--=====================================
-          CABEZA DEL MODAL
-          ======================================-->
-
-          <div class="modal-header" style="background:#3f668d; color:white">
-
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-            <h4 class="modal-title">Agregar Medio de Pago</h4>
-
-          </div>
-
-          <!--=====================================
-          CUERPO DEL MODAL
-          ======================================-->
-
-          <div class="modal-body">
-
-            <div class="box-body">
-
-              <!-- ENTRADA PARA EL NOMBRE -->
-              
-              <div class="form-group">
-                  
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Medio de Pago</div>
-                      <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                        <input type="text" class="form-control input" name="nuevoMedio" id="nuevoMedio" placeholder="Ingresar Medio de Pago" required>
-
-                      </div>
-              </div>                        
-            
             </div>
 
-          </div>
-
-          <!--=====================================
-          PIE DEL MODAL
-          ======================================-->
-
-          <div class="modal-footer">
-
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-            <button type="submit" class="btn btn-primary" name="crear_negocio">Agregar Medio de Pago</button>
-
-          </div>
-
-          <?php
-
-            $crearMedio = new ControladorMediosPago();
-            $crearMedio -> ctrCrearMedio();
-
-          ?>
-
-        </form>
-
-      </div>
+        </section>
 
     </div>
 
-</div>
+    <!--=====================================
+    MODAL AGREGAR UNIDAD DE NEGOCIO
+    ======================================-->
+    <div id="modalAgregarMedioPago" class="modal fade" role="dialog">
 
-<!--=====================================
-MODAL EDITAR MEDIO DE PAGO
-======================================-->
+        <style>
+            .error {
+                color: red;
 
-<div id="modalEditarMedioPago" class="modal fade" role="dialog">
-  
-  <div class="modal-dialog">
+            }
+        </style>
+        <div class="modal-dialog">
 
-    <div class="modal-content">
+            <div class="modal-content">
 
-      <form role="form" method="post" id="form_editar_medio">
+                <form role="form" method="post" id="form_nuevo_medio">
 
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+                    <!--=====================================
+                    CABEZA DEL MODAL
+                    ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <div class="modal-header" style="background:#3f668d; color:white">
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Medio de Pago</h4>
+                        <h4 class="modal-title">Agregar medio de pago</h4>
+
+                    </div>
+
+                    <!--=====================================
+                    CUERPO DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-body">
+
+                        <div class="box-body">
+
+                            <!-- ENTRADA PARA EL NOMBRE -->
+
+                            <div class="form-group">
+
+                                <div class="d-inline-block bg-primary"
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Medio de pago
+                                </div>
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                    <input type="text" class="form-control input" name="nuevoMedio" id="nuevoMedio"
+                                           placeholder="Ingresar medio de pago" required>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!--=====================================
+                    PIE DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                        <button type="submit" class="btn btn-primary" name="crear_negocio">Agregar medio de pago
+                        </button>
+
+                    </div>
+
+                    <?php
+
+                    $crearMedio = new ControladorMediosPago();
+                    $crearMedio->ctrCrearMedio();
+
+                    ?>
+
+                </form>
+
+            </div>
 
         </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-
-            <div class="form-group">
-                  
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Medio de Pago</div>
-                      <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                        <input type="text" class="form-control input" id="editarMedio" name="editarMedio"  required>
-                        <input type="hidden" id="idMedio"  name="idMedio"  required>
-                      </div>
-              </div>
-  
-          </div>
-
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-
-        </div>
-
-      <?php
-
-          $editarMedio = new ControladorMediosPago();
-          $editarMedio -> ctrEditarMedio();
-
-        ?> 
-
-      </form>
 
     </div>
 
-  </div>
+    <!--=====================================
+    MODAL EDITAR MEDIO DE PAGO
+    ======================================-->
 
-</div>
+    <div id="modalEditarMedioPago" class="modal fade" role="dialog">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <form role="form" method="post" id="form_editar_medio">
+
+                    <!--=====================================
+                    CABEZA DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-header" style="background:#3c8dbc; color:white">
+
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        <h4 class="modal-title">Editar medio de pago</h4>
+
+                    </div>
+
+                    <!--=====================================
+                    CUERPO DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-body">
+
+                        <div class="box-body">
+
+                            <!-- ENTRADA PARA EL NOMBRE -->
+
+                            <div class="form-group">
+
+                                <div class="d-inline-block bg-primary"
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Medio de pago
+                                </div>
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                    <input type="text" class="form-control input" id="editarMedio" name="editarMedio"
+                                           required>
+                                    <input type="hidden" id="idMedio" name="idMedio" required>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!--=====================================
+                    PIE DEL MODAL
+                    ======================================-->
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+                    </div>
+
+                    <?php
+
+                    $editarMedio = new ControladorMediosPago();
+                    $editarMedio->ctrEditarMedio();
+
+                    ?>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 
 <?php
 
-  $eliminarMedio = new ControladorMediosPago();
-  $eliminarMedio -> ctrEliminarMedio();
+$eliminarMedio = new ControladorMediosPago();
+$eliminarMedio->ctrEliminarMedio();
 
 ?>

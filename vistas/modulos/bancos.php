@@ -2,37 +2,39 @@
 
 if($_SESSION["perfil"] == "Vendedor"){
 
-  echo '<script>
+    echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-  return;
-
+    return;
+    
 }
 
 ?>
 
 <div class="content-wrapper">
 
-  <section class="content-header">
-    
-    <h1>
-      
-    Administrar Bancos
-    
-    </h1>
+    <section class="content-header">
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Bancos</li>
-    
-    </ol>
+        <h1>
 
-  </section>
+          Administrar bancos
+
+        </h1>
+
+        <ol class="breadcrumb">
+
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+
+            <li>Parámetros</li>
+
+            <li class="active">Bancos</li>
+
+        </ol>
+
+    </section>
 
   <section class="content">
 
@@ -41,7 +43,7 @@ if($_SESSION["perfil"] == "Vendedor"){
       <div class="box-header with-border">
 
       <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarBanco">
-          Agregar Banco
+          Agregar banco
 
         </button>
 
@@ -115,7 +117,7 @@ if($_SESSION["perfil"] == "Vendedor"){
 </section>
 
 </div>
-
+                    
 
 
 <!--=====================================
@@ -132,9 +134,9 @@ MODAL AGREGAR BANCO
 </style>
   <div class="modal-dialog">
 
-    <div class="modal-content">
-
-      <form role="form" method="post" id="form_nuevo_Banco">
+      <div class="modal-content">
+          
+        <form role="form" method="post" id="form_nuevo_Banco">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -144,7 +146,7 @@ MODAL AGREGAR BANCO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Banco</h4>
+          <h4 class="modal-title">Agregar banco</h4>
 
         </div>
 
@@ -190,7 +192,7 @@ MODAL AGREGAR BANCO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" name="crear_Banco">Agregar Banco</button>
+          <button type="submit" class="btn btn-primary" name="crear_Banco">Agregar banco</button>
 
         </div>
 
@@ -210,7 +212,7 @@ MODAL AGREGAR BANCO
 
     </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -225,16 +227,16 @@ MODAL EDITAR BANCO
     <div class="modal-content">
 
       <form role="form" method="post" id="form_editar_Banco">
-
+        
         <!--=====================================
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3f668d; color:white">
+        <div class="modal-header" style="background:#3c8dbc; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Banco</h4>
+          <h4 class="modal-title">Editar banco</h4>
 
         </div>
 
@@ -314,4 +316,3 @@ MODAL EDITAR BANCO
     $eliminarBanco -> ctrEliminarBanco();
 
 ?>
-

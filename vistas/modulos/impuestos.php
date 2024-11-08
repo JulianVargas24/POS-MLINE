@@ -20,15 +20,15 @@ if($_SESSION["perfil"] == "Vendedor"){
     
     <h1>
       
-    Administrar Impuestos
+    Administrar impuestos
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Impuestos</li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Maestro</li>
+      <li class="active">Impuestos</li>
     
     </ol>
 
@@ -43,7 +43,7 @@ if($_SESSION["perfil"] == "Vendedor"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarImpuesto">
             
-            Agregar Impuesto
+            Agregar impuesto
 
         </button>
 
@@ -59,10 +59,10 @@ if($_SESSION["perfil"] == "Vendedor"){
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Codigo</th>
+           <th>Código</th>
            <th>Impuesto</th>
            <th>Porcentaje</th>
-           <th>Descripcion</th>
+           <th>Descripción</th>
            <th>Acciones</th>
 
          </tr> 
@@ -148,7 +148,7 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Impuesto</h4>
+          <h4 class="modal-title">Agregar impuesto</h4>
 
         </div>
 
@@ -163,46 +163,46 @@ MODAL AGREGAR CATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Código</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                    <input type="number" class="form-control input" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar Código"  required>
+                    <input type="number" class="form-control input" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código"  required>
 
                 </div>
             </div>
             
             <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto</div>
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevoImpuesto" id="nuevoImpuesto" placeholder="Ingresar Impuesto" required>
+                      <input type="text" class="form-control input" name="nuevoImpuesto" id="nuevoImpuesto" placeholder="Ingresar impuesto" required>
 
                     </div>
             </div>
             
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Porcentaje</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Porcentaje</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                    <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar Porcentaje"  required max="100">
+                    <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar porcentaje"  required max="100">
 
                 </div>
             </div>
 
             <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descripción</div>
+                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
                     <div class="input-group">
                     
                       <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" placeholder="Ingresar Descripción" required>
+                      <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" placeholder="Ingresar descripción" required>
 
                     </div>
             </div>
@@ -223,7 +223,7 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" name="crear_impuesto">Agregar Impuesto</button>
+          <button type="submit" class="btn btn-primary" name="crear_impuesto">Agregar impuesto</button>
 
         </div>
 
@@ -262,7 +262,7 @@ MODAL EDITAR SUBCATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Lista</h4>
+          <h4 class="modal-title">Editar lista</h4>
 
         </div>
 
@@ -277,7 +277,7 @@ MODAL EDITAR SUBCATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Código</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Código</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -288,7 +288,7 @@ MODAL EDITAR SUBCATEGORÍA
             </div>
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Impuesto</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto</div>
                     <div class="input-group">
                     
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -302,7 +302,7 @@ MODAL EDITAR SUBCATEGORÍA
 
             
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Factor</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Factor</div>
                 <div class="input-group">
                 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -313,7 +313,7 @@ MODAL EDITAR SUBCATEGORÍA
             </div>
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descripción</div>
+                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
                 <div class="input-group">
                     
                   <span class="input-group-addon"><i class="fa fa-th"></i></span> 
