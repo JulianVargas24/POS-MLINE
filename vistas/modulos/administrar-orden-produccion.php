@@ -77,15 +77,17 @@ if ($xml) {
             <table class="table table-bordered table-striped dt-responsive  tablas" width="100%">
               <thead>
                 <tr>
-                  <th>Folio</th>
-                  <th>Tipo de orden</th>
-                  <th>Emisión</th>
-                  <th>Unidad de Negocio</th>
-                  <th>Bodega</th>
-                  <th>Cliente</th>
-                  <th>Nombre Orden</th>
-                  <th>Código de Lote</th>
-                  <th>Acciones</th>
+                <th>Folio</th>
+                <th>Tipo de orden</th>
+                <th>Nombre Orden</th>
+                <th>Cliente</th>
+                <th>Unidad de Negocio</th>
+                <th>Bodega</th>
+                <th>Emisión</th>
+                <th>Vencimiento</th>
+                <th>Cantidad Producida</th>
+                <th>Código de Lote</th>
+                <th>Acciones</th>
                 </tr>
               </thead>
 
@@ -153,12 +155,15 @@ if ($xml) {
                   echo '<tr>
                     <td>' . $orden["folio_orden_produccion"] . '</td>
                     <td style="font-weight:bold;font-size:15px;color:black;">' . $orden["tipo_orden"] . '</td>
-                    <td>' . $orden["fecha_emision"] . '</td>
-                    <td>' . $centro . '</td>
-                    <td>' . $bodega . '</td>      
-                    <td>' . $cliente . '</td>
                     <td>' . $orden["nombre_orden"] . '</td>
+                    <td>' . $cliente . '</td>
+                    <td>' . $centro . '</td>
+                    <td>' . $bodega . '</td>
+                    <td>' . $orden["fecha_emision"] . '</td>
+                    <td>' . $orden["fecha_vencimiento"] . '</td>
+                    <td>' . $orden["cantidad_producida_total"] . '</td>
                     <td>' . $codigosDetalleStr . '</td>
+
                     <td>
 
                     <div class="btn-group">';
