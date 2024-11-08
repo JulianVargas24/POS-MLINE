@@ -98,6 +98,7 @@ if($xml){
            <th>Bodega</th>
            <th>Cliente</th>
            <th>Nombre Orden</th>
+           <th>Código de Lote</th>
            <th>Acciones</th>
          </tr> 
 
@@ -117,14 +118,12 @@ if($xml){
           $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
           $negocios = ControladorNegocios::ctrMostrarNegocios($item,$valor);
 
-          
-
             // Iterar sobre las órdenes de producción
-foreach ($ordenesProduccion as $key => $orden) {
-  $negocio = '';
-  $centro = '';
-  $bodega = '';
-  $cliente = '';
+            foreach ($ordenesProduccion as $key => $orden) {
+              $negocio = '';
+              $centro = '';
+              $bodega = '';
+              $cliente = '';
 
               // Buscar y asignar el nombre de la unidad de negocio
               foreach ($negocios as $neg) {
@@ -158,11 +157,18 @@ foreach ($ordenesProduccion as $key => $orden) {
                   }
               }
               
+
+             // Obtener los detalles de producción relacionados con la orden actual
+             $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $orden["folio_orden_produccion"]);
             
+            // Crear una cadena con los códigos de los detalles
+            $codigosDetalle = [];
+            foreach ($ordenesProduccionDetalle as $detalle) {
+                $codigosDetalle[] = $detalle["codigo_lote"];
+            }
+            $codigosDetalleStr = implode(", ", $codigosDetalle);
 
               echo '<tr>
-
-
                     <td>'.$orden["folio_orden_produccion"].'</td>
 
                     <td style="font-weight:bold;font-size:15px;color:black;">'.$orden["tipo_orden"].'</td>
@@ -176,6 +182,8 @@ foreach ($ordenesProduccion as $key => $orden) {
                     <td>'.$cliente.'</td>
 
                     <td>'.$orden["nombre_orden"].'</td>
+
+                     <td>' . $codigosDetalleStr . '</td>
 
                     <td>
 

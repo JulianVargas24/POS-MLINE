@@ -106,7 +106,7 @@ class ControladorOrdenProduccion
     return ($respuesta) ? $respuesta["folio_orden_produccion"] + 1 : 1;
   }
 
-    /**
+  /**
    * Mostrar todas las órdenes de producción
    */
   static public function ctrMostrarOrdenesProduccion($item, $valor)
@@ -116,7 +116,16 @@ class ControladorOrdenProduccion
       return $respuesta;
   }
 
-  
+  /**
+   * Mostrar todas las órdenes de producción en detalle
+   */
+  static public function ctrMostrarOrdenesProduccionDetalle($item, $valor)
+  {
+      $tabla = "orden_produccion_detalle";
+      $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor);
+      return $respuesta;
+  }
+
   /**
    * Eliminar orden de produccion como su detalle
    */

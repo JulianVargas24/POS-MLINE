@@ -159,7 +159,27 @@ class ModeloOrdenProduccion
   }
 
   static public function mdlMostrarOrdenesProduccion($tabla, $item, $valor)
-{
+  {
+      try {
+          $stmt = Conexion::conectar()->prepare(
+              $item != null ?
+              "SELECT * FROM $tabla WHERE $item = :$item" :
+              "SELECT * FROM $tabla"
+          );
+
+          if ($item != null) {
+              $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+          }
+
+          $stmt->execute();
+          return $stmt->fetchAll(); // Retorna todas las filas
+      } catch (Exception $e) {
+          return "error: " . $e->getMessage();
+      }
+  }
+
+  static public function mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor)
+  {
     try {
         $stmt = Conexion::conectar()->prepare(
             $item != null ?
@@ -176,7 +196,7 @@ class ModeloOrdenProduccion
     } catch (Exception $e) {
         return "error: " . $e->getMessage();
     }
-}
+  }
 
   static public function mdlEliminarOrdenProduccionDetalle($tabla, $folioOrden) {
       $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
