@@ -718,7 +718,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 Observaciones</h4>
                                             <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
                                                       rows="6"></textarea>
-                                            <input type="text" name="listaProductos" id="listaProductos">
+                                            <input type="hidden" name="listaProductos" id="listaProductos">
                                         </div>
                                     </div>
                                 </div>

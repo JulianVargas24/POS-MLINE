@@ -13,11 +13,10 @@ if ($_SESSION["perfil"] == "Especial") {
 
 <div class="content-wrapper">
     <section class="content-header">
-        <h1 style="color:green;font-weight:bold">VENTA CON BOLETA EXENTA</h1>
+        <h1 style="color:green;font-weight:bold">BOLETA EXENTA</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
-            <li>Ventas</li>
-            <li class="active">Boleta exenta</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li class="active">Crear venta con boleta exenta</li>
         </ol>
     </section>
 
@@ -152,7 +151,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control input"
+                                                    <input type="date" class="form-control input-sm"
                                                            name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
                                                 </div>
                                             </div>
@@ -330,26 +329,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     </div>
                                                 </div>
 
-                                                            <div class="col-xs-7">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon" style="padding:0px 2px">Descuento</span>                
-                                                                            <input style="font-size:16px;" type="text" class="form-control"  id="nuevoTotalDescuento" total="" name="nuevoTotalDescuento" value="" readonly>
-                                                                        </div>
-                                                                    </div> 
-                                                            </div>
-                                                           
-                                                            <div class="col-xs-7">
-                                                                    
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                        <span class="input-group-addon" style="color:black; font-weight:bold; padding:0px 15px">Total</span>                
-                                                                        <input style="font-size:16px;" type="text" class="form-control input" id="nuevoTotalFinal" name="nuevoTotalFinal" total="" readonly required>
-                                                                        
-                                                                        </div>
-                                                                        
-                                                                    </div> 
-                                                            </div>
                                                 <div class="col-xs-7">
                                                     <div class="form-group">
                                                         <div class="input-group">
@@ -368,7 +347,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         <div class="input-group">
                                                             <span class="input-group-addon"
                                                                   style="color:black; font-weight:bold; padding:0px 15px">Total</span>
-                                                            <input style="font-size:16px;" type="number"
+                                                            <input style="font-size:16px;" type="text"
                                                                    class="form-control input" id="nuevoTotalFinal"
                                                                    name="nuevoTotalFinal" total="" readonly required>
 
@@ -443,42 +422,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                                     echo '<option  value="' . $value["id"] . '">' . $value["medio_pago"] . ' </option>';
                                                                 }
 
-                                                                            ?>
-                                                                            
-                                                                        </select>
-                                                                    </div>
-                                                                </div> 
-                                                        </div>
-                                                        <div class="col-xs-6">
-                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Total a Pagar</div>
-                                                                <div class="form-group">
-                                                                    <div class="input-group" style="display:block;">                                                
-                                                                            <input class="form-control input" type="text" name="nuevoTotalPagar" id="nuevoTotalPagar" value="0" total="" readonly>
-                                                                        
-                                                                    </div> 
-                                                                </div> 
-                                                        </div>
-                                                        <div class="col-xs-6">
-                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pagado</div>
-                                                                <div class="form-group">
-                                                                    <div class="input-group" style="display:block;">                                                
-                                                                            <input class="form-control input" type="text" name="nuevoTotalPagado" id="nuevoTotalPagado" value="0" total="">
-                                                                        
-                                                                    </div> 
-                                                                </div> 
-                                                        </div>
-                                                        <div class="col-xs-6">
-                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pendiente</div>
-                                                                <div class="form-group">
-                                                                    <div class="input-group" style="display:block;">                                                
-                                                                            <input class="form-control input" type="text" name="nuevoTotalPendiente" id="nuevoTotalPendiente" value="0" total="" readonly>
-                                                                        
-                                                                    </div> 
-                                                                </div> 
-                                                        </div>
-                                                    
-                                                    </div>
-                                                </div>
                                                                 ?>
 
                                                             </select>
@@ -506,7 +449,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
-                                                            <input class="form-control input" type="number"
+                                                            <input class="form-control input" type="text"
                                                                    name="nuevoTotalPagado" id="nuevoTotalPagado"
                                                                    value="0" total="">
 
@@ -591,21 +534,6 @@ if ($_SESSION["perfil"] == "Especial") {
     </section>
 
 </div>
-
-<script>
-function validarFechas(fechaInicioId, fechaFinId) {
-    const fechaInicio = document.getElementById(fechaInicioId).value;
-    const fechaFin = document.getElementById(fechaFinId).value;
-
-    // Asegúrate de que ambas fechas tengan un valor
-    if (fechaInicio && fechaFin) {
-        if (new Date(fechaInicio) > new Date(fechaFin)) {
-            $('#alertModal').modal('show'); // Mostrar la ventana modal
-            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
-        }
-    }
-}
-</script>
 
 <style>
     .error {
