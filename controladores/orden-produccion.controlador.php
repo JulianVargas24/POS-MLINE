@@ -171,7 +171,130 @@ class ControladorOrdenProduccion
     }
 }
 
+public function ctrDescargarReporteOrdenProduccion(){
 
+  if(isset($_GET["reporte"])){
+
+    $tabla = "orden_produccion";
+
+    if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
+
+      $ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
+
+    }else{
+
+      $item = null;
+      $valor = null;
+
+      $ordenes = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+
+    }
+
+    /*=============================================
+    CREAMOS EL ARCHIVO DE EXCEL
+    =============================================*/
+
+    $Name = $_GET["reporte"].'-orden-producción.xls';
+
+    header('Expires: 0');
+    header('Cache-control: private');
+    header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
+    header("Cache-Control: cache, must-revalidate"); 
+    header('Content-Description: File Transfer');
+    header('Last-Modified: '.date('D, d M Y H:i:s'));
+    header("Pragma: public"); 
+    header('Content-Disposition:; filename="'.$Name.'"');
+    header("Content-Transfer-Encoding: binary");
+  
+    // Contadores de órdenes
+    $totalConCotizacion = 0;
+    $totalSinCotizacion = 0;
+
+    // Contar el total de órdenes por tipo
+    foreach ($ordenes as $item) {
+        if ($item["tipo_orden"] === "Cliente con Cotización") {
+            $totalConCotizacion++;
+        } elseif ($item["tipo_orden"] === "Cliente sin Cotización") {
+            $totalSinCotizacion++;
+        }
+    }
+
+    echo utf8_decode("<table border='0'>
+    <tr>
+    <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE CON COTIZACIÓN (Total: $totalConCotizacion)</td></tr>
+        <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
+    </tr>
+
+    ");
+
+    foreach ($ordenes as $row => $item) {
+      if ($item["tipo_orden"] === "Cliente con Cotización") {
+        $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+        $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
+
+        $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+        $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+
+        // Mostrar los datos de la orden
+        echo utf8_decode("<tr>
+            <td style='border:1px solid #eee;'>".$item["folio_orden_produccion"]."</td>
+            <td style='border:1px solid #eee;'>".$item["tipo_orden"]."</td>
+            <td style='border:1px solid #eee;'>".$bodegaNombre."</td>
+            <td style='border:1px solid #eee;'>".$clienteNombre."</td>
+            <td style='border:1px solid #eee;'>".$item["nombre_orden"]."</td>
+            <td style='border:1px solid #eee;'>".substr($item["fecha_emision"], 0, 10)."</td>
+            <td style='border:1px solid #eee;'>".substr($item["fecha_vencimiento"], 0, 10)."</td>
+        </tr>");
+    }
+    }
+    echo "</table>";
+
+    echo utf8_decode("<table border='0'>
+    <tr>
+    <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE SIN COTIZACIÓN (Total: $totalSinCotizacion)</td></tr>
+        <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
+    </tr>
+
+    ");
+
+    foreach ($ordenes as $row => $item) {
+      if ($item["tipo_orden"] === "Cliente sin Cotización") {
+        $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+        $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
+
+        $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+        $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+
+        // Mostrar los datos de la orden
+        echo utf8_decode("<tr>
+            <td style='border:1px solid #eee;'>".$item["folio_orden_produccion"]."</td>
+            <td style='border:1px solid #eee;'>".$item["tipo_orden"]."</td>
+            <td style='border:1px solid #eee;'>".$bodegaNombre."</td>
+            <td style='border:1px solid #eee;'>".$clienteNombre."</td>
+            <td style='border:1px solid #eee;'>".$item["nombre_orden"]."</td>
+            <td style='border:1px solid #eee;'>".substr($item["fecha_emision"], 0, 10)."</td>
+            <td style='border:1px solid #eee;'>".substr($item["fecha_vencimiento"], 0, 10)."</td>
+        </tr>");
+    }
+    }
+    echo "</table>";
+
+
+  }
+
+}
 
 
 

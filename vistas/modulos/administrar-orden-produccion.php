@@ -77,7 +77,7 @@ if($xml){
 
       <div class="box-tools pull-right" style="margin-bottom:5px">
 
-          <a href="#">
+          <a href="vistas/modulos/descargar-reporte-orden-produccion.php?reporte=reporte">
             <button class="btn btn-success" style="margin-top:5px">Descargar Orden de Producción</button>
           </a>
 
