@@ -218,6 +218,8 @@ class ControladorOrdenProduccion
       // Contadores de órdenes
       $totalConCotizacion = 0;
       $totalSinCotizacion = 0;
+      $totalProduccionStock = 0;
+      $totalPack = 0;
 
       // Contar el total de órdenes por tipo
       foreach ($ordenes as $item) {
@@ -225,6 +227,10 @@ class ControladorOrdenProduccion
           $totalConCotizacion++;
         } elseif ($item["tipo_orden"] === "Cliente sin Cotización") {
           $totalSinCotizacion++;
+        }elseif ($item["tipo_orden"] === "Producción Stock") {
+          $totalProduccionStock++;
+        }elseif ($item["tipo_orden"] === "PACK") {
+          $totalPack++;
         }
       }
 
@@ -291,6 +297,98 @@ class ControladorOrdenProduccion
 
       foreach ($ordenes as $row => $item) {
         if ($item["tipo_orden"] === "Cliente sin Cotización") {
+          $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
+          $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+          $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
+
+          $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+          $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+
+          // Crear una cadena con los códigos de los detalles
+          $codigosDetalle = [];
+          foreach ($ordenesProduccionDetalle as $detalle) {
+            $codigosDetalle[] = $detalle["codigo_lote"];
+          }
+          $codigosDetalleStr = implode(", ", $codigosDetalle);
+
+          // Mostrar los datos de la orden
+          echo utf8_decode("<tr>
+            <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
+            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
+            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
+            <td style='border:1px solid #eee;'>" . substr($item["fecha_vencimiento"], 0, 10) . "</td>
+        </tr>");
+        }
+      }
+      echo "</table>";
+
+      echo utf8_decode("<table border='0'>
+    <tr>
+    <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>PRODUCCIÓN EN STOCK (Total: $totalProduccionStock)</td></tr>
+        <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CODIGO DE LOTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
+    </tr>
+
+    ");
+
+      foreach ($ordenes as $row => $item) {
+        if ($item["tipo_orden"] === "Producción Stock") {
+          $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
+          $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+          $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
+
+          $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+          $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+
+          // Crear una cadena con los códigos de los detalles
+          $codigosDetalle = [];
+          foreach ($ordenesProduccionDetalle as $detalle) {
+            $codigosDetalle[] = $detalle["codigo_lote"];
+          }
+          $codigosDetalleStr = implode(", ", $codigosDetalle);
+
+          // Mostrar los datos de la orden
+          echo utf8_decode("<tr>
+            <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
+            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
+            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
+            <td style='border:1px solid #eee;'>" . substr($item["fecha_vencimiento"], 0, 10) . "</td>
+        </tr>");
+        }
+      }
+      echo "</table>";
+
+      echo utf8_decode("<table border='0'>
+    <tr>
+    <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>PACK (Total: $totalPack)</td></tr>
+        <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CODIGO DE LOTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
+    </tr>
+
+    ");
+
+      foreach ($ordenes as $row => $item) {
+        if ($item["tipo_orden"] === "PACK") {
           $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
           $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
           $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
