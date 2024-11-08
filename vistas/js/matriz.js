@@ -35,8 +35,8 @@ $(".tablas").on("click", ".btnEditarMatriz", function() {
             $("#editarEmail").val(respuesta["email"]);
             $("#editarTelefono").val(respuesta["telefono"]);
             $("#editarActividad").val(respuesta["actividad"]);
-            $("#editarFechaInicio").val(respuesta["fecha_inicio"]);
-            $("#editarFechaVencimiento").val(respuesta["fecha_vencimiento"]);
+            $("#editarInicio").val(respuesta["fecha_inicio"]);
+            $("#editarVencimiento").val(respuesta["fecha_vencimiento"]);
             $("#editarTipoProducto").val(respuesta["tipo_producto"]);
             $("#editarTipoCliente").val(respuesta["tipo_cliente"]);
         }
