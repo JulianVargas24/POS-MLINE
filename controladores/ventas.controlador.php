@@ -15,9 +15,11 @@ class ControladorVentas{
 
 		$tabla = "venta_boleta";
 
-		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
- 
-		return $respuesta;
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;  
+
+		return ModeloVentas::mdlMostrarVentas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
 	}
 
@@ -25,9 +27,11 @@ class ControladorVentas{
 
 		$tabla = "venta_boleta_exenta";
 
-		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
- 
-		return $respuesta;
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null; 
+
+		return ModeloVentas::mdlMostrarVentas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
 	}
 
@@ -35,9 +39,11 @@ class ControladorVentas{
 
 		$tabla = "venta_afecta";
 
-		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
- 
-		return $respuesta;
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null; 
+
+		return ModeloVentas::mdlMostrarVentas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
 	}
 
@@ -45,9 +51,11 @@ class ControladorVentas{
 
 		$tabla = "venta_exenta";
 
-		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
- 
-		return $respuesta;
+		// Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null; 
+
+		return ModeloVentas::mdlMostrarVentas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
 	}
 
@@ -533,29 +541,31 @@ class ControladorVentas{
 
             $tabla = "venta_afecta";
 
-            if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
-
-                $ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
-            } else {
-
-                $item = null;
-                $valor = null;
-
-                $ventas = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
-				$exentas = ModeloVentas::mdlMostrarVentas("venta_exenta", $item, $valor);
-				$boletas = ModeloVentas::mdlMostrarVentas("venta_boleta", $item, $valor);
-				$boletaExenta = ModeloVentas::mdlMostrarVentas("venta_boleta_exenta", $item, $valor);
-				$notacredito = ModeloVentas::mdlMostrarVentas("nota_credito", $item, $valor);
-				$notacreditoboleta = ModeloVentas::mdlMostrarVentas("nota_credito_boleta", $item, $valor);
-				$notacreditoexenta = ModeloVentas::mdlMostrarVentas("nota_credito_exenta", $item, $valor);
-            }
+            // Obtener las fechas de la URL
+			$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+			$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
+	
+			// Obtener las ventas del modelo
+			$ventas = ModeloVentas::mdlMostrarVentas($tabla, null, null, $fechaInicial, $fechaFinal);
+			$exentas = ModeloVentas::mdlMostrarVentas("venta_exenta", null, null, $fechaInicial, $fechaFinal);
+			$boletas = ModeloVentas::mdlMostrarVentas("venta_boleta", null, null, $fechaInicial, $fechaFinal);
+			$boletaExenta = ModeloVentas::mdlMostrarVentas("venta_boleta_exenta", null, null, $fechaInicial, $fechaFinal);
+			$notacredito = ModeloVentas::mdlMostrarVentas("nota_credito", null, null, $fechaInicial, $fechaFinal);
+			$notacreditoboleta = ModeloVentas::mdlMostrarVentas("nota_credito_boleta", null, null, $fechaInicial, $fechaFinal);
+			$notacreditoboletaexenta = ModeloVentas::mdlMostrarVentas("nota_credito_boleta_exenta", null, null, $fechaInicial, $fechaFinal);
+			$notacreditoexenta = ModeloVentas::mdlMostrarVentas("nota_credito_exenta", null, null, $fechaInicial, $fechaFinal);
 
 
             /*=============================================
             CREAMOS EL ARCHIVO DE EXCEL
             =============================================*/
 
-            $Name = $_GET["reporte"] . '-venta-generales.xls';
+            // Nombre del archivo incluyendo fechas si están disponibles
+			$Name = $_GET["reporte"] . '-ventas-generales';
+			if ($fechaInicial && $fechaFinal) {
+				$Name .= '-desde-' . $fechaInicial . '-hasta-' . $fechaFinal;
+			}
+			$Name .= '.xls';
 
             header('Expires: 0');
             header('Cache-control: private');
@@ -1100,6 +1110,80 @@ class ControladorVentas{
 								</tr>");
 						}
 					echo utf8_decode("<tr><td>-</td></tr>");
+					echo utf8_decode(" <tr><td>NOTA DE CREDITO DE BOLETA EXENTA (". count($notacreditoboletaexenta).")</td></tr>
+						<tr> 
+						<td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td> 
+						<td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>ID PRODUCTO</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>PRODUCTOS</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>PRECIO PRODUCTO</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>METODO DE PAGO</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>SUBTOTAL</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>DESCUENTO</td>	
+						<td style='font-weight:bold; border:1px solid #eee;'>TOTAL_NETO</td>	
+						<td style='font-weight:bold; border:1px solid #eee;'>IVA</td>
+						<td style='font-weight:bold; border:1px solid #eee;'>TOTAL FINAL</td>			
+						<td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISION</td>		
+						</tr>");
+
+						foreach ($notacreditoboletaexenta as $row => $item) {
+
+							$cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+			
+							$bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["id_bodega"]);
+							$plazos = ControladorPlazos::ctrMostrarPlazos("id", $item["id_plazo_pago"]);
+							$medios = ControladorMediosPago::ctrMostrarMedios("id", $item["id_medio_pago"]);
+							$negocio = ControladorNegocios::ctrMostrarNegocios("id", $item["id_unidad_negocio"]);
+			
+			
+							echo utf8_decode("<tr>
+									<td style='border:1px solid #eee;'>" . $item["codigo"] . "</td> 
+									<td style='border:1px solid #eee;'>" . $cliente["nombre"] . "</td>
+			
+									 <td style='border:1px solid #eee;'>" . $bodega["nombre"] . "</td>
+									
+									 <td style='border:1px solid #eee;'>");
+			
+							$productos =  json_decode($item["productos"], true);
+			
+			
+							foreach ($productos as $key => $valueProductos) {
+			
+								echo utf8_decode($valueProductos["id"] . "<br>");
+							}
+							echo utf8_decode("</td><td style='border:1px solid #eee;'>");   
+							foreach ($productos as $key => $valueProductos) {
+			
+								echo utf8_decode($valueProductos["cantidad"] . "<br>");
+							}
+							
+			
+							echo utf8_decode("</td><td style='border:1px solid #eee;'>");
+			
+							foreach ($productos as $key => $valueProductos) {
+			
+								echo utf8_decode($valueProductos["descripcion"] . "<br>");
+							}
+			
+							echo utf8_decode("</td><td style='border:1px solid #eee;'> $ ");
+			
+							foreach ($productos as $key => $valueProductos) {
+			
+								echo number_format($valueProductos["precio"], 0,  '', '.') . "<br>";
+							}
+			
+							echo utf8_decode("</td>
+								 <td style='border:1px solid #eee;'>" . $medios["medio_pago"] . "</td>
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["subtotal"])), 0,  '', '.') . "</td>
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["descuento"])), 0,  '', '.') . "</td>	
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["total_neto"])), 0,  '', '.') . "</td>	
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["iva"])), 0,  '', '.') . "</td>	
+								<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["total_final"])), 0,  '', '.') . "</td>
+								<td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>		
+								</tr>");
+						}
 
 
             echo "</table>";

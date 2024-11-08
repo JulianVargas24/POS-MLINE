@@ -330,6 +330,26 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     </div>
                                                 </div>
 
+                                                            <div class="col-xs-7">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon" style="padding:0px 2px">Descuento</span>                
+                                                                            <input style="font-size:16px;" type="text" class="form-control"  id="nuevoTotalDescuento" total="" name="nuevoTotalDescuento" value="" readonly>
+                                                                        </div>
+                                                                    </div> 
+                                                            </div>
+                                                           
+                                                            <div class="col-xs-7">
+                                                                    
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                        <span class="input-group-addon" style="color:black; font-weight:bold; padding:0px 15px">Total</span>                
+                                                                        <input style="font-size:16px;" type="text" class="form-control input" id="nuevoTotalFinal" name="nuevoTotalFinal" total="" readonly required>
+                                                                        
+                                                                        </div>
+                                                                        
+                                                                    </div> 
+                                                            </div>
                                                 <div class="col-xs-7">
                                                     <div class="form-group">
                                                         <div class="input-group">
@@ -423,6 +443,42 @@ if ($_SESSION["perfil"] == "Especial") {
                                                                     echo '<option  value="' . $value["id"] . '">' . $value["medio_pago"] . ' </option>';
                                                                 }
 
+                                                                            ?>
+                                                                            
+                                                                        </select>
+                                                                    </div>
+                                                                </div> 
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Total a Pagar</div>
+                                                                <div class="form-group">
+                                                                    <div class="input-group" style="display:block;">                                                
+                                                                            <input class="form-control input" type="text" name="nuevoTotalPagar" id="nuevoTotalPagar" value="0" total="" readonly>
+                                                                        
+                                                                    </div> 
+                                                                </div> 
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pagado</div>
+                                                                <div class="form-group">
+                                                                    <div class="input-group" style="display:block;">                                                
+                                                                            <input class="form-control input" type="text" name="nuevoTotalPagado" id="nuevoTotalPagado" value="0" total="">
+                                                                        
+                                                                    </div> 
+                                                                </div> 
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pendiente</div>
+                                                                <div class="form-group">
+                                                                    <div class="input-group" style="display:block;">                                                
+                                                                            <input class="form-control input" type="text" name="nuevoTotalPendiente" id="nuevoTotalPendiente" value="0" total="" readonly>
+                                                                        
+                                                                    </div> 
+                                                                </div> 
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
                                                                 ?>
 
                                                             </select>

@@ -174,7 +174,7 @@ $(".tablaVentaFactura tbody").on("click", "button.agregarProducto", function(){
 			$(".nuevoPrecioUnitario").number(true, 0);
 			$(".nuevoSubtotalProducto").number(true, 0);
 			$(".nuevoIvaProducto").number(true, 0);
-
+			$("#nuevoTotalFinal").number(true,0);
 
 			localStorage.removeItem("quitarProducto");
 
