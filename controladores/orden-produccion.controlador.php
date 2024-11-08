@@ -107,43 +107,48 @@ class ControladorOrdenProduccion
   }
 
   /**
-   * Mostrar todas las órdenes de producción
+   * Mostrar las Órdenes de Producción con rango de fechas
    */
   static public function ctrMostrarOrdenesProduccion($item, $valor)
   {
-      $tabla = "orden_produccion";
-      $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
-      return $respuesta;
+    $tabla = "orden_produccion";
+
+    $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+    $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
+
+    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+    return $respuesta;
   }
 
   /**
-   * Mostrar todas las órdenes de producción en detalle
+   * Mostrar el detalle de las Órdenes de Producción
    */
   static public function ctrMostrarOrdenesProduccionDetalle($item, $valor)
   {
-      $tabla = "orden_produccion_detalle";
-      $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor);
-      return $respuesta;
+    $tabla = "orden_produccion_detalle";
+    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor);
+    return $respuesta;
   }
 
   /**
-   * Eliminar orden de produccion como su detalle
+   * Eliminar Orden de Producción como su detalle
    */
-  static public function ctrEliminarOrdenProduccion() {
+  static public function ctrEliminarOrdenProduccion()
+  {
     if (isset($_GET["idOrdenProduccion"])) {
-        // Eliminar detalles de la orden de producción
-        $tablaDetalle = "orden_produccion_detalle";
-        $folioOrden = $_GET["idOrdenProduccion"];				
-  
-        $respuestaDetalle = ModeloOrdenProduccion::mdlEliminarOrdenProduccionDetalle($tablaDetalle, $folioOrden);
+      // Eliminar detalles de la orden de producción
+      $tablaDetalle = "orden_produccion_detalle";
+      $folioOrden = $_GET["idOrdenProduccion"];
 
-        if ($respuestaDetalle == "ok") {
-            // Eliminar la orden de producción principal
-            $tabla = "orden_produccion";
-            $respuesta = ModeloOrdenProduccion::mdlEliminarOrdenProduccion($tabla, $folioOrden);
+      $respuestaDetalle = ModeloOrdenProduccion::mdlEliminarOrdenProduccionDetalle($tablaDetalle, $folioOrden);
 
-            if ($respuesta == "ok") {
-                echo '<script>
+      if ($respuestaDetalle == "ok") {
+        // Eliminar la orden de producción principal
+        $tabla = "orden_produccion";
+        $respuesta = ModeloOrdenProduccion::mdlEliminarOrdenProduccion($tabla, $folioOrden);
+
+        if ($respuesta == "ok") {
+          echo '<script>
                     swal({
                         type: "success",
                         title: "La orden de producción ha sido eliminada correctamente",
@@ -155,8 +160,8 @@ class ControladorOrdenProduccion
                         }
                     });
                 </script>';
-            } else {
-                echo '<script>
+        } else {
+          echo '<script>
                     swal({
                         type: "error",
                         title: "Error al eliminar la orden de producción",
@@ -165,9 +170,9 @@ class ControladorOrdenProduccion
                         confirmButtonText: "Cerrar"
                     });
                 </script>';
-            }
-        } else {
-            echo '<script>
+        }
+      } else {
+        echo '<script>
                 swal({
                     type: "error",
                     title: "Error al eliminar los detalles de la orden de producción",
@@ -176,59 +181,54 @@ class ControladorOrdenProduccion
                     confirmButtonText: "Cerrar"
                 });
             </script>';
-        }
+      }
     }
-}
+  }
 
-public function ctrDescargarReporteOrdenProduccion(){
+  /**
+   * Descargar reporte de Órdenes de Producción
+   */
+  public function ctrDescargarReporteOrdenProduccion()
+  {
+    if (isset($_GET["reporte"])) {
 
-  if(isset($_GET["reporte"])){
+      $tabla = "orden_produccion";
 
-    $tabla = "orden_produccion";
+      if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
+        $ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
+      } else {
+        $item = null;
+        $valor = null;
+        $ordenes = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+      }
 
-    if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
+      // Crear archivo de Excel
+      $Name = $_GET["reporte"] . '-orden-producción.xls';
 
-      $ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
+      header('Expires: 0');
+      header('Cache-control: private');
+      header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
+      header("Cache-Control: cache, must-revalidate");
+      header('Content-Description: File Transfer');
+      header('Last-Modified: ' . date('D, d M Y H:i:s'));
+      header("Pragma: public");
+      header('Content-Disposition:; filename="' . $Name . '"');
+      header("Content-Transfer-Encoding: binary");
 
-    }else{
+      // Contadores de órdenes
+      $totalConCotizacion = 0;
+      $totalSinCotizacion = 0;
 
-      $item = null;
-      $valor = null;
-
-      $ordenes = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
-
-    }
-
-    /*=============================================
-    CREAMOS EL ARCHIVO DE EXCEL
-    =============================================*/
-
-    $Name = $_GET["reporte"].'-orden-producción.xls';
-
-    header('Expires: 0');
-    header('Cache-control: private');
-    header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
-    header("Cache-Control: cache, must-revalidate"); 
-    header('Content-Description: File Transfer');
-    header('Last-Modified: '.date('D, d M Y H:i:s'));
-    header("Pragma: public"); 
-    header('Content-Disposition:; filename="'.$Name.'"');
-    header("Content-Transfer-Encoding: binary");
-  
-    // Contadores de órdenes
-    $totalConCotizacion = 0;
-    $totalSinCotizacion = 0;
-
-    // Contar el total de órdenes por tipo
-    foreach ($ordenes as $item) {
+      // Contar el total de órdenes por tipo
+      foreach ($ordenes as $item) {
         if ($item["tipo_orden"] === "Cliente con Cotización") {
-            $totalConCotizacion++;
+          $totalConCotizacion++;
         } elseif ($item["tipo_orden"] === "Cliente sin Cotización") {
-            $totalSinCotizacion++;
+          $totalSinCotizacion++;
         }
-    }
+      }
 
-    echo utf8_decode("<table border='0'>
+      echo utf8_decode("<table border='0'>
     <tr>
     <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE CON COTIZACIÓN (Total: $totalConCotizacion)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
@@ -243,38 +243,38 @@ public function ctrDescargarReporteOrdenProduccion(){
 
     ");
 
-    foreach ($ordenes as $row => $item) {
-      if ($item["tipo_orden"] === "Cliente con Cotización") {
-        $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
-        $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
-        $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
+      foreach ($ordenes as $row => $item) {
+        if ($item["tipo_orden"] === "Cliente con Cotización") {
+          $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
+          $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+          $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
-        $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
-        $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
-        
-        // Crear una cadena con los códigos de los detalles
-        $codigosDetalle = [];
-        foreach ($ordenesProduccionDetalle as $detalle) {
-        $codigosDetalle[] = $detalle["codigo_lote"];
-        }
-        $codigosDetalleStr = implode(", ", $codigosDetalle);
+          $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+          $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
-        // Mostrar los datos de la orden
-        echo utf8_decode("<tr>
-            <td style='border:1px solid #eee;'>".$item["folio_orden_produccion"]."</td>
-            <td style='border:1px solid #eee;'>".$item["tipo_orden"]."</td>
-            <td style='border:1px solid #eee;'>".$bodegaNombre."</td>
-            <td style='border:1px solid #eee;'>".$clienteNombre."</td>
-            <td style='border:1px solid #eee;'>".$item["nombre_orden"]."</td>
-            <td style='border:1px solid #eee;'>".$codigosDetalleStr."</td>
-            <td style='border:1px solid #eee;'>".substr($item["fecha_emision"], 0, 10)."</td>
-            <td style='border:1px solid #eee;'>".substr($item["fecha_vencimiento"], 0, 10)."</td>
+          // Crear una cadena con los códigos de los detalles
+          $codigosDetalle = [];
+          foreach ($ordenesProduccionDetalle as $detalle) {
+            $codigosDetalle[] = $detalle["codigo_lote"];
+          }
+          $codigosDetalleStr = implode(", ", $codigosDetalle);
+
+          // Mostrar los datos de la orden
+          echo utf8_decode("<tr>
+            <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
+            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
+            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
+            <td style='border:1px solid #eee;'>" . substr($item["fecha_vencimiento"], 0, 10) . "</td>
         </tr>");
-    }
-    }
-    echo "</table>";
+        }
+      }
+      echo "</table>";
 
-    echo utf8_decode("<table border='0'>
+      echo utf8_decode("<table border='0'>
     <tr>
     <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE SIN COTIZACIÓN (Total: $totalSinCotizacion)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
@@ -289,42 +289,36 @@ public function ctrDescargarReporteOrdenProduccion(){
 
     ");
 
-    foreach ($ordenes as $row => $item) {
-      if ($item["tipo_orden"] === "Cliente sin Cotización") {
-        $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
-        $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
-        $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
+      foreach ($ordenes as $row => $item) {
+        if ($item["tipo_orden"] === "Cliente sin Cotización") {
+          $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
+          $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+          $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
-        $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
-        $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+          $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+          $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
-        // Crear una cadena con los códigos de los detalles
-        $codigosDetalle = [];
-        foreach ($ordenesProduccionDetalle as $detalle) {
-        $codigosDetalle[] = $detalle["codigo_lote"];
-        }
-        $codigosDetalleStr = implode(", ", $codigosDetalle);
+          // Crear una cadena con los códigos de los detalles
+          $codigosDetalle = [];
+          foreach ($ordenesProduccionDetalle as $detalle) {
+            $codigosDetalle[] = $detalle["codigo_lote"];
+          }
+          $codigosDetalleStr = implode(", ", $codigosDetalle);
 
-        // Mostrar los datos de la orden
-        echo utf8_decode("<tr>
-            <td style='border:1px solid #eee;'>".$item["folio_orden_produccion"]."</td>
-            <td style='border:1px solid #eee;'>".$item["tipo_orden"]."</td>
-            <td style='border:1px solid #eee;'>".$bodegaNombre."</td>
-            <td style='border:1px solid #eee;'>".$clienteNombre."</td>
-            <td style='border:1px solid #eee;'>".$item["nombre_orden"]."</td>
-            <td style='border:1px solid #eee;'>".$codigosDetalleStr."</td>
-            <td style='border:1px solid #eee;'>".substr($item["fecha_emision"], 0, 10)."</td>
-            <td style='border:1px solid #eee;'>".substr($item["fecha_vencimiento"], 0, 10)."</td>
+          // Mostrar los datos de la orden
+          echo utf8_decode("<tr>
+            <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
+            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
+            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
+            <td style='border:1px solid #eee;'>" . substr($item["fecha_vencimiento"], 0, 10) . "</td>
         </tr>");
+        }
+      }
+      echo "</table>";
     }
-    }
-    echo "</table>";
-
-
   }
-
-}
-
-
-
 }
