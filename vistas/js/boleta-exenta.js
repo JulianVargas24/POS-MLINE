@@ -168,8 +168,7 @@ $(".tablaVentaBoletaExenta tbody").on("click", "button.agregarProducto", functio
 			$(".nuevoPrecioUnitario").number(true, 0);
 			$(".nuevoSubtotalProducto").number(true, 0);
 			$(".nuevoIvaProducto").number(true, 0);
-			$("#nuevoTotalPagado").number(true,0);
-			$("#nuevoTotalPendiente").number(true,0);
+			$("#nuevoTotalFinal").number(true,0);
 
 			localStorage.removeItem("quitarProducto");
 
@@ -181,7 +180,17 @@ $(".tablaVentaBoletaExenta tbody").on("click", "button.agregarProducto", functio
 	
 });
 
+/**
+ * dar formato numerico en  todas las notas de credito
+ * ademas en editar cotizacione
+ * */ 
 
+$(".nuevoPrecioProducto").number(true, 0);
+$(".nuevoTotalProducto").number(true, 0);
+$(".nuevoDescuentoProducto").number(true, 0);
+$(".nuevoPrecioUnitario").number(true, 0);
+$(".nuevoSubtotalProducto").number(true, 0);
+$(".nuevoIvaProducto").number(true, 0);
 
 
 
@@ -665,9 +674,9 @@ function sumarTotales(){
 		arraySumaTotales.push(Number($(totalItem[i]).val()));
 	}
 
-	function sumaArrayTotales(total, numero){
-		return total + numero;
-	}
+    function sumaArrayTotales(total, numero){
+        return total + numero;
+    }
 
 	var sumaTotales = arraySumaTotales.reduce(sumaArrayTotales);
 
@@ -677,9 +686,47 @@ function sumarTotales(){
     $("#nuevoTotalPagar").attr("total", sumaTotales);
 }
 
-function restarPagoExento(){
-
+function formatNumber(num) {
+    // Asegúrate de que el número sea válido y convertirlo a un número
+    num = parseFloat(num);
+    if (isNaN(num)) return "0"; // Si no es un número, devuelve "0"
+    // Formatear el número
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+function restarPago() {
+    var deuda = parseFloat($("#nuevoTotalPagar").val().replace(/,/g, '')); // Quitar comas para convertir a número
+    var pagado = parseFloat($("#nuevoTotalPagado").val().replace(/,/g, ''));
+    var final = null;
+
+    if (pagado >= deuda) {
+        final = 0;
+    } else {
+        final = deuda - pagado;
+    }
+
+    $("#nuevoTotalPendiente").val(formatNumber(final)); // Aplicar formato numérico
+    if (final === 0) {
+        $("#nuevoTotalPendiente").css({ "background-color": "#90ee90", "color": "#000" });
+    } else {
+        $("#nuevoTotalPendiente").css({ "background-color": "#F63C45", "color": "#000" });
+    }
+}
+
+$("#nuevoTotalPagado").on("change", function () {
+    // Obtener valores y formatearlos
+    var pagado = parseFloat($(this).val().replace(/,/g, ''));
+    var totalPagar = parseFloat($("#nuevoTotalPagar").val().replace(/,/g, ''));
+
+    if (pagado > totalPagar && $("#nuevoTotalVuelto").val() == 0) {
+        var vuelto = pagado - totalPagar;
+        $("#nuevoTotalVuelto").css({ "background-color": "orange", "color": "white" });
+        $("#nuevoTotalVuelto").val(formatNumber(vuelto)); // Aplicar formato numérico
+    } else if (pagado > totalPagar) {
+        $(this).val(formatNumber(totalPagar)); // Aplicar formato al total pagado
+    }
+    restarPago();
+});
 
 function sumarDescuentos(){
 	var descuentoItem = $(".nuevoDescuentoProducto");

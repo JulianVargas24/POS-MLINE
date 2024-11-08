@@ -173,7 +173,7 @@ $(".tablaVentaBoleta tbody").on("click", "button.agregarProducto", function(){
 			$(".nuevoPrecioUnitario").number(true, 0);
 			$(".nuevoSubtotalProducto").number(true, 0);
 			$(".nuevoIvaProducto").number(true, 0);
-
+			$("#nuevoTotalFinal").number(true,0);			
 
 			localStorage.removeItem("quitarProducto");
 
@@ -184,7 +184,20 @@ $(".tablaVentaBoleta tbody").on("click", "button.agregarProducto", function(){
 	 
 	
 });
+//fortmato numerico en pagado
+$(document).ready(function() {
+    // Formatear el número cuando el campo pierde el foco
+    $("#nuevoTotalPagado").on("blur", function() {
+        var value = $(this).val().replace(/,/g, ''); // Quitar comas para convertir a número
+        $(this).val(formatNumber(value)); // Aplicar formato numérico
+    });
 
+    // Limpiar el formato cuando el campo obtiene el foco
+    $("#nuevoTotalPagado").on("focus", function() {
+        var value = $(this).val().replace(/,/g, ''); // Quitar comas para que el usuario pueda editar
+        $(this).val(value);
+    });
+});
 
 
 function cambios(){
@@ -662,33 +675,48 @@ function sumarTotales(){
 
 }
 
-function restarPago(){
-	var deuda = $("#nuevoTotalPagar").val();
-	var pagado = $("#nuevoTotalPagado").val();
-	var final = null
-	if(pagado >= deuda ){
-		final = 0;
-	}else{
-		final = deuda - pagado;
-	}
-	$("#nuevoTotalPendiente").val(final)
-	if($("#nuevoTotalPendiente").val() == 0){
-		$("#nuevoTotalPendiente").css({"background-color":"#90ee90", "color": "#000"});
-	}else{
-		$("#nuevoTotalPendiente").css({"background-color":"#F63C45", "color": "#000"});
-	}
+function formatNumber(num) {
+    // Asegúrate de que el número sea válido y convertirlo a un número
+    num = parseFloat(num);
+    if (isNaN(num)) return "0"; // Si no es un número, devuelve "0"
+    // Formatear el número
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-$("#nuevoTotalPagado").on("change", function(){
-	if($(this).val() > $("#nuevoTotalPagar").val() && $("#nuevoTotalVuelto").val() == 0){
-		var vuelto = $("#nuevoTotalPagar").val() - $(this).val()
-		$("#nuevoTotalVuelto").css({"background-color":"orange", "color": "white"})
-		$("#nuevoTotalVuelto").val(vuelto);
-	}else if($(this).val() > $("#nuevoTotalPagar").val()){
 
-		$(this).val($("#nuevoTotalPagar").val())
-	}
-	restarPago()
-})
+function restarPago() {
+    var deuda = parseFloat($("#nuevoTotalPagar").val().replace(/,/g, '')); // Quitar comas para convertir a número
+    var pagado = parseFloat($("#nuevoTotalPagado").val().replace(/,/g, ''));
+    var final = null;
+
+    if (pagado >= deuda) {
+        final = 0;
+    } else {
+        final = deuda - pagado;
+    }
+
+    $("#nuevoTotalPendiente").val(formatNumber(final)); // Aplicar formato numérico
+    if (final === 0) {
+        $("#nuevoTotalPendiente").css({ "background-color": "#90ee90", "color": "#000" });
+    } else {
+        $("#nuevoTotalPendiente").css({ "background-color": "#F63C45", "color": "#000" });
+    }
+}
+
+$("#nuevoTotalPagado").on("change", function () {
+    // Obtener valores y formatearlos
+    var pagado = parseFloat($(this).val().replace(/,/g, ''));
+    var totalPagar = parseFloat($("#nuevoTotalPagar").val().replace(/,/g, ''));
+
+    if (pagado > totalPagar && $("#nuevoTotalVuelto").val() == 0) {
+        var vuelto = pagado - totalPagar;
+        $("#nuevoTotalVuelto").css({ "background-color": "orange", "color": "white" });
+        $("#nuevoTotalVuelto").val(formatNumber(vuelto)); // Aplicar formato numérico
+    } else if (pagado > totalPagar) {
+        $(this).val(formatNumber(totalPagar)); // Aplicar formato al total pagado
+    }
+    restarPago();
+});
+
 
 function sumarDescuentos(){
 	var descuentoItem = $(".nuevoDescuentoProducto");

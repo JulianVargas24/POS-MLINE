@@ -49,9 +49,13 @@ if($_SESSION["perfil"] == "Especial"){
           Agregar cliente
 
         </button>
+      
+        <div class="box-tools pull-right" style="margin-bottom:5px">
+          <a href="vistas/modulos/descargar-reporte-clientes.php?reporte=reporte">
+            <button class="btn btn-success">Descargar Reporte Clientes en Excel</button>
+          </a>
+        </div>
         
-       
-
       </div>
 
       <div class="box-body">
@@ -520,7 +524,8 @@ MODAL AGREGAR CLIENTE
                       
                         <span class="input-group-addon"><i class="fa fa-money"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar Linea de Credito" required>
+                        <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar Linea de Credito" 
+                        required oninput="formatearLineaCredito(this)">
 
                       </div>
                   </div>
@@ -645,10 +650,7 @@ MODAL EDITAR CLIENTE
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
                         <input type="text" class="form-control input" name="editarRutId" id="editarRutId" 
-                          placeholder="Ingrese su RUT" 
-                          required
-                          pattern="^(\d{1,2}\.\d{3}\.\d{3}-[\dkK])$" 
-                          title="El RUT debe tener el formato XX.XXX.XXX-X">
+                          placeholder="Ingrese su RUT" required onblur="formatearRut(this)">
 
                       </div>
                   </div>
@@ -845,7 +847,8 @@ MODAL EDITAR CLIENTE
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                            <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                            <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" 
+                            required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                           </div>
                       </div>
@@ -1042,71 +1045,35 @@ MODAL EDITAR CLIENTE
 ?>
 
 <script>
-document.getElementById('nuevaRegion').addEventListener('change', function() {
-    var regionId = this.value; // Obtener el ID de la región seleccionada
+$(document).ready(function() {
+    $('#nuevaRegion').change(function() {
+        var selectedValue = $(this).val();
 
-    // Verifica que haya una región seleccionada
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
-
-                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
-                var comunaSelect = document.getElementById('nuevaComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
-
-                // Rellenar las opciones del select de comunas
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
-                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#nuevaComuna').html(response);
             }
-        };
-
-        // Enviar el ID de la región seleccionada al servidor
-        xhr.send('regionId=' + regionId);
-    } else {
-        // Si no hay región seleccionada, limpiar el select de comunas
-        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
 
-document.getElementById('editarRegion').addEventListener('change', function() {
-    var regionId = this.value;
-    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+$(document).ready(function() {
+    $('#editarRegion').change(function() {
+        var selectedValue = $(this).val();
 
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var comunas = JSON.parse(xhr.responseText);
-                var comunaSelect = document.getElementById('editarComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
-
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id;
-                    option.textContent = comuna.nombre;
-                    if (comuna.id == comunaActual) {
-                        option.selected = true; // Seleccionar la comuna actual
-                    }
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#editarComuna').html(response);
             }
-        };
-
-        xhr.send('regionId=' + regionId);
-    } else {
-        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
   </script>

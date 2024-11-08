@@ -174,20 +174,19 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
 
-                                                    <input type="date" class="form-control input"
-                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Unidad de negocio</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <select class="form-control input" id="nuevoNegocio"
-                                                            name="nuevoNegocio" required>
-
-                                                        <option value="">Seleccionar unidades</option>
+                                                                        <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                                        required onchange="validarFechas('nuevaFechaEmision', this.id)">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-xs-6">
+                                                                <div class="d-block" style="font-size:14px;">Unidad de Negocio</div>
+                                                                <div class="form-group">
+                                                                    <div class="input-group">
+                                                                    <select class="form-control input" id="nuevoNegocio" name="nuevoNegocio" required>
+                            
+                                                                        <option value="">Seleccionar Unidades</option>
 
                                                         <?php
 
@@ -560,26 +559,6 @@ if ($_SESSION["perfil"] == "Especial") {
         </div>
     </section>
 </div>
-
-<script>
-function validarFechas(fechaInicioId, fechaFinId) {
-    const fechaInicio = document.getElementById(fechaInicioId).value;
-    const fechaFin = document.getElementById(fechaFinId).value;
-
-    // Asegúrate de que ambas fechas tengan un valor
-    if (fechaInicio && fechaFin) {
-        if (new Date(fechaInicio) > new Date(fechaFin)) {
-            $('#alertModal').modal('show'); // Mostrar la ventana modal
-            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
-        }
-    }
-}
-</script>
-
-<!--=====================================
-MODAL AGREGAR PRODUCTO
-======================================-->
-
 
 <style>
     .error {

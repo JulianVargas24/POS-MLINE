@@ -92,14 +92,83 @@ if($xml){
 
       </div>
 
-      <div class="box-tools pull-right" style="margin-bottom:5px">
-          <a href="vistas/modulos/descargar-reporte-ventas.php?reporte=reporte">
-            <button class="btn btn-success" style="margin-top:5px;margin-right:2px;">Reporte: ventas general</button>
-          </a>
-          
+      <div class="box-header with-border">
+          <?php
+          if($_SESSION["perfil"]=="Administrador")
+          ?> 
           
 
+        <div class="input-group">
+
+          <button type="button" class="btn btn-default" id="daterange-ventas">
+          
+            <span>
+              <i class="fa fa-calendar"></i> 
+
+              <?php
+
+                if(isset($_GET["fechaInicial"])){
+
+                  echo $_GET["fechaInicial"]." - ".$_GET["fechaFinal"];
+                
+                }else{
+                
+                  echo 'Rango de fecha';
+
+                }
+
+              ?>
+            </span>
+
+            <i class="fa fa-caret-down"></i>
+
+          </button>
+
+        </div>
+
+      <div class="box-header with-border">
+          <?php
+          if($_SESSION["perfil"]=="Administrador")
+          ?> 
+          
+
+        <div class="input-group">
+
+          <button type="button" class="btn btn-default" id="daterange-ventas">
+          
+            <span>
+              <i class="fa fa-calendar"></i> 
+
+              <?php
+
+                if(isset($_GET["fechaInicial"])){
+
+                  echo $_GET["fechaInicial"]." - ".$_GET["fechaFinal"];
+                
+                }else{
+                
+                  echo 'Rango de fecha';
+
+                }
+
+              ?>
+            </span>
+
+            <i class="fa fa-caret-down"></i>
+
+          </button>
+
+        </div>
+
+      <div class="box-tools pull-right" style="margin-bottom:5px">
+          <a href="vistas/modulos/descargar-reporte-ventas.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+            <button class="btn btn-success" style="margin-top:5px;margin-right:2px;">Reporte: Ventas General</button>
+          </a>
       </div>
+
+      </div>
+
+
 
       <div class="box-body">
         
@@ -309,9 +378,9 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
 
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
+                    <td>$ '.$value["pendiente"].'</td>
 
                     <td>
 
@@ -395,8 +464,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -482,8 +551,8 @@ if($xml){
                     <td style="width:20px;">'.$value["observacion"].'</td>
 
                     <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
+                    <td>$ '.$value["pagado"].'</td>
+                    <td>$ '.$value["pendiente"].'</td>
 
                     <td>
 
@@ -568,8 +637,8 @@ if($xml){
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
                     
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -655,8 +724,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ 0</td>
 
                     <td>
@@ -736,8 +805,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ 0</td>
 
                     <td>
@@ -817,8 +886,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ '.$value["iva"].'</td>
 
                     <td>
@@ -898,8 +967,8 @@ if($xml){
 
                   <td style="width:20px;">'.$value["observacion"].'</td>
     
-                  <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                  <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                  <td>$ '.$value["total_final"].'</td>
+                  <td>$ '.$value["pagado"].'</td>
                   <td>$ '.$value["iva"].'</td>
 
                   <td>
@@ -943,51 +1012,3 @@ if($xml){
   </section>
 
 </div>
-
-<script>
-$(document).ready(function() {
-  $(".tablas").on("click", ".btnImprimirNotaCreditoBoletaExenta", function(){
-
-  var codigoVenta= $(this).attr("codigoVenta");
-  var tipoDocumento = "Nota_Credito_Boleta_Exenta";
-
-  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
-
-})
-});
-
-$(document).ready(function() {
-  $(".tablas").on("click", ".btnImprimirNotaCreditoBoletaAfecta", function(){
-
-  var codigoVenta= $(this).attr("codigoVenta");
-  var tipoDocumento = "Nota_Credito_Boleta_Afecta";
-
-  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
-
-})
-});
-
-$(document).ready(function() {
-  $(".tablas").on("click", ".btnImprimirNotaCreditoFacturaAfecta", function(){
-
-  var codigoVenta= $(this).attr("codigoVenta");
-  var tipoDocumento = "Nota_Credito_Factura_Afecta";
-
-  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
-
-})
-});
-
-$(document).ready(function() {
-  $(".tablas").on("click", ".btnImprimirNotaCreditoFacturaExenta", function(){
-
-  var codigoVenta= $(this).attr("codigoVenta");
-  var tipoDocumento = "Nota_Credito_Factura_Exenta";
-
-  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
-
-})
-});
-</script>
-
-

@@ -2,7 +2,7 @@
 
 // Obtener el valor enviado por AJAX
 $id = $_POST['id'];
-$conexion = mysqli_connect("localhost","root","","mlinecl_pos_pyme_mline");
+$conexion = mysqli_connect("localhost:3306","root","","mlinecl_pos_pyme_mline");
 
 // Consultar la base de datos para obtener las opciones correspondientes
 $sql = "SELECT * FROM comunas WHERE region_id = $id";

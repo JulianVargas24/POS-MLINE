@@ -101,16 +101,14 @@ if ($xml) {
 
                 </div>
 
-                <div class="box-tools pull-right">
-                    <a href="vistas/modulos/descargar-reporte-cotizacion.php?reporte=reporte">
-                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte afectas en Excel
-                        </button>
-                    </a>
+        <div class="box-tools pull-right">
+          <a href="vistas/modulos/descargar-reporte-cotizacion.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+            <button class="btn btn-success" style="margin-top:5px">Descargar Reporte Afectas en Excel</button>
+          </a>
 
-                    <a href="vistas/modulos/descargar-reporte-cotizacion-exenta.php?reporte=reporte">
-                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte exentas en Excel
-                        </button>
-                    </a>
+          <a href="vistas/modulos/descargar-reporte-cotizacion-exenta.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+            <button class="btn btn-success" style="margin-top:5px">Descargar Reporte Exentas en Excel</button>
+          </a>
 
                 </div>
 
