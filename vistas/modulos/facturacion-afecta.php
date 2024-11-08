@@ -198,10 +198,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                             onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                         </div>
                                                     </div>
-
-                                                    <input type="date" class="form-control input-sm"
-                                                           name="nuevaFechaEmision" id="nuevaFechaEmision" readonly
-                                                           value="<?php echo $cotizacion["fecha_emision"]; ?>">
                                                 </div>
                                                 <div class="col-xs-6">
                                                 <div class="d-block" style="font-size:14px;">Fecha venc.</div>
@@ -413,6 +409,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                             </div>
                                         </div>
+                                       </div>
                                         <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">RAZÓN REFERENCIA:</h4>
                                         <div class="row" style="margin-top:5px;">
                                             <div class="col-xs-12">
@@ -421,9 +418,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                             </div>
                                         </div>
-
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -789,9 +783,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         </div>
                     </div>
             </div>
-
-
-            <button type="button" class="btn btn-default">Salir</button>
+            <a href="cotizaciones" class="btn btn-default">Salir</a>
             <button type="submit" class="btn btn-primary">Guardar facturación</button>
             </form>
             <?php
