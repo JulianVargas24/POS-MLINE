@@ -248,7 +248,7 @@ if ($xml) {
         },
         startDate: moment(),
         endDate: moment(),
-        autoApply: true,
+        showCancelButton: true,
       });
 
       // Evento al seleccionar fechas
