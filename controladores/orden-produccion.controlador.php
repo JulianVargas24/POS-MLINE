@@ -236,6 +236,7 @@ public function ctrDescargarReporteOrdenProduccion(){
         <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
         <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO DE LOTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
     </tr>
@@ -244,11 +245,19 @@ public function ctrDescargarReporteOrdenProduccion(){
 
     foreach ($ordenes as $row => $item) {
       if ($item["tipo_orden"] === "Cliente con Cotización") {
+        $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
         $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
         $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
         $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
         $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+        
+        // Crear una cadena con los códigos de los detalles
+        $codigosDetalle = [];
+        foreach ($ordenesProduccionDetalle as $detalle) {
+        $codigosDetalle[] = $detalle["codigo_lote"];
+        }
+        $codigosDetalleStr = implode(", ", $codigosDetalle);
 
         // Mostrar los datos de la orden
         echo utf8_decode("<tr>
@@ -257,6 +266,7 @@ public function ctrDescargarReporteOrdenProduccion(){
             <td style='border:1px solid #eee;'>".$bodegaNombre."</td>
             <td style='border:1px solid #eee;'>".$clienteNombre."</td>
             <td style='border:1px solid #eee;'>".$item["nombre_orden"]."</td>
+            <td style='border:1px solid #eee;'>".$codigosDetalleStr."</td>
             <td style='border:1px solid #eee;'>".substr($item["fecha_emision"], 0, 10)."</td>
             <td style='border:1px solid #eee;'>".substr($item["fecha_vencimiento"], 0, 10)."</td>
         </tr>");
@@ -272,6 +282,7 @@ public function ctrDescargarReporteOrdenProduccion(){
         <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
         <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CODIGO DE LOTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
     </tr>
@@ -280,11 +291,19 @@ public function ctrDescargarReporteOrdenProduccion(){
 
     foreach ($ordenes as $row => $item) {
       if ($item["tipo_orden"] === "Cliente sin Cotización") {
+        $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
         $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
         $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
         $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
         $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
+
+        // Crear una cadena con los códigos de los detalles
+        $codigosDetalle = [];
+        foreach ($ordenesProduccionDetalle as $detalle) {
+        $codigosDetalle[] = $detalle["codigo_lote"];
+        }
+        $codigosDetalleStr = implode(", ", $codigosDetalle);
 
         // Mostrar los datos de la orden
         echo utf8_decode("<tr>
@@ -293,6 +312,7 @@ public function ctrDescargarReporteOrdenProduccion(){
             <td style='border:1px solid #eee;'>".$bodegaNombre."</td>
             <td style='border:1px solid #eee;'>".$clienteNombre."</td>
             <td style='border:1px solid #eee;'>".$item["nombre_orden"]."</td>
+            <td style='border:1px solid #eee;'>".$codigosDetalleStr."</td>
             <td style='border:1px solid #eee;'>".substr($item["fecha_emision"], 0, 10)."</td>
             <td style='border:1px solid #eee;'>".substr($item["fecha_vencimiento"], 0, 10)."</td>
         </tr>");
