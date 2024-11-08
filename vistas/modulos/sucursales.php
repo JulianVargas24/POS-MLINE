@@ -190,7 +190,7 @@ MODAL AGREGAR SUCURSAL
                 <div class="form-group row">
 
 
-                  <div class="col-lg-6">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre de sucursal</div>
                     <div class="input-group">
 
@@ -199,7 +199,7 @@ MODAL AGREGAR SUCURSAL
                     </div>
                   </div>
                   
-                  <div class="col-lg-6 col-xs-6">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -207,7 +207,7 @@ MODAL AGREGAR SUCURSAL
                     </div>
                   </div>
 
-                  <div class="col-xs-6">
+                  <div class="col-sm-6" style="margin-top:10px;">
                         <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                   
@@ -215,7 +215,7 @@ MODAL AGREGAR SUCURSAL
 
                             <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
                                                                             
-                                <option  value="">Seleccionar Region</option>
+                                <option  value="">Seleccionar región</option>
 
                                 <?php
                                 $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
@@ -229,7 +229,7 @@ MODAL AGREGAR SUCURSAL
                   </div>   
 
                   <!-- ENTRADA PARA LA CIUDAD  -->
-                  <div class="col-xs-6">
+                  <div class="col-sm-6" style="margin-top:10px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
                             <div class="input-group">
                             
@@ -248,7 +248,7 @@ MODAL AGREGAR SUCURSAL
 
 
                   <!-- ENTRADA PARA LA DIRECCIÓN -->                           
-                  <div class="col-lg-6" style="margin-top:10px;">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
@@ -257,7 +257,7 @@ MODAL AGREGAR SUCURSAL
                   </div>
 
                   <!-- ENTRADA PARA LA BODEGA --> 
-                  <div class="col-lg-6" style="margin-top:10px;">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega asociada</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
@@ -282,18 +282,18 @@ MODAL AGREGAR SUCURSAL
             <div class="box box-success">
               <div class="box-body">                
                 <div class="form-group row">              
-                  <div class="col-lg-6">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                          <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" required>
+                          <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" placeholder="Ingresar jefe encargado" required>
 
                         </div>
                   </div>
 
-                  <div class="col-lg-6">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Teléfono</div>
                     <div class="input-group">
 
@@ -313,8 +313,8 @@ MODAL AGREGAR SUCURSAL
                     </div>
 
                  
-                    <div class="col-lg-6" style="margin-top:10px;">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
+                    <div class="col-sm-6" style="margin-top:10px;">
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Correo electrónico</div>
                       <div class="input-group">
                         
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -395,7 +395,7 @@ MODAL EDITAR SUCURSAL
                 <div class="box-body">                
                   <div class="form-group row">
                                   
-                    <div class="col-lg-6">
+                    <div class="col-sm-6" style="margin-top:10px;">
                       <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Nombre sucursal</div>
                       <div class="input-group">
                           
@@ -405,7 +405,7 @@ MODAL EDITAR SUCURSAL
 
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xs-6">
+                    <div class="col-sm-6" style="margin-top:10px;">
                         <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                         <div class="input-group">
                         
@@ -418,7 +418,7 @@ MODAL EDITAR SUCURSAL
 
                       <!-- ENTRADA PARA LA REGION -->
 
-                      <div class="col-xs-6">
+                      <div class="col-sm-6" style="margin-top:10px;">
                         <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
@@ -444,7 +444,7 @@ MODAL EDITAR SUCURSAL
                       </div>   
 
                   <!-- ENTRADA PARA LA CIUDAD -->
-                  <div class="col-xs-6">
+                    <div class="col-sm-6" style="margin-top:10px;">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
                             <div class="input-group">
                             
@@ -463,7 +463,7 @@ MODAL EDITAR SUCURSAL
                       <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
 
                       <!-- ENTRADA PARA LA DIRECCIÓN -->                           
-                  <div class="col-lg-6" style="margin-top:10px;">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
@@ -471,7 +471,7 @@ MODAL EDITAR SUCURSAL
                     </div>
                   </div>
 
-                  <div class="col-lg-6" style="margin-top:10px;">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Bodega asociada</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
@@ -496,7 +496,7 @@ MODAL EDITAR SUCURSAL
             <div class="box box-success">
               <div class="box-body">                
                 <div class="form-group row">              
-                  <div class="col-lg-6">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
                         
@@ -507,7 +507,7 @@ MODAL EDITAR SUCURSAL
                         </div>
                   </div>
 
-                  <div class="col-lg-6">
+                  <div class="col-sm-6" style="margin-top:10px;">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Teléfono</div>
                     <div class="input-group">
 
@@ -527,8 +527,8 @@ MODAL EDITAR SUCURSAL
                     </div>
 
                  
-                    <div class="col-lg-6" style="margin-top:10px;">
-                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
+                    <div class="col-sm-6" style="margin-top:10px;">
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;">Correo electrónico</div>
                       <div class="input-group">
                         
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>

@@ -182,8 +182,8 @@ if ($_SESSION["perfil"] == "Especial") {
                 <div class="form-group row">
 
                   <!-- Razón Social -->
-                  <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Razón social</div>
+                  <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Razón social</div>
                         <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
                       <input type="text" class="form-control" name="nuevaMatriz" id="nuevaMatriz" placeholder="Ingrese razón social" required>
@@ -191,8 +191,8 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                   <!-- RUT -->
-                  <div class="col-lg-6 col-xs-6 ">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">RUT</div>
+                  <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">RUT</div>
                         <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
                       <input type="text" class="form-control input" name="nuevoRut" id="nuevoRut"  placeholder="Ingresar Rut" required onblur="formatearRut(this)">
@@ -202,7 +202,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   
 
                   <!-- Region -->
-                  <div class="col-xs-6">
+                  <div class="col-xs-6" style="margin-top:10px">
                         <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
@@ -226,7 +226,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div> 
 
                    <!-- ENTRADA PARA LA CIUDAD -->
-                   <div class="col-xs-6">
+                   <div class="col-xs-6" style="margin-top:10px">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
                             <div class="input-group">
                             
@@ -243,8 +243,8 @@ if ($_SESSION["perfil"] == "Especial") {
 
                    
                   <!-- País -->
-                  <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">País</div>
+                  <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                         <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span>
                       <input type="text" class="form-control" name="nuevoPais" id="nuevoPais" placeholder="Ingrese país" required value="Chile">
@@ -252,8 +252,8 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>    
 
                   <!-- Dirección -->
-                  <div class="col-lg-6 col-xs-6">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Dirección</div>
+                  <div class="col-xs-6" style="margin-top:10px">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                           <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
                       <input type="text" class="form-control" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese dirección" required>
@@ -261,8 +261,8 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                   <!-- Ejecutivo -->
-                  <div class="col-lg-6 col-xs-6 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Ejecutivo</div>
+                  <div class="col-xs-6 " style="margin-top:10px">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Ejecutivo</div>
                             <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
                       <input type="text" class="form-control" name="nuevoEjecutivo" id="nuevoEjecutivo" placeholder="Ingresar ejecutivo" required>
@@ -270,8 +270,8 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                   <!-- Teléfono -->
-                  <div class="col-lg-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Número de teléfono</div>
+                  <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Número de teléfono</div>
                         <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -292,8 +292,8 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                   <!-- Correo Electrónico -->
-                  <div class="col-lg-6 col-xs-6 ">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
+                  <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Correo electrónico</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -305,11 +305,11 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                   <!-- Actividad -->
-                  <div class="col-lg-6 col-xs-6 ">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Actividad</div>
+                  <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Actividad</div>
                           <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-industry"></i></span>
-                      <input type="text" class="form-control" name="nuevaActividad" id="nuevaActividad" placeholder="Ingresar Actividad" required>
+                      <input type="text" class="form-control" name="nuevaActividad" id="nuevaActividad" placeholder="Ingresar actividad" required>
                     </div>
                   </div>
 
@@ -324,7 +324,7 @@ if ($_SESSION["perfil"] == "Especial") {
                 <div class="form-group row">
 
                   <!-- Fecha Inicio Servicio -->
-                  <div class="col-lg-5 ">
+                  <div class="col-xs-6 ">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha inicio servicio</div>
                             <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -333,7 +333,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                   <!-- Fecha Vcto Servicio -->
-                  <div class="col-lg-5 col-xs-offset-1">
+                  <div class="col-xs-6">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha vcto. servicio</div>
                             <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -342,7 +342,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                   <!-- Tipo Cliente -->
-                  <div class="col-lg-5">
+                  <div class="col-xs-6">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo cliente</div>
                             <div class="input-group">
                             
@@ -369,7 +369,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                   <!-- Tipo Producto -->
-                  <div class="col-lg-5 col-xs-offset-1 ">
+                  <div class="col-xs-6">
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo producto</div>
                             <div class="input-group">
                             
@@ -461,8 +461,8 @@ if ($_SESSION["perfil"] == "Especial") {
                   <div class="form-group row">
                     
                   <!-- RAZON SOCIAL -->
-                      <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Razón social</div>
+                      <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Razón social</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -473,8 +473,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- RUT -->
-                      <div class="col-lg-6 col-xs-6 ">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">RUT</div>
+                      <div class="col-xs-6 " style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">RUT</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -486,7 +486,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     
                       
                       <!-- REGION -->
-                      <div class="col-xs-6">
+                      <div class="col-xs-6" style="margin-top:10px">
                         <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
@@ -512,7 +512,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                   <!-- CIUDAD -->
-                      <div class="col-xs-6">
+                      <div class="col-xs-6" style="margin-top:10px">
                           <div class="d-block text-center" style="font-size:16px;font-weight:bold">Comuna</div>
                             <div class="input-group">
                             
@@ -528,8 +528,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- PAIS -->
-                      <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">País</div>
+                      <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">País</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -542,8 +542,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       <!-- Dirección -->
                       <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
                       
-                      <div class="col-lg-6 col-xs-6">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Dirección</div>
+                      <div class="col-xs-6" style="margin-top:10px">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                           <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-bookmark"></i></span> 
@@ -554,8 +554,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- EJECUTIVO -->
-                      <div class="col-lg-6 col-xs-6 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Ejecutivo</div>
+                      <div class="col-xs-6" style="margin-top:10px">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Ejecutivo</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -566,8 +566,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- TELEFONO -->
-                      <div class="col-lg-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Número de teléfono</div>
+                      <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Número de teléfono</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -588,8 +588,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- CORREO -->
-                      <div class="col-lg-6 col-xs-6 ">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
+                      <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Correo electrónico</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -602,8 +602,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- ACTIVIDAD -->
-                      <div class="col-lg-6 col-xs-6 ">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Actividad</div>
+                      <div class="col-xs-6" style="margin-top:10px">
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Actividad</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-industry"></i></span> 
@@ -625,8 +625,8 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="form-group row">
 
                     <!-- FECHA INICIO -->
-                        <div class="col-lg-5 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha inicio servicio</div>
+                        <div class="col-xs-6" style="margin-top:10px">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Fecha inicio servicio</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
@@ -637,8 +637,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         </div>
 
                         <!-- FECHA VENCIMIENTO -->
-                        <div class="col-lg-5 col-xs-offset-1">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha vcto. servicio</div>
+                        <div class="col-xs-6" style="margin-top:10px">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Fecha vcto. servicio</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
@@ -649,8 +649,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         </div>
 
                         <!-- TIPO CAMPAÑA -->
-                        <div class="col-lg-5">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo cliente</div>
+                        <div class="col-xs-6" style="margin-top:10px">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo cliente</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
@@ -676,8 +676,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         </div>
 
                         <!-- TIPO PRODUCTO -->
-                        <div class="col-lg-5 col-xs-offset-1 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo producto</div>
+                        <div class="col-lg-6" style="margin-top:10px">
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Tipo producto</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-briefcase "></i></span> 
