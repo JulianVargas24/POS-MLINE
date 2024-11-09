@@ -155,23 +155,33 @@ if ($xml) {
                   $unidad = ControladorUnidades::ctrMostrarunidades($item, $valor);
                   $productos = ControladorProductos::ctrMostrarProductosPredeterminado($item, $valor);
 
+                  // Array para almacenar 
+                  $codigoDetalle = [];
+                  $nombreDetalle = [];
+                  $medidaDetalle = [];
+
                   // Iterar sobre los detalles de producción
                   foreach ($ordenesProduccionDetalle as $detalle) {
                     // Buscar la unidad de medida para cada detalle de producción
                     foreach ($unidad as $cli) {
                       if ($cli["id"] == $detalle["id_unidad"]) {
-                        $medida = $cli["medida"];
+                        $medidaDetalle[] = $cli["medida"];
                         break; // Romper el bucle una vez que encuentres la unidad
                       }
                     }
                     // Buscar el producto para cada detalle de producción
                     foreach ($productos as $pro) {
                       if ($pro["id"] == $detalle["id_producto"]) {
-                        $codigo = $pro["codigo"];
+                        $codigoDetalle[] = $pro["codigo"];
+                        $nombreDetalle[] = $pro["descripcion"];
                         break; // Romper el bucle una vez que encuentres la unidad
                       }
                     }
                   }
+
+                  $codigoDetalleStr = implode(", ", $codigoDetalle);
+                  $nombreDetalleStr = implode(", ", $nombreDetalle);
+                  $medidaDetalleStr = implode(", ", $medidaDetalle);
 
                   // Inicializar arrays vacíos para cada campo
                   $codigosDetalle = [];
@@ -239,8 +249,9 @@ if ($xml) {
                     data-costo_produccion_total="' . $orden["costo_produccion_total"] . '" 
                     data-costo_embalaje_total="' . $orden["costo_embalaje_total"] . '" 
                     data-costo_total_con_embalaje="' . $orden["costo_total_con_embalaje"] . '"
-                    data-codigo="' . $codigo . '"
-                    data-medida="' . $medida . '"
+                    data-nombre="' . $nombreDetalleStr . '"
+                    data-codigo="' . $codigoDetalleStr . '"
+                    data-medida="' . $medidaDetalleStr . '"
                     data-codigo_lote="' . $codigosDetalleStr . '"
                     data-emision_detalle="' . $emisionDetalleStr . '"
                     data-vencimiento_detalle="' . $vencimientoDetalleStr . '"
@@ -331,6 +342,7 @@ if ($xml) {
         <p><strong>Costo Embalaje Total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
         <p><strong>Costo Total con Embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
         <p><strong>PRODUCTO</strong></p>
+        <p><strong>Nombre del producto:</strong> <span id="modalNombre"></span></p>
         <p><strong>Código del producto:</strong> <span id="modalCodigo"></span></p>
         <p><strong>Medida:</strong> <span id="modalMedida"></span></p>
         <p><strong>Código del lote:</strong> <span id="modalCodigoLote"></span></p>
@@ -372,6 +384,7 @@ if ($xml) {
       var costoProduccionTotal = $(this).data('costo_produccion_total');
       var costoEmbalajeTotal = $(this).data('costo_embalaje_total');
       var costoTotalConEmbalaje = $(this).data('costo_total_con_embalaje');
+      var nombre = $(this).data('nombre');
       var codigo = $(this).data('codigo');
       var medida = $(this).data('medida');
       var codigoLote = $(this).data('codigo_lote');
@@ -402,6 +415,7 @@ if ($xml) {
       $('#modalCostoProduccionTotal').text(costoProduccionTotal);
       $('#modalCostoEmbalajeTotal').text(costoEmbalajeTotal);
       $('#modalCostoTotalConEmbalaje').text(costoTotalConEmbalaje);
+      $('#modalNombre').text(nombre);
       $('#modalCodigo').text(codigo);
       $('#modalMedida').text(medida);
       $('#modalCodigoLote').text(codigoLote);
