@@ -125,12 +125,9 @@ class ControladorOrdenProduccion
   static public function ctrMostrarOrdenesProduccionDetalle($item, $valor)
   {
     $tabla = "orden_produccion_detalle";
-
-    $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
-    $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
-
-    return ModeloOrdenProduccion::mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+    return ModeloOrdenProduccion::mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor);
   }
+
 
   /**
    * Eliminar Orden de Producción como su detalle

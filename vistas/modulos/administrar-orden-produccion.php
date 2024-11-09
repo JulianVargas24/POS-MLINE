@@ -67,9 +67,10 @@ if ($xml) {
 
           <!-- Botón para descargar el reporte -->
           <div class="box-tools pull-right" style="margin-bottom:5px">
-            <a href="vistas/modulos/descargar-reporte-orden-produccion.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>"
+            <a href="vistas/modulos/descargar-reporte-orden-produccion.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
               <button class="btn btn-success" style="margin-top:5px">Descargar Orden de Producción</button>
             </a>
+
           </div>
 
           <!-- Tabla de Ordenes de Producción -->

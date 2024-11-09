@@ -189,44 +189,29 @@ class ModeloOrdenProduccion
   /**
    * Mostrar detalles de las Órdenes de Producción con opción de filtro por rango de fechas.
    */
-  static public function mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor, $fechaInicial = null, $fechaFinal = null)
+  static public function mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor)
   {
     try {
-      // Si se proporcionan fechas, filtra por el rango de fechas.
-      if ($fechaInicial && $fechaFinal) {
-        $query = "SELECT * FROM $tabla WHERE fecha_emision BETWEEN :fechaInicial AND :fechaFinal";
-        if ($item != null) {
-          $query .= " AND $item = :$item";
-        }
-        $stmt = Conexion::conectar()->prepare($query);
-        $stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
-        $stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
-
-        if ($item != null) {
-          $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
-        }
-      }
-      // Si no hay fechas, pero sí un filtro específico.
-      else if ($item != null) {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+      if ($item != null) {
+        // Consulta con un solo criterio
+        $stmt = Conexion::conectar()->prepare(
+          "SELECT * FROM $tabla WHERE $item = :$item"
+        );
         $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
-      }
-      // Si no hay filtros, selecciona todos los registros.
-      else {
+      } else {
+        // Consulta sin filtros
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
       }
 
-      // Ejecuta la consulta SQL.
       $stmt->execute();
-      // Retorna los resultados como un array asociativo o un array vacío si no hay resultados.
-      return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
-    } catch (PDOException $e) {
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
       return "error: " . $e->getMessage();
     } finally {
-      // Cierra la conexión a la base de datos.
       $stmt = null;
     }
   }
+
 
 
 
