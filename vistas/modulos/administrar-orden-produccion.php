@@ -67,7 +67,7 @@ if ($xml) {
 
           <!-- Botón para descargar el reporte -->
           <div class="box-tools pull-right" style="margin-bottom:5px">
-            <a href="vistas/modulos/descargar-reporte-orden-produccion.php?reporte=reporte">
+            <a href="vistas/modulos/descargar-reporte-orden-produccion.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>"
               <button class="btn btn-success" style="margin-top:5px">Descargar Orden de Producción</button>
             </a>
           </div>
@@ -77,17 +77,17 @@ if ($xml) {
             <table class="table table-bordered table-striped dt-responsive  tablas" width="100%">
               <thead>
                 <tr>
-                <th>Folio</th>
-                <th>Tipo de orden</th>
-                <th>Nombre Orden</th>
-                <th>Cliente</th>
-                <th>Unidad de Negocio</th>
-                <th>Bodega</th>
-                <th>Emisión</th>
-                <th>Vencimiento</th>
-                <th>Cantidad Producida</th>
-                <th>Código de Lote</th>
-                <th>Acciones</th>
+                  <th>Folio</th>
+                  <th>Tipo de orden</th>
+                  <th>Nombre Orden</th>
+                  <th>Cliente</th>
+                  <th>Unidad de Negocio</th>
+                  <th>Bodega</th>
+                  <th>Emisión</th>
+                  <th>Vencimiento</th>
+                  <th>Cantidad Producida</th>
+                  <th>Código de Lote</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
 

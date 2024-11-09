@@ -116,8 +116,7 @@ class ControladorOrdenProduccion
     $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
     $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
 
-    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor, $fechaInicial, $fechaFinal);
-    return $respuesta;
+    return ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor, $fechaInicial, $fechaFinal);
   }
 
   /**
@@ -126,8 +125,11 @@ class ControladorOrdenProduccion
   static public function ctrMostrarOrdenesProduccionDetalle($item, $valor)
   {
     $tabla = "orden_produccion_detalle";
-    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor);
-    return $respuesta;
+
+    $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+    $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
+
+    return ModeloOrdenProduccion::mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor, $fechaInicial, $fechaFinal);
   }
 
   /**
@@ -194,16 +196,19 @@ class ControladorOrdenProduccion
 
       $tabla = "orden_produccion";
 
-      if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
-        $ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
-      } else {
-        $item = null;
-        $valor = null;
-        $ordenes = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
-      }
+      // Obtener las fechas de la URL
+      $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+      $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
 
-      // Crear archivo de Excel
-      $Name = $_GET["reporte"] . '-orden-producción.xls';
+      $ordenes = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, null, null, $fechaInicial, $fechaFinal);
+
+      // Nombre del archivo incluyendo fechas si están disponibles
+      $Name = $_GET["reporte"] . '-oreden-producción';
+      if ($fechaInicial && $fechaFinal) {
+        $Name .= '-desde-' . $fechaInicial . '-hasta-' . $fechaFinal;
+      }
+      $Name .= '.xls';
+
 
       header('Expires: 0');
       header('Cache-control: private');
@@ -227,9 +232,9 @@ class ControladorOrdenProduccion
           $totalConCotizacion++;
         } elseif ($item["tipo_orden"] === "Cliente sin Cotización") {
           $totalSinCotizacion++;
-        }elseif ($item["tipo_orden"] === "Producción Stock") {
+        } elseif ($item["tipo_orden"] === "Producción Stock") {
           $totalProduccionStock++;
-        }elseif ($item["tipo_orden"] === "PACK") {
+        } elseif ($item["tipo_orden"] === "PACK") {
           $totalPack++;
         }
       }
