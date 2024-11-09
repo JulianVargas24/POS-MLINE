@@ -9,7 +9,8 @@ class ModeloProductos
 	MOSTRAR PRODUCTOS
 	=============================================*/
 
-	static public function mdlMostrarProductos($tabla, $item, $valor, $orden){
+	static public function mdlMostrarProductos($tabla, $item, $valor, $orden)
+	{
 
 		if ($item != null) {
 
@@ -34,26 +35,45 @@ class ModeloProductos
 		$stmt = null;
 	}
 
+	// Método en el modelo de productos
+	static public function mdlMostrarProductosPredeterminado($tabla, $item = null, $valor = null)
+	{
+		// Si no se proporcionan parámetros de filtro, se retorna todo
+		if ($item == null && $valor == null) {
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		} else {
+			// Si se proporciona un filtro, se ejecuta la consulta con filtro
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+			$stmt->bindParam(":$item", $valor, PDO::PARAM_STR);
+		}
 
-		static public function mdlMostrarProductoPorId($id){
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 
-		
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM productos WHERE id = $id");
 
-			$stmt->execute();
+	static public function mdlMostrarProductoPorId($id)
+	{
 
-			return $stmt->fetch();
-		
-			$stmt->close();
 
-			$stmt = null;
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM productos WHERE id = $id");
+
+		$stmt->execute();
+
+		return $stmt->fetch();
+
+		$stmt->close();
+
+		$stmt = null;
 	}
 
 	/*=============================================
 	REGISTRO DE PRODUCTO
 	=============================================*/
-	static public function mdlIngresarProducto($tabla, $datos){
+	static public function mdlIngresarProducto($tabla, $datos)
+	{
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, codigo, descripcion, imagen, stock, precio_compra, precio_venta, stock_alerta, stock_min, id_bodega, id_subcategoria, id_medida, id_rubro, tipo_producto) VALUES (:id_categoria, :codigo, :descripcion, :imagen, :stock, :precio_compra, :precio_venta, :stock_alerta, :stock_min, :id_bodega, :id_subcategoria, :id_medida, :id_rubro, :tipo_producto)");
 
@@ -87,7 +107,8 @@ class ModeloProductos
 		$stmt = null;
 	}
 
-	static public function mdlIngresarProductoPorBodega($tabla, $datos){
+	static public function mdlIngresarProductoPorBodega($tabla, $datos)
+	{
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_bodega, id_producto, stock_producto) VALUES (:id_bodega, :id_producto, :stock_producto)");
 
@@ -116,7 +137,8 @@ class ModeloProductos
 	/*=============================================
 	EDITAR PRODUCTO
 	=============================================*/
-	static public function mdlEditarProducto($tabla, $datos){
+	static public function mdlEditarProducto($tabla, $datos)
+	{
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_categoria = :id_categoria, id_subcategoria = :id_subcategoria, descripcion = :descripcion, stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta, stock_alerta = :stock_alerta, stock_min = :stock_min, id_medida = :id_medida, id_bodega = :id_bodega, id_rubro = :id_rubro, id_tabla_lista = :id_tabla_lista WHERE id = :id");
 
@@ -147,7 +169,8 @@ class ModeloProductos
 		$stmt = null;
 	}
 
-	static public function mdlEditarPrecioProducto($tabla, $datos){
+	static public function mdlEditarPrecioProducto($tabla, $datos)
+	{
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET precio_venta = :precio_venta  WHERE id = :id");
 
@@ -171,7 +194,8 @@ class ModeloProductos
 	BORRAR PRODUCTO
 	=============================================*/
 
-	static public function mdlEliminarProducto($tabla, $datos){
+	static public function mdlEliminarProducto($tabla, $datos)
+	{
 
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
@@ -194,7 +218,8 @@ class ModeloProductos
 	ACTUALIZAR PRODUCTO
 	=============================================*/
 
-	static public function mdlActualizarProducto($tabla, $item1, $valor1, $valor){
+	static public function mdlActualizarProducto($tabla, $item1, $valor1, $valor)
+	{
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE id = :id");
 
@@ -218,7 +243,8 @@ class ModeloProductos
 	MOSTRAR SUMA VENTAS
 	=============================================*/
 
-	static public function mdlMostrarSumaVentas($tabla){
+	static public function mdlMostrarSumaVentas($tabla)
+	{
 
 		$stmt = Conexion::conectar()->prepare("SELECT SUM(ventas) as total FROM $tabla");
 
@@ -237,7 +263,8 @@ class ModeloProductos
 	 * @param int $idBodega
 	 * @return int
 	 */
-	static public function mdlMostrarStockPorBodega($idProducto, $idBodega){
+	static public function mdlMostrarStockPorBodega($idProducto, $idBodega)
+	{
 		$con = Conexion::conectar();
 
 		$query = $con->prepare("
@@ -284,13 +311,11 @@ class ModeloProductos
 		$query = $query->fetchAll(PDO::FETCH_ASSOC);
 
 		$ajuste = $query[0]["suma"];
-		
+
 
 		$query = $con->prepare("
 		SELECT stock FROM  `productos` WHERE id = :id_producto
-		"); 
+		");
 		return $entrada - $salida + $ajuste;
-		
 	}
 }
-

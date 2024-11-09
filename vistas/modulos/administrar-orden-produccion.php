@@ -139,19 +139,72 @@ if ($xml) {
                   foreach ($clientes as $cli) {
                     if ($cli["id"] == $orden["id_cliente"]) {
                       $cliente = $cli["nombre"];
+                      $clienteRut = $cli["rut"];
+                      $clienteEmail = $cli["email"];
+                      $clienteTelefono = $cli["telefono"];
+                      $clienteDireccion = $cli["direccion"];
+                      $clienteEmail = $cli["email"];
                       break;
                     }
                   }
 
                   // Obtener los detalles de producción relacionados con la orden actual
                   $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $orden["folio_orden_produccion"]);
+                  $item = null;
+                  $valor = null;
+                  $unidad = ControladorUnidades::ctrMostrarunidades($item, $valor);
+                  $productos = ControladorProductos::ctrMostrarProductosPredeterminado($item, $valor);
 
-                  // Crear una cadena con los códigos de los detalles
-                  $codigosDetalle = [];
+                  // Iterar sobre los detalles de producción
                   foreach ($ordenesProduccionDetalle as $detalle) {
-                    $codigosDetalle[] = $detalle["codigo_lote"];
+                    // Buscar la unidad de medida para cada detalle de producción
+                    foreach ($unidad as $cli) {
+                      if ($cli["id"] == $detalle["id_unidad"]) {
+                        $medida = $cli["medida"];
+                        break; // Romper el bucle una vez que encuentres la unidad
+                      }
+                    }
+                    // Buscar el producto para cada detalle de producción
+                    foreach ($productos as $pro) {
+                      if ($pro["id"] == $detalle["id_producto"]) {
+                        $codigo = $pro["codigo"];
+                        break; // Romper el bucle una vez que encuentres la unidad
+                      }
+                    }
                   }
+
+                  // Inicializar arrays vacíos para cada campo
+                  $codigosDetalle = [];
+                  $emisionDetalle = [];
+                  $vencimientoDetalle = [];
+                  $cantidadProducidaDetalle = [];
+                  $costoUnitarioDetalle = [];
+                  $costoProduccionDetalle = [];
+                  $costoEmbalajeDetalle = [];
+                  $costoProduccionConEmbalajeDetalle = [];
+
+                  // Recorrer los detalles de las órdenes de producción una sola vez
+                  foreach ($ordenesProduccionDetalle as $detalle) {
+                    // Añadir los valores correspondientes a cada array
+                    $codigosDetalle[] = $detalle["codigo_lote"];
+                    $emisionDetalle[] = $detalle["fecha_produccion"];
+                    $vencimientoDetalle[] = $detalle["fecha_vencimiento"];
+                    $cantidadProducidaDetalle[] = $detalle["cantidad_producida"];
+                    $costoUnitarioDetalle[] = $detalle["costo_unitario"];
+                    $costoProduccionDetalle[] = $detalle["costo_produccion"];
+                    $costoEmbalajeDetalle[] = $detalle["costo_embalaje"];
+                    $costoProduccionConEmbalajeDetalle[] = $detalle["costo_produccion_con_embalaje"];
+                  }
+
+                  // Convertir los arrays en cadenas separadas por comas
                   $codigosDetalleStr = implode(", ", $codigosDetalle);
+                  $emisionDetalleStr = implode(", ", $emisionDetalle);
+                  $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
+                  $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
+                  $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
+                  $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
+                  $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
+                  $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
 
                   echo '<tr>
                     <td>' . $orden["folio_orden_produccion"] . '</td>
@@ -167,7 +220,39 @@ if ($xml) {
 
                     <td>
 
-                    <div class="btn-group">';
+                    <div class="btn-group">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#detalleModal" 
+                    data-titulo="' . $orden["tipo_orden"] . '"
+                    data-folio="' . $orden["folio_orden_produccion"] . '"
+                    data-cliente="' . $cliente . '"
+                    data-cliente_rut="' . $clienteRut . '"
+                    data-cliente_email="' . $clienteEmail . '"
+                    data-cliente_telefono="' . $clienteTelefono . '"
+                    data-cliente_direccion="' . $clienteDireccion . '"
+                    data-orden="' . $orden["nombre_orden"] . '"
+                    data-emision="' . $orden["fecha_emision"] . '"
+                    data-vencimiento="' . $orden["fecha_vencimiento"] . '"
+                    data-centro_costo="' . $centro . '" 
+                    data-bodega_destino="' . $bodega . '" 
+                    data-cantidad_producida_total="' . $orden["cantidad_producida_total"] . '" 
+                    data-costo_unitario_total="' . $orden["costo_unitario_total"] . '" 
+                    data-costo_produccion_total="' . $orden["costo_produccion_total"] . '" 
+                    data-costo_embalaje_total="' . $orden["costo_embalaje_total"] . '" 
+                    data-costo_total_con_embalaje="' . $orden["costo_total_con_embalaje"] . '"
+                    data-codigo="' . $codigo . '"
+                    data-medida="' . $medida . '"
+                    data-codigo_lote="' . $codigosDetalleStr . '"
+                    data-emision_detalle="' . $emisionDetalleStr . '"
+                    data-vencimiento_detalle="' . $vencimientoDetalleStr . '"
+                    data-cantidad-producida="' . $cantidadProducidaDetalleStr . '"
+                    data-costo-unitario="' . $costoUnitarioDetalleStr . '"
+                    data-costo-produccion="' . $costoProduccionDetalleStr . '"
+                    data-costo-embalaje="' . $costoEmbalajeDetalleStr . '"
+                    data-costo-produccion-con-embalaje="' . $costoProduccionConEmbalajeDetalleStr . '"
+                    
+                    
+                    ><i class="fa fa-search"></i></button>
+                    ';
 
                   if ($_SESSION["perfil"] == "Administrador") {
                     echo ' 
@@ -218,7 +303,119 @@ if ($xml) {
 
 </html>
 
+<!-- Modal ver detalle de producto -->
+<div class="modal fade" id="detalleModal" tabindex="-1" role="dialog" aria-labelledby="detalleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #17a2b8; color: white;">
+        <h5 class="modal-title" id="detalleModalLabel"> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Folio:</strong> <span id="modalFolio"></span></p>
+        <p><strong>Cliente:</strong> <span id="modalCliente"></span></p>
+        <p><strong>RUT:</strong> <span id="modalClienteRut"></span></p>
+        <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
+        <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
+        <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
+        <p><strong>Nombre de Orden:</strong> <span id="modalOrden"></span></p>
+        <p><strong>Fecha de emisión:</strong> <span id="modalEmision"></span></p>
+        <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimiento"></span></p>
+        <p><strong>Centro de Costo:</strong> <span id="modalCentroCosto"></span></p>
+        <p><strong>Bodega Destino:</strong> <span id="modalBodegaDestino"></span></p>
+        <p><strong>Cantidad Producida Total:</strong> <span id="modalCantidadProducidaTotal"></span></p>
+        <p><strong>Costo Unitario Total:</strong> <span id="modalCostoUnitarioTotal"></span></p>
+        <p><strong>Costo Producción Total:</strong> <span id="modalCostoProduccionTotal"></span></p>
+        <p><strong>Costo Embalaje Total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
+        <p><strong>Costo Total con Embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
+        <p><strong>PRODUCTO</strong></p>
+        <p><strong>Código del producto:</strong> <span id="modalCodigo"></span></p>
+        <p><strong>Medida:</strong> <span id="modalMedida"></span></p>
+        <p><strong>Código del lote:</strong> <span id="modalCodigoLote"></span></p>
+        <p><strong>Fecha de emisión:</strong> <span id="modalEmisionDetalle"></span></p>
+        <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimientoDetalle"></span></p>
+        <p><strong>Cantidad Producida:</strong> <span id="modalCantidadProducida"></span></p>
+        <p><strong>Costo Unitario:</strong> <span id="modalCostoUnitario"></span></p>
+        <p><strong>Costo Producción:</strong> <span id="modalCostoProduccion"></span></p>
+        <p><strong>Costo Embalaje:</strong> <span id="modalCostoEmbalaje"></span></p>
+        <p><strong>Costo Producción con Embalaje:</strong> <span id="modalCostoProduccionConEmbalaje"></span></p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+  $(document).ready(function() {
+    // Cuando se haga clic en el botón
+    $('button[data-toggle="modal"]').on('click', function() {
+      // Obtener el valor del atributo data-titulo
+      var titulo = $(this).data('titulo');
+      var folio = $(this).data('folio');
+      var cliente = $(this).data('cliente');
+      var clienteRut = $(this).data('cliente_rut');
+      var clienteTelefono = $(this).data('cliente_telefono');
+      var clienteEmail = $(this).data('cliente_email');
+      var clienteDireccion = $(this).data('cliente_direccion');
+      var orden = $(this).data('orden');
+      var emision = $(this).data('emision');
+      var vencimiento = $(this).data('vencimiento');
+      var centroCosto = $(this).data('centro_costo');
+      var bodegaDestino = $(this).data('bodega_destino');
+      var cantidadProducidaTotal = $(this).data('cantidad_producida_total');
+      var costoUnitarioTotal = $(this).data('costo_unitario_total');
+      var costoProduccionTotal = $(this).data('costo_produccion_total');
+      var costoEmbalajeTotal = $(this).data('costo_embalaje_total');
+      var costoTotalConEmbalaje = $(this).data('costo_total_con_embalaje');
+      var codigo = $(this).data('codigo');
+      var medida = $(this).data('medida');
+      var codigoLote = $(this).data('codigo_lote');
+      var emisionDetalle = $(this).data('emision_detalle');
+      var VencimientoDetalle = $(this).data('vencimiento_detalle');
+      var cantidadProducida = $(this).data('cantidad-producida');
+      var costoUnitario = $(this).data('costo-unitario');
+      var costoProduccion = $(this).data('costo-produccion');
+      var costoEmbalaje = $(this).data('costo-embalaje');
+      var costoProduccionConEmbalaje = $(this).data('costo-produccion-con-embalaje');
+
+
+      // Establecer el nuevo título en el modal
+      $('#detalleModalLabel').text('Detalles de ' + titulo);
+      $('#modalFolio').text(folio);
+      $('#modalCliente').text(cliente);
+      $('#modalClienteRut').text(clienteRut);
+      $('#modalClienteTelefono').text(clienteTelefono);
+      $('#modalClienteEmail').text(clienteEmail);
+      $('#modalClienteDireccion').text(clienteDireccion);
+      $('#modalOrden').text(orden);
+      $('#modalEmision').text(emision);
+      $('#modalVencimiento').text(vencimiento);
+      $('#modalCentroCosto').text(centroCosto);
+      $('#modalBodegaDestino').text(bodegaDestino);
+      $('#modalCantidadProducidaTotal').text(cantidadProducidaTotal);
+      $('#modalCostoUnitarioTotal').text(costoUnitarioTotal);
+      $('#modalCostoProduccionTotal').text(costoProduccionTotal);
+      $('#modalCostoEmbalajeTotal').text(costoEmbalajeTotal);
+      $('#modalCostoTotalConEmbalaje').text(costoTotalConEmbalaje);
+      $('#modalCodigo').text(codigo);
+      $('#modalMedida').text(medida);
+      $('#modalCodigoLote').text(codigoLote);
+      $('#modalEmisionDetalle').text(emisionDetalle);
+      $('#modalVencimientoDetalle').text(VencimientoDetalle);
+      $('#modalCantidadProducida').text(cantidadProducida);
+      $('#modalCostoUnitario').text(costoUnitario);
+      $('#modalCostoProduccion').text(costoProduccion);
+      $('#modalCostoEmbalaje').text(costoEmbalaje);
+      $('#modalCostoProduccionConEmbalaje').text(costoProduccionConEmbalaje);
+
+    });
+  });
+
   $(document).ready(function() {
     /**
      * Botón para filtrar por rango de fechas

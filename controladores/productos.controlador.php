@@ -2,35 +2,54 @@
 
 error_reporting(0);
 
-class ControladorProductos{
+class ControladorProductos
+{
 
 	/*=============================================
 	MOSTRAR PRODUCTOS
 	=============================================*/
 
-	static public function ctrMostrarProductos($item, $valor, $orden){
+	static public function ctrMostrarProductos($item, $valor, $orden)
+	{
 
 		$tabla = "productos";
 
 		$respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor, $orden);
 
 		return $respuesta;
-
 	}
 
-	static public function ctrMostrarStockPorBodega(){
-		if(isset($_POST["idBodega"])){
+	// Método en el controlador de productos
+	static public function ctrMostrarProductosPredeterminado($item, $valor)
+	{
+		$tabla = "productos";
+
+		// Si $item es null, no se hace filtro
+		if ($item == null && $valor == null) {
+			$respuesta = ModeloProductos::mdlMostrarProductosPredeterminado($tabla);
+		} else {
+			// Si se proporciona un filtro, se aplica
+			$respuesta = ModeloProductos::mdlMostrarProductosPredeterminado($tabla, $item, $valor);
+		}
+
+		return $respuesta;
+	}
+
+
+	static public function ctrMostrarStockPorBodega()
+	{
+		if (isset($_POST["idBodega"])) {
 			$bodega = $_POST["idBodega"];
 			$producto = $_POST["idProducto"];
-		
-		$respuesta = ModeloProductos::mdlMostrarStockPorBodega($producto, $bodega);
-		return  $respuesta;
-		}	
 
+			$respuesta = ModeloProductos::mdlMostrarStockPorBodega($producto, $bodega);
+			return  $respuesta;
+		}
 	}
 
-	static public function ctrMostrarProductoPorId(){
-		if(isset($_POST["idProducto"])){
+	static public function ctrMostrarProductoPorId()
+	{
+		if (isset($_POST["idProducto"])) {
 
 			$producto = $_POST["idProducto"];
 
@@ -40,132 +59,132 @@ class ControladorProductos{
 	}
 
 	static public function ctrMostrarProductosPorBodega()
-{
-    $bodegas = ModeloBodegas::mdlMostrarBodegas("bodegas", null, null);
-    $productos = ModeloProductos::mdlMostrarProductos("productos", null, null, "id");
+	{
+		$bodegas = ModeloBodegas::mdlMostrarBodegas("bodegas", null, null);
+		$productos = ModeloProductos::mdlMostrarProductos("productos", null, null, "id");
 
-    $data = [];
-    foreach($bodegas as $index => $bodega) {
-        $data[] = [
-            "bodega" => $bodega["nombre"],
-            "productos" => []
-        ];
-        foreach($productos as $producto) {
-            $stock = ModeloProductos::mdlMostrarStockPorBodega($producto["id"], $bodega["id"]);
-            $stock = ($stock > 0) ? $stock : 0;
-            $data[$index]["productos"][] = [
-                "producto" => $producto["descripcion"],
-                "stock" => $stock,
-				"id" => $producto["id"],
-				"stock_alerta" => $producto["stock_alerta"],
-				"stock_min" => $producto["stock_min"]
-            ];
-        }
-    }
+		$data = [];
+		foreach ($bodegas as $index => $bodega) {
+			$data[] = [
+				"bodega" => $bodega["nombre"],
+				"productos" => []
+			];
+			foreach ($productos as $producto) {
+				$stock = ModeloProductos::mdlMostrarStockPorBodega($producto["id"], $bodega["id"]);
+				$stock = ($stock > 0) ? $stock : 0;
+				$data[$index]["productos"][] = [
+					"producto" => $producto["descripcion"],
+					"stock" => $stock,
+					"id" => $producto["id"],
+					"stock_alerta" => $producto["stock_alerta"],
+					"stock_min" => $producto["stock_min"]
+				];
+			}
+		}
 
-    return $data;
-}
+		return $data;
+	}
 
 
 	/*=============================================
 	CREAR PRODUCTO 
 	=============================================*/
 
-	static public function ctrCrearProducto(){
+	static public function ctrCrearProducto()
+	{
 
-		if(isset($_POST["nuevaDescripcion"])){
+		if (isset($_POST["nuevaDescripcion"])) {
 
-			
 
-		   		/*=============================================
+
+			/*=============================================
 				VALIDAR IMAGEN
 				=============================================*/
 
-			   	$ruta = "vistas/img/productos/default/anonymous.png";
+			$ruta = "vistas/img/productos/default/anonymous.png";
 
-			   	if(isset($_FILES["nuevaImagen"]["tmp_name"])){
+			if (isset($_FILES["nuevaImagen"]["tmp_name"])) {
 
-					list($ancho, $alto) = getimagesize($_FILES["nuevaImagen"]["tmp_name"]);
+				list($ancho, $alto) = getimagesize($_FILES["nuevaImagen"]["tmp_name"]);
 
-					$nuevoAncho = 500;
-					$nuevoAlto = 500;
+				$nuevoAncho = 500;
+				$nuevoAlto = 500;
 
-					/*=============================================
+				/*=============================================
 					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
 					=============================================*/
 
-					$directorio = "vistas/img/productos/".$_POST["nuevoCodigo"];
+				$directorio = "vistas/img/productos/" . $_POST["nuevoCodigo"];
 
-					mkdir($directorio, 0755);
+				mkdir($directorio, 0755);
 
-					/*=============================================
+				/*=============================================
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
 
-					if($_FILES["nuevaImagen"]["type"] == "image/jpeg"){
+				if ($_FILES["nuevaImagen"]["type"] == "image/jpeg") {
 
-						/*=============================================
+					/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 						=============================================*/
 
-						$aleatorio = mt_rand(100,999);
+					$aleatorio = mt_rand(100, 999);
 
-						$ruta = "vistas/img/productos/".$_POST["nuevoCodigo"]."/".$aleatorio.".jpg";
+					$ruta = "vistas/img/productos/" . $_POST["nuevoCodigo"] . "/" . $aleatorio . ".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["nuevaImagen"]["tmp_name"]);						
+					$origen = imagecreatefromjpeg($_FILES["nuevaImagen"]["tmp_name"]);
 
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-						imagejpeg($destino, $ruta);
-
-					}
-
-					if($_FILES["nuevaImagen"]["type"] == "image/png"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/productos/".$_POST["nuevoCodigo"]."/".$aleatorio.".png";
-
-						$origen = imagecreatefrompng($_FILES["nuevaImagen"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $ruta);
-
-					}
-
+					imagejpeg($destino, $ruta);
 				}
 
-				$tabla = "productos";
+				if ($_FILES["nuevaImagen"]["type"] == "image/png") {
 
-				$datos = array("id_categoria" => $_POST["nuevaCategoria"],								
-							   "codigo" => $_POST["nuevoCodigo"],
-							   "descripcion" => $_POST["nuevaDescripcion"],
-							   "stock" => $_POST["nuevoStock"],
-							   "stock_alerta" => $_POST["nuevoStockAlerta"],
-							   "stock_min" => $_POST["nuevoStockMin"],
-							   "precio_compra" => $_POST["nuevoPrecioCompra"],
-							   "precio_venta" => $_POST["nuevoPrecioVenta"],
-							   "id_bodega" => $_POST["nuevaBodega"],
-							   "id_subcategoria" => $_POST["nuevaSubcategoria"],
-							   "id_medida" => $_POST["nuevaMedida"],
-							   "id_rubro"=>$_POST["nuevoRubro"],
-							   "tipo_producto"=>$_POST["nuevoTipoProducto"],
-							   "imagen" => $ruta);
+					/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
 
-				$respuesta = ModeloProductos::mdlIngresarProducto($tabla, $datos);
+					$aleatorio = mt_rand(100, 999);
 
-				if($respuesta == "ok"){
+					$ruta = "vistas/img/productos/" . $_POST["nuevoCodigo"] . "/" . $aleatorio . ".png";
 
-					echo'<script>
+					$origen = imagecreatefrompng($_FILES["nuevaImagen"]["tmp_name"]);
+
+					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+					imagepng($destino, $ruta);
+				}
+			}
+
+			$tabla = "productos";
+
+			$datos = array(
+				"id_categoria" => $_POST["nuevaCategoria"],
+				"codigo" => $_POST["nuevoCodigo"],
+				"descripcion" => $_POST["nuevaDescripcion"],
+				"stock" => $_POST["nuevoStock"],
+				"stock_alerta" => $_POST["nuevoStockAlerta"],
+				"stock_min" => $_POST["nuevoStockMin"],
+				"precio_compra" => $_POST["nuevoPrecioCompra"],
+				"precio_venta" => $_POST["nuevoPrecioVenta"],
+				"id_bodega" => $_POST["nuevaBodega"],
+				"id_subcategoria" => $_POST["nuevaSubcategoria"],
+				"id_medida" => $_POST["nuevaMedida"],
+				"id_rubro" => $_POST["nuevoRubro"],
+				"tipo_producto" => $_POST["nuevoTipoProducto"],
+				"imagen" => $ruta
+			);
+
+			$respuesta = ModeloProductos::mdlIngresarProducto($tabla, $datos);
+
+			if ($respuesta == "ok") {
+
+				echo '<script>
 					
 						swal({
 							  type: "success",
@@ -181,45 +200,43 @@ class ControladorProductos{
 									})
 
 						</script>';
-
-				}
-
-
-			
+			}
 		}
-
 	}
 
 	/*=============================================
 	EDITAR PRODUCTO
 	=============================================*/
 
-	static public function ctrEditarProducto(){
+	static public function ctrEditarProducto()
+	{
 
-		if(isset($_POST["editarDescripcion"])){
+		if (isset($_POST["editarDescripcion"])) {
 
-				$tabla = "productos";
+			$tabla = "productos";
 
-				$datos = array("id_categoria" => $_POST["editarCategoria"],
-								"id" =>$_POST["editarProducto"],
-								"id_subcategoria"=>$_POST["editarSubcategoria"],							
-							   "id_bodega" => $_POST["editarBodega"],
-							   "id_rubro" => $_POST["editarRubro"],				   
-							   "descripcion" => $_POST["editarDescripcion"],
-							   "stock" => $_POST["editarStock"],
-							   "stock_alerta" => $_POST["editarStockAlerta"],
-							   "stock_min" => $_POST["editarStockMin"],
-							   "precio_compra" => $_POST["editarPrecioCompra"],
-							   "precio_venta" => $_POST["editarPrecioVenta"],
-							   "id_medida" => $_POST["editarMedida"],
-							   "id_tabla_lista" => $_POST["editarTablaLista"]);
+			$datos = array(
+				"id_categoria" => $_POST["editarCategoria"],
+				"id" => $_POST["editarProducto"],
+				"id_subcategoria" => $_POST["editarSubcategoria"],
+				"id_bodega" => $_POST["editarBodega"],
+				"id_rubro" => $_POST["editarRubro"],
+				"descripcion" => $_POST["editarDescripcion"],
+				"stock" => $_POST["editarStock"],
+				"stock_alerta" => $_POST["editarStockAlerta"],
+				"stock_min" => $_POST["editarStockMin"],
+				"precio_compra" => $_POST["editarPrecioCompra"],
+				"precio_venta" => $_POST["editarPrecioVenta"],
+				"id_medida" => $_POST["editarMedida"],
+				"id_tabla_lista" => $_POST["editarTablaLista"]
+			);
 
-				$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
+			$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
 
-				if($respuesta == "ok"){
-						
-					echo'<script>
-							console.log("ID:'.$datos["id"].'")
+			if ($respuesta == "ok") {
+
+				echo '<script>
+							console.log("ID:' . $datos["id"] . '")
 						swal({
 							  type: "success",
 							  title: "El producto ha sido editado correctamente",
@@ -234,30 +251,27 @@ class ControladorProductos{
 									})
 
 						</script>';
-
-				}
-
-
-			
+			}
 		}
-
 	}
 
-	static public function ctrEditarPrecioProducto(){
+	static public function ctrEditarPrecioProducto()
+	{
 
-		if(isset($_POST["idProducto"])){
+		if (isset($_POST["idProducto"])) {
 
-				$tabla = "productos";
+			$tabla = "productos";
 
-				$datos = array(
-								"id" =>$_POST["idProducto"],
-							   "precio_venta" => $_POST["editarPrecioProducto"]);
+			$datos = array(
+				"id" => $_POST["idProducto"],
+				"precio_venta" => $_POST["editarPrecioProducto"]
+			);
 
-				$respuesta = ModeloProductos::mdlEditarPrecioProducto($tabla, $datos);
+			$respuesta = ModeloProductos::mdlEditarPrecioProducto($tabla, $datos);
 
-				if($respuesta == "ok"){
-						
-					echo'<script>
+			if ($respuesta == "ok") {
+
+				echo '<script>
 						swal({
 							  type: "success",
 							  title: "El precio del producto ha sido editado correctamente",
@@ -272,38 +286,33 @@ class ControladorProductos{
 									})
 
 						</script>';
-
-				}
-
-
-			
+			}
 		}
-
 	}
 
 	/*=============================================
 	BORRAR PRODUCTO
 	=============================================*/
-	
-	static public function ctrEliminarProducto(){
 
-		if(isset($_GET["idProducto"])){
+	static public function ctrEliminarProducto()
+	{
 
-			$tabla ="productos";
+		if (isset($_GET["idProducto"])) {
+
+			$tabla = "productos";
 			$datos = $_GET["idProducto"];
 
-			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/productos/default/anonymous.png"){
+			if ($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/productos/default/anonymous.png") {
 
 				unlink($_GET["imagen"]);
-				rmdir('vistas/img/productos/'.$_GET["codigo"]);
-
+				rmdir('vistas/img/productos/' . $_GET["codigo"]);
 			}
 
 			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
 
-			if($respuesta == "ok"){
+			if ($respuesta == "ok") {
 
-				echo'<script>
+				echo '<script>
 
 				swal({
 					  type: "success",
@@ -319,64 +328,61 @@ class ControladorProductos{
 							})
 
 				</script>';
-
-			}		
+			}
 		}
-
-
 	}
 
 	/*=============================================
 	MOSTRAR SUMA VENTAS
 	=============================================*/
 
-	static public function ctrMostrarSumaVentas(){
+	static public function ctrMostrarSumaVentas()
+	{
 
 		$tabla = "productos";
 
 		$respuesta = ModeloProductos::mdlMostrarSumaVentas($tabla);
 
 		return $respuesta;
-
 	}
 
-	static public function ctrDescargarReporteProductos() {
+	static public function ctrDescargarReporteProductos()
+	{
 
-        if (isset($_GET["reporte"])) {
+		if (isset($_GET["reporte"])) {
 
-            $tabla = "productos";
+			$tabla = "productos";
 
-            if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
+			if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
 
-                $ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
-            } else {
+				$ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
+			} else {
 
-                $item = null;
-                $valor = null;
+				$item = null;
+				$valor = null;
 				$orden = "id";
 
-                $productos = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor, $orden);
+				$productos = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor, $orden);
+			}
 
-            }
 
-
-            /*=============================================
+			/*=============================================
             CREAMOS EL ARCHIVO DE EXCEL
             =============================================*/
 
-            $Name = $_GET["reporte"] . '-productos.xls';
+			$Name = $_GET["reporte"] . '-productos.xls';
 
-            header('Expires: 0');
-            header('Cache-control: private');
-            header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
-            header("Cache-Control: cache, must-revalidate");
-            header('Content-Description: File Transfer');
-            header('Last-Modified: ' . date('D, d M Y H:i:s'));
-            header("Pragma: public");
-            header('Content-Disposition:; filename="' . $Name . '"');
-            header("Content-Transfer-Encoding: binary");
+			header('Expires: 0');
+			header('Cache-control: private');
+			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
+			header("Cache-Control: cache, must-revalidate");
+			header('Content-Description: File Transfer');
+			header('Last-Modified: ' . date('D, d M Y H:i:s'));
+			header("Pragma: public");
+			header('Content-Disposition:; filename="' . $Name . '"');
+			header("Content-Transfer-Encoding: binary");
 
-            echo utf8_decode("<table border='0'> 
+			echo utf8_decode("<table border='0'> 
 
                     <tr> 
                     <td style='font-weight:bold; border:1px solid #eee;'>ID</td> 
@@ -390,16 +396,16 @@ class ControladorProductos{
 	
                     </tr>");
 
-            foreach ($productos as $row => $item) {
+			foreach ($productos as $row => $item) {
 				$categoria = ControladorCategorias::ctrMostrarCategorias("id", $item["id_categoria"]);
-				if($item["id_subcategoria"] == 0){
+				if ($item["id_subcategoria"] == 0) {
 					$subcategoria = "NO TIENE";
-				}else{
+				} else {
 					$subcategoria = ControladorSubcategorias::ctrMostrarSubcategorias("id", $item["id_subcategoria"]);
 				}
 
 
-                echo utf8_decode("<tr>
+				echo utf8_decode("<tr>
                         <td style='border:1px solid #eee;'>" . $item["id"] . "</td> 
                         <td style='border:1px solid #eee;'>" . $item["descripcion"] . "</td>
 						<td style='border:1px solid #eee;'>" . $categoria["categoria"] . "</td>
@@ -411,11 +417,10 @@ class ControladorProductos{
                         
 	
 		 			</tr>");
-            }
+			}
 
 
-            echo "</table>";
-        }
-    }	
-
+			echo "</table>";
+		}
+	}
 }
