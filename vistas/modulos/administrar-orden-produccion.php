@@ -110,6 +110,10 @@ if ($xml) {
                   $centro = '';
                   $bodega = '';
                   $cliente = '';
+                  $clienteRut = '';
+                  $clienteEmail = '';
+                  $clienteTelefono = '';
+                  $clienteDireccion = '';
 
                   // Buscar y asignar el nombre de la unidad de negocio
                   foreach ($negocios as $neg) {
@@ -143,7 +147,6 @@ if ($xml) {
                       $clienteEmail = $cli["email"];
                       $clienteTelefono = $cli["telefono"];
                       $clienteDireccion = $cli["direccion"];
-                      $clienteEmail = $cli["email"];
                       break;
                     }
                   }
@@ -179,6 +182,7 @@ if ($xml) {
                     }
                   }
 
+                  // Convertir los arrays en cadenas separadas por comas
                   $codigoDetalleStr = implode(", ", $codigoDetalle);
                   $nombreDetalleStr = implode(", ", $nombreDetalle);
                   $medidaDetalleStr = implode(", ", $medidaDetalle);
@@ -316,44 +320,87 @@ if ($xml) {
 
 <!-- Modal ver detalle de producto -->
 <div class="modal fade" id="detalleModal" tabindex="-1" role="dialog" aria-labelledby="detalleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #17a2b8; color: white;">
-        <h5 class="modal-title" id="detalleModalLabel"> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+      <div class="modal-header bg-info text-white">
+        <h4 class="modal-title" id="detalleModalLabel"></h4>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p><strong>Folio:</strong> <span id="modalFolio"></span></p>
-        <p><strong>Cliente:</strong> <span id="modalCliente"></span></p>
-        <p><strong>RUT:</strong> <span id="modalClienteRut"></span></p>
-        <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
-        <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
-        <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
-        <p><strong>Nombre de Orden:</strong> <span id="modalOrden"></span></p>
-        <p><strong>Fecha de emisión:</strong> <span id="modalEmision"></span></p>
-        <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimiento"></span></p>
-        <p><strong>Centro de Costo:</strong> <span id="modalCentroCosto"></span></p>
-        <p><strong>Bodega Destino:</strong> <span id="modalBodegaDestino"></span></p>
-        <p><strong>Cantidad Producida Total:</strong> <span id="modalCantidadProducidaTotal"></span></p>
-        <p><strong>Costo Unitario Total:</strong> <span id="modalCostoUnitarioTotal"></span></p>
-        <p><strong>Costo Producción Total:</strong> <span id="modalCostoProduccionTotal"></span></p>
-        <p><strong>Costo Embalaje Total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
-        <p><strong>Costo Total con Embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
-        <p><strong>PRODUCTO</strong></p>
-        <p><strong>Nombre del producto:</strong> <span id="modalNombre"></span></p>
-        <p><strong>Código del producto:</strong> <span id="modalCodigo"></span></p>
-        <p><strong>Medida:</strong> <span id="modalMedida"></span></p>
-        <p><strong>Código del lote:</strong> <span id="modalCodigoLote"></span></p>
-        <p><strong>Fecha de emisión:</strong> <span id="modalEmisionDetalle"></span></p>
-        <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimientoDetalle"></span></p>
-        <p><strong>Cantidad Producida:</strong> <span id="modalCantidadProducida"></span></p>
-        <p><strong>Costo Unitario:</strong> <span id="modalCostoUnitario"></span></p>
-        <p><strong>Costo Producción:</strong> <span id="modalCostoProduccion"></span></p>
-        <p><strong>Costo Embalaje:</strong> <span id="modalCostoEmbalaje"></span></p>
-        <p><strong>Costo Producción con Embalaje:</strong> <span id="modalCostoProduccionConEmbalaje"></span></p>
+        <!-- Información de la orden -->
+        <div class="container mb-3">
+          <h4 class="pb-2">Información General</h4>
+          <div style="height: 3px; width: 840px; background-color: #007bff; margin-bottom: 15px;"></div>
+          <div class="row">
+            <div class="col-md-4">
+              <p><strong>Folio:</strong> <span id="modalFolio"></span></p>
+              <p><strong>Cliente:</strong> <span id="modalCliente"></span></p>
+              <p><strong>RUT:</strong> <span id="modalClienteRut"></span></p>
+              <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
+            </div>
+            <div class="col-md-4">
+              <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
+              <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
+              <p><strong>Nombre de Orden:</strong> <span id="modalOrden"></span></p>
+              <p><strong>Centro de Costo:</strong> <span id="modalCentroCosto"></span></p>
+            </div>
+          </div>
+        </div>
 
+        <!-- Información de fechas -->
+        <div class="container mb-3">
+          <h4 class="pb-2">Fechas</h4>
+          <div style="height: 3px; width: 840px; background-color: #28a745; margin-bottom: 15px;"></div>
+          <div class="row">
+            <div class="col-md-4">
+              <p><strong>Fecha de emisión:</strong> <span id="modalEmision"></span></p>
+            </div>
+            <div class="col-md-4">
+              <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimiento"></span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Costos y totales -->
+        <div class="container mb-3">
+          <h4 class="pb-2">Costos y Totales</h4>
+          <div style="height: 3px; width: 840px; background-color: #ffc107; margin-bottom: 15px;"></div>
+          <div class="row">
+            <div class="col-md-4">
+              <p><strong>Cantidad Producida Total:</strong> <span id="modalCantidadProducidaTotal"></span></p>
+              <p><strong>Costo Unitario Total:</strong> <span id="modalCostoUnitarioTotal"></span></p>
+              <p><strong>Costo Producción Total:</strong> <span id="modalCostoProduccionTotal"></span></p>
+            </div>
+            <div class="col-md-4">
+              <p><strong>Costo Embalaje Total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
+              <p><strong>Costo Total con Embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detalles de los productos -->
+        <div class="container mb-3">
+          <h4 class="pb-2">Productos</h4>
+          <div style="height: 3px; width: 840px; background-color: #dc3545; margin-bottom: 15px;"></div>
+          <div id="productosContainer">
+            <!-- Aquí se pueden agregar múltiples productos desde un array -->
+            <div class="producto-detalle mb-3 p-2 border rounded">
+              <p><strong>Nombre del producto:</strong> <span id="modalNombre"></span></p>
+              <p><strong>Código del producto:</strong> <span id="modalCodigo"></span></p>
+              <p><strong>Medida:</strong> <span id="modalMedida"></span></p>
+              <p><strong>Código del lote:</strong> <span id="modalCodigoLote"></span></p>
+              <p><strong>Fecha de emisión:</strong> <span id="modalEmisionDetalle"></span></p>
+              <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimientoDetalle"></span></p>
+              <p><strong>Cantidad Producida:</strong> <span id="modalCantidadProducida"></span></p>
+              <p><strong>Costo Unitario:</strong> <span id="modalCostoUnitario"></span></p>
+              <p><strong>Costo Producción:</strong> <span id="modalCostoProduccion"></span></p>
+              <p><strong>Costo Embalaje:</strong> <span id="modalCostoEmbalaje"></span></p>
+              <p><strong>Costo Producción con Embalaje:</strong> <span id="modalCostoProduccionConEmbalaje"></span></p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -395,7 +442,6 @@ if ($xml) {
       var costoProduccion = $(this).data('costo-produccion');
       var costoEmbalaje = $(this).data('costo-embalaje');
       var costoProduccionConEmbalaje = $(this).data('costo-produccion-con-embalaje');
-
 
       // Establecer el nuevo título en el modal
       $('#detalleModalLabel').text('Detalles de ' + titulo);
