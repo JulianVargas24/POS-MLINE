@@ -103,6 +103,10 @@ if ($xml) {
                 $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
                 $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
                 $negocios = ControladorNegocios::ctrMostrarNegocios($item, $valor);
+                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
+                $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
+
+
 
                 // Iterar sobre las órdenes de producción
                 foreach ($ordenesProduccion as $key => $orden) {
@@ -114,6 +118,9 @@ if ($xml) {
                   $clienteEmail = '';
                   $clienteTelefono = '';
                   $clienteDireccion = '';
+                  $clientePais = '';
+                  $clienteRegion = '';
+                  $clienteComuna = '';
 
                   // Buscar y asignar el nombre de la unidad de negocio
                   foreach ($negocios as $neg) {
@@ -139,17 +146,49 @@ if ($xml) {
                     }
                   }
 
-                  // Buscar y asignar el nombre del cliente
+                  // Buscar y asignar los datos del cliente
                   foreach ($clientes as $cli) {
                     if ($cli["id"] == $orden["id_cliente"]) {
+                      // Asignamos los datos del cliente
                       $cliente = $cli["nombre"];
                       $clienteRut = $cli["rut"];
                       $clienteEmail = $cli["email"];
                       $clienteTelefono = $cli["telefono"];
                       $clienteDireccion = $cli["direccion"];
+                      $clientePais = $cli["pais"];
+
+                      // Buscar la región del cliente
+                      if (is_numeric($cli["region"])) {
+                        // Si la región es un ID (numérico), buscamos el nombre
+                        foreach ($regiones as $reg) {
+                          if ($reg["id"] == $cli["region"]) {
+                            $clienteRegion = $reg["nombre"];
+                            break;
+                          }
+                        }
+                      } else {
+                        // Si la región es un nombre (cadena), simplemente asignamos el valor
+                        $clienteRegion = $cli["region"];
+                      }
+
+                      // Buscar la comuna del cliente
+                      if (is_numeric($cli["comuna"])) {
+                        // Si la comuna es un ID (numérico), buscamos el nombre
+                        foreach ($comunas as $com) {
+                          if ($com["id"] == $cli["comuna"]) {
+                            $clienteComuna = $com["nombre"];
+                            break;
+                          }
+                        }
+                      } else {
+                        // Si la comuna es un nombre (cadena), simplemente asignamos el valor
+                        $clienteComuna = $cli["comuna"];
+                      }
+
                       break;
                     }
                   }
+
 
                   // Obtener los detalles de producción relacionados con la orden actual
                   $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $orden["folio_orden_produccion"]);
@@ -201,7 +240,13 @@ if ($xml) {
                   }
 
                   //mostrar en la tabla
-                  $codigosDetalleStr = implode(", ", $codigosDetalle);
+                  //$codigosDetalleStr = implode(", ", $codigosDetalle);
+                  //$codigosDetalleStr = implode("<br>", $codigosDetalle);
+                  //$codigosDetalleStr = implode("<li>", $codigosDetalle);
+                  $codigosDetalleStr = '';
+                  foreach ($codigosDetalle as $codigo) {
+                    $codigosDetalleStr .= "<div class='p-2 m-1' style='border: 1px solid #ddd; padding-left: 20px; background-image: url(icon.png); background-size: 16px 16px;'>$codigo</div>";
+                  }
 
                   // Convertir los arrays a formato JSON
                   $codigoDetalleJson = json_encode($codigoDetalle);
@@ -256,6 +301,9 @@ if ($xml) {
                     data-cliente_email="' . $clienteEmail . '"
                     data-cliente_telefono="' . $clienteTelefono . '"
                     data-cliente_direccion="' . $clienteDireccion . '"
+                    data-cliente_Pais="' . $clientePais . '"
+                    data-cliente_Region="' . $clienteRegion . '"
+                    data-cliente_Comuna="' . $clienteComuna . '"
                     data-orden="' . $orden["nombre_orden"] . '"
                     data-emision="' . $orden["fecha_emision"] . '"
                     data-vencimiento="' . $orden["fecha_vencimiento"] . '"
@@ -343,50 +391,54 @@ if ($xml) {
       </div>
       <div class="modal-body">
         <!-- Información de la orden -->
-        <div class="container mb-2">
+        <div class="container mb-3">
           <h4 class="pb-2">Información General</h4>
           <div style="height: 3px; width: 840px; background-color: #007bff; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <p><strong>Folio:</strong> <span id="modalFolio"></span></p>
               <p><strong>Cliente:</strong> <span id="modalCliente"></span></p>
               <p><strong>RUT:</strong> <span id="modalClienteRut"></span></p>
               <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
-            </div>
-            <div class="col-md-3">
               <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
               <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
               <p><strong>Nombre de Orden:</strong> <span id="modalOrden"></span></p>
+            </div>
+            <div class="col-md-4">
+              <p><strong>País:</strong> <span id="modalClientePais"></span></p>
+              <p><strong>Región:</strong> <span id="modalClienteRegion"></span></p>
+              <p><strong>Comuna:</strong> <span id="modalClienteComuna"></span></p>
               <p><strong>Centro de Costo:</strong> <span id="modalCentroCosto"></span></p>
+              <p><strong>Bodega de destino:</strong> <span id="modalBodegaDestino"></span></p>
             </div>
           </div>
         </div>
 
         <!-- Información de fechas -->
-        <div class="container mb-2">
+        <div class="container mb-3">
           <h4 class="pb-2">Fechas</h4>
           <div style="height: 3px; width: 840px; background-color: #28a745; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <p><strong>Fecha de emisión:</strong> <span id="modalEmision"></span></p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimiento"></span></p>
             </div>
           </div>
         </div>
 
         <!-- Costos y totales -->
-        <div class="container mb-2">
+        <div class="container mb-3">
           <h4 class="pb-2">Costos y Totales</h4>
           <div style="height: 3px; width: 840px; background-color: #ffc107; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <p><strong>Cantidad Producida Total:</strong> <span id="modalCantidadProducidaTotal"></span></p>
               <p><strong>Costo Unitario Total:</strong> <span id="modalCostoUnitarioTotal"></span></p>
               <p><strong>Costo Producción Total:</strong> <span id="modalCostoProduccionTotal"></span></p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <p><strong>Costo Embalaje Total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
               <p><strong>Costo Total con Embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
             </div>
@@ -394,7 +446,7 @@ if ($xml) {
         </div>
 
         <!-- Detalles de los productos -->
-        <div class="container mb-2">
+        <div class="container mb-3">
           <h4 class="pb-2">Productos</h4>
           <div id="productosContainer">
             <!-- Aquí se pueden agregar múltiples productos desde un array -->
@@ -420,6 +472,9 @@ if ($xml) {
       var clienteTelefono = $(this).data('cliente_telefono');
       var clienteEmail = $(this).data('cliente_email');
       var clienteDireccion = $(this).data('cliente_direccion');
+      var clientePais = $(this).data('cliente_pais');
+      var clienteRegion = $(this).data('cliente_region');
+      var clienteComuna = $(this).data('cliente_comuna');
       var orden = $(this).data('orden');
       var emision = $(this).data('emision');
       var vencimiento = $(this).data('vencimiento');
@@ -442,6 +497,9 @@ if ($xml) {
       var costoProduccionJson = $(this).data('costo_produccion');
       var costoEmbalajeJson = $(this).data('costo_embalaje');
       var costoProduccionConEmbalajeJson = $(this).data('costo_produccion_con_embalaje');
+
+      // Limpiar el contenedor del modal antes de agregar los nuevos productos
+      $('#productosContainer').empty();
 
       for (var i = 0; i < nombresJson.length; i++) {
         var productoHtml = `
@@ -472,6 +530,9 @@ if ($xml) {
       $('#modalClienteTelefono').text(clienteTelefono);
       $('#modalClienteEmail').text(clienteEmail);
       $('#modalClienteDireccion').text(clienteDireccion);
+      $('#modalClientePais').text(clientePais);
+      $('#modalClienteRegion').text(clienteRegion);
+      $('#modalClienteComuna').text(clienteComuna);
       $('#modalOrden').text(orden);
       $('#modalEmision').text(emision);
       $('#modalVencimiento').text(vencimiento);
