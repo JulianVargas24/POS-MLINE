@@ -158,36 +158,10 @@ if ($xml) {
                   $unidad = ControladorUnidades::ctrMostrarunidades($item, $valor);
                   $productos = ControladorProductos::ctrMostrarProductosPredeterminado($item, $valor);
 
-                  // Array para almacenar 
+                  // Inicializar arrays vacíos para cada campo
                   $codigoDetalle = [];
                   $nombreDetalle = [];
                   $medidaDetalle = [];
-
-                  // Iterar sobre los detalles de producción
-                  foreach ($ordenesProduccionDetalle as $detalle) {
-                    // Buscar la unidad de medida para cada detalle de producción
-                    foreach ($unidad as $cli) {
-                      if ($cli["id"] == $detalle["id_unidad"]) {
-                        $medidaDetalle[] = $cli["medida"];
-                        break; // Romper el bucle una vez que encuentres la unidad
-                      }
-                    }
-                    // Buscar el producto para cada detalle de producción
-                    foreach ($productos as $pro) {
-                      if ($pro["id"] == $detalle["id_producto"]) {
-                        $codigoDetalle[] = $pro["codigo"];
-                        $nombreDetalle[] = $pro["descripcion"];
-                        break; // Romper el bucle una vez que encuentres la unidad
-                      }
-                    }
-                  }
-
-                  // Convertir los arrays en cadenas separadas por comas
-                  $codigoDetalleStr = implode(", ", $codigoDetalle);
-                  $nombreDetalleStr = implode(", ", $nombreDetalle);
-                  $medidaDetalleStr = implode(", ", $medidaDetalle);
-
-                  // Inicializar arrays vacíos para cada campo
                   $codigosDetalle = [];
                   $emisionDetalle = [];
                   $vencimientoDetalle = [];
@@ -199,6 +173,22 @@ if ($xml) {
 
                   // Recorrer los detalles de las órdenes de producción una sola vez
                   foreach ($ordenesProduccionDetalle as $detalle) {
+
+                    foreach ($unidad as $cli) {
+                      if ($cli["id"] == $detalle["id_unidad"]) {
+                        $medidaDetalle[] = $cli["medida"];
+                        break;
+                      }
+                    }
+
+                    foreach ($productos as $pro) {
+                      if ($pro["id"] == $detalle["id_producto"]) {
+                        $codigoDetalle[] = $pro["codigo"];
+                        $nombreDetalle[] = $pro["descripcion"];
+                        break;
+                      }
+                    }
+
                     // Añadir los valores correspondientes a cada array
                     $codigosDetalle[] = $detalle["codigo_lote"];
                     $emisionDetalle[] = $detalle["fecha_produccion"];
@@ -210,15 +200,38 @@ if ($xml) {
                     $costoProduccionConEmbalajeDetalle[] = $detalle["costo_produccion_con_embalaje"];
                   }
 
-                  // Convertir los arrays en cadenas separadas por comas
+                  //mostrar en la tabla
                   $codigosDetalleStr = implode(", ", $codigosDetalle);
-                  $emisionDetalleStr = implode(", ", $emisionDetalle);
-                  $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
-                  $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
-                  $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
-                  $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
-                  $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
-                  $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
+
+                  // Convertir los arrays a formato JSON
+                  $codigoDetalleJson = json_encode($codigoDetalle);
+                  $nombreDetalleJson = json_encode($nombreDetalle);
+                  //$dataNombreJson = json_encode($nombreDetalle, JSON_UNESCAPED_UNICODE);
+                  $medidaDetalleJson = json_encode($medidaDetalle);
+                  $codigoLoteDetalleJson = json_encode($codigosDetalle);
+                  $emisionDetalleJson = json_encode($emisionDetalle);
+                  $vencimientoDetalleJson = json_encode($vencimientoDetalle);
+                  $cantidadProducidaDetalleJson = json_encode($cantidadProducidaDetalle);
+                  $costoUnitarioDetalleJson = json_encode($costoUnitarioDetalle);
+                  $costoProduccionDetalleJson = json_encode($costoProduccionDetalle);
+                  $costoEmbalajeDetalleJson = json_encode($costoEmbalajeDetalle);
+                  $costoProduccionConEmbalajeDetalleJson = json_encode($costoProduccionConEmbalajeDetalle);
+
+                  // Sanitiza el JSON para asegurarte de que se pueda insertar correctamente en el atributo HTML
+                  $codigoDetalleJson = htmlspecialchars($codigoDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $dataNombre = htmlspecialchars($nombreDetalleJson, ENT_QUOTES, 'UTF-8');
+                  //echo 'data-nombre=\'' . htmlspecialchars($dataNombreJson, ENT_QUOTES, 'UTF-8') . '\'';
+                  $medidaDetalleJson = htmlspecialchars($medidaDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $codigoLoteDetalleJson = htmlspecialchars($codigoLoteDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $emisionDetalleJson = htmlspecialchars($emisionDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $vencimientoDetalleJson = htmlspecialchars($vencimientoDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $cantidadProducidaDetalleJson = htmlspecialchars($cantidadProducidaDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $costoUnitarioDetalleJson = htmlspecialchars($costoUnitarioDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $costoProduccionDetalleJson = htmlspecialchars($costoProduccionDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $costoEmbalajeDetalleJson = htmlspecialchars($costoEmbalajeDetalleJson, ENT_QUOTES, 'UTF-8');
+                  $costoProduccionConEmbalajeDetalleJson = htmlspecialchars($costoProduccionConEmbalajeDetalleJson, ENT_QUOTES, 'UTF-8');
+                  //var_dump($dataNombre);
+                  //echo 'data-nombre=\'' . $dataNombre . '\'';
 
                   echo '<tr>
                     <td>' . $orden["folio_orden_produccion"] . '</td>
@@ -253,17 +266,17 @@ if ($xml) {
                     data-costo_produccion_total="' . $orden["costo_produccion_total"] . '" 
                     data-costo_embalaje_total="' . $orden["costo_embalaje_total"] . '" 
                     data-costo_total_con_embalaje="' . $orden["costo_total_con_embalaje"] . '"
-                    data-nombre="' . $nombreDetalleStr . '"
-                    data-codigo="' . $codigoDetalleStr . '"
-                    data-medida="' . $medidaDetalleStr . '"
-                    data-codigo_lote="' . $codigosDetalleStr . '"
-                    data-emision_detalle="' . $emisionDetalleStr . '"
-                    data-vencimiento_detalle="' . $vencimientoDetalleStr . '"
-                    data-cantidad-producida="' . $cantidadProducidaDetalleStr . '"
-                    data-costo-unitario="' . $costoUnitarioDetalleStr . '"
-                    data-costo-produccion="' . $costoProduccionDetalleStr . '"
-                    data-costo-embalaje="' . $costoEmbalajeDetalleStr . '"
-                    data-costo-produccion-con-embalaje="' . $costoProduccionConEmbalajeDetalleStr . '"
+                    data-nombre="' . $dataNombre . '"
+                    data-codigo="' . $codigoDetalleJson . '"
+                    data-medida="' . $medidaDetalleJson . '"
+                    data-codigo_lote="' . $codigoLoteDetalleJson . '"
+                    data-emision_detalle="' . $emisionDetalleJson . '"
+                    data-vencimiento_detalle="' . $vencimientoDetalleJson . '"
+                    data-cantidad_producida="' . $cantidadProducidaDetalleJson . '"
+                    data-costo_unitario="' . $costoUnitarioDetalleJson . '"
+                    data-costo_produccion="' . $costoProduccionDetalleJson . '"
+                    data-costo_embalaje="' . $costoEmbalajeDetalleJson . '"
+                    data-costo_produccion_con_embalaje="' . $costoProduccionConEmbalajeDetalleJson . '"
                     
                     
                     ><i class="fa fa-search"></i></button>
@@ -322,7 +335,7 @@ if ($xml) {
 <div class="modal fade" id="detalleModal" tabindex="-1" role="dialog" aria-labelledby="detalleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-info text-white">
+      <div class="modal-header bg-info text-white text-center">
         <h4 class="modal-title" id="detalleModalLabel"></h4>
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
@@ -330,17 +343,17 @@ if ($xml) {
       </div>
       <div class="modal-body">
         <!-- Información de la orden -->
-        <div class="container mb-3">
+        <div class="container mb-2">
           <h4 class="pb-2">Información General</h4>
           <div style="height: 3px; width: 840px; background-color: #007bff; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <p><strong>Folio:</strong> <span id="modalFolio"></span></p>
               <p><strong>Cliente:</strong> <span id="modalCliente"></span></p>
               <p><strong>RUT:</strong> <span id="modalClienteRut"></span></p>
               <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
               <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
               <p><strong>Nombre de Orden:</strong> <span id="modalOrden"></span></p>
@@ -350,30 +363,30 @@ if ($xml) {
         </div>
 
         <!-- Información de fechas -->
-        <div class="container mb-3">
+        <div class="container mb-2">
           <h4 class="pb-2">Fechas</h4>
           <div style="height: 3px; width: 840px; background-color: #28a745; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <p><strong>Fecha de emisión:</strong> <span id="modalEmision"></span></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimiento"></span></p>
             </div>
           </div>
         </div>
 
         <!-- Costos y totales -->
-        <div class="container mb-3">
+        <div class="container mb-2">
           <h4 class="pb-2">Costos y Totales</h4>
           <div style="height: 3px; width: 840px; background-color: #ffc107; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <p><strong>Cantidad Producida Total:</strong> <span id="modalCantidadProducidaTotal"></span></p>
               <p><strong>Costo Unitario Total:</strong> <span id="modalCostoUnitarioTotal"></span></p>
               <p><strong>Costo Producción Total:</strong> <span id="modalCostoProduccionTotal"></span></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <p><strong>Costo Embalaje Total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
               <p><strong>Costo Total con Embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
             </div>
@@ -381,24 +394,10 @@ if ($xml) {
         </div>
 
         <!-- Detalles de los productos -->
-        <div class="container mb-3">
+        <div class="container mb-2">
           <h4 class="pb-2">Productos</h4>
-          <div style="height: 3px; width: 840px; background-color: #dc3545; margin-bottom: 15px;"></div>
           <div id="productosContainer">
             <!-- Aquí se pueden agregar múltiples productos desde un array -->
-            <div class="producto-detalle mb-3 p-2 border rounded">
-              <p><strong>Nombre del producto:</strong> <span id="modalNombre"></span></p>
-              <p><strong>Código del producto:</strong> <span id="modalCodigo"></span></p>
-              <p><strong>Medida:</strong> <span id="modalMedida"></span></p>
-              <p><strong>Código del lote:</strong> <span id="modalCodigoLote"></span></p>
-              <p><strong>Fecha de emisión:</strong> <span id="modalEmisionDetalle"></span></p>
-              <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimientoDetalle"></span></p>
-              <p><strong>Cantidad Producida:</strong> <span id="modalCantidadProducida"></span></p>
-              <p><strong>Costo Unitario:</strong> <span id="modalCostoUnitario"></span></p>
-              <p><strong>Costo Producción:</strong> <span id="modalCostoProduccion"></span></p>
-              <p><strong>Costo Embalaje:</strong> <span id="modalCostoEmbalaje"></span></p>
-              <p><strong>Costo Producción con Embalaje:</strong> <span id="modalCostoProduccionConEmbalaje"></span></p>
-            </div>
           </div>
         </div>
       </div>
@@ -431,17 +430,39 @@ if ($xml) {
       var costoProduccionTotal = $(this).data('costo_produccion_total');
       var costoEmbalajeTotal = $(this).data('costo_embalaje_total');
       var costoTotalConEmbalaje = $(this).data('costo_total_con_embalaje');
-      var nombre = $(this).data('nombre');
-      var codigo = $(this).data('codigo');
-      var medida = $(this).data('medida');
-      var codigoLote = $(this).data('codigo_lote');
-      var emisionDetalle = $(this).data('emision_detalle');
-      var VencimientoDetalle = $(this).data('vencimiento_detalle');
-      var cantidadProducida = $(this).data('cantidad-producida');
-      var costoUnitario = $(this).data('costo-unitario');
-      var costoProduccion = $(this).data('costo-produccion');
-      var costoEmbalaje = $(this).data('costo-embalaje');
-      var costoProduccionConEmbalaje = $(this).data('costo-produccion-con-embalaje');
+      // Obtener el JSON del atributo 
+      var nombresJson = $(this).data('nombre');
+      var codigosJson = $(this).data('codigo');
+      var medidasJson = $(this).data('medida');
+      var codigosLoteJson = $(this).data('codigo_lote');
+      var emisionDetalleJson = $(this).data('emision_detalle');
+      var vencimientoDetalleJson = $(this).data('vencimiento_detalle');
+      var cantidadProducidaJson = $(this).data('cantidad_producida');
+      var costoUnitarioJson = $(this).data('costo_unitario');
+      var costoProduccionJson = $(this).data('costo_produccion');
+      var costoEmbalajeJson = $(this).data('costo_embalaje');
+      var costoProduccionConEmbalajeJson = $(this).data('costo_produccion_con_embalaje');
+
+      for (var i = 0; i < nombresJson.length; i++) {
+        var productoHtml = `
+        <div class="producto-detalle mb-3 p-2 border rounded" style="margin-bottom: 10px;">
+        <div style="height: 3px; width: 840px; background-color: #dc3545; margin-bottom: 15px;"></div>
+        <p><strong>Nombre del producto:</strong> ${nombresJson[i]}</p>
+        <p><strong>Código del producto:</strong> ${codigosJson[i]}</p>
+        <p><strong>Medida:</strong> ${medidasJson[i]}</p>
+        <p><strong>Código de Lote:</strong> ${codigosLoteJson[i]}</p>
+        <p><strong>Fecha de Emisión:</strong> ${emisionDetalleJson[i]}</p>
+        <p><strong>Fecha de Vencimiento:</strong> ${vencimientoDetalleJson[i]}</p>
+        <p><strong>Cantidad Producida:</strong> ${cantidadProducidaJson[i]}</p>
+        <p><strong>Costo Unitario:</strong> ${costoUnitarioJson[i]}</p>
+        <p><strong>Costo Producción:</strong> ${costoProduccionJson[i]}</p>
+        <p><strong>Costo Embalaje:</strong> ${costoEmbalajeJson[i]}</p>
+        <p><strong>Costo Producción con Embalaje:</strong> ${costoProduccionConEmbalajeJson[i]}</p>
+        </div>
+    `;
+        $('#productosContainer').append(productoHtml);
+      }
+
 
       // Establecer el nuevo título en el modal
       $('#detalleModalLabel').text('Detalles de ' + titulo);
@@ -461,17 +482,6 @@ if ($xml) {
       $('#modalCostoProduccionTotal').text(costoProduccionTotal);
       $('#modalCostoEmbalajeTotal').text(costoEmbalajeTotal);
       $('#modalCostoTotalConEmbalaje').text(costoTotalConEmbalaje);
-      $('#modalNombre').text(nombre);
-      $('#modalCodigo').text(codigo);
-      $('#modalMedida').text(medida);
-      $('#modalCodigoLote').text(codigoLote);
-      $('#modalEmisionDetalle').text(emisionDetalle);
-      $('#modalVencimientoDetalle').text(VencimientoDetalle);
-      $('#modalCantidadProducida').text(cantidadProducida);
-      $('#modalCostoUnitario').text(costoUnitario);
-      $('#modalCostoProduccion').text(costoProduccion);
-      $('#modalCostoEmbalaje').text(costoEmbalaje);
-      $('#modalCostoProduccionConEmbalaje').text(costoProduccionConEmbalaje);
 
     });
   });
