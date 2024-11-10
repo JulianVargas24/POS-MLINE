@@ -72,213 +72,214 @@ if ($xml) {
             </a>
 
           </div>
+        </div>
 
-          <!-- Tabla de Ordenes de Producción -->
-          <div class="box-body">
-            <table class="table table-bordered table-striped dt-responsive  tablas" width="100%">
-              <thead>
-                <tr>
-                  <th>Folio</th>
-                  <th>Tipo de orden</th>
-                  <th>Nombre Orden</th>
-                  <th>Cliente</th>
-                  <th>Unidad de Negocio</th>
-                  <th>Bodega</th>
-                  <th>Emisión</th>
-                  <th>Vencimiento</th>
-                  <th>Cantidad Producida</th>
-                  <th>Código de Lote</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
+        <!-- Tabla de Ordenes de Producción -->
+        <div class="box-body">
+          <table class="table table-bordered table-striped dt-responsive  tablas" width="100%">
+            <thead>
+              <tr>
+                <th>Folio</th>
+                <th>Tipo de orden</th>
+                <th>Nombre Orden</th>
+                <th>Cliente</th>
+                <th>Unidad de Negocio</th>
+                <th>Bodega</th>
+                <th>Emisión</th>
+                <th>Vencimiento</th>
+                <th>Cantidad Producida</th>
+                <th>Código de Lote</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
 
-              <!-- Cuerpo de la tabla -->
-              <tbody>
-                <?php
+            <!-- Cuerpo de la tabla -->
+            <tbody>
+              <?php
+              $item = null;
+              $valor = null;
+
+              $ordenesProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
+              $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+              $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+              $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+              $negocios = ControladorNegocios::ctrMostrarNegocios($item, $valor);
+              $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
+              $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
+
+
+
+              // Iterar sobre las órdenes de producción
+              foreach ($ordenesProduccion as $key => $orden) {
+                $negocio = '';
+                $centro = '';
+                $bodega = '';
+                $cliente = '';
+                $clienteRut = '';
+                $clienteEmail = '';
+                $clienteTelefono = '';
+                $clienteDireccion = '';
+                $clientePais = '';
+                $clienteRegion = '';
+                $clienteComuna = '';
+
+                // Buscar y asignar el nombre de la unidad de negocio
+                foreach ($negocios as $neg) {
+                  if ($neg["id"] == $orden["id_unidad_negocio"]) {
+                    $negocio = $neg["unidad_negocio"];
+                    break;
+                  }
+                }
+
+                // Buscar y asignar el nombre del centro de costo
+                foreach ($centros as $cen) {
+                  if ($cen["id"] == $orden["centro_costo"]) {
+                    $centro = $cen["centro"];
+                    break;
+                  }
+                }
+
+                // Buscar y asignar el nombre de la bodega
+                foreach ($bodegas as $bod) {
+                  if ($bod["id"] == $orden["bodega_destino"]) {
+                    $bodega = $bod["nombre"];
+                    break;
+                  }
+                }
+
+                // Buscar y asignar los datos del cliente
+                foreach ($clientes as $cli) {
+                  if ($cli["id"] == $orden["id_cliente"]) {
+                    // Asignamos los datos del cliente
+                    $cliente = $cli["nombre"];
+                    $clienteRut = $cli["rut"];
+                    $clienteEmail = $cli["email"];
+                    $clienteTelefono = $cli["telefono"];
+                    $clienteDireccion = $cli["direccion"];
+                    $clientePais = $cli["pais"];
+
+                    // Buscar la región del cliente
+                    if (is_numeric($cli["region"])) {
+                      // Si la región es un ID (numérico), buscamos el nombre
+                      foreach ($regiones as $reg) {
+                        if ($reg["id"] == $cli["region"]) {
+                          $clienteRegion = $reg["nombre"];
+                          break;
+                        }
+                      }
+                    } else {
+                      // Si la región es un nombre (cadena), simplemente asignamos el valor
+                      $clienteRegion = $cli["region"];
+                    }
+
+                    // Buscar la comuna del cliente
+                    if (is_numeric($cli["comuna"])) {
+                      // Si la comuna es un ID (numérico), buscamos el nombre
+                      foreach ($comunas as $com) {
+                        if ($com["id"] == $cli["comuna"]) {
+                          $clienteComuna = $com["nombre"];
+                          break;
+                        }
+                      }
+                    } else {
+                      // Si la comuna es un nombre (cadena), simplemente asignamos el valor
+                      $clienteComuna = $cli["comuna"];
+                    }
+
+                    break;
+                  }
+                }
+
+
+                // Obtener los detalles de producción relacionados con la orden actual
+                $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $orden["folio_orden_produccion"]);
                 $item = null;
                 $valor = null;
+                $unidad = ControladorUnidades::ctrMostrarunidades($item, $valor);
+                $productos = ControladorProductos::ctrMostrarProductosPredeterminado($item, $valor);
 
-                $ordenesProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
-                $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
-                $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
-                $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
-                $negocios = ControladorNegocios::ctrMostrarNegocios($item, $valor);
-                $regiones = ControladorRegiones::ctrMostrarRegiones($item, $valor);
-                $comunas = ControladorRegiones::ctrMostrarComunas($item, $valor);
+                // Inicializar arrays vacíos para cada campo
+                $codigoDetalle = [];
+                $nombreDetalle = [];
+                $medidaDetalle = [];
+                $codigosDetalle = [];
+                $emisionDetalle = [];
+                $vencimientoDetalle = [];
+                $cantidadProducidaDetalle = [];
+                $costoUnitarioDetalle = [];
+                $costoProduccionDetalle = [];
+                $costoEmbalajeDetalle = [];
+                $costoProduccionConEmbalajeDetalle = [];
 
+                // Recorrer los detalles de las órdenes de producción una sola vez
+                foreach ($ordenesProduccionDetalle as $detalle) {
 
-
-                // Iterar sobre las órdenes de producción
-                foreach ($ordenesProduccion as $key => $orden) {
-                  $negocio = '';
-                  $centro = '';
-                  $bodega = '';
-                  $cliente = '';
-                  $clienteRut = '';
-                  $clienteEmail = '';
-                  $clienteTelefono = '';
-                  $clienteDireccion = '';
-                  $clientePais = '';
-                  $clienteRegion = '';
-                  $clienteComuna = '';
-
-                  // Buscar y asignar el nombre de la unidad de negocio
-                  foreach ($negocios as $neg) {
-                    if ($neg["id"] == $orden["id_unidad_negocio"]) {
-                      $negocio = $neg["unidad_negocio"];
+                  foreach ($unidad as $cli) {
+                    if ($cli["id"] == $detalle["id_unidad"]) {
+                      $medidaDetalle[] = $cli["medida"];
                       break;
                     }
                   }
 
-                  // Buscar y asignar el nombre del centro de costo
-                  foreach ($centros as $cen) {
-                    if ($cen["id"] == $orden["centro_costo"]) {
-                      $centro = $cen["centro"];
+                  foreach ($productos as $pro) {
+                    if ($pro["id"] == $detalle["id_producto"]) {
+                      $codigoDetalle[] = $pro["codigo"];
+                      $nombreDetalle[] = $pro["descripcion"];
                       break;
                     }
                   }
 
-                  // Buscar y asignar el nombre de la bodega
-                  foreach ($bodegas as $bod) {
-                    if ($bod["id"] == $orden["bodega_destino"]) {
-                      $bodega = $bod["nombre"];
-                      break;
-                    }
-                  }
+                  // Añadir los valores correspondientes a cada array
+                  $codigosDetalle[] = $detalle["codigo_lote"];
+                  $emisionDetalle[] = $detalle["fecha_produccion"];
+                  $vencimientoDetalle[] = $detalle["fecha_vencimiento"];
+                  $cantidadProducidaDetalle[] = $detalle["cantidad_producida"];
+                  $costoUnitarioDetalle[] = $detalle["costo_unitario"];
+                  $costoProduccionDetalle[] = $detalle["costo_produccion"];
+                  $costoEmbalajeDetalle[] = $detalle["costo_embalaje"];
+                  $costoProduccionConEmbalajeDetalle[] = $detalle["costo_produccion_con_embalaje"];
+                }
 
-                  // Buscar y asignar los datos del cliente
-                  foreach ($clientes as $cli) {
-                    if ($cli["id"] == $orden["id_cliente"]) {
-                      // Asignamos los datos del cliente
-                      $cliente = $cli["nombre"];
-                      $clienteRut = $cli["rut"];
-                      $clienteEmail = $cli["email"];
-                      $clienteTelefono = $cli["telefono"];
-                      $clienteDireccion = $cli["direccion"];
-                      $clientePais = $cli["pais"];
+                //mostrar en la tabla
+                //$codigosDetalleStr = implode(", ", $codigosDetalle);
+                //$codigosDetalleStr = implode("<br>", $codigosDetalle);
+                //$codigosDetalleStr = implode("<li>", $codigosDetalle);
+                $codigosDetalleStr = '';
+                foreach ($codigosDetalle as $codigo) {
+                  $codigosDetalleStr .= "<div class='p-2 m-1' style='border: 1px solid #ddd; padding-left: 10px;  padding-right: 10px; background-image: url(icon.png); background-size: 16px 16px;'>$codigo</div>";
+                }
 
-                      // Buscar la región del cliente
-                      if (is_numeric($cli["region"])) {
-                        // Si la región es un ID (numérico), buscamos el nombre
-                        foreach ($regiones as $reg) {
-                          if ($reg["id"] == $cli["region"]) {
-                            $clienteRegion = $reg["nombre"];
-                            break;
-                          }
-                        }
-                      } else {
-                        // Si la región es un nombre (cadena), simplemente asignamos el valor
-                        $clienteRegion = $cli["region"];
-                      }
+                // Convertir los arrays a formato JSON
+                $codigoDetalleJson = json_encode($codigoDetalle);
+                $nombreDetalleJson = json_encode($nombreDetalle);
+                //$dataNombreJson = json_encode($nombreDetalle, JSON_UNESCAPED_UNICODE);
+                $medidaDetalleJson = json_encode($medidaDetalle);
+                $codigoLoteDetalleJson = json_encode($codigosDetalle);
+                $emisionDetalleJson = json_encode($emisionDetalle);
+                $vencimientoDetalleJson = json_encode($vencimientoDetalle);
+                $cantidadProducidaDetalleJson = json_encode($cantidadProducidaDetalle);
+                $costoUnitarioDetalleJson = json_encode($costoUnitarioDetalle);
+                $costoProduccionDetalleJson = json_encode($costoProduccionDetalle);
+                $costoEmbalajeDetalleJson = json_encode($costoEmbalajeDetalle);
+                $costoProduccionConEmbalajeDetalleJson = json_encode($costoProduccionConEmbalajeDetalle);
 
-                      // Buscar la comuna del cliente
-                      if (is_numeric($cli["comuna"])) {
-                        // Si la comuna es un ID (numérico), buscamos el nombre
-                        foreach ($comunas as $com) {
-                          if ($com["id"] == $cli["comuna"]) {
-                            $clienteComuna = $com["nombre"];
-                            break;
-                          }
-                        }
-                      } else {
-                        // Si la comuna es un nombre (cadena), simplemente asignamos el valor
-                        $clienteComuna = $cli["comuna"];
-                      }
+                // Sanitiza el JSON para asegurarte de que se pueda insertar correctamente en el atributo HTML
+                $codigoDetalleJson = htmlspecialchars($codigoDetalleJson, ENT_QUOTES, 'UTF-8');
+                $dataNombre = htmlspecialchars($nombreDetalleJson, ENT_QUOTES, 'UTF-8');
+                //echo 'data-nombre=\'' . htmlspecialchars($dataNombreJson, ENT_QUOTES, 'UTF-8') . '\'';
+                $medidaDetalleJson = htmlspecialchars($medidaDetalleJson, ENT_QUOTES, 'UTF-8');
+                $codigoLoteDetalleJson = htmlspecialchars($codigoLoteDetalleJson, ENT_QUOTES, 'UTF-8');
+                $emisionDetalleJson = htmlspecialchars($emisionDetalleJson, ENT_QUOTES, 'UTF-8');
+                $vencimientoDetalleJson = htmlspecialchars($vencimientoDetalleJson, ENT_QUOTES, 'UTF-8');
+                $cantidadProducidaDetalleJson = htmlspecialchars($cantidadProducidaDetalleJson, ENT_QUOTES, 'UTF-8');
+                $costoUnitarioDetalleJson = htmlspecialchars($costoUnitarioDetalleJson, ENT_QUOTES, 'UTF-8');
+                $costoProduccionDetalleJson = htmlspecialchars($costoProduccionDetalleJson, ENT_QUOTES, 'UTF-8');
+                $costoEmbalajeDetalleJson = htmlspecialchars($costoEmbalajeDetalleJson, ENT_QUOTES, 'UTF-8');
+                $costoProduccionConEmbalajeDetalleJson = htmlspecialchars($costoProduccionConEmbalajeDetalleJson, ENT_QUOTES, 'UTF-8');
+                //var_dump($dataNombre);
+                //echo 'data-nombre=\'' . $dataNombre . '\'';
 
-                      break;
-                    }
-                  }
-
-
-                  // Obtener los detalles de producción relacionados con la orden actual
-                  $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $orden["folio_orden_produccion"]);
-                  $item = null;
-                  $valor = null;
-                  $unidad = ControladorUnidades::ctrMostrarunidades($item, $valor);
-                  $productos = ControladorProductos::ctrMostrarProductosPredeterminado($item, $valor);
-
-                  // Inicializar arrays vacíos para cada campo
-                  $codigoDetalle = [];
-                  $nombreDetalle = [];
-                  $medidaDetalle = [];
-                  $codigosDetalle = [];
-                  $emisionDetalle = [];
-                  $vencimientoDetalle = [];
-                  $cantidadProducidaDetalle = [];
-                  $costoUnitarioDetalle = [];
-                  $costoProduccionDetalle = [];
-                  $costoEmbalajeDetalle = [];
-                  $costoProduccionConEmbalajeDetalle = [];
-
-                  // Recorrer los detalles de las órdenes de producción una sola vez
-                  foreach ($ordenesProduccionDetalle as $detalle) {
-
-                    foreach ($unidad as $cli) {
-                      if ($cli["id"] == $detalle["id_unidad"]) {
-                        $medidaDetalle[] = $cli["medida"];
-                        break;
-                      }
-                    }
-
-                    foreach ($productos as $pro) {
-                      if ($pro["id"] == $detalle["id_producto"]) {
-                        $codigoDetalle[] = $pro["codigo"];
-                        $nombreDetalle[] = $pro["descripcion"];
-                        break;
-                      }
-                    }
-
-                    // Añadir los valores correspondientes a cada array
-                    $codigosDetalle[] = $detalle["codigo_lote"];
-                    $emisionDetalle[] = $detalle["fecha_produccion"];
-                    $vencimientoDetalle[] = $detalle["fecha_vencimiento"];
-                    $cantidadProducidaDetalle[] = $detalle["cantidad_producida"];
-                    $costoUnitarioDetalle[] = $detalle["costo_unitario"];
-                    $costoProduccionDetalle[] = $detalle["costo_produccion"];
-                    $costoEmbalajeDetalle[] = $detalle["costo_embalaje"];
-                    $costoProduccionConEmbalajeDetalle[] = $detalle["costo_produccion_con_embalaje"];
-                  }
-
-                  //mostrar en la tabla
-                  //$codigosDetalleStr = implode(", ", $codigosDetalle);
-                  //$codigosDetalleStr = implode("<br>", $codigosDetalle);
-                  //$codigosDetalleStr = implode("<li>", $codigosDetalle);
-                  $codigosDetalleStr = '';
-                  foreach ($codigosDetalle as $codigo) {
-                    $codigosDetalleStr .= "<div class='p-2 m-1' style='border: 1px solid #ddd; padding-left: 20px; background-image: url(icon.png); background-size: 16px 16px;'>$codigo</div>";
-                  }
-
-                  // Convertir los arrays a formato JSON
-                  $codigoDetalleJson = json_encode($codigoDetalle);
-                  $nombreDetalleJson = json_encode($nombreDetalle);
-                  //$dataNombreJson = json_encode($nombreDetalle, JSON_UNESCAPED_UNICODE);
-                  $medidaDetalleJson = json_encode($medidaDetalle);
-                  $codigoLoteDetalleJson = json_encode($codigosDetalle);
-                  $emisionDetalleJson = json_encode($emisionDetalle);
-                  $vencimientoDetalleJson = json_encode($vencimientoDetalle);
-                  $cantidadProducidaDetalleJson = json_encode($cantidadProducidaDetalle);
-                  $costoUnitarioDetalleJson = json_encode($costoUnitarioDetalle);
-                  $costoProduccionDetalleJson = json_encode($costoProduccionDetalle);
-                  $costoEmbalajeDetalleJson = json_encode($costoEmbalajeDetalle);
-                  $costoProduccionConEmbalajeDetalleJson = json_encode($costoProduccionConEmbalajeDetalle);
-
-                  // Sanitiza el JSON para asegurarte de que se pueda insertar correctamente en el atributo HTML
-                  $codigoDetalleJson = htmlspecialchars($codigoDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $dataNombre = htmlspecialchars($nombreDetalleJson, ENT_QUOTES, 'UTF-8');
-                  //echo 'data-nombre=\'' . htmlspecialchars($dataNombreJson, ENT_QUOTES, 'UTF-8') . '\'';
-                  $medidaDetalleJson = htmlspecialchars($medidaDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $codigoLoteDetalleJson = htmlspecialchars($codigoLoteDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $emisionDetalleJson = htmlspecialchars($emisionDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $vencimientoDetalleJson = htmlspecialchars($vencimientoDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $cantidadProducidaDetalleJson = htmlspecialchars($cantidadProducidaDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $costoUnitarioDetalleJson = htmlspecialchars($costoUnitarioDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $costoProduccionDetalleJson = htmlspecialchars($costoProduccionDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $costoEmbalajeDetalleJson = htmlspecialchars($costoEmbalajeDetalleJson, ENT_QUOTES, 'UTF-8');
-                  $costoProduccionConEmbalajeDetalleJson = htmlspecialchars($costoProduccionConEmbalajeDetalleJson, ENT_QUOTES, 'UTF-8');
-                  //var_dump($dataNombre);
-                  //echo 'data-nombre=\'' . $dataNombre . '\'';
-
-                  echo '<tr>
+                echo '<tr>
                     <td>' . $orden["folio_orden_produccion"] . '</td>
                     <td style="font-weight:bold;font-size:15px;color:black;">' . $orden["tipo_orden"] . '</td>
                     <td>' . $orden["nombre_orden"] . '</td>
@@ -330,48 +331,48 @@ if ($xml) {
                     ><i class="fa fa-search"></i></button>
                     ';
 
-                  if ($_SESSION["perfil"] == "Administrador") {
-                    echo ' 
+                if ($_SESSION["perfil"] == "Administrador") {
+                  echo ' 
                      <button class="btn btn-warning btnEditarOrdenProduccion" idOrdenProduccion="' . $orden["id"] . '"><i class="fa fa-pencil"></i></button>
                      <button class="btn btn-danger btnEliminarOrdenProduccion" idOrdenProduccion="' . $orden["id"] . '"><i class="fa fa-times"></i></button>';
-                  }
-                  echo '</div></td></tr>';
                 }
-                ?>
-              </tbody>
+                echo '</div></td></tr>';
+              }
+              ?>
+            </tbody>
 
-              <script>
-                $(".tablas").on("click", ".btnEliminarOrdenProduccion", function() {
+            <script>
+              $(".tablas").on("click", ".btnEliminarOrdenProduccion", function() {
 
-                  var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+                var idOrdenProduccion = $(this).attr("idOrdenProduccion");
 
-                  swal({
-                    title: "¿Está seguro de borrar la Orden de Producción?",
-                    text: "Si no lo está puede cancelar la acción",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    cancelButtonText: "Cancelar",
-                    confirmButtonText: "Sí, borrar orden"
-                  }).then(function(result) {
-                    if (result.value) {
-                      // Redirige al controlador de eliminación
-                      window.location = "index.php?ruta=administrar-orden-produccion&idOrdenProduccion=" + idOrdenProduccion;
-                    }
-                  });
+                swal({
+                  title: "¿Está seguro de borrar la Orden de Producción?",
+                  text: "Si no lo está puede cancelar la acción",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  cancelButtonText: "Cancelar",
+                  confirmButtonText: "Sí, borrar orden"
+                }).then(function(result) {
+                  if (result.value) {
+                    // Redirige al controlador de eliminación
+                    window.location = "index.php?ruta=administrar-orden-produccion&idOrdenProduccion=" + idOrdenProduccion;
+                  }
                 });
-              </script>
+              });
+            </script>
 
-            </table>
+          </table>
 
-            <?php
-            $eliminarOrden = new ControladorOrdenProduccion();
-            $eliminarOrden->ctrEliminarOrdenProduccion();
-            ?>
+          <?php
+          $eliminarOrden = new ControladorOrdenProduccion();
+          $eliminarOrden->ctrEliminarOrdenProduccion();
+          ?>
 
-          </div>
         </div>
+      </div>
     </section>
   </div>
 
@@ -384,7 +385,7 @@ if ($xml) {
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header bg-info text-white text-center">
-        <h4 class="modal-title" id="detalleModalLabel"></h4>
+        <h4 class="modal-title mb-0" id="detalleModalLabel" style="color: black;"></h4>
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -463,7 +464,7 @@ if ($xml) {
 <script>
   $(document).ready(function() {
     // Cuando se haga clic en el botón
-    $('button[data-toggle="modal"]').on('click', function() {
+    $(document).on('click', 'button[data-toggle="modal"]', function() {
       // Obtener el valor del atributo data-titulo
       var titulo = $(this).data('titulo');
       var folio = $(this).data('folio');
@@ -517,7 +518,7 @@ if ($xml) {
         <p><strong>Costo Embalaje:</strong> ${costoEmbalajeJson[i]}</p>
         <p><strong>Costo Producción con Embalaje:</strong> ${costoProduccionConEmbalajeJson[i]}</p>
         </div>
-    `;
+        `;
         $('#productosContainer').append(productoHtml);
       }
 
