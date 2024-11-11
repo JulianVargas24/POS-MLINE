@@ -238,7 +238,7 @@ class ControladorOrdenProduccion
 
       echo utf8_decode("<table border='0'>
     <tr>
-    <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE CON COTIZACIÓN (Total: $totalConCotizacion)</td></tr>
+      <tr><td colspan='23' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE CON COTIZACIÓN (Total: $totalConCotizacion)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
         <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
@@ -278,6 +278,8 @@ class ControladorOrdenProduccion
           $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
           // Crear una cadena con los códigos de los detalles
+          $medidaDetalle = [];
+          $nombreDetalle = [];
           $codigosDetalle = [];
           $emisionDetalle = [];
           $vencimientoDetalle = [];
@@ -318,16 +320,16 @@ class ControladorOrdenProduccion
           }
 
           // Crear cadenas con los valores de cada detalle usando implode()
-          $medidaDetalleStr = implode(", ", $medidaDetalle);
-          $nombreDetalleStr = implode(", ", $nombreDetalle);
-          $codigosDetalleStr = implode(", ", $codigosDetalle);
-          $emisionDetalleStr = implode(", ", $emisionDetalle);
-          $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
-          $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
-          $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
-          $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
-          $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
-          $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
+          $medidaDetalleStr = implode("<li>", $medidaDetalle);
+          $nombreDetalleStr = implode("<li>", $nombreDetalle);
+          $codigosDetalleStr = implode("<li>", $codigosDetalle);
+          $emisionDetalleStr = implode("<li>", $emisionDetalle);
+          $vencimientoDetalleStr = implode("<li>", $vencimientoDetalle);
+          $cantidadProducidaDetalleStr = implode("<li>", $cantidadProducidaDetalle);
+          $costoUnitarioDetalleStr = implode("<li>", $costoUnitarioDetalle);
+          $costoProduccionDetalleStr = implode("<li>", $costoProduccionDetalle);
+          $costoEmbalajeDetalleStr = implode("<li>", $costoEmbalajeDetalle);
+          $costoProduccionConEmbalajeDetalleStr = implode("<li>", $costoProduccionConEmbalajeDetalle);
 
           // Mostrar los datos de la orden
           echo utf8_decode("<tr>
@@ -362,7 +364,7 @@ class ControladorOrdenProduccion
 
       echo utf8_decode("<table border='0'>
     <tr>
-    <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE SIN COTIZACIÓN (Total: $totalSinCotizacion)</td></tr>
+    <tr><td colspan='23' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE SIN COTIZACIÓN (Total: $totalSinCotizacion)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
         <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
@@ -402,6 +404,8 @@ class ControladorOrdenProduccion
           $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
           // Crear una cadena con los códigos de los detalles
+          $medidaDetalle = [];
+          $nombreDetalle = [];
           $codigosDetalle = [];
           $emisionDetalle = [];
           $vencimientoDetalle = [];
@@ -442,16 +446,16 @@ class ControladorOrdenProduccion
           }
 
           // Crear cadenas con los valores de cada detalle usando implode()
-          $medidaDetalleStr = implode(", ", $medidaDetalle);
-          $nombreDetalleStr = implode(", ", $nombreDetalle);
-          $codigosDetalleStr = implode(", ", $codigosDetalle);
-          $emisionDetalleStr = implode(", ", $emisionDetalle);
-          $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
-          $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
-          $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
-          $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
-          $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
-          $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
+          $medidaDetalleStr = implode("<li>", $medidaDetalle);
+          $nombreDetalleStr = implode("<li>", $nombreDetalle);
+          $codigosDetalleStr = implode("<li>", $codigosDetalle);
+          $emisionDetalleStr = implode("<li>", $emisionDetalle);
+          $vencimientoDetalleStr = implode("<li>", $vencimientoDetalle);
+          $cantidadProducidaDetalleStr = implode("<li>", $cantidadProducidaDetalle);
+          $costoUnitarioDetalleStr = implode("<li>", $costoUnitarioDetalle);
+          $costoProduccionDetalleStr = implode("<li>", $costoProduccionDetalle);
+          $costoEmbalajeDetalleStr = implode("<li>", $costoEmbalajeDetalle);
+          $costoProduccionConEmbalajeDetalleStr = implode("<li>", $costoProduccionConEmbalajeDetalle);
 
           // Mostrar los datos de la orden
           echo utf8_decode("<tr>
@@ -485,9 +489,9 @@ class ControladorOrdenProduccion
 
       echo utf8_decode("<table border='0'>
     <tr>
-    <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>PRODUCCIÓN EN STOCK (Total: $totalProduccionStock)</td></tr>
+    <tr><td colspan='22' style='font-weight:bold; background-color:#f0f0f0;'>PRODUCCIÓN EN STOCK (Total: $totalProduccionStock)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        
         <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
@@ -516,15 +520,17 @@ class ControladorOrdenProduccion
       foreach ($ordenes as $row => $item) {
         if ($item["tipo_orden"] === "Producción Stock") {
           $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
-          $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+
           $centro = ControladorCentros::ctrMostrarCentros("id", $item["centro_costo"]);
           $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
-          $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+
           $centroNombre = isset($centro["centro"]) ? $centro["centro"] : "No disponible";
           $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
           // Crear una cadena con los códigos de los detalles
+          $medidaDetalle = [];
+          $nombreDetalle = [];
           $codigosDetalle = [];
           $emisionDetalle = [];
           $vencimientoDetalle = [];
@@ -565,21 +571,21 @@ class ControladorOrdenProduccion
           }
 
           // Crear cadenas con los valores de cada detalle usando implode()
-          $medidaDetalleStr = implode(", ", $medidaDetalle);
-          $nombreDetalleStr = implode(", ", $nombreDetalle);
-          $codigosDetalleStr = implode(", ", $codigosDetalle);
-          $emisionDetalleStr = implode(", ", $emisionDetalle);
-          $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
-          $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
-          $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
-          $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
-          $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
-          $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
+          $medidaDetalleStr = implode("<li>", $medidaDetalle);
+          $nombreDetalleStr = implode("<li>", $nombreDetalle);
+          $codigosDetalleStr = implode("<li>", $codigosDetalle);
+          $emisionDetalleStr = implode("<li>", $emisionDetalle);
+          $vencimientoDetalleStr = implode("<li>", $vencimientoDetalle);
+          $cantidadProducidaDetalleStr = implode("<li>", $cantidadProducidaDetalle);
+          $costoUnitarioDetalleStr = implode("<li>", $costoUnitarioDetalle);
+          $costoProduccionDetalleStr = implode("<li>", $costoProduccionDetalle);
+          $costoEmbalajeDetalleStr = implode("<li>", $costoEmbalajeDetalle);
+          $costoProduccionConEmbalajeDetalleStr = implode("<li>", $costoProduccionConEmbalajeDetalle);
 
           // Mostrar los datos de la orden
           echo utf8_decode("<tr>
             <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
-            <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            
             <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
             <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
@@ -608,9 +614,9 @@ class ControladorOrdenProduccion
 
       echo utf8_decode("<table border='0'>
     <tr>
-    <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>PACK (Total: $totalPack)</td></tr>
+    <tr><td colspan='22' style='font-weight:bold; background-color:#f0f0f0;'>PACK (Total: $totalPack)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        
         <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
@@ -639,15 +645,17 @@ class ControladorOrdenProduccion
       foreach ($ordenes as $row => $item) {
         if ($item["tipo_orden"] === "PACK") {
           $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
-          $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+
           $centro = ControladorCentros::ctrMostrarCentros("id", $item["centro_costo"]);
           $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
-          $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+
           $centroNombre = isset($centro["centro"]) ? $centro["centro"] : "No disponible";
           $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
           // Crear una cadena con los códigos de los detalles
+          $medidaDetalle = [];
+          $nombreDetalle = [];
           $codigosDetalle = [];
           $emisionDetalle = [];
           $vencimientoDetalle = [];
@@ -688,21 +696,21 @@ class ControladorOrdenProduccion
           }
 
           // Crear cadenas con los valores de cada detalle usando implode()
-          $medidaDetalleStr = implode(", ", $medidaDetalle);
-          $nombreDetalleStr = implode(", ", $nombreDetalle);
-          $codigosDetalleStr = implode(", ", $codigosDetalle);
-          $emisionDetalleStr = implode(", ", $emisionDetalle);
-          $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
-          $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
-          $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
-          $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
-          $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
-          $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
+          $medidaDetalleStr = implode("<li>", $medidaDetalle);
+          $nombreDetalleStr = implode("<li>", $nombreDetalle);
+          $codigosDetalleStr = implode("<li>", $codigosDetalle);
+          $emisionDetalleStr = implode("<li>", $emisionDetalle);
+          $vencimientoDetalleStr = implode("<li>", $vencimientoDetalle);
+          $cantidadProducidaDetalleStr = implode("<li>", $cantidadProducidaDetalle);
+          $costoUnitarioDetalleStr = implode("<li>", $costoUnitarioDetalle);
+          $costoProduccionDetalleStr = implode("<li>", $costoProduccionDetalle);
+          $costoEmbalajeDetalleStr = implode("<li>", $costoEmbalajeDetalle);
+          $costoProduccionConEmbalajeDetalleStr = implode("<li>", $costoProduccionConEmbalajeDetalle);
 
           // Mostrar los datos de la orden
           echo utf8_decode("<tr>
             <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
-            <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            
             <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
             <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
