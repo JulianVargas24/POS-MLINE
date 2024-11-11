@@ -140,7 +140,8 @@ $(".tablaVentaBoletaExenta tbody").on(
         $(".nuevoPrecioUnitario").number(true, 0); // 0 decimales
         $(".nuevoSubtotalProducto").number(true, 0); // 0 decimales
         $(".nuevoIvaProducto").number(true, 0); // 0 decimales
-        $("#nuevoTotalFinal").number(true, 0); // 0 decimales
+        $("#nuevoTotalFinal").number(true, 0);
+        $("#nuevoSubtotal").number(true, 0);
 
         localStorage.removeItem("quitarProducto");
       },
@@ -586,16 +587,21 @@ function sumarTotalPreciosCotizacionExenta() {
 
   var arraySumaPrecio = [];
 
+  // Recopilar los valores de los elementos
   for (var i = 0; i < precioItem.length; i++) {
-    arraySumaPrecio.push(Number($(precioItem[i]).val()));
+    var valor = Number($(precioItem[i]).val());
+    if (!isNaN(valor)) {
+      // Asegurarse de que el valor es un número
+      arraySumaPrecio.push(valor);
+    }
   }
 
-  function sumaArrayPrecios(total, numero) {
+  // Usar reduce con un valor inicial de 0
+  var sumaTotalPrecio = arraySumaPrecio.reduce(function (total, numero) {
     return total + numero;
-  }
+  }, 0); // Valor inicial 0
 
-  var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
-
+  // Actualizar los valores en los campos
   $("#nuevoTotalExento").val(sumaTotalPrecio);
   $("#nuevoTotalExento").attr("total", sumaTotalPrecio);
   $("#nuevoTotalExento").number(true, 0);
@@ -603,6 +609,8 @@ function sumarTotalPreciosCotizacionExenta() {
   $("#nuevoTotalIva").number(true, 0);
   $("#nuevoSubtotal").number(true, 0);
   $("#nuevoTotalFinal").number(true, 0);
+
+  // Llamar a otras funciones necesarias
   sumarSubtotal();
   sumarDescuentos();
   sumarIva();
@@ -648,16 +656,25 @@ function restarVentas() {
 function sumarTotales() {
   var totalItem = $(".nuevoTotalProducto");
   var arraySumaTotales = [];
+
+  // Recopilar los valores de los totales de productos
   for (var i = 0; i < totalItem.length; i++) {
-    arraySumaTotales.push(Number($(totalItem[i]).val()));
+    var totalProducto = Number($(totalItem[i]).val());
+    if (!isNaN(totalProducto) && totalProducto !== 0) {
+      // Asegurarse de que el valor es un número válido
+      arraySumaTotales.push(totalProducto);
+    }
   }
 
-  function sumaArrayTotales(total, numero) {
-    return total + numero;
+  // Verificar si el array tiene elementos antes de hacer el reduce
+  var sumaTotales = 0;
+  if (arraySumaTotales.length > 0) {
+    sumaTotales = arraySumaTotales.reduce(function (total, numero) {
+      return total + numero;
+    });
   }
 
-  var sumaTotales = arraySumaTotales.reduce(sumaArrayTotales);
-
+  // Actualizar los valores en los campos
   $("#nuevoTotalFinal").val(sumaTotales);
   $("#nuevoTotalFinal").attr("total", sumaTotales);
   $("#nuevoTotalPagar").val(sumaTotales).number(true, 0);
@@ -730,16 +747,24 @@ function sumarDescuentos() {
 
   var arraySumaDescuento = [];
 
+  // Recopilar los valores de los descuentos
   for (var i = 0; i < descuentoItem.length; i++) {
-    arraySumaDescuento.push(Number($(descuentoItem[i]).val()));
+    var descuento = Number($(descuentoItem[i]).val());
+    if (!isNaN(descuento) && descuento !== 0) {
+      // Asegurarse de que el valor es un número y no 0
+      arraySumaDescuento.push(descuento);
+    }
   }
 
-  function sumaArrayDescuentos(total, numero) {
-    return total + numero;
+  // Verificar si el array tiene elementos antes de hacer el reduce
+  var sumaTotalDescuento = 0;
+  if (arraySumaDescuento.length > 0) {
+    sumaTotalDescuento = arraySumaDescuento.reduce(function (total, numero) {
+      return total + numero;
+    });
   }
 
-  var sumaTotalDescuento = arraySumaDescuento.reduce(sumaArrayDescuentos);
-
+  // Actualizar los valores en el campo
   $("#nuevoTotalDescuento").val(sumaTotalDescuento);
   $("#nuevoTotalDescuento").attr("total", sumaTotalDescuento);
 }
@@ -749,33 +774,49 @@ function sumarSubtotal() {
   var preciouItem = $(".nuevoPrecioUnitario");
   var arraySumaSubtotal = [];
 
+  // Recopilar los valores multiplicando cantidad por precio
   for (var i = 0; i < cantidadItem.length; i++) {
-    arraySumaSubtotal.push(
-      Number($(cantidadItem[i]).val() * $(preciouItem[i]).val())
-    );
+    var subtotal =
+      Number($(cantidadItem[i]).val()) * Number($(preciouItem[i]).val());
+    if (!isNaN(subtotal) && subtotal !== 0) {
+      // Asegurarse de que el valor es un número y no 0
+      arraySumaSubtotal.push(subtotal);
+    }
   }
-  function sumaArraySubtotales(total, numero) {
+
+  // Usar reduce con un valor inicial de 0
+  var sumaTotalSubtotal = arraySumaSubtotal.reduce(function (total, numero) {
     return total + numero;
-  }
-  var sumaTotalSubtotal = arraySumaSubtotal.reduce(sumaArraySubtotales);
+  }, 0); // Valor inicial 0
+
+  // Actualizar los valores en el campo
   $("#nuevoSubtotal").val(sumaTotalSubtotal);
   $("#nuevoSubtotal").attr("total", sumaTotalSubtotal);
 }
+
 function sumarIva() {
   var ivaItem = $(".nuevoIvaProducto");
 
   var arraySumaIva = [];
 
+  // Recopilar los valores de los IVA
   for (var i = 0; i < ivaItem.length; i++) {
-    arraySumaIva.push(Number($(ivaItem[i]).val()));
+    var iva = Number($(ivaItem[i]).val());
+    if (!isNaN(iva) && iva !== 0) {
+      // Asegurarse de que el valor es un número y no 0
+      arraySumaIva.push(iva);
+    }
   }
 
-  function sumaArrayIvas(total, numero) {
-    return total + numero;
+  // Verificar si el array tiene elementos antes de hacer el reduce
+  var sumaTotalIva = 0;
+  if (arraySumaIva.length > 0) {
+    sumaTotalIva = arraySumaIva.reduce(function (total, numero) {
+      return total + numero;
+    });
   }
 
-  var sumaTotalIva = arraySumaIva.reduce(sumaArrayIvas);
-
+  // Actualizar los valores en el campo
   $("#nuevoTotalIva").val(sumaTotalIva);
   $("#nuevoTotalIva").attr("total", sumaTotalIva);
 }
