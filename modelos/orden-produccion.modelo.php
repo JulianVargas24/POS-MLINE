@@ -221,7 +221,7 @@ class ModeloOrdenProduccion
   static public function mdlEliminarOrdenProduccionDetalle($tabla, $folioOrden)
   {
     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
-    $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_STR);
+    $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
       return "ok";
@@ -238,7 +238,7 @@ class ModeloOrdenProduccion
   static public function mdlEliminarOrdenProduccion($tabla, $folioOrden)
   {
     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
-    $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_STR);
+    $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
       return "ok";

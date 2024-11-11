@@ -135,54 +135,56 @@ class ControladorOrdenProduccion
   static public function ctrEliminarOrdenProduccion()
   {
     if (isset($_GET["idOrdenProduccion"])) {
-      // Eliminar detalles de la orden de producción
-      $tablaDetalle = "orden_produccion_detalle";
+      // Obtener el ID de la orden de producción
       $folioOrden = $_GET["idOrdenProduccion"];
 
+      // Eliminar los detalles de la orden de producción primero
+      $tablaDetalle = "orden_produccion_detalle";
       $respuestaDetalle = ModeloOrdenProduccion::mdlEliminarOrdenProduccionDetalle($tablaDetalle, $folioOrden);
 
       if ($respuestaDetalle == "ok") {
-        // Eliminar la orden de producción principal
+        // Luego eliminar la orden de producción principal
         $tabla = "orden_produccion";
         $respuesta = ModeloOrdenProduccion::mdlEliminarOrdenProduccion($tabla, $folioOrden);
 
         if ($respuesta == "ok") {
           echo '<script>
-                    swal({
-                        type: "success",
-                        title: "La orden de producción ha sido eliminada correctamente",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar"
-                    }).then(function(result) {
-                        if (result.value) {
-                            window.location = "administrar-orden-produccion";
-                        }
-                    });
-                </script>';
+                      swal({
+                          type: "success",
+                          title: "La orden de producción ha sido eliminada correctamente",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar"
+                      }).then(function(result) {
+                          if (result.value) {
+                              window.location = "administrar-orden-produccion";
+                          }
+                      });
+                  </script>';
         } else {
           echo '<script>
-                    swal({
-                        type: "error",
-                        title: "Error al eliminar la orden de producción",
-                        text: "Por favor, intente nuevamente",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar"
-                    });
-                </script>';
+                      swal({
+                          type: "error",
+                          title: "Error al eliminar la orden de producción",
+                          text: "Por favor, intente nuevamente",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar"
+                      });
+                  </script>';
         }
       } else {
         echo '<script>
-                swal({
-                    type: "error",
-                    title: "Error al eliminar los detalles de la orden de producción",
-                    text: "Por favor, intente nuevamente",
-                    showConfirmButton: true,
-                    confirmButtonText: "Cerrar"
-                });
-            </script>';
+                  swal({
+                      type: "error",
+                      title: "Error al eliminar los detalles de la orden de producción",
+                      text: "Por favor, intente nuevamente",
+                      showConfirmButton: true,
+                      confirmButtonText: "Cerrar"
+                  });
+              </script>';
       }
     }
   }
+
 
   /**
    * Descargar reporte de Órdenes de Producción

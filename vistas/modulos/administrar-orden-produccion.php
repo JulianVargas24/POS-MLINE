@@ -242,12 +242,12 @@ if ($xml) {
 
                 //mostrar en la tabla
                 //$codigosDetalleStr = implode(", ", $codigosDetalle);
-                //$codigosDetalleStr = implode("<br>", $codigosDetalle);
+                $codigosDetalleStr = implode("<br>", $codigosDetalle);
                 //$codigosDetalleStr = implode("<li>", $codigosDetalle);
-                $codigosDetalleStr = '';
+                /**$codigosDetalleStr = '';
                 foreach ($codigosDetalle as $codigo) {
                   $codigosDetalleStr .= "<div class='p-2 m-1' style='border: 1px solid #ddd; padding-left: 10px;  padding-right: 10px; background-image: url(icon.png); background-size: 16px 16px;'>$codigo</div>";
-                }
+                }*/
 
                 // Convertir los arrays a formato JSON
                 $codigoDetalleJson = json_encode($codigoDetalle);
@@ -334,36 +334,12 @@ if ($xml) {
                 if ($_SESSION["perfil"] == "Administrador") {
                   echo ' 
                      <button class="btn btn-warning btnEditarOrdenProduccion" idOrdenProduccion="' . $orden["id"] . '"><i class="fa fa-pencil"></i></button>
-                     <button class="btn btn-danger btnEliminarOrdenProduccion" idOrdenProduccion="' . $orden["id"] . '"><i class="fa fa-times"></i></button>';
+                     <button class="btn btn-danger btnEliminarOrdenProduccion" idOrdenProduccion="' . $orden["folio_orden_produccion"] . '"><i class="fa fa-times"></i></button>';
                 }
                 echo '</div></td></tr>';
               }
               ?>
             </tbody>
-
-            <script>
-              $(".tablas").on("click", ".btnEliminarOrdenProduccion", function() {
-
-                var idOrdenProduccion = $(this).attr("idOrdenProduccion");
-
-                swal({
-                  title: "¿Está seguro de borrar la Orden de Producción?",
-                  text: "Si no lo está puede cancelar la acción",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#3085d6",
-                  cancelButtonColor: "#d33",
-                  cancelButtonText: "Cancelar",
-                  confirmButtonText: "Sí, borrar orden"
-                }).then(function(result) {
-                  if (result.value) {
-                    // Redirige al controlador de eliminación
-                    window.location = "index.php?ruta=administrar-orden-produccion&idOrdenProduccion=" + idOrdenProduccion;
-                  }
-                });
-              });
-            </script>
-
           </table>
 
           <?php
@@ -558,6 +534,32 @@ if ($xml) {
       }
     }
 
+  });
+
+  $(document).ready(function() {
+    /**
+     * funcion para eliminar
+     */
+    $(".tablas").on("click", ".btnEliminarOrdenProduccion", function() {
+
+      var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+
+      swal({
+        title: "¿Está seguro de borrar la Orden de Producción?",
+        text: "Si no lo está puede cancelar la acción",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Sí, borrar orden"
+      }).then(function(result) {
+        if (result.value) {
+          // Redirige al controlador de eliminación
+          window.location = "index.php?ruta=administrar-orden-produccion&idOrdenProduccion=" + idOrdenProduccion;
+        }
+      });
+    });
   });
 
   $(document).ready(function() {
