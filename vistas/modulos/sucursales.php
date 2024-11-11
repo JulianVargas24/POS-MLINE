@@ -285,46 +285,50 @@ MODAL AGREGAR SUCURSAL
                   <div class="col-lg-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Jefe encargado</div>
                     <div class="input-group">
+                        
+                          <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                      <span class="input-group-addon"><i class="fa fa-user"></i></span> 
-                      <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" placeholder="Ingresar encargado" required>
-                    </div>
+                          <input type="tel" class="form-control input" name="nuevoJefe" id="nuevoJefe" required>
+
+                        </div>
                   </div>
+
                   <div class="col-lg-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Teléfono</div>
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
                       <input type="tel" class="form-control input" name="nuevoTelefono" id="nuevoTelefono" 
-                      placeholder="Ingresar teléfono" required 
+                      placeholder="Ingresar teléfono" required
                       maxlength="12"
                       pattern="^\+[0-9]{11}$"
                       title="Ingrese el número de teléfono completo."
                       onfocus="if (this.value === '') { this.value = '+'; }"
                       oninput="this.value = this.value.replace(/[^0-9\+]/g, '');
                       if (!this.value.startsWith('+')) {
-                          this.value = '+' + this.value.slice(1);
+                      this.value = '+' + this.value.slice(1);
                       }
                       this.setCustomValidity(this.validity.patternMismatch ? 'Ingrese el número de teléfono completo.' : '');">
+                      </div>
+                    </div>
+
+                 
+                    <div class="col-lg-6" style="margin-top:10px;">
+                      <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electrónico</div>
+                      <div class="input-group">
+                        
+                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                      <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail" required
+                      placeholder="Ingresar email"
+                      pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
+                      title="El email debe contener un arroba (@) y un punto (.) después del arroba">
                     </div>
                   </div>
-                </div>
-                
-                <div class="col-lg-6" style="margin-top:10px;">
-                  <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
-                  <div class="input-group">
-                    
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input type="text" class="form-control input" name="nuevoEmail" id="nuevoEmail"
-                    placeholder="Ingresar email" required
-                    pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
-                    title="El email debe contener un arroba (@) y un punto (.) después del arroba">
-                  </div>
-                </div>
-              </div>                 
-            </div> 
-          </div>  
-
+                 
+                </div> 
+              </div>  
+            </div>
+          </div>
         </div>
 
         <!--=====================================
@@ -463,7 +467,7 @@ MODAL EDITAR SUCURSAL
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Dirección</div>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                      <input type="text" class="form-control input" name="editarDireccion" placeholder="Ingresar dirección" required>
+                      <input type="text" class="form-control input" id="editarDireccion" name="editarDireccion" placeholder="Ingresar Dirección" required>
                     </div>
                   </div>
 
@@ -502,6 +506,7 @@ MODAL EDITAR SUCURSAL
 
                         </div>
                   </div>
+
                   <div class="col-lg-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Teléfono</div>
                     <div class="input-group">
@@ -533,16 +538,11 @@ MODAL EDITAR SUCURSAL
                       title="El email debe contener un arroba (@) y un punto (.) después del arroba">
                     </div>
                   </div>
-                                   
+                 
                 </div> 
               </div>  
             </div>
-
-
-           
-  
           </div>
-
         </div>
        
         <!--=====================================
@@ -583,71 +583,35 @@ MODAL EDITAR SUCURSAL
 ?>
 
 <script>
-document.getElementById('nuevaRegion').addEventListener('change', function() {
-    var regionId = this.value; // Obtener el ID de la región seleccionada
+$(document).ready(function() {
+    $('#nuevaRegion').change(function() {
+        var selectedValue = $(this).val();
 
-    // Verifica que haya una región seleccionada
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
-
-                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
-                var comunaSelect = document.getElementById('nuevaComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
-
-                // Rellenar las opciones del select de comunas
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
-                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#nuevaComuna').html(response);
             }
-        };
-
-        // Enviar el ID de la región seleccionada al servidor
-        xhr.send('regionId=' + regionId);
-    } else {
-        // Si no hay región seleccionada, limpiar el select de comunas
-        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
 
-document.getElementById('editarRegion').addEventListener('change', function() {
-    var regionId = this.value;
-    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+$(document).ready(function() {
+    $('#editarRegion').change(function() {
+        var selectedValue = $(this).val();
 
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var comunas = JSON.parse(xhr.responseText);
-                var comunaSelect = document.getElementById('editarComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
-
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id;
-                    option.textContent = comuna.nombre;
-                    if (comuna.id == comunaActual) {
-                        option.selected = true; // Seleccionar la comuna actual
-                    }
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#editarComuna').html(response);
             }
-        };
-
-        xhr.send('regionId=' + regionId);
-    } else {
-        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
 </script>

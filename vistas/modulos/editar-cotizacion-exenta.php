@@ -144,7 +144,7 @@ if($_SESSION["perfil"] == "Especial"){
                                             <div class="col-xs-6">                                                  
                                                     <div class="form-group">
                                                         <div class="input-group">                
-                                                        <span class="input-group-addon">Telefono</span>
+                                                        <span class="input-group-addon">Teléfono</span>
                                                             <input type="text" class="form-control" id="traerTelefonoEditar" value="" readonly>
                                                         </div>
                                                     </div> 
@@ -180,7 +180,8 @@ if($_SESSION["perfil"] == "Especial"){
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             
-                                                            <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" readonly value="<?php echo $cotizacion["fecha_emision"];?>">
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" readonly value="<?php echo $cotizacion["fecha_emision"];?>"
+                                                            onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                         </div>
                                                     </div>
 
@@ -190,7 +191,8 @@ if($_SESSION["perfil"] == "Especial"){
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <input type="hidden" id="nuevoEstado" name="nuevoEstado" value="Abierta">
-                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento" value="<?php echo $cotizacion["fecha_vencimiento"];?>">
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento" value="<?php echo $cotizacion["fecha_vencimiento"];?>"
+                                                            onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -532,7 +534,7 @@ if($_SESSION["perfil"] == "Especial"){
                                         <div class="box-body">
                                         <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
                                         <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"><?php echo $cotizacion["observacion"]; ?></textarea>
-                                        <!--<input type="text" id="listaProductos" name="listaProductos"> -->
+                                        <input type="hidden" id="listaProductos" name="listaProductos"> 
                                         </div>
                                     </div>
                                 </div>     

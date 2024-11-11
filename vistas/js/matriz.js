@@ -15,8 +15,15 @@ $(".tablas").on("click", ".btnEditarMatriz", function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
-            console.log("respuesta", respuesta);
+        success: function(respuesta){
+			console.log("respuesta", respuesta);
+            $.ajax({
+				url: './vistas/modulos/obtenerRegiones.php',
+				data: { id: respuesta["region"] },
+				type: 'POST',
+				success: function(response) {
+				  console.log(response)
+                  $('#editarComuna').html(response);
             $("#idMatriz").val(respuesta["id"]);
             $("#editarMatriz").val(respuesta["razon_social"]);
             $("#editarRut").val(respuesta["rut"]);
@@ -33,6 +40,8 @@ $(".tablas").on("click", ".btnEditarMatriz", function() {
             $("#editarTipoProducto").val(respuesta["tipo_producto"]);
             $("#editarTipoCliente").val(respuesta["tipo_cliente"]);
         }
+        });
+    }
     })
 })
 

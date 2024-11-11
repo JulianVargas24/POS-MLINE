@@ -41,7 +41,14 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
      	dataType:"json",
      	success: function(respuesta){
 			console.log("respuesta", respuesta);
-            $("#idSucursal").val(respuesta["id"]);
+			$.ajax({
+				url: './vistas/modulos/obtenerRegiones.php',
+				data: { id: respuesta["region"] },
+				type: 'POST',
+				success: function(response) {
+				  console.log(response)
+					$('#editarComuna').html(response);
+					$("#idSucursal").val(respuesta["id"]);
             $("#editarSucursal").val(respuesta["nombre"]);
             $("#editarBodega").val(respuesta["bodega"]);
             $("#editarPais").val(respuesta["pais"]);
@@ -51,6 +58,9 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
             $("#editarTelefono").val(respuesta["telefono"]);
 			$("#editarEmail").val(respuesta["email"]);
 			$("#editarJefe").val(respuesta["jefe"]);
+				}
+			});
+            
         
 
      	}
@@ -60,21 +70,3 @@ $(".tablas").on("click", ".btnEditarSucursal", function(){
 
 })
 
-const regiones = [
-	["Tarapaca", "I"],
-	["Antofagasta", "II"],
-	["Atacama", "III"],
-	["Coquimbo", "IV"],
-	["Valparaiso", "V"],
-	["Libertador General Bernardo O'Higgins", "VI"],
-	["Maule", "VII"],
-	["Biobio", "VIII"],
-	["La Araucania", "IX"],
-	["Los Lagos", "X"],
-	["Aysen del General Carlos Ibañez del Campo", "XI"],
-	["Magallanes y Antartica Chilena", "XII"],
-	["Metropolitana de Santiago", "RM"],
-	["Los Rios", "XIV"],
-	["Arica y Parinacota", "XV"],
-	["Ñuble", "XVI"]
-]

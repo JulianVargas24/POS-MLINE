@@ -185,43 +185,37 @@ if ($_SESSION["perfil"] == "Especial") {
                         </div>
                         <div class="col-xs-4">
                             <div class="box box-info">
-                                <div class="box-body">
-                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de
-                                        cotización</h4>
-                                    <div class="row" style="margin-bottom:5px;">
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha emisión</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
+                                    <div class="box-body">
+                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de Cotización</h4>
+                                            <div class="row" style="margin-bottom:5px;">
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Fecha Emisión</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision" readonly value="<?php echo $cotizacion["fecha_emision"];?>"
+                                                            onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
+                                                        </div>
+                                                    </div>
 
-                                                    <input type="date" class="form-control input-sm"
-                                                           name="nuevaFechaEmision" id="nuevaFechaEmision" readonly
-                                                           value="<?php echo $cotizacion["fecha_emision"]; ?>">
                                                 </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input type="hidden" id="nuevoEstado" name="nuevoEstado"
-                                                           value="Abierta">
-                                                    <input type="date" class="form-control input-sm"
-                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                                                           value="<?php echo $cotizacion["fecha_vencimiento"]; ?>">
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Fecha Venc.</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="hidden" id="nuevoEstado" name="nuevoEstado" value="Abierta">
+                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento" value="<?php echo $cotizacion["fecha_vencimiento"];?>"
+                                                            onchange="validarFechas('nuevaFechaEmision', this.id)">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Unidad de negocio</div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <select class="form-control input" id="nuevoNegocio"
-                                                            name="nuevoNegocio" required>
-                                                        <option selected
-                                                                value="<?php echo $unidad["id"]; ?>"><?php echo $unidad["unidad_negocio"]; ?></option>
+                                                
+                                                <div class="col-xs-6">
+                                                <div class="d-block" style="font-size:14px;">Unidad de Negocio</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                        <select class="form-control input" id="nuevoNegocio" name="nuevoNegocio" required>
+                                                        <option selected value="<?php echo $unidad["id"];?>"><?php echo $unidad["unidad_negocio"];?></option>
                                                         <optgroup label="---Cambiar Unidad de Negocio--"></optgroup>
 
                                                         <?php
@@ -599,7 +593,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 Observaciones</h4>
                                             <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
                                                       rows="6"><?php echo $cotizacion["observacion"]; ?></textarea>
-                                            <input type="text" id="listaProductos" name="listaProductos">
+                                            <input type="hidden" id="listaProductos" name="listaProductos">
                                         </div>
                                     </div>
                                 </div>

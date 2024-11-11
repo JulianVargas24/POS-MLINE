@@ -223,7 +223,8 @@ CUERPO DOCUMENTO
                 $_GET["ruta"] == "nota-credito-exenta" ||
                 $_GET["ruta"] == "nota-credito-boleta" ||
                 $_GET["ruta"] == "nota-credito-boleta-exenta" ||
-                $_GET["ruta"] == "nota-credito" ||
+                $_GET["ruta"] == "editar-cotizacion-exenta" ||
+                $_GET["ruta"] == "editar-cotizacion" ||
                 $_GET["ruta"] == "salir"
             ) {
 
@@ -247,10 +248,6 @@ CUERPO DOCUMENTO
     } else {
 
         include "modulos/login.php";
-    }
-
-    ?>
-
     }
 
     ?>
@@ -298,6 +295,8 @@ CUERPO DOCUMENTO
     <script src="vistas/js/validaciones.js"></script>
     <script src="vistas/js/bancos.js"></script>
     <script src="vistas/js/cotizaciones.js"></script>
+    <script src="vistas/js/nota-credito.js"></script>
+    <script src="vistas/js/rango-fecha-ventas.js"></script>
 </body>
 
 </html>
