@@ -160,7 +160,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha venc.</div>
+                                            <div class="d-block" style="font-size:14px;">Fecha Vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
 
@@ -285,19 +285,20 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <div class="col-xs-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <span class="input-group-addon" style="background-color:green; color:white; font-weight:bold">F.EMISIÓN</span>
-                                                                <input type="date" class="form-control" name="nuevaFechaDocumento" id="nuevaFechaDocumento">
+                                                                <span class="input-group-addon" style="background-color:green; color:white; font-weight:bold">MOTIVO</span>
+                                                                <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoMotivoDocumento" id="nuevoMotivoDocumento">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <span class="input-group-addon" style="background-color:green; color:white; font-weight:bold">MOTIVO</span>
-                                                                <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoMotivoDocumento" id="nuevoMotivoDocumento">
+                                                                <span class="input-group-addon" style="background-color:green; color:white; font-weight:bold">F.EMISIÓN</span>
+                                                                <input type="date" class="form-control" name="nuevaFechaDocumento" id="nuevaFechaDocumento">
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>

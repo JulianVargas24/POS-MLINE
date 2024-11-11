@@ -257,9 +257,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                         <div class="col-xs-12">
                                             <div class="box box-info">
                                                 <div class="box-body">
-                                                    <h4 class="box-title" style="font-weight:bold;color:black;">
-                                                        REFERENCIA CLIENTE</h4>
-                                                    <div class="col-xs-6">
+                                                    <h4 class="box-title" style="font-weight:bold;color:black;">REFERENCIA CLIENTE</h4>
+
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon"
@@ -285,7 +285,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-6">
+
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon"
@@ -297,18 +298,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-6">
-                                                        <div class="form-group">
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon"
-                                                                    style="background-color:green; color:white; font-weight:bold">F.EMISIÓN</span>
-                                                                <input type="date" class="form-control"
-                                                                    name="nuevaFechaDocumento"
-                                                                    id="nuevaFechaDocumento">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon"
@@ -320,6 +310,19 @@ if ($_SESSION["perfil"] == "Especial") {
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"
+                                                                    style="background-color:green; color:white; font-weight:bold">F.EMISIÓN</span>
+                                                                <input type="date" class="form-control"
+                                                                    name="nuevaFechaDocumento"
+                                                                    id="nuevaFechaDocumento">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -362,124 +365,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                         </div>
 
                                     </div>
-                                    <!--
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-6">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold;">O. Trabajo</span>
-                                                            <select class="form-control input" id="nuevoRubro" required disabled>
-
-                                                                <?php
-
-                                                                $item = null;
-                                                                $valor = null;
-
-                                                                $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
-
-                                                                foreach ($rubros as $key => $value) {
-                                                                    echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                                                }
-
-                                                                ?>
-                                                                
-                                            
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-primary">Ver Todo</button>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-6">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold; padding-left:5px;">Producción</span>
-                                                            <select class="form-control input" id="nuevoRubro" required disabled>
-
-                                                                <?php
-
-                                                                $item = null;
-                                                                $valor = null;
-
-                                                                $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
-
-                                                                foreach ($rubros as $key => $value) {
-                                                                    echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                                                }
-
-                                                                ?>
-                                                                
-                                            
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-primary">Ver Todo</button>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-6">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold;padding-left:15px;">Vestuario</span>
-                                                            <select class="form-control input" id="nuevoRubro" required>
-
-                                                            <?php
-
-                                                            $item = null;
-                                                            $valor = null;
-
-                                                            $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
-
-                                                            foreach ($vestuarios as $key => $value) {
-                                                                echo '<option  value="' . $value["folio"] . '">' . $value["folio"] . ' </option>';
-                                                            }
-
-                                                            ?>
-                                                                
-                                            
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                            <button type="button" data-toggle="modal" data-target="#modalVerOrdenVestuario" class="btn btn-primary">Ver Todo</button>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-6">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold; padding-left:22px;">O. Taller</span>
-                                                            <select class="form-control input" id="nuevoRubro" required disabled>
-
-                                                                <?php
-
-                                                                $item = null;
-                                                                $valor = null;
-
-                                                                $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
-
-                                                                foreach ($rubros as $key => $value) {
-                                                                    echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                                                }
-
-                                                                ?>
-                                                                
-                                            
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-primary">Ver Todo</button>
-                                            </div>
-                                        </div>
-                                    -->
                                 </div>
                             </div>
                         </div>
