@@ -385,10 +385,10 @@ if ($xml) {
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header bg-info text-white text-center">
-        <h4 class="modal-title mb-0" id="detalleModalLabel" style="color: black;"></h4>
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
         </button>
+        <h4 class="modal-title mb-0" id="detalleModalLabel" style="color: black;"></h4>
       </div>
       <div class="modal-body">
         <!-- Información de la orden -->
