@@ -265,7 +265,7 @@
                                 </li>
                                                               
                                 <li>
-                                    <a href="admin-orden-produccion">
+                                    <a href="administrar-orden-produccion">
                                         <i class="fa fa-circle-o"></i>							
                                         Administrador OTP
                                     </a>
