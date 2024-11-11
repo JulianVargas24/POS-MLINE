@@ -3,28 +3,16 @@
         <ul class="sidebar-menu">
 
             <?php
-            $paginaActual = $_GET["ruta"];
-            // Verificar si la página actual está en un conjunto de rutas
-            function isActive($paginaActual, $rutas)
-            {
-                return in_array($paginaActual, (array)$rutas) ? 'active' : '';
-            }
-
-            //Rellenar el circulo dependiendo de si estamos en la página actual o no
-            function marcarCirculo($paginaActual, $rutas)
-            {
-                return in_array($paginaActual, (array)$rutas) ? 'fa fa-circle' : 'fa fa-circle-o';
-            }
 
             if ($_SESSION["perfil"] == "Administrador") {
-                echo '<li class="' . isActive($paginaActual, 'inicio') . '">
+                echo '<li>
                             <a href="inicio">
                                 <i class="fa fa-home"></i>
                                 <span>Inicio</span>
                             </a>
                         </li>';
                 if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial") {
-                    echo '<li class="treeview ' . isActive($paginaActual, ['usuarios', 'plantel']) . '">
+                    echo '<li class="treeview">
                             <a href="#">
                                 <i class="fa fa-user"></i>
                                 <span>Configuraciones</span>
@@ -33,29 +21,21 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">	
-                                <li class="' . isActive($paginaActual, 'usuarios') . '">
-                                    <a href="usuarios">	
-                                        <i class="' . marcarCirculo($paginaActual, 'usuarios') . '"></i>
-                                        <span>Usuarios</span>
+                                <li>
+                                    <a href="usuarios">	  
+                                        <i class="fa fa-circle-o"></i>                             
+                                        Usuarios
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'plantel') . '">
+                                <li>
                                     <a href="plantel">
-                                        <i class="' . marcarCirculo($paginaActual, 'plantel') . '"></i>
-                                        <span>Plantel</span>
+                                        <i class="fa fa-circle-o"></i> 
+                                        Plantel
                                     </a>
                                 </li>						
                             </ul>
                           </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, [
-                        'parametros-generales',
-                        'parametros-documentos',
-                        'parametros-impresion',
-                        'bancos',
-                        'sucursales',
-                        'matriz',
-                        'tabla-listas'
-                    ]) . '">
+                    echo '<li class="treeview">
                             <a href="#">
                                 <i class="fa fa-cog"></i>
                                 <span>Parámetros</span>
@@ -64,61 +44,51 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="' . isActive($paginaActual, 'parametros-generales') . '">
+                                <li>
                                     <a href="parametros-generales">
-                                        <i class="' . marcarCirculo($paginaActual, 'parametros-generales') . '"></i>
-                                        <span>Generales</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Generales
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'parametros-documentos') . '">
+                                <li>
                                     <a href="parametros-documentos">
-                                        <i class="' . marcarCirculo($paginaActual, 'parametros-documentos') . '"></i>
-                                        <span>Documentos</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Documentos
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'parametros-impresion') . '">
+                                <li>
                                     <a href="parametros-impresion">
-                                        <i class="' . marcarCirculo($paginaActual, 'parametros-impresion') . '"></i>
-                                        <span>Impresión</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Impresión
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'bancos') . '">
+                                <li>
                                     <a href="bancos">
-                                        <i class="' . marcarCirculo($paginaActual, 'bancos') . '"></i>
-                                        <span>Bancos</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Bancos
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'sucursales') . '">
+                                <li>
                                     <a href="sucursales">
-                                        <i class="' . marcarCirculo($paginaActual, 'sucursales') . '"></i>
-                                        <span>Sucursales</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Sucursales
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'matriz') . '">
+                                <li>
                                     <a href="matriz">
-                                        <i class="' . marcarCirculo($paginaActual, 'matriz') . '"></i>
-                                        <span>Matriz</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Matriz
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'tabla-listas') . '">
+                                <li>
                                     <a href="tabla-listas">
-                                        <i class="' . marcarCirculo($paginaActual, 'tabla-listas') . '"></i>
-                                        <span>Tabla para listas</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Tabla para listas
                                     </a>
                                 </li>											
                             </ul>
                         </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, [
-                        'categorias',
-                        'subcategorias',
-                        'bodegas',
-                        'plazos',
-                        'listas',
-                        'unidades',
-                        'medios-pago',
-                        'impuestos',
-                        'rubros'
-                    ]) . '">
+                    echo '<li class="treeview">
                             <a href="#">
                                 <i class="fa fa-archive"></i>
                                 <span>Maestro</span>
@@ -127,72 +97,63 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="' . isActive($paginaActual, 'categorias') . '">
+                                <li>
                                     <a href="categorias">
-                                        <i class="' . marcarCirculo($paginaActual, 'categorias') . '"></i>
-                                        <span>Categorías</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Categorías
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'subcategorias') . '">			
+                                <li>			
                                     <a href="subcategorias">
-                                        <i class="' . marcarCirculo($paginaActual, 'subcategorias') . '"></i>
-                                        <span>Subcategorías</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Subcategorías
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'bodegas') . '">
+                                <li>
                                     <a href="bodegas">
-                                        <i class="' . marcarCirculo($paginaActual, 'bodegas') . '"></i>
-                                        <span>Bodegas</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Bodegas
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'plazos') . '">
+                                <li>
                                     <a href="plazos">
-                                        <i class="' . marcarCirculo($paginaActual, 'plazos') . '"></i>
-                                        <span>Plazos de pago</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Plazos de pago
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'listas') . '">
+                                <li>
                                     <a href="listas">
-                                        <i class="' . marcarCirculo($paginaActual, 'listas') . '"></i>
-                                        <span>Listas de precios</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Listas de precios
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'unidades') . '">
+                                <li>
                                     <a href="unidades">
-                                        <i class="' . marcarCirculo($paginaActual, 'unidades') . '"></i>
-                                        <span>Unidades</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Unidades
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'medios-pago') . '">
+                                <li>
                                     <a href="medios-pago">
-                                        <i class="' . marcarCirculo($paginaActual, 'medios-pago') . '"></i>
-                                        <span>Medios de pago</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Medios de pago
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'impuestos') . '">
+                                <li>
                                     <a href="impuestos">
-                                        <i class="' . marcarCirculo($paginaActual, 'impuestos') . '"></i>
-                                        <span>Impuestos</span>
+                                        <i class="fa fa-circle-o"></i>
+                                        Impuestos
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'rubros') . '">
-                                    <a href="rubros">										
-                                        <i class="' . marcarCirculo($paginaActual, 'rubros') . '"></i>
-                                        <span>Rubros</span>
+                                <li>
+                                    <a href="rubros">
+                                        <i class="fa fa-circle-o"></i>										
+                                        Rubros
                                     </a>
                                 </li>									
                             </ul>
                         </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, [
-                        'proveedores',
-                        'centro-costo',
-                        'compras',
-                        'compra',
-                        'editar-compra',
-                        'ordenes-compra',
-                        'orden-compra',
-                        'editar-orden-compra'
-                    ]) . '">		
+                    echo '<li class="treeview">		
                             <a href="#">		
                                 <i class="fa fa-bank"></i>								
                                     <span>Adquisiciones</span>								
@@ -201,42 +162,33 @@
                                     </span>		
                             </a>
                             <ul class="treeview-menu">
-                                <li class="' . isActive($paginaActual, 'proveedores') . '">		
-                                    <a href="proveedores">										
-                                        <i class="' . marcarCirculo($paginaActual, 'proveedores') . '"></i>
-                                        <span>Proveedores</span>		
+                                <li>		
+                                    <a href="proveedores">
+                                        <i class="fa fa-circle-o"></i>										
+                                        Proveedores
                                     </a>		
                                 </li>
-                                <li class="' . isActive($paginaActual, 'centro-costo') . '">		
-                                    <a href="centro-costo">										
-                                        <i class="' . marcarCirculo($paginaActual, 'centro-costo') . '"></i>
-                                        <span>Centro de costos</span>	
+                                <li>		
+                                    <a href="centro-costo">
+                                        <i class="fa fa-circle-o"></i>										
+                                        Centro de costos
                                     </a>	
                                 </li>		
-                                <li class="' . isActive($paginaActual, ['compras', 'compra', 'editar-compra']) . '">		
-                                    <a href="compras">											
-                                        <i class="' . marcarCirculo($paginaActual, ['compras', 'compra', 'editar-compra']) . '"></i>
-                                        <span>Admin. compras</span>		
+                                <li>		
+                                    <a href="compras">
+                                        <i class="fa fa-circle-o"></i>											
+                                        Admin. compras	
                                     </a>		
                                 </li>
-                                <li class="' . isActive($paginaActual, ['ordenes-compra', 'orden-compra', 'editar-orden-compra']) . '">
-                                    <a href="ordenes-compra">											
-                                        <i class="' . marcarCirculo($paginaActual, ['ordenes-compra', 'orden-compra', 'editar-orden-compra']) . '"></i>
-                                        <span>Administrar O.C</span>
+                                <li>
+                                    <a href="ordenes-compra">
+                                        <i class="fa fa-circle-o"></i>											
+                                        Administrar O.C
                                     </a>
                                 </li>		
                             </ul>
                         </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, [
-                        'productos',
-                        'entrada',
-                        'entradas',
-                        'salida',
-                        'salidas',
-                        'ajuste',
-                        'ajustes',
-                        'productos-bodega'
-                    ]) . '">
+                    echo '<li class="treeview">
                             <a href="#">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Inventario</span>
@@ -245,44 +197,39 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="' . isActive($paginaActual, 'productos') . '">
-                                    <a href="productos">									
-                                        <i class="' . marcarCirculo($paginaActual, 'productos') . '"></i>
-                                        <span>Productos</span>
+                                <li>
+                                    <a href="productos">
+                                        <i class="fa fa-circle-o"></i>									
+                                        Productos
                                     </a>
                                 </li>							
-                                <li class="' . isActive($paginaActual, ['entrada', 'entradas']) . '">		
-                                    <a href="entrada">									
-                                        <i class="' . marcarCirculo($paginaActual, ['entrada', 'entradas']) . '"></i>
-                                        <span>Entradas</span>
+                                <li>		
+                                    <a href="entrada">	
+                                        <i class="fa fa-circle-o"></i>								
+                                        Entradas
                                     </a>							
                                 </li>
-                                <li class="' . isActive($paginaActual, ['salida', 'salidas']) . '">	
-                                    <a href="salida">									
-                                        <i class="' . marcarCirculo($paginaActual, ['salida', 'salidas']) . '"></i>
-                                        <span>Salidas</span>
+                                <li>	
+                                    <a href="salida">
+                                        <i class="fa fa-circle-o"></i>									
+                                        Salidas
                                     </a>
                                 </li>							
-                                <li class="' . isActive($paginaActual, ['ajuste', 'ajustes']) . '">		
-                                    <a href="ajuste">									
-                                        <i class="' . marcarCirculo($paginaActual, ['ajuste', 'ajustes']) . '"></i>
-                                        <span>Ajustes</span>
+                                <li>		
+                                    <a href="ajuste">
+                                        <i class="fa fa-circle-o"></i>									
+                                        Ajustes
                                     </a>								
                                 </li>
-                                <li class="' . isActive($paginaActual, ['productos-bodega']) . '">
-                                    <a href="productos-bodega">							
-                                        <i class="' . marcarCirculo($paginaActual, 'productos-bodega') . '"></i>
-                                        <span>Productos-Bodega</span>
+                                <li>
+                                    <a href="productos-bodega">
+                                        <i class="fa fa-circle-o"></i>							
+                                        Productos-Bodega
                                     </a>
                                 </li>						
                             </ul>
                         </li>';
-                    echo '<li class="treeview ' . isActive($paginaActual, [
-                        'orden-trabajo',
-                        'personal',
-                        'orden-vestuario',
-                        'admin-orden-produccion'
-                    ]) . '">
+                    echo '<li class="treeview">
                             <a href="#">
                                 <i class="fa fa-file"></i>						
                                 <span>Orden de trabajo</span>						
@@ -295,38 +242,38 @@
                                     OT Vestuario
                                 </li>
                                                               
-                                <li class="' . isActive($paginaActual, 'orden-trabajo') . '">
-                                    <a href="orden-trabajo">							
-                                        <i class="' . marcarCirculo($paginaActual, 'orden-trabajo') . '"></i>
-                                        <span>Administrador OTV</span>
+                                <li>
+                                    <a href="orden-trabajo">
+                                        <i class="fa fa-circle-o"></i>							
+                                        Administrador OTV
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'personal') . '">		
-                                     <a href="personal">							
-                                         <i class="' . marcarCirculo($paginaActual, 'personal') . '"></i>
-                                        <span>Personal vestuario</span>
+                                <li>		
+                                     <a href="personal">
+                                        <i class="fa fa-circle-o"></i>							
+                                        Personal vestuario
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'orden-vestuario') . '">
-                                    <a href="orden-vestuario">							
-                                        <i class="' . marcarCirculo($paginaActual, 'orden-vestuario') . '"></i>
-                                        <span>Orden de vestuario</span>
+                                <li>
+                                    <a href="orden-vestuario">
+                                        <i class="fa fa-circle-o"></i>							
+                                        Orden de vestuario
                                     </a>
                                 </li>
                                 <li style="padding: 5px 15px; color: #fff;">
                                     OT Producción
                                 </li>
                                                               
-                                <li class="' . isActive($paginaActual, 'administrar-orden-produccion') . '">
-                                    <a href="administrar-orden-produccion">							
-                                        <i class="' . marcarCirculo($paginaActual, 'administrar-orden-produccion') . '"></i>
-                                        <span>Administrador OTP</span>
+                                <li>
+                                    <a href="admin-orden-produccion">
+                                        <i class="fa fa-circle-o"></i>							
+                                        Administrador OTP
                                     </a>
                                 </li>
-                                <li class="' . isActive($paginaActual, 'personal') . '">		
-                                    <a href="orden-produccion">							
-                                        <i class="' . marcarCirculo($paginaActual, 'personal') . '"></i>
-                                        <span>Orden de producción</span>
+                                <li>		
+                                    <a href="orden-produccion">
+                                        <i class="fa fa-circle-o"></i>							
+                                        Orden de producción
                                     </a>
                                 </li>                                                           			
                             </ul>
@@ -344,17 +291,7 @@
                     }
             */
             if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
-                echo '<li class="treeview ' . isActive($paginaActual, [
-                    'clientes',
-                    'ventas',
-                    'cotizaciones',
-                    'cotizacion',
-                    'cotizacion-exenta',
-                    'venta-boleta',
-                    'boleta-exenta',
-                    'venta-factura',
-                    'venta-factura-exenta'
-                ]) . '">
+                echo '<li class="treeview">
                         <a href="#">
                             <i class="fa fa-users"></i>
                             <span>Ventas</span>					
@@ -363,58 +300,58 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">								
-                            <li class="' . isActive($paginaActual, 'clientes') . '">
-                                <a href="clientes">							
-                                    <i class="' . marcarCirculo($paginaActual, 'clientes') . '"></i>
-                                    <span>Clientes</span>
+                            <li>
+                                <a href="clientes">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Clientes
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'ventas') . '">
-                                <a href="ventas">							
-                                    <i class="' . marcarCirculo($paginaActual, 'ventas') . '"></i>
-                                    <span>Administrar ventas</span>
+                            <li>
+                                <a href="ventas">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Administrar ventas
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'cotizaciones') . '">
-                                <a href="cotizaciones">							
-                                    <i class="' . marcarCirculo($paginaActual, 'cotizaciones') . '"></i>
-                                    <span>Admin. cotizaciones</span>
+                            <li>
+                                <a href="cotizaciones">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Admin. cotizaciones
                                 </a>
                             </li>										
-                            <li class="' . isActive($paginaActual, 'cotizacion') . '">
-                                <a href="cotizacion">							
-                                    <i class="' . marcarCirculo($paginaActual, 'cotizacion') . '"></i>
-                                    <span>Cotización afecta</span>
+                            <li>
+                                <a href="cotizacion">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Cotización afecta
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'cotizacion-exenta') . '">
-                                <a href="cotizacion-exenta">							
-                                    <i class="' . marcarCirculo($paginaActual, 'cotizacion-exenta') . '"></i>
-                                    <span>Cotización exenta</span>
+                            <li>
+                                <a href="cotizacion-exenta">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Cotización exenta
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'venta-boleta') . '">
-                                <a href="venta-boleta">							
-                                    <i class="' . marcarCirculo($paginaActual, 'venta-boleta') . '"></i>
-                                    <span>Boleta afecta</span>
+                            <li>
+                                <a href="venta-boleta">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Boleta afecta
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'boleta-exenta') . '">
-                                <a href="boleta-exenta">							
-                                    <i class="' . marcarCirculo($paginaActual, 'boleta-exenta') . '"></i>
-                                    <span>Boleta exenta</span>
+                            <li>
+                                <a href="boleta-exenta">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Boleta exenta
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'venta-factura') . '">
-                                <a href="venta-factura">					
-                                    <i class="' . marcarCirculo($paginaActual, 'venta-factura') . '"></i>
-                                    <span>Venta Factura afecta</span>
+                            <li>
+                                <a href="venta-factura">
+                                    <i class="fa fa-circle-o"></i>					
+                                    Venta Factura afecta
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'venta-factura-exenta') . '">
-                                <a href="venta-factura-exenta">						
-                                    <i class="' . marcarCirculo($paginaActual, 'venta-factura-exenta') . '"></i>
-                                    <span>Venta Factura exenta</span>
+                            <li>
+                                <a href="venta-factura-exenta">
+                                    <i class="fa fa-circle-o"></i>						
+                                    Venta factura exenta
                                 </a>
                             </li>
                         </ul>    
@@ -432,12 +369,7 @@
                     </a>
                 </li>
                 */
-                echo '<li class="treeview ' . isActive($paginaActual, [
-                    'unidad-negocio',
-                    'lista-precios',
-                    'tipo-cliente',
-                    'tipo-producto'
-                ]) . '">
+                echo '<li class="treeview">
                         <a href="#">
                             <i class="fa fa-address-book"></i>
                             <span>Comercial</span>
@@ -446,34 +378,34 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">									
-                            <li class="' . isActive($paginaActual, 'unidad-negocio') . '">
-                                <a href="unidad-negocio">							
-                                    <i class="' . marcarCirculo($paginaActual, 'unidad-negocio') . '"></i>
-                                    <span>Unidades de negocios</span>
+                            <li>
+                                <a href="unidad-negocio">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Unidades de negocios
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'lista-precios') . '">
-                                <a href="lista-precios">							
-                                    <i class="' . marcarCirculo($paginaActual, 'lista-precios') . '"></i>
-                                    <span>Lista de precios</span>
+                            <li>
+                                <a href="lista-precios">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Lista de precios
                                 </a>
                             </li>
-                            <li class="' . isActive($paginaActual, 'tipo-cliente') . '">
-                                <a href="tipo-cliente">							
-                                    <i class="' . marcarCirculo($paginaActual, 'tipo-cliente') . '"></i>
-                                    <span>Tipos de campaña</span>
+                            <li>
+                                <a href="tipo-cliente">
+                                    <i class="fa fa-circle-o"></i>							
+                                    Tipos de campaña
                                 </a>
                             </li>								
-                            <li class="' . isActive($paginaActual, 'tipo-producto') . '">
-                                <a href="tipo-producto">						
-                                    <i class="' . marcarCirculo($paginaActual, 'tipo-producto') . '"></i>
-                                    <span>Tipos de productos</span>
+                            <li>
+                                <a href="tipo-producto">
+                                    <i class="fa fa-circle-o"></i>						
+                                    Tipos de productos
                                 </a>
                             </li>
                         </ul>
                       </li>';
             }
-            echo '<li class="treeview ' . isActive($paginaActual, 'cierre-caja') . '">
+            echo '<li class="treeview">
                         <a href="#">    
                             <i class="fa fa-shopping-bag"></i>                        
                             <span>Tesorería</span>                        
@@ -482,10 +414,10 @@
                             </span>   
                         </a>   
                         <ul class="treeview-menu">                                          
-                            <li class="' . isActive($paginaActual, 'cierre-caja') . '">  
-                                <a href="cierre-caja">                                
-                                    <i class="' . marcarCirculo($paginaActual, 'cierre-caja') . '"></i>
-                                    <span>Cierre de caja</span>   
+                            <li>  
+                                <a href="cierre-caja">
+                                    <i class="fa fa-circle-o"></i>                                
+                                    Cierre de caja
                                 </a> 
                             </li>
                         </ul>  
@@ -494,3 +426,5 @@
         </ul>
     </section>
 </aside>
+
+<script src="vistas/js/menu.js"></script>
