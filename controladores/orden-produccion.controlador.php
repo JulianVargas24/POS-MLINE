@@ -240,13 +240,28 @@ class ControladorOrdenProduccion
     <tr>
     <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE CON COTIZACIÓN (Total: $totalConCotizacion)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
         <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO DE LOTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CENTRO DE COSTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA DE DESTINO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD PRODUCIDA TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO UNITARIO TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO PRODUCCIÓN TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE EMBALAJE TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO TOTAL CON EMBALAJE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>PRODUCTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>UNIDAD</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO DE LOTE</td>        
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA DE EMISIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA DE VENCIMIENTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD PRODUCIDA</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO UNITARIO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE PRODUCCIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE EMBALAJE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE PRODUCCIÓN DE EMBALAJE</td>
     </tr>
 
     ");
@@ -255,28 +270,91 @@ class ControladorOrdenProduccion
         if ($item["tipo_orden"] === "Cliente con Cotización") {
           $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
           $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+          $centro = ControladorCentros::ctrMostrarCentros("id", $item["centro_costo"]);
           $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
           $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+          $centroNombre = isset($centro["centro"]) ? $centro["centro"] : "No disponible";
           $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
           // Crear una cadena con los códigos de los detalles
           $codigosDetalle = [];
+          $emisionDetalle = [];
+          $vencimientoDetalle = [];
+          $cantidadProducidaDetalle = [];
+          $costoUnitarioDetalle = [];
+          $costoProduccionDetalle = [];
+          $costoEmbalajeDetalle = [];
+          $costoProduccionConEmbalajeDetalle = [];
+
           foreach ($ordenesProduccionDetalle as $detalle) {
+            $itemNo = null;
+            $productos = ControladorProductos::ctrMostrarProductosPredeterminado("id", $detalle["id_producto"]);
+            $unidad = ControladorUnidades::ctrMostrarunidades($itemNo, $detalle["id_unidad"]);
+
             $codigosDetalle[] = $detalle["codigo_lote"];
+            $emisionDetalle[] = $detalle["fecha_produccion"];
+            $vencimientoDetalle[] = $detalle["fecha_vencimiento"];
+            $cantidadProducidaDetalle[] = $detalle["cantidad_producida"];
+            $costoUnitarioDetalle[] = $detalle["costo_unitario"];
+            $costoProduccionDetalle[] = $detalle["costo_produccion"];
+            $costoEmbalajeDetalle[] = $detalle["costo_embalaje"];
+            $costoProduccionConEmbalajeDetalle[] = $detalle["costo_produccion_con_embalaje"];
+
+            foreach ($unidad as $cli) {
+              if ($cli["id"] == $detalle["id_unidad"]) {
+                $medidaDetalle[] = $cli["medida"];
+                break;
+              }
+            }
+
+            foreach ($productos as $pro) {
+              if ($pro["id"] == $detalle["id_producto"]) {
+                $codigoDetalle[] = $pro["codigo"];
+                $nombreDetalle[] = $pro["descripcion"];
+                break;
+              }
+            }
           }
+
+          // Crear cadenas con los valores de cada detalle usando implode()
+          $medidaDetalleStr = implode(", ", $medidaDetalle);
+          $nombreDetalleStr = implode(", ", $nombreDetalle);
           $codigosDetalleStr = implode(", ", $codigosDetalle);
+          $emisionDetalleStr = implode(", ", $emisionDetalle);
+          $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
+          $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
+          $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
+          $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
+          $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
+          $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
 
           // Mostrar los datos de la orden
           echo utf8_decode("<tr>
             <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
-            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
-            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
             <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
             <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
-            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_vencimiento"], 0, 10) . "</td>
+            <td style='border:1px solid #eee;'>" . $centroNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["cantidad_producida_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_unitario_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_produccion_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_embalaje_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_total_con_embalaje"] . "</td>
+            <td style='border:1px solid #eee;'>" . $nombreDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $medidaDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $emisionDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $vencimientoDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $cantidadProducidaDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoUnitarioDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoProduccionDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoEmbalajeDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoProduccionConEmbalajeDetalleStr . "</td>
+            
         </tr>");
         }
       }
@@ -286,13 +364,28 @@ class ControladorOrdenProduccion
     <tr>
     <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>CLIENTE SIN COTIZACIÓN (Total: $totalSinCotizacion)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
         <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>CODIGO DE LOTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CENTRO DE COSTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA DE DESTINO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD PRODUCIDA TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO UNITARIO TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO PRODUCCIÓN TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE EMBALAJE TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO TOTAL CON EMBALAJE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>PRODUCTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>UNIDAD</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO DE LOTE</td>        
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA DE EMISIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA DE VENCIMIENTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD PRODUCIDA</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO UNITARIO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE PRODUCCIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE EMBALAJE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE PRODUCCIÓN DE EMBALAJE</td>
     </tr>
 
     ");
@@ -301,28 +394,90 @@ class ControladorOrdenProduccion
         if ($item["tipo_orden"] === "Cliente sin Cotización") {
           $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
           $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+          $centro = ControladorCentros::ctrMostrarCentros("id", $item["centro_costo"]);
           $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
           $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+          $centroNombre = isset($centro["centro"]) ? $centro["centro"] : "No disponible";
           $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
           // Crear una cadena con los códigos de los detalles
           $codigosDetalle = [];
+          $emisionDetalle = [];
+          $vencimientoDetalle = [];
+          $cantidadProducidaDetalle = [];
+          $costoUnitarioDetalle = [];
+          $costoProduccionDetalle = [];
+          $costoEmbalajeDetalle = [];
+          $costoProduccionConEmbalajeDetalle = [];
+
           foreach ($ordenesProduccionDetalle as $detalle) {
+            $itemNo = null;
+            $productos = ControladorProductos::ctrMostrarProductosPredeterminado("id", $detalle["id_producto"]);
+            $unidad = ControladorUnidades::ctrMostrarunidades($itemNo, $detalle["id_unidad"]);
+
             $codigosDetalle[] = $detalle["codigo_lote"];
+            $emisionDetalle[] = $detalle["fecha_produccion"];
+            $vencimientoDetalle[] = $detalle["fecha_vencimiento"];
+            $cantidadProducidaDetalle[] = $detalle["cantidad_producida"];
+            $costoUnitarioDetalle[] = $detalle["costo_unitario"];
+            $costoProduccionDetalle[] = $detalle["costo_produccion"];
+            $costoEmbalajeDetalle[] = $detalle["costo_embalaje"];
+            $costoProduccionConEmbalajeDetalle[] = $detalle["costo_produccion_con_embalaje"];
+
+            foreach ($unidad as $cli) {
+              if ($cli["id"] == $detalle["id_unidad"]) {
+                $medidaDetalle[] = $cli["medida"];
+                break;
+              }
+            }
+
+            foreach ($productos as $pro) {
+              if ($pro["id"] == $detalle["id_producto"]) {
+                $codigoDetalle[] = $pro["codigo"];
+                $nombreDetalle[] = $pro["descripcion"];
+                break;
+              }
+            }
           }
+
+          // Crear cadenas con los valores de cada detalle usando implode()
+          $medidaDetalleStr = implode(", ", $medidaDetalle);
+          $nombreDetalleStr = implode(", ", $nombreDetalle);
           $codigosDetalleStr = implode(", ", $codigosDetalle);
+          $emisionDetalleStr = implode(", ", $emisionDetalle);
+          $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
+          $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
+          $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
+          $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
+          $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
+          $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
 
           // Mostrar los datos de la orden
           echo utf8_decode("<tr>
             <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
-            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
-            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
             <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
             <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
-            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_vencimiento"], 0, 10) . "</td>
+            <td style='border:1px solid #eee;'>" . $centroNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["cantidad_producida_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_unitario_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_produccion_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_embalaje_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_total_con_embalaje"] . "</td>
+            <td style='border:1px solid #eee;'>" . $nombreDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $medidaDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $emisionDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $vencimientoDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $cantidadProducidaDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoUnitarioDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoProduccionDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoEmbalajeDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoProduccionConEmbalajeDetalleStr . "</td>
         </tr>");
         }
       }
@@ -332,13 +487,28 @@ class ControladorOrdenProduccion
     <tr>
     <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>PRODUCCIÓN EN STOCK (Total: $totalProduccionStock)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
         <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>CODIGO DE LOTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CENTRO DE COSTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA DE DESTINO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD PRODUCIDA TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO UNITARIO TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO PRODUCCIÓN TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE EMBALAJE TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO TOTAL CON EMBALAJE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>PRODUCTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>UNIDAD</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO DE LOTE</td>        
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA DE EMISIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA DE VENCIMIENTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD PRODUCIDA</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO UNITARIO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE PRODUCCIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE EMBALAJE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE PRODUCCIÓN DE EMBALAJE</td>
     </tr>
 
     ");
@@ -347,28 +517,90 @@ class ControladorOrdenProduccion
         if ($item["tipo_orden"] === "Producción Stock") {
           $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
           $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+          $centro = ControladorCentros::ctrMostrarCentros("id", $item["centro_costo"]);
           $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
           $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+          $centroNombre = isset($centro["centro"]) ? $centro["centro"] : "No disponible";
           $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
           // Crear una cadena con los códigos de los detalles
           $codigosDetalle = [];
+          $emisionDetalle = [];
+          $vencimientoDetalle = [];
+          $cantidadProducidaDetalle = [];
+          $costoUnitarioDetalle = [];
+          $costoProduccionDetalle = [];
+          $costoEmbalajeDetalle = [];
+          $costoProduccionConEmbalajeDetalle = [];
+
           foreach ($ordenesProduccionDetalle as $detalle) {
+            $itemNo = null;
+            $productos = ControladorProductos::ctrMostrarProductosPredeterminado("id", $detalle["id_producto"]);
+            $unidad = ControladorUnidades::ctrMostrarunidades($itemNo, $detalle["id_unidad"]);
+
             $codigosDetalle[] = $detalle["codigo_lote"];
+            $emisionDetalle[] = $detalle["fecha_produccion"];
+            $vencimientoDetalle[] = $detalle["fecha_vencimiento"];
+            $cantidadProducidaDetalle[] = $detalle["cantidad_producida"];
+            $costoUnitarioDetalle[] = $detalle["costo_unitario"];
+            $costoProduccionDetalle[] = $detalle["costo_produccion"];
+            $costoEmbalajeDetalle[] = $detalle["costo_embalaje"];
+            $costoProduccionConEmbalajeDetalle[] = $detalle["costo_produccion_con_embalaje"];
+
+            foreach ($unidad as $cli) {
+              if ($cli["id"] == $detalle["id_unidad"]) {
+                $medidaDetalle[] = $cli["medida"];
+                break;
+              }
+            }
+
+            foreach ($productos as $pro) {
+              if ($pro["id"] == $detalle["id_producto"]) {
+                $codigoDetalle[] = $pro["codigo"];
+                $nombreDetalle[] = $pro["descripcion"];
+                break;
+              }
+            }
           }
+
+          // Crear cadenas con los valores de cada detalle usando implode()
+          $medidaDetalleStr = implode(", ", $medidaDetalle);
+          $nombreDetalleStr = implode(", ", $nombreDetalle);
           $codigosDetalleStr = implode(", ", $codigosDetalle);
+          $emisionDetalleStr = implode(", ", $emisionDetalle);
+          $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
+          $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
+          $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
+          $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
+          $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
+          $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
 
           // Mostrar los datos de la orden
           echo utf8_decode("<tr>
             <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
-            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
-            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
             <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
             <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
-            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_vencimiento"], 0, 10) . "</td>
+            <td style='border:1px solid #eee;'>" . $centroNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["cantidad_producida_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_unitario_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_produccion_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_embalaje_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_total_con_embalaje"] . "</td>
+            <td style='border:1px solid #eee;'>" . $nombreDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $medidaDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $emisionDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $vencimientoDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $cantidadProducidaDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoUnitarioDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoProduccionDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoEmbalajeDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoProduccionConEmbalajeDetalleStr . "</td>
         </tr>");
         }
       }
@@ -378,13 +610,28 @@ class ControladorOrdenProduccion
     <tr>
     <tr><td colspan='7' style='font-weight:bold; background-color:#f0f0f0;'>PACK (Total: $totalPack)</td></tr>
         <td style='font-weight:bold; border:1px solid #eee;'>FOLIO</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
         <td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>TIPO DE ORDEN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>NOMBRE DE ORDEN</td>
-        <td style='font-weight:bold; border:1px solid #eee;'>CODIGO DE LOTE</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA EMISIÓN</td>
         <td style='font-weight:bold; border:1px solid #eee;'>FECHA VENCIMIENTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CENTRO DE COSTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>BODEGA DE DESTINO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD PRODUCIDA TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO UNITARIO TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO PRODUCCIÓN TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE EMBALAJE TOTAL</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO TOTAL CON EMBALAJE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>PRODUCTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>UNIDAD</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO DE LOTE</td>        
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA DE EMISIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>FECHA DE VENCIMIENTO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD PRODUCIDA</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO UNITARIO</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE PRODUCCIÓN</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE EMBALAJE</td>
+        <td style='font-weight:bold; border:1px solid #eee;'>COSTO DE PRODUCCIÓN DE EMBALAJE</td>
     </tr>
 
     ");
@@ -393,28 +640,90 @@ class ControladorOrdenProduccion
         if ($item["tipo_orden"] === "PACK") {
           $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $item["folio_orden_produccion"]);
           $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+          $centro = ControladorCentros::ctrMostrarCentros("id", $item["centro_costo"]);
           $bodega = ControladorBodegas::ctrMostrarBodegas("id", $item["bodega_destino"]);
 
           $clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
+          $centroNombre = isset($centro["centro"]) ? $centro["centro"] : "No disponible";
           $bodegaNombre = isset($bodega["nombre"]) ? $bodega["nombre"] : "No disponible";
 
           // Crear una cadena con los códigos de los detalles
           $codigosDetalle = [];
+          $emisionDetalle = [];
+          $vencimientoDetalle = [];
+          $cantidadProducidaDetalle = [];
+          $costoUnitarioDetalle = [];
+          $costoProduccionDetalle = [];
+          $costoEmbalajeDetalle = [];
+          $costoProduccionConEmbalajeDetalle = [];
+
           foreach ($ordenesProduccionDetalle as $detalle) {
+            $itemNo = null;
+            $productos = ControladorProductos::ctrMostrarProductosPredeterminado("id", $detalle["id_producto"]);
+            $unidad = ControladorUnidades::ctrMostrarunidades($itemNo, $detalle["id_unidad"]);
+
             $codigosDetalle[] = $detalle["codigo_lote"];
+            $emisionDetalle[] = $detalle["fecha_produccion"];
+            $vencimientoDetalle[] = $detalle["fecha_vencimiento"];
+            $cantidadProducidaDetalle[] = $detalle["cantidad_producida"];
+            $costoUnitarioDetalle[] = $detalle["costo_unitario"];
+            $costoProduccionDetalle[] = $detalle["costo_produccion"];
+            $costoEmbalajeDetalle[] = $detalle["costo_embalaje"];
+            $costoProduccionConEmbalajeDetalle[] = $detalle["costo_produccion_con_embalaje"];
+
+            foreach ($unidad as $cli) {
+              if ($cli["id"] == $detalle["id_unidad"]) {
+                $medidaDetalle[] = $cli["medida"];
+                break;
+              }
+            }
+
+            foreach ($productos as $pro) {
+              if ($pro["id"] == $detalle["id_producto"]) {
+                $codigoDetalle[] = $pro["codigo"];
+                $nombreDetalle[] = $pro["descripcion"];
+                break;
+              }
+            }
           }
+
+          // Crear cadenas con los valores de cada detalle usando implode()
+          $medidaDetalleStr = implode(", ", $medidaDetalle);
+          $nombreDetalleStr = implode(", ", $nombreDetalle);
           $codigosDetalleStr = implode(", ", $codigosDetalle);
+          $emisionDetalleStr = implode(", ", $emisionDetalle);
+          $vencimientoDetalleStr = implode(", ", $vencimientoDetalle);
+          $cantidadProducidaDetalleStr = implode(", ", $cantidadProducidaDetalle);
+          $costoUnitarioDetalleStr = implode(", ", $costoUnitarioDetalle);
+          $costoProduccionDetalleStr = implode(", ", $costoProduccionDetalle);
+          $costoEmbalajeDetalleStr = implode(", ", $costoEmbalajeDetalle);
+          $costoProduccionConEmbalajeDetalleStr = implode(", ", $costoProduccionConEmbalajeDetalle);
 
           // Mostrar los datos de la orden
           echo utf8_decode("<tr>
             <td style='border:1px solid #eee;'>" . $item["folio_orden_produccion"] . "</td>
-            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
-            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
             <td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["tipo_orden"] . "</td>
             <td style='border:1px solid #eee;'>" . $item["nombre_orden"] . "</td>
-            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
             <td style='border:1px solid #eee;'>" . substr($item["fecha_vencimiento"], 0, 10) . "</td>
+            <td style='border:1px solid #eee;'>" . $centroNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $bodegaNombre . "</td>
+            <td style='border:1px solid #eee;'>" . $item["cantidad_producida_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_unitario_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_produccion_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_embalaje_total"] . "</td>
+            <td style='border:1px solid #eee;'>" . $item["costo_total_con_embalaje"] . "</td>
+            <td style='border:1px solid #eee;'>" . $nombreDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $medidaDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $codigosDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $emisionDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $vencimientoDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $cantidadProducidaDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoUnitarioDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoProduccionDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoEmbalajeDetalleStr . "</td>
+            <td style='border:1px solid #eee;'>" . $costoProduccionConEmbalajeDetalleStr . "</td>
         </tr>");
         }
       }
