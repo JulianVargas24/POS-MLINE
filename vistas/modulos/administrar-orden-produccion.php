@@ -522,7 +522,6 @@ if ($xml) {
         $('#productosContainer').append(productoHtml);
       }
 
-
       // Establecer el nuevo título en el modal
       $('#detalleModalLabel').text('Detalles de ' + titulo);
       $('#modalFolio').text(folio);
@@ -545,7 +544,20 @@ if ($xml) {
       $('#modalCostoEmbalajeTotal').text(costoEmbalajeTotal);
       $('#modalCostoTotalConEmbalaje').text(costoTotalConEmbalaje);
 
+      // Llamar a la función de verificación después de actualizar los datos
+      verificarCliente();
     });
+
+    function verificarCliente() {
+      var cliente = $("#modalCliente").text().trim();
+
+      if (cliente === "" || cliente === null) {
+        $("#modalCliente, #modalClienteRut, #modalClienteTelefono, #modalClienteEmail, #modalClienteDireccion, #modalClientePais, #modalClienteRegion, #modalClienteComuna").closest('p').hide();
+      } else {
+        $("#modalCliente, #modalClienteRut, #modalClienteTelefono, #modalClienteEmail, #modalClienteDireccion, #modalClientePais, #modalClienteRegion, #modalClienteComuna").closest('p').show();
+      }
+    }
+
   });
 
   $(document).ready(function() {
