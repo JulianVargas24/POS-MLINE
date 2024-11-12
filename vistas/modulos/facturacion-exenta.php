@@ -80,7 +80,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group" style="display:block;">
                                                     <input type="hidden" name="idCotizacion" id="idCotizacion" value="<?php echo $cotizacion["id"]; ?>">
-                                                    <select class="form-control" id="nuevoClienteCotizacion" name="nuevoClienteCotizacion" required readonly>
+                                                    <select class="form-control" id="nuevoClienteCotizacion" name="nuevoClienteFactura" required readonly>
                                                         <option selected idLista="<?php echo $cliente["factor_lista"] ?>" value="<?php echo $cliente["id"]; ?>"><?php echo $cliente["nombre"]; ?></option>
                                                         <optgroup label="---Cambiar Cliente--"></optgroup>
 
@@ -339,7 +339,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="col-xs-3">
                             <div class="box box-info">
                                 <div class="box-body">
-                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:red;"> COTIZACIÓN</h4>
+                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:red;"> COTIZACIÓN EXENTA</h4>
                                     <div class="row" style="margin-top:2px;">
                                         <div class="col-xs-7">
                                             <div class="form-group">
@@ -353,11 +353,11 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                     </div>
                                     <?php
-                                    $tabla = "venta_afecta";
-                                    $atributo = "factura_afecta";
+                                    $tabla = "venta_exenta";
+                                    $atributo = "factura_exenta";
                                     $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
                                     ?>
-                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:green;">FACTURA AFECTA</h4>
+                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:green;">FACTURA EXENTA</h4>
                                     <div class="row" style="margin-top:2px;">
                                         <div class="col-xs-7">
                                             <div class="form-group">
@@ -514,7 +514,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <span class="input-group-addon" style="padding:0px 3px">Total neto</span>
-                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoTotalNeto" name="nuevoTotalNeto" total="" value="" readonly>
+                                                            <input style="font-size:16px;" type="text" class="form-control" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -522,7 +522,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <span class="input-group-addon">Exento</span>
-                                                            <input style="font-size:18px;" type="text" class="form-control" readonly>
+                                                            <input style="font-size:18px;" type="text" class="form-control" id="nuevoTotalExento" name="nuevoTotalExento" total="" value="" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -703,8 +703,8 @@ if ($_SESSION["perfil"] == "Especial") {
             </form>
             <?php
 
-            $guardarFacturacionAfecta = new ControladorVentaFactura();
-            $guardarFacturacionAfecta->ctrCrearVentaAfectaConCotizacion();
+            $guardarFacturacionExenta = new ControladorVentaFactura();
+            $guardarFacturacionExenta->ctrCrearVentaExentaConCotizacion();
 
             ?>
         </div>

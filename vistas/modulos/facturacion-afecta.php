@@ -370,7 +370,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="box-body">
                                     <h4 class="box-title"
                                         style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
-                                        COTIZACIÓN</h4>
+                                        COTIZACIÓN AFECTA</h4>
                                     <div class="row" style="margin-top:2px;">
                                         <div class="col-xs-7">
                                             <div class="form-group">
