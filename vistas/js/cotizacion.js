@@ -586,7 +586,11 @@ function sumarTotalPreciosCotizacion() {
     return total + numero;
   }
 
-  var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
+  // Agregar un valor inicial de 0 en caso de que el array esté vacío
+  var sumaTotalPrecio =
+    arraySumaPrecio.length > 0
+      ? arraySumaPrecio.reduce(sumaArrayPrecios, 0)
+      : 0;
 
   $("#nuevoTotalNeto").val(sumaTotalPrecio);
   $("#nuevoTotalNeto").attr("total", sumaTotalPrecio);
@@ -672,7 +676,11 @@ function sumarTotalesCotizacion() {
     return total + numero;
   }
 
-  var sumaTotales = arraySumaTotales.reduce(sumaArrayTotales);
+  // Verifica si el array está vacío y proporciona un valor inicial
+  var sumaTotales =
+    arraySumaTotales.length > 0
+      ? arraySumaTotales.reduce(sumaArrayTotales, 0)
+      : 0;
 
   $("#nuevoTotalFinal").val(sumaTotales);
   $("#nuevoTotalFinal").attr("total", sumaTotales);
@@ -691,7 +699,11 @@ function sumarDescuentos() {
     return total + numero;
   }
 
-  var sumaTotalDescuento = arraySumaDescuento.reduce(sumaArrayDescuentos);
+  // Verifica si el array está vacío y proporciona un valor inicial
+  var sumaTotalDescuento =
+    arraySumaDescuento.length > 0
+      ? arraySumaDescuento.reduce(sumaArrayDescuentos, 0)
+      : 0;
 
   $("#nuevoTotalDescuento").val(sumaTotalDescuento);
   $("#nuevoTotalDescuento").attr("total", sumaTotalDescuento);
@@ -710,7 +722,13 @@ function sumarSubtotal() {
   function sumaArraySubtotales(total, numero) {
     return total + numero;
   }
-  var sumaTotalSubtotal = arraySumaSubtotal.reduce(sumaArraySubtotales);
+
+  // Verifica si el array está vacío y proporciona un valor inicial
+  var sumaTotalSubtotal =
+    arraySumaSubtotal.length > 0
+      ? arraySumaSubtotal.reduce(sumaArraySubtotales, 0)
+      : 0;
+
   $("#nuevoSubtotal").val(sumaTotalSubtotal);
   $("#nuevoSubtotal").attr("total", sumaTotalSubtotal);
 }
@@ -727,7 +745,9 @@ function sumarIva() {
     return total + numero;
   }
 
-  var sumaTotalIva = arraySumaIva.reduce(sumaArrayIvas);
+  // Verifica si el array está vacío y proporciona un valor inicial
+  var sumaTotalIva =
+    arraySumaIva.length > 0 ? arraySumaIva.reduce(sumaArrayIvas, 0) : 0;
 
   $("#nuevoTotalIva").val(sumaTotalIva);
   $("#nuevoTotalIva").attr("total", sumaTotalIva);

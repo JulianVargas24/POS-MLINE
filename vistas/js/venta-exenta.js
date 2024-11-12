@@ -803,7 +803,7 @@ function costoExtra() {
 
 $(document).ready(function () {
   var idCliente = $("#nuevoCliente").val();
-  console.log(idCliente);
+
   var datos = new FormData();
   datos.append("idCliente", idCliente);
 
@@ -816,7 +816,6 @@ $(document).ready(function () {
     processData: false,
     dataType: "json",
     success: function (respuesta) {
-      console.log("respuesta", respuesta);
       $("#traerId").val(respuesta["id"]);
       $("#traerRut").val(respuesta["rut"]);
       $("#traerDireccion").val(respuesta["direccion"]);
@@ -1220,7 +1219,6 @@ function listarMetodos() {
 BOTON EDITAR VENTA
 =============================================*/
 $(".tablas").on("click", ".btnEditarCotizacion", function () {
-  console.log("f");
   var idCotizacion = $(this).attr("idCotizacion");
 
   window.location =
@@ -1296,8 +1294,7 @@ $(".tablas").on("click", ".btnEliminarCotizacion", function () {
 $("#nuevoClienteFactura").change(function () {
   var idCliente = $(this).val();
   var idLista = $("option:selected", this).attr("idLista");
-  console.log(idCliente);
-  console.log(idLista);
+
   var datos = new FormData();
   datos.append("idCliente", idCliente);
   var datos2 = new FormData();
@@ -1324,7 +1321,6 @@ $("#nuevoClienteFactura").change(function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-          console.log("respuesta", respuesta);
           $("#traerId").val(respuesta["id"]);
           $("#traerRut").val(respuesta["rut"]);
           $("#traerDireccion").val(respuesta["direccion"]);
