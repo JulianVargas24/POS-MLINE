@@ -156,7 +156,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha de Vencimiento</div>
+                                            <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <input type="date" class="form-control input" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
@@ -191,7 +191,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega origen</div>
+                                            <div class="d-block" style="font-size:14px;">Bodega de origen</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>

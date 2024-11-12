@@ -201,7 +201,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega origen</div>
+                                            <div class="d-block" style="font-size:14px;">Bodega de origen</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
@@ -266,7 +266,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                     ?>
                                     <h4 class="box-title"
                                         style="color:#39b616;font-weight:bold; font-size:21px;color:red;">
-                                        COTIZACIÓN</h4>
+                                        COTIZACIÓN AFECTA</h4>
                                     <div class="row" style="margin-top:5px;">
                                         <div class="col-xs-7">
                                             <div class="form-group">

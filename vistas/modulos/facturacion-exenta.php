@@ -223,7 +223,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Bodega destino</div>
+                                            <div class="d-block" style="font-size:14px;">Bodega de destino</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
