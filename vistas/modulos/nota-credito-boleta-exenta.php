@@ -183,19 +183,20 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
 
                                                     <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision"
-                                                        value="<?php echo date("Y-m-d"); ?>" required
+                                                        value="<?php echo $venta["fecha_emision"]; ?>" required
                                                         onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Fecha Venc.</div>
+                                            <div class="d-block" style="font-size:14px;">Fecha Vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <input type="hidden" id="nuevoEstado" name="nuevoEstado" value="Abierta">
                                                     <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                                                        required onchange="validarFechas('nuevaFechaEmision', this.id)">
+                                                        value="<?php echo $venta["fecha_vencimiento"]; ?>" required
+                                                        onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                 </div>
                                             </div>
                                         </div>

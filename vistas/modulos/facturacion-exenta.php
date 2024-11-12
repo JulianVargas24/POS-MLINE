@@ -191,7 +191,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <input type="hidden" id="nuevoEstado" name="nuevoEstado" value="Abierta">
                                                     <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                                                        value="<?php echo $cotizacion["fecha_vencimiento"]; ?>" required onchange="validarFechas('nuevaFechaEmision', this.id)">
+                                                        value="<?php echo $cotizacion["fecha_vencimiento"]; ?>" required
+                                                        onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                 </div>
                                             </div>
                                         </div>
