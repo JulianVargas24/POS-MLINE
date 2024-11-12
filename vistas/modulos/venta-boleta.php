@@ -145,24 +145,22 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="box-body">
                                     <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de emisión</h4>
                                     <div class="row" style="margin-bottom:5px;">
-                                        <div class="col-xs-5">
-                                            <?php
-                                            $tabla = "venta_boleta";
-                                            $atributo = "boleta";
-                                            $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
-                                            ?>
+                                        <div class="col-xs-6">
+                                            <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
-                                                    <input type="text" style="font-weight:bold; font-size:16px;" class="form-control input-sm" name="nuevoCodigo" id="nuevoCodigo" value="<?php echo $folio + 1; ?>" readonly required>
+                                                    <input type="date" class="form-control input" name="nuevaFechaEmision" id="nuevaFechaEmision"
+                                                        value="<?php echo date("Y-m-d"); ?>" required
+                                                        onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xs-5 col-xs-offset-1">
+                                        <div class="col-xs-6">
+                                            <div class="d-block" style="font-size:14px;">Fecha de Vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon" style="font-weight:bold;background-color:green;color:white;">EMISIÓN</span>
-                                                    <input style="font-size:16px;font-weight:bold;padding:7px;" type="date" class="form-control input" name="nuevaFechaEmision" id="nuevaFechaEmision" value="<?php echo date("Y-m-d"); ?>">
+                                                    <input type="date" class="form-control input" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                        required onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                 </div>
                                             </div>
                                         </div>
@@ -218,27 +216,53 @@ if ($_SESSION["perfil"] == "Especial") {
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="d-block" style="font-size:14px;">Vendedor</div>
+                                            <div class="d-block" style="font-size:14px;">Vendedor asociado</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <select class="form-control input" id="nuevoVendedor" name="nuevoVendedor" required>
+                                                    <select class="form-control input-sm" id="nuevoVendedor" name="nuevoVendedor" required>
 
                                                         <option value="">Seleccionar vendedor</option>
-
                                                         <?php
 
                                                         $item = null;
                                                         $valor = null;
 
-                                                        $vendedores = ControladorPlantel::ctrMostrarPlantel($item, $valor);
+                                                        $vendedor = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
-                                                        foreach ($vendedores as $key => $value) {
-                                                            echo '<option  value="' . $value["id"] . '">' . $value["nombre"] . ' </option>';
+                                                        foreach ($vendedor as $key => $value) {
+
+                                                            echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
                                                         }
 
                                                         ?>
-
                                                     </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="box box-info">
+                                <div class="box-body">
+                                    <?php
+                                    $tabla = "venta_boleta";
+                                    $atributo = "boleta";
+                                    $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
+                                    ?>
+                                    <h4 class="box-title"
+                                        style="color:#39b616;font-weight:bold; font-size:21px; color:red" id="tipodte">
+                                        BOLETA AFECTA</h4>
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"
+                                                        style="background-color:red; color:white; font-weight:bold">FOLIO</span>
+                                                    <input type="text" style="font-weight:bold; font-size:16px;"
+                                                        class="form-control" name="nuevoCodigo" id="nuevoCodigo"
+                                                        value="<?php echo $folio + 1; ?>" readonly required>
                                                 </div>
                                             </div>
                                         </div>
