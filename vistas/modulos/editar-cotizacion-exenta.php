@@ -25,8 +25,9 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
+            <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+            <li>Ventas</li>
+            <li>Administrar cotizaciones</li>
             <li class="active">Editar Cotización Exenta</li>
 
         </ol>

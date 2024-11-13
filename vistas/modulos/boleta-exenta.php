@@ -15,7 +15,7 @@ if ($_SESSION["perfil"] == "Especial") {
     <section class="content-header">
         <h1 style="color:green;font-weight:bold"> CREAR VENTA CON BOLETA EXENTA</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
             <li class="active">Crear venta con boleta exenta</li>
         </ol>
     </section>

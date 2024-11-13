@@ -111,7 +111,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     <td>' . $value["factor_lista"] . '%</td> 
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
+                            <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="' . $value["id"] . '" factorLista="' . $value["factor_lista"] . '"><i class="fa fa-pencil"></i></button>';
 
               if ($_SESSION["perfil"] == "Administrador") {
                 echo '<button class="btn btn-danger btnEliminarCliente" idCliente="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
@@ -161,7 +161,7 @@ MODAL AGREGAR CLIENTE
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar cliente</h4>
+          <h4 class="modal-title text-center">Agregar cliente</h4>
 
         </div>
 
@@ -280,7 +280,7 @@ MODAL AGREGAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                      <select class="form-control input" id="nuevoTipoCliente" name="nuevoTipoCliente" required>
+                      <select class="form-control input" id="nuevoTipoCampana" name="nuevoTipoCampana" required>
 
                         <option value="">Seleccionar tipo cliente</option>
                         <?php
@@ -484,7 +484,7 @@ MODAL AGREGAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                      <input type="tel" class="form-control input" name="nuevoTelefonoCobranza" placeholder="Ingresar contacto" required>
+                      <input type="tel" class="form-control input" name="nuevoContactoCobranza" id="nuevoContactoCobranza" placeholder="Ingresar contacto" required>
 
                     </div>
                   </div>
@@ -494,17 +494,17 @@ MODAL AGREGAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-                      <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                      <input type="text" class="form-control input" name="nuevoEmailCobranza" id="nuevoEmailCobranza" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                     </div>
                   </div>
                   <div class="col-xs-4">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Fono</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Número de télefono</div>
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-phone"></i></span>
 
-                      <input type="tel" class="form-control input" name="nuevoTelefono"
+                      <input type="tel" class="form-control input" name="nuevoTelefonoCobranza" id="nuevoTelefonoCobranza"
                         placeholder="Ingresar teléfono" required
                         maxlength="12" pattern="^\+[0-9]{11}$"
                         title="Ingrese el número de teléfono completo incluido el +"
@@ -520,7 +520,7 @@ MODAL AGREGAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-money"></i></span>
 
-                      <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar Linea de Credito"
+                      <input type="number" class="form-control input" name="nuevaLineaCredito" id="nuevaLineaCredito" placeholder="Ingresar Linea de Credito"
                         required oninput="formatearLineaCredito(this)">
 
                     </div>
@@ -531,7 +531,7 @@ MODAL AGREGAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-bank"></i></span>
 
-                      <select class="form-control input" name="" id="">
+                      <select class="form-control input" name="nuevoBloqueoCredito" id="nuevoBloqueoCredito">
                         <option value="No">No</option>
                         <option value="Si">Si</option>
                       </select>
@@ -540,7 +540,7 @@ MODAL AGREGAR CLIENTE
                   </div>
                   <div class="col-xs-6">
                     <div class="d-block text-center" style="font-size:16px;font-weight:bold">Observacion de cobranza</div>
-                    <textarea style="border-width:1px;border-color:blue" class="form-control input" name="" id="" cols="6" rows="3"></textarea>
+                    <textarea style="border-width:1px;border-color:blue" class="form-control input" name="nuevaObservacion" id="nuevaObservacion" cols="6" rows="3"></textarea>
                   </div>
 
 
@@ -607,7 +607,7 @@ MODAL EDITAR CLIENTE
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar cliente</h4>
+          <h4 class="modal-title text-center">Editar cliente</h4>
 
         </div>
 
@@ -726,7 +726,7 @@ MODAL EDITAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                      <select class="form-control input" id="nuevoTipoCliente" name="nuevoTipoCliente" required>
+                      <select class="form-control input" id="editarTipoCampana" name="editarTipoCampana" required>
 
                         <option value="">Seleccionar tipo de cliente</option>
                         <?php
@@ -752,7 +752,7 @@ MODAL EDITAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-file"></i></span>
 
-                      <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
+                      <select class="form-control input" id="editarTipoProducto" name="editarTipoProducto" required>
 
                         <option value="">Seleccionar tipo de producto</option>
                         <?php
@@ -775,11 +775,8 @@ MODAL EDITAR CLIENTE
                   <div class="col-xs-6">
                     <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold">Lista de precio asignada</div>
                     <div class="input-group">
-
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-
                       <select class="form-control input" id="editarFactor" name="editarFactor" required>
-
                         <option value="">PRECIO LISTA - 0%</option>
                         <?php
 
@@ -796,8 +793,6 @@ MODAL EDITAR CLIENTE
 
                         ?>
                       </select>
-
-
                     </div>
                   </div>
                 </div>
@@ -844,7 +839,7 @@ MODAL EDITAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-                      <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email"
+                      <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email"
                         required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                     </div>
@@ -917,7 +912,7 @@ MODAL EDITAR CLIENTE
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-check"></i></span>
 
-                      <select class="form-control input" id="nuevoEstado" name="nuevoEstado" required>
+                      <select class="form-control input" id="editarEstado" name="editarEstado" required>
 
                         <option value="">Seleccionar estado: </option>
                         <option value="activo">Activo </option>
@@ -933,7 +928,8 @@ MODAL EDITAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                      <input type="tel" class="form-control input" name="nuevoTelefonoCobranza" placeholder="Ingresar contacto" required>
+                      <input type="text" class="form-control input" name="editarContactoCobranza" id="editarContactoCobranza" placeholder="Ingresar contacto" required>
+
 
                     </div>
                   </div>
@@ -943,17 +939,17 @@ MODAL EDITAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-                      <input type="text" class="form-control input" name="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                      <input type="text" class="form-control input" name="editarEmailCobranza" id="editarEmailCobranza" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                     </div>
                   </div>
                   <div class="col-xs-4">
-                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Fono</div>
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">Número de télefono</div>
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-phone"></i></span>
 
-                      <input type="tel" class="form-control input" name="editarTelefono"
+                      <input type="tel" class="form-control input" name="editarTelefonoCobranza" id="editarTelefonoCobranza"
                         id="editarTelefono"
                         placeholder="Ingresar teléfono" required
                         maxlength="12" pattern="^\+[0-9]{11}$"
@@ -970,7 +966,7 @@ MODAL EDITAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-money"></i></span>
 
-                      <input type="number" class="form-control input" name="nuevaLinea" placeholder="Ingresar línea de crédito" required>
+                      <input type="number" class="form-control input" name="editarLineaCredito" id="editarLineaCredito" placeholder="Ingresar línea de crédito" required>
 
                     </div>
                   </div>
@@ -980,7 +976,7 @@ MODAL EDITAR CLIENTE
 
                       <span class="input-group-addon"><i class="fa fa-bank"></i></span>
 
-                      <select class="form-control input" name="" id="">
+                      <select class="form-control input" name="editarBloqueoCredito" id="editarBloqueoCredito">
                         <option value="No">No</option>
                         <option value="Si">Sí</option>
                       </select>
@@ -989,7 +985,8 @@ MODAL EDITAR CLIENTE
                   </div>
                   <div class="col-xs-6">
                     <div class="d-block text-center" style="font-size:16px;font-weight:bold">Observación de cobranza</div>
-                    <textarea style="border-width:1px;border-color:blue" class="form-control input" name="" id="" cols="6" rows="3"></textarea>
+                    <textarea style="border-width:1px;border-color:blue" class="form-control input" name="editarObservacion" id="editarObservacion" cols="6" rows="3">
+                    </textarea>
                   </div>
 
 
@@ -1043,7 +1040,7 @@ $eliminarCliente->ctrEliminarCliente();
 
 <script>
   $(document).ready(function() {
-    $('#nuevaRegion').change(function() {
+    $(' #nuevaRegion').change(function() {
       var selectedValue = $(this).val();
 
       $.ajax({
