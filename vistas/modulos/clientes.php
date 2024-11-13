@@ -111,7 +111,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     <td>' . $value["factor_lista"] . '%</td> 
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="' . $value["id"] . '" factorLista="' . $value["factor_lista"] . '"><i class="fa fa-pencil"></i></button>';
+                            <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
 
               if ($_SESSION["perfil"] == "Administrador") {
                 echo '<button class="btn btn-danger btnEliminarCliente" idCliente="' . $value["id"] . '"><i class="fa fa-times"></i></button>';

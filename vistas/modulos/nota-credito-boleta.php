@@ -25,7 +25,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="inicio"><i class="fa fa-home"></i> Inicio</a></li>
             <li>Ventas</li>
             <li>Administrar Ventas</li>
             <li class="active">Nota de crédito de boleta afecta</li>
