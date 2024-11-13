@@ -615,4 +615,17 @@ if ($xml) {
       });
     }
   });
+
+    /*=============================================
+EDITAR ORDEN DE VESTUARIO
+=============================================*/
+
+$(".tablas").on("click", ".btnEditarOrdenProduccion", function(){
+	console.log("F Orden Produccion")
+	var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+
+	window.location = "index.php?ruta=editar-orden-produccion&idOrdenProduccion="+idOrdenProduccion;
+
+
+})
 </script>

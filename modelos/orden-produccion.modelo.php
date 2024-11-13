@@ -248,4 +248,51 @@ class ModeloOrdenProduccion
 
     $stmt = null; // Cerrar la conexión
   }
+
+  static public function mdlEditarOrdenProduccion($tabla, $datos) {
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla 
+											   SET folio_orden_produccion = :folio_orden_produccion, 
+												   id_cliente = :id_cliente, 
+												   tipo_orden = :tipo_orden, 
+												   nombre_orden = :nombre_orden, 
+												   fecha_emision = :fecha_emision, 
+												   fecha_vencimiento = :fecha_vencimiento, 
+												   centro_costo = :centro_costo, 
+												   bodega_destino = :bodega_destino, 
+												   cantidad_producida_total = :cantidad_producida_total,
+                           costo_unitario_total = :costo_unitario_total,
+                           costo_produccion_total = :costo_produccion_total,
+                           costo_embalaje_total = :costo_embalaje_total,
+                           costo_total_con_embalaje = :costo_total_con_embalaje 
+											   WHERE id = :id");
+	
+		$stmt->bindParam(":folio_orden_produccion", $datos["folio_orden_produccion"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
+		$stmt->bindParam(":tipo_orden", $datos["tipo_orden"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre_orden", $datos["nombre_orden"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_emision", $datos["fecha_emision"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_vencimiento", $datos["fecha_vencimiento"], PDO::PARAM_STR);
+		$stmt->bindParam(":centro_costo", $datos["centro_costo"], PDO::PARAM_INT);
+		$stmt->bindParam(":bodega_destino", $datos["bodega_destino"], PDO::PARAM_INT);
+		$stmt->bindParam(":cantidad_producida_total", $datos["cantidad_producida_total"], PDO::PARAM_INT);
+    $stmt->bindParam(":costo_unitario_total", $datos["costo_unitario_total"], PDO::PARAM_INT);
+    $stmt->bindParam(":costo_produccion_total", $datos["costo_produccion_total"], PDO::PARAM_INT);
+    $stmt->bindParam(":costo_embalaje_total", $datos["costo_embalaje_total"], PDO::PARAM_INT);
+    $stmt->bindParam(":costo_total_con_embalaje", $datos["costo_total_con_embalaje"], PDO::PARAM_INT);
+		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);  // Se incluye el ID para identificar qué registro actualizar
+	
+		if ($stmt->execute()) {
+			return "ok";
+		} else {
+			return "error";
+		}
+	
+		$stmt->close();
+		$stmt = null;
+	}
+
+
+
+
 }

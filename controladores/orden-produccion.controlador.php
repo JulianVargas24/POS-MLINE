@@ -96,6 +96,103 @@ class ControladorOrdenProduccion
     }
   }
 
+
+  static public function ctrEditarOrdenProduccion() {
+    if (isset($_POST["editarCodigo"])) {
+
+        // Nombre de la tabla principal
+        $tabla = "orden_produccion";
+        
+        // Crear un array con los datos del formulario para la edición de la orden
+        $datos = array(
+            "folio_orden_produccion" => $_POST["editarCodigo"],
+            "id_cliente" => $_POST["tipoOrden"] === "Producción Stock" || $_POST["tipoOrden"] === "PACK" ? NULL : $_POST["editarCliente"],
+            "tipo_orden" => $_POST["tipoOrden"],
+            "nombre_orden" => $_POST["editarNombreOrden"],
+            "fecha_emision" => $_POST["editarFechaEmision"],
+            "fecha_vencimiento" => $_POST["editarFechaVencimiento"],
+            "centro_costo" => $_POST["editarCentro"],
+            "bodega_destino" => $_POST["editarBodega"],
+            "cantidad_producida_total" => $_POST["cantidadProducidaTotal"],
+            "costo_unitario_total" => $_POST["costoUnitarioTotal"],
+            "costo_produccion_total" => $_POST["costoProduccionTotal"],
+            "costo_embalaje_total" => $_POST["costoEmbalajeTotal"],
+            "costo_total_con_embalaje" => $_POST["costoTotalConEmbalaje"],
+            "id" => $_POST["idOrdenProduccion"] // El ID de la orden a editar
+        );
+
+        // Llamar al modelo para editar la orden de producción
+        $respuesta = ModeloOrdenProduccion::mdlEditarOrdenProduccion($tabla, $datos);
+
+        if ($respuesta == "ok") {
+            // Actualizar el detalle de la orden de producción
+            $folioOrden = $_POST["editarCodigo"];
+            $tablaDetalle = "orden_produccion_detalle";
+            $productos = json_decode($_POST["productosOrden"], true);
+
+            // Borrar los detalles antiguos y luego agregar los nuevos
+            ModeloOrdenProduccion::mdlEliminarOrdenProduccionDetalle($tablaDetalle, $folioOrden);
+
+            foreach ($productos as $producto) {
+                $datosDetalle = array(
+                    "folio_orden_produccion" => $folioOrden,
+                    "id_producto" => $producto["id_producto"],
+                    "id_unidad" => $producto["id_unidad"],
+                    "codigo_lote" => $producto["codigo_lote"],
+                    "fecha_produccion" => $producto["fecha_produccion"],
+                    "fecha_vencimiento" => $producto["fecha_vencimiento"],
+                    "cantidad_producida" => $producto["cantidad_producida"],
+                    "costo_unitario" => $producto["costo_unitario"],
+                    "costo_produccion" => $producto["costo_produccion"],
+                    "costo_embalaje" => $producto["costo_embalaje"],
+                    "costo_produccion_con_embalaje" => $producto["costo_produccion_con_embalaje"]
+                );
+
+                $respuestaDetalle = ModeloOrdenProduccion::mdlCrearOrdenProduccionDetalle($tablaDetalle, $datosDetalle);
+
+                if ($respuestaDetalle != "ok") {
+                    echo '<script>
+                        console.error("Error en datos:", ' . json_encode($datosDetalle) . ');
+                        swal({
+                            type: "error",
+                            title: "Error al actualizar el detalle de la orden",
+                            text: "' . $respuestaDetalle . '",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        });
+                    </script>';
+                    return;
+                }
+            }
+            echo '<script>
+                swal({
+                    type: "success",
+                    title: "La orden de producción ha sido editada correctamente",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar"
+                }).then(function(result) {
+                    if (result.value) {
+                        window.location = "administrar-orden-produccion";
+                    }
+                });
+            </script>';
+        } else {
+            echo '<script>
+                swal({
+                    type: "error",
+                    title: "Error al editar la orden de producción",
+                    text: "Por favor, intente nuevamente",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar"
+                });
+            </script>';
+        }
+    }
+}
+
+
+
+
   /**
    * Obtener el último folio de la orden de producción
    */
@@ -113,10 +210,9 @@ class ControladorOrdenProduccion
   {
     $tabla = "orden_produccion";
 
-    $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
-    $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
+    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
 
-    return ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+		return $respuesta;
   }
 
   /**

@@ -18,7 +18,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
     <section class="content-header">
       <h1 style="color:green;font-weight:bold">
-        ORDEN DE PRODUCCIÓN
+        EDITAR ORDEN DE PRODUCCIÓN
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
@@ -30,6 +30,11 @@ if ($_SESSION["perfil"] == "Especial") {
       <div class="box">
         <div class="box-body">
           <form role="form" method="post" class="formularioOrdenProduccion">
+            <?php
+
+            $ordenProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
+
+            ?>
 
             <!-- Tipo de Orden, Cliente Asociado, Datos de Orden y Orden de Producción -->
             <div class="row">
@@ -77,8 +82,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       <div class="col-xs-12">
                         <div class="form-group">
                           <div class="input-group" style="display:block;">
-                            <select class="form-control" id="nuevoCliente"
-                              name="nuevoCliente">
+                            <select class="form-control" id="editarCliente"
+                              name="editarCliente">
 
                               <option value="">Seleccionar cliente</option>
 
@@ -178,8 +183,10 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
                         <div class="form-group">
                           <div class="input-group">
-                          <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision"
-                          onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
+                          <input type="date" class="form-control input-sm"
+                                                        name="editarFechaEmision" id="editarFechaEmision" readonly
+                                                        value="<?php echo $ordenProduccion["fecha_emision"]; ?>"
+                                                        onchange="validarFechas(this.id, 'editarFechaVencimiento')">
                           </div>
                         </div>
                       </div>
@@ -189,9 +196,10 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
                         <div class="form-group">
                           <div class="input-group">
-                            <input type="date" class="form-control input-sm"
-                              name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"                              
-                              onchange="validarFechas('nuevaFechaEmision', this.id)">
+                          <input type="date" class="form-control input-sm"
+                                                        name="editarFechaVencimiento" id="editarFechaVencimiento"
+                                                        value="<?php echo $ordenProduccion["fecha_vencimiento"]; ?>"
+                                                        onchange="validarFechas('editarFechaEmision', this.id)">
                           </div>
                         </div>
                       </div>
@@ -201,8 +209,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="d-block" style="font-size:14px;">Centro de costo</div>
                         <div class="form-group">
                           <div class="input-group">
-                            <select class="form-control input" id="nuevoCentro"
-                              name="nuevoCentro" required>
+                            <select class="form-control input" id="editarCentro"
+                              name="editarCentro" required>
                               <option value="">Seleccionar centro</option>
 
                               <?php
@@ -226,8 +234,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="d-block" style="font-size:14px;">Bodega de destino</div>
                         <div class="form-group">
                           <div class="input-group">
-                            <select class="form-control input" id="nuevaBodega"
-                              name="nuevaBodega" required>
+                            <select class="form-control input" id="editarBodega"
+                              name="editarBodega" required>
 
                               <option value="">Seleccionar bodega</option>
 
@@ -268,9 +276,10 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
-                            <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo"
-                              id="nuevoCodigo" value="<?php echo ControladorOrdenProduccion::ctrObtenerUltimoFolio(); ?>"
-                              readonly required>
+                            <input type="text" style="font-weight:bold; font-size:16px;"
+                                                        class="form-control" name="editarCodigo" id="editarCodigo"
+                                                        value="<?php echo $ordenProduccion["folio_orden_produccion"]; ?>" readonly
+                                                        required>
                           </div>
                         </div>
                       </div>
@@ -286,7 +295,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-file"></i></span>
                             <input type="text" style="font-weight:bold; font-size:16px;" class="form-control"
-                              name="nuevoNombreOrden" id="nuevoNombreOrden" required>
+                              name="editarNombreOrden" id="editarNombreOrden" required>
                           </div>
                         </div>
                       </div>
