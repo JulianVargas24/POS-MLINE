@@ -280,9 +280,19 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
+                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">NOMBRE DE ORDEN</h4>
+                                    <div class="row" style="margin-top:5px;">
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                                    <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="editarNombreOrden" id="editarNombreOrden"
+                                                        value="<?php echo $cotizacion["nombre_orden"]; ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -417,7 +427,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <span class="input-group-addon" style="padding:0px 3px">Total Neto</span>
-                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoTotalNeto" name="nuevoTotalNeto" total="" value="" readonly>
+                                                            <input style="font-size:16px;" type="text" class="form-control" id="" name="" total="" value="" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -425,7 +435,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <span class="input-group-addon">Exento</span>
-                                                            <input style="font-size:18px;" type="text" class="form-control" readonly>
+                                                            <input style="font-size:18px;" type="text" class="form-control" id="nuevoTotalExento" name="nuevoTotalExento" total="" value="" readonly>
                                                         </div>
                                                     </div>
                                                 </div>

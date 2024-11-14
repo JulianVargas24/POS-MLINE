@@ -272,9 +272,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="col-xs-3">
                             <div class="box box-info">
                                 <div class="box-body">
-                                    <h4 class="box-title"
-                                        style="color:#39b616;font-weight:bold; font-size:21px; color:red;">
-                                        COTIZACIÓN AFECTA</h4>
+                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px; color:red;">COTIZACIÓN AFECTA</h4>
                                     <div class="row" style="margin-top:2px;">
                                         <div class="col-xs-7">
                                             <div class="form-group">
@@ -286,6 +284,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         value="<?php echo $cotizacion["codigo"]; ?>" readonly
                                                         required>
                                                 </div>
+
                                                 <div class="input-group" style="margin-top:10px;">
                                                     <span class="input-group-addon"
                                                         style="background-color:red; color:white; font-weight:bold">STATUS</span>
@@ -303,9 +302,19 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
+                                    <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">NOMBRE DE ORDEN</h4>
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                                    <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="editarNombreOrden" id="editarNombreOrden"
+                                                        value="<?php echo $cotizacion["nombre_orden"]; ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -31,7 +31,8 @@ class ControladorCotizacion
 				"id_medio_pago" => $_POST["nuevoMedioPago"],
 				"id_plazo_pago" => $_POST["nuevoPlazoPago"],
 				"observacion" => $_POST["nuevaObservacion"],
-				"productos" => $_POST["listaProductos"]
+				"productos" => $_POST["listaProductos"],
+				"nombre_orden" => $_POST["nuevoNombreOrden"]
 			);
 
 
@@ -87,7 +88,8 @@ class ControladorCotizacion
 				"id_medio_pago" => $_POST["nuevoMedioPago"],
 				"id_plazo_pago" => $_POST["nuevoPlazoPago"],
 				"observacion" => $_POST["nuevaObservacion"],
-				"productos" => $_POST["listaProductos"]
+				"productos" => $_POST["listaProductos"],
+				"nombre_orden" => $_POST["nuevoNombreOrden"]
 			);
 
 
@@ -137,7 +139,8 @@ class ControladorCotizacion
 				"id_medio_pago" => $_POST["nuevoMedioPago"],
 				"id_plazo_pago" => $_POST["nuevoPlazoPago"],
 				"observacion" => $_POST["nuevaObservacion"],
-				"productos" => $_POST["listaProductos"]
+				"productos" => $_POST["listaProductos"],
+				"nombre_orden" => $_POST["editarNombreOrden"]
 			);
 
 
@@ -186,7 +189,8 @@ class ControladorCotizacion
 				"id_medio_pago" => $_POST["nuevoMedioPago"],
 				"id_plazo_pago" => $_POST["nuevoPlazoPago"],
 				"observacion" => $_POST["nuevaObservacion"],
-				"productos" => $_POST["listaProductos"]
+				"productos" => $_POST["listaProductos"],
+				"nombre_orden" => $_POST["editarNombreOrden"]
 			);
 
 
