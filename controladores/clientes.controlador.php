@@ -242,7 +242,7 @@ class ControladorClientes
 
 				// Asignar nombres o mostrar el ID si no se encuentra el nombre
 				$regionDisplay = $regionNombre ? htmlspecialchars($regionNombre['nombre']) : '' . $value['region'];
-				$comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre[0]['nombre']) : '' . $value['comuna'];
+				$comunaDisplay = $comunaNombre ? htmlspecialchars($comunaNombre['nombre']) : '' . $value['comuna'];
 
 				echo utf8_decode("<tr>
 								<td style='border:1px solid #eee;'>" . $value["nombre"] . "</td> 
