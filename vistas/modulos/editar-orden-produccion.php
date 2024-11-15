@@ -612,8 +612,8 @@ if ($_SESSION["perfil"] == "Especial") {
           </form>
 
           <?php
-          $crearOrdenProduccion = new ControladorOrdenProduccion();
-          $crearOrdenProduccion->ctrCrearOrdenProduccion();
+          $editarOrdenProduccion = new ControladorOrdenProduccion();
+          $editarOrdenProduccion->ctrEditarOrdenProduccion();
           ?>
 
         </div>
