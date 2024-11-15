@@ -32,7 +32,18 @@ if ($_SESSION["perfil"] == "Especial") {
           <form role="form" method="post" class="formularioOrdenProduccion">
             <?php
 
+            $item = "id";
+            $valor = $_GET["idOrdenProduccion"];
+
             $ordenProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
+
+            $itemCentro = "id";
+            $valorCentro = $ordenVestuario["id_centro"];
+            $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
+
+            $itemBodega = "id";
+            $valorBodega = $ordenVestuario["id_bodega"];
+            $bodega = ControladorBodegas::ctrMostrarBodegas($itemBodega, $valorBodega);
 
             ?>
 
@@ -606,14 +617,14 @@ if ($_SESSION["perfil"] == "Especial") {
 
             <div class="box-footer">
               <a href="administrar-orden-produccion" class="btn btn-default">Salir</a>
-              <button type="submit" class="btn btn-primary">Crear Orden</button>
+              <button type="submit" class="btn btn-primary">Editar Orden</button>
             </div>
 
           </form>
 
           <?php
-          $crearOrdenProduccion = new ControladorOrdenProduccion();
-          $crearOrdenProduccion->ctrCrearOrdenProduccion();
+          $editarOrdenProduccion = new ControladorOrdenProduccion();
+          $editarOrdenProduccion->ctrEditarOrdenProduccion();
           ?>
 
         </div>
