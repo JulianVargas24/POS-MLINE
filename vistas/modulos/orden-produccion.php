@@ -400,7 +400,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="form-group">
                           <label>Cantidad a Producir</label>
                           <div class="input-group">
-                            <span class="input-group-addon""><i class=" fa fa-cubes"></i></span>
+                            <span class="input-group-addon"><i class=" fa fa-cubes"></i></span>
                             <input type="number" class="form-control"
                               id="detalleCantidadProducir"
                               name="detalleCantidadProducir"

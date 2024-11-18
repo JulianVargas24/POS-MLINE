@@ -5,14 +5,6 @@ if ($_SESSION["perfil"] == "Especial") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Orden de Producción</title>
-</head>
-
 <body>
   <div class="content-wrapper">
 
@@ -22,7 +14,7 @@ if ($_SESSION["perfil"] == "Especial") {
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li class="active">Crear Orden de Producción</li>
+        <li class="active">Editar Orden de Producción</li>
       </ol>
     </section>
 
@@ -38,11 +30,11 @@ if ($_SESSION["perfil"] == "Especial") {
             $ordenProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
 
             $itemCentro = "id";
-            $valorCentro = $ordenVestuario["id_centro"];
+            $valorCentro = $ordenProduccion["id_centro"];
             $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
 
             $itemBodega = "id";
-            $valorBodega = $ordenVestuario["id_bodega"];
+            $valorBodega = $ordenProduccion["id_bodega"];
             $bodega = ControladorBodegas::ctrMostrarBodegas($itemBodega, $valorBodega);
 
             ?>
@@ -194,10 +186,10 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
                         <div class="form-group">
                           <div class="input-group">
-                          <input type="date" class="form-control input-sm"
-                                                        name="editarFechaEmision" id="editarFechaEmision" readonly
-                                                        value="<?php echo $ordenProduccion["fecha_emision"]; ?>"
-                                                        onchange="validarFechas(this.id, 'editarFechaVencimiento')">
+                            <input type="date" class="form-control input-sm"
+                              name="editarFechaEmision" id="editarFechaEmision" readonly
+                              value="<?php echo $ordenProduccion["fecha_emision"]; ?>"
+                              onchange="validarFechas(this.id, 'editarFechaVencimiento')">
                           </div>
                         </div>
                       </div>
@@ -207,10 +199,10 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
                         <div class="form-group">
                           <div class="input-group">
-                          <input type="date" class="form-control input-sm"
-                                                        name="editarFechaVencimiento" id="editarFechaVencimiento"
-                                                        value="<?php echo $ordenProduccion["fecha_vencimiento"]; ?>"
-                                                        onchange="validarFechas('editarFechaEmision', this.id)">
+                            <input type="date" class="form-control input-sm"
+                              name="editarFechaVencimiento" id="editarFechaVencimiento"
+                              value="<?php echo $ordenProduccion["fecha_vencimiento"]; ?>"
+                              onchange="validarFechas('editarFechaEmision', this.id)">
                           </div>
                         </div>
                       </div>
@@ -222,7 +214,9 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <select class="form-control input" id="editarCentro"
                               name="editarCentro" required>
-                              <option value="">Seleccionar centro</option>
+                              <option selected
+                                value="<?php echo $centro["id"]; ?>"><?php echo $centro["centro"]; ?></option>
+                              <optgroup label="---Cambiar Centro de Costo--"></optgroup>
 
                               <?php
                               $item = null;
@@ -247,8 +241,9 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <select class="form-control input" id="editarBodega"
                               name="editarBodega" required>
-
-                              <option value="">Seleccionar bodega</option>
+                              <option selected
+                                value="<?php echo $bodega["id"]; ?>"><?php echo $bodega["nombre"]; ?></option>
+                              <optgroup label="---Cambiar Bodega--"></optgroup>
 
                               <?php
                               $item = null;
@@ -288,9 +283,9 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
                             <input type="text" style="font-weight:bold; font-size:16px;"
-                                                        class="form-control" name="editarCodigo" id="editarCodigo"
-                                                        value="<?php echo $ordenProduccion["folio_orden_produccion"]; ?>" readonly
-                                                        required>
+                              class="form-control" name="editarCodigo" id="editarCodigo"
+                              value="<?php echo $ordenProduccion["folio_orden_produccion"]; ?>" readonly
+                              required>
                           </div>
                         </div>
                       </div>
@@ -420,7 +415,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="form-group">
                           <label>Cantidad a Producir</label>
                           <div class="input-group">
-                            <span class="input-group-addon""><i class=" fa fa-cubes"></i></span>
+                            <span class="input-group-addon"><i class=" fa fa-cubes"></i></span>
                             <input type="number" class="form-control"
                               id="detalleCantidadProducir"
                               name="detalleCantidadProducir"
