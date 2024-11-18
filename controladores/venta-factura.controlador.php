@@ -126,6 +126,9 @@ class ControladorVentaFactura
 
             if ($respuesta == "ok") {
 
+                $cotizacionId = $_POST["nuevoIdCotizacion"]; // Obtener el id de la cotización
+                $respuesta2 = ModeloCotizacion::mdlEliminarCotizacionconCotizacion($cotizacionId);
+
                 echo '<script>
                         console.log(" ' . $datos["documento"] . '");
                     swal({
@@ -203,6 +206,9 @@ class ControladorVentaFactura
 
 
             if ($respuesta == "ok") {
+
+                $cotizacionId = $_POST["nuevoIdCotizacion"]; // Obtener el id de la cotización
+                $respuesta2 = ModeloCotizacion::mdlEliminarCotizacionExentaconCotizacion($cotizacionId);
 
                 echo '<script>
                         console.log(" ' . $datos["documento"] . '");
