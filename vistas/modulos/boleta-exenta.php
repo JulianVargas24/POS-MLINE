@@ -13,11 +13,10 @@ if ($_SESSION["perfil"] == "Especial") {
 
 <div class="content-wrapper">
     <section class="content-header">
-        <h1 style="color:green;font-weight:bold">VENTA CON BOLETA EXENTA</h1>
+        <h1 style="color:green;font-weight:bold"> CREAR VENTA CON BOLETA EXENTA</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
-            <li>Ventas</li>
-            <li class="active">Boleta exenta</li>
+            <li><a href="inicio"><i class="fa fa-home"></i> Inicio</a></li>
+            <li class="active">Crear venta con boleta exenta</li>
         </ol>
     </section>
 
@@ -38,7 +37,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group" style="display:block;">
                                                     <select class="form-control" id="nuevoClienteBoleta"
-                                                            name="nuevoClienteBoleta" required>
+                                                        name="nuevoClienteBoleta" required>
 
                                                         <option value="">Seleccionar cliente</option>
 
@@ -52,7 +51,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         foreach ($clientes as $key => $value) {
 
                                                             echo '<option value="' . $value["id"] . '" idLista="' . $value["factor_lista"] . '">' . $value["nombre"] . ' </option>';
-
                                                         }
 
                                                         ?>
@@ -70,7 +68,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <input type="hidden" id="traerFactor">
                                                     <span class="input-group-addon"> <i class="fa fa-address-card"></i> RUT</span>
                                                     <input type="text" class="form-control" id="traerRut" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,7 +77,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Dirección</span>
                                                     <input type="text" class="form-control" id="traerDireccion" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +86,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Actividad</span>
                                                     <input type="text" class="form-control" id="traerActividad" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,7 +95,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Ejecutivo</span>
                                                     <input type="text" class="form-control" id="traerEjecutivo" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +104,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Teléfono</span>
                                                     <input type="text" class="form-control" id="traerTelefono" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,9 +112,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"> <i
-                                                                class="fa fa-at"></i> Correo</span>
+                                                            class="fa fa-at"></i> Correo</span>
                                                     <input type="text" class="form-control" id="traerEmail" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +123,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Lista de precios</span>
                                                     <input type="text" class="form-control" id="traerLista" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,9 +140,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control input"
-                                                           name="nuevaFechaEmision" id="nuevaFechaEmision"
-                                                           value="<?php echo date("Y-m-d"); ?>">
+                                                    <input type="date" class="form-control input" name="nuevaFechaEmision" id="nuevaFechaEmision"
+                                                        value="<?php echo date("Y-m-d"); ?>" required
+                                                        onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                 </div>
                                             </div>
                                         </div>
@@ -152,17 +150,17 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control input"
-                                                           name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
+                                                    <input type="date" class="form-control input" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                        required onchange="validarFechas('nuevaFechaEmision', this.id)">
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-xs-6">
                                             <div class="d-block" style="font-size:14px;">Unidad de negocio</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <select class="form-control input" id="nuevoNegocio"
-                                                            name="nuevoNegocio" required>
+                                                    <select class="form-control input" id="nuevoNegocio" name="nuevoNegocio" required>
 
                                                         <option value="">Seleccionar unidades</option>
 
@@ -187,8 +185,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Bodega de origen</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <select class="form-control input" id="nuevaBodega"
-                                                            name="nuevaBodega" required>
+                                                    <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
 
                                                         <option value="">Seleccionar bodega</option>
 
@@ -209,13 +206,11 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="col-xs-6">
                                             <div class="d-block" style="font-size:14px;">Vendedor asociado</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <select class="form-control input" id="nuevoVendedor"
-                                                            name="nuevoVendedor" required>
+                                                    <select class="form-control input-sm" id="nuevoVendedor" name="nuevoVendedor" required>
 
                                                         <option value="">Seleccionar vendedor</option>
                                                         <?php
@@ -255,10 +250,10 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"
-                                                          style="background-color:red; color:white; font-weight:bold">FOLIO</span>
+                                                        style="background-color:red; color:white; font-weight:bold">FOLIO</span>
                                                     <input type="text" style="font-weight:bold; font-size:16px;"
-                                                           class="form-control" name="nuevoCodigo" id="nuevoCodigo"
-                                                           value="<?php echo $folio + 1; ?>" readonly required>
+                                                        class="form-control" name="nuevoCodigo" id="nuevoCodigo"
+                                                        value="<?php echo $folio + 1; ?>" readonly required>
                                                 </div>
                                             </div>
                                         </div>
@@ -324,8 +319,8 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         <div class="input-group">
                                                             <span class="input-group-addon" style="padding:0px 2px">Subtotal</span>
                                                             <input style="font-size:16px;" type="text"
-                                                                   class="form-control" id="nuevoSubtotal" total=""
-                                                                   name="nuevoSubtotal" value="" readonly>
+                                                                class="form-control" id="nuevoSubtotal" total=""
+                                                                name="nuevoSubtotal" value="" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -335,9 +330,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         <div class="input-group">
                                                             <span class="input-group-addon" style="padding:0px 2px">Descuento</span>
                                                             <input style="font-size:16px;" type="text"
-                                                                   class="form-control" id="nuevoTotalDescuento"
-                                                                   total="" name="nuevoTotalDescuento" value=""
-                                                                   readonly>
+                                                                class="form-control" id="nuevoTotalDescuento"
+                                                                total="" name="nuevoTotalDescuento" value=""
+                                                                readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -347,10 +342,10 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <span class="input-group-addon"
-                                                                  style="color:black; font-weight:bold; padding:0px 15px">Total</span>
-                                                            <input style="font-size:16px;" type="number"
-                                                                   class="form-control input" id="nuevoTotalFinal"
-                                                                   name="nuevoTotalFinal" total="" readonly required>
+                                                                style="color:black; font-weight:bold; padding:0px 15px">Total</span>
+                                                            <input style="font-size:16px;" type="text"
+                                                                class="form-control input" id="nuevoTotalFinal"
+                                                                name="nuevoTotalFinal" total="" readonly required>
 
                                                         </div>
 
@@ -376,12 +371,12 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px;">Plazo de pago
+                                                        style="background-color:#3c8dbc;font-size:15px;">Plazo de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
                                                             <select class="form-control input" id="nuevoPlazo"
-                                                                    name="nuevoPlazo" required>
+                                                                name="nuevoPlazo" required>
 
                                                                 <option value="">Seleccionar plazo de pago</option>
 
@@ -405,12 +400,12 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px;">Medios de pago
+                                                        style="background-color:#3c8dbc;font-size:15px;">Medios de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
                                                             <select name="nuevoMedioPago" id="nuevoMedioPago"
-                                                                    class="form-control">
+                                                                class="form-control">
                                                                 <option value="">Seleccione:</option>
                                                                 <?php
 
@@ -431,42 +426,42 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">
+                                                        style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">
                                                         Total a pagar
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
                                                             <input class="form-control input" type="text"
-                                                                   name="nuevoTotalPagar" id="nuevoTotalPagar" value="0"
-                                                                   total="" readonly>
+                                                                name="nuevoTotalPagar" id="nuevoTotalPagar" value="0"
+                                                                total="" readonly>
 
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">
+                                                        style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">
                                                         Pagado
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
-                                                            <input class="form-control input" type="number"
-                                                                   name="nuevoTotalPagado" id="nuevoTotalPagado"
-                                                                   value="0" total="">
+                                                            <input class="form-control input" type="text"
+                                                                name="nuevoTotalPagado" id="nuevoTotalPagado"
+                                                                value="0" total="">
 
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">
+                                                        style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">
                                                         Pendiente
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
                                                             <input class="form-control input" type="text"
-                                                                   name="nuevoTotalPendiente" id="nuevoTotalPendiente"
-                                                                   value="0" total="" readonly>
+                                                                name="nuevoTotalPendiente" id="nuevoTotalPendiente"
+                                                                value="0" total="" readonly>
 
                                                         </div>
                                                     </div>
@@ -477,9 +472,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                     </div>
                                     <div class="box box-warning">
                                         <div class="box-body">
-                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>                       
-                                        <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>                                                     
-                                        <input type="hidden" name="listaProductos" id="listaProductos">
+                                            <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>
+                                            <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>
+                                            <input type="hidden" name="listaProductos" id="listaProductos">
                                         </div>
                                     </div>
                                 </div>
@@ -501,13 +496,13 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                         <thead>
 
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Imagen</th>
-                                            <th>Código</th>
-                                            <th>Nombre</th>
-                                            <th>Acciones</th>
-                                        </tr>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Imagen</th>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Acciones</th>
+                                            </tr>
 
                                         </thead>
 
@@ -517,17 +512,17 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
-                                        
-                                    
-                    <a href="ventas">                 
+
+
+                    <a href="ventas">
                         <button type="button" class="btn btn-default">Salir</button>
                     </a>
-                    <button type="submit" class="btn btn-primary">Guardar Venta</button>                 
+                    <button type="submit" class="btn btn-primary">Guardar Venta</button>
                 </form>
                 <?php
 
-                    $agregarVentaExenta = new ControladorVentaBoleta();
-                    $agregarVentaExenta -> ctrCrearVentaBoletaExenta();
+                $agregarVentaExenta = new ControladorVentaBoleta();
+                $agregarVentaExenta->ctrCrearVentaBoletaExenta();
 
                 ?>
             </div>
@@ -535,21 +530,6 @@ if ($_SESSION["perfil"] == "Especial") {
     </section>
 
 </div>
-
-<script>
-function validarFechas(fechaInicioId, fechaFinId) {
-    const fechaInicio = document.getElementById(fechaInicioId).value;
-    const fechaFin = document.getElementById(fechaFinId).value;
-
-    // Asegúrate de que ambas fechas tengan un valor
-    if (fechaInicio && fechaFin) {
-        if (new Date(fechaInicio) > new Date(fechaFin)) {
-            $('#alertModal').modal('show'); // Mostrar la ventana modal
-            document.getElementById(fechaFinId).value = ''; // Limpiar el campo de fecha de vencimiento
-        }
-    }
-}
-</script>
 
 <style>
     .error {
@@ -564,5 +544,4 @@ function validarFechas(fechaInicioId, fechaFinId) {
     input[type=number] {
         -moz-appearance: textfield;
     }
-
 </style>

@@ -9,7 +9,8 @@ class ModeloVentaFactura
     CREAR SUBCATEGORIA
     =============================================*/
 
-    static public function mdlIngresarVentaAfecta($tabla, $datos) {
+    static public function mdlIngresarVentaAfecta($tabla, $datos)
+    {
 
         $con = Conexion::conectar();
         $stmt = $con->prepare("INSERT INTO $tabla(codigo, id_cliente, fecha_emision, fecha_vencimiento, id_vendedor, id_unidad_negocio, id_bodega, subtotal, descuento, total_neto, iva, total_final,  id_medio_pago, id_plazo_pago, observacion, productos, pagado, pendiente, documento, fecha_documento, motivo_documento, folio_documento, razon_documento) 
@@ -65,7 +66,8 @@ class ModeloVentaFactura
         }
     }
 
-    static public function mdlActualizarEstadoCotizacion($datos){
+    static public function mdlActualizarEstadoCotizacion($datos)
+    {
 
         $estado = 'Cerrada';
 
@@ -169,47 +171,43 @@ class ModeloVentaFactura
         $stmt = null;
     }
 
-    static public function mdlBorrarVentaAfecta($tabla, $datos){
+    static public function mdlBorrarVentaAfecta($tabla, $datos)
+    {
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
-		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
 
-		if($stmt -> execute()){
+        if ($stmt->execute()) {
 
-			return "ok";
-		
-		}else{
+            return "ok";
+        } else {
 
-			return "error";	
+            return "error";
+        }
 
-		}
+        $stmt->close();
 
-		$stmt -> close();
-
-		$stmt = null;
-
+        $stmt = null;
     }
-    
-    static public function mdlBorrarVentaExenta($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+    static public function mdlBorrarVentaExenta($tabla, $datos)
+    {
 
-		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
-		if($stmt -> execute()){
+        $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
 
-			return "ok";
-		
-		}else{
+        if ($stmt->execute()) {
 
-			return "error";	
+            return "ok";
+        } else {
 
-		}
+            return "error";
+        }
 
-		$stmt -> close();
+        $stmt->close();
 
-		$stmt = null;
-
-	}
+        $stmt = null;
+    }
 }

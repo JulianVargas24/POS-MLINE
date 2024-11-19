@@ -75,7 +75,7 @@ if ($xml) {
                 ?>
                 <div class="input-group">
 
-                    <button type="button" class="btn btn-default" id="daterange-cotizacion">
+                    <button type="button" class="btn btn-default" id="daterange-cotizaciones">
           
             <span>
               <i class="fa fa-calendar"></i> 
@@ -101,16 +101,14 @@ if ($xml) {
 
                 </div>
 
-                <div class="box-tools pull-right">
-                    <a href="vistas/modulos/descargar-reporte-cotizacion.php?reporte=reporte">
-                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte afectas en Excel
-                        </button>
-                    </a>
+        <div class="box-tools pull-right">
+          <a href="vistas/modulos/descargar-reporte-cotizacion.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+            <button class="btn btn-success" style="margin-top:5px">Descargar Reporte Afectas en Excel</button>
+          </a>
 
-                    <a href="vistas/modulos/descargar-reporte-cotizacion-exenta.php?reporte=reporte">
-                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte exentas en Excel
-                        </button>
-                    </a>
+          <a href="vistas/modulos/descargar-reporte-cotizacion-exenta.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+            <button class="btn btn-success" style="margin-top:5px">Descargar Reporte Exentas en Excel</button>
+          </a>
 
                 </div>
 
@@ -326,17 +324,15 @@ if ($xml) {
                             </button>';
 
                             if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") {
-
-
-                                echo '
-                            <button class="btn btn-warning btnEditarCotizacion" idCotizacion="' . $value["id"] . '"><i class="fa fa-pencil"></i></button> ';
-
-                            }
-                            if ($_SESSION["perfil"] == "Administrador") {
-                                echo ' <button class="btn btn-danger btnEliminarCotizacion" idCotizacion="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-
-
-                            }
+                              echo '<a href="index.php?ruta=editar-cotizacion-exenta&idCotizacion='.$value["id"].'" class="btn btn-warning btnEditarCotizacion">
+                                      <i class="fa fa-pencil"></i>
+                                    </a>';
+                          }
+                            if($_SESSION["perfil"] == "Administrador"){
+                           echo' <button class="btn btn-danger btnEliminarCotizacion" idCotizacion="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+      
+      
+                          }
 
                             echo '</div>  
 

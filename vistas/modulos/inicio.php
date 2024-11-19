@@ -7,10 +7,11 @@ $fechaInicial = $_GET["fechaInicial"];
 $fechaFinal = $_GET["fechaFinal"];
 $ventas = ControladorVentas::ctrSumaTotalVentasPorFecha($fechaInicial, $fechaFinal);
 
-/* $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 $totalCategorias = count($categorias);
 
-$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);$totalClientes = count($clientes);
+$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+$totalClientes = count($clientes);
 
 $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 $totalProductos = count($productos);
@@ -22,330 +23,327 @@ $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor, $orden);
 $totalUsuarios = count($usuarios) - 1;
 
 $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor, $orden);
-$totalBodegas = count($bodegas); */
+$totalBodegas = count($bodegas);
 ?>
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
+
       Tablero
-      
+
       <small>Panel de control</small>
-    
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
-      
+
       <li class="active">Tablero</li>
-    
+
     </ol>
 
   </section>
   <section class="content">
 
-      <div class="row">
-        
+    <div class="row">
+
       <div class="col-lg-3 col-xs-6">
 
         <div class="small-box bg-aqua">
-          
+
           <div class="inner">
-            
-            <h3>$<?php echo number_format($ventas,0); ?></h3>
+
+            <h3>$<?php echo number_format($ventas, 0); ?></h3>
 
             <p>Ventas</p>
             <p>Desde: <?php echo $fechaInicial; ?> -- Hasta: <?php echo $fechaFinal; ?></p>
-          
+
           </div>
-          
+
           <div class="icon">
-            
+
             <i class="ion ion-social-usd"></i>
-          
+
           </div>
-          
+
           <a href="ventas" class="small-box-footer">
-            
+
             Más info <i class="fa fa-arrow-circle-right"></i>
-          
+
           </a>
 
         </div>
 
       </div>
 
-    <div class="col-lg-3 col-xs-6">
+      <div class="col-lg-3 col-xs-6">
 
-    <div class="small-box bg-green">
-      
-      <div class="inner">
-      
-        <h3><?php echo number_format($totalCategorias); ?></h3>
+        <div class="small-box bg-green">
 
-        <p>Categorías</p>
-      
+          <div class="inner">
+
+            <h3><?php echo number_format($totalCategorias); ?></h3>
+
+            <p>Categorías</p>
+
+          </div>
+
+          <div class="icon">
+
+            <i class="ion ion-clipboard"></i>
+
+          </div>
+
+          <a href="categorias" class="small-box-footer">
+
+            Más info <i class="fa fa-arrow-circle-right"></i>
+
+          </a>
+
+        </div>
+
       </div>
-      
-      <div class="icon">
-      
-        <i class="ion ion-clipboard"></i>
-      
+
+      <div class="col-lg-3 col-xs-6">
+
+        <div class="small-box bg-yellow">
+
+          <div class="inner">
+
+            <h3><?php echo number_format($totalClientes); ?></h3>
+
+            <p>Clientes</p>
+
+          </div>
+
+          <div class="icon">
+
+            <i class="ion ion-person-add"></i>
+
+          </div>
+
+          <a href="clientes" class="small-box-footer">
+
+            Más info <i class="fa fa-arrow-circle-right"></i>
+
+          </a>
+
+        </div>
+
       </div>
-      
-      <a href="categorias" class="small-box-footer">
-        
-        Más info <i class="fa fa-arrow-circle-right"></i>
-      
-      </a>
+
+      <div class="col-lg-3 col-xs-6">
+
+        <div class="small-box bg-red">
+
+          <div class="inner">
+
+            <h3><?php echo number_format($totalProductos); ?></h3>
+
+            <p>Productos</p>
+
+          </div>
+
+          <div class="icon">
+
+            <i class="ion ion-ios-cart"></i>
+
+          </div>
+
+          <a href="productos" class="small-box-footer">
+
+            Más info <i class="fa fa-arrow-circle-right"></i>
+
+          </a>
+
+        </div>
+
+      </div>
 
     </div>
 
-    </div>
-
-    <div class="col-lg-3 col-xs-6">
-
-    <div class="small-box bg-yellow">
-      
-      <div class="inner">
-      
-        <h3><?php echo number_format($totalClientes); ?></h3>
-
-        <p>Clientes</p>
-
-      </div>
-      
-      <div class="icon">
-      
-        <i class="ion ion-person-add"></i>
-      
-      </div>
-      
-      <a href="clientes" class="small-box-footer">
-
-        Más info <i class="fa fa-arrow-circle-right"></i>
-
-      </a>
-
-    </div>
-
-    </div>
-
-    <div class="col-lg-3 col-xs-6">
-
-    <div class="small-box bg-red">
-
-      <div class="inner">
-      
-        <h3><?php echo number_format($totalProductos); ?></h3>
-
-        <p>Productos</p>
-      
-      </div>
-      
-      <div class="icon">
-        
-        <i class="ion ion-ios-cart"></i>
-      
-      </div>
-      
-      <a href="productos" class="small-box-footer">
-        
-        Más info <i class="fa fa-arrow-circle-right"></i>
-      
-      </a>
-
-    </div>
-
-    </div>
-
-        </div> 
-
-        <div class="row">
+    <div class="row">
 
       <div class="box-header with-border">
         <?php
-        if($_SESSION["perfil"]=="Administrador")
-        ?> 
-        
-          <div class="row" style="margin-bottom:5px;">
-                                                  
-            <div class="col-xs-2 col-md-2 col-lg-1">
-                <div class="d-block" style="font-size:14px;">Desde:</div>
-                <div class="form-group">
-                    <div class="input-group">
-                        
-                        <input type="date" class="form-control input-sm" name="FechaInicio" id="FechaInicio" >
-                    </div>
-                </div>
+        if ($_SESSION["perfil"] == "Administrador")
+        ?>
 
-            </div>
-            <div class="col-xs-2 col-md-2 col-lg-1">
-                <div class="d-block" style="font-size:14px;">Hasta:</div>
-                <div class="form-group">
-                    <div class="input-group">
+        <div class="row" style="margin-bottom:5px;">
 
-                        <input type="date" class="form-control input-sm" name="FechaFin" id="FechaFin">
-                    </div>
-                </div>
+          <div class="col-xs-2 col-md-2 col-lg-1">
+            <div class="d-block" style="font-size:14px;">Desde:</div>
+            <div class="form-group">
+              <div class="input-group">
+
+                <input type="date" class="form-control input-sm" name="FechaInicio" id="FechaInicio">
+              </div>
             </div>
-            <div class="col-xs-2 col-md-2 col-lg-1">
-              
-                <div class="form-group">
-                    <div class="input-group">                    
-                          <button style="margin-top:14px;"  class="btn btn-success btnGenerarVenta">GENERAR VENTAS</button>  
-                    </div>
-                </div>
+
+          </div>
+          <div class="col-xs-2 col-md-2 col-lg-1">
+            <div class="d-block" style="font-size:14px;">Hasta:</div>
+            <div class="form-group">
+              <div class="input-group">
+
+                <input type="date" class="form-control input-sm" name="FechaFin" id="FechaFin">
+              </div>
             </div>
-          
+          </div>
+          <div class="col-xs-2 col-md-2 col-lg-1">
+
+            <div class="form-group">
+              <div class="input-group">
+                <button style="margin-top:14px;" class="btn btn-success btnGenerarVenta">GENERAR VENTAS</button>
+              </div>
+            </div>
           </div>
 
-      </div>
-    <!-- RANGO DE FECHA Y REPORTE DE EXCEL PRUEBA --> 
-
-          
-            <div class="col-lg-12">
-
-            <div class="col-lg-3 col-xs-6">
-
-    <div class="small-box bg-purple">
-      
-      <div class="inner">
-      
-        <h3><?php echo number_format($totalBodegas); ?></h3>
-
-        <p>Bodegas</p>
-      
-      </div>
-      
-      <div class="icon">
-      
-        <i class="ion ion-clipboard"></i>
-      
-      </div>
-      
-      <a href="bodegas" class="small-box-footer">
-        
-        Más info <i class="fa fa-arrow-circle-right"></i>
-      
-      </a>
-
-    </div>
-
-    </div>
-
-    <div class="col-lg-3 col-xs-6">
-
-    <div class="small-box bg-blue">
-      
-      <div class="inner">
-      
-        <h3><?php echo number_format($totalUsuarios); ?></h3>
-
-        <p>Usuarios</p>
+        </div>
 
       </div>
-      
-      <div class="icon">
-      
-        <i class="ion ion-person-add"></i>
-      
-      </div>
-      
-      <a href="usuarios" class="small-box-footer">
+      <!-- RANGO DE FECHA Y REPORTE DE EXCEL PRUEBA -->
 
-        Más info <i class="fa fa-arrow-circle-right"></i>
 
-      </a>
+      <div class="col-lg-12">
 
-    </div>
+        <div class="col-lg-3 col-xs-6">
 
-    </div>
+          <div class="small-box bg-purple">
 
-    <div class="col-lg-3 col-xs-6">
+            <div class="inner">
 
-    <div class="small-box bg-orange">
+              <h3><?php echo number_format($totalBodegas); ?></h3>
 
-      <div class="inner">
-      
-        <h3><?php echo number_format($totalProveedores); ?></h3>
-
-        <p>Proveedores</p>
-      
-      </div>
-      
-      <div class="icon">
-        
-        <i class="ion ion-ios-cart"></i>
-      
-      </div>
-      
-      <a href="proveedores" class="small-box-footer">
-        
-        Más info <i class="fa fa-arrow-circle-right"></i>
-      
-      </a>
-
-    </div>
-
-    </div>  
+              <p>Bodegas</p>
 
             </div>
 
+            <div class="icon">
 
-            <div class="col-lg-6">
-
-              <?php
-
-              if($_SESSION["perfil"] =="Administrador"){
-              
-              include "inicio/productos-recientes.php";
-
-            }
-
-              ?>
+              <i class="ion ion-clipboard"></i>
 
             </div>
 
-            <div class="col-lg-12">
-              
-              <?php
+            <a href="bodegas" class="small-box-footer">
 
-              if($_SESSION["perfil"] =="Especial" || $_SESSION["perfil"] =="Vendedor"){
+              Más info <i class="fa fa-arrow-circle-right"></i>
 
-                echo '<div class="box box-success">
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+
+          <div class="small-box bg-blue">
+
+            <div class="inner">
+
+              <h3><?php echo number_format($totalUsuarios); ?></h3>
+
+              <p>Usuarios</p>
+
+            </div>
+
+            <div class="icon">
+
+              <i class="ion ion-person-add"></i>
+
+            </div>
+
+            <a href="usuarios" class="small-box-footer">
+
+              Más info <i class="fa fa-arrow-circle-right"></i>
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+
+          <div class="small-box bg-orange">
+
+            <div class="inner">
+
+              <h3><?php echo number_format($totalProveedores); ?></h3>
+
+              <p>Proveedores</p>
+
+            </div>
+
+            <div class="icon">
+
+              <i class="ion ion-ios-cart"></i>
+
+            </div>
+
+            <a href="proveedores" class="small-box-footer">
+
+              Más info <i class="fa fa-arrow-circle-right"></i>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-lg-6">
+
+        <?php
+
+        if ($_SESSION["perfil"] == "Administrador") {
+
+          include "inicio/productos-recientes.php";
+        }
+
+        ?>
+
+      </div>
+
+      <div class="col-lg-12">
+
+        <?php
+
+        if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor") {
+
+          echo '<div class="box box-success">
 
                 <div class="box-header">
 
-                <h1>Bienvenid@ ' .$_SESSION["nombre"].'</h1>
+                <h1>Bienvenid@ ' . $_SESSION["nombre"] . '</h1>
 
                 </div>
 
                 </div>';
+        }
 
-              }
+        ?>
 
-              ?>
+      </div>
 
-            </div>
-
-        </div>
+    </div>
 
   </section>
- 
+
 </div>
 
 <script>
-
-$(document).ready(function() {
-   $(".btnGenerarVenta").click(function(){
-    var fechaInicial = $("#FechaInicio").val();
-	var fechaFinal = $("#FechaFin").val();
-  console.log("F fecha");
-	window.location = "index.php?ruta=inicio&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
-   })
-});
+  $(document).ready(function() {
+    $(".btnGenerarVenta").click(function() {
+      var fechaInicial = $("#FechaInicio").val();
+      var fechaFinal = $("#FechaFin").val();
+      console.log("F fecha");
+      window.location = "index.php?ruta=inicio&fechaInicial=" + fechaInicial + "&fechaFinal=" + fechaFinal;
+    })
+  });
 </script>

@@ -227,6 +227,8 @@ CUERPO DOCUMENTO
                 $_GET["ruta"] == "administrar-orden-produccion" ||
                 $_GET["ruta"] == "orden-produccion" ||
                 $_GET["ruta"] == "editar-orden-produccion" ||
+                $_GET["ruta"] == "editar-cotizacion-exenta" ||
+                $_GET["ruta"] == "editar-cotizacion" ||
                 $_GET["ruta"] == "salir"
             ) {
 
@@ -297,6 +299,8 @@ CUERPO DOCUMENTO
     <script src="vistas/js/validaciones.js"></script>
     <script src="vistas/js/bancos.js"></script>
     <script src="vistas/js/cotizaciones.js"></script>
+    <script src="vistas/js/nota-credito.js"></script>
+    <script src="vistas/js/rango-fecha-ventas.js"></script>
 </body>
 
 </html>
