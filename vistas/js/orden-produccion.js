@@ -405,3 +405,21 @@ $(document).ready(function () {
         },
     });
 });
+
+
+/*=============================================
+BOTON EDITAR ORDEN 
+=============================================*/
+$(".tablas").on("click", ".btnEditarOrdenProduccion", function () {
+    var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+  
+    window.location =
+      "index.php?ruta=editar-orden-Produccion&idOrdenProduccion=" + idOrdenProduccion;
+  });
+  
+  $(".tablas").on("click", ".btnFacturarOrdenProduccion", function () {
+    var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+  
+    window.location =
+      "index.php?ruta=facturacion-Produccion&idOrdenProduccion=" + idOrdenProduccion;
+  });

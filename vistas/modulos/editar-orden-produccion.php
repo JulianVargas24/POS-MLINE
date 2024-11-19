@@ -85,10 +85,12 @@ if ($_SESSION["perfil"] == "Especial") {
                       <div class="col-xs-12">
                         <div class="form-group">
                           <div class="input-group" style="display:block;">
-                            <select class="form-control" id="editarCliente"
-                              name="editarCliente">
-
-                              <option value="">Seleccionar cliente</option>
+                            <input type="hidden" name="idOrdenProduccion" id="idOrdenProduccion"
+                              value="<?php echo $ordenProduccion["id"]; ?>">
+                            <select class="form-control" id="editarCliente" name="editarCliente"
+                              required readonly>
+                              <option value="<?php echo $cliente["id"]; ?>"><?php echo $cliente["nombre"]; ?></option>
+                              <optgroup label="---Cambiar Cliente--"></optgroup>
 
                               <?php
                               $item = null;
