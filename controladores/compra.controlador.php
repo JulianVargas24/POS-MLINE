@@ -87,6 +87,10 @@ class ControladorCompra
 
             $productos = json_decode($datos["productos"], true);
             $respuesta1 = ModeloCompra::mdlActualizarEstadoOrdenCompra($datos);
+            /**echo '<pre>';
+            var_dump($datos);
+            echo '</pre>';
+            exit;*/
             foreach ($productos as $producto) {
                 $datos = [
                     "id_producto" => $producto["id"],
