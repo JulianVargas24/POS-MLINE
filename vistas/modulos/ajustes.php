@@ -44,8 +44,9 @@ if ($_SESSION["perfil"] == "Especial") {
 
                             <div class="form-group">
                                 <div class="input-group">
-                                    <label for="">Fecha Emision</label>
-                                    <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">
+                                    <label for="">Fecha Emisión</label>
+                                    <input type="date" class="form-control input-sm" name="nuevaFechaEmision"
+                                           id="nuevaFechaEmision" required>
                                 </div>
                             </div>
                         </div>
@@ -55,11 +56,13 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="input-group">
                                     <span class="input-group-addon">Folio</span>
                                     <?php
-                                            $tabla = "ajustes";
-                                            $atributo= "ajuste_inventario";
-                                            $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
+                                    $tabla = "ajustes";
+                                    $atributo = "ajuste_inventario";
+                                    $folio = ModeloParametrosDocumentos::mdlMostrarFolio($tabla, $atributo);
                                     ?>
-                                    <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo" id="nuevoCodigo" value="<?php echo $folio + 1 ?>" readonly required>
+                                    <input type="text" style="font-weight:bold; font-size:16px;" class="form-control"
+                                           name="nuevoCodigo" id="nuevoCodigo" value="<?php echo $folio + 1 ?>" readonly
+                                           required>
                                 </div>
                             </div>
                         </div>
@@ -72,23 +75,24 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="form-group">
                                 <div class="input-group">
                                     <input type="radio" value="MERMA" name="tipoAjuste">
-                                    <label for="radio1" style="font-weight:normal;">Merma</label>
+                                    <label for="radio1" style="font-weight:normal; margin-left: 3px;">Merma</label>
                                 </div>
                                 <div class="input-group">
                                     <input type="radio" value="ROBO" name="tipoAjuste">
-                                    <label for="radio2" style="font-weight:normal;">Robo</label>
+                                    <label for="radio2" style="font-weight:normal; margin-left: 3px;">Robo</label>
                                 </div>
                                 <div class="input-group">
                                     <input type="radio" value="PERDIDA" name="tipoAjuste">
-                                    <label for="radio3" style="font-weight:normal;">Perdida</label>
+                                    <label for="radio3" style="font-weight:normal; margin-left: 3px;">Perdida</label>
                                 </div>
                                 <div class="input-group">
                                     <input type="radio" value="AJUSTE" name="tipoAjuste" value="diferencia">
-                                    <label for="radio3" style="font-weight:normal;">Ajuste de Inventario</label>
+                                    <label for="radio3" style="font-weight:normal; margin-left: 3px;">Ajuste de
+                                        Inventario</label>
                                 </div>
                                 <div class="input-group">
                                     <input type="radio" value="OTRO" name="tipoAjuste">
-                                    <label for="radio4" style="font-weight:normal;">Otro</label>
+                                    <label for="radio4" style="font-weight:normal; margin-left: 3px;">Otro</label>
                                 </div>
 
                             </div>
@@ -117,9 +121,11 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="form-group">
                                                     <div class="input-group">
 
-                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <span class="input-group-addon"><i
+                                                                    class="fa fa-check"></i></span>
 
-                                                        <select style="padding-left:0px" class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
+                                                        <select style="padding-left:0px" class="form-control input"
+                                                                id="nuevaBodega" name="nuevaBodega" required>
 
                                                             <option value="">Seleccionar Bodega</option>
                                                             <?php
@@ -149,19 +155,21 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="box box-success">
                                                 <div class="box-header with-border"></div>
                                                 <div class="box-body">
-                                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
-                                                    <table id="dt-ajustes" class="table table-bordered table-striped dt-responsive tablaAjustes">
+                                                    <h4 class="box-title text-center"
+                                                        style="font-weight:bold; font-size:20px;"> Productos para Seleccionar</h4>
+                                                    <table id="dt-ajuste"
+                                                           class="table table-bordered table-striped dt-responsive tablaAjustes">
 
 
                                                         <thead>
 
-                                                            <tr>
-                                                                <th style="width: 10px">#</th>
-                                                                <th>Imagen</th>
-                                                                <th>Código</th>
-                                                                <th>Nombre</th>
-                                                                <th>Acciones</th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th style="width: 10px">#</th>
+                                                            <th>Imagen</th>
+                                                            <th>Código</th>
+                                                            <th>Nombre</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
 
                                                         </thead>
 
@@ -169,9 +177,15 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                                 </div>
                                             </div>
+
                                         </div>
+
                                     </div>
+                                    <!-- BOTONES DE SALIR Y APLICAR AJUSTES -->
+                                    <button type="button" class="btn btn-default" onclick="window.location.href='ajuste';">Salir</button>
+                                    <button type="submit" class="btn btn-primary">Aplicar Ajustes</button>
                                 </div>
+
                             </div>
 
                         </div>
@@ -179,29 +193,15 @@ if ($_SESSION["perfil"] == "Especial") {
             </div>
 
 
-
-            <button type="button" class="btn btn-default">Salir</button>
-            <button type="submit" class="btn btn-primary">Aplicar Ajustes</button>
         </div>
 
-        </form>
-
         <?php
-            $ajuste = new ControladorAjustesInventario();
-            echo $ajuste->ctrCrearAjuste();
+        $ajuste = new ControladorAjustesInventario();
+        echo $ajuste->ctrCrearAjuste();
         ?>
-
-
-</div>
+    </section>
 
 </div>
-
-
-
-</section>
-
-</div>
-
 
 <style>
     .error {

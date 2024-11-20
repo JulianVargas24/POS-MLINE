@@ -47,11 +47,11 @@ if($_SESSION["perfil"] == "Especial"){
                                                                 
                             <div class="input-group">  
                                 <input type="radio" name="tipoEntrada" value="manual" >
-                                <label for="radio2" style="font-weight:normal;">Salida manual</label>
+                                <label for="radio2" style="font-weight:normal; margin-left: 3px;">Salida Manual</label>
                             </div>
                             <div class="input-group">
                                 <input type="radio" name="tipoEntrada" value="orden">
-                                <label for="radio3" style="font-weight:normal;">Bodega a Orden de Trabajo</label>
+                                <label for="radio3" style="font-weight:normal; margin-left: 3px;">Bodega a Orden de Trabajo</label>
                             </div>
                         </div>
                     </div>
@@ -62,8 +62,8 @@ if($_SESSION["perfil"] == "Especial"){
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <label for="">Fecha Emisión</label>
-                                                <input type="text" name="listaProductos" id="listaProductos">
-                                                <input type="date" class="form-control input-sm" name="nuevaFecha" id="nuevaFecha">
+                                                <input hidden="text" name="listaProductos" id="listaProductos">
+                                                <input type="date" class="form-control input-sm" name="nuevaFecha" id="nuevaFecha" required>
                                             </div>
                                         </div>
                                 </div>
@@ -204,8 +204,8 @@ if($_SESSION["perfil"] == "Especial"){
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <label for="">Fecha Emisión</label>
-                                                <input type="text" name="listaProductos1" id="listaProductos1">
-                                                <input type="date" class="form-control input-sm" name="nuevaFecha1" id="nuevaFecha1">
+                                                <input type="hidden" name="listaProductos1" id="listaProductos1">
+                                                <input type="date" class="form-control input-sm" name="nuevaFecha1" id="nuevaFecha1" required>
                                             </div>
                                         </div>
                                 </div>

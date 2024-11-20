@@ -1,6 +1,6 @@
 <?php
 
-
+require_once "conexion.php";
 class ModeloEntradasInventario
 {
 
@@ -109,7 +109,7 @@ class ModeloEntradasInventario
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR); #Originalmente estaba en STR.
 
 			$stmt -> execute();
 
@@ -130,4 +130,48 @@ class ModeloEntradasInventario
 		$stmt = null;
 
 	}
+    /*=============================================
+	EDITAR ENTRADA
+	=============================================*/
+    public static function mdlEditarEntrada($tabla, $datos) {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET codigo = :codigo, fecha_emision = :fecha_emision, tipo_entrada = :tipo_entrada, observaciones = :observaciones, id_bodega_destino = :id_bodega_destino, valor_tipo_entrada = :valor_tipo_entrada WHERE id = :id");
+        $idPrueba=7;
+        $observacion="primera2222";
+        $stmt->bindParam(":id", $idPrueba, PDO::PARAM_INT);
+        $stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_emision", $datos["fecha_emision"], PDO::PARAM_STR);
+        $stmt->bindParam(":tipo_entrada", $datos["tipo_entrada"], PDO::PARAM_STR);
+        $stmt->bindParam(":observaciones", $observacion, PDO::PARAM_STR);
+        $stmt->bindParam(":id_bodega_destino", $datos["id_bodega_destino"], PDO::PARAM_INT);
+        $stmt->bindParam(":valor_tipo_entrada", $datos["valor_tipo_entrada"], PDO::PARAM_STR);
+
+        if($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
+
+    /*=============================================
+	ELIMINAR ENTRADA
+	=============================================*/
+    static public function mdlEliminarEntrada($tabla, $idEntrada) {
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+        $stmt->bindParam(":id", $idEntrada, PDO::PARAM_INT);
+
+        return $stmt->execute() ? "ok" : "error";
+    }
+
+    /*=============================================
+	MOSTRAR TIPOS DE ENTRADA
+	=============================================*/
+    public static function mdlMostrarTiposEntradaUnicos($tabla) {
+        $stmt = Conexion::conectar()->prepare("SELECT DISTINCT tipo_entrada FROM $tabla");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
+
