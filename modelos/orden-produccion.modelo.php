@@ -163,27 +163,32 @@ class ModeloOrdenProduccion
    */
   static public function mdlMostrarOrdenesProduccion($tabla, $item, $valor, $fechaInicial = null, $fechaFinal = null)
   {
-    try {
-      // Si se proporcionan fechas lo filtra por el rango de fechas
       if ($fechaInicial && $fechaFinal) {
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_emision BETWEEN :fechaInicial AND :fechaFinal");
+
         $stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
         $stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
-      }
-      // Si no hay filtros, trae todas las órdenes
-      else {
+    } elseif ($item != null) {
+        // Filtra por el campo específico
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+    } else {
+        // Devuelve todas las órdenes de compra
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-      }
-      // Ejecuta la consulta SQL
-      $stmt->execute();
-      // Obtiene todos los resultados de la consulta como un array, si no hay resultados devuelve un array vacío
-      return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
-    } catch (PDOException $e) {
-      return "error: " . $e->getMessage();
-    } finally {
-      // Cierra la conexión a la base de datos
-      $stmt = null;
     }
+
+    $stmt->execute();
+
+    if ($fechaInicial && $fechaFinal) {
+        return $stmt->fetchAll();
+    } elseif ($item != null) {
+        return $stmt->fetch();
+    } else {
+        return $stmt->fetchAll();
+    }
+
+    $stmt->close();
+    $stmt = null;
   }
 
   /**
@@ -211,6 +216,8 @@ class ModeloOrdenProduccion
       $stmt = null;
     }
   }
+
+  
 
 
 

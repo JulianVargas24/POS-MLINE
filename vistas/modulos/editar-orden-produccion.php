@@ -5,6 +5,14 @@ if ($_SESSION["perfil"] == "Especial") {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Orden de Producción</title>
+</head>
+
 <body>
   <div class="content-wrapper">
 
@@ -14,7 +22,7 @@ if ($_SESSION["perfil"] == "Especial") {
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li class="active">Editar Orden de Producción</li>
+        <li class="active">Crear Orden de Producción</li>
       </ol>
     </section>
 
@@ -22,22 +30,23 @@ if ($_SESSION["perfil"] == "Especial") {
       <div class="box">
         <div class="box-body">
           <form role="form" method="post" class="formularioOrdenProduccion">
-            <?php
 
-            $item = "id";
-            $valor = $_GET["idOrdenProduccion"];
+          <?php
 
-            $ordenProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
+                    $item = "id";
+                    $valor = $_GET["idOrdenProduccion"];
 
-            $itemCentro = "id";
-            $valorCentro = $ordenProduccion["id_centro"];
-            $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
+                    $ordenProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
 
-            $itemBodega = "id";
-            $valorBodega = $ordenProduccion["id_bodega"];
-            $bodega = ControladorBodegas::ctrMostrarBodegas($itemBodega, $valorBodega);
+                    $itemBodega = "id";
+                    $valorBodega = $ordenVestuario["id_bodega"];
+                    $bodega = ControladorBodegas::ctrMostrarBodegas($itemBodega, $valorBodega);
 
-            ?>
+                    $itemCentro = "id";
+                    $valorCentro = $compra["id_centro"];
+                    $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
+
+                    ?>
 
             <!-- Tipo de Orden, Cliente Asociado, Datos de Orden y Orden de Producción -->
             <div class="row">
@@ -85,8 +94,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       <div class="col-xs-12">
                         <div class="form-group">
                           <div class="input-group" style="display:block;">
-                            <select class="form-control" id="editarCliente"
-                              name="editarCliente">
+                            <select class="form-control" id="nuevoCliente"
+                              name="nuevoCliente">
 
                               <option value="">Seleccionar cliente</option>
 
@@ -186,10 +195,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
                         <div class="form-group">
                           <div class="input-group">
-                            <input type="date" class="form-control input-sm"
-                              name="editarFechaEmision" id="editarFechaEmision" readonly
-                              value="<?php echo $ordenProduccion["fecha_emision"]; ?>"
-                              onchange="validarFechas(this.id, 'editarFechaVencimiento')">
+                          <input type="date" class="form-control input-sm" name="editarFechaEmision" id="editarFechaEmision"
+                          readonly value="<?php echo $ordenProduccion["fecha_emision"]; ?>">
                           </div>
                         </div>
                       </div>
@@ -200,7 +207,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="form-group">
                           <div class="input-group">
                             <input type="date" class="form-control input-sm"
-                              name="editarFechaVencimiento" id="editarFechaVencimiento"
+                              name="editarFechaVencimiento" id="editarFechaVencimiento"                              
                               value="<?php echo $ordenProduccion["fecha_vencimiento"]; ?>"
                               onchange="validarFechas('editarFechaEmision', this.id)">
                           </div>
@@ -216,18 +223,20 @@ if ($_SESSION["perfil"] == "Especial") {
                               name="editarCentro" required>
                               <option selected
                                 value="<?php echo $centro["id"]; ?>"><?php echo $centro["centro"]; ?></option>
-                              <optgroup label="---Cambiar Centro de Costo--"></optgroup>
+                                <optgroup label="---Cambiar Centro de Costo--"></optgroup>
 
-                              <?php
-                              $item = null;
-                              $valor = null;
+                                <?php
 
-                              $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+                                $item = null;
+                                $valor = null;
 
-                              foreach ($centros as $key => $value) {
+                                $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+
+                                foreach ($centros as $key => $value) {
                                 echo '<option value="' . $value["id"] . '">' . $value["centro"] . '</option>';
-                              }
-                              ?>
+                                }
+
+                                ?>
 
                             </select>
                           </div>
@@ -241,20 +250,23 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <select class="form-control input" id="editarBodega"
                               name="editarBodega" required>
+
                               <option selected
-                                value="<?php echo $bodega["id"]; ?>"><?php echo $bodega["nombre"]; ?></option>
-                              <optgroup label="---Cambiar Bodega--"></optgroup>
+                            value="<?php echo $bodega["id"]; ?>"><?php echo $bodega["nombre"]; ?></option>
+                             <optgroup label="---Cambiar Bodega--"></optgroup>
 
-                              <?php
-                              $item = null;
-                              $valor = null;
+                            <?php
 
-                              $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                             $item = null;
+                             $valor = null;
 
-                              foreach ($bodegas as $key => $value) {
+                             $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+
+                            foreach ($bodegas as $key => $value) {
                                 echo '<option  value="' . $value["id"] . '">' . $value["nombre"] . ' </option>';
-                              }
-                              ?>
+                                }
+
+                            ?>
 
                             </select>
                           </div>
@@ -282,9 +294,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
-                            <input type="text" style="font-weight:bold; font-size:16px;"
-                              class="form-control" name="editarCodigo" id="editarCodigo"
-                              value="<?php echo $ordenProduccion["folio_orden_produccion"]; ?>" readonly
+                            <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="editarCodigo"
+                              id="editarCodigo" value="<?php echo $ordenProduccion["folio_orden_produccion"]; ?>" readonly
                               required>
                           </div>
                         </div>
@@ -301,7 +312,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-file"></i></span>
                             <input type="text" style="font-weight:bold; font-size:16px;" class="form-control"
-                              name="editarNombreOrden" id="editarNombreOrden" required>
+                              name="nuevoNombreOrden" id="nuevoNombreOrden" value="<?php echo $ordenProduccion['nombre_orden']; ?>" required>
                           </div>
                         </div>
                       </div>
@@ -612,7 +623,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
             <div class="box-footer">
               <a href="administrar-orden-produccion" class="btn btn-default">Salir</a>
-              <button type="submit" class="btn btn-primary">Editar Orden</button>
+              <button type="submit" class="btn btn-primary">Crear Orden</button>
             </div>
 
           </form>
