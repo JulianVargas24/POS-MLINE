@@ -224,30 +224,7 @@ $(document).ready(function () {
    * Modal de Clientes
    */
   $(".tablaClientes").DataTable({
-    ajax: {
-      url: "ajax/datatable-clientes.ajax.php",
-      dataSrc: function (json) {
-        if (json.error) {
-          console.error("Error en tabla Clientes:", json);
-          swal({
-            type: "error",
-            title: "Error al cargar los clientes",
-            text: "Detalles: " + json.details,
-            showConfirmButton: true,
-            confirmButtonText: "Cerrar",
-          });
-          return [];
-        }
-        return json.data || [];
-      },
-      error: function (xhr, error, thrown) {
-        console.error("Error en petición AJAX de Clientes:");
-        console.error("Estado:", xhr.status);
-        console.error("Respuesta:", xhr.responseText);
-        console.error("Error:", error);
-        console.error("Excepción:", thrown);
-      },
-    },
+    ajax: "ajax/datatable-clientes.ajax.php",
     deferRender: true,
     retrieve: true,
     processing: true,
@@ -317,30 +294,7 @@ $(document).ready(function () {
    * Modal de Cotizaciones
    */
   $(".tablaCotizaciones").DataTable({
-    ajax: {
-      url: "ajax/datatable-cotizaciones.ajax.php",
-      dataSrc: function (json) {
-        if (json.error) {
-          console.error("Error en tabla Cotizaciones:", json);
-          swal({
-            type: "error",
-            title: "Error al cargar las cotizaciones",
-            text: "Detalles: " + json.details,
-            showConfirmButton: true,
-            confirmButtonText: "Cerrar",
-          });
-          return [];
-        }
-        return json.data || [];
-      },
-      error: function (xhr, error, thrown) {
-        console.error("Error en petición AJAX de Cotizaciones:");
-        console.error("Estado:", xhr.status);
-        console.error("Respuesta:", xhr.responseText);
-        console.error("Error:", error);
-        console.error("Excepción:", thrown);
-      },
-    },
+    ajax: "ajax/datatable-cotizaciones.ajax.php",
     deferRender: true,
     retrieve: true,
     processing: true,
@@ -413,30 +367,7 @@ $(document).ready(function () {
    * Modal de Productos
    */
   $(".tablaProduccion").DataTable({
-    ajax: {
-      url: "ajax/datatable-productos-orden-produccion.ajax.php",
-      dataSrc: function (json) {
-        if (json.error) {
-          console.error("Error en tabla Producción:", json);
-          swal({
-            type: "error",
-            title: "Error al cargar los productos",
-            text: "Detalles: " + json.details,
-            showConfirmButton: true,
-            confirmButtonText: "Cerrar",
-          });
-          return [];
-        }
-        return json.data || [];
-      },
-      error: function (xhr, error, thrown) {
-        console.error("Error en petición AJAX de Productos:");
-        console.error("Estado:", xhr.status);
-        console.error("Respuesta:", xhr.responseText);
-        console.error("Error:", error);
-        console.error("Excepción:", thrown);
-      },
-    },
+    ajax: "ajax/datatable-productos-orden-produccion.ajax.php",
     deferRender: true,
     retrieve: true,
     processing: true,
@@ -531,30 +462,7 @@ $(document).ready(function () {
    * Modal de Insumos
    */
   $(".tablaInsumos").DataTable({
-    ajax: {
-      url: "ajax/datatable-insumos-orden-produccion.ajax.php",
-      dataSrc: function (json) {
-        if (json.error) {
-          console.error("Error en tabla Insumos:", json);
-          swal({
-            type: "error",
-            title: "Error al cargar los insumos",
-            text: "Detalles: " + json.details,
-            showConfirmButton: true,
-            confirmButtonText: "Cerrar",
-          });
-          return [];
-        }
-        return json.data || [];
-      },
-      error: function (xhr, error, thrown) {
-        console.error("Error en petición AJAX de Insumos:");
-        console.error("Estado:", xhr.status);
-        console.error("Respuesta:", xhr.responseText);
-        console.error("Error:", error);
-        console.error("Excepción:", thrown);
-      },
-    },
+    ajax: "ajax/datatable-insumos-orden-produccion.ajax.php",
     deferRender: true,
     retrieve: true,
     processing: true,
