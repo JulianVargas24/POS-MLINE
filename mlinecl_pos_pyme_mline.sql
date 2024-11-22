@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2024 a las 18:42:16
+-- Tiempo de generación: 22-11-2024 a las 20:24:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -132,7 +132,9 @@ CREATE TABLE `bodegas` (
 INSERT INTO `bodegas` (`id`, `nombre`, `region`, `comuna`, `direccion`, `jefe`, `telefono`, `email`, `pais`) VALUES
 (1, 'Principal', 'Los Lagos', 'Puerto Montt', 'Balmaceda 282', 'Fernando Torres', '974062227', 'ftorres@mline.cl', 'Chile'),
 (2, 'super bodega 3000', 'Valparaiso', 'Quillón', 'avenida jose', 'carlos', 'este es el numero', 'hola como estas? correo', 'Chile'),
-(3, 'Bodega Acuenta', 'Arica y Parinacota', 'Puerto Montt', 'sí', 'y', '8', 'l', 'Chile');
+(3, 'Bodega Acuenta', 'Arica y Parinacota', 'Puerto Montt', 'sí', 'y', '8', 'l', 'Chile'),
+(4, 'ASDSD', '13', '312', 'ASDAS', 'ASD', '+11111111111', 'ASDS@Asd.com', 'Chile'),
+(5, 'ADASD', '10', '201', 'ASDAS', 'asdASd', '+11111111111', 'aaaaaa@asdas.com', 'Chile');
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,10 @@ CREATE TABLE `centros_costo` (
 
 INSERT INTO `centros_costo` (`id`, `codigo`, `centro`) VALUES
 (1, 1, 'Sin Especificar'),
-(3, 111, 'CENTRO COSTO');
+(3, 111, 'CENTRO COSTO'),
+(5, 1, 'ad'),
+(6, 0, '1'),
+(7, 23, '1');
 
 -- --------------------------------------------------------
 
@@ -229,7 +234,8 @@ INSERT INTO `clientes` (`id`, `nombre`, `rut`, `email`, `telefono`, `direccion`,
 (6, 'Servicios Gastronómicos Austral SPA', '76.608.115-0', '0', '0', 'Pedro Montt 179', 0, '0000-00-00 00:00:00', '2022-03-22 16:47:50', 'Restaurant', '0', 1, 7, 1, 'Chile', 'Puerto Montt', 'Los Lagos'),
 (7, 'PEPE', '12.254.336-7', 'hola@gmail.com', '+12345678910', 'avenida jose', 0, '0000-00-00 00:00:00', '2024-10-17 20:15:06', 'EJECUTIVO', 'pedro', 1, 7, 2, 'EL MUNDO', '95', '7'),
 (21, 'JUAN', '14.254.254-7', 'hola@gmail.com', '+12345678910', 'avenida jose', 0, '0000-00-00 00:00:00', '2024-10-17 21:30:11', 'SUPER JERENTE', 'CARL', 1, 7, 2, 'Chile', '260', '11'),
-(23, 'SOCIAL', '12.258.254-4', 'hola@gmail.com', '+12345678910', 'avenida jose', 0, '0000-00-00 00:00:00', '2024-10-18 12:36:00', 'EJECUTIVO', 'pedro', 1, 7, 2, 'Chile', '296', '13');
+(23, 'SOCIAL', '12.258.254-4', 'hola@gmail.com', '+12345678910', 'avenida jose', 0, '0000-00-00 00:00:00', '2024-10-18 12:36:00', 'EJECUTIVO', 'pedro', 1, 7, 2, 'Chile', '296', '13'),
+(27, 'ASD', '20625948-5', 'asd@asdasd.com', '+11111111111', 'ASD', 0, '0000-00-00 00:00:00', '2024-11-04 20:02:05', 'ASDAS', 'ASD', 4, 10, 3, 'Chile', '21', '4');
 
 -- --------------------------------------------------------
 
@@ -268,7 +274,9 @@ INSERT INTO `compras` (`id`, `codigo`, `id_proveedor`, `fecha_emision`, `id_cent
 (5, 0, 2, '2024-09-04', 3, 2, 1, 2, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"10000\",\"descuento\":\"0\",\"iva\":\"1900\",\"total\":\"11900\"},{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"10000\",\"descuento\":\"0\",\"iva\":\"1900\",\"total\":\"11900\"}]', 'BBBBBBBBBBBBB', '20,000', '20,000', '0', '3,800', '23800', 0),
 (6, 1112233344, 1, '2024-09-10', 1, 1, 1, 2, '[{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"214137\",\"descuento\":\"0\",\"iva\":\"40686\",\"total\":\"254823\"},{\"id\":\"9\",\"descripcion\":\"Gabinete Impresora\",\"cantidad\":\"1\",\"precio\":\"91773\",\"descuento\":\"0\",\"iva\":\"17437\",\"total\":\"109210\"}]', '', '305,910', '305,910', '0', '58,123', '364,033', 49),
 (7, 1, 2, '2024-09-10', 3, 2, 5, 6, 'Observación.', 'Observación', '', '', '', '', '', 0),
-(8, 1, 2, '2024-10-06', 3, 2, 1, 3, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"361000\",\"total\":\"2261000\"}]', 'holaa', '1,900,000', '1,900,000', '0', '361,000', '2261000', 0);
+(8, 1, 2, '2024-10-06', 3, 2, 1, 3, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"361000\",\"total\":\"2261000\"}]', 'holaa', '1,900,000', '1,900,000', '0', '361,000', '2261000', 0),
+(9, 5, 1, '2024-11-18', 3, 2, 4, 1, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"10\",\"precio\":\"10000\",\"descuento\":\"5000\",\"iva\":\"18050\",\"total\":\"113050\"},{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"15\",\"precio\":\"20000\",\"descuento\":\"4000\",\"iva\":\"56240\",\"total\":\"352240\"}]', 'AAAAAAAAAA', '400,000', '391,000', '9,000', '74,290', '465,290', 51),
+(10, 5, 1, '2024-11-18', 3, 2, 4, 1, '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"10\",\"precio\":\"10000\",\"descuento\":\"5000\",\"iva\":\"18050\",\"total\":\"113050\"},{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"15\",\"precio\":\"20000\",\"descuento\":\"4000\",\"iva\":\"56240\",\"total\":\"352240\"}]', 'AAAAAAAAAA', '400,000', '391,000', '9,000', '74,290', '465,290', 51);
 
 -- --------------------------------------------------------
 
@@ -659,21 +667,22 @@ CREATE TABLE `cotizaciones` (
   `observacion` varchar(255) NOT NULL DEFAULT 'Sin Observacion',
   `productos` varchar(1000) NOT NULL DEFAULT 'SIN PRODUCTOS',
   `tipo_dte` text NOT NULL DEFAULT 'Cotización Afecta',
-  `estado` text NOT NULL DEFAULT 'Abierta'
+  `estado` text NOT NULL DEFAULT 'Abierta',
+  `nombre_orden` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cotizaciones`
 --
 
-INSERT INTO `cotizaciones` (`id`, `codigo`, `id_cliente`, `fecha_emision`, `fecha_vencimiento`, `id_vendedor`, `id_unidad_negocio`, `id_bodega`, `id_medio_pago`, `id_plazo_pago`, `subtotal`, `descuento`, `total_neto`, `iva`, `total_final`, `observacion`, `productos`, `tipo_dte`, `estado`) VALUES
-(2, 2, 3, '2021-11-19', '2021-11-26', 7, 2, 1, 2, 3, '1,330,512', '215,340', '1,115,172', '211,883', '1,327,055', '', '[{\"id\":\"6\",\"descripcion\":\"Reloj Comedor LAN\",\"cantidad\":\"1\",\"precio\":\"584493\",\"descuento\":\"0\",\"iva\":\"111054\",\"total\":\"695547\"},{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"301475\",\"descuento\":\"0\",\"iva\":\"57280\",\"total\":\"358755\"},{\"id\":\"8\",\"descripcion\":\"Gabinete Reloj Casino\",\"cantidad\":\"1\",\"precio\":\"215340\",\"descuento\":\"215340\",\"iva\":\"0\",\"total\":\"0\"},{\"id\":\"9\",\"descripcion\":\"Gabinete Impresora\",\"cantidad\":\"1\",\"precio\":\"129204\",\"descuento\":\"0\",\"iva\":\"24549\",\"total\":\"153753\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"100000\",\"descuento\":\"0\",\"iva\":\"19000\",\"total\":\"119000\"}]', 'Cotización Afecta', 'Cerrada'),
-(3, 3, 5, '2022-02-07', '2022-02-14', 7, 2, 1, 2, 1, '24,773', '0', '24,773', '4,707', '29,480', 'La facturación mensual la realiza Victoria SPA directamente con el cliente.', '[{\"id\":\"14\",\"descripcion\":\"Control Asistencia Geovictoria mensual\",\"cantidad\":\"7\",\"precio\":\"3539\",\"descuento\":\"0\",\"iva\":\"4707\",\"total\":\"29480\"}]', 'Cotización Afecta', 'Cerrada'),
-(6, 6, 5, '2022-02-07', '2022-02-14', 7, 2, 1, 2, 1, '180,000', '0', '180,000', '34,200', '214,200', '', '[{\"id\":\"13\",\"descripcion\":\"Huellero URU4500 + Configuración + Instalación\",\"cantidad\":\"1\",\"precio\":\"180000\",\"descuento\":\"0\",\"iva\":\"34200\",\"total\":\"214200\"}]', 'Cotización Afecta', 'Cerrada'),
-(10, 8, 1, '2022-04-06', '2022-04-15', 7, 2, 1, 2, 3, '363,044', '0', '363,044', '68,979', '432,023', '', '[{\"id\":\"15\",\"descripcion\":\"CÁMARA IP  WIFI + MICRO SD + 12V\",\"cantidad\":\"1\",\"precio\":\"62250\",\"descuento\":\"0\",\"iva\":\"11828\",\"total\":\"74078\"},{\"id\":\"16\",\"descripcion\":\"NVRC936_NVRC921 - Grabador de vídeo NVR H.265\",\"cantidad\":\"1\",\"precio\":\"98300\",\"descuento\":\"0\",\"iva\":\"18677\",\"total\":\"116977\"},{\"id\":\"17\",\"descripcion\":\"WD10PURZ - Disco Duro 1TB para Video\",\"cantidad\":\"1\",\"precio\":\"88644\",\"descuento\":\"0\",\"iva\":\"16842.36\",\"total\":\"105486.36\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"80000\",\"descuento\":\"0\",\"iva\":\"15200\",\"total\":\"95200\"},{\"id\":\"18\",\"descripcion\":\"Tarjeta Memoria Micro SD\",\"cantidad\":\"1\",\"precio\":\"21850\",\"descuento\":\"0\",\"iva\":\"4151.5\",\"total\":\"26001.5\"},{\"id\":\"19\",\"descripcion\":\"Despacho\",\"cantidad\":\"1\",\"precio\":\"12000\",\"descuento\":\"0\",\"iva\":\"2280\",\"total\":\"14280\"}]', 'Cotización Afecta', 'Cerrada'),
-(11, 9, 1, '2022-04-06', '2022-04-15', 7, 2, 1, 2, 3, '162,100', '0', '162,100', '30,800', '192,900', '', '[{\"id\":\"15\",\"descripcion\":\"CÁMARA IP  WIFI + MICRO SD + 12V\",\"cantidad\":\"1\",\"precio\":\"62250\",\"descuento\":\"0\",\"iva\":\"11828\",\"total\":\"74078\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"70000\",\"descuento\":\"0\",\"iva\":\"13300\",\"total\":\"83300\"},{\"id\":\"18\",\"descripcion\":\"Tarjeta Memoria Micro SD\",\"cantidad\":\"1\",\"precio\":\"21850\",\"descuento\":\"0\",\"iva\":\"4152\",\"total\":\"26002\"},{\"id\":\"19\",\"descripcion\":\"Despacho\",\"cantidad\":\"1\",\"precio\":\"8000\",\"descuento\":\"0\",\"iva\":\"1520\",\"total\":\"9520\"}]', 'Cotización Afecta', 'Cerrada'),
-(12, 10, 6, '2022-04-19', '2022-04-26', 7, 2, 1, 2, 1, '80,000', '0', '80,000', '15,200', '95,200', '', '[{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"80000\",\"descuento\":\"0\",\"iva\":\"15200\",\"total\":\"95200\"}]', 'Cotización Afecta', 'Cerrada'),
-(20, 11, 6, '2024-10-06', '2024-10-06', 7, 5, 1, 3, 4, '180,000', '0', '180,000', '34,200', '214,200', '', '[{\"id\":\"13\",\"descripcion\":\"Huellero URU4500 + Configuración + Instalación\",\"cantidad\":\"1\",\"precio\":\"180000\",\"descuento\":\"0\",\"iva\":\"34200\",\"total\":\"214200\"}]', 'Cotización Afecta', 'Abierta');
+INSERT INTO `cotizaciones` (`id`, `codigo`, `id_cliente`, `fecha_emision`, `fecha_vencimiento`, `id_vendedor`, `id_unidad_negocio`, `id_bodega`, `id_medio_pago`, `id_plazo_pago`, `subtotal`, `descuento`, `total_neto`, `iva`, `total_final`, `observacion`, `productos`, `tipo_dte`, `estado`, `nombre_orden`) VALUES
+(2, 2, 3, '2021-11-19', '2021-11-26', 7, 2, 1, 2, 3, '1,330,512', '215,340', '1,115,172', '211,883', '1,327,055', '', '[{\"id\":\"6\",\"descripcion\":\"Reloj Comedor LAN\",\"cantidad\":\"1\",\"precio\":\"584493\",\"descuento\":\"0\",\"iva\":\"111054\",\"total\":\"695547\"},{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"301475\",\"descuento\":\"0\",\"iva\":\"57280\",\"total\":\"358755\"},{\"id\":\"8\",\"descripcion\":\"Gabinete Reloj Casino\",\"cantidad\":\"1\",\"precio\":\"215340\",\"descuento\":\"215340\",\"iva\":\"0\",\"total\":\"0\"},{\"id\":\"9\",\"descripcion\":\"Gabinete Impresora\",\"cantidad\":\"1\",\"precio\":\"129204\",\"descuento\":\"0\",\"iva\":\"24549\",\"total\":\"153753\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"100000\",\"descuento\":\"0\",\"iva\":\"19000\",\"total\":\"119000\"}]', 'Cotización Afecta', 'Cerrada', 'Orden nro. 1'),
+(3, 3, 5, '2022-02-07', '2022-02-14', 7, 2, 1, 2, 1, '24,773', '0', '24,773', '4,707', '29,480', 'La facturación mensual la realiza Victoria SPA directamente con el cliente.', '[{\"id\":\"14\",\"descripcion\":\"Control Asistencia Geovictoria mensual\",\"cantidad\":\"7\",\"precio\":\"3539\",\"descuento\":\"0\",\"iva\":\"4707\",\"total\":\"29480\"}]', 'Cotización Afecta', 'Cerrada', 'Orden nro. 5'),
+(6, 6, 5, '2022-02-07', '2022-02-14', 7, 2, 1, 2, 1, '180,000', '0', '180,000', '34,200', '214,200', '', '[{\"id\":\"13\",\"descripcion\":\"Huellero URU4500 + Configuración + Instalación\",\"cantidad\":\"1\",\"precio\":\"180000\",\"descuento\":\"0\",\"iva\":\"34200\",\"total\":\"214200\"}]', 'Cotización Afecta', 'Cerrada', 'Orden nro. 4'),
+(10, 8, 1, '2022-04-06', '2022-04-15', 7, 2, 1, 2, 3, '363,044', '0', '363,044', '68,979', '432,023', '', '[{\"id\":\"15\",\"descripcion\":\"CÁMARA IP  WIFI + MICRO SD + 12V\",\"cantidad\":\"1\",\"precio\":\"62250\",\"descuento\":\"0\",\"iva\":\"11828\",\"total\":\"74078\"},{\"id\":\"16\",\"descripcion\":\"NVRC936_NVRC921 - Grabador de vídeo NVR H.265\",\"cantidad\":\"1\",\"precio\":\"98300\",\"descuento\":\"0\",\"iva\":\"18677\",\"total\":\"116977\"},{\"id\":\"17\",\"descripcion\":\"WD10PURZ - Disco Duro 1TB para Video\",\"cantidad\":\"1\",\"precio\":\"88644\",\"descuento\":\"0\",\"iva\":\"16842.36\",\"total\":\"105486.36\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"80000\",\"descuento\":\"0\",\"iva\":\"15200\",\"total\":\"95200\"},{\"id\":\"18\",\"descripcion\":\"Tarjeta Memoria Micro SD\",\"cantidad\":\"1\",\"precio\":\"21850\",\"descuento\":\"0\",\"iva\":\"4151.5\",\"total\":\"26001.5\"},{\"id\":\"19\",\"descripcion\":\"Despacho\",\"cantidad\":\"1\",\"precio\":\"12000\",\"descuento\":\"0\",\"iva\":\"2280\",\"total\":\"14280\"}]', 'Cotización Afecta', 'Cerrada', 'Orden nro. 6'),
+(11, 9, 1, '2022-04-06', '2022-04-15', 7, 2, 1, 2, 3, '162,100', '0', '162,100', '30,800', '192,900', '', '[{\"id\":\"15\",\"descripcion\":\"CÁMARA IP  WIFI + MICRO SD + 12V\",\"cantidad\":\"1\",\"precio\":\"62250\",\"descuento\":\"0\",\"iva\":\"11828\",\"total\":\"74078\"},{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"70000\",\"descuento\":\"0\",\"iva\":\"13300\",\"total\":\"83300\"},{\"id\":\"18\",\"descripcion\":\"Tarjeta Memoria Micro SD\",\"cantidad\":\"1\",\"precio\":\"21850\",\"descuento\":\"0\",\"iva\":\"4152\",\"total\":\"26002\"},{\"id\":\"19\",\"descripcion\":\"Despacho\",\"cantidad\":\"1\",\"precio\":\"8000\",\"descuento\":\"0\",\"iva\":\"1520\",\"total\":\"9520\"}]', 'Cotización Afecta', 'Cerrada', 'Orden nro. 2'),
+(12, 10, 6, '2022-04-19', '2022-04-26', 7, 2, 1, 2, 1, '80,000', '0', '80,000', '15,200', '95,200', '', '[{\"id\":\"10\",\"descripcion\":\"Instalación y Configuración Equipo\",\"cantidad\":\"1\",\"precio\":\"80000\",\"descuento\":\"0\",\"iva\":\"15200\",\"total\":\"95200\"}]', 'Cotización Afecta', 'Cerrada', 'Orden nro. 7'),
+(20, 11, 6, '2024-10-06', '2024-10-06', 7, 5, 1, 3, 4, '180,000', '0', '180,000', '34,200', '214,200', '', '[{\"id\":\"13\",\"descripcion\":\"Huellero URU4500 + Configuración + Instalación\",\"cantidad\":\"1\",\"precio\":\"180000\",\"descuento\":\"0\",\"iva\":\"34200\",\"total\":\"214200\"}]', 'Cotización Afecta', 'Abierta', 'Orden nro. 3');
 
 -- --------------------------------------------------------
 
@@ -700,28 +709,29 @@ CREATE TABLE `cotizaciones_exentas` (
   `observacion` varchar(255) NOT NULL DEFAULT 'Sin Observacion',
   `productos` varchar(1000) NOT NULL DEFAULT 'SIN PRODUCTOS',
   `tipo_dte` text NOT NULL DEFAULT 'Cotización Exenta',
-  `estado` text NOT NULL DEFAULT 'Abierta'
+  `estado` text NOT NULL DEFAULT 'Abierta',
+  `nombre_orden` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cotizaciones_exentas`
 --
 
-INSERT INTO `cotizaciones_exentas` (`id`, `codigo`, `id_cliente`, `fecha_emision`, `fecha_vencimiento`, `id_vendedor`, `id_unidad_negocio`, `id_bodega`, `id_medio_pago`, `id_plazo_pago`, `subtotal`, `descuento`, `exento`, `iva`, `total_final`, `observacion`, `productos`, `tipo_dte`, `estado`) VALUES
-(1, 1, 1, '2021-10-06', '2021-10-31', 7, 2, 1, 3, 10, '2,927,890', '0', '2,927,890', '0', '2,927,890', 'CONDICION DE PAGO 6 CUOTAS', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"2927890\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"2927890\"}]', 'Cotización Exenta', 'Cerrada'),
-(2, 2, 0, '2021-10-06', '2021-10-29', 0, 6, 1, 2, 10, '2,927,880', '0', '', '0', '2,927,880', '', '', 'Cotización Exenta', 'Abierta'),
-(3, 3, 1, '2021-10-14', '2021-10-21', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 1 de 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
-(4, 4, 1, '2021-10-14', '2021-10-21', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 1\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
-(5, 5, 1, '2021-10-15', '2021-10-22', 7, 2, 1, 2, 1, '1,900,000', '0', '1,900,000', '0', '1,900,000', 'Contra Orden de Compra', '[{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"1900000\"}]', 'Cotización Exenta', 'Abierta'),
-(6, 6, 1, '2021-10-18', '2021-10-22', 7, 2, 1, 2, 1, '1,900,000', '190,000', '1,710,000', '0', '1,710,000', '', '[{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"190000\",\"iva\":\"0\",\"total\":\"1710000\"}]', 'Cotización Exenta', 'Abierta'),
-(7, 7, 1, '2021-11-09', '2021-11-16', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 2\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
-(8, 8, 0, '2021-12-01', '2021-12-06', 0, 5, 1, 2, 1, '487,980', '0', '', '0', '487,980', 'unidad de negocio 1', '', 'Cotización Exenta', 'Abierta'),
-(9, 9, 4, '2021-12-09', '2021-12-17', 0, 6, 1, 2, 1, '7,500,000', '500,000', '', '0', '7,000,000', 'unidad de negocio 2', '', 'Cotización Exenta', 'Abierta'),
-(10, 10, 1, '2021-12-20', '2021-12-23', 7, 2, 1, 2, 1, '800,000', '0', '800,000', '0', '800,000', '', '[{\"id\":\"12\",\"descripcion\":\"Mejoras Software Viveres\",\"cantidad\":\"1\",\"precio\":\"800000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"800000\"}]', 'Cotización Exenta', 'Abierta'),
-(11, 11, 1, '2022-01-04', '2022-01-05', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 4\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
-(12, 12, 1, '2022-02-02', '2022-02-10', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 5\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
-(13, 13, 1, '2022-03-07', '2022-03-11', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta'),
-(15, 14, 2, '2024-10-06', '2024-10-06', 7, 5, 2, 2, 1, '487,980', '0', '487,980', '0', '487,980', 'COTIZACION 2024', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta');
+INSERT INTO `cotizaciones_exentas` (`id`, `codigo`, `id_cliente`, `fecha_emision`, `fecha_vencimiento`, `id_vendedor`, `id_unidad_negocio`, `id_bodega`, `id_medio_pago`, `id_plazo_pago`, `subtotal`, `descuento`, `exento`, `iva`, `total_final`, `observacion`, `productos`, `tipo_dte`, `estado`, `nombre_orden`) VALUES
+(1, 1, 1, '2021-10-06', '2021-10-31', 7, 2, 1, 3, 10, '2,927,890', '0', '2,927,890', '0', '2,927,890', 'CONDICION DE PAGO 6 CUOTAS', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq\",\"cantidad\":\"1\",\"precio\":\"2927890\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"2927890\"}]', 'Cotización Exenta', 'Cerrada', 'Orden exenta nro. 1'),
+(2, 2, 0, '2021-10-06', '2021-10-29', 0, 6, 1, 2, 10, '2,927,880', '0', '', '0', '2,927,880', '', '', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 2'),
+(3, 3, 1, '2021-10-14', '2021-10-21', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 1 de 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 3'),
+(4, 4, 1, '2021-10-14', '2021-10-21', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 1\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 4'),
+(5, 5, 1, '2021-10-15', '2021-10-22', 7, 2, 1, 2, 1, '1,900,000', '0', '1,900,000', '0', '1,900,000', 'Contra Orden de Compra', '[{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"1900000\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 5'),
+(6, 6, 1, '2021-10-18', '2021-10-22', 7, 2, 1, 2, 1, '1,900,000', '190,000', '1,710,000', '0', '1,710,000', '', '[{\"id\":\"3\",\"descripcion\":\"Asesoría Obtención Patente Cafetería Cermaq PMC\",\"cantidad\":\"1\",\"precio\":\"1900000\",\"descuento\":\"190000\",\"iva\":\"0\",\"total\":\"1710000\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 6'),
+(7, 7, 1, '2021-11-09', '2021-11-16', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 2\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 7'),
+(8, 8, 0, '2021-12-01', '2021-12-06', 0, 5, 1, 2, 1, '487,980', '0', '', '0', '487,980', 'unidad de negocio 1', '', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 8'),
+(9, 9, 4, '2021-12-09', '2021-12-17', 0, 6, 1, 2, 1, '7,500,000', '500,000', '', '0', '7,000,000', 'unidad de negocio 2', '', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 9'),
+(10, 10, 1, '2021-12-20', '2021-12-23', 7, 2, 1, 2, 1, '800,000', '0', '800,000', '0', '800,000', '', '[{\"id\":\"12\",\"descripcion\":\"Mejoras Software Viveres\",\"cantidad\":\"1\",\"precio\":\"800000\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"800000\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 10'),
+(11, 11, 1, '2022-01-04', '2022-01-05', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 4\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 11'),
+(12, 12, 1, '2022-02-02', '2022-02-10', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 5\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 12'),
+(13, 13, 1, '2022-03-07', '2022-03-11', 7, 2, 1, 2, 1, '487,980', '0', '487,980', '0', '487,980', '', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 13'),
+(15, 14, 2, '2024-10-06', '2024-10-06', 7, 5, 2, 2, 1, '487,980', '0', '487,980', '0', '487,980', 'COTIZACION 2024', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"1\",\"precio\":\"487980\",\"descuento\":\"0\",\"iva\":\"0\",\"total\":\"487980\"}]', 'Cotización Exenta', 'Abierta', 'Orden exenta nro. 14');
 
 -- --------------------------------------------------------
 
@@ -966,7 +976,8 @@ CREATE TABLE `matrices` (
 
 INSERT INTO `matrices` (`id`, `razon_social`, `actividad`, `region`, `direccion`, `ejecutivo`, `telefono`, `email`, `fecha_inicio`, `fecha_vencimiento`, `tipo_cliente`, `tipo_producto`, `rut`, `comuna`, `pais`, `condicion_venta`) VALUES
 (4, 'MLINE SPA', 'COMERCIALIZACION Y DISTRIBUCION DE SOFTWARE HARDWARE Y ASESORIAS', 'Los Lagos', 'A Varas 963, Oficina 5, Puerto Montt', 'Fernando Torres Flores', '974062227', 'ftorres@mline.cl', '2020-12-21', '2021-12-21', 'SERCOTEC 2020', 'POS PyMe', '76.605.374-2', 'Puerto Montt', 'Chile', '    AGUAS PROFUNDAS SPA\r\nRUT;77.859.375-0\r\nCUENTA CORRIENTE\r\nBANCO SANTANDER\r\n93397789\r\nalejandromansillavera@gmail.com                                                                                                                                                                                                                                            \r\n\r\n\r\n                                             Sin Especificar                                               Sin Especificar                                             '),
-(8, 'SUPER MATRIZ', 'SUPER JERENTE', 'Magallanes y de la Antártica Chilena', 'DIRECCION #5896', 'pedrito el chikitin', 'este es el numero', 'hola como estas? correo', '2024-09-09', '2024-09-30', 'SERCOTEC 2020', 'POS PyMe', 'el rut de la ', 'Isla de Pascua', 'EL MUNDO', 'Sin Especificar');
+(8, 'SUPER MATRIZ', 'SUPER JERENTE', 'Magallanes y de la Antártica Chilena', 'DIRECCION #5896', 'pedrito el chikitin', 'este es el numero', 'hola como estas? correo', '2024-09-09', '2024-09-30', 'SERCOTEC 2020', 'POS PyMe', 'el rut de la ', 'Isla de Pascua', 'EL MUNDO', 'Sin Especificar'),
+(9, 'ASDASD', 'asdasd', '3', 'asdasd', 'asdasd', '+11111111111', 'asdassd@asda.com', '2024-11-13', '2024-11-30', 'SERCOTEC 2020', 'POS Basico', '20625948-5', '16', 'Chile', 'Sin Especificar');
 
 -- --------------------------------------------------------
 
@@ -1133,6 +1144,38 @@ INSERT INTO `nota_credito_exenta` (`id`, `codigo`, `id_cliente`, `id_unidad_nego
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `nueva_orden_produccion`
+--
+
+CREATE TABLE `nueva_orden_produccion` (
+  `id` int(11) NOT NULL,
+  `folio_orden_produccion` int(11) NOT NULL,
+  `nombre_orden` varchar(50) NOT NULL,
+  `estado_orden` varchar(50) NOT NULL,
+  `tipo_orden` varchar(50) NOT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
+  `id_cotizacion` int(11) DEFAULT NULL,
+  `id_cotizacion_exenta` int(11) DEFAULT NULL,
+  `fecha_orden_emision` date NOT NULL,
+  `fecha_orden_vencimiento` date NOT NULL,
+  `centro_costo` int(11) NOT NULL,
+  `bodega_destino` int(11) NOT NULL,
+  `tipo_produccion` varchar(50) NOT NULL,
+  `id_producto_produccion` int(11) NOT NULL,
+  `id_unidad` int(11) NOT NULL,
+  `cantidad_produccion` int(11) NOT NULL,
+  `fecha_elaboracion` date NOT NULL,
+  `fecha_elaboracion_vencimiento` date NOT NULL,
+  `codigo_lote` varchar(50) NOT NULL,
+  `observaciones` varchar(100) DEFAULT NULL,
+  `costo_embalaje_total` int(11) NOT NULL,
+  `costo_produccion_total` int(11) NOT NULL,
+  `costo_produccion_total_con_embalaje` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `orden_compra`
 --
 
@@ -1165,6 +1208,74 @@ INSERT INTO `orden_compra` (`id`, `codigo`, `id_proveedor`, `fecha_emision`, `fe
 (1, 49, 1, '2021-11-22', '2021-11-30', 1, 1, 2, 1, 'Cerrada', '305,910', '305,910', '0', '58,123', '364033', '', '[{\"id\":\"7\",\"descripcion\":\"Impresora Termica Fiscal\",\"cantidad\":\"1\",\"precio\":\"214137\",\"descuento\":\"0\",\"iva\":\"40686\",\"total\":\"254823\"},{\"id\":\"9\",\"descripcion\":\"Gabinete Impresora\",\"cantidad\":\"1\",\"precio\":\"91773\",\"descuento\":\"0\",\"iva\":\"17437\",\"total\":\"109210\"}]', 0),
 (3, 51, 1, '2024-09-10', '2024-09-21', 3, 2, 1, 4, 'Abierta', '400,000', '391,000', '9,000', '74,290', '465290', 'AAAAAAAAAA', '[{\"id\":\"1\",\"descripcion\":\"Desarrollo Software Vive Cermaq cuota 6\",\"cantidad\":\"10\",\"precio\":\"10000\",\"descuento\":\"5000\",\"iva\":\"18050\",\"total\":\"113050\"},{\"id\":\"2\",\"descripcion\":\"Soporte mensual Vive Cermaq\",\"cantidad\":\"15\",\"precio\":\"20000\",\"descuento\":\"4000\",\"iva\":\"56240\",\"total\":\"352240\"}]', 1),
 (4, 52, 1, '2024-09-10', '2024-09-21', 3, 2, 1, 4, 'Abierta', '193,329', '189,996', '3,333', '36,099', '226095', 'AAAAAAAAAAAA', '[{\"id\":\"4\",\"descripcion\":\"Soporte Informático\",\"cantidad\":\"15\",\"precio\":\"11111\",\"descuento\":\"1111\",\"iva\":\"31455\",\"total\":\"197009\"},{\"id\":\"5\",\"descripcion\":\"Licencia Aptusoft\",\"cantidad\":\"12\",\"precio\":\"2222\",\"descuento\":\"2222\",\"iva\":\"4644\",\"total\":\"29086\"}]', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orden_produccion`
+--
+
+CREATE TABLE `orden_produccion` (
+  `id` int(11) NOT NULL,
+  `folio_orden_produccion` int(11) NOT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
+  `tipo_orden` varchar(100) NOT NULL,
+  `nombre_orden` varchar(100) NOT NULL,
+  `fecha_emision` date NOT NULL,
+  `fecha_vencimiento` date NOT NULL,
+  `centro_costo` varchar(100) NOT NULL,
+  `bodega_destino` varchar(100) NOT NULL,
+  `cantidad_producida_total` int(11) NOT NULL,
+  `costo_unitario_total` int(11) NOT NULL,
+  `costo_produccion_total` int(11) NOT NULL,
+  `costo_embalaje_total` int(11) NOT NULL,
+  `costo_total_con_embalaje` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `orden_produccion`
+--
+
+INSERT INTO `orden_produccion` (`id`, `folio_orden_produccion`, `id_cliente`, `tipo_orden`, `nombre_orden`, `fecha_emision`, `fecha_vencimiento`, `centro_costo`, `bodega_destino`, `cantidad_producida_total`, `costo_unitario_total`, `costo_produccion_total`, `costo_embalaje_total`, `costo_total_con_embalaje`) VALUES
+(1, 1, NULL, '1', '1', '0000-00-00', '0000-00-00', '1', '1', 1, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orden_produccion_detalle`
+--
+
+CREATE TABLE `orden_produccion_detalle` (
+  `id` int(11) NOT NULL,
+  `folio_orden_produccion` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `id_unidad` int(11) NOT NULL,
+  `codigo_lote` varchar(50) NOT NULL,
+  `fecha_produccion` date NOT NULL,
+  `fecha_vencimiento` date NOT NULL,
+  `cantidad_producida` int(11) NOT NULL,
+  `costo_unitario` int(11) NOT NULL,
+  `costo_produccion` int(11) NOT NULL,
+  `costo_embalaje` int(11) NOT NULL,
+  `costo_produccion_con_embalaje` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orden_produccion_materiales`
+--
+
+CREATE TABLE `orden_produccion_materiales` (
+  `id` int(11) NOT NULL,
+  `id_orden_produccion` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `id_tipo_material` int(11) NOT NULL,
+  `id_unidad` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio_unitario` int(11) NOT NULL,
+  `costo_total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1375,8 +1486,8 @@ INSERT INTO `productos` (`id`, `id_categoria`, `codigo`, `codigoBarra`, `descrip
 (3, 37, '625101409738', '', 'Asesoría Obtención Patente Cafetería Cermaq PMC', 'vistas/img/productos/default/anonymous.png', 0, 0, 1900000, 0, '2021-10-15 23:39:26', 0, 0, 1, 3, 9, 8, 'Exento', 0),
 (4, 36, '811042637905', '', 'Soporte Informático', 'vistas/img/productos/default/anonymous.png', 0, 0, 80000, 0, '2021-10-21 21:50:50', 0, 0, 1, 3, 9, 9, 'Afecto', 0),
 (5, 8, '410923176805', '', 'Licencia Aptusoft', 'vistas/img/productos/default/anonymous.png', 0, 0, 50000, 0, '2021-10-21 21:51:32', 0, 0, 1, 3, 1, 7, 'Afecto', 0),
-(6, 40, '328647910510', '', 'Reloj Comedor LAN', 'vistas/img/productos/default/anonymous.png', 0, 0, 584493, 0, '2021-11-19 13:36:22', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
-(7, 40, '102184059367', '', 'Impresora Termica Fiscal', 'vistas/img/productos/default/anonymous.png', 0, 0, 301475, 0, '2021-11-19 13:37:01', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
+(6, 36, '328647910510', '', 'Reloj Comedor LAN', 'vistas/img/productos/default/anonymous.png', 0, 0, 584493, 0, '2024-11-19 18:44:48', 0, 0, 1, 10, 1, 10, 'Afecto', 5),
+(7, 40, '102184059367', '', 'Impresora Termica Fiscal', 'vistas/img/productos/default/anonymous.png', 0, 0, 301475, 0, '2024-11-18 21:35:51', 0, 0, 1, 3, 1, 10, 'Afecto', 3),
 (8, 40, '321090587164', '', 'Gabinete Reloj Casino', 'vistas/img/productos/default/anonymous.png', 0, 0, 215340, 0, '2021-11-19 13:37:38', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
 (9, 40, '652140810793', '', 'Gabinete Impresora', 'vistas/img/productos/default/anonymous.png', 0, 0, 129204, 0, '2021-11-19 13:38:12', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
 (10, 38, '101239407568', '', 'Instalación y Configuración Equipo', 'vistas/img/productos/default/anonymous.png', 0, 0, 100000, 0, '2021-11-19 13:38:59', 0, 0, 1, 3, 9, 8, 'Afecto', 0),
@@ -1385,12 +1496,14 @@ INSERT INTO `productos` (`id`, `id_categoria`, `codigo`, `codigoBarra`, `descrip
 (13, 40, '812957010364', '', 'Huellero URU4500 + Configuración + Instalación', 'vistas/img/productos/default/anonymous.png', 0, 94000, 180000, 0, '2022-02-07 14:08:39', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
 (14, 38, '495310162078', '', 'Control Asistencia Geovictoria mensual', 'vistas/img/productos/default/anonymous.png', 0, 0, 3539, 0, '2022-02-07 13:47:47', 0, 0, 1, 3, 1, 8, 'Afecto', 0),
 (15, 40, '101534702689', '', 'CÁMARA IP  WIFI + MICRO SD + 12V', 'vistas/img/productos/default/anonymous.png', 0, 47882, 62250, 0, '2022-04-06 14:24:57', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
-(16, 40, '237101809654', '', 'NVRC936_NVRC921 - Grabador de vídeo NVR H.265', 'vistas/img/productos/default/anonymous.png', 0, 75622, 98300, 0, '2022-04-06 14:25:31', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
-(17, 40, '102871506493', '', 'WD10PURZ - Disco Duro 1TB para Video', 'vistas/img/productos/default/anonymous.png', 0, 56714, 73730, 0, '2022-04-06 14:25:59', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
+(16, 40, '237101809654', '', 'NVRC936_NVRC921 - Grabador de vídeo NVR H.265', 'vistas/img/productos/default/anonymous.png', 0, 75622, 98300, 0, '2024-11-20 17:52:24', 0, 0, 1, 3, 1, 10, 'Afecto', 7),
+(17, 40, '102871506493', '', 'WD10PURZ - Disco Duro 1TB para Video', 'vistas/img/productos/default/anonymous.png', 0, 56714, 73730, 0, '2024-11-20 17:52:23', 0, 0, 1, 3, 1, 10, 'Afecto', 7),
 (18, 40, '731410986250', '', 'Tarjeta Memoria Micro SD', 'vistas/img/productos/default/anonymous.png', 0, 0, 21850, 0, '2022-04-06 14:44:49', 0, 0, 1, 3, 1, 10, 'Afecto', 0),
 (19, 38, '714682359010', '', 'Despacho', 'vistas/img/productos/default/anonymous.png', 0, 0, 12000, 0, '2022-05-04 01:14:50', 0, 0, 1, 3, 9, 8, 'Afecto', 0),
-(20, 8, '823401019657', '', 'SUPER CAJA', 'vistas/img/productos/823401019657/279.jpg', 0, 10000, 20000, 0, '2024-09-09 15:09:35', 10, 10, 1, 10, 1, 7, 'Afecto', 0),
-(24, 36, '164210538079', '', 'Producto 50', 'vistas/img/productos/164210538079/501.jpg', 0, 1000, 20000, 0, '2024-10-08 15:43:57', 10, 10, 1, 10, 1, 9, 'Afecto', 0);
+(20, 8, '823401019657', '', 'SUPER CAJA', 'vistas/img/productos/823401019657/279.jpg', 0, 10000, 20000, 0, '2024-11-15 20:28:59', 10, 10, 1, 10, 1, 7, 'Afecto', 5),
+(21, 9, '823401019657', '', 'SUPER CAJA', 'vistas/img/productos/823401019657/279.jpg', 0, 10000, 20000, 0, '2024-11-15 18:28:01', 10, 10, 1, 10, 1, 7, 'Afecto', 4),
+(24, 36, '164210538079', '', 'Producto 50', 'vistas/img/productos/164210538079/501.jpg', 0, 1000, 20000, 0, '2024-11-20 01:45:04', 10, 10, 1, 10, 1, 9, 'Afecto', 4),
+(25, 37, '164210538079', '', 'Producto 50', 'vistas/img/productos/164210538079/501.jpg', 0, 1000, 20000, 0, '2024-11-15 18:29:42', 10, 10, 1, 10, 1, 9, 'Afecto', 1);
 
 -- --------------------------------------------------------
 
@@ -1422,7 +1535,9 @@ CREATE TABLE `proveedores` (
 
 INSERT INTO `proveedores` (`id`, `razon_social`, `rut`, `comuna`, `nro_cuenta`, `banco`, `telefono`, `email`, `actividad`, `ejecutivo`, `rubros`, `pais`, `region`, `direccion`, `id_plazo`) VALUES
 (1, 'VICTORIA S.A.', '76.188.587-', 'Las Condes', '0', 'BANCO DE CHILE', '0', 'hola como estas? correo', 'EMPRESA DE SERVICIOS INTEGRALES DE INFORMATICA', 'RICARDO LOPEZ', 'Software medida', 'Chile', 'Metropolitana de Santiago', 'AVENIDA LOS LEONES N° 2061, BLOQUEO 2DO PISO, DEPTO OF B', 1),
-(2, 'ELECTRONIC S.A.P.F', 'este es el ', 'San Pedro de Atacama', '10', 'BANCO DE CHILE', 'este es el numeroP', 'hola como estas? correPPPP', 'EJECUTIVO', 'pedroP', 'Software medida', 'Chile', 'Ñuble', 'avenida jose', 1);
+(2, 'ELECTRONIC S.A.P.F', 'este es el ', 'San Pedro de Atacama', '10', 'BANCO DE CHILE', 'este es el numeroP', 'hola como estas? correPPPP', 'EJECUTIVO', 'pedroP', 'Software medida', 'Chile', 'Ñuble', 'avenida jose', 1),
+(4, 'ASD', '20625948-5', '312', '131', 'RABOBANK CHILE', '+56232322222', 'asdasd@asd.com', 'ASD', 'ASDSD', 'Servicios', 'Chile', '13', 'ADAS', 1),
+(5, 'ASDSA', '20625948-5', '313', '111111111111111111', 'SCOTIABANK CHILE', '+11111111111', 'nicolas@lisdasd.com', 'ASDAS', 'aasdasd', 'Servicios', 'Chile', '13', 'asdasd', 5);
 
 -- --------------------------------------------------------
 
@@ -1649,7 +1764,12 @@ CREATE TABLE `sucursales` (
 
 INSERT INTO `sucursales` (`id`, `nombre`, `region`, `comuna`, `direccion`, `jefe`, `telefono`, `email`, `bodega`, `pais`) VALUES
 (5, 'SUPER COOOL', 'La Araucanía', 'Calama', 'DIRECCION #5896', 'SUPER PEDRO', 'este es el numero', 'hola como estas? correo', 'super bodega 3000', 'EL  UNDO'),
-(7, 'LOS NOTROS', 'Arica y Parinacota', 'Camarones', 'AV LOS RURALES', 'AAAAA', 'AAAAAA', '1111111', 'super bodega 3000', 'Chile');
+(7, 'LOS NOTROS', 'Arica y Parinacota', 'Camarones', 'AV LOS RURALES', 'AAAAA', 'AAAAAA', '1111111', 'super bodega 3000', 'Chile'),
+(8, 'asdas', '2', '7', 'asdas', 'asda', '+11111111111', 'asdas@asdasd.com', 'super bodega 3000', 'Chile'),
+(9, 'aaaaaaaaaaaaa', '1', '2', 'asd', 'asdasd', '+11111111111', 'asd@live.com', 'super bodega 3000', 'Chile'),
+(10, 'ASDSD', '13', '312', 'ASDASd', 'ASDASD', '+11111111111', 'asdas@asd.com', 'Bodega Acuenta', 'Chile'),
+(11, 'ASDSD', '13', '312', 'ASDAS', 'ASDA', '+11111111111', 'aaaa@aaa.com', 'Bodega Acuenta', 'Chile'),
+(12, 'ASDAS', '13', '308', 'asDASD', 'ASDS', '+11111111111', 'adasd@asdas.com', 'Bodega Acuenta', 'Chile');
 
 -- --------------------------------------------------------
 
@@ -1671,7 +1791,8 @@ INSERT INTO `tabla_listas` (`id`, `nombre`) VALUES
 (2, 'Servicio'),
 (3, 'Insumo'),
 (4, 'Mix'),
-(5, 'PRUEBA LISTA');
+(5, 'Pack'),
+(7, 'Embalaje');
 
 -- --------------------------------------------------------
 
@@ -1799,8 +1920,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
 (74, 'MLINE', 'MLINE', '$2a$07$asxx54ahjppf45sd87a5aur5IvEaFbOa7GTslHYyfAWFYQ.na1lde', 'Administrador', '', 1, '0000-00-00 00:00:00', '2020-12-13 20:05:36'),
-(83, 'Fernando Torres Flores', 'admin', '$2a$07$asxx54ahjppf45sd87a5au7TK/8oGAnh/guLnXHOatR5mMTcaM3O.', 'Especial', 'vistas/img/usuarios/admin/847.jpg', 1, '0000-00-00 00:00:00', '2024-10-08 18:31:30'),
-(84, 'BUBU', 'EL JEFE DE LOS CIELOS', '$2a$07$asxx54ahjppf45sd87a5auHIQYGlJDrSxoxt4D/VgD2F/lbh6TmWa', 'Vendedor', 'vistas/img/usuarios/EL JEFE DE LOS CIELOS/332.jpg', 1, '0000-00-00 00:00:00', '2024-10-04 23:34:59'),
+(83, 'Fernando Torres Flores', 'admin', '$2a$07$asxx54ahjppf45sd87a5au7TK/8oGAnh/guLnXHOatR5mMTcaM3O.', 'Especial', 'vistas/img/usuarios/admin/847.jpg', 1, '0000-00-00 00:00:00', '2024-11-12 01:39:04'),
+(84, 'BUBU', 'EL JEFE DE LOS CIELOS', '$2a$07$asxx54ahjppf45sd87a5auHIQYGlJDrSxoxt4D/VgD2F/lbh6TmWa', 'Vendedor', 'vistas/img/usuarios/EL JEFE DE LOS CIELOS/332.jpg', 1, '0000-00-00 00:00:00', '2024-11-12 01:39:07'),
 (85, 'BUBU', 'prueba01', '$2a$07$asxx54ahjppf45sd87a5auyDdoZLbwUoMFg2e/pfKJV1p2LFHJ8QS', 'Especial', 'vistas/img/usuarios/prueba01/783.jpg', 1, '0000-00-00 00:00:00', '2024-10-18 11:27:57');
 
 -- --------------------------------------------------------
@@ -2189,10 +2310,51 @@ ALTER TABLE `nota_credito_exenta`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `nueva_orden_produccion`
+--
+ALTER TABLE `nueva_orden_produccion`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `folio_orden_produccion` (`folio_orden_produccion`),
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_cotizacion` (`id_cotizacion`),
+  ADD KEY `id_cotizacion_exenta` (`id_cotizacion_exenta`),
+  ADD KEY `centro_costo` (`centro_costo`),
+  ADD KEY `bodega_destino` (`bodega_destino`),
+  ADD KEY `id_producto_produccion` (`id_producto_produccion`),
+  ADD KEY `id_unidad` (`id_unidad`);
+
+--
 -- Indices de la tabla `orden_compra`
 --
 ALTER TABLE `orden_compra`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `orden_produccion`
+--
+ALTER TABLE `orden_produccion`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `folio_orden_produccion` (`folio_orden_produccion`),
+  ADD KEY `id_cliente` (`id_cliente`);
+
+--
+-- Indices de la tabla `orden_produccion_detalle`
+--
+ALTER TABLE `orden_produccion_detalle`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `folio_orden_produccion` (`folio_orden_produccion`),
+  ADD KEY `id_producto` (`id_producto`),
+  ADD KEY `id_unidad` (`id_unidad`);
+
+--
+-- Indices de la tabla `orden_produccion_materiales`
+--
+ALTER TABLE `orden_produccion_materiales`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_orden_produccion` (`id_orden_produccion`),
+  ADD KEY `id_producto` (`id_producto`),
+  ADD KEY `id_tipo_material` (`id_tipo_material`),
+  ADD KEY `id_unidad` (`id_unidad`);
 
 --
 -- Indices de la tabla `orden_vestuario`
@@ -2370,7 +2532,7 @@ ALTER TABLE `bancos`
 -- AUTO_INCREMENT de la tabla `bodegas`
 --
 ALTER TABLE `bodegas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `bodega_productos`
@@ -2388,19 +2550,19 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `centros_costo`
 --
 ALTER TABLE `centros_costo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `comunas`
@@ -2460,7 +2622,7 @@ ALTER TABLE `lista_precios`
 -- AUTO_INCREMENT de la tabla `matrices`
 --
 ALTER TABLE `matrices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `medios_pago`
@@ -2493,10 +2655,34 @@ ALTER TABLE `nota_credito_exenta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `nueva_orden_produccion`
+--
+ALTER TABLE `nueva_orden_produccion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `orden_compra`
 --
 ALTER TABLE `orden_compra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `orden_produccion`
+--
+ALTER TABLE `orden_produccion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `orden_produccion_detalle`
+--
+ALTER TABLE `orden_produccion_detalle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `orden_produccion_materiales`
+--
+ALTER TABLE `orden_produccion_materiales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_vestuario`
@@ -2532,13 +2718,13 @@ ALTER TABLE `plazos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `regiones`
@@ -2574,13 +2760,13 @@ ALTER TABLE `subcategorias`
 -- AUTO_INCREMENT de la tabla `sucursales`
 --
 ALTER TABLE `sucursales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tabla_listas`
 --
 ALTER TABLE `tabla_listas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_clientes`
@@ -2657,6 +2843,41 @@ ALTER TABLE `venta_exenta`
 --
 ALTER TABLE `comunas`
   ADD CONSTRAINT `comunass_regiones` FOREIGN KEY (`region_id`) REFERENCES `regiones` (`id`);
+
+--
+-- Filtros para la tabla `nueva_orden_produccion`
+--
+ALTER TABLE `nueva_orden_produccion`
+  ADD CONSTRAINT `nueva_orden_produccion_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`),
+  ADD CONSTRAINT `nueva_orden_produccion_ibfk_2` FOREIGN KEY (`id_cotizacion`) REFERENCES `cotizaciones` (`id`),
+  ADD CONSTRAINT `nueva_orden_produccion_ibfk_3` FOREIGN KEY (`id_cotizacion_exenta`) REFERENCES `cotizaciones_exentas` (`id`),
+  ADD CONSTRAINT `nueva_orden_produccion_ibfk_4` FOREIGN KEY (`centro_costo`) REFERENCES `centros_costo` (`id`),
+  ADD CONSTRAINT `nueva_orden_produccion_ibfk_5` FOREIGN KEY (`bodega_destino`) REFERENCES `bodegas` (`id`),
+  ADD CONSTRAINT `nueva_orden_produccion_ibfk_6` FOREIGN KEY (`id_producto_produccion`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `nueva_orden_produccion_ibfk_7` FOREIGN KEY (`id_unidad`) REFERENCES `unidades` (`id`);
+
+--
+-- Filtros para la tabla `orden_produccion`
+--
+ALTER TABLE `orden_produccion`
+  ADD CONSTRAINT `orden_produccion_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`);
+
+--
+-- Filtros para la tabla `orden_produccion_detalle`
+--
+ALTER TABLE `orden_produccion_detalle`
+  ADD CONSTRAINT `orden_produccion_detalle_ibfk_1` FOREIGN KEY (`folio_orden_produccion`) REFERENCES `orden_produccion` (`folio_orden_produccion`),
+  ADD CONSTRAINT `orden_produccion_detalle_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `orden_produccion_detalle_ibfk_3` FOREIGN KEY (`id_unidad`) REFERENCES `unidades` (`id`);
+
+--
+-- Filtros para la tabla `orden_produccion_materiales`
+--
+ALTER TABLE `orden_produccion_materiales`
+  ADD CONSTRAINT `orden_produccion_materiales_ibfk_1` FOREIGN KEY (`id_orden_produccion`) REFERENCES `nueva_orden_produccion` (`id`),
+  ADD CONSTRAINT `orden_produccion_materiales_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `orden_produccion_materiales_ibfk_3` FOREIGN KEY (`id_tipo_material`) REFERENCES `tabla_listas` (`id`),
+  ADD CONSTRAINT `orden_produccion_materiales_ibfk_4` FOREIGN KEY (`id_unidad`) REFERENCES `unidades` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -22,7 +22,7 @@ if ($_SESSION["perfil"] == "Especial") {
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li class="active">Crear Orden de Producción</li>
+        <li class="active">Editar Orden de Producción</li>
       </ol>
     </section>
 
@@ -623,7 +623,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
             <div class="box-footer">
               <a href="administrar-orden-produccion" class="btn btn-default">Salir</a>
-              <button type="submit" class="btn btn-primary">Crear Orden</button>
+              <button type="submit" class="btn btn-primary">Editar Orden</button>
             </div>
 
           </form>
