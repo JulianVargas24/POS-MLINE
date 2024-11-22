@@ -39,6 +39,7 @@ require_once "controladores/ajustes.controlador.php";
 require_once "controladores/nota-credito.controlador.php";
 require_once "controladores/tabla-listas.controlador.php";
 require_once "controladores/orden-produccion.controlador.php";
+require_once "controladores/nuevo-orden-produccion.controlador.php";
 
 
 require_once "modelos/usuarios.modelo.php";
@@ -81,6 +82,7 @@ require_once "modelos/stock.modelo.php";
 require_once "modelos/nota-credito.modelo.php";
 require_once "extensiones/vendor/autoload.php";
 require_once "modelos/orden-produccion.modelo.php";
+require_once "modelos/nuevo-orden-produccion.modelo.php";
 
 $plantilla = new ControladorPlantilla();
-$plantilla -> ctrPlantilla();
+$plantilla->ctrPlantilla();
