@@ -137,6 +137,11 @@ $(document).ready(function () {
     $("#resumenCostoEmbalaje").text(formatearMoneda(costoEmbalajeFinal));
     $("#resumenCostoSinEmbalaje").text(formatearMoneda(costoInsumosFinal));
     $("#resumenCostoTotalLote").text(formatearMoneda(costoTotalLoteFinal));
+
+    // Actualizar los campos ocultos
+    $("#costoEmbalajeTotal").val(costoEmbalajeFinal);
+    $("#costoProduccionTotal").val(costoInsumosFinal);
+    $("#costoProduccionTotalConEmbalaje").val(costoTotalLoteFinal);
   }
 
   // Evento para actualizar los totales cuando se cambie la cantidad
