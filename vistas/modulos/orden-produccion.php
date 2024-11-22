@@ -416,10 +416,13 @@ if ($_SESSION["perfil"] == "Especial") {
                           <label>Código de Lote</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
-                            <input type="text" class="form-control"
-                              id="detalleCodigoLote"
-                              name="detalleCodigoLote"
-                              placeholder="Ingrese el código de lote">
+                            <input type="text" class="form-control input" id="detalleCodigoLote"
+                              name="detalleCodigoLote" placeholder="Ingrese el código de lote"
+                              value="<?php $rand = range(0, 10);
+                                                   shuffle($rand);
+                                                   foreach ($rand as $val) {
+                                                       echo $val;
+                                                   } ?>" required>
                           </div>
                         </div>
                       </div>
@@ -448,6 +451,25 @@ if ($_SESSION["perfil"] == "Especial") {
                               id="detalleFechaVencimientoProducto"
                               name="detalleFechaVencimientoProducto"
                               onchange="validarFechas('detalleFechaProduccion', this.id)">
+                          </div>
+                        </div>
+                      </div>
+
+                      
+                      <!-- Código de lote -->
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Código de barras</label>
+                          <div>
+                            <button type="button" class="btn btn-success" style="margin-top: 5px"
+                                    onclick="generarbarcodeOP();">Generar
+                            </button>
+                            <button type="button" class="btn btn-info" style="margin-top: 5px"
+                                    onclick="imprimir();">Imprimir
+                            </button>
+                            <div id="print" style="display: none;">
+                              <svg id="barcode" class="barcode"></svg>
+                            </div>
                           </div>
                         </div>
                       </div>

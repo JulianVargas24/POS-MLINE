@@ -405,3 +405,44 @@ $(document).ready(function () {
         },
     });
 });
+
+
+function generarbarcodeOP() {
+    
+    const codigo = $("#detalleCodigoLote").val();
+    const fechaProduccion = $("#detalleFechaProduccion").val();
+    const fechaVencimiento = $("#detalleFechaVencimientoProducto").val();
+
+    const barcode = document.querySelector("#barcode");
+
+    // Generar el código de barras
+    JsBarcode(barcode, codigo, {
+        format: "EAN13",
+    });
+
+    const barcodeHeight = barcode.height.baseVal.value; // Obtiene la altura del código de barras
+    const barcodeWidth = barcode.width.baseVal.value; // Obtiene el ancho del código de barras
+    const espacioExtra = 50; // Espacio adicional para que entren las fechas
+
+    // Ajustar el tamaño del SVG
+    barcode.setAttribute("viewBox", `0 0 ${barcodeWidth} ${barcodeHeight + espacioExtra}`);
+    barcode.setAttribute("height", barcodeHeight + espacioExtra);
+
+    // Añadir texto a la izquierda y las fechas a la derecha)
+    const fechaProdTexto = `<text x="10" y="${barcodeHeight + 20}" style="font-size: 15px; font-family: Arial; fill: #000;">Fecha elaboración:</text>`;
+    const fechaVencTexto = `<text x="10" y="${barcodeHeight + 45}" style="font-size: 15px; font-family: Arial; fill: #000;">Fecha vencimiento:</text>`;
+    const fechaProd = `<text x="${barcodeWidth - 10 - (fechaProduccion ? fechaProduccion.length * 7 : 80)}" y="${barcodeHeight + 20}" style="font-size: 14px; font-family: Arial; fill: #000;">${fechaProduccion || "No ingresada"}</text>`;
+    const fechaVenc = `<text x="${barcodeWidth - 10 - (fechaVencimiento ? fechaVencimiento.length * 7 : 80)}" y="${barcodeHeight + 45}" style="font-size: 14px; font-family: Arial; fill: #000;">${fechaVencimiento || "No ingresada"}</text>`;
+
+    // Añadir los textos al SVG
+    barcode.innerHTML += fechaProdTexto + fechaVencTexto + fechaProd + fechaVenc;
+
+    // Mostrar el área para imprimir
+    $("#print").show();
+
+}   
+
+function imprimir()
+{
+	$("#print").printArea();
+}
