@@ -275,7 +275,13 @@
                                         <i class="fa fa-circle-o"></i>							
                                         Orden de producción
                                     </a>
-                                </li>                                                           			
+                                </li>
+                                <li>		
+                                    <a href="nueva-orden-produccion">
+                                        <i class="fa fa-circle-o"></i>							
+                                        Orden de producción
+                                    </a>
+                                </li>                                                            			
                             </ul>
                         </li>';
                 }
