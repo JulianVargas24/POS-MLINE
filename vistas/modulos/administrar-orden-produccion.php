@@ -38,7 +38,7 @@ if ($xml) {
 
         <!-- Botón Crear Orden -->
         <div class="box-header with-border">
-          <a href="orden-produccion">
+          <a href="nueva-orden-produccion">
             <button class="btn btn-primary">
               Crear Orden de Producción
             </button>
