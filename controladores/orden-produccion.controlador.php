@@ -148,7 +148,7 @@ class ControladorOrdenProduccion
                     "costo_produccion_con_embalaje" => $producto["costo_produccion_con_embalaje"]
                 );
 
-                $respuestaDetalle = ModeloOrdenProduccion::mdlCrearOrdenProduccionDetalle($tablaDetalle, $datosDetalle);
+                $respuestaDetalle = ModeloOrdenProduccion::mdlEditarOrdenProduccionDetalle($tablaDetalle, $datosDetalle);
 
                 if ($respuestaDetalle != "ok") {
                     echo '<script>
