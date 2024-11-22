@@ -39,11 +39,11 @@ if ($_SESSION["perfil"] == "Especial") {
                     $ordenProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
 
                     $itemBodega = "id";
-                    $valorBodega = $ordenVestuario["id_bodega"];
+                    $valorBodega = $ordenProduccion["bodega_destino"];
                     $bodega = ControladorBodegas::ctrMostrarBodegas($itemBodega, $valorBodega);
 
                     $itemCentro = "id";
-                    $valorCentro = $compra["id_centro"];
+                    $valorCentro = $ordenProduccion["centro_costo"];
                     $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
 
                     ?>
@@ -58,19 +58,19 @@ if ($_SESSION["perfil"] == "Especial") {
                     <h2 class="box-title" style="font-weight:bold; font-size:20px; margin-bottom: 20px; margin-top: 0;">Tipo de Orden</h2>
                     <div class="radio-options">
                       <label class="btn-orden">
-                        <input type="radio" name="tipoOrden" value="Cliente con Cotización">
+                        <input type="radio" name="tipoOrden" value="Cliente con Cotización" <?= $ordenProduccion['tipo_orden'] == "Cliente con Cotización" ? 'checked' : '' ?>>
                         <span><i class="fa fa-file-text"></i> Cliente con Cotización</span>
                       </label>
                       <label class="btn-orden">
-                        <input type="radio" name="tipoOrden" value="Cliente sin Cotización">
+                        <input type="radio" name="tipoOrden" value="Cliente sin Cotización" <?= $ordenProduccion['tipo_orden'] == "Cliente sin Cotización" ? 'checked' : '' ?>>
                         <span><i class="fa fa-user"></i> Cliente sin Cotización</span>
                       </label>
                       <label class="btn-orden">
-                        <input type="radio" name="tipoOrden" value="Producción Stock">
+                        <input type="radio" name="tipoOrden" value="Producción Stock" <?= $ordenProduccion['tipo_orden'] == "Producción Stock" ? 'checked' : '' ?>>
                         <span><i class="fa fa-cubes"></i> Producción Stock</span>
                       </label>
                       <label class="btn-orden">
-                        <input type="radio" name="tipoOrden" value="PACK">
+                        <input type="radio" name="tipoOrden" value="PACK" <?= $ordenProduccion['tipo_orden'] == "PACK" ? 'checked' : '' ?>>
                         <span><i class="fa fa-archive"></i> PACK</span>
                       </label>
                     </div>
