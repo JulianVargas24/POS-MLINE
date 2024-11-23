@@ -198,8 +198,14 @@ $(document).ready(function () {
   $(".formularioOrdenProduccion").on("submit", function (e) {
     e.preventDefault();
 
-    // Validar que se haya seleccionado un tipo de orden
-    if (!$('input[name="tipoOrden"]:checked').val()) {
+    // Obtener los valores de los campos del formulario
+    const tipoOrden = $('input[name="tipoOrden"]:checked').val();
+
+    /**
+     * Validar los campos de Tipo de Orden, Cliente y Cotización
+     */
+    // Validar que se haya seleccionado un Tipo de Orden
+    if (!tipoOrden) {
       swal({
         type: "error",
         title: "Error",
@@ -209,7 +215,155 @@ $(document).ready(function () {
       });
       return false;
     }
+    // Validar el Cliente para órdenes de tipo "Cliente sin Cotización"
+    if (tipoOrden === "Cliente sin Cotización" && !$("#traerIdCliente").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Debe seleccionar un cliente para este tipo de orden",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+    // Validar el Cliente y Cotización para órdenes de tipo "Cliente con Cotización"
+    if (tipoOrden === "Cliente con Cotización") {
+      if (!$("#traerIdCliente").val()) {
+        swal({
+          type: "error",
+          title: "Error",
+          text: "Debe seleccionar un cliente para este tipo de orden",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        });
+        return false;
+      }
+      if (
+        !$("#traerIdCotizacionAfecta").val() &&
+        !$("#traerIdCotizacionExenta").val()
+      ) {
+        swal({
+          type: "error",
+          title: "Error",
+          text: "Debe seleccionar una cotización para este tipo de orden",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        });
+        return false;
+      }
+    }
+    // Validar las fechas de emisión y vencimiento de la orden
+    if (!$("#nuevaFechaEmision").val() || !$("#nuevaFechaVencimiento").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Debe especificar las fechas de emisión y vencimiento de la orden",
+      });
+      return false;
+    }
+    // Validar centro de costo
+    if (!$("#nuevoCentro").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Debe seleccionar un centro de costo",
+      });
+      return false;
+    }
+    // Validar bodega de destino
+    if (!$("#nuevaBodega").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Debe seleccionar una bodega de destino",
+      });
+      return false;
+    }
+    // Validar nombre de la orden
+    if (!$("#nuevoNombreOrden").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Debe especificar el nombre de la orden",
+      });
+      return false;
+    }
 
+    /**
+     * Validar los campos de Detalle de Producción
+     */
+    // Validar producto en producción seleccionado
+    if (!$("#idProductoProduccion").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "No ha seleccionado ningún producto",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+    // Validar unidad seleccionada
+    if (!$("#detalleUnidad").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Seleccione el tipo de unidad para el producto",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+    // Validar que la cantidad a producir sea mayor a 0
+    if (
+      !$("#detalleCantidadProducir").val() ||
+      $("#detalleCantidadProducir").val() <= 0
+    ) {
+      swal({
+        title: "Error",
+        text: "Ingrese una cantidad a producir",
+        type: "error",
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+    // Validar fecha de elaboración
+    if (!$("#detalleFechaElaboracion").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Seleccione la fecha de elaboración del producto",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+    // Validar fecha de vencimiento
+    if (!$("#detalleFechaElaboracionVencimiento").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Seleccione la fecha de vencimiento del producto",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+    // Validar código de lote
+    if (!$("#detalleCodigoLote").val()) {
+      swal({
+        type: "error",
+        title: "Error",
+        text: "Ingrese el código de lote",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+
+    /**
+     * Validar los campos de Seleccionar Insumos y Embalaje
+     */
     // Validar que se hayan seleccionado insumos
     if (insumosSeleccionados.length === 0) {
       swal({
@@ -222,7 +376,9 @@ $(document).ready(function () {
       return false;
     }
 
-    // Crear un campo oculto para enviar el array de los materiales de la orden
+    /**
+     * Crear un campo oculto para enviar el array de los materiales de la orden
+     */
     let inputMateriales = $("<input>")
       .attr("type", "hidden")
       .attr("name", "materialesOrden")
@@ -573,22 +729,6 @@ $(document).ready(function () {
       swal({
         type: "warning",
         title: "El insumo ya fue agregado",
-        showConfirmButton: true,
-        confirmButtonText: "Cerrar",
-      });
-    }
-  });
-
-  // Validar que exista un producto seleccionado antes de abrir el modal de Insumos
-  $("#modalAgregarInsumos").on("show.bs.modal", function (e) {
-    if (!$("#idProductoProduccion").val()) {
-      // Prevenir que se abra el modal
-      e.preventDefault();
-
-      swal({
-        type: "warning",
-        title: "Atención",
-        text: "Debe seleccionar un producto antes de agregar insumos",
         showConfirmButton: true,
         confirmButtonText: "Cerrar",
       });

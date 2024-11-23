@@ -59,6 +59,7 @@ if ($_SESSION["perfil"] == "Especial") {
       transition: all 0.2s ease;
       background: #f8f9fa;
       min-height: 100%;
+      user-select: none;
     }
 
     /* Íconos en los botones de orden */
@@ -121,6 +122,7 @@ if ($_SESSION["perfil"] == "Especial") {
       cursor: pointer;
       margin: 0;
       min-width: 150px;
+      user-select: none;
     }
 
     /* Contenido de la opción de producción */
@@ -223,21 +225,21 @@ if ($_SESSION["perfil"] == "Especial") {
                     <!-- Opciones de Tipo de Orden -->
                     <div class="radio-options">
                       <label class="btn-orden">
-                        <input type="radio" name="tipoOrden" value="Para Stock">
+                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Para Stock">
                         <div class="orden-content">
                           <i class="fa fa-cubes"></i>
                           <span>Para Stock</span>
                         </div>
                       </label>
                       <label class="btn-orden">
-                        <input type="radio" name="tipoOrden" value="Cliente sin Cotización">
+                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Cliente sin Cotización">
                         <div class="orden-content">
                           <i class="fa fa-user"></i>
                           <span>Cliente sin Cotización</span>
                         </div>
                       </label>
                       <label class="btn-orden">
-                        <input type="radio" name="tipoOrden" value="Cliente con Cotización">
+                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Cliente con Cotización">
                         <div class="orden-content">
                           <i class="fa fa-file-text"></i>
                           <span>Cliente con Cotización</span>
@@ -341,7 +343,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <p>Fecha de emisión</p>
                           <input type="date" class="form-control"
                             name="nuevaFechaEmision" id="nuevaFechaEmision"
-                            value="<?php echo date("Y-m-d"); ?>" required
+                            value="<?php echo date("Y-m-d"); ?>"
                             onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                         </div>
                       </div>
@@ -352,7 +354,6 @@ if ($_SESSION["perfil"] == "Especial") {
                           <p>Fecha de vencimiento</p>
                           <input type="date" class="form-control"
                             name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                            required
                             onchange="validarFechas('nuevaFechaEmision', this.id)">
                         </div>
                       </div>
@@ -362,7 +363,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="form-group">
                           <p>Centro de costo</p>
                           <select class="form-control" id="nuevoCentro"
-                            name="nuevoCentro" required>
+                            name="nuevoCentro">
                             <option value="">Seleccionar centro</option>
 
                             <?php
@@ -385,7 +386,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="form-group">
                           <p>Bodega de destino</p>
                           <select class="form-control" id="nuevaBodega"
-                            name="nuevaBodega" required>
+                            name="nuevaBodega">
                             <option value="">Seleccionar bodega</option>
 
                             <?php
@@ -477,7 +478,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-file"></i></span>
                             <input type="text" style="font-weight:bold; font-size:16px;" class="form-control"
-                              name="nuevoNombreOrden" id="nuevoNombreOrden" required>
+                              name="nuevoNombreOrden" id="nuevoNombreOrden">
                           </div>
                         </div>
                       </div>
@@ -548,6 +549,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <span class="input-group-addon"><i class="fa fa-cube"></i></span>
                             <input type="text" class="form-control"
                               id="detalleProductoProduccion"
+                              name="detalleProductoProduccion"
                               placeholder="Seleccione un producto"
                               readonly
                               style="cursor: pointer;"
