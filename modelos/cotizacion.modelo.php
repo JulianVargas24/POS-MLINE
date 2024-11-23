@@ -218,6 +218,21 @@ class ModeloCotizacion
 		$stmt = null;
 	}
 
+	static public function mdlEliminarCotizacionconCotizacion($idCotizacion)
+	{
+		try {
+			$stmt = Conexion::conectar()->prepare("DELETE FROM cotizaciones WHERE codigo = :codigo");
+			$stmt->bindParam(":codigo", $idCotizacion, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				return "ok"; // Retorna "ok" si la eliminación fue exitosa
+			} else {
+				return "error"; // Retorna "error" si algo salió mal
+			}
+		} catch (Exception $e) {
+			return "error"; // Manejo de errores
+		}
+	}
+
 	static public function mdlEliminarCotizacionExenta($tabla, $datos)
 	{
 
@@ -236,5 +251,20 @@ class ModeloCotizacion
 		$stmt->close();
 
 		$stmt = null;
+	}
+
+	static public function mdlEliminarCotizacionExentaconCotizacion($idCotizacion)
+	{
+		try {
+			$stmt = Conexion::conectar()->prepare("DELETE FROM cotizaciones_exentas WHERE codigo = :codigo");
+			$stmt->bindParam(":codigo", $idCotizacion, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				return "ok"; // Retorna "ok" si la eliminación fue exitosa
+			} else {
+				return "error"; // Retorna "error" si algo salió mal
+			}
+		} catch (Exception $e) {
+			return "error"; // Manejo de errores
+		}
 	}
 }

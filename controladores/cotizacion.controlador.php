@@ -374,10 +374,11 @@ class ControladorCotizacion
 				$medios = ControladorMediosPago::ctrMostrarMedios("id", $item["id_medio_pago"]);
 				$negocio = ControladorNegocios::ctrMostrarNegocios("id", $item["id_unidad_negocio"]);
 
+				$clienteNombre = isset($cliente["nombre"]) ? $cliente["nombre"] : "No disponible";
 
 				echo utf8_decode("<tr>
 			 			<td style='border:1px solid #eee;'>" . $item["codigo"] . "</td> 
-			 			<td style='border:1px solid #eee;'>" . $cliente["nombre"] . "</td>
+			 			<td style='border:1px solid #eee;'>" . $clienteNombre . "</td>
 						 <td style='border:1px solid #eee;'>" . $vendedor["nombre"] . "</td>
 						 <td style='border:1px solid #eee;'>" . $bodega["nombre"] . "</td>
 						
@@ -544,7 +545,6 @@ class ControladorCotizacion
 					<td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>		
 		 			</tr>");
 			}
-
 
 			echo "</table>";
 		}
