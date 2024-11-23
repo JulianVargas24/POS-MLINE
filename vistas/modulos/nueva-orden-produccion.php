@@ -643,7 +643,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Código de lote -->
-                      <div class="col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <label>Código de Lote</label>
                           <div class="input-group">
@@ -659,21 +659,25 @@ if ($_SESSION["perfil"] == "Especial") {
                             Código inválido. Ingrese un código EAN-13 válido para generar el código de barras.
                           </small>
                         </div>
-                      </div>
 
-                      <!-- Generar código de barras -->
-                      <div class="col-xs-12">
+                        <!-- Generar código de barras -->
                         <div class="form-group">
-                          <button type="button" class="btn btn-success" style="margin-top: 5px"
+                          <button type="button" class="btn btn-success" style="margin-bottom: 10px;"
                             onclick="generarbarcodeOP();">Generar código de barras
                           </button>
-                          <button type="button" id="btnImprimir" class="btn btn-info" style="margin-top: 5px; display: none;"
-                            onclick="imprimir();">Imprimir
-                          </button>
-                          <div id="print" style="display: none;">
+                          <div id="print" class="text-center" style="display: none; border: 1px solid #ddd;">
                             <svg id="barcode" class="barcode"></svg>
                           </div>
+                          <button type="button" id="btnImprimir" class="btn btn-info" style="display: none; margin-top: 10px; margin-right: 5px;"
+                            onclick="imprimir();">
+                            <i class="fa fa-print"></i> Imprimir
+                          </button>
+                          <button type="button" id="btnOcultar" class="btn btn-default" style="display: none; margin-top: 10px;"
+                            onclick="ocultarCodigoBarras();">
+                            <i class="fa fa-eye-slash"></i> Ocultar
+                          </button>
                         </div>
+
                       </div>
 
                       <!-- Observaciones -->
