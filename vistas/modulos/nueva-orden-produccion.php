@@ -11,6 +11,180 @@ if ($_SESSION["perfil"] == "Especial") {
 <head>
   <meta charset="UTF-8">
   <title>Orden de Producción</title>
+
+  <style>
+    /*=========================
+   * Estilo de los Modales
+   *=========================*/
+    /* Configuración del modal grande */
+    .modal-lg {
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    /*=========================
+   * Tipo de Orden
+   *=========================*/
+    /* Ocultar el radio button original */
+    .btn-orden input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    /* Contenedor de opciones de radio */
+    .radio-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    /* Estilo para los botones de orden */
+    .btn-orden {
+      flex: 1;
+      position: relative;
+      cursor: pointer;
+      margin: 0;
+      min-width: 150px;
+    }
+
+    /* Contenido de los botones de orden */
+    .orden-content {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: 12px 8px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      background: #f8f9fa;
+      min-height: 100%;
+    }
+
+    /* Íconos en los botones de orden */
+    .orden-content i {
+      font-size: 24px;
+      color: #3c8dbc;
+      margin-bottom: 8px;
+    }
+
+    /* Texto en los botones de orden */
+    .orden-content span {
+      text-align: center;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    /* Estilo cuando está seleccionado */
+    .btn-orden input[type="radio"]:checked+.orden-content {
+      border-color: #28a745;
+      background: #fff;
+    }
+
+    /* Cambiar color del ícono cuando está seleccionado */
+    .btn-orden input[type="radio"]:checked+.orden-content i {
+      color: #28a745;
+    }
+
+    /* Añadir check cuando está seleccionado */
+    .btn-orden input[type="radio"]:checked+.orden-content::after {
+      content: '✓';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      color: #28a745;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /*=========================
+   * Tipo de Producción
+   *=========================*/
+    /* Ocultar el radio button original */
+    .production-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    /* Contenedor de opciones de producción */
+    .production-options-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    /* Estilo para opciones de producción */
+    .production-option {
+      flex: 1;
+      position: relative;
+      cursor: pointer;
+      margin: 0;
+      min-width: 150px;
+    }
+
+    /* Contenido de la opción de producción */
+    .option-content {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      background: #f8f9fa;
+      min-height: 100%;
+    }
+
+    /* Íconos en las opciones de producción */
+    .option-content i {
+      font-size: 20px;
+      color: #3c8dbc;
+      margin-right: 10px;
+    }
+
+    /* Contenedor de texto */
+    .option-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Estilo del título */
+    .option-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.2;
+    }
+
+    /* Estilo de la descripción */
+    .option-description {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.2;
+    }
+
+    /* Estilo cuando está seleccionado */
+    .production-option input[type="radio"]:checked+.option-content {
+      border-color: #28a745;
+      background: #fff;
+    }
+
+    /* Cambiar color del ícono cuando está seleccionado */
+    .production-option input[type="radio"]:checked+.option-content i {
+      color: #28a745;
+    }
+
+    /* Añadir check cuando está seleccionado */
+    .production-option input[type="radio"]:checked+.option-content::after {
+      content: '✓';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      color: #28a745;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
@@ -39,7 +213,7 @@ if ($_SESSION["perfil"] == "Especial") {
             <div class="row">
 
               <!-- Tipo de Orden -->
-              <div class="col-xs-5">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                 <div class="box box-info">
                   <div class="box-body">
                     <h2 class="box-title" style="font-weight:bold; font-size:20px; margin-top: 0;">
@@ -98,7 +272,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Datos del cliente -->
-                      <div class="col-xs-6">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-address-card"></i> RUT</span>
@@ -106,7 +280,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-xs-6">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Dirección</span>
@@ -114,7 +288,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-xs-6">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Actividad</span>
@@ -122,7 +296,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-xs-6">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Ejecutivo</span>
@@ -130,7 +304,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-xs-6">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Teléfono</span>
@@ -138,7 +312,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-xs-6">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-at"></i> Correo</span>
@@ -153,7 +327,7 @@ if ($_SESSION["perfil"] == "Especial") {
               </div>
 
               <!-- Datos de Orden -->
-              <div class="col-xs-4">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="box box-info">
                   <div class="box-body">
                     <h2 class="box-title" style="font-weight:bold; font-size:20px; margin-bottom: 20px; margin-top: 0;">
@@ -162,81 +336,73 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="row" style="margin-bottom:5px;">
 
                       <!-- Fecha de emisión -->
-                      <div class="col-xs-6">
-                        <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
-                          <div class="input-group">
-                            <input type="date" class="form-control input-sm"
-                              name="nuevaFechaEmision" id="nuevaFechaEmision"
-                              value="<?php echo date("Y-m-d"); ?>" required
-                              onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
-                          </div>
+                          <p>Fecha de emisión</p>
+                          <input type="date" class="form-control"
+                            name="nuevaFechaEmision" id="nuevaFechaEmision"
+                            value="<?php echo date("Y-m-d"); ?>" required
+                            onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                         </div>
                       </div>
 
                       <!-- Fecha de vencimiento -->
-                      <div class="col-xs-6">
-                        <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
-                          <div class="input-group">
-                            <input type="date" class="form-control input-sm"
-                              name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                              required
-                              onchange="validarFechas('nuevaFechaEmision', this.id)">
-                          </div>
+                          <p>Fecha de vencimiento</p>
+                          <input type="date" class="form-control"
+                            name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                            required
+                            onchange="validarFechas('nuevaFechaEmision', this.id)">
                         </div>
                       </div>
 
                       <!-- Centro de costo -->
-                      <div class="col-xs-6">
-                        <div class="d-block" style="font-size:14px;">Centro de costo</div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
-                          <div class="input-group">
-                            <select class="form-control input" id="nuevoCentro"
-                              name="nuevoCentro" required>
-                              <option value="">Seleccionar centro</option>
+                          <p>Centro de costo</p>
+                          <select class="form-control" id="nuevoCentro"
+                            name="nuevoCentro" required>
+                            <option value="">Seleccionar centro</option>
 
-                              <?php
-                              $item = null;
-                              $valor = null;
+                            <?php
+                            $item = null;
+                            $valor = null;
 
-                              $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+                            $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
 
-                              foreach ($centros as $key => $value) {
-                                echo '<option value="' . $value["id"] . '">' . $value["centro"] . '</option>';
-                              }
-                              ?>
+                            foreach ($centros as $key => $value) {
+                              echo '<option value="' . $value["id"] . '">' . $value["centro"] . '</option>';
+                            }
+                            ?>
 
-                            </select>
-                          </div>
+                          </select>
                         </div>
                       </div>
 
                       <!-- Bodega de destino -->
-                      <div class="col-xs-6">
-                        <div class="d-block" style="font-size:14px;">Bodega de destino</div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
-                          <div class="input-group">
-                            <select class="form-control input" id="nuevaBodega"
-                              name="nuevaBodega" required>
+                          <p>Bodega de destino</p>
+                          <select class="form-control" id="nuevaBodega"
+                            name="nuevaBodega" required>
+                            <option value="">Seleccionar bodega</option>
 
-                              <option value="">Seleccionar bodega</option>
+                            <?php
+                            $item = null;
+                            $valor = null;
 
-                              <?php
-                              $item = null;
-                              $valor = null;
+                            $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
 
-                              $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                            foreach ($bodegas as $key => $value) {
+                              echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                            }
+                            ?>
 
-                              foreach ($bodegas as $key => $value) {
-                                echo '<option  value="' . $value["id"] . '">' . $value["nombre"] . ' </option>';
-                              }
-                              ?>
-
-                            </select>
-                          </div>
+                          </select>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -277,7 +443,7 @@ if ($_SESSION["perfil"] == "Especial") {
               </div>
 
               <!-- Orden de Producción y Nombre de la Orden -->
-              <div class="col-xs-3">
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 
                 <div class="box box-info">
                   <div class="box-body">
@@ -287,8 +453,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       style="font-weight:bold; font-size:20px; color:red; margin-bottom: 20px; margin-top: 0;">
                       ORDEN DE PRODUCCIÓN
                     </h2>
-                    <div class="row" style="margin-top:5px;">
-                      <div class="col-xs-6">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-4 col-xs-6">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
@@ -305,8 +471,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       style="color:#39b616;font-weight:bold; font-size:20px; margin-bottom: 20px; margin-top: 10px;">
                       NOMBRE DE ORDEN
                     </h2>
-                    <div class="row" style="margin-top:5px;">
-                      <div class="col-xs-12">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-file"></i></span>
@@ -323,19 +489,23 @@ if ($_SESSION["perfil"] == "Especial") {
 
             </div>
 
-            <!-- Tipo de Producción, detalle de Producción y Resumen de Producción -->
+            <!-- Tipo de Producción y Resumen de Producción -->
             <div class="row">
-              <div class="col-xs-4">
+
+              <!-- Tipo de Producción y Detalle de Producción -->
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+                <!-- Tipo de Producción -->
                 <div class="box box-info">
                   <div class="box-body">
-
-                    <!-- Tipo de Producción -->
                     <h2 class="box-title" style="font-weight:bold; font-size:20px; margin-top: 0; margin-bottom: 10px;">
                       Tipo de Producción
                     </h2>
                     <div class="production-options-container">
+
+                      <!-- Opción de Producción -->
                       <label class="production-option">
-                        <input type="radio" name="tipoProduccion" value="Pack">
+                        <input type="radio" name="tipoProduccion" value="Producto">
                         <div class="option-content">
                           <i class="fa fa-cubes"></i>
                           <div class="option-text">
@@ -345,6 +515,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         </div>
                       </label>
 
+                      <!-- Opción de Pack -->
                       <label class="production-option">
                         <input type="radio" name="tipoProduccion" value="Pack">
                         <div class="option-content">
@@ -355,11 +526,14 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </label>
+
                     </div>
+                  </div>
+                </div>
 
-                    <hr> <!-- Separador -->
-
-                    <!-- Detalle de Producción -->
+                <!-- Detalle de Producción -->
+                <div class="box box-info" id="boxDetalleProduccion" style="display: none;">
+                  <div class="box-body">
                     <h2 class="box-title" style="font-weight:bold; font-size:20px; margin-bottom: 20px; margin-top: 0;">
                       Detalle de Producción
                     </h2>
@@ -439,7 +613,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Fecha de elaboración -->
-                      <div class="col-xs-6">
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-group">
                           <label>Fecha de Elaboración</label>
                           <div class="input-group">
@@ -453,7 +627,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Fecha de vencimiento -->
-                      <div class="col-xs-6">
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-group">
                           <label>Fecha de Vencimiento</label>
                           <div class="input-group">
@@ -496,18 +670,19 @@ if ($_SESSION["perfil"] == "Especial") {
                     </div>
                   </div>
                 </div>
+
               </div>
 
               <!-- Resumen de Producción y Tabla de Insumos Seleccionados -->
-              <div class="col-xs-8">
-
-                <input type="hidden" id="costoEmbalajeTotal" name="costoEmbalajeTotal">
-                <input type="hidden" id="costoProduccionTotal" name="costoProduccionTotal">
-                <input type="hidden" id="costoProduccionTotalConEmbalaje" name="costoProduccionTotalConEmbalaje">
-
-                <!-- Resumen de Producción -->
+              <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="box box-info">
                   <div class="box-body">
+
+                    <input type="hidden" id="costoEmbalajeTotal" name="costoEmbalajeTotal">
+                    <input type="hidden" id="costoProduccionTotal" name="costoProduccionTotal">
+                    <input type="hidden" id="costoProduccionTotalConEmbalaje" name="costoProduccionTotalConEmbalaje">
+
+                    <!-- Resumen de Producción -->
                     <div class="row">
                       <div class="col-xs-12">
                         <h2 class="box-title" style="font-weight:bold; font-size:20px; margin-bottom: 20px; margin-top: 0;">
@@ -516,7 +691,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Costo del Embalaje -->
-                      <div class="col-md-4 col-sm-6 col-xs-12">
+                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="info-box">
                           <span class="info-box-icon bg-aqua">
                             <i class="fa fa-cube"></i>
@@ -529,7 +704,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Costo sin Embalaje -->
-                      <div class="col-md-4 col-sm-6 col-xs-12">
+                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="info-box">
                           <span class="info-box-icon bg-green">
                             <i class="fa fa-cubes"></i>
@@ -542,7 +717,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Costo Total del Lote -->
-                      <div class="col-md-4 col-sm-6 col-xs-12">
+                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="info-box">
                           <span class="info-box-icon bg-yellow">
                             <i class="fa fa-calculator"></i>
@@ -765,181 +940,12 @@ if ($_SESSION["perfil"] == "Especial") {
     </div>
   </div>
 
+  <script>
+    $(document).ready(function() {
+      $.getScript('vistas/js/nueva-orden-produccion.js');
+    });
+  </script>
+
 </body>
 
 </html>
-
-<style>
-  /*==================================================
-   * Estilo de los Modales
-   *==================================================*/
-  /* Configuración del modal grande */
-  .modal-lg {
-    width: 90%;
-    max-width: 1200px;
-  }
-
-  /*==================================================
-   * Tipo de Orden
-   *==================================================*/
-  /* Ocultar el radio button original */
-  .btn-orden input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-  }
-
-  /* Contenedor de opciones de radio */
-  .radio-options {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-    margin: 20px 0;
-  }
-
-  /* Estilo para los botones de orden */
-  .btn-orden {
-    flex: 1;
-    position: relative;
-    cursor: pointer;
-    margin: 0;
-  }
-
-  /* Contenido de los botones de orden */
-  .orden-content {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 12px 8px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    transition: all 0.4s ease;
-    background: #f8f9fa;
-  }
-
-  /* Íconos en los botones de orden */
-  .orden-content i {
-    font-size: 24px;
-    color: #3c8dbc;
-    margin-bottom: 8px;
-  }
-
-  /* Texto en los botones de orden */
-  .orden-content span {
-    text-align: center;
-    font-size: 14px;
-    white-space: nowrap;
-  }
-
-  /* Estilo cuando está seleccionado */
-  .btn-orden input[type="radio"]:checked+.orden-content {
-    border-color: #28a745;
-    background: #fff;
-  }
-
-  /* Cambiar color del ícono cuando está seleccionado */
-  .btn-orden input[type="radio"]:checked+.orden-content i {
-    color: #28a745;
-  }
-
-  /* Añadir check cuando está seleccionado */
-  .btn-orden input[type="radio"]:checked+.orden-content::after {
-    content: '✓';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    color: #28a745;
-    font-size: 14px;
-    font-weight: bold;
-  }
-
-  /*==================================================
-   * Tipo de Producción
-   *==================================================*/
-  /* Ocultar el radio button original */
-  .production-option input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-  }
-
-  /* Contenedor de opciones de producción */
-  .production-options-container {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-  }
-
-  /* Estilo para opciones de producción */
-  .production-option {
-    flex: 1;
-    position: relative;
-    cursor: pointer;
-    margin: 0;
-  }
-
-  /* Contenido de la opción de producción */
-  .option-content {
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    transition: all 0.4s ease;
-    background: #f8f9fa;
-  }
-
-  /* Íconos en las opciones de producción */
-  .option-content i {
-    font-size: 20px;
-    color: #3c8dbc;
-    margin-right: 10px;
-  }
-
-  /* Contenedor de texto */
-  .option-text {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Estilo del título */
-  .option-title {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    line-height: 1.2;
-  }
-
-  /* Estilo de la descripción */
-  .option-description {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.2;
-  }
-
-  /* Estilo cuando está seleccionado */
-  .production-option input[type="radio"]:checked+.option-content {
-    border-color: #28a745;
-    background: #fff;
-  }
-
-  /* Cambiar color del ícono cuando está seleccionado */
-  .production-option input[type="radio"]:checked+.option-content i {
-    color: #28a745;
-  }
-
-  /* Añadir check cuando está seleccionado */
-  .production-option input[type="radio"]:checked+.option-content::after {
-    content: '✓';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    color: #28a745;
-    font-size: 14px;
-    font-weight: bold;
-  }
-</style>
-
-<script>
-  $(document).ready(function() {
-    $.getScript('vistas/js/nueva-orden-produccion.js');
-  });
-</script>

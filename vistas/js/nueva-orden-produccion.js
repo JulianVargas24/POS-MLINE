@@ -47,6 +47,27 @@ $(document).ready(function () {
     precioCompraBase = 0;
   }
 
+  // Función para limpiar la tabla de insumos seleccionados
+  const limpiarInsumosSeleccionados = () => {
+    insumosSeleccionados = [];
+    mostrarMensajeEjemploInsumos();
+    actualizarTotales();
+  };
+
+  // Función para mostrar el mensaje de ejemplo en la tabla de insumos
+  const mostrarMensajeEjemploInsumos = () => {
+    return $(".insumosSeleccionados tbody").html(`
+        <tr class="ejemploSeleccionarInsumo">
+          <td colspan="7" class="text-center text-muted">
+            <p style="margin: 10px 0">
+              <i class="fa fa-info-circle" style="margin-right: 8px;"></i>
+              Agregue los insumos y embalaje necesarios para la producción.
+            </p>
+          </td>
+        </tr>
+      `);
+  };
+
   /**
    * Manejo de la visibilidad del cliente asociado ycotización
    */
@@ -164,16 +185,7 @@ $(document).ready(function () {
 
     // Si no quedan insumos, mostrar mensaje de ejemplo
     if (insumosSeleccionados.length === 0) {
-      $(".insumosSeleccionados tbody").html(`
-        <tr class="ejemploSeleccionarInsumo">
-          <td colspan="7" class="text-center text-muted">
-            <p style="margin: 10px 0">
-              <i class="fa fa-info-circle" style="margin-right: 8px;"></i>
-              Agregue los insumos y embalaje necesarios para la producción.
-            </p>
-          </td>
-        </tr>
-      `);
+      mostrarMensajeEjemploInsumos();
     }
 
     // Actualizar totales
@@ -400,22 +412,6 @@ $(document).ready(function () {
     },
   });
 
-  // Validar tipo de producción antes de abrir el modal de Productos
-  $("#modalSeleccionarProducto").on("show.bs.modal", function (e) {
-    if (!$('input[name="tipoProduccion"]:checked').val()) {
-      // Prevenir que se abra el modal
-      e.preventDefault();
-
-      swal({
-        type: "warning",
-        title: "Atención",
-        text: "Seleccione primero el tipo de producción",
-        showConfirmButton: true,
-        confirmButtonText: "Cerrar",
-      });
-    }
-  });
-
   // Funciones que se realizan al "Agregar" Producto
   $(document).on("click", ".agregarProducto", function () {
     let idProducto = $(this).attr("idProducto");
@@ -447,14 +443,20 @@ $(document).ready(function () {
     $("#boxInsumos").show();
   });
 
-  // Mostrar productos identificados como "Pack"
+  // Funciones que se realizan al cambiar el "Tipo de Producción"
   $('input[name="tipoProduccion"]').change(function () {
     let tipoProduccion = $(this).val();
+
+    // Mostrar el boxDetalleProduccion
+    $("#boxDetalleProduccion").show();
 
     // Limpiar campos de "Detalle de Producción" cuando cambie el tipo de producción
     limpiarCamposProducto();
 
-    // Recargar la tabla con el nuevo tipo de producción
+    // Limpiar la tabla de insumos y reiniciar el array
+    limpiarInsumosSeleccionados();
+
+    // Recargar la tabla mostrando los productos identificados como "Pack"
     $(".tablaProduccion")
       .DataTable()
       .ajax.url(
