@@ -274,7 +274,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Datos del cliente -->
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-address-card"></i> RUT</span>
@@ -282,7 +282,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Dirección</span>
@@ -290,7 +290,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Actividad</span>
@@ -298,7 +298,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Ejecutivo</span>
@@ -306,7 +306,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Teléfono</span>
@@ -314,7 +314,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-at"></i> Correo</span>
@@ -338,7 +338,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="row" style="margin-bottom:5px;">
 
                       <!-- Fecha de emisión -->
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <p>Fecha de emisión</p>
                           <input type="date" class="form-control"
@@ -349,7 +349,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Fecha de vencimiento -->
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <p>Fecha de vencimiento</p>
                           <input type="date" class="form-control"
@@ -359,7 +359,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Centro de costo -->
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <p>Centro de costo</p>
                           <select class="form-control" id="nuevoCentro"
@@ -382,7 +382,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Bodega de destino -->
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <p>Bodega de destino</p>
                           <select class="form-control" id="nuevaBodega"
@@ -416,7 +416,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     </h2>
 
                     <div class="row">
-                      <div class="col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-7 col-xs-12">
                         <div class="form-group">
                           <div class="input-group">
                             <input type="hidden" name="traerIdCotizacionAfecta" id="traerIdCotizacionAfecta">
@@ -455,7 +455,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       ORDEN DE PRODUCCIÓN
                     </h2>
                     <div class="row">
-                      <div class="col-lg-6 col-md-6 col-sm-4 col-xs-6">
+                      <div class="col-lg-6 col-md-8 col-sm-4 col-xs-6">
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
@@ -541,7 +541,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="row">
 
                       <!-- Producto en Producción -->
-                      <div class="col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <label>Producto en Producción</label>
                           <div class="input-group">
@@ -565,7 +565,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Precio de compra -->
-                      <div class="col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <label>Precio de compra</label>
                           <div class="input-group">
@@ -581,7 +581,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Unidad de producción -->
-                      <div class="col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <label>Unidad de Producción</label>
                           <div class="input-group">
@@ -600,7 +600,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Cantidad a producir -->
-                      <div class="col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <label>Cantidad a Producir</label>
                           <div class="input-group">
@@ -615,7 +615,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Fecha de elaboración -->
-                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <label>Fecha de Elaboración</label>
                           <div class="input-group">
@@ -629,7 +629,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       </div>
 
                       <!-- Fecha de vencimiento -->
-                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                      <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                           <label>Fecha de Vencimiento</label>
                           <div class="input-group">
