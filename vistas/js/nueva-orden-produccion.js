@@ -793,13 +793,13 @@ function generarbarcodeOP() {
       fechaElabTexto + fechaVencTexto + fechaElab + fechaVenc;
 
     // Mostrar área donde se imprime el código de barras y el botón de imprimir.
-    $("#print").show();
+    $("#cuadroCodigoBarras").show();
     $("#btnImprimir").show();
     $("#btnOcultar").show(); // Mostrar el botón de ocultar
   } catch (error) {
     console.error(error.message);
     $("#codigoLoteError").show(); // Mostrar mensaje de error
-    $("#print").hide(); // Ocultar el área de impresión si ocurre un error
+    $("#cuadroCodigoBarras").hide(); // Ocultar el área de impresión si ocurre un error
   }
 }
 
@@ -808,7 +808,7 @@ function imprimir() {
 }
 
 function ocultarCodigoBarras() {
-  $("#print").hide();
+  $("#cuadroCodigoBarras").hide();
   $("#btnImprimir").hide();
   $("#btnOcultar").hide();
 }

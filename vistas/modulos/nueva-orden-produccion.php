@@ -665,8 +665,10 @@ if ($_SESSION["perfil"] == "Especial") {
                           <button type="button" class="btn btn-success" style="margin-bottom: 10px;"
                             onclick="generarbarcodeOP();">Generar código de barras
                           </button>
-                          <div id="print" class="text-center" style="display: none; border: 1px solid #ddd;">
-                            <svg id="barcode" class="barcode"></svg>
+                          <div id="cuadroCodigoBarras" class="text-center" style="display:none; border: 1px solid #ddd;">
+                            <div id="print">
+                              <svg id="barcode" class="barcode"></svg>
+                            </div>
                           </div>
                           <button type="button" id="btnImprimir" class="btn btn-info" style="display: none; margin-top: 10px; margin-right: 5px;"
                             onclick="imprimir();">
