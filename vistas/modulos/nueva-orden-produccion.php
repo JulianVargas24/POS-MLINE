@@ -653,6 +653,24 @@ if ($_SESSION["perfil"] == "Especial") {
                               name="detalleCodigoLote"
                               placeholder="Ingrese el código de lote">
                           </div>
+                          <small id="codigoLoteError" class="text-danger" style="display: none;">
+                            Código inválido. Ingrese un código EAN-13 válido para generar el código de barras.
+                          </small>
+                        </div>
+                      </div>
+
+                      <!-- Generar código de barras -->
+                      <div class="col-xs-12">
+                        <div class="form-group">                         
+                          <button type="button" class="btn btn-success" style="margin-top: 5px"
+                                    onclick="generarbarcodeOP();">Generar código de barras
+                          </button>
+                          <button type="button" id="btnImprimir" class="btn btn-info" style="margin-top: 5px; display: none;"
+                                    onclick="imprimir();">Imprimir
+                          </button>
+                          <div id="print" style="display: none;">
+                            <svg id="barcode" class="barcode"></svg>
+                          </div>                         
                         </div>
                       </div>
 

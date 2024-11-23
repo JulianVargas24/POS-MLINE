@@ -407,7 +407,7 @@ $(document).ready(function () {
 });
 
 
-function generarbarcodeOP() {
+function generarbarcode() {
     
     const codigo = $("#detalleCodigoLote").val();
     const fechaProduccion = $("#detalleFechaProduccion").val();

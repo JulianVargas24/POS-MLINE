@@ -735,3 +735,50 @@ $(document).ready(function () {
     }
   });
 });
+
+function generarbarcodeOP() {
+  const codigo = $("#detalleCodigoLote").val();
+  const fechaElaboracion = $("#detalleFechaElaboracion").val();
+  const fechaVencimiento = $("#detalleFechaElaboracionVencimiento").val();
+
+  const barcode = document.querySelector("#barcode");
+
+  $("#codigoLoteError").hide(); // Ocultar el mensaje de error por defecto
+  $("#btnImprimir").hide(); // Ocultar el botón de imprimir por defecto
+
+  try {
+    // Generar el código de barras
+    JsBarcode(barcode, codigo, {
+      format: "EAN13",
+    });
+
+    const barcodeHeight = barcode.height.baseVal.value; // Altura del código de barras
+    const barcodeWidth = barcode.width.baseVal.value; // Ancho del código de barras
+    const espacioExtra = 50; // Espacio adicional para fechas
+
+    // Ajustar el tamaño del SVG
+    barcode.setAttribute("viewBox", `0 0 ${barcodeWidth} ${barcodeHeight + espacioExtra}`);
+    barcode.setAttribute("height", barcodeHeight + espacioExtra);
+
+    // Añadir textos
+    const fechaElabTexto = `<text x="10" y="${barcodeHeight + 20}" style="font-size: 15px; font-family: Arial; fill: #000;">Fecha elaboración:</text>`;
+    const fechaVencTexto = `<text x="10" y="${barcodeHeight + 45}" style="font-size: 15px; font-family: Arial; fill: #000;">Fecha vencimiento:</text>`;
+    const fechaElab = `<text x="${barcodeWidth - 10 - (fechaElaboracion ? fechaElaboracion.length * 7 : 80)}" y="${barcodeHeight + 20}" style="font-size: 14px; font-family: Arial; fill: #000;">${fechaElaboracion || "No ingresada"}</text>`;
+    const fechaVenc = `<text x="${barcodeWidth - 10 - (fechaVencimiento ? fechaVencimiento.length * 7 : 80)}" y="${barcodeHeight + 45}" style="font-size: 14px; font-family: Arial; fill: #000;">${fechaVencimiento || "No ingresada"}</text>`;
+
+    // Añadir los textos al SVG
+    barcode.innerHTML += fechaElabTexto + fechaVencTexto + fechaElab + fechaVenc;
+
+    // Mostrar área donde se imprime el código de barras y el botón de imprimir.
+    $("#print").show();
+    $("#btnImprimir").show();
+  } catch (error) {
+    console.error(error.message);
+    $("#codigoLoteError").show(); // Mostrar mensaje de error
+    $("#print").hide(); // Ocultar el área de impresión si ocurre un error
+  }
+}
+
+function imprimir() {
+  $("#print").printArea();
+}
