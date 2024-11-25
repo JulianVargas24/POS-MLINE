@@ -624,7 +624,7 @@ $(".tablas").on("click", ".btnEditarOrdenProduccion", function(){
 	console.log("F Orden Produccion")
 	var idOrdenProduccion = $(this).attr("idOrdenProduccion");
 
-	window.location = "index.php?ruta=editar-orden-produccion&idOrdenProduccion="+idOrdenProduccion;
+	window.location = "index.php?ruta=editar-nueva-orden-produccion&idOrdenProduccion="+idOrdenProduccion;
 
 
 })
