@@ -183,4 +183,92 @@ class ModeloNuevoOrdenProduccion
       $stmt = null;
     }
   }
+
+  static public function mdlMostrarOrdenesProduccion($tabla, $item, $valor, $fechaInicial = null, $fechaFinal = null)
+  {
+      if ($fechaInicial && $fechaFinal) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_orden_emision BETWEEN :fechaInicial AND :fechaFinal");
+
+        $stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
+        $stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
+    } elseif ($item != null) {
+        // Filtra por el campo específico
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+    } else {
+        // Devuelve todas las órdenes de compra
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+    }
+
+    $stmt->execute();
+
+    if ($fechaInicial && $fechaFinal) {
+        return $stmt->fetchAll();
+    } elseif ($item != null) {
+        return $stmt->fetch();
+    } else {
+        return $stmt->fetchAll();
+    }
+
+    $stmt->close();
+    $stmt = null;
+  }
+
+  static public function mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor)
+  {
+    try {
+      if ($item != null) {
+        // Consulta con un solo criterio
+        $stmt = Conexion::conectar()->prepare(
+          "SELECT * FROM $tabla WHERE $item = :$item"
+        );
+        $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+      } else {
+        // Consulta sin filtros
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+      }
+
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+      return "error: " . $e->getMessage();
+    } finally {
+      $stmt = null;
+    }
+  }
+
+  static public function mdlEliminarOrdenProduccionMateriales($tabla, $folioOrden)
+  {
+    $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
+    $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+      return "ok";
+    } else {
+      return "error";
+    }
+
+    $stmt = null; // Cerrar la conexión
+  }
+
+  /**
+   * Eliminar Órdenes de Producción
+   */
+  static public function mdlEliminarNuevaOrdenProduccion($tabla, $folioOrden)
+  {
+    $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
+    $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+      return "ok";
+    } else {
+      return "error";
+    }
+
+    $stmt = null; // Cerrar la conexión
+  }
+
+
+
+
 }

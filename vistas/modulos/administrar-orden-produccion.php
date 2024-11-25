@@ -88,7 +88,6 @@ if ($xml) {
                 <th>Emisión</th>
                 <th>Vencimiento</th>
                 <th>Cantidad Producida</th>
-                <th>Código de Lote</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -99,7 +98,8 @@ if ($xml) {
               $item = null;
               $valor = null;
 
-              $ordenesProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
+              $ordenesProduccion = ControladorNuevoOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
+              $ordenesMateriales = ControladorNuevoOrdenProduccion::ctrMostrarOrdenesProduccionMateriales($item, $valor);
               $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
               $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
               $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
@@ -192,7 +192,7 @@ if ($xml) {
 
 
                 // Obtener los detalles de producción relacionados con la orden actual
-                $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionDetalle("folio_orden_produccion", $orden["folio_orden_produccion"]);
+                $ordenesProduccionDetalle = ControladorNuevoOrdenProduccion::ctrMostrarOrdenesProduccionMateriales("folio_orden_produccion", $orden["folio_orden_produccion"]);
                 $item = null;
                 $valor = null;
                 $unidad = ControladorUnidades::ctrMostrarunidades($item, $valor);
@@ -286,10 +286,10 @@ if ($xml) {
                     <td>' . $cliente . '</td>
                     <td>' . $centro . '</td>
                     <td>' . $bodega . '</td>
-                    <td>' . $orden["fecha_emision"] . '</td>
-                    <td>' . $orden["fecha_vencimiento"] . '</td>
-                    <td>' . $orden["cantidad_producida_total"] . '</td>
-                    <td>' . $codigosDetalleStr . '</td>
+                    <td>' . $orden["fecha_orden_emision"] . '</td>
+                    <td>' . $orden["fecha_orden_vencimiento"] . '</td>
+                    <td>' . $orden["cantidad_produccion"] . '</td>
+                    
 
                     <td>
 
@@ -343,8 +343,8 @@ if ($xml) {
           </table>
 
           <?php
-          $eliminarOrden = new ControladorOrdenProduccion();
-          $eliminarOrden->ctrEliminarOrdenProduccion();
+          $eliminarOrden = new ControladorNuevoOrdenProduccion();
+          $eliminarOrden->ctrEliminarNuevaOrdenProduccion();
           ?>
 
         </div>
