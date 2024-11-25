@@ -34,14 +34,14 @@ $(".tablas").on("click", ".btnEliminarTipoProducto", function(){
 	 var idTipoProducto = $(this).attr("idTipoProducto");
 
 	 swal({
-	 	title: '¿Está seguro de borrar el Tipo de Producto?',
-	 	text: "¡Si no lo está puede cancelar la acción!",
+	 	title: '¿Está seguro de borrar este tipo de producto?',
+	 	text: "Si no lo está, puede cancelar la accíón.",
 	 	type: 'warning',
 	 	showCancelButton: true,
 	 	confirmButtonColor: '#3085d6',
 	 	cancelButtonColor: '#d33',
 	 	cancelButtonText: 'Cancelar',
-	 	confirmButtonText: 'Si, borrar Tipo de Producto!'
+	 	confirmButtonText: 'Sí, borrar tipo de producto'
 	 }).then(function(result){
 
 	 	if(result.value){

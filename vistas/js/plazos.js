@@ -40,14 +40,14 @@ $(".tablas").on("click", ".btnEliminarPlazo", function(){
     var idPlazo = $(this).attr("idPlazo");
 
     swal({
-        title: '¿Está seguro de borrar este Plazo?',
-        text: "¡Si no lo está puede cancelar la acción!",
+        title: '¿Está seguro de borrar este plazo?',
+        text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar Plazo!'
+        confirmButtonText: 'Sí, borrar plazo'
     }).then(function(result){
 
         if(result.value){

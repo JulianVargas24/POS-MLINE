@@ -20,15 +20,15 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar Unidades de Negocios
+      Administrar unidades de negocios
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Unidad de Negocio</li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Comercial</li>
+      <li class="active">Unidades de negocios</li>
     
     </ol>
 
@@ -42,7 +42,7 @@ if($_SESSION["perfil"] == "Especial"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUnidadNegocio">
           
-          Agregar Unidad de Negocio
+          Agregar unidad de negocio
 
         </button>
 
@@ -57,8 +57,8 @@ if($_SESSION["perfil"] == "Especial"){
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Unidad de Negocio</th>
-           <th>Codigo</th>
+           <th>Unidad de negocio</th>
+           <th>Código</th>
 
 
          </tr> 
@@ -146,7 +146,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
             <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-            <h4 class="modal-title">Agregar Unidad de Negocio</h4>
+            <h4 class="modal-title">Agregar unidad de negocio</h4>
 
           </div>
 
@@ -162,7 +162,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
               
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Unidad de Negocio</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Unidad de negocio</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -174,12 +174,12 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Unidad</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de unidad</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="number" class="form-control input" name="nuevoCodigoUnidad" id="nuevoCodigoUnidad" placeholder="Ingresar Codigo" required>
+                        <input type="number" class="form-control input" name="nuevoCodigoUnidad" id="nuevoCodigoUnidad" placeholder="Ingresar Código" required>
 
                       </div>
               </div>
@@ -197,7 +197,7 @@ MODAL AGREGAR UNIDAD DE NEGOCIO
 
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-            <button type="submit" class="btn btn-primary" name="crear_negocio">Agregar Unidad</button>
+            <button type="submit" class="btn btn-primary" name="crear_negocio">Agregar unidad</button>
 
           </div>
 
@@ -236,7 +236,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Unidad de Negocio</h4>
+          <h4 class="modal-title">Editar unidad de negocio</h4>
 
         </div>
 
@@ -252,7 +252,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
             <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Unidad de Negocio</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Unidad de negocio</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -264,7 +264,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
               <div class="form-group">
                   
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Codigo de Unidad</div>
+                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de unidad</div>
                       <div class="input-group">
                       
                         <span class="input-group-addon"><i class="fa fa-th"></i></span> 
@@ -286,7 +286,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Unidad</button>
+          <button type="submit" class="btn btn-primary">Guardar unidad</button>
 
         </div>
 

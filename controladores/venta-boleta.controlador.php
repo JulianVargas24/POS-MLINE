@@ -8,7 +8,8 @@ class ControladorVentaBoleta
     CREAR COTIZACION
     =============================================*/
 
-    static public function ctrCrearVentaBoleta(){
+    static public function ctrCrearVentaBoleta()
+    {
 
         if (isset($_POST["nuevoCodigo"])) {
 
@@ -19,6 +20,7 @@ class ControladorVentaBoleta
                 "id_cliente" => $_POST["nuevoClienteBoleta"],
                 "id_vendedor" => $_POST["nuevoVendedor"],
                 "fecha_emision" => $_POST["nuevaFechaEmision"],
+                "fecha_vencimiento" => $_POST["nuevaFechaVencimiento"],
                 "id_unidad_negocio" => $_POST["nuevoNegocio"],
                 "id_bodega" => $_POST["nuevaBodega"],
                 "subtotal" => $_POST["nuevoSubtotal"],
@@ -33,22 +35,22 @@ class ControladorVentaBoleta
                 "pendiente" => $_POST["nuevoTotalPendiente"],
                 "productos" => $_POST["listaProductos"]
             );
-            
-				// Imprimir los datos antes de insertarlos
-				/*echo '<pre>';
+
+            // Imprimir los datos antes de insertarlos
+            /*echo '<pre>';
 				var_dump($datos);
 				echo '</pre>';
 				exit; */ // Terminar la ejecución para que no se inserten los datos aún.
 
             $respuesta = ModeloVentaBoleta::mdlIngresarVentaBoleta($tabla, $datos);
             $productos = json_decode($datos["productos"], true);
-            foreach($productos as $producto) {
+            foreach ($productos as $producto) {
                 $datos = [
                     "id_producto" => $producto["id"],
                     "cantidad" => $producto["cantidad"],
                     "descripcion" => $producto["descripcion"],
                     "id_bodega" => $datos["id_bodega"],
-                    ];
+                ];
                 ModeloSalidasInventario::mdlSalidaPorVenta($datos);
             }
             if ($respuesta == "ok") {
@@ -73,7 +75,8 @@ class ControladorVentaBoleta
         }
     }
 
-    static public function ctrCrearVentaBoletaExenta(){
+    static public function ctrCrearVentaBoletaExenta()
+    {
 
         if (isset($_POST["nuevoCodigo"])) {
 
@@ -84,6 +87,7 @@ class ControladorVentaBoleta
                 "id_cliente" => $_POST["nuevoClienteBoleta"],
                 "id_vendedor" => $_POST["nuevoVendedor"],
                 "fecha_emision" => $_POST["nuevaFechaEmision"],
+                "fecha_vencimiento" => $_POST["nuevaFechaVencimiento"],
                 "id_unidad_negocio" => $_POST["nuevoNegocio"],
                 "id_bodega" => $_POST["nuevaBodega"],
                 "subtotal" => $_POST["nuevoSubtotal"],
@@ -99,13 +103,13 @@ class ControladorVentaBoleta
 
             $respuesta = ModeloVentaBoleta::mdlIngresarVentaBoletaExenta($tabla, $datos);
             $productos = json_decode($datos["productos"], true);
-            foreach($productos as $producto) {
+            foreach ($productos as $producto) {
                 $datos = [
                     "id_producto" => $producto["id"],
                     "cantidad" => $producto["cantidad"],
                     "descripcion" => $producto["descripcion"],
                     "id_bodega" => $datos["id_bodega"],
-                    ];
+                ];
                 ModeloSalidasInventario::mdlSalidaPorVenta($datos);
             }
             if ($respuesta == "ok") {
@@ -130,7 +134,8 @@ class ControladorVentaBoleta
         }
     }
 
-    static public function ctrDescargarReporteVentaBoleta() {
+    static public function ctrDescargarReporteVentaBoleta()
+    {
 
         if (isset($_GET["reporte"])) {
 
@@ -245,7 +250,8 @@ class ControladorVentaBoleta
         }
     }
 
-    static public function ctrDescargarReporteVentaBoletaExenta() {
+    static public function ctrDescargarReporteVentaBoletaExenta()
+    {
 
         if (isset($_GET["reporte"])) {
 
@@ -354,18 +360,19 @@ class ControladorVentaBoleta
         }
     }
 
-    static public function ctrEliminarVentaBoleta(){
+    static public function ctrEliminarVentaBoleta()
+    {
 
-        if(isset($_GET["idVenta"])){
+        if (isset($_GET["idVenta"])) {
 
-			$tabla ="venta_boleta";
-			$datos = $_GET["idVenta"];
+            $tabla = "venta_boleta";
+            $datos = $_GET["idVenta"];
 
-			$respuesta = ModeloVentaBoleta::mdlBorrarVentaBoleta($tabla, $datos);
+            $respuesta = ModeloVentaBoleta::mdlBorrarVentaBoleta($tabla, $datos);
 
-			if($respuesta == "ok"){
+            if ($respuesta == "ok") {
 
-				echo'<script>
+                echo '<script>
 
 				swal({
 					  type: "success",
@@ -382,9 +389,7 @@ class ControladorVentaBoleta
 							})
 
 				</script>';
-
-			}		
-
-		}
+            }
+        }
     }
 }

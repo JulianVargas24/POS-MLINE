@@ -20,13 +20,15 @@ if ($_SESSION["perfil"] == "Especial") {
 
     <h1>
 
-      Administrar Matriz
+      Administrar matriz
 
     </h1>
 
     <ol class="breadcrumb">
 
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+
+        <li>Parámetros</li>
 
       <li class="active">Matriz</li>
 
@@ -41,7 +43,7 @@ if ($_SESSION["perfil"] == "Especial") {
     <div class="box-header with-border">
       <button class="btn btn-primary" data-toggle="modal" data-target="#modalCrearMatriz">
     
-        Crear Matriz
+        Crear matriz
 
     </button>
 
@@ -55,20 +57,20 @@ if ($_SESSION["perfil"] == "Especial") {
           <thead>
 
             <tr>
-              <th>Razon Social</th>
+              <th>Razón Social</th>
               <th>RUT</th>
               <th>Actividad</th>
-              <th>Region</th>
+              <th>Región</th>
               <th>Comuna</th>
-              <th>Pais</th>
-              <th>Direccion</th>
+              <th>País</th>
+              <th>Dirección</th>
               <th>Ejecutivo</th>
-              <th>Telefono</th>
+              <th>Teléfono</th>
               <th>Correo</th>
-              <th>Inicio Servicio</th>
-              <th>Vcto. Servicio</th>
-              <th>Tipo Cliente</th>
-              <th>Tipo Producto</th>
+              <th>Inicio servicio</th>
+              <th>Vcto. servicio</th>
+              <th>Tipo cliente</th>
+              <th>Tipo producto</th>
               <th>Acciones</th>
 
             </tr>
@@ -165,7 +167,7 @@ if ($_SESSION["perfil"] == "Especial") {
         ======================================-->
         <div class="modal-header" style="background:#3f668d; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Crear Matriz</h4>
+          <h4 class="modal-title">Crear matriz</h4>
         </div>
 
         <!--=====================================
@@ -174,17 +176,17 @@ if ($_SESSION["perfil"] == "Especial") {
         <div class="modal-body">
           <div class="box-body">
 
-            <h4 class="box-title" style="font-weight:bold; margin-bottom: 10px;">Datos de Matriz</h4>
+            <h4 class="box-title" style="font-weight:bold; margin-bottom: 10px;">Datos de matriz</h4>
             <div class="box box-info">
               <div class="box-body">
                 <div class="form-group row">
 
                   <!-- Razón Social -->
                   <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Razon Social</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Razón social</div>
                         <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input type="text" class="form-control" name="nuevaMatriz" id="nuevaMatriz" placeholder="Ingrese Razón Social" required>
+                      <input type="text" class="form-control" name="nuevaMatriz" id="nuevaMatriz" placeholder="Ingrese razón social" required>
                     </div>
                   </div>
 
@@ -201,14 +203,14 @@ if ($_SESSION["perfil"] == "Especial") {
 
                   <!-- Region -->
                   <div class="col-xs-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
                                                                             
-                                <option  value="">Seleccionar Region</option>
+                                <option  value="">Seleccionar región</option>
 
                                 <?php
                                 $regiones = ControladorRegiones::ctrMostrarRegiones(null, null); // Consultar todas las regiones
@@ -232,7 +234,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                 <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
               
                                 </select>
 
@@ -242,19 +244,19 @@ if ($_SESSION["perfil"] == "Especial") {
                    
                   <!-- País -->
                   <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Pais</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">País</div>
                         <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                      <input type="text" class="form-control" name="nuevoPais" id="nuevoPais" placeholder="Ingrese País" required value="Chile">
+                      <input type="text" class="form-control" name="nuevoPais" id="nuevoPais" placeholder="Ingrese país" required value="Chile">
                     </div>
                   </div>    
 
                   <!-- Dirección -->
                   <div class="col-lg-6 col-xs-6">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Direccion</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Dirección</div>
                           <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
-                      <input type="text" class="form-control" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese Dirección" required>
+                      <input type="text" class="form-control" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese dirección" required>
                     </div>
                   </div>
 
@@ -263,13 +265,13 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Ejecutivo</div>
                             <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input type="text" class="form-control" name="nuevoEjecutivo" id="nuevoEjecutivo" placeholder="Ingresar Ejecutivo" required>
+                      <input type="text" class="form-control" name="nuevoEjecutivo" id="nuevoEjecutivo" placeholder="Ingresar ejecutivo" required>
                     </div>
                   </div>
 
                   <!-- Teléfono -->
                   <div class="col-lg-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Numero de Telefono</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Número de teléfono</div>
                         <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -291,7 +293,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                   <!-- Correo Electrónico -->
                   <div class="col-lg-6 col-xs-6 ">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electronico</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -316,14 +318,14 @@ if ($_SESSION["perfil"] == "Especial") {
             </div>
  
             <!-- Actividad -->
-            <h4 class="box-title" style="font-weight:bold; margin-bottom: 10px;">Datos de Servicio</h4>
+            <h4 class="box-title" style="font-weight:bold; margin-bottom: 10px;">Datos de servicio</h4>
             <div class="box box-success">
               <div class="box-body">
                 <div class="form-group row">
 
                   <!-- Fecha Inicio Servicio -->
                   <div class="col-lg-5 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha Inicio Servicio</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha inicio servicio</div>
                             <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       <input type="date" class="form-control" name="nuevoInicio" id="nuevoInicio" required>
@@ -332,7 +334,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                   <!-- Fecha Vcto Servicio -->
                   <div class="col-lg-5 col-xs-offset-1">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha Vcto Servicio</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha vcto. servicio</div>
                             <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       <input type="date" class="form-control" name="nuevoVencimiento" id="nuevoVencimiento" required>
@@ -341,14 +343,14 @@ if ($_SESSION["perfil"] == "Especial") {
 
                   <!-- Tipo Cliente -->
                   <div class="col-lg-5">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Cliente</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo cliente</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
                               <select class="form-control input" id="nuevoTipoCliente" name="nuevoTipoCliente" required>
           
-                              <option value="">Tipo de Cliente</option>
+                              <option value="">Tipo de cliente</option>
                               <?php
 
                                 $item = null;
@@ -368,14 +370,14 @@ if ($_SESSION["perfil"] == "Especial") {
 
                   <!-- Tipo Producto -->
                   <div class="col-lg-5 col-xs-offset-1 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Producto</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo producto</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-briefcase "></i></span> 
 
                               <select class="form-control input" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
           
-                              <option value="">Tipo de Producto </option>
+                              <option value="">Tipo de producto</option>
                               <?php
 
                                 $item = null;
@@ -404,7 +406,7 @@ if ($_SESSION["perfil"] == "Especial") {
         ======================================-->
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-          <button type="submit" class="btn btn-primary">Guardar Matriz</button>
+          <button type="submit" class="btn btn-primary">Guardar matriz</button>
         </div>
 
       </form>
@@ -441,7 +443,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Matriz</h4>
+          <h4 class="modal-title">Editar matriz</h4>
 
         </div>
 
@@ -453,14 +455,14 @@ if ($_SESSION["perfil"] == "Especial") {
 
           <div class="box-body">
 
-            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Matriz</h4>
+            <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de matriz</h4>
               <div class="box box-info">
                 <div class="box-body">                
                   <div class="form-group row">
                     
                   <!-- RAZON SOCIAL -->
                       <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Razon Social</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Razón social</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -477,7 +479,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         
                           <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                          <input type="text" class="form-control input" name="editarRut" id="editarRut"  placeholder="Ingresar Rut" required onblur="formatearRut(this)">
+                          <input type="text" class="form-control input" name="editarRut" id="editarRut"  placeholder="Ingresar RUT" required onblur="formatearRut(this)">
 
                         </div>
                       </div>
@@ -485,14 +487,14 @@ if ($_SESSION["perfil"] == "Especial") {
                       
                       <!-- REGION -->
                       <div class="col-xs-6">
-                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Region</div>
+                        <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">Región</div>
                           <div class="input-group">
                       
                             <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
                             <select class="form-control input" id="editarRegion" name="editarRegion" required>
                                                                             
-                                <option  value="">Seleccionar Region</option>
+                                <option  value="">Seleccionar región</option>
 
                                 <?php
 
@@ -518,7 +520,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                 <select class="form-control input" id="editarComuna" name="editarComuna" required>
                                                                               
-                                    <option value="">Seleccionar Comuna</option>
+                                    <option value="">Seleccionar comuna</option>
               
                                 </select>
 
@@ -527,7 +529,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                       <!-- PAIS -->
                       <div class="col-lg-6 col-xs-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Pais</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">País</div>
                         <div class="input-group">
                         
                           <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -541,7 +543,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       <input type="hidden" id="comunaActual" value="<?php echo $cliente['comuna']; ?>">
                       
                       <div class="col-lg-6 col-xs-6">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Direccion</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Dirección</div>
                           <div class="input-group">
                           
                           <span class="input-group-addon"><i class="fa fa-bookmark"></i></span> 
@@ -565,7 +567,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                       <!-- TELEFONO -->
                       <div class="col-lg-6">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Numero de Telefono</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Número de teléfono</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
@@ -587,7 +589,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                       <!-- CORREO -->
                       <div class="col-lg-6 col-xs-6 ">
-                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo Electronico</div>
+                        <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Correo electrónico</div>
                           <div class="input-group">
                           
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -617,14 +619,14 @@ if ($_SESSION["perfil"] == "Especial") {
 
 
               <!-- DATOS DE SERVICIO -->
-              <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de Servicio</h4>
+              <h4 class="box-title" style="font-weight:bold;margin:auto;margin-bottom:4px;">Datos de servicio</h4>
                 <div class="box box-success">
                   <div class="box-body">
                     <div class="form-group row">
 
                     <!-- FECHA INICIO -->
                         <div class="col-lg-5 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha Inicio Servicio</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha inicio servicio</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
@@ -636,7 +638,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                         <!-- FECHA VENCIMIENTO -->
                         <div class="col-lg-5 col-xs-offset-1">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha Vcto Servicio</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Fecha vcto. servicio</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
@@ -648,14 +650,14 @@ if ($_SESSION["perfil"] == "Especial") {
 
                         <!-- TIPO CAMPAÑA -->
                         <div class="col-lg-5">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Cliente</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo cliente</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
                               <select class="form-control input" id="editarTipoCliente" name="editarTipoCliente" required>
           
-                              <option value="">Tipo de Cliente</option>
+                              <option value="">Tipo de cliente</option>
                               <?php
 
                                 $item = null;
@@ -675,14 +677,14 @@ if ($_SESSION["perfil"] == "Especial") {
 
                         <!-- TIPO PRODUCTO -->
                         <div class="col-lg-5 col-xs-offset-1 ">
-                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo Producto</div>
+                          <div class="d-inline-block text-center" style="font-size:16px;font-weight:bold;margin-top:10px">Tipo producto</div>
                             <div class="input-group">
                             
                               <span class="input-group-addon"><i class="fa fa-briefcase "></i></span> 
 
                               <select class="form-control input" id="editarTipoProducto" name="editarTipoProducto" required>
           
-                              <option value="">Tipo de Producto </option>
+                              <option value="">Tipo de producto </option>
                               <?php
 
                                 $item = null;
@@ -717,7 +719,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Editar Matriz</button>
+          <button type="submit" class="btn btn-primary">Editar matriz</button>
 
         </div>
 
@@ -744,72 +746,36 @@ if ($_SESSION["perfil"] == "Especial") {
 ?>
 
 <script>
-document.getElementById('nuevaRegion').addEventListener('change', function() {
-    var regionId = this.value; // Obtener el ID de la región seleccionada
+$(document).ready(function() {
+    $('#nuevaRegion').change(function() {
+        var selectedValue = $(this).val();
 
-    // Verifica que haya una región seleccionada
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true); // Ajusta la ruta aquí
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                console.log('Respuesta del servidor: ', xhr.responseText); // Verifica la respuesta
-
-                var comunas = JSON.parse(xhr.responseText); // Parsear la respuesta en JSON
-                var comunaSelect = document.getElementById('nuevaComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>'; // Limpiar las opciones previas
-
-                // Rellenar las opciones del select de comunas
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id; // Asumiendo que 'id' es el campo correcto
-                    option.textContent = comuna.nombre; // Asumiendo que 'nombre' es el campo correcto
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#nuevaComuna').html(response);
             }
-        };
-
-        // Enviar el ID de la región seleccionada al servidor
-        xhr.send('regionId=' + regionId);
-    } else {
-        // Si no hay región seleccionada, limpiar el select de comunas
-        document.getElementById('nuevaComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
 
-document.getElementById('editarRegion').addEventListener('change', function() {
-    var regionId = this.value;
-    var comunaActual = document.getElementById('comunaActual').value; // Obtener la comuna actual
+$(document).ready(function() {
+    $('#editarRegion').change(function() {
+        var selectedValue = $(this).val();
 
-    if (regionId !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'controladores/procesar_comunas.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var comunas = JSON.parse(xhr.responseText);
-                var comunaSelect = document.getElementById('editarComuna');
-                comunaSelect.innerHTML = '<option value="">Seleccionar Comuna</option>';
-
-                comunas.forEach(function(comuna) {
-                    var option = document.createElement('option');
-                    option.value = comuna.id;
-                    option.textContent = comuna.nombre;
-                    if (comuna.id == comunaActual) {
-                        option.selected = true; // Seleccionar la comuna actual
-                    }
-                    comunaSelect.appendChild(option);
-                });
+        $.ajax({
+            url: './vistas/modulos/obtenerRegiones.php',
+            data: { id: selectedValue },
+            type: 'POST',
+            success: function(response) {
+              console.log(response)
+                $('#editarComuna').html(response);
             }
-        };
-
-        xhr.send('regionId=' + regionId);
-    } else {
-        document.getElementById('editarComuna').innerHTML = '<option value="">Seleccionar Comuna</option>';
-    }
+        });
+    });
 });
   </script>
   

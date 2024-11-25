@@ -40,14 +40,14 @@ $(".tablas").on("click", ".btnEliminarUnidadNegocio", function(){
 	 var idNegocio = $(this).attr("idNegocio");
 
 	 swal({
-	 	title: '¿Está seguro de borrar la Unidad de Negocio?',
-	 	text: "¡Si no lo está puede cancelar la acción!",
+	 	title: '¿Está seguro de borrar esta unidad de negocio?',
+	 	text: "Si no lo está, puede cancelar la accíón.",
 	 	type: 'warning',
 	 	showCancelButton: true,
 	 	confirmButtonColor: '#3085d6',
 	 	cancelButtonColor: '#d33',
 	 	cancelButtonText: 'Cancelar',
-	 	confirmButtonText: 'Si, borrar Unidad de Negocio!'
+	 	confirmButtonText: 'Sí, borrar unidad de negocio'
 	 }).then(function(result){
 
 	 	if(result.value){

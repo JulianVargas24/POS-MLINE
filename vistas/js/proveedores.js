@@ -1,9 +1,10 @@
+/*=============================================
+EDITAR PROVEEDOR
+=============================================*/
 $(".tablas").on("click", ".btnEditarProveedor", function () {
   var idProveedor = $(this).attr("idProveedor");
-
   var datos = new FormData();
   datos.append("idProveedor", idProveedor);
-
   $.ajax({
     url: "ajax/proveedores.ajax.php",
     method: "POST",
@@ -13,21 +14,28 @@ $(".tablas").on("click", ".btnEditarProveedor", function () {
     processData: false,
     dataType: "json",
     success: function (respuesta) {
-      console.log("respuesta", respuesta);
-      $("#idProveedor").val(respuesta["id"]);
-      $("#editarProveedor").val(respuesta["razon_social"]);
-      $("#editarRutId").val(respuesta["rut"]);
-      $("#editarCiudad").val(respuesta["ciudad"]);
-      $("#editarNroCuenta").val(respuesta["nro_cuenta"]);
-      $("#editarBanco").val(respuesta["banco"]);
-      $("#editarTelefono").val(respuesta["telefono"]);
-      $("#editarEmail").val(respuesta["email"]);
-      $("#editarActividad").val(respuesta["actividad"]);
-      $("#editarEjecutivo").val(respuesta["ejecutivo"]);
-      $("#editarComuna").val(respuesta["comuna"]);
-      $("#editarRegion").val(respuesta["region"]);
-      $("#editarDireccion").val(respuesta["direccion"]);
-      $("#editarPlazo").val(respuesta["id_plazo"]);
+      $.ajax({
+        url: "./vistas/modulos/obtenerRegiones.php",
+        data: { id: respuesta["region"] },
+        type: "POST",
+        success: function (response) {
+          $("#editarComuna").html(response);
+          $("#idProveedor").val(respuesta["id"]);
+          $("#editarProveedor").val(respuesta["razon_social"]);
+          $("#editarRutId").val(respuesta["rut"]);
+          $("#editarCiudad").val(respuesta["ciudad"]);
+          $("#editarNroCuenta").val(respuesta["nro_cuenta"]);
+          $("#editarBanco").val(respuesta["banco"]);
+          $("#editarTelefono").val(respuesta["telefono"]);
+          $("#editarEmail").val(respuesta["email"]);
+          $("#editarActividad").val(respuesta["actividad"]);
+          $("#editarEjecutivo").val(respuesta["ejecutivo"]);
+          $("#editarComuna").val(respuesta["comuna"]);
+          $("#editarRegion").val(respuesta["region"]);
+          $("#editarDireccion").val(respuesta["direccion"]);
+          $("#editarPlazo").val(respuesta["id_plazo"]);
+        },
+      });
     },
   });
 });
@@ -39,14 +47,14 @@ $(".tablas").on("click", ".btnEliminarProveedor", function () {
   var idProveedor = $(this).attr("idProveedor");
 
   swal({
-    title: "¿Está seguro de borrar Este Proveedor?",
-    text: "¡Si no lo está puede cancelar la acción!",
+    title: "¿Está seguro de borrar este proveedor?",
+    text: "Si no lo está, puede cancelar la acción",
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     cancelButtonText: "Cancelar",
-    confirmButtonText: "Si, borrar Proveedor!",
+    confirmButtonText: "Sí, borrar proveedor",
   }).then(function (result) {
     if (result.value) {
       window.location = "index.php?ruta=proveedores&idProveedor=" + idProveedor;

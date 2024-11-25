@@ -9,8 +9,9 @@ if($_SESSION["perfil"] == "Vendedor"){
     <section class="content-header">
         <h1>Administrar listas de precios</h1>
         <ol class="breadcrumb">
-          <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-          <li class="active">Administrar listas</li>
+          <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+          <li>Maestro</li>
+          <li class="active">Listas de precios</li>
         </ol>
     </section>
 
@@ -88,14 +89,14 @@ MODAL AGREGAR LISTA DE PRECIOS
                     <div class="box-body">
                         <!-- ENTRADA PARA EL NOMBRE -->
                         <div class="form-group">
-                            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Lista</div>
+                            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Lista</div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                 <input type="text" class="form-control input" name="nuevaLista" id="nuevaLista" placeholder="Ingresar lista" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descuento</div>
+                            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descuento</div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                 <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor"  placeholder="Ingresar descuento" required max="100">
@@ -142,7 +143,7 @@ MODAL EDITAR LISTA
                     <div class="box-body">
                         <!-- ENTRADA PARA EL NOMBRE -->
                         <div class="form-group">
-                            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Lista</div>
+                            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Lista</div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                     <input type="text" class="form-control input" id="editarLista" name="editarLista"  required>
@@ -151,7 +152,7 @@ MODAL EDITAR LISTA
                         </div>
 
                         <div class="form-group">
-                            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold">Descuento</div>
+                            <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descuento</div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                 <input type="number" class="form-control input" id="editarFactor" name="editarFactor"  required max="100">

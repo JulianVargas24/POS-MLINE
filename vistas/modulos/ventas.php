@@ -31,15 +31,15 @@ if($xml){
     
     <h1>
       
-      Administrar Ventas
+      Administrar ventas
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Ventas</li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Ventas</li>
+      <li class="active">Administrar ventas</li>
     
     </ol>
 
@@ -56,7 +56,7 @@ if($xml){
 
           <button class="btn btn-primary">
             
-            Crear Venta con Boleta Afecta
+            Crear venta con boleta afecta
 
           </button>
 
@@ -65,7 +65,7 @@ if($xml){
 
           <button class="btn btn-danger">
             
-            Crear Venta con Boleta Exenta
+            Crear venta con boleta exenta
 
           </button>
 
@@ -74,7 +74,7 @@ if($xml){
 
           <button class="btn btn-success">
             
-           Crear Venta con Factura Afecta
+           Crear venta con factura afecta
 
           </button>
 
@@ -83,7 +83,7 @@ if($xml){
 
           <button class="btn btn-warning">
             
-           Crear Venta con Factura Exenta
+           Crear venta con factura exenta
 
           </button>
 
@@ -92,14 +92,49 @@ if($xml){
 
       </div>
 
-      <div class="box-tools pull-right" style="margin-bottom:5px">
-          <a href="vistas/modulos/descargar-reporte-ventas.php?reporte=reporte">
-            <button class="btn btn-success" style="margin-top:5px;margin-right:2px;">Reporte: Ventas General</button>
-          </a>
-          
+      <div class="box-header with-border">
+          <?php
+          if($_SESSION["perfil"]=="Administrador")
+          ?> 
           
 
+        <div class="input-group">
+
+          <button type="button" class="btn btn-default" id="daterange-ventas">
+          
+            <span>
+              <i class="fa fa-calendar"></i> 
+
+              <?php
+
+                if(isset($_GET["fechaInicial"])){
+
+                  echo $_GET["fechaInicial"]." - ".$_GET["fechaFinal"];
+                
+                }else{
+                
+                  echo 'Rango de fecha';
+
+                }
+
+              ?>
+            </span>
+
+            <i class="fa fa-caret-down"></i>
+
+          </button>
+
+        </div>
+
+      <div class="box-tools pull-right" style="margin-bottom:5px">
+          <a href="vistas/modulos/descargar-reporte-ventas.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+            <button class="btn btn-success" style="margin-top:5px;margin-right:2px;">Reporte: Ventas General</button>
+          </a>
       </div>
+
+      </div>
+
+
 
       <div class="box-body">
         
@@ -113,12 +148,12 @@ if($xml){
            <th>Tipo DTE</th>
            <th>Emisión</th>
            <th>Vendedor</th>
-           <th>Unidad de Negocio</th>
+           <th>Unidad de negocio</th>
            <th>Bodega</th>
-           <th>Plazo de Pago</th>
-           <th>Medio de Pago</th>
+           <th>Plazo de pago</th>
+           <th>Medio de pago</th>
            <th>Cliente</th>
-           <th>Observacion</th>
+           <th>Observación</th>
            <th>Total</th>
            <th>Pagado</th>
            <th>Pendiente</th>
@@ -309,9 +344,9 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
 
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
+                    <td>$ '.$value["pendiente"].'</td>
 
                     <td>
 
@@ -395,8 +430,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -482,8 +517,8 @@ if($xml){
                     <td style="width:20px;">'.$value["observacion"].'</td>
 
                     <td>$ '.$value["total_final"].'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pendiente"], 0, '.', ',').'</td>
+                    <td>$ '.$value["pagado"].'</td>
+                    <td>$ '.$value["pendiente"].'</td>
 
                     <td>
 
@@ -568,8 +603,8 @@ if($xml){
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
                     
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ '.$value["pendiente"].'</td>
 
                     <td>
@@ -655,8 +690,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ 0</td>
 
                     <td>
@@ -736,8 +771,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ 0</td>
 
                     <td>
@@ -817,8 +852,8 @@ if($xml){
 
                     <td style="width:20px;">'.$value["observacion"].'</td>
       
-                    <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                    <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                    <td>$ '.$value["total_final"].'</td>
+                    <td>$ '.$value["pagado"].'</td>
                     <td>$ '.$value["iva"].'</td>
 
                     <td>
@@ -898,8 +933,8 @@ if($xml){
 
                   <td style="width:20px;">'.$value["observacion"].'</td>
     
-                  <td>$ '.number_format($value["total_final"], 0, '.', ',').'</td>
-                  <td>$ '.number_format($value["pagado"], 0, '.', ',').'</td>
+                  <td>$ '.$value["total_final"].'</td>
+                  <td>$ '.$value["pagado"].'</td>
                   <td>$ '.$value["iva"].'</td>
 
                   <td>
@@ -943,51 +978,3 @@ if($xml){
   </section>
 
 </div>
-
-<script>
-$(document).ready(function() {
-  $(".tablas").on("click", ".btnImprimirNotaCreditoBoletaExenta", function(){
-
-  var codigoVenta= $(this).attr("codigoVenta");
-  var tipoDocumento = "Nota_Credito_Boleta_Exenta";
-
-  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
-
-})
-});
-
-$(document).ready(function() {
-  $(".tablas").on("click", ".btnImprimirNotaCreditoBoletaAfecta", function(){
-
-  var codigoVenta= $(this).attr("codigoVenta");
-  var tipoDocumento = "Nota_Credito_Boleta_Afecta";
-
-  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
-
-})
-});
-
-$(document).ready(function() {
-  $(".tablas").on("click", ".btnImprimirNotaCreditoFacturaAfecta", function(){
-
-  var codigoVenta= $(this).attr("codigoVenta");
-  var tipoDocumento = "Nota_Credito_Factura_Afecta";
-
-  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
-
-})
-});
-
-$(document).ready(function() {
-  $(".tablas").on("click", ".btnImprimirNotaCreditoFacturaExenta", function(){
-
-  var codigoVenta= $(this).attr("codigoVenta");
-  var tipoDocumento = "Nota_Credito_Factura_Exenta";
-
-  window.open("extensiones/tcpdf/pdf/documento.php?codigo="+codigoVenta + "&documento="+tipoDocumento , "_blank"); 
-
-})
-});
-</script>
-
-

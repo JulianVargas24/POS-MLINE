@@ -7,14 +7,16 @@ class ModeloVentaBoleta
 
 
 
-        static public function mdlIngresarVentaBoleta($tabla, $datos) {
+        static public function mdlIngresarVentaBoleta($tabla, $datos)
+        {
 
                 $con = Conexion::conectar();
-                $stmt = $con->prepare("INSERT INTO $tabla(codigo, id_cliente, fecha_emision, id_vendedor, id_unidad_negocio, id_bodega, subtotal, descuento, total_neto, iva, total_final,  id_medio_pago, id_plazo_pago, observacion, productos, pagado, pendiente) 
-                        VALUES (:codigo, :id_cliente, :fecha_emision, :id_vendedor, :id_unidad_negocio, :id_bodega, :subtotal, :descuento, :total_neto, :iva, :total_final, :id_medio_pago, :id_plazo_pago, :observacion, :productos, :pagado, :pendiente)");
+                $stmt = $con->prepare("INSERT INTO $tabla(codigo, id_cliente, fecha_emision, fecha_vencimiento, id_vendedor, id_unidad_negocio, id_bodega, subtotal, descuento, total_neto, iva, total_final,  id_medio_pago, id_plazo_pago, observacion, productos, pagado, pendiente) 
+                        VALUES (:codigo, :id_cliente, :fecha_emision, :fecha_vencimiento, :id_vendedor, :id_unidad_negocio, :id_bodega, :subtotal, :descuento, :total_neto, :iva, :total_final, :id_medio_pago, :id_plazo_pago, :observacion, :productos, :pagado, :pendiente)");
 
                 $stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
                 $stmt->bindParam(":fecha_emision", $datos["fecha_emision"], PDO::PARAM_STR);
+                $stmt->bindParam(":fecha_vencimiento", $datos["fecha_vencimiento"], PDO::PARAM_STR);
                 $stmt->bindParam(":id_unidad_negocio", $datos["id_unidad_negocio"], PDO::PARAM_INT);
                 $stmt->bindParam(":id_bodega", $datos["id_bodega"], PDO::PARAM_INT);
                 $stmt->bindParam(":subtotal", $datos["subtotal"], PDO::PARAM_STR);
@@ -47,7 +49,7 @@ class ModeloVentaBoleta
                                                 "id_bodega" => $datos["id_bodega"],
 
                                         ];
-                                        
+
 
                                         ModeloSalidasInventario::mdlSalidaPorVenta($datos);
                                         return print_r($datos);
@@ -60,14 +62,16 @@ class ModeloVentaBoleta
                 }
         }
 
-        static public function mdlIngresarVentaBoletaExenta($tabla, $datos) {
+        static public function mdlIngresarVentaBoletaExenta($tabla, $datos)
+        {
 
                 $con = Conexion::conectar();
-                $stmt = $con->prepare("INSERT INTO $tabla(codigo, id_cliente, fecha_emision, id_vendedor, id_unidad_negocio, id_bodega, total_final, subtotal, descuento, id_medio_pago, id_plazo_pago, observacion, productos, pagado, pendiente) 
-                        VALUES (:codigo, :id_cliente, :fecha_emision, :id_vendedor, :id_unidad_negocio, :id_bodega, :total_final, :subtotal, :descuento, :id_medio_pago,  :id_plazo_pago, :observacion, :productos, :pagado, :pendiente)");
+                $stmt = $con->prepare("INSERT INTO $tabla(codigo, id_cliente, fecha_emision, fecha_vencimiento, id_vendedor, id_unidad_negocio, id_bodega, total_final, subtotal, descuento, id_medio_pago, id_plazo_pago, observacion, productos, pagado, pendiente) 
+                        VALUES (:codigo, :id_cliente, :fecha_emision, :fecha_vencimiento, :id_vendedor, :id_unidad_negocio, :id_bodega, :total_final, :subtotal, :descuento, :id_medio_pago,  :id_plazo_pago, :observacion, :productos, :pagado, :pendiente)");
 
                 $stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
                 $stmt->bindParam(":fecha_emision", $datos["fecha_emision"], PDO::PARAM_STR);
+                $stmt->bindParam(":fecha_vencimiento", $datos["fecha_vencimiento"], PDO::PARAM_STR);
                 $stmt->bindParam(":id_unidad_negocio", $datos["id_unidad_negocio"], PDO::PARAM_INT);
                 $stmt->bindParam(":id_bodega", $datos["id_bodega"], PDO::PARAM_INT);
                 $stmt->bindParam(":total_final", $datos["total_final"], PDO::PARAM_STR);
@@ -98,7 +102,7 @@ class ModeloVentaBoleta
                                                 "id_bodega" => $datos["id_bodega"],
 
                                         ];
-                                        
+
 
                                         ModeloSalidasInventario::mdlSalidaPorVenta($datos);
                                         return print_r($datos);
@@ -111,25 +115,23 @@ class ModeloVentaBoleta
                 }
         }
 
-        static public function mdlBorrarVentaBoleta($tabla, $datos){
+        static public function mdlBorrarVentaBoleta($tabla, $datos)
+        {
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+                $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
-		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
+                $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
 
-		if($stmt -> execute()){
+                if ($stmt->execute()) {
 
-			return "ok";
-		
-		}else{
+                        return "ok";
+                } else {
 
-			return "error";	
+                        return "error";
+                }
 
-		}
+                $stmt->close();
 
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
+                $stmt = null;
+        }
 }

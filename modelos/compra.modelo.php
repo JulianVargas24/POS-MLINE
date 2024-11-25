@@ -126,4 +126,26 @@ class ModeloCompra
         $stmt->close();
         $stmt = null;
     }
+
+    static public function mdlActualizarEstadoOrdenCompra($datos)
+    {
+
+        $estado = 'Cerrada';
+
+        $stmt = Conexion::conectar()->prepare("UPDATE orden_compra SET estado = :estado WHERE codigo = :id;");
+
+
+        $stmt->bindParam(":estado", $estado, PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos["ordenCompra"], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+
+            return "true";
+        } else {
+
+            return "false";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
 }
