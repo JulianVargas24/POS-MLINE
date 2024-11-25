@@ -359,11 +359,49 @@ $(document).ready(function () {
     /**
      * Validar los campos de Seleccionar Insumos y Embalaje
      */
-    // Validar que se hayan seleccionado insumos
+    // Variables para validar si hay insumos y embalaje
+    let contieneInsumos = false;
+    let contieneEmbalaje = false;
+
+    // Validar que no esté vacío el array de insumos
     if (insumosSeleccionados.length === 0) {
       swal({
         type: "error",
         title: "Error",
+        text: "La lista de insumos y embalaje está vacía",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+
+    // Recorrer la columna Tipo para validar si hay insumos y embalaje
+    $(".insumosSeleccionados tbody tr").each(function () {
+      const tipoMaterial = $(this).find("td:eq(1)").text().trim();
+
+      if (tipoMaterial === "Embalaje") {
+        contieneEmbalaje = true;
+      } else {
+        contieneInsumos = true;
+      }
+    });
+
+    // Validar si hay embalaje
+    if (!contieneEmbalaje) {
+      swal({
+        type: "warning",
+        title: "Atención",
+        text: "No ha agregado ningún embalaje a la orden",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar",
+      });
+      return false;
+    }
+    // Validar si hay insumos
+    if (!contieneInsumos) {
+      swal({
+        type: "warning",
+        title: "Atención",
         text: "No ha agregado ningún insumo a la orden",
         showConfirmButton: true,
         confirmButtonText: "Cerrar",
