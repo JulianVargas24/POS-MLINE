@@ -541,7 +541,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="row">
 
                       <!-- Producto en Producción -->
-                      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                           <label>Producto en Producción</label>
                           <div class="input-group">
