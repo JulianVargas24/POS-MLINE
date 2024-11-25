@@ -8,27 +8,21 @@ if ($_SESSION["perfil"] == "Especial") {
 <div class="content-wrapper">
 
     <section class="content-header">
-
         <h1>
             Administrar órdenes de compra
         </h1>
-
         <ol class="breadcrumb">
-
             <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
             <li>Adquisiciones</li>
             <li class="active">Administrar órdenes de compra</li>
-
         </ol>
-
     </section>
 
     <section class="content">
-
         <div class="box">
 
+            <!-- Botón para agregar orden de compra -->
             <div class="box-header with-border">
-
                 <a href="orden-compra">
                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalAgregarCompra">
                         Agregar orden de compra
@@ -36,42 +30,42 @@ if ($_SESSION["perfil"] == "Especial") {
                 </a>
             </div>
 
-            <div class="box-body">
-                <div class="box-header with-border">
+            <!-- Filtro de fechas y botón descargar -->
+            <div class="box-header with-border">
+                <?php
+                if ($_SESSION["perfil"] == "Administrador")
+                ?>
 
-                    <?php
-                    if ($_SESSION["perfil"] == "Administrador")
-                    ?>
-
-                    <!-- Botón para filtrar por rango de fechas -->
-                    <div class="input-group">
-                        <button type="button" class="btn btn-default" id="daterange-orden-compra">
-                            <span>
-                                <i class="fa fa-calendar"></i>
-                                <?php
-                            if (isset($_GET["fechaInicial"])) {
-                                echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
-                            } else {
-                                echo 'Rango de fecha';
-                            }
-                                ?>
-                            </span>
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                    </div>
-
-                    <!-- Botón para descargar el reporte -->
-                    <div class="box-tools pull-right">
-                        <a href="vistas/modulos/descargar-reporte-orden-compra.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
-                            <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
-                        </a>
-                    </div>
-
+                <!-- Botón para filtrar por rango de fechas -->
+                <div class="input-group">
+                    <button type="button" class="btn btn-default" id="daterange-orden-compra">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                            <?php
+                        if (isset($_GET["fechaInicial"])) {
+                            echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
+                        } else {
+                            echo 'Rango de fecha';
+                        }
+                            ?>
+                        </span>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
                 </div>
+
+                <!-- Botón para descargar el reporte -->
+                <div class="box-tools pull-right">
+                    <a href="vistas/modulos/descargar-reporte-orden-compra.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Tabla de ordenes de compra -->
+            <div class="box-body">
                 <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-
                     <thead>
-
                         <tr>
                             <th>Folio</th>
                             <th>Tipo de documento</th>
@@ -87,13 +81,10 @@ if ($_SESSION["perfil"] == "Especial") {
                             <th>Total</th>
                             <th>Acciones</th>
                         </tr>
-
                     </thead>
-
                     <tbody>
 
                         <?php
-
                         $item = null;
                         $valor = null;
 
@@ -180,32 +171,22 @@ if ($_SESSION["perfil"] == "Especial") {
                                     echo ' <button class="btn btn-danger btnEliminarOrdenCompra" idOrdenCompra="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
                                 }
                                 echo '</div>
-
                   </td>
-
                   </tr>';
                             }
                         }
-
                         ?>
-
                     </tbody>
-
                 </table>
 
                 <?php
-
                 $eliminarOrdenCompra = new ControladorOrdenCompra();
                 $eliminarOrdenCompra->ctrEliminarOrdenCompra();
-
                 ?>
 
             </div>
-
         </div>
-
     </section>
-
 </div>
 
 <!--=====================================

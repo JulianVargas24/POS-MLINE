@@ -20,6 +20,8 @@ if ($_SESSION["perfil"] == "Especial") {
 
     <section class="content">
         <div class="box">
+
+            <!-- Botón para agregar compra -->
             <div class="box-header with-border">
                 <a href="compra">
                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalAgregarCompra">
@@ -28,41 +30,39 @@ if ($_SESSION["perfil"] == "Especial") {
                 </a>
             </div>
 
-            <div class="box-body">
+            <!-- Filtro de fechas y botón descargar -->
+            <div class="box-header with-border">
+                <?php
+                if ($_SESSION["perfil"] == "Administrador")
+                ?>
 
-                <!-- Filtro de fechas y botón descargar -->
-                <div class="box-header with-border">
-
-                    <?php
-                    if ($_SESSION["perfil"] == "Administrador")
-                    ?>
-
-                    <!-- Botón para filtrar por rango de fechas -->
-                    <div class="input-group">
-                        <button type="button" class="btn btn-default" id="daterange-compras">
-                            <span>
-                                <i class="fa fa-calendar"></i>
-                                <?php
-                            if (isset($_GET["fechaInicial"])) {
-                                echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
-                            } else {
-                                echo 'Rango de fecha';
-                            }
-                                ?>
-                            </span>
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                    </div>
-
-                    <!-- Botón para descargar el reporte -->
-                    <div class="box-tools pull-right">
-                        <a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
-                            <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
-                        </a>
-                    </div>
-
+                <!-- Botón para filtrar por rango de fechas -->
+                <div class="input-group">
+                    <button type="button" class="btn btn-default" id="daterange-compras">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                            <?php
+                        if (isset($_GET["fechaInicial"])) {
+                            echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
+                        } else {
+                            echo 'Rango de fecha';
+                        }
+                            ?>
+                        </span>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
                 </div>
 
+                <!-- Botón para descargar el reporte -->
+                <div class="box-tools pull-right">
+                    <a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tabla de compras -->
+            <div class="box-body">
                 <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
                     <thead>
                         <tr>
