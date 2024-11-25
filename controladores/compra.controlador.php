@@ -2,12 +2,11 @@
 
 class ControladorCompra
 {
-    /*=============================================
-    CREAR ORDEN DE COMPRA
-    =============================================*/
+    /**
+     * Método para crear una compra
+     */
     static public function ctrCrearCompra()
     {
-
         if (isset($_POST["nuevoCodigo"])) {
 
             $tabla = "compras";
@@ -61,6 +60,9 @@ class ControladorCompra
         }
     }
 
+    /**
+     * Método para crear una compra con una orden de compra
+     */
     static public function ctrCrearCompraConOrden()
     {
         if (isset($_POST["nuevoCodigo"])) {
@@ -118,6 +120,9 @@ class ControladorCompra
         }
     }
 
+    /**
+     * Método para editar una compra
+     */
     static public function ctrEditarCompra()
     {
         if (isset($_POST["nuevoCodigo"])) {
@@ -162,6 +167,9 @@ class ControladorCompra
         }
     }
 
+    /**
+     * Método para mostrar las compras
+     */
     static public function ctrMostrarCompras($item, $valor)
     {
         $tabla = "compras";
@@ -174,6 +182,9 @@ class ControladorCompra
         return $respuesta;
     }
 
+    /**
+     * Método para eliminar una compra
+     */
     static public function ctrEliminarCompra()
     {
         if (isset($_GET["idCompra"])) {
@@ -200,40 +211,25 @@ class ControladorCompra
         }
     }
 
-    /*
-    public function mostrarCompras()
-    {
-        $item = null;
-        $valor = null;
-
-        if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
-            $fechaInicial = $_GET["fechaInicial"];
-            $fechaFinal = $_GET["fechaFinal"];
-            $item = "fecha_emision";
-            $valor = array($fechaInicial, $fechaFinal);
-        }
-
-        $compras = ModeloCompra::mdlMostrarCompras($item, $valor);
-        return $compras;
-    }
-    */
-
-    public function ctrDescargarReporteCompra()
+    /**
+     * Método para descargar el reporte de compras
+     */
+    static public function ctrDescargarReporteCompra()
     {
         if (isset($_GET["reporte"])) {
+
             $tabla = "compras";
-            if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
+
+            // Verificar que ambas fechas están presentes y no están vacías
+            if (!empty($_GET["fechaInicial"]) && !empty($_GET["fechaFinal"])) {
                 $fechaInicial = $_GET["fechaInicial"];
                 $fechaFinal = $_GET["fechaFinal"];
                 $orden = ModeloCompra::mdlMostrarCompras($tabla, null, null, $fechaInicial, $fechaFinal);
-
-                $Name = $_GET["reporte"] . '_compras (' . $fechaInicial . ' al ' . $fechaFinal . ').xls';
+                $Name = ucfirst($_GET["reporte"]) . ' de compras (' . $fechaInicial . ' al ' . $fechaFinal . ').xls';
             } else {
-                $item = null;
-                $valor = null;
-                $orden = ModeloCompra::mdlMostrarCompras($tabla, $item, $valor);
-
-                $Name = $_GET["reporte"] . '_compras.xls';
+                // Si no hay fechas se descarga el reporte completo
+                $orden = ModeloCompra::mdlMostrarCompras($tabla, null, null);
+                $Name = ucfirst($_GET["reporte"]) . ' de compras.xls';
             }
 
             /*=============================================

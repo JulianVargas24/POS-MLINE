@@ -1,59 +1,45 @@
 <?php
-
 if ($_SESSION["perfil"] == "Especial") {
-    echo '<script>
-    window.location = "inicio";
-  </script>';
+    echo '<script>window.location = "inicio";</script>';
     return;
 }
-
 ?>
 
 <div class="content-wrapper">
-
     <section class="content-header">
-
         <h1>
-
             Administrar compras
-
         </h1>
 
         <ol class="breadcrumb">
-
             <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
             <li>Adquisiciones</li>
             <li class="active">Administrar compras</li>
-
         </ol>
-
     </section>
 
     <section class="content">
-
         <div class="box">
-
             <div class="box-header with-border">
-
-
                 <a href="compra">
                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalAgregarCompra">
-
                         Agregar compra
-
                     </button>
                 </a>
             </div>
 
             <div class="box-body">
+
+                <!-- Filtro de fechas y botón descargar -->
                 <div class="box-header with-border">
+
                     <?php
                     if ($_SESSION["perfil"] == "Administrador")
                     ?>
+
+                    <!-- Botón para filtrar por rango de fechas -->
                     <div class="input-group">
-
                         <button type="button" class="btn btn-default" id="daterange-compras">
-
                             <span>
                                 <i class="fa fa-calendar"></i>
                                 <?php
@@ -63,30 +49,22 @@ if ($_SESSION["perfil"] == "Especial") {
                                 echo 'Rango de fecha';
                             }
                                 ?>
-                            </span><i class="fa fa-caret-down"></i></button>
+                            </span>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
                     </div>
 
+                    <!-- Botón para descargar el reporte -->
                     <div class="box-tools pull-right">
-
-                        <?php
-                        if (isset($_GET["fechaInicial"])) {
-                            echo '<a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte&fechaInicial=' . $_GET["fechaInicial"] . '&fechaFinal=' . $_GET["fechaFinal"] . '">';
-                        } else {
-                            echo '<a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte">';
-                        }
-                        ?>
-
-                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
-
+                        <a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
+                            <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
                         </a>
-
                     </div>
 
                 </div>
+
                 <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-
                     <thead>
-
                         <tr>
                             <th>Folio</th>
                             <th>Proveedor</th>
@@ -98,14 +76,10 @@ if ($_SESSION["perfil"] == "Especial") {
                             <th>Total</th>
                             <th>Acciones</th>
                         </tr>
-
                     </thead>
 
                     <tbody>
-
-
                         <?php
-
                         $item = null;
                         $valor = null;
 
@@ -117,7 +91,6 @@ if ($_SESSION["perfil"] == "Especial") {
                         $medios = ControladorMediosPago::ctrMostrarMedios($item, $valor);
 
                         foreach ($compras as $key => $value) {
-
                             for ($i = 0; $i < count($centros); ++$i) {
                                 if ($centros[$i]["id"] == $value["id_centro"]) {
                                     $centro = $centros[$i]["centro"];
@@ -182,31 +155,22 @@ if ($_SESSION["perfil"] == "Especial") {
                             </td>
                             </tr>';
                         }
-
                         ?>
 
                     </tbody>
-
                 </table>
 
                 <?php
-
                 $eliminarCompra = new ControladorCompra();
                 $eliminarCompra->ctrEliminarCompra();
-
                 ?>
 
             </div>
 
         </div>
-
     </section>
-
 </div>
 
-<!--=====================================
-MODAL AGREGAR BODEGA
-======================================-->
 <style>
     .error {
         color: red;
