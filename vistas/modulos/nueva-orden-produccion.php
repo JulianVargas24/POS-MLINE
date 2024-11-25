@@ -564,22 +564,6 @@ if ($_SESSION["perfil"] == "Especial") {
                         </div>
                       </div>
 
-                      <!-- Precio de compra -->
-                      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                          <label>Precio de compra</label>
-                          <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                            <input type="text" class="form-control"
-                              id="detallePrecioCompra"
-                              name="detallePrecioCompra"
-                              placeholder="$0"
-                              value=""
-                              readonly>
-                          </div>
-                        </div>
-                      </div>
-
                       <!-- Unidad de producción -->
                       <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">

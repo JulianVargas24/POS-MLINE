@@ -2,8 +2,6 @@ $(document).ready(function () {
   /*==================================================
    * Variables Globales
    *==================================================*/
-  // Variable para almacenar el precio de compra del producto
-  let precioCompraBase = 0;
   // Array para almacenar los insumos seleccionados
   let insumosSeleccionados = [];
 
@@ -34,7 +32,6 @@ $(document).ready(function () {
     // Limpiar campos de producto
     $("#idProductoProduccion").val("");
     $("#detalleProductoProduccion").val("").removeAttr("idProducto");
-    $("#detallePrecioCompra").val("");
     $("#detalleUnidad").val("");
     $("#detalleCantidadProducir").val("");
     $("#detalleCodigoLote").val("");
@@ -43,8 +40,6 @@ $(document).ready(function () {
 
     // Ocultar la tabla de insumos
     $("#boxInsumos").hide();
-
-    precioCompraBase = 0;
   }
 
   // Función para limpiar la tabla de insumos seleccionados
@@ -573,7 +568,6 @@ $(document).ready(function () {
     let idProducto = $(this).attr("idProducto");
     let nombreProducto = $(this).attr("nombreProducto");
     let idMedida = $(this).attr("idMedida");
-    precioCompraBase = parseFloat($(this).attr("precioCompra"));
 
     // Cerrar el modal automáticamente al agregar un producto
     $("#modalSeleccionarProducto").modal("hide");
@@ -586,14 +580,6 @@ $(document).ready(function () {
 
     // Seleccionar la unidad de medida del producto
     $("#detalleUnidad").val(idMedida);
-
-    // Mostrar el precio de compra formateado
-    $("#detallePrecioCompra").val(
-      new Intl.NumberFormat("es-CL", {
-        style: "currency",
-        currency: "CLP",
-      }).format(precioCompraBase)
-    );
 
     // Mostrar la tabla de insumos
     $("#boxInsumos").show();
