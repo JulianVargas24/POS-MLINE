@@ -124,7 +124,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="btn-group">
                             <button class="btn btn-warning btnEditarEntrada" idEntrada="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarEntrada"><i class="fa fa-pencil"></i></button>
                                 
-                            <button class="btn btn-danger btnEliminarEntrada" idEntrada="' . $value["id"] . '"><i class="fa fa-archive"></i></button>
+                            <button class="btn btn-danger btnEliminarEntrada" idEntrada="' . $value["id"] . '"><i class="fa fa-times"></i></button>
                         </div>
                     </td> <!-- Valores de Acciones para la tabla -->
                     

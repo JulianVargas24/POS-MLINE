@@ -238,7 +238,6 @@ class ControladorEntradasInventario
     {
         if (isset($_POST["editarEntrada"])) {
 
-
             $tabla = "entradas";
             $datos = array(
 
@@ -251,17 +250,24 @@ class ControladorEntradasInventario
                 "valor_tipo_entrada" => $_POST["editarValorTipoEntrada"]
 
             );
-            var_dump($datos);
-
-// o
-
 
             $respuesta = ModeloEntradasInventario::mdlEditarEntrada($tabla, $datos);
 
-
-
-
-            #A esta altura iba la llave que cerraba el If de las validaciones.
+            if ($respuesta == "ok") {
+                echo '<script>
+                    swal({
+                        type: "success",
+                        title: "La entrada ha sido editado correctamente",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = "entrada";
+                        }
+                    })
+                    </script>';
+            }
+            #A esta altura iría la llave que cerraba el If de las validaciones.
         }
     }
 
