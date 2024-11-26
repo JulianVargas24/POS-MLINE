@@ -149,7 +149,7 @@ class ControladorNuevoOrdenProduccion
   {
     $tabla = "nueva_orden_produccion";
 
-    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+    $respuesta = ModeloNuevoOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
 
 		return $respuesta;
   }
@@ -160,7 +160,7 @@ class ControladorNuevoOrdenProduccion
   static public function ctrMostrarOrdenesProduccionMateriales($item, $valor)
   {
     $tabla = "orden_produccion_materiales";
-    return ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+    return ModeloNuevoOrdenProduccion::mdlMostrarOrdenesProduccionMateriales($tabla, $item, $valor);
   }
 
   static public function ctrEliminarNuevaOrdenProduccion()
