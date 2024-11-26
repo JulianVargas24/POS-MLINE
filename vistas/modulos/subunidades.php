@@ -77,7 +77,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                         <tbody>
 
                         <?php
-                        /*
+
                         $item = null;
                         $valor = null;
 
@@ -116,7 +116,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                   </tr>';
                         }
-                        */
+
                         ?>
                         </tbody>
 
