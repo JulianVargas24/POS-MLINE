@@ -14,9 +14,9 @@ class AjaxSubunidades{
 	public function ajaxEditarSubunidad(){
 
 		$item = "id";
-		$valor = $this->id_subunidada;
+		$valor = $this->id_subunidad;
 
-		$respuesta = ControladorSubcategorias::ctrMostrarSubunidades($item, $valor);
+		$respuesta = ControladorSubunidades::ctrMostrarSubunidades($item, $valor);
 
 		echo json_encode($respuesta);
 

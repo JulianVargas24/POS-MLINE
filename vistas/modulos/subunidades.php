@@ -80,7 +80,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                         foreach ($subunidades as $key => $value) {
                             for ($i = 0; $i < count($unidades); ++$i) {
                                 if ($unidades[$i]["id"] == $value["id_unidad"]) {
-                                    $unidad = $unidades[$i]["unidad"];
+                                    $unidad = $unidades[$i]["medida"];
                                 }
                             }
 
@@ -188,7 +188,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                                             foreach ($unidades as $key => $value) {
 
-                                                echo '<option value="' . $value["id"] . '">' . $value["unidad"] . '</option>';
+                                                echo '<option value="' . $value["id"] . '">' . $value["medida"] . '</option>';
                                             }
 
                                             ?>
@@ -290,8 +290,8 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                    <input type="text" class="form-control input" name="editarSubunidad"
-                                           id="editarSubunidad" required>
+                                    <input type="text" class="form-control input" name="editarSubunidades"
+                                           id="editarSubunidades" required>
 
                                     <input type="hidden" name="id_subunidad" id="id_subunidad" required>
 
