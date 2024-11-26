@@ -40,9 +40,8 @@ if ($_SESSION["perfil"] == "Especial") {
             <div class="box-header with-border">
 
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCentro">
-
+                    <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
                     Agregar centro de costos
-
                 </button>
 
             </div>

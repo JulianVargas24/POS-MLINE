@@ -40,14 +40,16 @@ if ($_SESSION["perfil"] == "Especial") {
       <div class="box-header with-border">
 
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCliente">
-
+          <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
           Agregar cliente
-
         </button>
 
-        <div class="box-tools pull-right" style="margin-bottom:5px">
+        <div class="box-tools pull-right" style="margin-top: 5px;">
           <a href="vistas/modulos/descargar-reporte-clientes.php?reporte=reporte">
-            <button class="btn btn-success">Descargar Reporte Clientes en Excel</button>
+            <button class="btn btn-success">
+              <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
+              Reporte en Excel
+            </button>
           </a>
         </div>
 

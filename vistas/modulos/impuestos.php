@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Vendedor"){
+if ($_SESSION["perfil"] == "Vendedor") {
 
   echo '<script>
 
@@ -9,7 +9,6 @@ if($_SESSION["perfil"] == "Vendedor"){
   </script>';
 
   return;
-
 }
 
 ?>
@@ -17,19 +16,19 @@ if($_SESSION["perfil"] == "Vendedor"){
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
-    Administrar impuestos
-    
+
+      Administrar impuestos
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
       <li>Maestro</li>
       <li class="active">Impuestos</li>
-    
+
     </ol>
 
   </section>
@@ -39,12 +38,11 @@ if($_SESSION["perfil"] == "Vendedor"){
     <div class="box">
 
       <div class="box-header with-border">
-  
-  
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarImpuesto">
-            
-            Agregar impuesto
 
+
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarImpuesto">
+          <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
+          Agregar impuesto
         </button>
 
 
@@ -52,71 +50,70 @@ if($_SESSION["perfil"] == "Vendedor"){
 
       <div class="box-body">
 
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Código</th>
-           <th>Impuesto</th>
-           <th>Porcentaje</th>
-           <th>Descripción</th>
-           <th>Acciones</th>
+        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-         </tr> 
+          <thead>
 
-        </thead>
+            <tr>
 
-        <tbody>
+              <th style="width:10px">#</th>
+              <th>Código</th>
+              <th>Impuesto</th>
+              <th>Porcentaje</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
 
-        <?php
+            </tr>
 
-          $item = null;
-          $valor = null;
+          </thead>
 
-          $impuestos = ControladorImpuestos::ctrMostrarImpuestos($item, $valor);
+          <tbody>
 
-          foreach ($impuestos as $key => $value) {
-            
-           
-            echo ' <tr>
+            <?php
 
-                    <td>'.($key+1).'</td>
-                    <td>'.$value["codigo"].'</td>
-                    <td>'.$value["nombre"].'</td>
-                    <td>'.$value["factor"].'%</td>
-                    <td>'.$value["descripcion"].'</td>
+            $item = null;
+            $valor = null;
+
+            $impuestos = ControladorImpuestos::ctrMostrarImpuestos($item, $valor);
+
+            foreach ($impuestos as $key => $value) {
+
+
+              echo ' <tr>
+
+                    <td>' . ($key + 1) . '</td>
+                    <td>' . $value["codigo"] . '</td>
+                    <td>' . $value["nombre"] . '</td>
+                    <td>' . $value["factor"] . '%</td>
+                    <td>' . $value["descripcion"] . '</td>
                     <td>
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarImpuesto" idImpuesto="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarImpuesto"><i class="fa fa-pencil"></i></button>';
-                        if($_SESSION["perfil"] == "Administrador"){
+                        <button class="btn btn-warning btnEditarImpuesto" idImpuesto="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarImpuesto"><i class="fa fa-pencil"></i></button>';
+              if ($_SESSION["perfil"] == "Administrador") {
 
-                            echo '<button class="btn btn-danger btnEliminarImpuesto" idImpuesto="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-  
-                          }
-  
-                        
-                      echo '</div>  
+                echo '<button class="btn btn-danger btnEliminarImpuesto" idImpuesto="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+              }
+
+
+              echo '</div>  
 
                     </td>
 
                   </tr>';
-          }
+            }
 
-        ?>
-        </tbody>
+            ?>
+          </tbody>
 
-</table>
+        </table>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-</section>
+  </section>
 
 </div>
 
@@ -127,13 +124,13 @@ MODAL AGREGAR CATEGORÍA
 ======================================-->
 
 <div id="modalAgregarImpuesto" class="modal fade" role="dialog">
-  
-<style>
-    .error{
-        color: red;
-        
+
+  <style>
+    .error {
+      color: red;
+
     }
-</style>
+  </style>
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -163,54 +160,54 @@ MODAL AGREGAR CATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Código</div>
-                <div class="input-group">
-                
-                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Código</div>
+              <div class="input-group">
 
-                    <input type="number" class="form-control input" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código"  required>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                </div>
+                <input type="number" class="form-control input" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código" required>
+
+              </div>
             </div>
-            
-            <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto</div>
-                    <div class="input-group">
-                    
-                      <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                      <input type="text" class="form-control input" name="nuevoImpuesto" id="nuevoImpuesto" placeholder="Ingresar impuesto" required>
-
-                    </div>
-            </div>
-            
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Porcentaje</div>
-                <div class="input-group">
-                
-                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto</div>
+              <div class="input-group">
 
-                    <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar porcentaje"  required max="100">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                </div>
-            </div>
+                <input type="text" class="form-control input" name="nuevoImpuesto" id="nuevoImpuesto" placeholder="Ingresar impuesto" required>
 
-            <div class="form-group">              
-                    <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
-                    <div class="input-group">
-                    
-                      <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                      <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" placeholder="Ingresar descripción" required>
-
-                    </div>
+              </div>
             </div>
 
 
-  
-                      
-          
+            <div class="form-group">
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Porcentaje</div>
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar porcentaje" required max="100">
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" placeholder="Ingresar descripción" required>
+
+              </div>
+            </div>
+
+
+
+
+
           </div>
 
         </div>
@@ -229,8 +226,8 @@ MODAL AGREGAR CATEGORÍA
 
         <?php
 
-          $crearImpuesto = new ControladorImpuestos();
-          $crearImpuesto -> ctrCrearImpuesto();
+        $crearImpuesto = new ControladorImpuestos();
+        $crearImpuesto->ctrCrearImpuesto();
 
         ?>
 
@@ -247,7 +244,7 @@ MODAL EDITAR SUBCATEGORÍA
 ======================================-->
 
 <div id="modalEditarImpuesto" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -277,53 +274,53 @@ MODAL EDITAR SUBCATEGORÍA
             <!-- ENTRADA PARA EL NOMBRE -->
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Código</div>
-                <div class="input-group">
-                
-                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Código</div>
+              <div class="input-group">
 
-                    <input type="number" class="form-control input" id="editarCodigo" name="editarCodigo"  required>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto</div>
-                    <div class="input-group">
-                    
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+                <input type="number" class="form-control input" id="editarCodigo" name="editarCodigo" required>
 
-                        <input type="text" class="form-control input" id="editarImpuesto" name="editarImpuesto"  required>
-
-                        <input type="hidden" id="idImpuesto"  name="idImpuesto"  required>
-
-                    </div>
-            </div>
-
-            
-            <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Factor</div>
-                <div class="input-group">
-                
-                    <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                    <input type="number" class="form-control input" id="editarFactor" name="editarFactor"  required max="100">
-
-                </div>
+              </div>
             </div>
 
             <div class="form-group">
-                <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
-                <div class="input-group">
-                    
-                  <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Impuesto</div>
+              <div class="input-group">
 
-                  <input type="text" class="form-control input" id="editarDescripcion" name="editarDescripcion"  required>
-                       
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                </div>
+                <input type="text" class="form-control input" id="editarImpuesto" name="editarImpuesto" required>
+
+                <input type="hidden" id="idImpuesto" name="idImpuesto" required>
+
+              </div>
             </div>
-  
+
+
+            <div class="form-group">
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Factor</div>
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <input type="number" class="form-control input" id="editarFactor" name="editarFactor" required max="100">
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <input type="text" class="form-control input" id="editarDescripcion" name="editarDescripcion" required>
+
+
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -340,12 +337,12 @@ MODAL EDITAR SUBCATEGORÍA
 
         </div>
 
-      <?php
+        <?php
 
-          $editarImpuesto = new ControladorImpuestos();
-          $editarImpuesto -> ctrEditarImpuesto();
+        $editarImpuesto = new ControladorImpuestos();
+        $editarImpuesto->ctrEditarImpuesto();
 
-        ?> 
+        ?>
 
       </form>
 
@@ -357,7 +354,7 @@ MODAL EDITAR SUBCATEGORÍA
 
 <?php
 
-  $borrarImpuesto = new ControladorImpuestos();
-  $borrarImpuesto -> ctrBorrarImpuesto();
+$borrarImpuesto = new ControladorImpuestos();
+$borrarImpuesto->ctrBorrarImpuesto();
 
 ?>
