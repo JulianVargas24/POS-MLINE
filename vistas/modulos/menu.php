@@ -102,7 +102,7 @@
                             </ul>
                         </li>';
                     echo '<li class="treeview ' . isActive($paginaActual, ['categorias', 'subcategorias'
-                            , 'bodegas', 'plazos', 'listas', 'unidades', 'medios-pago', 'impuestos', 'rubros']) . '">
+                            , 'bodegas', 'plazos', 'listas', 'unidades', 'subunidades', 'medios-pago', 'impuestos', 'rubros']) . '">
                             <a href="#">
                                 <i class="fa fa-archive"></i>
                                 <span>Maestro</span>
@@ -145,6 +145,12 @@
                                     <a href="unidades">
                                         <i class="' . marcarCirculo($paginaActual, 'unidades') . '"></i>
                                         <span>Unidades</span>
+                                    </a>
+                                </li>
+                                <li class="' . isActive($paginaActual, 'subunidades') . '">
+                                    <a href="subunidades">
+                                        <i class="' . marcarCirculo($paginaActual, 'subunidades') . '"></i>
+                                        <span>Subnidades</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'medios-pago') . '">
