@@ -186,28 +186,28 @@ class ModeloNuevoOrdenProduccion
 
   static public function mdlMostrarOrdenesProduccion($tabla, $item, $valor, $fechaInicial = null, $fechaFinal = null)
   {
-      if ($fechaInicial && $fechaFinal) {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_orden_emision BETWEEN :fechaInicial AND :fechaFinal");
+    if ($fechaInicial && $fechaFinal) {
+      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_orden_emision BETWEEN :fechaInicial AND :fechaFinal");
 
-        $stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
-        $stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
+      $stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
+      $stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
     } elseif ($item != null) {
-        // Filtra por el campo específico
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
-        $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+      // Filtra por el campo específico
+      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+      $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
     } else {
-        // Devuelve todas las órdenes de compra
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+      // Devuelve todas las órdenes de compra
+      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
     }
 
     $stmt->execute();
 
     if ($fechaInicial && $fechaFinal) {
-        return $stmt->fetchAll();
+      return $stmt->fetchAll();
     } elseif ($item != null) {
-        return $stmt->fetch();
+      return $stmt->fetch();
     } else {
-        return $stmt->fetchAll();
+      return $stmt->fetchAll();
     }
 
     $stmt->close();
@@ -239,7 +239,7 @@ class ModeloNuevoOrdenProduccion
 
   static public function mdlEliminarOrdenProduccionMateriales($tabla, $folioOrden)
   {
-    $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
+    $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_orden_produccion = :folio");
     $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
@@ -267,8 +267,4 @@ class ModeloNuevoOrdenProduccion
 
     $stmt = null; // Cerrar la conexión
   }
-
-
-
-
 }

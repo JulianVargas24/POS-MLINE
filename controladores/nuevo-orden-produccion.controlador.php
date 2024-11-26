@@ -151,7 +151,7 @@ class ControladorNuevoOrdenProduccion
 
     $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
 
-		return $respuesta;
+    return $respuesta;
   }
 
   /**
@@ -215,7 +215,4 @@ class ControladorNuevoOrdenProduccion
       }
     }
   }
-
-
-
 }
