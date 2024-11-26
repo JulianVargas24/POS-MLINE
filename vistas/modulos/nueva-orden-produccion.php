@@ -198,7 +198,8 @@ if ($_SESSION["perfil"] == "Especial") {
         ORDEN DE PRODUCCIÓN
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
+        <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+        <li>Orden de trabajo</li>
         <li class="active">Crear Orden de Producción</li>
       </ol>
     </section>
@@ -646,24 +647,25 @@ if ($_SESSION["perfil"] == "Especial") {
 
                         <!-- Generar código de barras -->
                         <div class="form-group">
-                          <button type="button" class="btn btn-success" style="margin-bottom: 10px;"
+                          <div style="margin-bottom: 10px;">
+                            <button type="button" class="btn btn-success" style="margin-right: 5px;"
                             onclick="generarbarcodeOP();">Generar código de barras
-                          </button>
+                            </button>
+                            <button type="button" id="btnImprimir" class="btn btn-info" style="display: none; margin-right: 5px;"
+                            onclick="imprimir();">
+                              <i class="fa fa-print"></i> Imprimir
+                            </button>
+                            <button type="button" id="btnOcultar" class="btn btn-default" style="display: none;"
+                            onclick="ocultarCodigoBarras();">
+                              <i class="fa fa-eye-slash"></i> Ocultar
+                            </button>
+                          </div>                         
                           <div id="cuadroCodigoBarras" class="text-center" style="display:none; border: 1px solid #ddd;">
                             <div id="print">
                               <svg id="barcode" class="barcode"></svg>
                             </div>
-                          </div>
-                          <button type="button" id="btnImprimir" class="btn btn-info" style="display: none; margin-top: 10px; margin-right: 5px;"
-                            onclick="imprimir();">
-                            <i class="fa fa-print"></i> Imprimir
-                          </button>
-                          <button type="button" id="btnOcultar" class="btn btn-default" style="display: none; margin-top: 10px;"
-                            onclick="ocultarCodigoBarras();">
-                            <i class="fa fa-eye-slash"></i> Ocultar
-                          </button>
+                          </div>                       
                         </div>
-
                       </div>
 
                       <!-- Observaciones -->
