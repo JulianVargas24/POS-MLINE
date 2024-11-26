@@ -347,13 +347,7 @@ if ($xml) {
             </tbody>
           </table>
 
-          <?php
-          $eliminarOrden = new ControladorNuevoOrdenProduccion();
-          $eliminarOrden->ctrEliminarNuevaOrdenProduccion();
-          ?>
-
         </div>
-      </div>
     </section>
   </div>
 
@@ -634,3 +628,8 @@ EDITAR ORDEN DE VESTUARIO
 
   })
 </script>
+
+<?php
+    $eliminarOrden = new ControladorNuevoOrdenProduccion();
+    $eliminarOrden->ctrEliminarNuevaOrdenProduccion();
+?>

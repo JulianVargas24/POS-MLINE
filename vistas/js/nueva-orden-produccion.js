@@ -40,6 +40,8 @@ $(document).ready(function () {
 
     // Ocultar la tabla de insumos
     $("#boxInsumos").hide();
+    // Ocultar el cuadro de código de barras
+    ocultarCodigoBarras();
   }
 
   // Función para limpiar la tabla de insumos seleccionados

@@ -647,24 +647,22 @@ if ($_SESSION["perfil"] == "Especial") {
 
                         <!-- Generar código de barras -->
                         <div class="form-group">
-                          <div style="margin-bottom: 10px;">
-                            <button type="button" class="btn btn-success" style="margin-right: 5px;"
+                          <button type="button" class="btn btn-success" style="margin-right: 5px; margin-bottom: 10px;"
                             onclick="generarbarcodeOP();">Generar código de barras
-                            </button>
-                            <button type="button" id="btnImprimir" class="btn btn-info" style="display: none; margin-right: 5px;"
+                          </button>
+                          <button type="button" id="btnImprimir" class="btn btn-info" style="display: none; margin-right: 5px; margin-bottom: 10px;"
                             onclick="imprimir();">
-                              <i class="fa fa-print"></i> Imprimir
-                            </button>
-                            <button type="button" id="btnOcultar" class="btn btn-default" style="display: none;"
+                            <i class="fa fa-print" style="margin-right: 2px;"></i> Imprimir
+                          </button>
+                          <button type="button" id="btnOcultar" class="btn btn-default" style="display: none; margin-bottom: 10px;"
                             onclick="ocultarCodigoBarras();">
-                              <i class="fa fa-eye-slash"></i> Ocultar
-                            </button>
-                          </div>                         
+                            <i class="fa fa-eye-slash" style="margin-right: 2px;"></i> Ocultar
+                          </button>
                           <div id="cuadroCodigoBarras" class="text-center" style="display:none; border: 1px solid #ddd;">
                             <div id="print">
                               <svg id="barcode" class="barcode"></svg>
                             </div>
-                          </div>                       
+                          </div>
                         </div>
                       </div>
 
@@ -907,7 +905,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   <th style="width:8%">Imagen</th>
                   <th style="width:20%">Código</th>
                   <th style="width:32%">Nombre</th>
-                  <th style="width:10%">Tabla Lista</th>
+                  <th style="width:10%">Tipo</th>
                   <th style="width:15%">Precio de compra</th>
                   <th style="width:10%">Acción</th>
                 </tr>
@@ -939,7 +937,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   <th style="width:8%">Imagen</th>
                   <th style="width:20%">Código</th>
                   <th style="width:32%">Nombre</th>
-                  <th style="width:10%">Tabla Lista</th>
+                  <th style="width:10%">Tipo</th>
                   <th style="width:15%">Precio de compra</th>
                   <th style="width:10%">Acción</th>
                 </tr>

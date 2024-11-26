@@ -214,7 +214,7 @@ class ModeloNuevoOrdenProduccion
     $stmt = null;
   }
 
-  static public function mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor)
+  static public function mdlMostrarOrdenesProduccionMateriales($tabla, $item, $valor)
   {
     try {
       if ($item != null) {
