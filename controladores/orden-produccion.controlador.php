@@ -119,7 +119,7 @@ class ControladorOrdenProduccion
             "costo_embalaje_total" => $_POST["costoEmbalajeTotal"],
             "costo_total_con_embalaje" => $_POST["costoTotalConEmbalaje"],
             "id" => $_POST["idOrdenProduccion"] // El ID de la orden a editar
-        );
+        ); 
 
         // Llamar al modelo para editar la orden de producción
         $respuesta = ModeloOrdenProduccion::mdlEditarOrdenProduccion($tabla, $datos);

@@ -214,7 +214,7 @@ class ModeloNuevoOrdenProduccion
     $stmt = null;
   }
 
-  static public function mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor)
+  static public function mdlMostrarOrdenesProduccionMateriales($tabla, $item, $valor)
   {
     try {
       if ($item != null) {
@@ -237,7 +237,7 @@ class ModeloNuevoOrdenProduccion
     }
   }
 
-  static public function mdlEliminarOrdenProduccionMateriales($tabla, $folioOrden)
+  static public function mdlEliminarNuevaOrdenProduccionMateriales($tabla, $folioOrden)
   {
     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE folio_orden_produccion = :folio");
     $stmt->bindParam(":folio", $folioOrden, PDO::PARAM_INT);
