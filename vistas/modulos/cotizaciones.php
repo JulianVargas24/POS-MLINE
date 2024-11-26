@@ -46,27 +46,18 @@ if ($xml) {
         <div class="box">
 
             <div class="box-header with-border">
-
                 <a href="cotizacion">
-
-                    <button class="btn btn-danger">
-
-                        Crear cotización afecta
-
+                    <button class="btn btn-primary" style="margin-right: 5px;">
+                        <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i> Crear cotización: Afecta
                     </button>
-
                 </a>
                 <a href="cotizacion-exenta">
-
                     <button class="btn btn-warning">
-
-                        Crear cotización exenta
-
+                        <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i> Crear cotización: Exenta
                     </button>
-
                 </a>
-
             </div>
+
             <div class="box-header with-border">
                 <?php
                 if ($_SESSION["perfil"] == "Administrador")
@@ -97,15 +88,20 @@ if ($xml) {
 
                 </div>
 
-                <div class="box-tools pull-right">
+                <div class="box-tools pull-right" style="margin-top: 5px;">
                     <a href="vistas/modulos/descargar-reporte-cotizacion.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
-                        <button class="btn btn-success" style="margin-top:5px">Descargar Reporte Afectas en Excel</button>
+                        <button class="btn btn-success" style="margin-right: 5px;">
+                            <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
+                            Reporte en Excel: Afectas
+                        </button>
                     </a>
 
                     <a href="vistas/modulos/descargar-reporte-cotizacion-exenta.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
-                        <button class="btn btn-success" style="margin-top:5px">Descargar Reporte Exentas en Excel</button>
+                        <button class="btn btn-success">
+                            <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
+                            Reporte en Excel: Exentas
+                        </button>
                     </a>
-
                 </div>
 
             </div>
