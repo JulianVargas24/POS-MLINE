@@ -9,54 +9,52 @@ if ($_SESSION["perfil"] == "Vendedor") {
   </script>';
 
     return;
-
 }
 
 ?>
 
-    <div class="content-wrapper">
+<div class="content-wrapper">
 
-        <section class="content-header">
+    <section class="content-header">
 
-            <h1>
+        <h1>
 
-                Administrar tabla para listas
+            Administrar tabla para listas
 
-            </h1>
+        </h1>
 
-            <ol class="breadcrumb">
+        <ol class="breadcrumb">
 
-                <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
 
-                <li>Parámetros</li>
+            <li>Parámetros</li>
 
-                <li class="active">Tabla para listas</li>
+            <li class="active">Tabla para listas</li>
 
-            </ol>
+        </ol>
 
-        </section>
+    </section>
 
-        <section class="content">
+    <section class="content">
 
-            <div class="box">
+        <div class="box">
 
-                <div class="box-header with-border">
-
-
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarTablaLista">
-
-                        Agregar tabla para listas
-
-                    </button>
+            <div class="box-header with-border">
 
 
-                </div>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarTablaLista">
+                    <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
+                    Agregar tabla para listas
+                </button>
 
-                <div class="box-body">
 
-                    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+            </div>
 
-                        <thead>
+            <div class="box-body">
+
+                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+
+                    <thead>
 
                         <tr>
 
@@ -66,9 +64,9 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                         </tr>
 
-                        </thead>
+                    </thead>
 
-                        <tbody>
+                    <tbody>
 
                         <?php
 
@@ -92,7 +90,6 @@ if ($_SESSION["perfil"] == "Vendedor") {
                             if ($_SESSION["perfil"] == "Administrador") {
 
                                 echo '<button class="btn btn-danger btnEliminarTablaLista" idTablaLista="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-
                             }
 
 
@@ -104,188 +101,188 @@ if ($_SESSION["perfil"] == "Vendedor") {
                         }
 
                         ?>
-                        </tbody>
+                    </tbody>
 
-                    </table>
-
-                </div>
+                </table>
 
             </div>
 
-        </section>
+        </div>
 
-    </div>
+    </section>
+
+</div>
 
 
-    <!--=====================================
+<!--=====================================
     MODAL AGREGAR RUBRO
     ======================================-->
 
-    <div id="modalAgregarTablaLista" class="modal fade" role="dialog">
+<div id="modalAgregarTablaLista" class="modal fade" role="dialog">
 
-        <style>
-            .error {
-                color: red;
+    <style>
+        .error {
+            color: red;
 
-            }
-        </style>
-        <div class="modal-dialog">
+        }
+    </style>
+    <div class="modal-dialog">
 
-            <div class="modal-content">
+        <div class="modal-content">
 
-                <form role="form" method="post" id="form_nueva_tabla_lista">
+            <form role="form" method="post" id="form_nueva_tabla_lista">
 
-                    <!--=====================================
+                <!--=====================================
                     CABEZA DEL MODAL
                     ======================================-->
 
-                    <div class="modal-header" style="background:#3f668d; color:white">
+                <div class="modal-header" style="background:#3f668d; color:white">
 
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                        <h4 class="modal-title">Agregar tabla para listas</h4>
+                    <h4 class="modal-title">Agregar tabla para listas</h4>
 
-                    </div>
+                </div>
 
-                    <!--=====================================
+                <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
 
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                        <div class="box-body">
+                    <div class="box-body">
 
-                            <!-- ENTRADA PARA EL NOMBRE -->
+                        <!-- ENTRADA PARA EL NOMBRE -->
 
-                            <div class="form-group">
-                                <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
-                                    Tabla para listas
-                                </div>
-                                <div class="input-group">
-
-                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-                                    <input type="text" class="form-control input" name="nuevaTablaLista"
-                                           id="nuevaTablaLista" placeholder="Ingresar Tabla para Listas" required>
-
-                                </div>
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                Tabla para listas
                             </div>
+                            <div class="input-group">
 
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
+                                <input type="text" class="form-control input" name="nuevaTablaLista"
+                                    id="nuevaTablaLista" placeholder="Ingresar Tabla para Listas" required>
+
+                            </div>
                         </div>
+
 
                     </div>
 
-                    <!--=====================================
+                </div>
+
+                <!--=====================================
                     PIE DEL MODAL
                     ======================================-->
 
-                    <div class="modal-footer">
+                <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                        <button type="submit" class="btn btn-primary" name="crear_rubro">Agregar tabla para listas
-                        </button>
+                    <button type="submit" class="btn btn-primary" name="crear_rubro">Agregar tabla para listas
+                    </button>
 
-                    </div>
+                </div>
 
-                    <?php
+                <?php
 
-                    $crearTabla = new ControladorTablaListas();
-                    $crearTabla->ctrCrearTablaLista();
+                $crearTabla = new ControladorTablaListas();
+                $crearTabla->ctrCrearTablaLista();
 
-                    ?>
+                ?>
 
-                </form>
-
-            </div>
+            </form>
 
         </div>
 
     </div>
 
-    <!--=====================================
+</div>
+
+<!--=====================================
     MODAL EDITAR SUBCATEGORÍA
     ======================================-->
 
-    <div id="modalEditarTablaLista" class="modal fade" role="dialog">
+<div id="modalEditarTablaLista" class="modal fade" role="dialog">
 
-        <div class="modal-dialog">
+    <div class="modal-dialog">
 
-            <div class="modal-content">
+        <div class="modal-content">
 
-                <form role="form" method="post" id="form_editar_impuesto">
+            <form role="form" method="post" id="form_editar_impuesto">
 
-                    <!--=====================================
+                <!--=====================================
                     CABEZA DEL MODAL
                     ======================================-->
 
-                    <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header" style="background:#3c8dbc; color:white">
 
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                        <h4 class="modal-title">Editar tabla para listas</h4>
+                    <h4 class="modal-title">Editar tabla para listas</h4>
 
-                    </div>
+                </div>
 
-                    <!--=====================================
+                <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
 
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                        <div class="box-body">
+                    <div class="box-body">
 
-                            <!-- ENTRADA PARA EL NOMBRE -->
+                        <!-- ENTRADA PARA EL NOMBRE -->
 
-                            <div class="form-group">
-                                <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
-                                    Nombre
-                                </div>
-                                <div class="input-group">
-
-                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-                                    <input type="text" class="form-control input" id="editarTablaLista"
-                                           name="editarTablaLista" required>
-
-                                    <input type="hidden" id="idTablaLista" name="idTablaLista" required>
-
-                                </div>
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                Nombre
                             </div>
+                            <div class="input-group">
 
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <input type="text" class="form-control input" id="editarTablaLista"
+                                    name="editarTablaLista" required>
+
+                                <input type="hidden" id="idTablaLista" name="idTablaLista" required>
+
+                            </div>
                         </div>
 
                     </div>
 
-                    <!--=====================================
+                </div>
+
+                <!--=====================================
                     PIE DEL MODAL
                     ======================================-->
 
-                    <div class="modal-footer">
+                <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
-                    </div>
+                </div>
 
-                    <?php
+                <?php
 
-                    $editarTablaLista = new ControladorTablaListas();
-                    $editarTablaLista->ctrEditarTablaLista();
+                $editarTablaLista = new ControladorTablaListas();
+                $editarTablaLista->ctrEditarTablaLista();
 
-                    ?>
+                ?>
 
-                </form>
-
-            </div>
+            </form>
 
         </div>
 
     </div>
+
+</div>
 
 <?php
 

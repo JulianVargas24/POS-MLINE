@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Especial"){
+if ($_SESSION["perfil"] == "Especial") {
 
   echo '<script>
 
@@ -9,7 +9,6 @@ if($_SESSION["perfil"] == "Especial"){
   </script>';
 
   return;
-
 }
 
 ?>
@@ -17,19 +16,19 @@ if($_SESSION["perfil"] == "Especial"){
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
+
       Administrar unidades de negocios
-    
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
       <li>Comercial</li>
       <li class="active">Unidades de negocios</li>
-    
+
     </ol>
 
   </section>
@@ -39,79 +38,76 @@ if($_SESSION["perfil"] == "Especial"){
     <div class="box">
 
       <div class="box-header with-border">
-  
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUnidadNegocio">
-          
-          Agregar unidad de negocio
 
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUnidadNegocio">
+          <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
+          Agregar unidad de negocio
         </button>
 
       </div>
 
       <div class="box-body">
-        
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Unidad de negocio</th>
-           <th>Código</th>
+
+        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+
+          <thead>
+
+            <tr>
+
+              <th style="width:10px">#</th>
+              <th>Unidad de negocio</th>
+              <th>Código</th>
 
 
-         </tr> 
+            </tr>
 
-        </thead>
+          </thead>
 
-        <tbody>
+          <tbody>
 
-        <?php
+            <?php
 
-          $item = null;
-          $valor = null;
+            $item = null;
+            $valor = null;
 
-          $negocios = ControladorNegocios::ctrMostrarNegocios($item, $valor);
+            $negocios = ControladorNegocios::ctrMostrarNegocios($item, $valor);
 
-          foreach ($negocios as $key => $value) {
-            
+            foreach ($negocios as $key => $value) {
 
-            echo '<tr>
 
-                    <td>'.($key+1).'</td>
+              echo '<tr>
 
-                    <td>'.$value["unidad_negocio"].'</td>
+                    <td>' . ($key + 1) . '</td>
 
-                    <td>'.$value["codigo"].'</td>
+                    <td>' . $value["unidad_negocio"] . '</td>
+
+                    <td>' . $value["codigo"] . '</td>
 
 
                     <td>
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarUnidadNegocio" data-toggle="modal" data-target="#modalEditarUnidadNegocio" idNegocio="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
+                        <button class="btn btn-warning btnEditarUnidadNegocio" data-toggle="modal" data-target="#modalEditarUnidadNegocio" idNegocio="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
 
-                      if($_SESSION["perfil"] == "Administrador"){
+              if ($_SESSION["perfil"] == "Administrador") {
 
-                          echo '<button class="btn btn-danger btnEliminarUnidadNegocio" idNegocio="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                echo '<button class="btn btn-danger btnEliminarUnidadNegocio" idNegocio="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+              }
 
-                      }
-
-                      echo '</div>  
+              echo '</div>  
 
                     </td>
 
                   </tr>';
-          
             }
 
-           
-        ?>
-   
-        </tbody>
 
-       </table>
+            ?>
+
+          </tbody>
+
+        </table>
 
       </div>
 
@@ -125,94 +121,94 @@ if($_SESSION["perfil"] == "Especial"){
 MODAL AGREGAR UNIDAD DE NEGOCIO
 ======================================-->
 <div id="modalAgregarUnidadNegocio" class="modal fade" role="dialog">
-  
+
   <style>
-      .error{
-          color: red;
-          
-      }
+    .error {
+      color: red;
+
+    }
   </style>
-    <div class="modal-dialog">
+  <div class="modal-dialog">
 
-      <div class="modal-content">
+    <div class="modal-content">
 
-        <form role="form" method="post" id="form_nuevo_negocio">
+      <form role="form" method="post" id="form_nuevo_negocio">
 
-          <!--=====================================
+        <!--=====================================
           CABEZA DEL MODAL
           ======================================-->
 
-          <div class="modal-header" style="background:#3f668d; color:white">
+        <div class="modal-header" style="background:#3f668d; color:white">
 
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-            <h4 class="modal-title">Agregar unidad de negocio</h4>
+          <h4 class="modal-title">Agregar unidad de negocio</h4>
 
-          </div>
+        </div>
 
-          <!--=====================================
+        <!--=====================================
           CUERPO DEL MODAL
           ======================================-->
 
-          <div class="modal-body">
+        <div class="modal-body">
 
-            <div class="box-body">
+          <div class="box-body">
 
-              <!-- ENTRADA PARA EL NOMBRE -->
-              
-              <div class="form-group">
-                  
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Unidad de negocio</div>
-                      <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+            <!-- ENTRADA PARA EL NOMBRE -->
 
-                        <input type="text" class="form-control input" name="nuevoNegocio" id="nuevoNegocio" placeholder="Ingresar Unidad de Negocio" required>
+            <div class="form-group">
 
-                      </div>
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Unidad de negocio</div>
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <input type="text" class="form-control input" name="nuevoNegocio" id="nuevoNegocio" placeholder="Ingresar Unidad de Negocio" required>
+
               </div>
-
-              <div class="form-group">
-                  
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de unidad</div>
-                      <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                        <input type="number" class="form-control input" name="nuevoCodigoUnidad" id="nuevoCodigoUnidad" placeholder="Ingresar Código" required>
-
-                      </div>
-              </div>
-                        
-            
             </div>
+
+            <div class="form-group">
+
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de unidad</div>
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <input type="number" class="form-control input" name="nuevoCodigoUnidad" id="nuevoCodigoUnidad" placeholder="Ingresar Código" required>
+
+              </div>
+            </div>
+
 
           </div>
 
-          <!--=====================================
+        </div>
+
+        <!--=====================================
           PIE DEL MODAL
           ======================================-->
 
-          <div class="modal-footer">
+        <div class="modal-footer">
 
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-            <button type="submit" class="btn btn-primary" name="crear_negocio">Agregar unidad</button>
+          <button type="submit" class="btn btn-primary" name="crear_negocio">Agregar unidad</button>
 
-          </div>
+        </div>
 
-          <?php
+        <?php
 
-            $crearNegocio = new ControladorNegocios();
-            $crearNegocio -> ctrCrearNegocio();
+        $crearNegocio = new ControladorNegocios();
+        $crearNegocio->ctrCrearNegocio();
 
-          ?>
+        ?>
 
-        </form>
-
-      </div>
+      </form>
 
     </div>
+
+  </div>
 
 </div>
 
@@ -221,7 +217,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 ======================================-->
 
 <div id="modalEditarUnidadNegocio" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -251,29 +247,29 @@ MODAL EDITAR UNIDAD DE NEGOCIO
             <!-- ENTRADA PARA EL NOMBRE -->
 
             <div class="form-group">
-                  
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Unidad de negocio</div>
-                      <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                        <input type="text" class="form-control input" id="editarNegocio" name="editarNegocio"  required>
-                        <input type="hidden" id="idNegocio"  name="idNegocio"  required>
-                      </div>
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Unidad de negocio</div>
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <input type="text" class="form-control input" id="editarNegocio" name="editarNegocio" required>
+                <input type="hidden" id="idNegocio" name="idNegocio" required>
               </div>
+            </div>
 
-              <div class="form-group">
-                  
-                      <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de unidad</div>
-                      <div class="input-group">
-                      
-                        <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+            <div class="form-group">
 
-                        <input type="number" class="form-control input" id="editarCodigoUnidad" name="editarCodigoUnidad"  required>
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Código de unidad</div>
+              <div class="input-group">
 
-                      </div>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <input type="number" class="form-control input" id="editarCodigoUnidad" name="editarCodigoUnidad" required>
+
               </div>
-  
+            </div>
+
           </div>
 
         </div>
@@ -290,12 +286,12 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
         </div>
 
-      <?php
+        <?php
 
-          $editarNegocio = new ControladorNegocios();
-          $editarNegocio -> ctrEditarNegocio();
+        $editarNegocio = new ControladorNegocios();
+        $editarNegocio->ctrEditarNegocio();
 
-        ?> 
+        ?>
 
       </form>
 
@@ -307,7 +303,7 @@ MODAL EDITAR UNIDAD DE NEGOCIO
 
 <?php
 
-  $eliminarNegocio = new ControladorNegocios();
-  $eliminarNegocio -> ctrEliminarNegocio();
+$eliminarNegocio = new ControladorNegocios();
+$eliminarNegocio->ctrEliminarNegocio();
 
 ?>

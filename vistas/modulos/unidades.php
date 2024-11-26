@@ -9,50 +9,48 @@ if ($_SESSION["perfil"] == "Vendedor") {
   </script>';
 
     return;
-
 }
 
 ?>
 
-    <div class="content-wrapper">
+<div class="content-wrapper">
 
-        <section class="content-header">
+    <section class="content-header">
 
-            <h1>
+        <h1>
 
-                Administrar unidades de medida
+            Administrar unidades de medida
 
-            </h1>
+        </h1>
 
-            <ol class="breadcrumb">
+        <ol class="breadcrumb">
 
-                <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
-                <li>Maestro</li>
-                <li class="active">Unidades de medida</li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Maestro</li>
+            <li class="active">Unidades de medida</li>
 
-            </ol>
+        </ol>
 
-        </section>
+    </section>
 
-        <section class="content">
+    <section class="content">
 
-            <div class="box">
+        <div class="box">
 
-                <div class="box-header with-border">
+            <div class="box-header with-border">
 
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUnidad">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUnidad">
+                    <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
+                    Agregar unidad de medida
+                </button>
 
-                        Agregar unidad de medida
+            </div>
 
-                    </button>
+            <div class="box-body">
 
-                </div>
+                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-                <div class="box-body">
-
-                    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-
-                        <thead>
+                    <thead>
 
                         <tr>
 
@@ -62,9 +60,9 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                         </tr>
 
-                        </thead>
+                    </thead>
 
-                        <tbody>
+                    <tbody>
 
                         <?php
 
@@ -90,7 +88,6 @@ if ($_SESSION["perfil"] == "Vendedor") {
                             if ($_SESSION["perfil"] == "Administrador") {
 
                                 echo '<button class="btn btn-danger btnEliminarUnidad" idUnidad="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-
                             }
 
                             echo '</div>  
@@ -101,155 +98,153 @@ if ($_SESSION["perfil"] == "Vendedor") {
                         }
 
                         ?>
-                        </tbody>
+                    </tbody>
 
-                    </table>
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!--=====================================
+    MODAL AGREGAR CATEGORÍA
+    ======================================-->
+<div id="modalAgregarUnidad" class="modal fade" role="dialog">
+
+    <style>
+        .error {
+            color: red;
+
+        }
+    </style>
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <form role="form" method="post" id="form_nueva_unidad">
+
+                <!--=====================================
+                    CABEZA DEL MODAL
+                    ======================================-->
+
+                <div class="modal-header" style="background:#3f668d; color:white">
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4 class="modal-title">Agregar unidad</h4>
 
                 </div>
 
-            </div>
-
-        </section>
-
-    </div>
-
-
-    <!--=====================================
-    MODAL AGREGAR CATEGORÍA
-    ======================================-->
-    <div id="modalAgregarUnidad" class="modal fade" role="dialog">
-
-        <style>
-            .error {
-                color: red;
-
-            }
-        </style>
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-
-                <form role="form" method="post" id="form_nueva_unidad">
-
-                    <!--=====================================
-                    CABEZA DEL MODAL
-                    ======================================-->
-
-                    <div class="modal-header" style="background:#3f668d; color:white">
-
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                        <h4 class="modal-title">Agregar unidad</h4>
-
-                    </div>
-
-                    <!--=====================================
+                <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
 
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                        <div class="box-body">
+                    <div class="box-body">
 
-                            <!-- ENTRADA PARA EL NOMBRE -->
+                        <!-- ENTRADA PARA EL NOMBRE -->
 
-                            <div class="form-group">
+                        <div class="form-group">
 
-                                <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
-                                    Medida
-                                </div>
-                                <div class="input-group">
-
-                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-                                    <input type="text" class="form-control input" name="nuevaMedida" id="nuevaMedida"
-                                           placeholder="Ingresar medida" required>
-
-                                </div>
+                            <div class="d-inline-block bg-primary"
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                Medida
                             </div>
+                            <div class="input-group">
 
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
+                                <input type="text" class="form-control input" name="nuevaMedida" id="nuevaMedida"
+                                    placeholder="Ingresar medida" required>
+
+                            </div>
                         </div>
+
 
                     </div>
 
-                    <!--=====================================
+                </div>
+
+                <!--=====================================
                     PIE DEL MODAL
                     ======================================-->
 
-                    <div class="modal-footer">
+                <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                        <button type="submit" class="btn btn-primary" name="crear_medida">Agregar medida</button>
+                    <button type="submit" class="btn btn-primary" name="crear_medida">Agregar medida</button>
 
-                    </div>
+                </div>
 
-                    <?php
+                <?php
 
-                    $crearUnidad = new ControladorUnidades();
-                    $crearUnidad->ctrCrearUnidad();
+                $crearUnidad = new ControladorUnidades();
+                $crearUnidad->ctrCrearUnidad();
 
-                    ?>
+                ?>
 
-                </form>
-
-            </div>
+            </form>
 
         </div>
 
     </div>
 
-    <!--=====================================
+</div>
+
+<!--=====================================
     MODAL EDITAR SUBCATEGORÍA
     ======================================-->
 
-    <div id="modalEditarUnidad" class="modal fade" role="dialog">
+<div id="modalEditarUnidad" class="modal fade" role="dialog">
 
-        <div class="modal-dialog">
+    <div class="modal-dialog">
 
-            <div class="modal-content">
+        <div class="modal-content">
 
-                <form role="form" method="post" id="form_editar_unidad">
+            <form role="form" method="post" id="form_editar_unidad">
 
-                    <!--=====================================
+                <!--=====================================
                     CABEZA DEL MODAL
                     ======================================-->
 
-                    <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header" style="background:#3c8dbc; color:white">
 
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                        <h4 class="modal-title">Editar unidad de medida</h4>
+                    <h4 class="modal-title">Editar unidad de medida</h4>
 
-                    </div>
+                </div>
 
-                    <!--=====================================
+                <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
 
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                        <div class="box-body">
+                    <div class="box-body">
 
-                            <!-- ENTRADA PARA EL NOMBRE -->
+                        <!-- ENTRADA PARA EL NOMBRE -->
 
-                            <div class="form-group">
-                                <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
-                                    Medida
-                                </div>
-                                <div class="input-group">
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                Medida
+                            </div>
+                            <div class="input-group">
 
-                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                    <input type="text" class="form-control input" id="editarMedida" name="editarMedida"
-                                           required>
+                                <input type="text" class="form-control input" id="editarMedida" name="editarMedida"
+                                    required>
 
-                                    <input type="hidden" id="idUnidad" name="idUnidad" required>
-
-                                </div>
+                                <input type="hidden" id="idUnidad" name="idUnidad" required>
 
                             </div>
 
@@ -257,32 +252,34 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                     </div>
 
-                    <!--=====================================
+                </div>
+
+                <!--=====================================
                     PIE DEL MODAL
                     ======================================-->
 
-                    <div class="modal-footer">
+                <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
-                    </div>
+                </div>
 
-                    <?php
+                <?php
 
-                    $editarUnidad = new ControladorUnidades();
-                    $editarUnidad->ctrEditarUnidad();
+                $editarUnidad = new ControladorUnidades();
+                $editarUnidad->ctrEditarUnidad();
 
-                    ?>
+                ?>
 
-                </form>
-
-            </div>
+            </form>
 
         </div>
 
     </div>
+
+</div>
 
 <?php
 

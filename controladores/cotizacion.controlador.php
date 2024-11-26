@@ -329,9 +329,9 @@ class ControladorCotizacion
 			=============================================*/
 
 			// Nombre del archivo incluyendo fechas si están disponibles
-			$Name = $_GET["reporte"] . '-cotizacion-afecta';
+			$Name = ucfirst($_GET["reporte"]) . ' de cotizaciones afectas';
 			if ($fechaInicial && $fechaFinal) {
-				$Name .= '-desde-' . $fechaInicial . '-hasta-' . $fechaFinal;
+				$Name .= ' (' . $fechaInicial . ' al ' . $fechaFinal . ')';
 			}
 			$Name .= '.xls';
 
@@ -446,9 +446,9 @@ class ControladorCotizacion
 			=============================================*/
 
 			// Nombre del archivo incluyendo fechas si están disponibles
-			$Name = $_GET["reporte"] . '-cotizacion-exenta';
+			$Name = ucfirst($_GET["reporte"]) . ' de cotizaciones exentas';
 			if ($fechaInicial && $fechaFinal) {
-				$Name .= '-desde-' . $fechaInicial . '-hasta-' . $fechaFinal;
+				$Name .= ' (' . $fechaInicial . ' al ' . $fechaFinal . ')';
 			}
 			$Name .= '.xls';
 
