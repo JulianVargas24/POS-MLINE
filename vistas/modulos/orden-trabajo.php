@@ -35,6 +35,7 @@ if ($xml) {
       <div class="box-header with-border">
         <a href="orden-vestuario">
           <button class="btn btn-primary">
+            <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
             Crear orden de vestuario
           </button>
         </a>
@@ -47,7 +48,7 @@ if ($xml) {
         <div class="input-group">
           <button type="button" class="btn btn-default" id="daterange-orden-vestuario">
             <span>
-              <i class="fa fa-calendar"></i>
+              <i class="fa fa-calendar" style="margin-right: 5px;"></i>
               <?php
               if (isset($_GET["fechaInicial"])) {
                 echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
@@ -56,14 +57,17 @@ if ($xml) {
               }
               ?>
             </span>
-            <i class="fa fa-caret-down"></i>
+            <i class="fa fa-caret-down" style="margin-left: 2px"></i>
           </button>
         </div>
 
         <!-- Botón para descargar el reporte -->
-        <div class="box-tools pull-right">
+        <div class="box-tools pull-right" style="margin-top: 5px;">
           <a href="vistas/modulos/descargar-reporte-orden-vestuario.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
-            <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
+            <button class="btn btn-success">
+              <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
+              Reporte en Excel
+            </button>
           </a>
         </div>
 

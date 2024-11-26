@@ -26,8 +26,10 @@ if ($xml) {
       <h1>
         Administrar Ordenes de Producción
       </h1>
+
       <ol class="breadcrumb">
-        <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+        <li>Orden de trabajo</li>
         <li class="active">Administrar Ordenes de Producción</li>
       </ol>
     </section>
@@ -40,7 +42,8 @@ if ($xml) {
         <div class="box-header with-border">
           <a href="nueva-orden-produccion">
             <button class="btn btn-primary">
-              Crear Orden de Producción
+              <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
+              Crear orden de producción
             </button>
           </a>
         </div>
@@ -52,7 +55,7 @@ if ($xml) {
           <div class="input-group">
             <button type="button" class="btn btn-default" id="daterange-orden-produccion">
               <span>
-                <i class="fa fa-calendar"></i>
+                <i class="fa fa-calendar" style="margin-right: 5px;"></i>
                 <?php
                 if (isset($_GET["fechaInicial"])) {
                   echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
@@ -61,16 +64,18 @@ if ($xml) {
                 }
                 ?>
               </span>
-              <i class="fa fa-caret-down"></i>
+              <i class="fa fa-caret-down" style="margin-left: 2px"></i>
             </button>
           </div>
 
           <!-- Botón para descargar el reporte -->
-          <div class="box-tools pull-right" style="margin-bottom:5px">
+          <div class="box-tools pull-right" style="margin-top:5px">
             <a href="vistas/modulos/descargar-reporte-orden-produccion.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
-              <button class="btn btn-success" style="margin-top:5px">Descargar Orden de Producción</button>
+              <button class="btn btn-success">
+                <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
+                Reporte en Excel
+              </button>
             </a>
-
           </div>
         </div>
 
@@ -616,16 +621,16 @@ if ($xml) {
     }
   });
 
-    /*=============================================
+  /*=============================================
 EDITAR ORDEN DE VESTUARIO
 =============================================*/
 
-$(".tablas").on("click", ".btnEditarOrdenProduccion", function(){
-	console.log("F Orden Produccion")
-	var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+  $(".tablas").on("click", ".btnEditarOrdenProduccion", function() {
+    console.log("F Orden Produccion")
+    var idOrdenProduccion = $(this).attr("idOrdenProduccion");
 
-	window.location = "index.php?ruta=editar-nueva-orden-produccion&idOrdenProduccion="+idOrdenProduccion;
+    window.location = "index.php?ruta=editar-nueva-orden-produccion&idOrdenProduccion=" + idOrdenProduccion;
 
 
-})
+  })
 </script>
