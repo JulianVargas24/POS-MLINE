@@ -82,7 +82,7 @@ class ControladorSubunidades
 
             $tabla = "subunidades";
 
-            $datos = array("subunidad" => $_POST["editarSubunidad"],
+            $datos = array("subunidad" => $_POST["editarSubunidades"],
                 "id" => $_POST["id_subunidad"]);
 
             $respuesta = ModeloSubunidades::mdlEditarSubunidad($tabla, $datos);
@@ -115,7 +115,7 @@ class ControladorSubunidades
     static public function ctrBorrarSubunidad()
     {
 
-        if (isset($_GET["id_ssubunidad"])) {
+        if (isset($_GET["id_subunidad"])) {
 
             $tabla = "subunidades";
             $datos = $_GET["id_subunidad"];

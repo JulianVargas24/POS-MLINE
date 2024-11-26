@@ -50,7 +50,7 @@ $(".tablas").on("click", ".btnEditarSubunidad", function () {
         dataType: "json",
         success: function (respuesta) {
             console.log(respuesta)
-            $("#editarSubunidad").val(respuesta["subunidad"]);
+            $("#editarSubunidades").val(respuesta["subunidad"]);
             $("#id_subunidad").val(respuesta["id"]);
 
         }

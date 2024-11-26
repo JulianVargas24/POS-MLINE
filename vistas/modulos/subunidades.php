@@ -45,14 +45,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                     <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarSubunidad">
 
                         Agregar subunidad
-                    <script> $(document).on("click", '[data-target="#modalAgregarSubunidad"]', function () {
-                        console.log("Botón clicado: Agregar Subunidad");
 
-                        $(document).on("click", '[data-target="#modalAgregarSubunidad"]', function () {
-                                console.log("Forzando apertura del modal.");
-                                $('#modalAgregarSubunidad').modal('show');
-                            });
-                        });</script>
                     </button>
 
                 </div>
