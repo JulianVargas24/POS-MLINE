@@ -25,15 +25,20 @@ if ($_SESSION["perfil"] == "Especial") {
     <div class="box">
 
       <div class="box-header with-border">
+
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProveedor">
+          <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
           Agregar proveedor
         </button>
-      </div>
 
-      <div class="box-tools pull-right" style="margin-bottom:10px; padding-right: 10px;">
-        <a href="vistas/modulos/descargar-reporte-proveedores.php?reporte=reporte">
-          <button class="btn btn-success">Descargar reporte en Excel</button>
-        </a>
+        <div class="box-tools pull-right" style="margin-top: 5px;">
+          <a href="vistas/modulos/descargar-reporte-proveedores.php?reporte=reporte">
+            <button class="btn btn-success">
+              <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
+              Reporte en Excel
+            </button>
+          </a>
+        </div>
       </div>
 
       <div class="box-body">

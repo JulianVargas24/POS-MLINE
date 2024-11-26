@@ -25,6 +25,7 @@ if ($_SESSION["perfil"] == "Especial") {
             <div class="box-header with-border">
                 <a href="compra">
                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalAgregarCompra">
+                        <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
                         Agregar compra
                     </button>
                 </a>
@@ -54,9 +55,12 @@ if ($_SESSION["perfil"] == "Especial") {
                 </div>
 
                 <!-- Botón para descargar el reporte -->
-                <div class="box-tools pull-right">
+                <div class="box-tools pull-right" style="margin-top: 5px;">
                     <a href="vistas/modulos/descargar-reporte-compras.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
-                        <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
+                        <button class="btn btn-success">
+                            <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
+                            Reporte en Excel
+                        </button>
                     </a>
                 </div>
             </div>

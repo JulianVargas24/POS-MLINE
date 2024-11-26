@@ -1,40 +1,39 @@
 <?php
 
-if($_SESSION["perfil"] == "Vendedor"){
+if ($_SESSION["perfil"] == "Vendedor") {
 
-    echo '<script>
+  echo '<script>
 
     window.location = "inicio";
 
   </script>';
 
-    return;
-    
+  return;
 }
 
 ?>
 
 <div class="content-wrapper">
 
-    <section class="content-header">
+  <section class="content-header">
 
-        <h1>
+    <h1>
 
-          Administrar bancos
+      Administrar bancos
 
-        </h1>
+    </h1>
 
-        <ol class="breadcrumb">
+    <ol class="breadcrumb">
 
-            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+      <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
 
-            <li>Parámetros</li>
+      <li>Parámetros</li>
 
-            <li class="active">Bancos</li>
+      <li class="active">Bancos</li>
 
-        </ol>
+    </ol>
 
-    </section>
+  </section>
 
   <section class="content">
 
@@ -42,82 +41,81 @@ if($_SESSION["perfil"] == "Vendedor"){
 
       <div class="box-header with-border">
 
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarBanco">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarBanco">
+          <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
           Agregar banco
-
         </button>
 
       </div>
 
       <div class="box-body">
 
-       <table class="table table-bordered table-hover dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Bancos</th>
-           <th>Codigo SBIF</th>
-           <th>Acciones</th>
+        <table class="table table-bordered table-hover dt-responsive tablas" width="100%">
 
-         </tr> 
+          <thead>
 
-        </thead>
+            <tr>
 
-        <tbody>
+              <th style="width:10px">#</th>
+              <th>Bancos</th>
+              <th>Codigo SBIF</th>
+              <th>Acciones</th>
 
-        <?php
+            </tr>
 
-          $item = null;
-          $valor = null;
+          </thead>
 
-          $bancos = ControladorBancos::ctrMostrarBancos($item, $valor);
+          <tbody>
 
-          foreach ($bancos as $key => $value) {
-            
-           
-            echo ' <tr>
+            <?php
 
-                    <td>'.($key+1).'</td>
+            $item = null;
+            $valor = null;
 
-                    <td>'.$value["nombre_banco"].'</td>
+            $bancos = ControladorBancos::ctrMostrarBancos($item, $valor);
 
-                    <td>'.$value["codigo"].'</td>
+            foreach ($bancos as $key => $value) {
+
+
+              echo ' <tr>
+
+                    <td>' . ($key + 1) . '</td>
+
+                    <td>' . $value["nombre_banco"] . '</td>
+
+                    <td>' . $value["codigo"] . '</td>
 
                     <td>
 
                       <div class="btn-group">
                       
-                        <button class="btn btn-warning btnEditarBanco" data-toggle="modal" data-target="#modalEditarBanco" idBanco="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
+                        <button class="btn btn-warning btnEditarBanco" data-toggle="modal" data-target="#modalEditarBanco" idBanco="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
 
-                      if($_SESSION["perfil"] == "Administrador"){
+              if ($_SESSION["perfil"] == "Administrador") {
 
-                          echo '<button class="btn btn-danger btnEliminarBanco" idBanco="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                echo '<button class="btn btn-danger btnEliminarBanco" idBanco="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+              }
 
-                      }
-
-                      echo '</div>  
+              echo '</div>  
 
                     </td>
 
                   </tr>';
-          }
+            }
 
-        ?>
-        </tbody>
+            ?>
+          </tbody>
 
-</table>
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </div>
 
-</div>
-
-</section>
-
-</div>
-                    
 
 
 <!--=====================================
@@ -125,18 +123,18 @@ MODAL AGREGAR BANCO
 ======================================-->
 
 <div id="modalAgregarBanco" class="modal fade" role="dialog">
-  
-<style>
-    .error{
-        color: red;
-        
+
+  <style>
+    .error {
+      color: red;
+
     }
-</style>
+  </style>
   <div class="modal-dialog">
 
-      <div class="modal-content">
-          
-        <form role="form" method="post" id="form_nuevo_Banco">
+    <div class="modal-content">
+
+      <form role="form" method="post" id="form_nuevo_Banco">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -159,26 +157,26 @@ MODAL AGREGAR BANCO
           <div class="box-body">
 
             <!-- ENTRADA PARA EL NOMBRE -->
-            
+
             <div class="form-group">
-                
-                    <div class="d-inline-block bg-primary" style="text-indent: 12px;background-color:#3c8dbc;font-size:16px;font-weight:bold">Banco</div>
-                    <div class="input-group">
-                    
-                      <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                      <input type="text" class="form-control input" name="nuevoBanco" id="nuevoBanco" placeholder="Ingresar Banco" required>
+              <div class="d-inline-block bg-primary" style="text-indent: 12px;background-color:#3c8dbc;font-size:16px;font-weight:bold">Banco</div>
+              <div class="input-group">
 
-                    </div>
-                </div>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <div class="form-group">
-                            <div class="d-inline-block bg-primary" style="text-indent: 12px;font-size:16px;font-weight:bold">Código SBIF</div>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                                <input type="text" class="form-control input" name="nuevoCodigoSBIF" id="nuevoCodigoSBIF" placeholder="Ingresar Código SBIF" required>
-                            </div>
-                        </div>
+                <input type="text" class="form-control input" name="nuevoBanco" id="nuevoBanco" placeholder="Ingresar Banco" required>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="d-inline-block bg-primary" style="text-indent: 12px;font-size:16px;font-weight:bold">Código SBIF</div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                <input type="text" class="form-control input" name="nuevoCodigoSBIF" id="nuevoCodigoSBIF" placeholder="Ingresar Código SBIF" required>
+              </div>
+            </div>
 
           </div>
 
@@ -198,13 +196,13 @@ MODAL AGREGAR BANCO
 
         <?php
 
-          if(isset($_POST["crear_Banco"])){
-            $nombreBanco = $_POST["nuevoBanco"];
-            $codigoSBIF = $_POST["nuevoCodigoSBIF"];
-            
-            $crearBanco = new ControladorBancos();
-            $crearBanco -> ctrCrearBanco($nombreBanco, $codigoSBIF);
-          }
+        if (isset($_POST["crear_Banco"])) {
+          $nombreBanco = $_POST["nuevoBanco"];
+          $codigoSBIF = $_POST["nuevoCodigoSBIF"];
+
+          $crearBanco = new ControladorBancos();
+          $crearBanco->ctrCrearBanco($nombreBanco, $codigoSBIF);
+        }
 
         ?>
 
@@ -212,7 +210,7 @@ MODAL AGREGAR BANCO
 
     </div>
 
-    </div>
+  </div>
 
 </div>
 
@@ -221,13 +219,13 @@ MODAL EDITAR BANCO
 ======================================-->
 
 <div id="modalEditarBanco" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
 
       <form role="form" method="post" id="form_editar_Banco">
-        
+
         <!--=====================================
         CABEZA DEL MODAL
         ======================================-->
@@ -249,13 +247,13 @@ MODAL EDITAR BANCO
           <div class="box-body">
 
             <!-- ENTRADA PARA EL NOMBRE -->
-            
+
             <div class="form-group">
-                
+
               <div class="d-inline-block bg-primary" style="text-indent: 12px;background-color:#3c8dbc;font-size:16px;font-weight:bold">Banco</div>
               <div class="input-group">
-                
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <input type="text" class="form-control input" name="editarBanco" id="editarBanco" placeholder="Ingresar Banco" required>
 
@@ -269,9 +267,9 @@ MODAL EDITAR BANCO
               <div class="d-inline-block bg-primary" style="text-indent: 12px;font-size:16px;font-weight:bold">Código SBIF</div>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                
+
                 <input type="text" class="form-control input" name="editarCodigoSBIF" id="editarCodigoSBIF" placeholder="Ingresar Código SBIF" required>
-                
+
               </div>
 
             </div>
@@ -288,16 +286,16 @@ MODAL EDITAR BANCO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" >Guardar cambios</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
         </div>
 
         <?php
 
-            
-            $editarBanco = new ControladorBancos();
-            $editarBanco -> ctrEditarBanco();
-          
+
+        $editarBanco = new ControladorBancos();
+        $editarBanco->ctrEditarBanco();
+
 
         ?>
 
@@ -312,7 +310,7 @@ MODAL EDITAR BANCO
 
 <?php
 
-    $eliminarBanco = new ControladorBancos();
-    $eliminarBanco -> ctrEliminarBanco();
+$eliminarBanco = new ControladorBancos();
+$eliminarBanco->ctrEliminarBanco();
 
 ?>
