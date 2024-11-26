@@ -41,7 +41,7 @@ if ($_SESSION["perfil"] == "Especial") {
                 <div class="input-group">
                     <button type="button" class="btn btn-default" id="daterange-compras">
                         <span>
-                            <i class="fa fa-calendar"></i>
+                            <i class="fa fa-calendar" style="margin-right: 5px;"></i>
                             <?php
                         if (isset($_GET["fechaInicial"])) {
                             echo $_GET["fechaInicial"] . " - " . $_GET["fechaFinal"];
@@ -50,7 +50,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         }
                             ?>
                         </span>
-                        <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-caret-down" style="margin-left: 2px"></i>
                     </button>
                 </div>
 
