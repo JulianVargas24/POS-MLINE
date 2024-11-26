@@ -159,6 +159,7 @@ CUERPO DOCUMENTO
                 $_GET["ruta"] == "proveedores" ||
                 $_GET["ruta"] == "categorias" ||
                 $_GET["ruta"] == "subcategorias" ||
+                $_GET["ruta"] == "subunidades" ||
                 $_GET["ruta"] == "unidades" ||
                 $_GET["ruta"] == "listas" ||
                 $_GET["ruta"] == "bodegas" ||
@@ -257,6 +258,7 @@ CUERPO DOCUMENTO
     <script src="vistas/js/proveedores.js"></script>
     <script src="vistas/js/categorias.js"></script>
     <script src="vistas/js/subcategorias.js"></script>
+    <script src="vistas/js/subunidades.js"></script>
     <script src="vistas/js/listas.js"></script>
     <script src="vistas/js/unidades.js"></script>
     <script src="vistas/js/productos.js"></script>
