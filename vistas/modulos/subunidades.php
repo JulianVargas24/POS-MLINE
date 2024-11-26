@@ -263,7 +263,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                     CABEZA DEL MODAL
                     ======================================-->
 
-                    <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <div class="modal-header" style="background:#FFA500; color:white">
 
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -283,7 +283,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                             <div class="form-group">
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">
+                                     style="background-color:#FFA500;font-size:16px;font-weight:bold;text-indent:11px">
                                     Subunidad
                                 </div>
                                 <div class="input-group">
@@ -311,7 +311,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <button type="submit" class="btn btn-primary" >Guardar cambios</button>
 
                     </div>
 
