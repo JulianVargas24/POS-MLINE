@@ -1362,3 +1362,16 @@ $(".abrirXML").click(function () {
   var archivo = $(this).attr("archivo");
   window.open(archivo, "_blank");
 });
+
+/*=============================================
+SELECCIONAR VESTUARIO DESDE MODAL
+=============================================*/
+$(".tablas").on("click", ".btnSeleccionarVestuario", function () {
+  var codigoVestuario = $(this).attr("data-codigo");
+
+  // Actualizar el select con el valor seleccionado
+  $("#nuevoFolioOT").val(codigoVestuario);
+
+  // Cerrar el modal
+  $("#modalVerOrdenVestuario").modal("hide");
+});
