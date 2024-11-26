@@ -149,7 +149,7 @@ class ControladorNuevoOrdenProduccion
   {
     $tabla = "nueva_orden_produccion";
 
-    $respuesta = ModeloNuevoOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
 
 		return $respuesta;
   }
@@ -160,7 +160,7 @@ class ControladorNuevoOrdenProduccion
   static public function ctrMostrarOrdenesProduccionMateriales($item, $valor)
   {
     $tabla = "orden_produccion_materiales";
-    return ModeloNuevoOrdenProduccion::mdlMostrarOrdenesProduccionMateriales($tabla, $item, $valor);
+    return ModeloOrdenProduccion::mdlMostrarOrdenesProduccionDetalle($tabla, $item, $valor);
   }
 
   static public function ctrEliminarNuevaOrdenProduccion()
@@ -171,9 +171,9 @@ class ControladorNuevoOrdenProduccion
 
       // Eliminar los detalles de la orden de producción primero
       $tablaMateriales = "orden_produccion_materiales";
-      $respuestMateriales = ModeloNuevoOrdenProduccion::mdlEliminarNuevaOrdenProduccionMateriales($tablaMateriales, $folioOrden);
+      $respuestaDetalle = ModeloNuevoOrdenProduccion::mdlEliminarOrdenProduccionMateriales($tablaMateriales, $folioOrden);
 
-      if ($respuestMateriales == "ok") {
+      if ($respuestaDetalle == "ok") {
         // Luego eliminar la orden de producción principal
         $tabla = "nueva_orden_produccion";
         $respuesta = ModeloNuevoOrdenProduccion::mdlEliminarNuevaOrdenProduccion($tabla, $folioOrden);

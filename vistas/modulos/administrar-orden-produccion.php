@@ -342,6 +342,11 @@ if ($xml) {
             </tbody>
           </table>
 
+          <?php
+          $eliminarOrden = new ControladorNuevoOrdenProduccion();
+          $eliminarOrden->ctrEliminarNuevaOrdenProduccion();
+          ?>
+
         </div>
       </div>
     </section>
@@ -611,22 +616,16 @@ if ($xml) {
     }
   });
 
-  /*=============================================
+    /*=============================================
 EDITAR ORDEN DE VESTUARIO
 =============================================*/
 
-  $(".tablas").on("click", ".btnEditarOrdenProduccion", function() {
-    console.log("F Orden Produccion")
-    var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+$(".tablas").on("click", ".btnEditarOrdenProduccion", function(){
+	console.log("F Orden Produccion")
+	var idOrdenProduccion = $(this).attr("idOrdenProduccion");
 
-    window.location = "index.php?ruta=editar-nueva-orden-produccion&idOrdenProduccion=" + idOrdenProduccion;
+	window.location = "index.php?ruta=editar-nueva-orden-produccion&idOrdenProduccion="+idOrdenProduccion;
 
 
-  })
+})
 </script>
-
-
-<?php
-  $eliminarOrden = new ControladorNuevoOrdenProduccion();
-  $eliminarOrden -> ctrEliminarNuevaOrdenProduccion();
-?>
