@@ -41,8 +41,7 @@ class ControladorAjustesInventario{
                           confirmButtonText: "Cerrar"
                           }).then(function(result){
                                     if (result.value) {
-
-
+                                        window.location = "ajuste";
                                     }
                                 })
 

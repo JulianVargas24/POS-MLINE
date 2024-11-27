@@ -4,9 +4,9 @@ require_once "conexion.php";
 
 class ModeloCompra
 {
-    /*=============================================
-    CREAR ORDEN COMPRA
-    =============================================*/
+    /**
+     * Método para ingresar una compra
+     */
     static public function mdlIngresarCompra($tabla, $datos)
     {
         $con = Conexion::conectar();
@@ -35,6 +35,9 @@ class ModeloCompra
         }
     }
 
+    /**
+     * Método para editar una compra
+     */
     static public function mdlEditarCompra($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET 
@@ -82,6 +85,9 @@ class ModeloCompra
         $stmt = null;
     }
 
+    /**
+     * Método para mostrar las compras
+     */
     static public function mdlMostrarCompras($tabla, $item, $valor, $fechaInicial = null, $fechaFinal = null)
     {
         if ($fechaInicial && $fechaFinal) {
@@ -112,6 +118,9 @@ class ModeloCompra
         $stmt = null;
     }
 
+    /**
+     * Método para eliminar una compra
+     */
     static public function mdlEliminarCompra($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
@@ -121,6 +130,26 @@ class ModeloCompra
             return "ok";
         } else {
             return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
+
+    /**
+     * Método para actualizar el estado de una orden de compra
+     */
+    static public function mdlActualizarEstadoOrdenCompra($datos)
+    {
+        $estado = 'Cerrada';
+        $stmt = Conexion::conectar()->prepare("UPDATE orden_compra SET estado = :estado WHERE codigo = :id;");
+
+        $stmt->bindParam(":estado", $estado, PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos["ordenCompra"], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return "true";
+        } else {
+            return "false";
         }
 
         $stmt->close();

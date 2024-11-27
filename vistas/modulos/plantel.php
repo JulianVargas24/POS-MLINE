@@ -9,7 +9,6 @@ if ($_SESSION["perfil"] == "Especial") {
   </script>';
 
     return;
-
 }
 
 ?>
@@ -43,9 +42,8 @@ if ($_SESSION["perfil"] == "Especial") {
             <div class="box-header with-border">
 
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarPlantel">
-
+                    <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
                     Agregar plantel
-
                 </button>
 
             </div>
@@ -56,32 +54,32 @@ if ($_SESSION["perfil"] == "Especial") {
 
                     <thead>
 
-                    <tr>
+                        <tr>
 
-                        <th style="width:10px">#</th>
-                        <th>Nombre</th>
-                        <th>RUT</th>
-                        <th>Cargo</th>
-                        <th>Comisión</th>
-                        <th>Acciones</th>
+                            <th style="width:10px">#</th>
+                            <th>Nombre</th>
+                            <th>RUT</th>
+                            <th>Cargo</th>
+                            <th>Comisión</th>
+                            <th>Acciones</th>
 
-                    </tr>
+                        </tr>
 
                     </thead>
 
                     <tbody>
 
-                    <?php
+                        <?php
 
-                    $item = null;
-                    $valor = null;
+                        $item = null;
+                        $valor = null;
 
-                    $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
+                        $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
-                    foreach ($plantel as $key => $value) {
+                        foreach ($plantel as $key => $value) {
 
 
-                        echo '<tr>
+                            echo '<tr>
 
                     <td>' . ($key + 1) . '</td>
 
@@ -99,21 +97,19 @@ if ($_SESSION["perfil"] == "Especial") {
                           
                         <button class="btn btn-warning btnEditarPlantel" data-toggle="modal" data-target="#modalEditarPlantel" idPlantel="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
 
-                        if ($_SESSION["perfil"] == "Administrador") {
+                            if ($_SESSION["perfil"] == "Administrador") {
 
-                            echo '<button class="btn btn-danger btnEliminarPlantel" idPlantel="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+                                echo '<button class="btn btn-danger btnEliminarPlantel" idPlantel="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+                            }
 
-                        }
-
-                        echo '</div>  
+                            echo '</div>  
 
                     </td>
 
                   </tr>';
+                        }
 
-                    }
-
-                    ?>
+                        ?>
 
                     </tbody>
 
@@ -183,33 +179,33 @@ MODAL AGREGAR CLIENTE
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                                             <input type="text" class="form-control input" name="nuevoNombre"
-                                                   id="nuevoNombre" placeholder="Ingrese nombre" required>
+                                                id="nuevoNombre" placeholder="Ingrese nombre" required>
 
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="d-inline-block  text-center"
-                                             style="font-size:16px;font-weight:bold">RUT
+                                            style="font-size:16px;font-weight:bold">RUT
                                         </div>
                                         <div class="input-group">
 
                                             <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
                                             <input type="text" class="form-control input" name="nuevoRutId"
-                                                   id="nuevoRutId" placeholder="Ingrese su RUT" required
-                                                   onblur="formatearRut(this)">
+                                                id="nuevoRutId" placeholder="Ingrese su RUT" required
+                                                onblur="formatearRut(this)">
 
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="d-inline-block  text-center"
-                                             style="font-size:16px;font-weight:bold">Cargo
+                                            style="font-size:16px;font-weight:bold">Cargo
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-file"></i></span>
                                             <input type="text" class="form-control input" name="nuevoCargo"
-                                                   id="nuevoCargo" placeholder="Ingrese cargo" required>
+                                                id="nuevoCargo" placeholder="Ingrese cargo" required>
                                         </div>
                                     </div>
                                     <!-- ENTRADA PARA LA SUBCATEGORIA -->
@@ -222,8 +218,8 @@ MODAL AGREGAR CLIENTE
                                             <span class="input-group-addon"><i class="fa fa-calculator"></i></span>
 
                                             <input type="number" class="form-control input" name="nuevaComision"
-                                                   id="nuevaComision" placeholder="Ingrese comisión" min="0" max="100"
-                                                   step="0.01" required>
+                                                id="nuevaComision" placeholder="Ingrese comisión" min="0" max="100"
+                                                step="0.01" required>
 
 
                                         </div>
@@ -315,33 +311,33 @@ MODAL EDITAR CLIENTE
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                             <input type="hidden" name="idPlantel" id="idPlantel">
                                             <input type="text" class="form-control input" name="editarNombre"
-                                                   id="editarNombre" placeholder="Ingrese nombre" required>
+                                                id="editarNombre" placeholder="Ingrese nombre" required>
 
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="d-inline-block  text-center"
-                                             style="font-size:16px;font-weight:bold">RUT
+                                            style="font-size:16px;font-weight:bold">RUT
                                         </div>
                                         <div class="input-group">
 
                                             <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
                                             <input type="text" class="form-control input" name="editarRutId"
-                                                   id="editarRutId" placeholder="Ingrese su RUT" required required
-                                                   onblur="formatearRut(this)">
+                                                id="editarRutId" placeholder="Ingrese su RUT" required required
+                                                onblur="formatearRut(this)">
 
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="d-inline-block  text-center"
-                                             style="font-size:16px;font-weight:bold">Cargo
+                                            style="font-size:16px;font-weight:bold">Cargo
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-file"></i></span>
                                             <input type="text" class="form-control input" name="editarCargo"
-                                                   id="editarCargo" placeholder="Ingrese cargo" required>
+                                                id="editarCargo" placeholder="Ingrese cargo" required>
                                         </div>
                                     </div>
                                     <!-- ENTRADA PARA LA SUBCATEGORIA -->
@@ -354,8 +350,8 @@ MODAL EDITAR CLIENTE
                                             <span class="input-group-addon"><i class="fa fa-calculator"></i></span>
 
                                             <input type="number" class="form-control input" name="editarComision"
-                                                   id="editarComision" placeholder="Ingrese comisión" min="0" max="100"
-                                                   step="0.01" required>
+                                                id="editarComision" placeholder="Ingrese comisión" min="0" max="100"
+                                                step="0.01" required>
 
 
                                         </div>
@@ -405,5 +401,3 @@ $eliminarPlantel = new ControladorPlantel();
 $eliminarPlantel->ctrEliminarPlantel();
 
 ?>
-
-

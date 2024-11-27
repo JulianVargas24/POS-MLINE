@@ -35,8 +35,7 @@ class ControladorSalidasInventario{
                                          confirmButtonText: "Cerrar"
                                          }).then(function(result){
                                                    if (result.value) {
-               
-               
+                                                       window.location = "salida";
                                                    }
                                                })
                
@@ -81,8 +80,7 @@ class ControladorSalidasInventario{
                               confirmButtonText: "Cerrar"
                               }).then(function(result){
                                         if (result.value) {
-    
-    
+                                            window.location = "salida";
                                         }
                                     })
     

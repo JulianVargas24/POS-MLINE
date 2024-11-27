@@ -9,7 +9,6 @@ if ($_SESSION["perfil"] == "Especial") {
   </script>';
 
     return;
-
 }
 
 ?>
@@ -26,7 +25,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
         <ol class="breadcrumb">
 
-            <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
             <li>Ventas</li>
             <li class="active">Venta con factura exenta</li>
 
@@ -56,7 +55,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group" style="display:block;">
                                                     <select class="form-control" id="nuevoClienteFactura"
-                                                            name="nuevoClienteFactura" required>
+                                                        name="nuevoClienteFactura" required>
 
                                                         <option value="">Seleccionar cliente</option>
 
@@ -70,7 +69,6 @@ if ($_SESSION["perfil"] == "Especial") {
                                                         foreach ($clientes as $key => $value) {
 
                                                             echo '<option value="' . $value["id"] . '" idLista="' . $value["factor_lista"] . '">' . $value["nombre"] . ' </option>';
-
                                                         }
 
                                                         ?>
@@ -89,7 +87,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <input type="hidden" id="traerFactor">
                                                     <span class="input-group-addon"> <i class="fa fa-address-card"></i> RUT</span>
                                                     <input type="text" class="form-control" id="traerRut" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +96,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Dirección</span>
                                                     <input type="text" class="form-control" id="traerDireccion" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,7 +105,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Actividad</span>
                                                     <input type="text" class="form-control" id="traerActividad" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,7 +114,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Ejecutivo</span>
                                                     <input type="text" class="form-control" id="traerEjecutivo" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +123,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Teléfono</span>
                                                     <input type="text" class="form-control" id="traerTelefono" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,9 +131,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"> <i
-                                                                class="fa fa-at"></i> Correo</span>
+                                                            class="fa fa-at"></i> Correo</span>
                                                     <input type="text" class="form-control" id="traerEmail" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +142,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Lista precio</span>
                                                     <input type="text" class="form-control" id="traerLista" value=""
-                                                           readonly>
+                                                        readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,8 +153,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="col-xs-4">
                             <div class="box box-info">
                                 <div class="box-body">
-                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de
-                                        emisión</h4>
+                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de emisión</h4>
                                     <div class="row" style="margin-bottom:5px;">
 
                                         <div class="col-xs-6">
@@ -164,31 +161,30 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
 
-                                                    <input type="date" class="form-control input"
-                                                           name="nuevaFechaEmision" id="nuevaFechaEmision"
-                                                           value="<?php echo date("Y-m-d"); ?>">
+                                                    <input type="date" class="form-control input" name="nuevaFechaEmision" id="nuevaFechaEmision"
+                                                        value="<?php echo date("Y-m-d"); ?>" required
+                                                        onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
                                             <div class="form-group">
                                                 <div class="input-group">
 
-                                                                        <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-                                                                        required onchange="validarFechas('nuevaFechaEmision', this.id)">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-xs-6">
-                                                                <div class="d-block" style="font-size:14px;">Unidad de Negocio</div>
-                                                                <div class="form-group">
-                                                                    <div class="input-group">
-                                                                    <select class="form-control input" id="nuevoNegocio" name="nuevoNegocio" required>
-                            
-                                                                        <option value="">Seleccionar Unidades</option>
+                                                    <input type="date" class="form-control input" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+                                                        required onchange="validarFechas('nuevaFechaEmision', this.id)">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <div class="d-block" style="font-size:14px;">Unidad de negocio</div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <select class="form-control input" id="nuevoNegocio" name="nuevoNegocio" required>
+
+                                                        <option value="">Seleccionar unidades</option>
 
                                                         <?php
 
@@ -211,8 +207,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Bodega de origen</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <select class="form-control input" id="nuevaBodega"
-                                                            name="nuevaBodega" required>
+                                                    <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
 
                                                         <option value="">Seleccionar bodega</option>
 
@@ -238,8 +233,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="d-block" style="font-size:14px;">Vendedor asociado</div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <select class="form-control input-sm" id="nuevoVendedor"
-                                                            name="nuevoVendedor" required>
+                                                    <select class="form-control input-sm" id="nuevoVendedor" name="nuevoVendedor" required>
 
                                                         <option value="">Seleccionar vendedor</option>
                                                         <?php
@@ -263,15 +257,15 @@ if ($_SESSION["perfil"] == "Especial") {
                                         <div class="col-xs-12">
                                             <div class="box box-info">
                                                 <div class="box-body">
-                                                    <h4 class="box-title" style="font-weight:bold;color:black;">
-                                                        REFERENCIA CLIENTE</h4>
-                                                    <div class="col-xs-6">
+                                                    <h4 class="box-title" style="font-weight:bold;color:black;">REFERENCIA CLIENTE</h4>
+
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon"
-                                                                      style="background-color:green; color:white; font-weight:bold">Documento</span>
+                                                                    style="background-color:green; color:white; font-weight:bold">Documento</span>
                                                                 <select class="form-control input-sm"
-                                                                        id="nuevoDocumento" name="nuevoDocumento">
+                                                                    id="nuevoDocumento" name="nuevoDocumento">
                                                                     <option value="NO APLICA">NO APLICA</option>
 
                                                                     <?php
@@ -291,48 +285,48 @@ if ($_SESSION["perfil"] == "Especial") {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-6">
+
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon"
-                                                                      style="background-color:green; color:white; font-weight:bold">FOLIO</span>
+                                                                    style="background-color:green; color:white; font-weight:bold">FOLIO</span>
                                                                 <input type="text"
-                                                                       style="font-weight:bold; font-size:16px;"
-                                                                       class="form-control" name="nuevoFolioDocumento"
-                                                                       id="nuevoFolioDocumento">
+                                                                    style="font-weight:bold; font-size:16px;"
+                                                                    class="form-control" name="nuevoFolioDocumento"
+                                                                    id="nuevoFolioDocumento">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon"
-                                                                      style="background-color:green; color:white; font-weight:bold">F.EMISIÓN</span>
+                                                                    style="background-color:green; color:white; font-weight:bold">MOTIVO</span>
+                                                                <input type="text"
+                                                                    style="font-weight:bold; font-size:16px;"
+                                                                    class="form-control" name="nuevoMotivoDocumento"
+                                                                    id="nuevoMotivoDocumento">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"
+                                                                    style="background-color:green; color:white; font-weight:bold">F.EMISIÓN</span>
                                                                 <input type="date" class="form-control"
-                                                                       name="nuevaFechaDocumento"
-                                                                       id="nuevaFechaDocumento">
+                                                                    name="nuevaFechaDocumento"
+                                                                    id="nuevaFechaDocumento">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-6">
-                                                        <div class="form-group">
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon"
-                                                                      style="background-color:green; color:white; font-weight:bold">MOTIVO</span>
-                                                                <input type="text"
-                                                                       style="font-weight:bold; font-size:16px;"
-                                                                       class="form-control" name="nuevoMotivoDocumento"
-                                                                       id="nuevoMotivoDocumento">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -352,10 +346,10 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"
-                                                          style="background-color:red; color:white; font-weight:bold">FOLIO</span>
+                                                        style="background-color:red; color:white; font-weight:bold">FOLIO</span>
                                                     <input type="text" style="font-weight:bold; font-size:16px;"
-                                                           class="form-control" name="nuevoCodigo" id="nuevoCodigo"
-                                                           value="<?php echo $folio + 1; ?>" readonly required>
+                                                        class="form-control" name="nuevoCodigo" id="nuevoCodigo"
+                                                        value="<?php echo $folio + 1; ?>" readonly required>
                                                 </div>
                                             </div>
                                         </div>
@@ -366,129 +360,11 @@ if ($_SESSION["perfil"] == "Especial") {
                                         <div class="col-xs-12">
                                             <div class="form-group">
                                                 <textarea id="nuevaRazonDocumento" name="nuevaRazonDocumento" cols="30"
-                                                          rows="8"></textarea>
+                                                    rows="8"></textarea>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <!--
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-6">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold;">O. Trabajo</span>
-                                                            <select class="form-control input" id="nuevoRubro" required disabled>
-
-                                                                <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
-
-                                    foreach ($rubros as $key => $value) {
-                                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                    }
-
-                                    ?>
-                                                                
-                                            
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-primary">Ver Todo</button>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-6">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold; padding-left:5px;">Producción</span>
-                                                            <select class="form-control input" id="nuevoRubro" required disabled>
-
-                                                                <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
-
-                                    foreach ($rubros as $key => $value) {
-                                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                    }
-
-                                    ?>
-                                                                
-                                            
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-primary">Ver Todo</button>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-6">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold;padding-left:15px;">Vestuario</span>
-                                                            <select class="form-control input" id="nuevoRubro" required>
-
-                                                            <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
-
-                                    foreach ($vestuarios as $key => $value) {
-                                        echo '<option  value="' . $value["folio"] . '">' . $value["folio"] . ' </option>';
-                                    }
-
-                                    ?>
-                                                                
-                                            
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                            <button type="button" data-toggle="modal" data-target="#modalVerOrdenVestuario" class="btn btn-primary">Ver Todo</button>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-6">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:green;color:white;font-weight:bold; padding-left:22px;">O. Taller</span>
-                                                            <select class="form-control input" id="nuevoRubro" required disabled>
-
-                                                                <?php
-
-                                    $item = null;
-                                    $valor = null;
-
-                                    $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
-
-                                    foreach ($rubros as $key => $value) {
-                                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                                    }
-
-                                    ?>
-                                                                
-                                            
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-primary">Ver Todo</button>
-                                            </div>
-                                        </div>
-                                    -->
                                 </div>
                             </div>
                         </div>
@@ -552,62 +428,62 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="col-xs-6">
                                     <div class="box box-info">
                                         <div class="box-body">
-                                                <h4 class="box-title" style="font-weight:bold; font-size:20px;">Totales</h4>
-                                            
-                                                <div class="row">
-                                                            <div class="col-xs-7">
-                              
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon" style="padding:0px 8px">Subtotal</span>                
-                                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoSubtotal" total="" name="nuevoSubtotal" value="" readonly>
-                                                                        </div>
-                                                                    </div> 
-                                                            </div>
-                                                            <div class="col-xs-7">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon" style="padding:0px 2px">Descuento</span>                
-                                                                            <input style="font-size:16px;" type="text" class="form-control"  id="nuevoTotalDescuento" total="" name="nuevoTotalDescuento" value="" readonly>
-                                                                        </div>
-                                                                    </div> 
-                                                            </div>
-                                                            <div class="col-xs-7">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">                
-                                                                            <span class="input-group-addon">Exento</span>
-                                                                            <input style="font-size:18px;" type="text" class="form-control" id="nuevoTotalExento" name="nuevoTotalExento"  readonly>
-                                                                        </div>
-                                                                    </div> 
-                                                            </div>
-                                                            
-                                                            <div class="col-xs-7">
-                                                                   
-                                                                    <div class="form-group">
-                                                                        <div class="input-group" >
-                                                                            <span class="input-group-addon" style="padding:0px 15px">% IVA</span>                
-                                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoTotalIva" name="nuevoTotalIva" total="" value="" readonly>
-                                                                        </div>
-                                                                    </div> 
-                                                            </div>
-                                                            <div class="col-xs-7">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon" style="padding:0px">Otros Imp.</span>                
-                                                                            <input style="font-size:18px;" type="text" class="form-control" value="0" readonly >
-                                                                        </div>
-                                                                    </div> 
-                                                            </div>
-                                                            <div class="col-xs-7">
-                                                                    
-                                                                    <div class="form-group">
-                                                                        <div class="input-group">
-                                                                        <span class="input-group-addon" style="color:black; font-weight:bold; padding:0px 15px">Total</span>                
-                                                                        <input style="font-size:16px;" type="text" class="form-control input" id="nuevoTotalFinal" name="nuevoTotalFinal" total="" readonly required>
-                                                                        
-                                                                        </div>
-                                                                    </div> 
-                                                            </div>
+                                            <h4 class="box-title" style="font-weight:bold; font-size:20px;">Totales</h4>
+
+                                            <div class="row">
+                                                <div class="col-xs-7">
+
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" style="padding:0px 8px">Subtotal</span>
+                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoSubtotal" total="" name="nuevoSubtotal" value="" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" style="padding:0px 2px">Descuento</span>
+                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoTotalDescuento" total="" name="nuevoTotalDescuento" value="" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Exento</span>
+                                                            <input style="font-size:18px;" type="text" class="form-control" id="nuevoTotalExento" name="nuevoTotalExento" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-7">
+
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" style="padding:0px 15px">% IVA</span>
+                                                            <input style="font-size:16px;" type="text" class="form-control" id="nuevoTotalIva" name="nuevoTotalIva" total="" value="" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" style="padding:0px">Otros Imp.</span>
+                                                            <input style="font-size:18px;" type="text" class="form-control" value="0" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7">
+
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" style="color:black; font-weight:bold; padding:0px 15px">Total</span>
+                                                            <input style="font-size:16px;" type="text" class="form-control input" id="nuevoTotalFinal" name="nuevoTotalFinal" total="" readonly required>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -628,12 +504,12 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px;">Plazo de pago
+                                                        style="background-color:#3c8dbc;font-size:15px;">Plazo de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
                                                             <select class="form-control input" id="nuevoPlazo"
-                                                                    name="nuevoPlazo" required>
+                                                                name="nuevoPlazo" required>
 
                                                                 <option value="">Seleccionar plazo de pago</option>
 
@@ -657,12 +533,12 @@ if ($_SESSION["perfil"] == "Especial") {
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="d-block bg-primary text-center"
-                                                         style="background-color:#3c8dbc;font-size:15px;">Medios de pago
+                                                        style="background-color:#3c8dbc;font-size:15px;">Medios de pago
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-group" style="display:block;">
                                                             <select name="nuevoMedioPago" id="nuevoMedioPago"
-                                                                    class="form-control">
+                                                                class="form-control">
                                                                 <option value="">Seleccione:</option>
                                                                 <?php
 
@@ -675,49 +551,49 @@ if ($_SESSION["perfil"] == "Especial") {
                                                                     echo '<option  value="' . $value["id"] . '">' . $value["medio_pago"] . ' </option>';
                                                                 }
 
-                                                                            ?>
-                                                                            
-                                                                        </select>
-                                                                    </div>
-                                                                </div> 
+                                                                ?>
+
+                                                            </select>
                                                         </div>
-                                                        <div class="col-xs-6">
-                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Total a Pagar</div>
-                                                                <div class="form-group">
-                                                                    <div class="input-group" style="display:block;">                                                
-                                                                            <input class="form-control input" type="text" name="nuevoTotalPagar" id="nuevoTotalPagar" value="0" total="" readonly>
-                                                                        
-                                                                    </div> 
-                                                                </div> 
-                                                        </div>
-                                                        <div class="col-xs-6">
-                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pagado</div>
-                                                                <div class="form-group">
-                                                                    <div class="input-group" style="display:block;">                                                
-                                                                            <input class="form-control input" type="text" name="nuevoTotalPagado" id="nuevoTotalPagado" value="0" total="">
-                                                                        
-                                                                    </div> 
-                                                                </div> 
-                                                        </div>
-                                                        <div class="col-xs-6">
-                                                                <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pendiente</div>
-                                                                <div class="form-group">
-                                                                    <div class="input-group" style="display:block;">                                                
-                                                                            <input class="form-control input" type="text" name="nuevoTotalPendiente" id="nuevoTotalPendiente" value="0" total="" readonly>
-                                                                        
-                                                                    </div> 
-                                                                </div> 
-                                                        </div>
-                                                    
                                                     </div>
                                                 </div>
+                                                <div class="col-xs-6">
+                                                    <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Total a Pagar</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group" style="display:block;">
+                                                            <input class="form-control input" type="text" name="nuevoTotalPagar" id="nuevoTotalPagar" value="0" total="" readonly>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pagado</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group" style="display:block;">
+                                                            <input class="form-control input" type="text" name="nuevoTotalPagado" id="nuevoTotalPagado" value="0" total="">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <div class="d-block bg-primary text-center" style="background-color:#3c8dbc;font-size:15px; margin-top:5px;">Pendiente</div>
+                                                    <div class="form-group">
+                                                        <div class="input-group" style="display:block;">
+                                                            <input class="form-control input" type="text" name="nuevoTotalPendiente" id="nuevoTotalPendiente" value="0" total="" readonly>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="box box-warning">
                                         <div class="box-body">
                                             <h4 class="box-title" style="font-weight:bold; font-size:20px;">
                                                 Observaciones</h4>
                                             <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60"
-                                                      rows="6"></textarea>
+                                                rows="6"></textarea>
                                             <input type="hidden" name="listaProductos" id="listaProductos">
                                         </div>
                                     </div>
@@ -740,13 +616,13 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                         <thead>
 
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Imagen</th>
-                                            <th>Código</th>
-                                            <th>Nombre</th>
-                                            <th>Acciones</th>
-                                        </tr>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Imagen</th>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Acciones</th>
+                                            </tr>
 
                                         </thead>
 
@@ -808,43 +684,43 @@ MODAL VER COTIZACIONES
 
                         <thead>
 
-                        <tr>
+                            <tr>
 
-                            <th>Folio</th>
-                            <th>Emisión</th>
-                            <th>Vencimiento</th>
-                            <th>Cliente</th>
-                            <th>Observación</th>
-                            <th>Total</th>
-                            <th>Acciones</th>
-                        </tr>
+                                <th>Folio</th>
+                                <th>Emisión</th>
+                                <th>Vencimiento</th>
+                                <th>Cliente</th>
+                                <th>Observación</th>
+                                <th>Total</th>
+                                <th>Acciones</th>
+                            </tr>
 
                         </thead>
 
                         <tbody>
 
-                        <?php
+                            <?php
 
-                        $item = null;
-                        $valor = null;
+                            $item = null;
+                            $valor = null;
 
-                        $cotizaciones = ControladorCotizacion::ctrMostrarCotizacionesExentas($item, $valor);
+                            $cotizaciones = ControladorCotizacion::ctrMostrarCotizacionesExentas($item, $valor);
 
-                        $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+                            $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
 
 
-                        foreach ($cotizaciones as $key => $value) {
+                            foreach ($cotizaciones as $key => $value) {
 
-                            if ($value["estado"] == "Abierta") {
+                                if ($value["estado"] == "Abierta") {
 
-                                for ($i = 0; $i < count($clientes); ++$i) {
-                                    if ($clientes[$i]["id"] == $value["id_cliente"]) {
-                                        $cliente = $clientes[$i]["nombre"];
+                                    for ($i = 0; $i < count($clientes); ++$i) {
+                                        if ($clientes[$i]["id"] == $value["id_cliente"]) {
+                                            $cliente = $clientes[$i]["nombre"];
+                                        }
                                     }
-                                }
 
 
-                                echo '<tr>
+                                    echo '<tr>
 
 
                     <td>' . $value["codigo"] . '</td>
@@ -863,12 +739,11 @@ MODAL VER COTIZACIONES
 
 
                   </tr>';
-
+                                }
                             }
-                        }
 
 
-                        ?>
+                            ?>
 
                         </tbody>
 
@@ -916,33 +791,33 @@ MODAL VER COTIZACIONES
 
                         <thead>
 
-                        <tr>
+                            <tr>
 
-                            <th style="width:10px">#</th>
-                            <th>Folio</th>
-                            <th>Nombre</th>
-                            <th>Fecha emisión</th>
-                            <th>Observación</th>
-                            <th>Acciones</th>
+                                <th style="width:10px">#</th>
+                                <th>Folio</th>
+                                <th>Nombre</th>
+                                <th>Fecha emisión</th>
+                                <th>Observación</th>
+                                <th>Acciones</th>
 
 
-                        </tr>
+                            </tr>
 
                         </thead>
 
                         <tbody>
 
-                        <?php
+                            <?php
 
-                        $item = null;
-                        $valor = null;
+                            $item = null;
+                            $valor = null;
 
-                        $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
+                            $vestuarios = ControladorOrdenVestuario::ctrMostrarOrdenVestuario($item, $valor);
 
-                        foreach ($vestuarios as $key => $value) {
+                            foreach ($vestuarios as $key => $value) {
 
 
-                            echo '<tr>
+                                echo '<tr>
 
                                     <td>' . ($key + 1) . '</td>
 
@@ -957,11 +832,10 @@ MODAL VER COTIZACIONES
                                     <td> <button type="button" class="btn btn-warning">TRAER</button> </td>
 
                                 </tr>';
+                            }
 
-                        }
 
-
-                        ?>
+                            ?>
 
                         </tbody>
 
@@ -1002,5 +876,4 @@ MODAL VER COTIZACIONES
     input[type=number] {
         -moz-appearance: textfield;
     }
-
 </style>
