@@ -224,6 +224,10 @@ if ($_SESSION["perfil"] == "Especial") {
         $valorCentro = $ordenProduccion["centro_costo"];
         $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
 
+        $itemCliente = "id";
+        $valorCliente = $ordenVestuario["id_cliente"];
+        $cliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+
         ?>
 
           <div class="box-body">
@@ -242,21 +246,21 @@ if ($_SESSION["perfil"] == "Especial") {
                     <!-- Opciones de Tipo de Orden -->
                     <div class="radio-options">
                       <label class="btn-orden">
-                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Para Stock">
+                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Para Stock" <?= $ordenProduccion['tipo_orden'] == "Para Stock" ? 'checked' : '' ?>>
                         <div class="orden-content">
                           <i class="fa fa-cubes"></i>
                           <span>Para Stock</span>
                         </div>
                       </label>
                       <label class="btn-orden">
-                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Cliente sin Cotización">
+                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Cliente sin Cotización" <?= $ordenProduccion['tipo_orden'] == "Cliente sin Cotización" ? 'checked' : '' ?>>
                         <div class="orden-content">
                           <i class="fa fa-user"></i>
                           <span>Cliente sin Cotización</span>
                         </div>
                       </label>
                       <label class="btn-orden">
-                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Cliente con Cotización">
+                        <input type="radio" id="tipoOrden" name="tipoOrden" value="Cliente con Cotización" <?= $ordenProduccion['tipo_orden'] == "Cliente con Cotización" ? 'checked' : '' ?>>
                         <div class="orden-content">
                           <i class="fa fa-file-text"></i>
                           <span>Cliente con Cotización</span>
@@ -531,7 +535,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                       <!-- Opción de Producción -->
                       <label class="production-option">
-                        <input type="radio" name="tipoProduccion" value="Producto">
+                        <input type="radio" name="tipoProduccion" value="Producto" <?= $ordenProduccion['tipo_produccion'] == "Producto" ? 'checked' : '' ?>>
                         <div class="option-content">
                           <i class="fa fa-cubes"></i>
                           <div class="option-text">
@@ -543,7 +547,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                       <!-- Opción de Pack -->
                       <label class="production-option">
-                        <input type="radio" name="tipoProduccion" value="Pack">
+                        <input type="radio" name="tipoProduccion" value="Pack" <?= $ordenProduccion['tipo_produccion'] == "Pack" ? 'checked' : '' ?>>
                         <div class="option-content">
                           <i class="fa fa-archive"></i>
                           <div class="option-text">
@@ -564,6 +568,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       Detalle de Producción
                     </h2>
                     <div class="row">
+                      <script>$("#boxDetalleProduccion").show();</script>
 
                       <!-- Producto en Producción -->
                       <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
@@ -614,7 +619,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <label>Cantidad a Producir</label>
                           <div class="input-group">
                             <span class="input-group-addon""><i class=" fa fa-cubes"></i></span>
-                            <input type="number" class="form-control"
+                            <input type="number" class="form-control" value="<?php echo $ordenProduccion['cantidad_produccion']; ?>" required
                               id="detalleCantidadProducir"
                               name="detalleCantidadProducir"
                               min="1"
@@ -632,7 +637,8 @@ if ($_SESSION["perfil"] == "Especial") {
                             <input type="date" class="form-control"
                               id="detalleFechaElaboracion"
                               name="detalleFechaElaboracion"
-                              onchange="validarFechas(this.id, 'detalleFechaElaboracionVencimiento')">
+                              onchange="validarFechas(this.id, 'detalleFechaElaboracionVencimiento')"
+                              value="<?php echo $ordenProduccion["fecha_elaboracion"]; ?>">
                           </div>
                         </div>
                       </div>
@@ -646,7 +652,8 @@ if ($_SESSION["perfil"] == "Especial") {
                             <input type="date" class="form-control"
                               id="detalleFechaElaboracionVencimiento"
                               name="detalleFechaElaboracionVencimiento"
-                              onchange="validarFechas('detalleFechaElaboracion', this.id)">
+                              onchange="validarFechas('detalleFechaElaboracion', this.id)"
+                              value="<?php echo $ordenProduccion["fecha_elaboracion_vencimiento"]; ?>">
                           </div>
                         </div>
                       </div>
@@ -657,7 +664,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <label>Código de Lote</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
-                            <input type="text" class="form-control"
+                            <input type="text" class="form-control" value="<?php echo $ordenProduccion['codigo_lote']; ?>" required
                               id="detalleCodigoLote"
                               name="detalleCodigoLote"
                               placeholder="Ingrese el código de lote"
@@ -700,7 +707,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             name="detalleObservacion"
                             rows="4"
                             style="resize: none;"
-                            placeholder="Ingrese las observaciones de la producción"></textarea>
+                            placeholder="Ingrese las observaciones de la producción"><?php echo $ordenProduccion['observaciones']; ?></textarea>
                         </div>
                       </div>
 
@@ -735,7 +742,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo del Embalaje</span>
-                            <span class="info-box-number" id="resumenCostoEmbalaje">$0</span>
+                            <span class="info-box-number" id="resumenCostoEmbalaje">$<?php echo $ordenProduccion["costo_embalaje_total"]?></span>
                           </div>
                         </div>
                       </div>
@@ -748,7 +755,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo sin Embalaje</span>
-                            <span class="info-box-number" id="resumenCostoSinEmbalaje">$0</span>
+                            <span class="info-box-number" id="resumenCostoSinEmbalaje">$<?php echo $ordenProduccion["costo_produccion_total"]?></span>
                           </div>
                         </div>
                       </div>
@@ -761,7 +768,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo Total del Lote</span>
-                            <span class="info-box-number" id="resumenCostoTotalLote">$0</span>
+                            <span class="info-box-number" id="resumenCostoTotalLote">$<?php echo $ordenProduccion["costo_produccion_total_con_embalaje"]?></span>
                           </div>
                         </div>
                       </div>
@@ -797,6 +804,7 @@ if ($_SESSION["perfil"] == "Especial") {
                               data-target="#modalAgregarInsumos">
                               <i class="fa fa-plus-circle fa-lg"></i>
                             </span>
+                            <script>$("#boxInsumos").show();</script>
                           </div>
                         </div>
 
@@ -837,14 +845,14 @@ if ($_SESSION["perfil"] == "Especial") {
           <!-- Pie de la página -->
           <div class="box-footer">
             <a href="administrar-orden-produccion" class="btn btn-default">Salir</a>
-            <button type="submit" class="btn btn-primary">Crear Orden</button>
+            <button type="submit" class="btn btn-primary">Editar Orden</button>
           </div>
 
         </form>
 
         <?php
-        $crearOrdenProduccion = new ControladorNuevoOrdenProduccion();
-        $crearOrdenProduccion->ctrCrearOrdenProduccion();
+        $editarOrdenProduccion = new ControladorNuevoOrdenProduccion();
+        $editarOrdenProduccion->ctrEditarOrdenProduccion();
         ?>
 
       </div>
