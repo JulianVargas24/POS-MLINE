@@ -988,7 +988,42 @@ if ($_SESSION["perfil"] == "Especial") {
   <script>
     $(document).ready(function() {
       $.getScript('vistas/js/nueva-orden-produccion.js');
+
+  // Verificar qué tipo de orden está seleccionado al cargar la página
+  let tipoOrdenSeleccionado = $('input[name="tipoOrden"]:checked').val();
+
+  if (tipoOrdenSeleccionado === "Cliente con Cotización") {
+    $("#clienteAsociado").show();
+    $("#seleccionarCotizacion").show();
+    limpiarDatosCliente();
+
+    // Recargar la tabla con clientes que tienen cotizaciones
+    $(".tablaClientes")
+      .DataTable()
+      .ajax.url(`ajax/datatable-clientes.ajax.php?tipoOrden=${tipoOrdenSeleccionado}`)
+      .load();
+  } else if (tipoOrdenSeleccionado === "Cliente sin Cotización") {
+    $("#clienteAsociado").show();
+    $("#seleccionarCotizacion").hide();
+    limpiarDatosCliente();
+    limpiarDatosCotizacion();
+
+    // Recargar la tabla con todos los clientes
+    $(".tablaClientes")
+      .DataTable()
+      .ajax.url(`ajax/datatable-clientes.ajax.php?tipoOrden=${tipoOrdenSeleccionado}`)
+      .load();
+  } else if (tipoOrdenSeleccionado === "Para Stock") {
+    $("#clienteAsociado").hide();
+    $("#seleccionarCotizacion").hide();
+    limpiarDatosCliente();
+    limpiarDatosCotizacion();
+  }
+
+
     });
+
+
   </script>
 
 </body>
