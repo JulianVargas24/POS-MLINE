@@ -311,8 +311,8 @@ if ($xml) {
                     data-cliente_Region="' . $clienteRegion . '"
                     data-cliente_Comuna="' . $clienteComuna . '"
                     data-orden="' . $orden["nombre_orden"] . '"
-                    data-emision="' . $orden["fecha_emision"] . '"
-                    data-vencimiento="' . $orden["fecha_vencimiento"] . '"
+                    data-emision="' . $orden["fecha_orden_emision"] . '"
+                    data-vencimiento="' . $orden["fecha_orden_vencimiento"] . '"
                     data-centro_costo="' . $centro . '" 
                     data-bodega_destino="' . $bodega . '" 
                     data-cantidad_producida_total="' . $orden["cantidad_producida_total"] . '" 
@@ -363,67 +363,67 @@ if ($xml) {
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title mb-0" id="detalleModalLabel" style="color: black;"></h4>
-      </div>
+        <h4 class="modal-title mb-0" id="detalleModalLabel" style="color: black; font-weight: bold"></h4>
+        </div>
       <div class="modal-body">
         <!-- Información de la orden -->
-        <div class="container mb-3">
-          <h4 class="pb-2">Información General</h4>
-          <div style="height: 3px; width: 840px; background-color: #007bff; margin-bottom: 15px;"></div>
+        <div class="container-fluid">
+          <h4 class="pb-2" style="font-weight: bold">Información General</h4>
+          <div style="height: 3px; width: 100%;background-color: #007bff; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <p><strong>Folio:</strong> <span id="modalFolio"></span></p>
               <p><strong>Cliente:</strong> <span id="modalCliente"></span></p>
               <p><strong>RUT:</strong> <span id="modalClienteRut"></span></p>
               <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
               <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
               <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
-              <p><strong>Nombre de Orden:</strong> <span id="modalOrden"></span></p>
+              <p><strong>Nombre de orden:</strong> <span id="modalOrden"></span></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
               <p><strong>País:</strong> <span id="modalClientePais"></span></p>
               <p><strong>Región:</strong> <span id="modalClienteRegion"></span></p>
               <p><strong>Comuna:</strong> <span id="modalClienteComuna"></span></p>
-              <p><strong>Centro de Costo:</strong> <span id="modalCentroCosto"></span></p>
+              <p><strong>Centro de costo:</strong> <span id="modalCentroCosto"></span></p>
               <p><strong>Bodega de destino:</strong> <span id="modalBodegaDestino"></span></p>
             </div>
           </div>
         </div>
 
         <!-- Información de fechas -->
-        <div class="container mb-3">
-          <h4 class="pb-2">Fechas</h4>
-          <div style="height: 3px; width: 840px; background-color: #28a745; margin-bottom: 15px;"></div>
+        <div class="container-fluid">
+          <h4 class="pb-2" style="font-weight: bold">Fechas</h4>
+          <div style="height: 3px; width: 100%; background-color: #28a745; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <p><strong>Fecha de emisión:</strong> <span id="modalEmision"></span></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
               <p><strong>Fecha de vencimiento:</strong> <span id="modalVencimiento"></span></p>
             </div>
           </div>
         </div>
 
         <!-- Costos y totales -->
-        <div class="container mb-3">
-          <h4 class="pb-2">Costos y Totales</h4>
-          <div style="height: 3px; width: 840px; background-color: #ffc107; margin-bottom: 15px;"></div>
+        <div class="container-fluid">
+          <h4 class="pb-2" style="font-weight: bold">Costos y Totales</h4>
+          <div style="height: 3px; width: 100%; background-color: #ffc107; margin-bottom: 15px;"></div>
           <div class="row">
-            <div class="col-md-4">
-              <p><strong>Cantidad Producida Total:</strong> <span id="modalCantidadProducidaTotal"></span></p>
-              <p><strong>Costo Unitario Total:</strong> <span id="modalCostoUnitarioTotal"></span></p>
-              <p><strong>Costo Producción Total:</strong> <span id="modalCostoProduccionTotal"></span></p>
+            <div class="col-md-5">
+              <p><strong>Cantidad producida total:</strong> <span id="modalCantidadProducidaTotal"></span></p>
+              <p><strong>Costo unitario total:</strong> <span id="modalCostoUnitarioTotal"></span></p>
+              <p><strong>Costo producción total:</strong> <span id="modalCostoProduccionTotal"></span></p>
             </div>
-            <div class="col-md-4">
-              <p><strong>Costo Embalaje Total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
-              <p><strong>Costo Total con Embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
+            <div class="col-md-5">
+              <p><strong>Costo embalaje total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
+              <p><strong>Costo total con embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
             </div>
           </div>
         </div>
 
         <!-- Detalles de los productos -->
         <div class="container mb-3">
-          <h4 class="pb-2">Productos</h4>
+          <h4 class="pb-2" style="font-weight: bold">Productos</h4>
           <div id="productosContainer">
             <!-- Aquí se pueden agregar múltiples productos desde un array -->
           </div>
