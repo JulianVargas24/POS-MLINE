@@ -366,7 +366,7 @@ $(document).ready(function () {
     let contieneEmbalaje = false;
 
     // Validar que no esté vacío el array de insumos
-    if (insumosSeleccionados.length === 0) {
+    if (window.insumosSeleccionados.length === 0) {
       swal({
         type: "error",
         title: "Error",

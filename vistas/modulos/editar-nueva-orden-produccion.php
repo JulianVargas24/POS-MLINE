@@ -1084,7 +1084,7 @@ if ($_SESSION["perfil"] == "Especial") {
       }
 
       // Inicializar el array de insumos seleccionados
-      let insumosSeleccionados = [];
+      window.insumosSeleccionados = []; // Usamos window para hacerla global
 
       // Agregar los insumos existentes al array
       insumosExistentes.forEach(insumo => {
