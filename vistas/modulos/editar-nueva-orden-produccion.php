@@ -209,26 +209,61 @@ if ($_SESSION["perfil"] == "Especial") {
       <div class="box">
         <form role="form" method="post" class="formularioOrdenProduccion">
 
-        <?php
+          <?php
 
-        $item = "id";
-        $valor = $_GET["idOrdenProduccion"];
+          $item = "id";
+          $valor = $_GET["idOrdenProduccion"];
 
-        $ordenProduccion = ControladorNuevoOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
+          $ordenProduccion = ControladorNuevoOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
+          $insumos = ControladorNuevoOrdenProduccion::ctrMostrarInsumosPorOrden($valor);
 
-        $itemBodega = "id";
-        $valorBodega = $ordenProduccion["bodega_destino"];
-        $bodega = ControladorBodegas::ctrMostrarBodegas($itemBodega, $valorBodega);
+          $itemBodega = "id";
+          $valorBodega = $ordenProduccion["bodega_destino"];
+          $bodega = ControladorBodegas::ctrMostrarBodegas($itemBodega, $valorBodega);
 
-        $itemCentro = "id";
-        $valorCentro = $ordenProduccion["centro_costo"];
-        $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
+          $itemCentro = "id";
+          $valorCentro = $ordenProduccion["centro_costo"];
+          $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
 
-        $itemCliente = "id";
-        $valorCliente = $ordenVestuario["id_cliente"];
-        $cliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+          $itemCliente = "id";
+          $valorCliente = $ordenVestuario["id_cliente"];
+          $cliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
 
-        ?>
+          $itemProducto = null;
+          $valorProducto = null;
+          $productos = ControladorProductos::ctrMostrarProductosPredeterminado($itemProducto, $valorProducto);
+
+          $itemLista = null;
+          $valorLista = null;
+          $listas = ControladorTablaListas::ctrMostrarTablaListas($itemLista, $valorLista);
+
+          $productosPorId = [];
+          foreach ($productos as $producto) {
+            $productosPorId[$producto['id']] = $producto['descripcion']; // Guardar descripción del producto con su id
+          }
+
+          $listasPorId = [];
+          foreach ($listas as $lista) {
+            $listasPorId[$lista['id']] = $lista['nombre']; // Guardar nombre de tipo de material con su id
+          }
+
+          foreach ($insumos as $key => $insumo) {
+            if (isset($productosPorId[$insumo['id_producto']])) {
+              $insumos[$key]['nombre_producto'] = $productosPorId[$insumo['id_producto']]; // Asignamos la descripción
+            } else {
+              $insumos[$key]['nombre_producto'] = 'Producto desconocido';
+            }
+
+            if (isset($listasPorId[$insumo['id_tipo_material']])) {
+              $insumos[$key]['nombre_tipo_material'] = $listasPorId[$insumo['id_tipo_material']]; // Asignamos el nombre del tipo de material
+            } else {
+              $insumos[$key]['nombre_tipo_material'] = 'Tipo de material desconocido';
+            }
+          }
+
+          $insumosJSON = json_encode($insumos);
+
+          ?>
 
           <div class="box-body">
 
@@ -375,7 +410,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <input type="date" class="form-control"
                             name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
                             value="<?php echo $ordenProduccion["fecha_orden_vencimiento"]; ?>"
-                              onchange="validarFechas('nuevaFechaEmision', this.id)">
+                            onchange="validarFechas('nuevaFechaEmision', this.id)">
                         </div>
                       </div>
 
@@ -386,21 +421,21 @@ if ($_SESSION["perfil"] == "Especial") {
                           <select class="form-control" id="nuevoCentro"
                             name="nuevoCentro">
                             <option selected
-                                value="<?php echo $centro["id"]; ?>"><?php echo $centro["centro"]; ?></option>
-                                <optgroup label="---Cambiar Centro de Costo--"></optgroup>
+                              value="<?php echo $centro["id"]; ?>"><?php echo $centro["centro"]; ?></option>
+                            <optgroup label="---Cambiar Centro de Costo--"></optgroup>
 
-                                <?php
+                            <?php
 
-                                $item = null;
-                                $valor = null;
+                            $item = null;
+                            $valor = null;
 
-                                $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
+                            $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
 
-                                foreach ($centros as $key => $value) {
-                                echo '<option value="' . $value["id"] . '">' . $value["centro"] . '</option>';
-                                }
+                            foreach ($centros as $key => $value) {
+                              echo '<option value="' . $value["id"] . '">' . $value["centro"] . '</option>';
+                            }
 
-                                ?>
+                            ?>
 
                           </select>
                         </div>
@@ -413,19 +448,19 @@ if ($_SESSION["perfil"] == "Especial") {
                           <select class="form-control" id="nuevaBodega"
                             name="nuevaBodega">
                             <option selected
-                            value="<?php echo $bodega["id"]; ?>"><?php echo $bodega["nombre"]; ?></option>
-                             <optgroup label="---Cambiar Bodega--"></optgroup>
+                              value="<?php echo $bodega["id"]; ?>"><?php echo $bodega["nombre"]; ?></option>
+                            <optgroup label="---Cambiar Bodega--"></optgroup>
 
                             <?php
 
-                             $item = null;
-                             $valor = null;
+                            $item = null;
+                            $valor = null;
 
-                             $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                            $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
 
                             foreach ($bodegas as $key => $value) {
-                                echo '<option  value="' . $value["id"] . '">' . $value["nombre"] . ' </option>';
-                                }
+                              echo '<option  value="' . $value["id"] . '">' . $value["nombre"] . ' </option>';
+                            }
 
                             ?>
 
@@ -568,7 +603,9 @@ if ($_SESSION["perfil"] == "Especial") {
                       Detalle de Producción
                     </h2>
                     <div class="row">
-                      <script>$("#boxDetalleProduccion").show();</script>
+                      <script>
+                        $("#boxDetalleProduccion").show();
+                      </script>
 
                       <!-- Producto en Producción -->
                       <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
@@ -742,7 +779,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo del Embalaje</span>
-                            <span class="info-box-number" id="resumenCostoEmbalaje">$<?php echo $ordenProduccion["costo_embalaje_total"]?></span>
+                            <span class="info-box-number" id="resumenCostoEmbalaje">$<?php echo $ordenProduccion["costo_embalaje_total"] ?></span>
                           </div>
                         </div>
                       </div>
@@ -755,7 +792,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo sin Embalaje</span>
-                            <span class="info-box-number" id="resumenCostoSinEmbalaje">$<?php echo $ordenProduccion["costo_produccion_total"]?></span>
+                            <span class="info-box-number" id="resumenCostoSinEmbalaje">$<?php echo $ordenProduccion["costo_produccion_total"] ?></span>
                           </div>
                         </div>
                       </div>
@@ -768,7 +805,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo Total del Lote</span>
-                            <span class="info-box-number" id="resumenCostoTotalLote">$<?php echo $ordenProduccion["costo_produccion_total_con_embalaje"]?></span>
+                            <span class="info-box-number" id="resumenCostoTotalLote">$<?php echo $ordenProduccion["costo_produccion_total_con_embalaje"] ?></span>
                           </div>
                         </div>
                       </div>
@@ -804,7 +841,9 @@ if ($_SESSION["perfil"] == "Especial") {
                               data-target="#modalAgregarInsumos">
                               <i class="fa fa-plus-circle fa-lg"></i>
                             </span>
-                            <script>$("#boxInsumos").show();</script>
+                            <script>
+                              $("#boxInsumos").show();
+                            </script>
                           </div>
                         </div>
 
@@ -821,14 +860,6 @@ if ($_SESSION["perfil"] == "Especial") {
                             </tr>
                           </thead>
                           <tbody>
-                            <tr class="ejemploSeleccionarInsumo">
-                              <td colspan="7" class="text-center text-muted">
-                                <p style="margin: 10px 0">
-                                  <i class="fa fa-info-circle" style="margin-right: 8px;"></i>
-                                  Agregue los insumos y embalaje necesarios para la producción.
-                                </p>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
 
@@ -990,6 +1021,70 @@ if ($_SESSION["perfil"] == "Especial") {
       $.getScript('vistas/js/nueva-orden-produccion.js');
     });
   </script>
+
+  <script>
+    $(document).ready(function() {
+
+      // Convertir el JSON generado en PHP directamente en una variable de JavaScript
+      const insumosExistentes = <?php echo $insumosJSON; ?>;
+      console.log(insumosExistentes);
+
+      function formatearMoneda(valor) {
+        return $.number(valor, 0, ',', '.');
+      }
+
+      // Inicializar el array de insumos seleccionados
+      let insumosSeleccionados = [];
+
+      // Agregar los insumos existentes al array
+      insumosExistentes.forEach(insumo => {
+        insumosSeleccionados.push({
+          id_producto: insumo.id_producto,
+          nombre_producto: insumo.nombre_producto,
+          id_tipo_material: insumo.id_tipo_material,
+          nombre_tipo_material: insumo.nombre_tipo_material,
+          id_unidad: insumo.id_unidad,
+          cantidad: insumo.cantidad, // O cualquier valor que tengas en la base de datos
+          precio_unitario: insumo.precio_unitario,
+          costo_total: insumo.costo_total
+        });
+      });
+
+      // Agregar los insumos a la tabla
+      insumosSeleccionados.forEach(insumo => {
+        let nombreUnidad = $("#detalleUnidad option[value='" + insumo.id_unidad + "']").text();
+
+        let nuevaFila = `
+            <tr>
+                <td>${insumo.nombre_producto}</td> 
+                <td>${insumo.nombre_tipo_material}</td> 
+                <td>${nombreUnidad}</td> 
+                <td>
+                    <input type="number" class="form-control cantidadInsumo"
+                           min="1" value="${insumo.cantidad}" style="width:80px">
+                </td>
+                <td>
+                    <span class="precioUnitarioFormateado">${formatearMoneda(insumo.precio_unitario)}</span>
+                </td>
+                <td class="costoTotal">
+                    <span class="costoTotalFormateado">${formatearMoneda(insumo.costo_total)}</span>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-danger eliminarInsumo">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        $(".insumosSeleccionados tbody").append(nuevaFila);
+      });
+    });
+  </script>
+
+
 
 </body>
 

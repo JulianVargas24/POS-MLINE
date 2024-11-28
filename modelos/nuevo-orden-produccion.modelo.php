@@ -238,9 +238,9 @@ class ModeloNuevoOrdenProduccion
   }
 
   static public function mdlEditarOrdenProduccion($tabla, $datos)
-{
+  {
     try {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET
+      $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET
             folio_orden_produccion = :folio_orden_produccion,
             nombre_orden = :nombre_orden,
             estado_orden = :estado_orden,
@@ -265,63 +265,71 @@ class ModeloNuevoOrdenProduccion
             costo_produccion_total_con_embalaje = :costo_produccion_total_con_embalaje
         WHERE id = :id");
 
-        // Vincular los parámetros
-        $stmt->bindParam(":folio_orden_produccion", $datos["folio_orden_produccion"], PDO::PARAM_INT);
-        $stmt->bindParam(":nombre_orden", $datos["nombre_orden"], PDO::PARAM_STR);
-        $stmt->bindParam(":estado_orden", $datos["estado_orden"], PDO::PARAM_STR);
-        $stmt->bindParam(":tipo_orden", $datos["tipo_orden"], PDO::PARAM_STR);
+      // Vincular los parámetros
+      $stmt->bindParam(":folio_orden_produccion", $datos["folio_orden_produccion"], PDO::PARAM_INT);
+      $stmt->bindParam(":nombre_orden", $datos["nombre_orden"], PDO::PARAM_STR);
+      $stmt->bindParam(":estado_orden", $datos["estado_orden"], PDO::PARAM_STR);
+      $stmt->bindParam(":tipo_orden", $datos["tipo_orden"], PDO::PARAM_STR);
 
-        if ($datos["id_cliente"] === null) {
-            $stmt->bindValue(":id_cliente", null, PDO::PARAM_NULL);
-        } else {
-            $stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
-        }
+      if ($datos["id_cliente"] === null) {
+        $stmt->bindValue(":id_cliente", null, PDO::PARAM_NULL);
+      } else {
+        $stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
+      }
 
-        if ($datos["id_cotizacion"] === null) {
-            $stmt->bindValue(":id_cotizacion", null, PDO::PARAM_NULL);
-        } else {
-            $stmt->bindParam(":id_cotizacion", $datos["id_cotizacion"], PDO::PARAM_INT);
-        }
+      if ($datos["id_cotizacion"] === null) {
+        $stmt->bindValue(":id_cotizacion", null, PDO::PARAM_NULL);
+      } else {
+        $stmt->bindParam(":id_cotizacion", $datos["id_cotizacion"], PDO::PARAM_INT);
+      }
 
-        if ($datos["id_cotizacion_exenta"] === null) {
-            $stmt->bindValue(":id_cotizacion_exenta", null, PDO::PARAM_NULL);
-        } else {
-            $stmt->bindParam(":id_cotizacion_exenta", $datos["id_cotizacion_exenta"], PDO::PARAM_INT);
-        }
+      if ($datos["id_cotizacion_exenta"] === null) {
+        $stmt->bindValue(":id_cotizacion_exenta", null, PDO::PARAM_NULL);
+      } else {
+        $stmt->bindParam(":id_cotizacion_exenta", $datos["id_cotizacion_exenta"], PDO::PARAM_INT);
+      }
 
-        $stmt->bindParam(":fecha_orden_emision", $datos["fecha_orden_emision"], PDO::PARAM_STR);
-        $stmt->bindParam(":fecha_orden_vencimiento", $datos["fecha_orden_vencimiento"], PDO::PARAM_STR);
-        $stmt->bindParam(":centro_costo", $datos["centro_costo"], PDO::PARAM_INT);
-        $stmt->bindParam(":bodega_destino", $datos["bodega_destino"], PDO::PARAM_INT);
-        $stmt->bindParam(":tipo_produccion", $datos["tipo_produccion"], PDO::PARAM_STR);
-        $stmt->bindParam(":id_producto_produccion", $datos["id_producto_produccion"], PDO::PARAM_INT);
-        $stmt->bindParam(":id_unidad", $datos["id_unidad"], PDO::PARAM_INT);
-        $stmt->bindParam(":cantidad_produccion", $datos["cantidad_produccion"], PDO::PARAM_INT);
-        $stmt->bindParam(":fecha_elaboracion", $datos["fecha_elaboracion"], PDO::PARAM_STR);
-        $stmt->bindParam(":fecha_elaboracion_vencimiento", $datos["fecha_elaboracion_vencimiento"], PDO::PARAM_STR);
-        $stmt->bindParam(":codigo_lote", $datos["codigo_lote"], PDO::PARAM_STR);
+      $stmt->bindParam(":fecha_orden_emision", $datos["fecha_orden_emision"], PDO::PARAM_STR);
+      $stmt->bindParam(":fecha_orden_vencimiento", $datos["fecha_orden_vencimiento"], PDO::PARAM_STR);
+      $stmt->bindParam(":centro_costo", $datos["centro_costo"], PDO::PARAM_INT);
+      $stmt->bindParam(":bodega_destino", $datos["bodega_destino"], PDO::PARAM_INT);
+      $stmt->bindParam(":tipo_produccion", $datos["tipo_produccion"], PDO::PARAM_STR);
+      $stmt->bindParam(":id_producto_produccion", $datos["id_producto_produccion"], PDO::PARAM_INT);
+      $stmt->bindParam(":id_unidad", $datos["id_unidad"], PDO::PARAM_INT);
+      $stmt->bindParam(":cantidad_produccion", $datos["cantidad_produccion"], PDO::PARAM_INT);
+      $stmt->bindParam(":fecha_elaboracion", $datos["fecha_elaboracion"], PDO::PARAM_STR);
+      $stmt->bindParam(":fecha_elaboracion_vencimiento", $datos["fecha_elaboracion_vencimiento"], PDO::PARAM_STR);
+      $stmt->bindParam(":codigo_lote", $datos["codigo_lote"], PDO::PARAM_STR);
 
-        if ($datos["observaciones"] === "") {
-            $stmt->bindValue(":observaciones", null, PDO::PARAM_NULL);
-        } else {
-            $stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
-        }
+      if ($datos["observaciones"] === "") {
+        $stmt->bindValue(":observaciones", null, PDO::PARAM_NULL);
+      } else {
+        $stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
+      }
 
-        $stmt->bindParam(":costo_embalaje_total", $datos["costo_embalaje_total"], PDO::PARAM_INT);
-        $stmt->bindParam(":costo_produccion_total", $datos["costo_produccion_total"], PDO::PARAM_INT);
-        $stmt->bindParam(":costo_produccion_total_con_embalaje", $datos["costo_produccion_total_con_embalaje"], PDO::PARAM_INT);
-        $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+      $stmt->bindParam(":costo_embalaje_total", $datos["costo_embalaje_total"], PDO::PARAM_INT);
+      $stmt->bindParam(":costo_produccion_total", $datos["costo_produccion_total"], PDO::PARAM_INT);
+      $stmt->bindParam(":costo_produccion_total_con_embalaje", $datos["costo_produccion_total_con_embalaje"], PDO::PARAM_INT);
+      $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
-        if ($stmt->execute()) {
-            return "ok";
-        } else {
-            return "error";
-        }
+      if ($stmt->execute()) {
+        return "ok";
+      } else {
+        return "error";
+      }
     } catch (PDOException $e) {
-        return "error: " . $e->getMessage();
+      return "error: " . $e->getMessage();
     }
-}
+  }
 
+  // Función para obtener los insumos asociados a una orden de producción
+  static public function mdlMostrarInsumosPorOrden($tabla, $idOrdenProduccion)
+  {
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_orden_produccion = :id_orden_produccion");
+    $stmt->bindParam(":id_orden_produccion", $idOrdenProduccion, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+  }
 
 
   static public function mdlEliminarOrdenProduccionMateriales($tabla, $folioOrden)
