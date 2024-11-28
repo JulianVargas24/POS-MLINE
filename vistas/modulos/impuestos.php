@@ -188,7 +188,9 @@ MODAL AGREGAR CATEGORÍA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar porcentaje" required max="100">
+                <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" 
+                placeholder="Ingresar porcentaje" 
+                max="100" min="0" required>
 
               </div>
             </div>
@@ -304,7 +306,7 @@ MODAL EDITAR SUBCATEGORÍA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="number" class="form-control input" id="editarFactor" name="editarFactor" required max="100">
+                <input type="number" class="form-control input" id="editarFactor" name="editarFactor" max="100" min="0" required>
 
               </div>
             </div>
