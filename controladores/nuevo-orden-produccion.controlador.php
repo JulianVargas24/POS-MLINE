@@ -169,7 +169,7 @@ class ControladorNuevoOrdenProduccion
       // Actualizar orden principal
       $tabla = "nueva_orden_produccion";
       $datos = array(
-        "id" => $_POST["idOrdenProduccion"], // Asegúrate de tener este ID en tu formulario
+        "id" => $_POST["nuevoFolio"], // Asegúrate de tener este ID en tu formulario
         "folio_orden_produccion" => $_POST["nuevoFolio"],
         "nombre_orden" => $_POST["nuevoNombreOrden"],
         "estado_orden" => $_POST["estadoOrden"],
@@ -193,8 +193,9 @@ class ControladorNuevoOrdenProduccion
         "costo_produccion_total" => $_POST["costoProduccionTotal"],
         "costo_produccion_total_con_embalaje" => $_POST["costoProduccionTotalConEmbalaje"]
       );
-
+      var_dump($datos);
       $respuesta = ModeloNuevoOrdenProduccion::mdlEditarOrdenProduccion($tabla, $datos);
+      var_dump($respuesta);
 
       if ($respuesta == "ok") {
         // Actualizar materiales de la orden
@@ -202,14 +203,19 @@ class ControladorNuevoOrdenProduccion
 
         // Eliminar materiales antiguos
         $respuestaEliminarMateriales = ModeloNuevoOrdenProduccion::mdlEliminarOrdenProduccionMateriales($tablaMateriales, $_POST["idOrdenProduccion"]);
+        var_dump($respuestaEliminarMateriales);
 
         if ($respuestaEliminarMateriales == "ok") {
+          $idOrden = ModeloNuevoOrdenProduccion::mdlObtenerUltimoId();
+          var_dump($idOrden);
+
           // Insertar materiales nuevos
           $materiales = json_decode($_POST["materialesOrden"], true);
+          var_dump($materiales);
 
           foreach ($materiales as $material) {
             $datosMaterial = array(
-              "id_orden_produccion" => $_POST["idOrdenProduccion"],
+              "id_orden_produccion" => $idOrden,
               "id_producto" => $material["id_producto"],
               "id_tipo_material" => $material["id_tipo_material"],
               "id_unidad" => $material["id_unidad"],
@@ -219,6 +225,7 @@ class ControladorNuevoOrdenProduccion
             );
 
             $respuestaMaterial = ModeloNuevoOrdenProduccion::mdlCrearOrdenProduccionMateriales($tablaMateriales, $datosMaterial);
+            var_dump($respuestaMaterial);
 
             if ($respuestaMaterial != "ok") {
               echo '<script>

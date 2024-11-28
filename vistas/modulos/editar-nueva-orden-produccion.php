@@ -612,24 +612,42 @@ if ($_SESSION["perfil"] == "Especial") {
                         <div class="form-group">
                           <label>Producto en Producción</label>
                           <div class="input-group">
-                            <input type="hidden" name="idProductoProduccion" id="idProductoProduccion">
+                            <!-- Campo oculto para almacenar el ID del producto -->
+                            <input type="hidden"
+                              name="idProductoProduccion"
+                              id="idProductoProduccion"
+                              value="<?php echo $ordenProduccion['id_producto_produccion']; ?>">
+
                             <span class="input-group-addon"><i class="fa fa-cube"></i></span>
-                            <input type="text" class="form-control"
+
+                            <!-- Campo visible para mostrar el nombre del producto -->
+                            <input type="text"
+                              class="form-control"
                               id="detalleProductoProduccion"
                               name="detalleProductoProduccion"
+                              value="<?php
+                                      echo isset($productosPorId[$ordenProduccion['id_producto_produccion']])
+                                        ? $productosPorId[$ordenProduccion['id_producto_produccion']]
+                                        : 'Producto desconocido';
+                                      ?>"
                               placeholder="Seleccione un producto"
                               readonly
                               style="cursor: pointer;"
                               data-toggle="modal"
                               data-target="#modalSeleccionarProducto">
+
                             <span class="input-group-btn">
-                              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalSeleccionarProducto">
+                              <button type="button"
+                                class="btn btn-default"
+                                data-toggle="modal"
+                                data-target="#modalSeleccionarProducto">
                                 <i class="fa fa-search"></i>
                               </button>
                             </span>
                           </div>
                         </div>
                       </div>
+
 
                       <!-- Unidad de producción -->
                       <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
@@ -1020,41 +1038,39 @@ if ($_SESSION["perfil"] == "Especial") {
     $(document).ready(function() {
       $.getScript('vistas/js/nueva-orden-produccion.js');
 
-  // Verificar qué tipo de orden está seleccionado al cargar la página
-  let tipoOrdenSeleccionado = $('input[name="tipoOrden"]:checked').val();
+      // Verificar qué tipo de orden está seleccionado al cargar la página
+      let tipoOrdenSeleccionado = $('input[name="tipoOrden"]:checked').val();
 
-  if (tipoOrdenSeleccionado === "Cliente con Cotización") {
-    $("#clienteAsociado").show();
-    $("#seleccionarCotizacion").show();
-    limpiarDatosCliente();
+      if (tipoOrdenSeleccionado === "Cliente con Cotización") {
+        $("#clienteAsociado").show();
+        $("#seleccionarCotizacion").show();
+        limpiarDatosCliente();
 
-    // Recargar la tabla con clientes que tienen cotizaciones
-    $(".tablaClientes")
-      .DataTable()
-      .ajax.url(`ajax/datatable-clientes.ajax.php?tipoOrden=${tipoOrdenSeleccionado}`)
-      .load();
-  } else if (tipoOrdenSeleccionado === "Cliente sin Cotización") {
-    $("#clienteAsociado").show();
-    $("#seleccionarCotizacion").hide();
-    limpiarDatosCliente();
-    limpiarDatosCotizacion();
+        // Recargar la tabla con clientes que tienen cotizaciones
+        $(".tablaClientes")
+          .DataTable()
+          .ajax.url(`ajax/datatable-clientes.ajax.php?tipoOrden=${tipoOrdenSeleccionado}`)
+          .load();
+      } else if (tipoOrdenSeleccionado === "Cliente sin Cotización") {
+        $("#clienteAsociado").show();
+        $("#seleccionarCotizacion").hide();
+        limpiarDatosCliente();
+        limpiarDatosCotizacion();
 
-    // Recargar la tabla con todos los clientes
-    $(".tablaClientes")
-      .DataTable()
-      .ajax.url(`ajax/datatable-clientes.ajax.php?tipoOrden=${tipoOrdenSeleccionado}`)
-      .load();
-  } else if (tipoOrdenSeleccionado === "Para Stock") {
-    $("#clienteAsociado").hide();
-    $("#seleccionarCotizacion").hide();
-    limpiarDatosCliente();
-    limpiarDatosCotizacion();
-  }
+        // Recargar la tabla con todos los clientes
+        $(".tablaClientes")
+          .DataTable()
+          .ajax.url(`ajax/datatable-clientes.ajax.php?tipoOrden=${tipoOrdenSeleccionado}`)
+          .load();
+      } else if (tipoOrdenSeleccionado === "Para Stock") {
+        $("#clienteAsociado").hide();
+        $("#seleccionarCotizacion").hide();
+        limpiarDatosCliente();
+        limpiarDatosCotizacion();
+      }
 
 
     });
-
-
   </script>
 
   <script>
@@ -1062,7 +1078,6 @@ if ($_SESSION["perfil"] == "Especial") {
 
       // Convertir el JSON generado en PHP directamente en una variable de JavaScript
       const insumosExistentes = <?php echo $insumosJSON; ?>;
-      console.log(insumosExistentes);
 
       function formatearMoneda(valor) {
         return $.number(valor, 0, ',', '.');
