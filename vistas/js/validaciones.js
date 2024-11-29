@@ -29,35 +29,6 @@ function formatearRut(inputRutId) {
   }
 }
 
-function verificarRutExistente(rut, idPlantel = null) {
-  if (!rut.trim()) return;
-
-  $.ajax({
-    url: "ajax/plantel.ajax.php",
-    method: "POST",
-    data: { rut: rut, idPlantel: idPlantel },
-    dataType: "json",
-    success: function (response) {
-      const inputRutId =
-        document.getElementById("nuevoRutId") ||
-        document.getElementById("editarRutId");
-
-      if (response.existe) {
-        inputRutId.setCustomValidity(
-          "Este RUT ya está registrado para otro usuario."
-        );
-        inputRutId.reportValidity(); // Mostrar el mensaje de error en el campo
-        inputRutId.focus(); // Regresar el foco al input
-      } else {
-        inputRutId.setCustomValidity(""); // Limpiar mensaje de error si está disponible
-      }
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
-    },
-  });
-}
-
 var RutValidator = {
   validarRut: function (rutCompleto) {
     rutCompleto = rutCompleto.replace("‐", "-");
