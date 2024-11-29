@@ -681,6 +681,13 @@ $(document).ready(function () {
 
   // Funciones que se realizan al "Seleccionar" Insumo
   $(document).on("click", ".agregarInsumo", function () {
+    // Obtener el parámetro de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const idOrdenProduccion = urlParams.get("idOrdenProduccion");
+
+    // Mostrar el valor en la consola para verificar
+    console.log("ID de la orden de producción:", idOrdenProduccion);
+
     // Obtener los valores
     let idProducto = $(this).attr("idProducto");
     let nombreProducto = $(this).attr("nombreProducto");
@@ -689,7 +696,83 @@ $(document).ready(function () {
     let nombreTablaLista = $(this).closest("tr").find("td:eq(4)").text();
     let idMedida = $(this).attr("idMedida");
 
-    // Crear objeto con los datos del insumo
+    // Si estamos en la vista de edición (idOrdenProduccion está presente), verificar si el insumo ya existe
+    if (idOrdenProduccion) {
+      // Verificar si el insumo ya existe en la base de datos
+      $.ajax({
+        url: `modelos/verificar_insumo.php?idOrdenProduccion=${idOrdenProduccion}`,
+        type: "POST",
+        data: {
+          id_producto: idProducto,
+          id_tipo_material: idTablaLista,
+          id_unidad: idMedida,
+          id_orden_produccion: idOrdenProduccion, // Enviar la orden actual
+        },
+        success: function (response) {
+          console.log("Respuesta del servidor:", response.trim());
+
+          const status = response.trim();
+
+          if (status === "existe") {
+            swal({
+              type: "warning",
+              title: "El insumo ya fue agregado en esta orden",
+              showConfirmButton: true,
+              confirmButtonText: "Cerrar",
+            });
+          } else if (status === "no_existe") {
+            // Proceder con la lógica de agregar el insumo
+            agregarInsumo(
+              idProducto,
+              nombreProducto,
+              precioCompra,
+              idTablaLista,
+              nombreTablaLista,
+              idMedida
+            );
+          } else {
+            console.log("Respuesta inesperada del servidor:", response);
+            swal({
+              type: "error",
+              title: "Hubo un error al verificar el insumo",
+              showConfirmButton: true,
+              confirmButtonText: "Cerrar",
+            });
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log("Error: " + error);
+          swal({
+            type: "error",
+            title: "Error de conexión",
+            text: "No se pudo conectar al servidor",
+            showConfirmButton: true,
+            confirmButtonText: "Cerrar",
+          });
+        },
+      });
+    } else {
+      // Si no estamos en la vista de edición (idOrdenProduccion no está presente), agregar insumo directamente
+      agregarInsumo(
+        idProducto,
+        nombreProducto,
+        precioCompra,
+        idTablaLista,
+        nombreTablaLista,
+        idMedida
+      );
+    }
+  });
+
+  // Función para agregar un insumo a la tabla y al array
+  function agregarInsumo(
+    idProducto,
+    nombreProducto,
+    precioCompra,
+    idTablaLista,
+    nombreTablaLista,
+    idMedida
+  ) {
     let nuevoInsumo = {
       id_producto: idProducto,
       id_tipo_material: idTablaLista,
@@ -705,51 +788,42 @@ $(document).ready(function () {
     );
 
     if (!insumoExistente) {
-      // Eliminar la fila de ejemplo
       $(".ejemploSeleccionarInsumo").remove();
-
-      // Agregar el insumo al array
       insumosSeleccionados.push(nuevoInsumo);
 
-      // Obtener el nombre de la unidad de medida
       let nombreUnidad = $(
         "#detalleUnidad option[value='" + idMedida + "']"
       ).text();
 
-      // Crear la fila en la tabla
       let nuevaFila = `
-        <tr>
-          <td>${nombreProducto}</td>
-          <td>${nombreTablaLista}</td>
-          <td>${nombreUnidad}</td>
-          <td>
-            <input type="number" class="form-control cantidadInsumo" 
-                   min="1" value="1" style="width:80px">
-          </td>
-          <td>
-            <span class="precioUnitarioFormateado">${formatearMoneda(
-              precioCompra
-            )}</span>
-          </td>
-          <td class="costoTotal">
-            <span class="costoTotalFormateado">${formatearMoneda(
-              precioCompra
-            )}</span>
-          </td>
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-danger eliminarInsumo">
-                <i class="fa fa-times"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-      `;
-
-      // Agregar la fila a la tabla
+                  <tr>
+                      <td>${nombreProducto}</td>
+                      <td>${nombreTablaLista}</td>
+                      <td>${nombreUnidad}</td>
+                      <td>
+                          <input type="number" class="form-control cantidadInsumo" 
+                              min="1" value="1" style="width:80px">
+                      </td>
+                      <td>
+                          <span class="precioUnitarioFormateado">${formatearMoneda(
+                            precioCompra
+                          )}</span>
+                      </td>
+                      <td class="costoTotal">
+                          <span class="costoTotalFormateado">${formatearMoneda(
+                            precioCompra
+                          )}</span>
+                      </td>
+                      <td>
+                          <div class="btn-group">
+                              <button class="btn btn-danger eliminarInsumo">
+                                  <i class="fa fa-times"></i>
+                              </button>
+                          </div>
+                      </td>
+                  </tr>
+              `;
       $(".insumosSeleccionados tbody").append(nuevaFila);
-
-      // Actualizar totales
       actualizarTotales();
     } else {
       swal({
@@ -759,7 +833,7 @@ $(document).ready(function () {
         confirmButtonText: "Cerrar",
       });
     }
-  });
+  }
 });
 
 /*==================================================
