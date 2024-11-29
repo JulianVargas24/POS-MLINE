@@ -67,7 +67,7 @@ if ($xml) {
                     <button type="button" class="btn btn-default" id="daterange-cotizaciones">
 
                         <span>
-                            <i class="fa fa-calendar"></i>
+                            <i class="fa fa-calendar" style="margin-right: 5px;"></i>
 
                             <?php
 
@@ -82,7 +82,7 @@ if ($xml) {
                             ?>
                         </span>
 
-                        <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-caret-down" style="margin-left: 2px"></i>
 
                     </button>
 
