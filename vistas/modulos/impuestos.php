@@ -196,12 +196,14 @@ MODAL AGREGAR CATEGORÍA
             </div>
 
             <div class="form-group">
-              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
+              <div class="d-inline-block bg-primary"
+               style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" placeholder="Ingresar descripción" required>
+                <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" 
+                placeholder="Ingresar descripción" required>
 
               </div>
             </div>
@@ -312,7 +314,8 @@ MODAL EDITAR SUBCATEGORÍA
             </div>
 
             <div class="form-group">
-              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
+              <div class="d-inline-block bg-primary" 
+              style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
