@@ -46,7 +46,7 @@ $(document).ready(function () {
 
   // Función para limpiar la tabla de insumos seleccionados
   const limpiarInsumosSeleccionados = () => {
-    insumosSeleccionados = [];
+    window.insumosSeleccionados = [];
     mostrarMensajeEjemploInsumos();
     actualizarTotales();
   };
@@ -124,17 +124,18 @@ $(document).ready(function () {
       // Obtener el índice de la fila actual
       const index = $(this).index();
       // Actualizar el array insumosSeleccionados con los valores actuales
-      if (insumosSeleccionados[index]) {
+      if (window.insumosSeleccionados[index]) {
         // Obtener la cantidad ingresada en el input de cantidad
         const cantidad = parseInt($(this).find(".cantidadInsumo").val()) || 0;
         // Obtener el precio unitario del insumo
-        const precioUnitario = insumosSeleccionados[index].precio_unitario;
+        const precioUnitario =
+          window.insumosSeleccionados[index].precio_unitario;
         // Calcular el costo total de la fila
         const costoFilaTotal = cantidad * precioUnitario;
 
         // Actualizar el array insumosSeleccionados con los valores actuales
-        insumosSeleccionados[index].cantidad = cantidad;
-        insumosSeleccionados[index].costo_total = costoFilaTotal;
+        window.insumosSeleccionados[index].cantidad = cantidad;
+        window.insumosSeleccionados[index].costo_total = costoFilaTotal;
 
         // Actualizar visualización en la tabla
         $(this)
@@ -175,13 +176,13 @@ $(document).ready(function () {
     let indice = fila.index();
 
     // Eliminar del array
-    insumosSeleccionados.splice(indice, 1);
+    window.insumosSeleccionados.splice(indice, 1);
 
     // Eliminar la fila de la tabla
     fila.remove();
 
     // Si no quedan insumos, mostrar mensaje de ejemplo
-    if (insumosSeleccionados.length === 0) {
+    if (window.insumosSeleccionados.length === 0) {
       mostrarMensajeEjemploInsumos();
     }
 
@@ -417,7 +418,7 @@ $(document).ready(function () {
     let inputMateriales = $("<input>")
       .attr("type", "hidden")
       .attr("name", "materialesOrden")
-      .val(JSON.stringify(insumosSeleccionados));
+      .val(JSON.stringify(window.insumosSeleccionados));
 
     $(this).append(inputMateriales);
 
@@ -783,13 +784,13 @@ $(document).ready(function () {
     };
 
     // Verificar si el insumo ya existe en el array
-    let insumoExistente = insumosSeleccionados.find(
+    let insumoExistente = window.insumosSeleccionados.find(
       (insumo) => insumo.id_producto === idProducto
     );
 
     if (!insumoExistente) {
       $(".ejemploSeleccionarInsumo").remove();
-      insumosSeleccionados.push(nuevoInsumo);
+      window.insumosSeleccionados.push(nuevoInsumo);
 
       let nombreUnidad = $(
         "#detalleUnidad option[value='" + idMedida + "']"

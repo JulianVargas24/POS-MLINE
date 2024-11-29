@@ -797,7 +797,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo del Embalaje</span>
-                            <span class="info-box-number" id="resumenCostoEmbalaje">$<?php echo $ordenProduccion["costo_embalaje_total"] ?></span>
+                            <span class="info-box-number" id="resumenCostoEmbalaje">$0</span>
                           </div>
                         </div>
                       </div>
@@ -810,7 +810,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo sin Embalaje</span>
-                            <span class="info-box-number" id="resumenCostoSinEmbalaje">$<?php echo $ordenProduccion["costo_produccion_total"] ?></span>
+                            <span class="info-box-number" id="resumenCostoSinEmbalaje">$0</span>
                           </div>
                         </div>
                       </div>
@@ -823,7 +823,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           </span>
                           <div class="info-box-content">
                             <span class="info-box-text">Costo Total del Lote</span>
-                            <span class="info-box-number" id="resumenCostoTotalLote">$<?php echo $ordenProduccion["costo_produccion_total_con_embalaje"] ?></span>
+                            <span class="info-box-number" id="resumenCostoTotalLote">$0</span>
                           </div>
                         </div>
                       </div>
@@ -1075,7 +1075,6 @@ if ($_SESSION["perfil"] == "Especial") {
 
   <script>
     $(document).ready(function() {
-
       // Convertir el JSON generado en PHP directamente en una variable de JavaScript
       const insumosExistentes = <?php echo $insumosJSON; ?>;
 
@@ -1105,32 +1104,78 @@ if ($_SESSION["perfil"] == "Especial") {
         let nombreUnidad = $("#detalleUnidad option[value='" + insumo.id_unidad + "']").text();
 
         let nuevaFila = `
-            <tr>
-                <td>${insumo.nombre_producto}</td> 
-                <td>${insumo.nombre_tipo_material}</td> 
-                <td>${nombreUnidad}</td> 
-                <td>
-                    <input type="number" class="form-control cantidadInsumo"
-                           min="1" value="${insumo.cantidad}" style="width:80px">
-                </td>
-                <td>
-                    <span class="precioUnitarioFormateado">${formatearMoneda(insumo.precio_unitario)}</span>
-                </td>
-                <td class="costoTotal">
-                    <span class="costoTotalFormateado">${formatearMoneda(insumo.costo_total)}</span>
-                </td>
-                <td>
-                    <div class="btn-group">
-                        <button class="btn btn-danger eliminarInsumo">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        `;
+        <tr>
+            <td>${insumo.nombre_producto}</td> 
+            <td>${insumo.nombre_tipo_material}</td> 
+            <td>${nombreUnidad}</td> 
+            <td>
+                <input type="number" class="form-control cantidadInsumo"
+                       min="1" value="${insumo.cantidad}" style="width:80px">
+            </td>
+            <td>
+                <span class="precioUnitarioFormateado">${formatearMoneda(insumo.precio_unitario)}</span>
+            </td>
+            <td class="costoTotal">
+                <span class="costoTotalFormateado">${formatearMoneda(insumo.costo_total)}</span>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-danger eliminarInsumo">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `;
 
         $(".insumosSeleccionados tbody").append(nuevaFila);
       });
+
+      // Llamar a la función actualizarTotales después de cargar los insumos
+      actualizarTotales();
+
+      // Función para actualizar los totales
+      function actualizarTotales() {
+        // Inicializar totales
+        let costoEmbalajeFinal = 0;
+        let costoInsumosFinal = 0;
+        let costoTotalLoteFinal = 0;
+
+        // Procesar cada fila de insumos
+        $(".insumosSeleccionados table tbody tr").each(function() {
+          const index = $(this).index(); // Obtener el índice de la fila actual
+          if (window.insumosSeleccionados[index]) {
+            const cantidad = parseInt($(this).find(".cantidadInsumo").val()) || 0; // Obtener la cantidad
+            const precioUnitario = window.insumosSeleccionados[index].precio_unitario;
+            const costoFilaTotal = cantidad * precioUnitario;
+
+            // Actualizar el array insumosSeleccionados
+            window.insumosSeleccionados[index].cantidad = cantidad;
+            window.insumosSeleccionados[index].costo_total = costoFilaTotal;
+
+            // Actualizar visualización en la tabla
+            $(this).find(".costoTotalFormateado").text(formatearMoneda(costoFilaTotal));
+
+            // Actualizar totales
+            $(this).find("td:eq(1)").text().trim() === "Embalaje" ?
+              (costoEmbalajeFinal += costoFilaTotal) :
+              (costoInsumosFinal += costoFilaTotal);
+
+            // Sumar el costo total de la fila al total del lote
+            costoTotalLoteFinal += costoFilaTotal;
+          }
+        });
+
+        // Actualizar resúmenes visuales
+        $("#resumenCostoEmbalaje").text(formatearMoneda(costoEmbalajeFinal));
+        $("#resumenCostoSinEmbalaje").text(formatearMoneda(costoInsumosFinal));
+        $("#resumenCostoTotalLote").text(formatearMoneda(costoTotalLoteFinal));
+
+        // Actualizar los campos ocultos
+        $("#costoEmbalajeTotal").val(costoEmbalajeFinal);
+        $("#costoProduccionTotal").val(costoInsumosFinal);
+        $("#costoProduccionTotalConEmbalaje").val(costoTotalLoteFinal);
+      }
     });
   </script>
 
