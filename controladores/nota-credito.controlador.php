@@ -257,30 +257,43 @@ class ControladorNotaCredito{
 
     static public function  ctrMostrarNotasAfecta($item, $valor){
         $tabla = "nota_credito";
-		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
 
-		return $respuesta;
+        // Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;  
+
+		return ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+
     }
     static public function ctrMostrarNotasExenta($item, $valor){
         $tabla = "nota_credito_exenta";
 
-		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
+        // Obtener fechas desde la URL
+        $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+        $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;  
 
-		return $respuesta;
+		return ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+
     }
     static public function ctrMostrarNotasBoleta($item, $valor){
         $tabla = "nota_credito_boleta";
 
-		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
+        // Obtener fechas desde la URL
+        $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+        $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;  
 
-		return $respuesta;
+		return ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+
     }
     static public function ctrMostrarNotasBoletaExenta($item, $valor){
         $tabla = "nota_credito_boleta_exenta";
 
-		$respuesta = ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor);
+        // Obtener fechas desde la URL
+		$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+		$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;  
 
-		return $respuesta;
+		return ModeloNotaCredito::mdlMostrarNotas($tabla, $item, $valor, $fechaInicial, $fechaFinal);
+
     }
 
 

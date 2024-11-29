@@ -8,7 +8,8 @@ class ControladorVentaFactura
     CREAR COTIZACION
     =============================================*/
 
-    static public function ctrCrearVentaAfecta(){
+    static public function ctrCrearVentaAfecta()
+    {
 
         if (isset($_POST["nuevoCodigo"])) {
 
@@ -43,13 +44,13 @@ class ControladorVentaFactura
 
             $respuesta = ModeloVentaFactura::mdlIngresarVentaAfecta($tabla, $datos);
             $productos = json_decode($datos["productos"], true);
-            foreach($productos as $producto) {
+            foreach ($productos as $producto) {
                 $datos = [
                     "id_producto" => $producto["id"],
                     "cantidad" => $producto["cantidad"],
                     "descripcion" => $producto["descripcion"],
                     "id_bodega" => $datos["id_bodega"],
-                    ];
+                ];
                 ModeloSalidasInventario::mdlSalidaPorVenta($datos);
             }
 
@@ -75,7 +76,8 @@ class ControladorVentaFactura
             }
         }
     }
-    static public function ctrCrearVentaAfectaConCotizacion(){
+    static public function ctrCrearVentaAfectaConCotizacion()
+    {
 
         if (isset($_POST["nuevoCodigo"])) {
 
@@ -110,25 +112,28 @@ class ControladorVentaFactura
 
             $respuesta1 = ModeloVentaFactura::mdlActualizarEstadoCotizacion($datos);
             $respuesta = ModeloVentaFactura::mdlIngresarVentaAfecta($tabla, $datos);
-             $productos = json_decode($datos["productos"], true);
-            foreach($productos as $producto) {
+            $productos = json_decode($datos["productos"], true);
+            foreach ($productos as $producto) {
                 $datos = [
                     "id_producto" => $producto["id"],
                     "cantidad" => $producto["cantidad"],
                     "descripcion" => $producto["descripcion"],
                     "id_bodega" => $datos["id_bodega"],
-                    ];
+                ];
                 ModeloSalidasInventario::mdlSalidaPorVenta($datos);
             }
 
 
             if ($respuesta == "ok") {
 
+                $cotizacionId = $_POST["nuevoIdCotizacion"]; // Obtener el id de la cotización
+                $respuesta2 = ModeloCotizacion::mdlEliminarCotizacionconCotizacion($cotizacionId);
+
                 echo '<script>
                         console.log(" ' . $datos["documento"] . '");
                     swal({
                           type: "success",
-                          title: "La Venta con Factura Afecta ha sido guardada correctamente",
+                          title: "La Venta con Factura Afecta con Cotizacion ha sido guardada correctamente",
                           showConfirmButton: true,
                           confirmButtonText: "Cerrar"
                           }).then(function(result){
@@ -143,9 +148,14 @@ class ControladorVentaFactura
             }
         }
     }
-    static public function ctrCrearVentaExentaConCotizacion(){
+    static public function ctrCrearVentaExentaConCotizacion()
+    {
 
         if (isset($_POST["nuevoCodigo"])) {
+            /**echo '<pre>';
+            var_dump($_POST);
+            echo '</pre>';*/
+
 
             $tabla = "venta_exenta";
 
@@ -176,18 +186,35 @@ class ControladorVentaFactura
                 "cotizacion" => $_POST["nuevoIdCotizacion"]
 
             );
+            /**echo '<pre>';
+            var_dump($datos);
+            echo '</pre>';
+            exit;*/
 
             $respuesta1 = ModeloVentaFactura::mdlActualizarEstadoCotizacionExenta($datos);
-            $respuesta = ModeloVentaFactura::mdlIngresarVentaAfecta($tabla, $datos);
+            $respuesta = ModeloVentaFactura::mdlIngresarVentaExenta($tabla, $datos);
+            $productos = json_decode($datos["productos"], true);
+            foreach ($productos as $producto) {
+                $datos = [
+                    "id_producto" => $producto["id"],
+                    "cantidad" => $producto["cantidad"],
+                    "descripcion" => $producto["descripcion"],
+                    "id_bodega" => $datos["id_bodega"],
+                ];
+                ModeloSalidasInventario::mdlSalidaPorVenta($datos);
+            }
 
 
             if ($respuesta == "ok") {
+
+                $cotizacionId = $_POST["nuevoIdCotizacion"]; // Obtener el id de la cotización
+                $respuesta2 = ModeloCotizacion::mdlEliminarCotizacionExentaconCotizacion($cotizacionId);
 
                 echo '<script>
                         console.log(" ' . $datos["documento"] . '");
                     swal({
                           type: "success",
-                          title: "La Venta con Factura Exenta ha sido guardada correctamente",
+                          title: "La Venta con Factura Exenta con Cotizacion ha sido guardada correctamente",
                           showConfirmButton: true,
                           confirmButtonText: "Cerrar"
                           }).then(function(result){
@@ -202,7 +229,8 @@ class ControladorVentaFactura
             }
         }
     }
-    static public function ctrCrearVentaExenta(){
+    static public function ctrCrearVentaExenta()
+    {
 
         if (isset($_POST["nuevoCodigo"])) {
 
@@ -260,7 +288,8 @@ class ControladorVentaFactura
         }
     }
 
-    static public function ctrDescargarReporteVentaAfecta() {
+    static public function ctrDescargarReporteVentaAfecta()
+    {
 
         if (isset($_GET["reporte"])) {
 
@@ -339,12 +368,12 @@ class ControladorVentaFactura
 
                     echo utf8_decode($valueProductos["id"] . "<br>");
                 }
-                echo utf8_decode("</td><td style='border:1px solid #eee;'>");   
+                echo utf8_decode("</td><td style='border:1px solid #eee;'>");
                 foreach ($productos as $key => $valueProductos) {
 
                     echo utf8_decode($valueProductos["cantidad"] . "<br>");
                 }
-                
+
 
                 echo utf8_decode("</td><td style='border:1px solid #eee;'>");
 
@@ -375,7 +404,8 @@ class ControladorVentaFactura
             echo "</table>";
         }
     }
-    static public function ctrDescargarReporteVentaExenta(){
+    static public function ctrDescargarReporteVentaExenta()
+    {
 
         if (isset($_GET["reporte"])) {
 
@@ -492,18 +522,19 @@ class ControladorVentaFactura
         }
     }
 
-    static public function ctrEliminarVentaAfecta(){
+    static public function ctrEliminarVentaAfecta()
+    {
 
-        if(isset($_GET["idAfecta"])){
+        if (isset($_GET["idAfecta"])) {
 
-			$tabla ="venta_afecta";
-			$datos = $_GET["idAfecta"];
+            $tabla = "venta_afecta";
+            $datos = $_GET["idAfecta"];
 
-			$respuesta = ModeloVentaFactura::mdlBorrarVentaAfecta($tabla, $datos);
+            $respuesta = ModeloVentaFactura::mdlBorrarVentaAfecta($tabla, $datos);
 
-			if($respuesta == "ok"){
+            if ($respuesta == "ok") {
 
-				echo'<script>
+                echo '<script>
 
 				swal({
 					  type: "success",
@@ -520,23 +551,22 @@ class ControladorVentaFactura
 							})
 
 				</script>';
-
-			}		
-
-		}
+            }
+        }
     }
-    static public function ctrEliminarVentaExenta(){
+    static public function ctrEliminarVentaExenta()
+    {
 
-        if(isset($_GET["idExenta"])){
+        if (isset($_GET["idExenta"])) {
 
-			$tabla ="venta_exenta";
-			$datos = $_GET["idExenta"];
+            $tabla = "venta_exenta";
+            $datos = $_GET["idExenta"];
 
-			$respuesta = ModeloVentaFactura::mdlBorrarVentaExenta($tabla, $datos);
+            $respuesta = ModeloVentaFactura::mdlBorrarVentaExenta($tabla, $datos);
 
-			if($respuesta == "ok"){
+            if ($respuesta == "ok") {
 
-				echo'<script>
+                echo '<script>
 
 				swal({
 					  type: "success",
@@ -553,9 +583,7 @@ class ControladorVentaFactura
 							})
 
 				</script>';
-
-			}		
-
-		}
+            }
+        }
     }
 }

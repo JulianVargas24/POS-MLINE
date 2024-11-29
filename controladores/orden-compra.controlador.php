@@ -2,14 +2,11 @@
 
 class ControladorOrdenCompra
 {
-
-	/*=============================================
-    CREAR ORDEN DE COMPRA
-    =============================================*/
-
+	/**
+	 * Método para crear una orden de compra
+	 */
 	static public function ctrCrearOrdenCompra()
 	{
-
 		if (isset($_POST["nuevoCodigo"])) {
 
 			$tabla = "orden_compra";
@@ -33,11 +30,9 @@ class ControladorOrdenCompra
 				"productos" => $_POST["listaProductos"]
 			);
 
-
 			$respuesta = ModeloOrdenCompra::mdlIngresarOrdenCompra($tabla, $datos);
 
 			if ($respuesta == "ok") {
-
 				echo '<script>
 					swal({
 						  type: "success",
@@ -57,6 +52,9 @@ class ControladorOrdenCompra
 		}
 	}
 
+	/**
+	 * Método para editar una orden de compra
+	 */
 	static public function ctrEditarOrdenCompra()
 	{
 		if (isset($_POST["nuevoCodigo"])) {
@@ -82,11 +80,9 @@ class ControladorOrdenCompra
 				"productos" => $_POST["listaProductos"]
 			);
 
-
 			$respuesta = ModeloOrdenCompra::mdlEditarOrdenCompra($tabla, $datos);
 
 			if ($respuesta == "ok") {
-
 				echo '<script>
 			 swal({
 				   type: "success",
@@ -95,17 +91,17 @@ class ControladorOrdenCompra
 				   confirmButtonText: "Cerrar"
 				   }).then(function(result){
 							 if (result.value) {
-
 							 window.location = "ordenes-compra";
-
 							 }
 						 })
-
 			 </script>';
 			}
 		}
 	}
 
+	/**
+	 * Método para mostrar una orden de compra
+	 */
 	static public function ctrMostrarOrdenCompra($item, $valor)
 	{
 		$tabla = "orden_compra";
@@ -118,9 +114,11 @@ class ControladorOrdenCompra
 		return $respuesta;
 	}
 
+	/**
+	 * Método para eliminar una orden de compra
+	 */
 	static public function ctrEliminarOrdenCompra()
 	{
-
 		if (isset($_GET["idOrdenCompra"])) {
 
 			$tabla = "orden_compra";
@@ -131,7 +129,6 @@ class ControladorOrdenCompra
 			if ($respuesta == "ok") {
 
 				echo '<script>
-
 				swal({
 					  type: "success",
 					  title: "La Orden de Compra ha sido borrada correctamente",
@@ -140,34 +137,33 @@ class ControladorOrdenCompra
 					  closeOnConfirm: false
 					  }).then(function(result){
 								if (result.value) {
-
 								window.location = "ordenes-compra";
-
 								}
 							})
-
 				</script>';
 			}
 		}
 	}
 
+	/**
+	 * Método para descargar un reporte de orden de compra
+	 */
 	public function ctrDescargarReporteOrdenCompra()
 	{
-
 		if (isset($_GET["reporte"])) {
+
 			$tabla = "orden_compra";
-			if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
+
+			// Verificar que ambas fechas están presentes y no están vacías
+			if (!empty($_GET["fechaInicial"]) && !empty($_GET["fechaFinal"])) {
 				$fechaInicial = $_GET["fechaInicial"];
 				$fechaFinal = $_GET["fechaFinal"];
 				$orden = ModeloOrdenCompra::mdlMostrarOrdenCompra($tabla, null, null, $fechaInicial, $fechaFinal);
-
-				$Name = $_GET["reporte"] . '_orden  _compra (' . $fechaInicial . ' al ' . $fechaFinal . ').xls';
+				$Name = ucfirst($_GET["reporte"]) . ' de órdenes de compra (' . $fechaInicial . ' al ' . $fechaFinal . ').xls';
 			} else {
-				$item = null;
-				$valor = null;
-				$orden = ModeloOrdenCompra::mdlMostrarOrdenCompra($tabla, $item, $valor);
-
-				$Name = $_GET["reporte"] . '_orden_compra.xls';
+				// Si no hay fechas se descarga el reporte completo
+				$orden = ModeloOrdenCompra::mdlMostrarOrdenCompra($tabla, null, null);
+				$Name = ucfirst($_GET["reporte"]) . ' de órdenes de compra.xls';
 			}
 
 			/*=============================================
@@ -188,6 +184,7 @@ class ControladorOrdenCompra
 					<tr> 
 					<td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO</td> 
 					<td style='font-weight:bold; border:1px solid #eee;'>PROVEEDOR</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>ESTADO</td>		
 					<td style='font-weight:bold; border:1px solid #eee;'>CENTRO DE COSTO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>BODEGA</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ID PRODUCTO</td>
@@ -215,10 +212,10 @@ class ControladorOrdenCompra
 				echo utf8_decode("<tr>
 			 			<td style='border:1px solid #eee;'>" . $item["codigo"] . "</td> 
 			 			<td style='border:1px solid #eee;'>" . $proveedor["razon_social"] . "</td>
-						 <td style='border:1px solid #eee;'>" . $centros["centro"] . "</td>
-						 <td style='border:1px solid #eee;'>" . $bodega["nombre"] . "</td>
-						
-						 <td style='border:1px solid #eee;'>");
+						<td style='border:1px solid #eee;'>" . $item["estado"] . "</td>		
+						<td style='border:1px solid #eee;'>" . $centros["centro"] . "</td>
+						<td style='border:1px solid #eee;'>" . $bodega["nombre"] . "</td>
+						<td style='border:1px solid #eee;'>");
 
 				$productos = json_decode($item["productos"], true);
 
@@ -254,7 +251,7 @@ class ControladorOrdenCompra
 					<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["total_neto"])), 0, '', '.') . "</td>	
 					<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["iva"])), 0, '', '.') . "</td>	
 					<td style='border:1px solid #eee;'> $ " . number_format(intval(str_replace(',', '', $item["total_final"])), 0, '', '.') . "</td>
-					<td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>		
+					<td style='border:1px solid #eee;'>" . substr($item["fecha_emision"], 0, 10) . "</td>
 		 			</tr>");
 			}
 

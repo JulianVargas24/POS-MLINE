@@ -9,7 +9,6 @@ if ($_SESSION["perfil"] == "Vendedor") {
   </script>';
 
     return;
-
 }
 
 ?>
@@ -26,9 +25,11 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
         <ol class="breadcrumb">
 
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
 
-            <li class="active">Administrar categorías</li>
+            <li>Maestro</li>
+
+            <li class="active">Categorías</li>
 
         </ol>
 
@@ -41,9 +42,8 @@ if ($_SESSION["perfil"] == "Vendedor") {
             <div class="box-header with-border">
 
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
-
+                    <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
                     Agregar categoría
-
                 </button>
 
             </div>
@@ -54,29 +54,29 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                     <thead>
 
-                    <tr>
+                        <tr>
 
-                        <th style="width:10px">#</th>
-                        <th>Categoría</th>
-                        <th>Acciones</th>
+                            <th style="width:10px">#</th>
+                            <th>Categoría</th>
+                            <th>Acciones</th>
 
-                    </tr>
+                        </tr>
 
                     </thead>
 
                     <tbody>
 
-                    <?php
+                        <?php
 
-                    $item = null;
-                    $valor = null;
+                        $item = null;
+                        $valor = null;
 
-                    $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                        $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 
 
-                    foreach ($categorias as $key => $value) {
+                        foreach ($categorias as $key => $value) {
 
-                        echo ' <tr>
+                            echo ' <tr>
 
                     <td>' . ($key + 1) . '</td>
 
@@ -89,20 +89,19 @@ if ($_SESSION["perfil"] == "Vendedor") {
                           
                         <button class="btn btn-warning btnEditarCategoria" idCategoria="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>';
 
-                        if ($_SESSION["perfil"] == "Administrador") {
+                            if ($_SESSION["perfil"] == "Administrador") {
 
-                            echo '<button class="btn btn-danger btnEliminarCategoria" idCategoria="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+                                echo '<button class="btn btn-danger btnEliminarCategoria" idCategoria="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+                            }
 
-                        }
-
-                        echo '</div>  
+                            echo '</div>  
 
                     </td>
 
                   </tr>';
-                    }
+                        }
 
-                    ?>
+                        ?>
 
                     </tbody>
 
@@ -159,14 +158,14 @@ MODAL AGREGAR CATEGORÍA
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Categoría
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">Categoría
                             </div>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                                 <input type="text" class="form-control input" name="nuevaCategoria"
-                                       placeholder="Ingresar categoría" required>
+                                    placeholder="Ingresar categoría" required>
 
                             </div>
 
@@ -239,14 +238,14 @@ MODAL EDITAR CATEGORÍA
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Categoría
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Categoría
                             </div>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                                 <input type="text" class="form-control input" name="editarCategoria"
-                                       id="editarCategoria" required>
+                                    id="editarCategoria" required>
 
                                 <input type="hidden" name="idCategoria" id="idCategoria" required>
 
@@ -291,4 +290,3 @@ $borrarCategoria = new ControladorCategorias();
 $borrarCategoria->ctrBorrarCategoria();
 
 ?>
-

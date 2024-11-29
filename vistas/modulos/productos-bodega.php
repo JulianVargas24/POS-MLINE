@@ -9,7 +9,6 @@ if ($_SESSION["perfil"] == "Vendedor") {
   </script>';
 
     return;
-
 }
 
 ?>
@@ -25,9 +24,9 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
         <ol class="breadcrumb">
 
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-
-            <li class="active">Administrar productos por bodega</li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Inventario</li>
+            <li class="active">Productos-Bodega</li>
 
         </ol>
 
@@ -38,11 +37,11 @@ if ($_SESSION["perfil"] == "Vendedor") {
         <div class="box">
 
             <div class="box-header with-border">
-                <?php
-
-                echo '<a href="vistas/modulos/descargar-reporte-bodegas.php?reporte=reporte">';
-                ?>
-                <button class="btn btn-success">Descargar reporte de bodegas</button>
+                <a href="vistas/modulos/descargar-reporte-bodegas.php?reporte=reporte">
+                    <button class="btn btn-success pull-right">
+                        <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
+                        Reporte en Excel
+                    </button>
                 </a>
             </div>
 
@@ -63,18 +62,18 @@ if ($_SESSION["perfil"] == "Vendedor") {
                                                       <?php
 
 
-                    $item = null;
-                    $valor = null;
+                                                        $item = null;
+                                                        $valor = null;
 
-                    $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                                                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
 
 
-                    foreach ($bodegas as $key => $value) {
+                                                        foreach ($bodegas as $key => $value) {
 
-                        echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
-                    }
+                                                            echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+                                                        }
 
-                    ?>
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -146,8 +145,6 @@ if ($_SESSION["perfil"] == "Vendedor") {
                           
                                  </table>
                                  </div>';
-
-
                 }
                 ?>
 
@@ -215,33 +212,33 @@ MODAL VER DETALLE PRODUCTO
                                             <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
 
                                             <input type="text" class="form-control input" name="nuevaDescripcion"
-                                                   placeholder="Nombre Producto" required>
+                                                placeholder="Nombre Producto" required>
 
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
-                                             style="font-size:16px;font-weight:bold">Bodega
+                                            style="font-size:16px;font-weight:bold">Bodega
                                         </div>
                                         <div class="input-group">
 
                                             <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                                             <input type="text" class="form-control input" name="nuevaDescripcion"
-                                                   placeholder="Nombre Producto" required>
+                                                placeholder="Nombre Producto" required>
 
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
-                                             style="font-size:16px;font-weight:bold">Fecha
+                                            style="font-size:16px;font-weight:bold">Fecha
                                         </div>
                                         <div class="input-group">
 
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
                                             <input type="date" class="form-control input"
-                                                   value="<?php echo date("Y-m-d"); ?>">
+                                                value="<?php echo date("Y-m-d"); ?>">
 
                                         </div>
                                     </div>
@@ -267,7 +264,8 @@ MODAL VER DETALLE PRODUCTO
                         </div>
                         <div class="box box-success">
                             <div class="box-title">
-                                <h4 style="font-weight:bold">ENTRADAS</h4></div>
+                                <h4 style="font-weight:bold">ENTRADAS</h4>
+                            </div>
                             <div class="box-body">
                                 <div class="form-group row">
                                     <div class="col-xs-4">
@@ -336,7 +334,8 @@ MODAL VER DETALLE PRODUCTO
                         </div>
                         <div class="box box-warning">
                             <div class="box-title">
-                                <h4 style="font-weight:bold">SALIDAS</h4></div>
+                                <h4 style="font-weight:bold">SALIDAS</h4>
+                            </div>
                             <div class="box-body">
                                 <div class="form-group row">
                                     <div class="col-xs-4">
@@ -449,7 +448,3 @@ MODAL VER DETALLE PRODUCTO
 
 
 </script>
-
-
-
-

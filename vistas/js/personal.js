@@ -66,7 +66,7 @@ $(".tablas").on("click", ".btnEliminarPersonal", function(){
 	var idPersonal = $(this).attr("idPersonal");
 	
 	swal({
-        title: '¿Está seguro de borrar este Personal?',
+        title: '¿Está seguro de borrar este personal?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,

@@ -5,27 +5,28 @@
 function formatearRut(inputRutId) {
   let rut = inputRutId.value.trim();
 
-  // Eliminar puntos y transformar "k" a mayúscula
-  rut = rut.replace(/\./g, "").replace(/k/g, "K");
-
-  // Verifica si el RUT ya tiene un guion
-  if (!rut.includes("-") && rut.length >= 8) {
-    rut = rut.slice(0, 8) + "-" + rut[8];
+  // Eliminar puntos.
+  rut = rut.replace(/\./g, "");
+  // Reemplazar k minúscula por K mayúscula.
+  rut = rut.replace(/k/g, "K");
+  // Verifica si el RUT ya tiene un guion.
+  if (!rut.includes("-")) {
+    if (rut.length >= 8) {
+      rut = rut.slice(0, 8) + "-" + rut[8];
+    }
   }
 
-  // Validar el RUT
+  inputRutId.addEventListener("input", function () {
+    inputRutId.setCustomValidity("");
+  });
+
   if (!RutValidator.validarRut(rut)) {
     inputRutId.setCustomValidity("El RUT ingresado no es válido.");
     inputRutId.reportValidity();
     inputRutId.focus();
-    return; // Detener la ejecución si el RUT no es válido
   } else {
     inputRutId.setCustomValidity("");
     inputRutId.value = rut;
-
-    // Llamada AJAX para verificar si el RUT ya existe
-    const idPlantel = inputRutId.dataset.id || null; // Obtener el ID del data-attribute si está en edición
-    verificarRutExistente(rut, idPlantel);
   }
 }
 
@@ -97,6 +98,15 @@ function validarFechas(idComienzo, idCierre) {
   if (fechaComienzo > fechaCierre) {
     fechaCierreInput.value = "";
     fechaCierreInput.focus();
+
+    // Mostrar un swal de alerta
+    swal({
+      type: "warning",
+      title: "Atención",
+      text: "La fecha que ha ingresado no es válida",
+      showConfirmButton: true,
+      confirmButtonText: "Cerrar",
+    });
     return false;
   }
   return true;

@@ -26,9 +26,9 @@ if($_SESSION["perfil"] == "Especial"){
 
     <ol class="breadcrumb">
       
-      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Crear orden de vestuario</li>
+      <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
+      <li>Orden de trabajo</li>
+      <li class="active">Orden de vestuario</li>
     
     </ol>
 
@@ -40,23 +40,19 @@ if($_SESSION["perfil"] == "Especial"){
                 <form role="form" method="post" class="formularioOrdenVestuario">
                 <!--=====================================
                 FECHAS Y TIPO DE DOCUMENTO
-                    ======================================-->
-                    
-                    <div class="row">
-
-                        
+                    ======================================-->                   
+                    <div class="row">                     
                         <div class="col-xs-5">
                             <div class="box box-info">
-                                    <div class="box-body">
+                                <div class="box-body">
                                     <h4 class="box-title" style="font-weight:bold; font-size:20px;">Cliente asociado</h4>
-                                        <div class="row" style="margin-bottom:5px;">
-                                            <div class="col-xs-12">
-                                                    
-                                                    <div class="form-group">
-                                                        <div class="input-group" style="display:block;">                
-                                                        <select class="form-control" id="nuevoCliente" name="nuevoCliente" required>
+                                    <div class="row" style="margin-bottom:5px;">
+                                        <div class="col-xs-12">                                                
+                                            <div class="form-group">
+                                                <div class="input-group" style="display:block;">                
+                                                    <select class="form-control" id="nuevoCliente" name="nuevoCliente" required>
 
-                                                            <option value="">Seleccionar cliente</option>
+                                                        <option value="">Seleccionar cliente</option>
 
                                                             <?php
 
@@ -73,99 +69,92 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                             ?>
 
-                                                        </select>
-
-                                                        </div>
-                                                    </div> 
-                                            </div>
-                                        </div>
-                                        <div class="row"> 
-                                            <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <input type="hidden" id="traerId">
-                                                            <span class="input-group-addon"> <i class="fa fa-address-card"></i> RUT</span>                
-                                                            <input type="text" class="form-control" id="traerRut" value="" readonly>
-                                                        </div>
-                                                    </div> 
-                                            </div>
-                                            <div class="col-xs-6">                                                  
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                        <span class="input-group-addon">Dirección</span>
-                                                            <input type="text" class="form-control" id="traerDireccion" value="" readonly>
-                                                        </div>
-                                                    </div> 
-                                            </div>
-                                            <div class="col-xs-6">   
-                                                    <div class="form-group">
-                                                        <div class="input-group">   
-                                                            <span class="input-group-addon">Actividad</span>             
-                                                            <input type="text" class="form-control" id="traerActividad" value="" readonly>
-                                                        </div>
-                                                    </div> 
-                                            </div>
-                                            <div class="col-xs-6">                                  
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">Ejecutivo</span>                
-                                                            <input type="text" class="form-control" id="traerEjecutivo" value="" readonly>
-                                                        </div>
-                                                    </div> 
-                                            </div>
-                                            <div class="col-xs-6">                                                  
-                                                    <div class="form-group">
-                                                        <div class="input-group">                
-                                                        <span class="input-group-addon">Teléfono</span>
-                                                            <input type="text" class="form-control" id="traerTelefono" value="" readonly>
-                                                        </div>
-                                                    </div> 
-                                            </div>
-                                            <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                        <span class="input-group-addon"> <i class="fa fa-at"></i> Correo</span>                
-                                                            <input type="text" class="form-control" id="traerEmail" value="" readonly>
-                                                        </div>
-                                                    </div> 
-                                            </div>
-                                            
+                                                    </select>
+                                                </div>
+                                            </div> 
                                         </div>
                                     </div>
+                                    <div class="row"> 
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="hidden" id="traerId">
+                                                    <span class="input-group-addon"> <i class="fa fa-address-card"></i> RUT</span>                
+                                                    <input type="text" class="form-control" id="traerRut" value="" readonly>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="col-xs-6">                                                  
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Dirección</span>
+                                                    <input type="text" class="form-control" id="traerDireccion" value="" readonly>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="col-xs-6">   
+                                            <div class="form-group">
+                                                <div class="input-group">   
+                                                    <span class="input-group-addon">Actividad</span>             
+                                                    <input type="text" class="form-control" id="traerActividad" value="" readonly>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="col-xs-6">                                  
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Ejecutivo</span>                
+                                                    <input type="text" class="form-control" id="traerEjecutivo" value="" readonly>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="col-xs-6">                                                  
+                                            <div class="form-group">
+                                                <div class="input-group">                
+                                                    <span class="input-group-addon">Teléfono</span>
+                                                    <input type="text" class="form-control" id="traerTelefono" value="" readonly>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"> <i class="fa fa-at"></i> Correo</span>                
+                                                    <input type="text" class="form-control" id="traerEmail" value="" readonly>
+                                                </div>
+                                             </div> 
+                                        </div>                                           
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                         <div class="col-xs-4">
                             <div class="box box-info">
-                                    <div class="box-body">
-                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de orden</h4>
-                                            <div class="row" style="margin-bottom:5px;">
-                                                <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha emisión</div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            
-                                                            <input type="date" class="form-control input-sm" name="nuevaFechaEmision" id="nuevaFechaEmision">
-                                                        </div>
-                                                    </div>
-
+                                <div class="box-body">
+                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Datos de orden</h4>
+                                    <div class="row" style="margin-bottom:5px;">
+                                        <div class="col-xs-6">
+                                            <div class="d-block" style="font-size:14px;">Fecha de emisión</div>
+                                            <div class="form-group">
+                                                <div class="input-group">                                                           
+                                                    <input type="date" class="form-control input" name="nuevaFechaEmision" id="nuevaFechaEmision">
                                                 </div>
-                                                <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Fecha venc.</div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-
-                                                            <input type="date" class="form-control input-sm" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="d-block" style="font-size:14px;">Fecha de vencimiento</div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control input" name="nuevaFechaVencimiento" id="nuevaFechaVencimiento">
                                                 </div>
-                                                
-                                                <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Centro de costo</div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                        <select class="form-control input" id="nuevoCentro" name="nuevoCentro" required>
-                
-                                                            <option value="">Seleccionar centro</option>
+                                            </div>
+                                        </div>                                               
+                                        <div class="col-xs-6">
+                                            <div class="d-block" style="font-size:14px;">Centro de costo</div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <select class="form-control input" id="nuevoCentro" name="nuevoCentro" required>              
+                                                         <option value="">Seleccionar centro</option>
 
                                                             <?php
 
@@ -180,17 +169,16 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                             ?>
                                             
-                                                        </select>
-                                                        </div>
-                                                    </div>
+                                                    </select>
                                                 </div>
-                                                <div class="col-xs-6">
-                                                <div class="d-block" style="font-size:14px;">Bodega destino</div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                        <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
-                
-                                                            <option value="">Seleccionar Bodega</option>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="d-block" style="font-size:14px;">Bodega de destino</div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <select class="form-control input" id="nuevaBodega" name="nuevaBodega" required>
+                                                        <option value="">Seleccionar Bodega</option>
 
                                                             <?php
 
@@ -205,14 +193,12 @@ if($_SESSION["perfil"] == "Especial"){
 
                                                             ?>
                                             
-                                                        </select>
-                                                        </div>
-                                                    </div>
+                                                    </select>
                                                 </div>
-                                                
                                             </div>
-                                        
-                                    </div>
+                                        </div>                                              
+                                    </div>     
+                                </div>
                             </div>
                         </div>
                         <div class="col-xs-3">
@@ -224,39 +210,34 @@ if($_SESSION["perfil"] == "Especial"){
                                 ?>
                                 <div class="box-body">
                                     <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;"> ORDEN DE VESTUARIO</h4>
-                                        <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-7">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
-                                                            <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo" id="nuevoCodigo" value="<?php echo $folio + 1; ?>" readonly required>
-                                                        </div>
+                                    <div class="row" style="margin-top:5px;">
+                                        <div class="col-xs-7">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
+                                                    <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoCodigo" id="nuevoCodigo" value="<?php echo $folio + 1; ?>" readonly required>
                                                 </div>
                                             </div>
-
                                         </div>
+                                    </div>
                                     <h4 class="box-title" style="color:#39b616;font-weight:bold; font-size:21px;">NOMBRE DE ORDEN</h4>
                                     <div class="row" style="margin-top:5px;">
-                                            <div class="col-xs-10">
-                                                 <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon"><i class="fa fa-file"></i></span>
-                                                            <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoNombreOrden" id="nuevoNombreOrden" required>
-                                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                                    <input type="text" style="font-weight:bold; font-size:16px;" class="form-control" name="nuevoNombreOrden" id="nuevoNombreOrden" required>
                                                 </div>
                                             </div>
-
+                                        </div>
                                     </div>
                                 </div>
                            </div>
                         </div>
                     </div>
-                                                                    
-                        
-                    <div class="row">
-        
-                        <div class="col-lg-8 col-xs-12">
-                            
+                                                                                      
+                    <div class="row">        
+                        <div class="col-lg-8 col-xs-12">                            
                             <div class="box box-success">
                                 <div class="box-body">
                                     <div class="row nuevoPersonal">
@@ -277,68 +258,55 @@ if($_SESSION["perfil"] == "Especial"){
                                         </div>
                                     </div>
                                 </div>
+                            </div>                                                                  
+                        </div>                                      
+                        <div class="col-lg-4 col-xs-12 ">                               
+                            <div class="box box-success">
+                                <div class="box-header with-border"></div>
+                                <div class="box-body">
+                                    <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Personal para seleccionar</h4>
+                                    <table  class="table table-bordered table-striped dt-responsive tablaPersonal">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Nombre</th>
+                                                <th>RUT</th>
+                                                <th>Empresa</th>
+                                                <th>Medidas</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
-                                    
-                            
-                            
-                        </div>
-
-                    
-                    
-                        <div class="col-lg-4 col-xs-12 ">
-                                
-                                            <div class="box box-success">
-                                                <div class="box-header with-border"></div>
-                                                    <div class="box-body">
-                                                        <h4 class="box-title text-center" style="font-weight:bold; font-size:20px;"> Personal para seleccionar</h4>
-                                                        <table  class="table table-bordered table-striped dt-responsive tablaPersonal">
-                                                            <thead>
-                                                                <tr>
-                                                                <th style="width: 10px">#</th>
-                                                                <th>Nombre</th>
-                                                                <th>RUT</th>
-                                                                <th>Empresa</th>
-                                                                <th>Medidas</th>
-                                                                </tr>
-
-                                                            </thead>
-
-                                                        </table>
-
-                                                    </div>
-                                                </div>
-                                            </div>
                         </div>
                         <div class="col-lg-3">
-                        <div class="box box-warning">
-                                        <div class="box-body">
-                                        <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>
-                                        <input type="hidden" name="listaPersonal" id="listaPersonal">                
-                                        <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>
-                                        <h4>Subir Archivo</h4>
-                                        <input type="file" multiple>
-                                        </div>
-                                    </div>
-                        </div>
+                            <div class="box box-warning">
+                                <div class="box-body">
+                                    <h4 class="box-title" style="font-weight:bold; font-size:20px;">Observaciones</h4>
+                                    <input type="hidden" name="listaPersonal" id="listaPersonal">                
+                                    <textarea name="nuevaObservacion" id="nuevaObservacion" cols="60" rows="6"></textarea>
+                                    <h4>Subir Archivo</h4>
+                                    <input type="file" multiple>
+                                </div>
+                            </div>
+                        </div>                    
                     </div>
-
-                                        
-                 
+                                               
                     <a href="orden-trabajo">                 
                         <button type="button" class="btn btn-default">Salir</button>
-                </a>
+                    </a>
                     <button type="submit" class="btn btn-primary">Guardar orden</button>
-                </form>
-                        <?php
 
-                            $agregarOrdenVestuario = new ControladorOrdenVestuario();
-                            $agregarOrdenVestuario -> ctrCrearOrdenVestuario();
+                    <?php
+                
+                    $agregarOrdenVestuario = new ControladorOrdenVestuario();
+                    $agregarOrdenVestuario -> ctrCrearOrdenVestuario();
 
-                        ?>
-</div>
+                    ?>
+                </form>        
+            </div>
         </div>
     </section>
-
 </div>
 
 

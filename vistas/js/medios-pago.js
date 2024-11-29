@@ -33,7 +33,7 @@ $(".tablas").on("click", ".btnEliminarMedio", function(){
 	 var idMedio = $(this).attr("idMedio");
 
 	 swal({
-	 	title: '¿Está seguro de borrar este Medio de Pago?',
+	 	title: '¿Está seguro de borrar este medio de pago?',
 	 	text: "Si no lo está, puede cancelar la acción.",
 	 	type: 'warning',
 	 	showCancelButton: true,

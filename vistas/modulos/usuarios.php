@@ -9,7 +9,6 @@ if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor") {
   </script>';
 
     return;
-
 }
 
 ?>
@@ -25,9 +24,11 @@ if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor") {
 
         <ol class="breadcrumb">
 
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
 
-            <li class="active">Administrar usuarios</li>
+            <li>Configuraciones</li>
+
+            <li class="active">Usuarios</li>
 
         </ol>
 
@@ -40,9 +41,8 @@ if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor") {
             <div class="box-header with-border">
 
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUsuario">
-
+                    <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
                     Agregar usuario
-
                 </button>
 
             </div>
@@ -53,61 +53,57 @@ if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor") {
 
                     <thead>
 
-                    <tr>
+                        <tr>
 
-                        <th style="width:10px">#</th>
-                        <th>Nombre</th>
-                        <th>Usuario</th>
-                        <th>Foto</th>
-                        <th>Perfil</th>
-                        <th>Estado</th>
-                        <th>Último login</th>
-                        <th>Acciones</th>
+                            <th style="width:10px">#</th>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Foto</th>
+                            <th>Perfil</th>
+                            <th>Estado</th>
+                            <th>Último login</th>
+                            <th>Acciones</th>
 
-                    </tr>
+                        </tr>
 
                     </thead>
 
                     <tbody>
 
-                    <?php
+                        <?php
 
-                    $item = null;
-                    $valor = null;
+                        $item = null;
+                        $valor = null;
 
-                    $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+                        $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
-                    foreach ($usuarios as $key => $value) {
-                        if ($value["nombre"] != "MLINE") {
+                        foreach ($usuarios as $key => $value) {
+                            if ($value["nombre"] != "MLINE") {
 
-                            echo ' <tr>
+                                echo ' <tr>
                   <td>' . ($key + 1) . '</td>
                   <td>' . $value["nombre"] . '</td>
                   <td>' . $value["usuario"] . '</td>';
 
-                            if ($value["foto"] != "") {
+                                if ($value["foto"] != "") {
 
-                                echo '<td><img src="' . $value["foto"] . '" class="img-thumbnail" width="40px"></td>';
+                                    echo '<td><img src="' . $value["foto"] . '" class="img-thumbnail" width="40px"></td>';
+                                } else {
 
-                            } else {
+                                    echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+                                }
 
-                                echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+                                echo '<td>' . $value["perfil"] . '</td>';
 
-                            }
+                                if ($value["estado"] != 0) {
 
-                            echo '<td>' . $value["perfil"] . '</td>';
+                                    echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="' . $value["id"] . '" estadoUsuario="0">Activado</button></td>';
+                                } else {
 
-                            if ($value["estado"] != 0) {
+                                    echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="' . $value["id"] . '" estadoUsuario="1">Desactivado</button></td>';
+                                }
 
-                                echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="' . $value["id"] . '" estadoUsuario="0">Activado</button></td>';
-
-                            } else {
-
-                                echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="' . $value["id"] . '" estadoUsuario="1">Desactivado</button></td>';
-
-                            }
-
-                            echo '<td>' . $value["fecha"] . '</td>
+                                echo '<td>' . $value["fecha"] . '</td>
                   <td>
 
                     <div class="btn-group">
@@ -121,10 +117,10 @@ if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor") {
                   </td>
 
                 </tr>';
+                            }
                         }
-                    }
 
-                    ?>
+                        ?>
 
                     </tbody>
 
@@ -182,7 +178,7 @@ MODAL AGREGAR USUARIO
 
                             <label for="nuevoNombre" class="display-2"></label>
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
                                 Nombre
                             </div>
                             <div class="input-group">
@@ -214,15 +210,15 @@ MODAL AGREGAR USUARIO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
                                 Usuario
                             </div>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                                <input type="text" class="form-control" name="nuevoUsuario"
-                                       placeholder="Ingresar usuario" id="nuevoUsuario" required>
+                                <input type="text" class="form-control input-lg" name="nuevoUsuario"
+                                    placeholder="Ingresar usuario" id="nuevoUsuario" required>
 
                             </div>
 
@@ -232,15 +228,15 @@ MODAL AGREGAR USUARIO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
                                 Contraseña
                             </div>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                                <input type="password" class="form-control" name="nuevoPassword"
-                                       placeholder="Ingresar contraseña" required>
+                                <input type="password" class="form-control input-lg" name="nuevoPassword"
+                                    placeholder="Ingresar contraseña" required>
 
                             </div>
 
@@ -250,7 +246,7 @@ MODAL AGREGAR USUARIO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
                                 Perfil
                             </div>
                             <div class="input-group">
@@ -284,7 +280,7 @@ MODAL AGREGAR USUARIO
                             <p class="help-block">Peso máximo de la foto 2MB</p>
 
                             <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar"
-                                 width="100px">
+                                width="100px">
 
                         </div>
 
@@ -356,7 +352,7 @@ MODAL EDITAR USUARIO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
                                 Nombre
                             </div>
                             <div class="input-group">
@@ -389,7 +385,7 @@ MODAL EDITAR USUARIO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
                                 Usuario
                             </div>
                             <div class="input-group">
@@ -397,7 +393,7 @@ MODAL EDITAR USUARIO
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
                                 <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario"
-                                       value="" readonly>
+                                    value="" readonly>
 
                             </div>
 
@@ -407,7 +403,7 @@ MODAL EDITAR USUARIO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
                                 Contraseña
                             </div>
                             <div class="input-group">
@@ -415,7 +411,7 @@ MODAL EDITAR USUARIO
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
                                 <input type="password" class="form-control input-lg" name="editarPassword"
-                                       placeholder="Escribir contraseña (opcional)">
+                                    placeholder="Escribir contraseña (opcional)">
 
                                 <input type="hidden" id="passwordActual" name="passwordActual">
 
@@ -427,7 +423,7 @@ MODAL EDITAR USUARIO
 
                         <div class="form-group">
                             <div class="d-inline-block bg-primary"
-                                 style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
                                 Perfil
                             </div>
                             <div class="input-group">
@@ -463,7 +459,7 @@ MODAL EDITAR USUARIO
                             <p class="help-block">Peso máximo de la foto 2MB</p>
 
                             <img src="vistas/img/usuarios/default/anonymous.png"
-                                 class="img-thumbnail previsualizarEditar" width="100px">
+                                class="img-thumbnail previsualizarEditar" width="100px">
 
                             <input type="hidden" name="fotoActual" id="fotoActual">
 
@@ -505,6 +501,4 @@ MODAL EDITAR USUARIO
 $borrarUsuario = new ControladorUsuarios();
 $borrarUsuario->ctrBorrarUsuario();
 
-?> 
-
-
+?>

@@ -2,9 +2,9 @@ $(document).ready(function () {
   /*=============================================
    * Botón para filtrar por rango de fechas
    *=============================================*/
-  if (window.location.href.includes("cotizaciones")) {
+  if (window.location.href.includes("ventas")) {
     // Configuración del Date Range Picker
-    $("#daterange-cotizaciones").daterangepicker({
+    $("#daterange-ventas").daterangepicker({
       locale: {
         format: "YYYY-MM-DD",
         applyLabel: "Aplicar",
@@ -44,31 +44,28 @@ $(document).ready(function () {
     });
 
     // Evento al seleccionar fechas
-    $("#daterange-cotizaciones").on(
-      "apply.daterangepicker",
-      function (ev, picker) {
-        const fechaInicial = picker.startDate.format("YYYY-MM-DD");
-        const fechaFinal = picker.endDate.format("YYYY-MM-DD");
+    $("#daterange-ventas").on("apply.daterangepicker", function (ev, picker) {
+      const fechaInicial = picker.startDate.format("YYYY-MM-DD");
+      const fechaFinal = picker.endDate.format("YYYY-MM-DD");
 
-        // Actualizar el texto del botón
-        $(this)
-          .find("span")
-          .html(
-            picker.startDate.format("YYYY-MM-DD") +
-              " - " +
-              picker.endDate.format("YYYY-MM-DD")
-          );
+      // Actualizar el texto del botón
+      $(this)
+        .find("span")
+        .html(
+          picker.startDate.format("YYYY-MM-DD") +
+            " - " +
+            picker.endDate.format("YYYY-MM-DD")
+        );
 
-        // Guardar en localStorage y redirigir
-        localStorage.setItem("capturarRango", $(this).find("span").html());
-        window.location.href = `index.php?ruta=cotizaciones&fechaInicial=${fechaInicial}&fechaFinal=${fechaFinal}`;
-      }
-    );
+      // Guardar en localStorage y redirigir
+      localStorage.setItem("capturarRango", $(this).find("span").html());
+      window.location.href = `index.php?ruta=ventas&fechaInicial=${fechaInicial}&fechaFinal=${fechaFinal}`;
+    });
 
     // Evento al cancelar
-    $("#daterange-cotizaciones").on("cancel.daterangepicker", function () {
+    $("#daterange-ventas").on("cancel.daterangepicker", function () {
       localStorage.removeItem("capturarRango");
-      window.location.href = "cotizaciones";
+      window.location.href = "ventas";
     });
   }
 });

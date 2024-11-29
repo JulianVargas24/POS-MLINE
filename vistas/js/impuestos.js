@@ -21,7 +21,7 @@ $(".tablas").on("click", ".btnEditarImpuesto", function () {
       $("#editarFactor").val(respuesta["factor"]);
       $("#editarCodigo").val(respuesta["codigo"]);
       $("#editarImpuesto").val(respuesta["nombre"]);
-      $("#editarDescripcion").val(respuesta["descripcion"]); /*hola*/
+      $("#editarDescripcion").val(respuesta["descripcion"]); 
       $("#idImpuesto").val(respuesta["id"]);
     },
   });
@@ -34,7 +34,7 @@ $(".tablas").on("click", ".btnEliminarImpuesto", function () {
   var idImpuesto = $(this).attr("idImpuesto");
 
   swal({
-    title: "¿Está seguro de borrar este Impuesto?",
+    title: "¿Está seguro de borrar este impuesto?",
     text: "Si no lo está, puede cancelar la acción.",
     type: "warning",
     showCancelButton: true,

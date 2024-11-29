@@ -9,52 +9,50 @@ if ($_SESSION["perfil"] == "Vendedor") {
   </script>';
 
     return;
-
 }
 
 ?>
 
-    <div class="content-wrapper">
+<div class="content-wrapper">
 
-        <section class="content-header">
+    <section class="content-header">
 
-            <h1>
+        <h1>
 
-                Administrar rubros
+            Administrar rubros
 
-            </h1>
+        </h1>
 
-            <ol class="breadcrumb">
+        <ol class="breadcrumb">
 
-                <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+            <li>Maestro</li>
+            <li class="active">Rubros</li>
 
-                <li class="active">Administrar rubros</li>
+        </ol>
 
-            </ol>
+    </section>
 
-        </section>
+    <section class="content">
 
-        <section class="content">
+        <div class="box">
 
-            <div class="box">
-
-                <div class="box-header with-border">
-
-
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarRubro">
-
-                        Agregar rubro
-
-                    </button>
+            <div class="box-header with-border">
 
 
-                </div>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarRubro">
+                    <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
+                    Agregar rubro
+                </button>
 
-                <div class="box-body">
 
-                    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+            </div>
 
-                        <thead>
+            <div class="box-body">
+
+                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+
+                    <thead>
 
                         <tr>
 
@@ -66,9 +64,9 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                         </tr>
 
-                        </thead>
+                    </thead>
 
-                        <tbody>
+                    <tbody>
 
                         <?php
 
@@ -94,7 +92,6 @@ if ($_SESSION["perfil"] == "Vendedor") {
                             if ($_SESSION["perfil"] == "Administrador") {
 
                                 echo '<button class="btn btn-danger btnEliminarRubro" idRubro="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-
                             }
 
 
@@ -106,218 +103,218 @@ if ($_SESSION["perfil"] == "Vendedor") {
                         }
 
                         ?>
-                        </tbody>
+                    </tbody>
 
-                    </table>
-
-                </div>
+                </table>
 
             </div>
 
-        </section>
+        </div>
 
-    </div>
+    </section>
+
+</div>
 
 
-    <!--=====================================
+<!--=====================================
     MODAL AGREGAR RUBRO
     ======================================-->
 
-    <div id="modalAgregarRubro" class="modal fade" role="dialog">
+<div id="modalAgregarRubro" class="modal fade" role="dialog">
 
-        <style>
-            .error {
-                color: red;
+    <style>
+        .error {
+            color: red;
 
-            }
-        </style>
-        <div class="modal-dialog">
+        }
+    </style>
+    <div class="modal-dialog">
 
-            <div class="modal-content">
+        <div class="modal-content">
 
-                <form role="form" method="post" id="form_nuevo_rubro">
+            <form role="form" method="post" id="form_nuevo_rubro">
 
-                    <!--=====================================
+                <!--=====================================
                     CABEZA DEL MODAL
                     ======================================-->
 
-                    <div class="modal-header" style="background:#3f668d; color:white">
+                <div class="modal-header" style="background:#3f668d; color:white">
 
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                        <h4 class="modal-title">Agregar rubro</h4>
+                    <h4 class="modal-title">Agregar rubro</h4>
 
-                    </div>
+                </div>
 
-                    <!--=====================================
+                <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
 
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                        <div class="box-body">
+                    <div class="box-body">
 
-                            <!-- ENTRADA PARA EL NOMBRE -->
+                        <!-- ENTRADA PARA EL NOMBRE -->
 
-                            <div class="form-group">
-                                <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
-                                    Rubro
-                                </div>
-                                <div class="input-group">
-
-                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-                                    <input type="text" class="form-control input" name="nuevoRubro" id="nuevoRubro"
-                                           placeholder="Ingresar rubro" required>
-
-                                </div>
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                Rubro
                             </div>
+                            <div class="input-group">
 
-                            <div class="form-group">
-                                <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
-                                    Descripción
-                                </div>
-                                <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                <input type="text" class="form-control input" name="nuevoRubro" id="nuevoRubro"
+                                    placeholder="Ingresar rubro" required>
 
-                                    <input type="text" class="form-control input" id="nuevaDescripcion"
-                                           name="nuevaDescripcion" placeholder="Ingresar descripción" required>
-
-                                </div>
                             </div>
-
-
                         </div>
+
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                Descripción
+                            </div>
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <input type="text" class="form-control input" id="nuevaDescripcion"
+                                    name="nuevaDescripcion" placeholder="Ingresar descripción" required>
+
+                            </div>
+                        </div>
+
 
                     </div>
 
-                    <!--=====================================
+                </div>
+
+                <!--=====================================
                     PIE DEL MODAL
                     ======================================-->
 
-                    <div class="modal-footer">
+                <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                        <button type="submit" class="btn btn-primary" name="crear_rubro">Agregar rubro</button>
+                    <button type="submit" class="btn btn-primary" name="crear_rubro">Agregar rubro</button>
 
-                    </div>
+                </div>
 
-                    <?php
+                <?php
 
-                    $crearRubro = new ControladorRubros();
-                    $crearRubro->ctrCrearRubro();
+                $crearRubro = new ControladorRubros();
+                $crearRubro->ctrCrearRubro();
 
-                    ?>
+                ?>
 
-                </form>
-
-            </div>
+            </form>
 
         </div>
 
     </div>
 
-    <!--=====================================
+</div>
+
+<!--=====================================
     MODAL EDITAR SUBCATEGORÍA
     ======================================-->
 
-    <div id="modalEditarRubro" class="modal fade" role="dialog">
+<div id="modalEditarRubro" class="modal fade" role="dialog">
 
-        <div class="modal-dialog">
+    <div class="modal-dialog">
 
-            <div class="modal-content">
+        <div class="modal-content">
 
-                <form role="form" method="post" id="form_editar_impuesto">
+            <form role="form" method="post" id="form_editar_impuesto">
 
-                    <!--=====================================
+                <!--=====================================
                     CABEZA DEL MODAL
                     ======================================-->
 
-                    <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header" style="background:#3c8dbc; color:white">
 
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                        <h4 class="modal-title">Editar Rubro</h4>
+                    <h4 class="modal-title">Editar Rubro</h4>
 
-                    </div>
+                </div>
 
-                    <!--=====================================
+                <!--=====================================
                     CUERPO DEL MODAL
                     ======================================-->
 
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                        <div class="box-body">
+                    <div class="box-body">
 
-                            <!-- ENTRADA PARA EL NOMBRE -->
+                        <!-- ENTRADA PARA EL NOMBRE -->
 
-                            <div class="form-group">
-                                <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
-                                    Rubro
-                                </div>
-                                <div class="input-group">
-
-                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-                                    <input type="text" class="form-control input" id="editarRubro" name="editarRubro"
-                                           required>
-
-                                    <input type="hidden" id="idRubro" name="idRubro" required>
-
-                                </div>
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                Rubro
                             </div>
+                            <div class="input-group">
 
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                            <div class="form-group">
-                                <div class="d-inline-block bg-primary"
-                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
-                                    Descripción
-                                </div>
-                                <div class="input-group">
+                                <input type="text" class="form-control input" id="editarRubro" name="editarRubro"
+                                    required>
 
-                                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                <input type="hidden" id="idRubro" name="idRubro" required>
 
-                                    <input type="text" class="form-control input" id="editarDescripcion"
-                                           name="editarDescripcion" required>
-
-                                </div>
                             </div>
+                        </div>
 
+
+                        <div class="form-group">
+                            <div class="d-inline-block bg-primary"
+                                style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent: 11px">
+                                Descripción
+                            </div>
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <input type="text" class="form-control input" id="editarDescripcion"
+                                    name="editarDescripcion" required>
+
+                            </div>
                         </div>
 
                     </div>
 
-                    <!--=====================================
+                </div>
+
+                <!--=====================================
                     PIE DEL MODAL
                     ======================================-->
 
-                    <div class="modal-footer">
+                <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
-                    </div>
+                </div>
 
-                    <?php
+                <?php
 
-                    $editarRubro = new ControladorRubros();
-                    $editarRubro->ctrEditarRubro();
+                $editarRubro = new ControladorRubros();
+                $editarRubro->ctrEditarRubro();
 
-                    ?>
+                ?>
 
-                </form>
-
-            </div>
+            </form>
 
         </div>
 
     </div>
+
+</div>
 
 <?php
 

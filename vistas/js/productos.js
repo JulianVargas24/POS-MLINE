@@ -366,7 +366,7 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 	
 	swal({
 
-		title: '¿Está seguro de borrar este Producto?',
+		title: '¿Está seguro de borrar este producto?',
 		text: "Si no lo está, puede cancelar la acción.",
 		type: 'warning',
         showCancelButton: true,

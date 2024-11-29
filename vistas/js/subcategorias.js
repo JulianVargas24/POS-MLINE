@@ -6,7 +6,7 @@ $(".tablas").on("click", ".btnEliminarSubcategoria", function(){
     var id_subcategoria = $(this).attr("id_subcategoria");
 
     swal({
-        title: '¿Está seguro de borrar esta Subcategoría?',
+        title: '¿Está seguro de borrar esta subcategoría?',
         text: "Si no lo está, puede cancelar la acción.",
         type: 'warning',
         showCancelButton: true,
