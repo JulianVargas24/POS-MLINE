@@ -1,6 +1,7 @@
 <?php
 
 require_once "conexion.php";
+
 class ModeloEntradasInventario
 {
 
@@ -103,41 +104,52 @@ class ModeloEntradasInventario
     }
 
 
-    static public function mdlMostrarEntradas($tabla, $item, $valor){
+    static public function mdlMostrarEntradas($tabla, $item, $valor)
+    {
 
-		if($item != null){
+        if ($item != null) {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR); #Originalmente estaba en STR.
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR); #Originalmente estaba en STR.
 
-			$stmt -> execute();
+            $stmt->execute();
 
-			return $stmt -> fetch();
+            return $stmt->fetch();
 
-		}else{
+        } else {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-			$stmt -> execute();
+            $stmt->execute();
 
-			return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
-		}
+        }
 
-		$stmt -> close();
+        $stmt->close();
 
-		$stmt = null;
+        $stmt = null;
 
-	}
+    }
+
     /*=============================================
 	EDITAR ENTRADA
 	=============================================*/
-    public static function mdlEditarEntrada($tabla, $datos) {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET codigo = :codigo, fecha_emision = :fecha_emision, tipo_entrada = :tipo_entrada, observaciones = :observaciones, id_bodega_destino = :id_bodega_destino, valor_tipo_entrada = :valor_tipo_entrada WHERE id = :id");
-        $idPrueba=7;
-        $observacion="primera2222";
-        $stmt->bindParam(":id", $idPrueba, PDO::PARAM_INT);
+    public static function mdlEditarEntrada($tabla, $datos)
+    {
+        try {
+            // Prepara la consulta de actualización
+            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET
+            codigo = :codigo,
+            fecha_emision = :fecha_emision,
+            tipo_entrada = :tipo_entrada,
+            observaciones = :observaciones,
+            id_bodega_destino = :id_bodega_destino,
+            valor_tipo_entrada = :valor_tipo_entrada
+        WHERE id = :id");
+
+        $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
         $stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
         $stmt->bindParam(":fecha_emision", $datos["fecha_emision"], PDO::PARAM_STR);
         $stmt->bindParam(":tipo_entrada", $datos["tipo_entrada"], PDO::PARAM_STR);
@@ -145,20 +157,27 @@ class ModeloEntradasInventario
         $stmt->bindParam(":id_bodega_destino", $datos["id_bodega_destino"], PDO::PARAM_INT);
         $stmt->bindParam(":valor_tipo_entrada", $datos["valor_tipo_entrada"], PDO::PARAM_STR);
 
-        if($stmt->execute()) {
-            return "ok";
-        } else {
-            return "error";
+            // Ejecuta la consulta
+            if ($stmt->execute()) {
+                return "ok"; // Si la actualización es exitosa, devuelve "ok"
+            } else {
+                $errorInfo = $stmt->errorInfo(); // Si ocurre un error, muestra el mensaje de error
+                return "error: " . implode(" - ", $errorInfo);
+            }
+        } catch (PDOException $e) {
+            return "error: " . $e->getMessage(); // Manejo de excepciones
+        } finally {
+            // Cierra la conexión y libera los recursos
+            $stmt = null;
         }
-
-        $stmt->close();
-        $stmt = null;
     }
+
 
     /*=============================================
 	ELIMINAR ENTRADA
 	=============================================*/
-    static public function mdlEliminarEntrada($tabla, $idEntrada) {
+    static public function mdlEliminarEntrada($tabla, $idEntrada)
+    {
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
         $stmt->bindParam(":id", $idEntrada, PDO::PARAM_INT);
 
@@ -168,7 +187,8 @@ class ModeloEntradasInventario
     /*=============================================
 	MOSTRAR TIPOS DE ENTRADA
 	=============================================*/
-    public static function mdlMostrarTiposEntradaUnicos($tabla) {
+    public static function mdlMostrarTiposEntradaUnicos($tabla)
+    {
         $stmt = Conexion::conectar()->prepare("SELECT DISTINCT tipo_entrada FROM $tabla");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
