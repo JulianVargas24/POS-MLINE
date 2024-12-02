@@ -150,7 +150,7 @@
                                 <li class="' . isActive($paginaActual, 'subunidades') . '">
                                     <a href="subunidades">
                                         <i class="' . marcarCirculo($paginaActual, 'subunidades') . '"></i>
-                                        <span>Subnidades</span>
+                                        <span>Subunidades</span>
                                     </a>
                                 </li>
                                 <li class="' . isActive($paginaActual, 'medios-pago') . '">

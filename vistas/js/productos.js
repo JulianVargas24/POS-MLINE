@@ -241,6 +241,8 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
 			$("#editarStock").val(respuesta["stock"]);
 			$("#editarCategoria").val(respuesta["id_categoria"]);
 			$("#editarSubcategoria").val(respuesta["id_subcategoria"]);
+			$("#editarSubunidad").val(respuesta["id_subunidad"]);
+			$("#editarValorMedida").val(respuesta["valor_medida"]);
 			$("#editarStockAlerta").val(respuesta["stock_alerta"]);
 			$("#editarStockMin").val(respuesta["stock_min"]);
 			$("#editarMedida").val(respuesta["id_medida"]);

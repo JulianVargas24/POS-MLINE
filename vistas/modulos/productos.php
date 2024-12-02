@@ -248,7 +248,6 @@ MODAL AGREGAR PRODUCTO
                                     <input type="hidden" class="form-control input" name="nuevoStock" min="0"
                                            placeholder="Stock" value="0" required>
 
-
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Alerta de stock
@@ -262,6 +261,7 @@ MODAL AGREGAR PRODUCTO
 
                                         </div>
                                     </div>
+
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Stock mínimo
@@ -281,7 +281,7 @@ MODAL AGREGAR PRODUCTO
 
                                 <div class="form-group row">
 
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Precio de compra neto
                                         </div>
@@ -299,7 +299,7 @@ MODAL AGREGAR PRODUCTO
 
                                     <!-- ENTRADA PARA PRECIO VENTA -->
 
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Precio lista neto
                                         </div>
@@ -350,7 +350,57 @@ MODAL AGREGAR PRODUCTO
 
                                     </div>
 
+                                    <div class="col-xs-4">
+                                        <div class="d-inline-block  text-center"
+                                             style="font-size:16px;font-weight:bold">Subunidad de medida
+                                        </div>
+                                        <div class="input-group">
+
+                                            <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                            <select class="form-control input" id="nuevaSubunidad" name="nuevaSubunidad"
+                                                    required>
+
+                                                <option value="">Seleccionar Subunidad</option>
+
+                                                <?php
+
+                                                $item = null;
+                                                $valor = null;
+
+                                                $subunidad = ControladorSubunidades::ctrMostrarSubunidades($item, $valor);
+
+                                                foreach ($subunidad as $key => $value) {
+
+                                                    echo '<option value="' . $value["id"] . '">' . $value["subunidad"] . '</option>';
+                                                }
+
+                                                ?>
+
+                                            </select>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <div class="d-inline-block  text-center"
+                                             style="font-size:16px;font-weight:bold">Valor / Peso
+                                        </div>
+                                        <div class="input-group">
+
+                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                            <input type="number" class="form-control input" name="nuevoValorMedida"
+                                                   min="0"
+                                                   placeholder="Valor / Peso" required>
+
+                                        </div>
+                                    </div>
+
                                 </div>
+
 
 
                             </div>
@@ -718,7 +768,7 @@ MODAL EDITAR PRODUCTO
 
                                 <div class="form-group row">
 
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Precio de compra neto
                                         </div>
@@ -736,7 +786,7 @@ MODAL EDITAR PRODUCTO
 
                                     <!-- ENTRADA PARA PRECIO VENTA -->
 
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Precio lista neto
                                         </div>
@@ -785,6 +835,55 @@ MODAL EDITAR PRODUCTO
                                         </div>
 
 
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <div class="d-inline-block  text-center"
+                                             style="font-size:16px;font-weight:bold">Subunidad de medida
+                                        </div>
+                                        <div class="input-group">
+
+                                            <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                            <select class="form-control input" id="editarSubunidad"
+                                                    required>
+
+                                                <option value="">Seleccionar Subunidad</option>
+
+                                                <?php
+
+                                                $item = null;
+                                                $valor = null;
+
+                                                $subunidad = ControladorSubunidades::ctrMostrarSubunidades($item, $valor);
+
+                                                foreach ($subunidad as $key => $value) {
+
+                                                    echo '<option value="' . $value["id"] . '">' . $value["subunidad"] . '</option>';
+                                                }
+
+                                                ?>
+
+                                            </select>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <div class="d-inline-block  text-center"
+                                             style="font-size:16px;font-weight:bold">Valor / Peso
+                                        </div>
+                                        <div class="input-group">
+
+                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                            <input type="number" class="form-control input" id="editarValorMedida"
+                                                   min="0"
+                                                   placeholder="Valor / Peso" required>
+
+                                        </div>
                                     </div>
 
                                 </div>
