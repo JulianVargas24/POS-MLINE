@@ -10,7 +10,6 @@ if ($_SESSION["perfil"] == "Especial") {
   </script>';
 
     return;
-
 }
 
 
@@ -43,9 +42,8 @@ if ($_SESSION["perfil"] == "Especial") {
                 <a href="entradas">
 
                     <button class="btn btn-primary">
-
-                        Crear Entrada
-
+                        <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
+                        Crear entrada
                     </button>
 
                 </a>
@@ -61,51 +59,51 @@ if ($_SESSION["perfil"] == "Especial") {
 
                     <thead>
 
-                    <tr>
-                        <th>Folio</th>
-                        <th>Movimiento</th>
-                        <th>Emision</th>
-                        <th>Bodega Destino</th>
-                        <th>Origen</th>
-                        <th>Observaciones</th>
-                        <th>Acciones</th> <!-- Apartado de Acciones para la tabla -->
-                    </tr>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Movimiento</th>
+                            <th>Emision</th>
+                            <th>Bodega Destino</th>
+                            <th>Origen</th>
+                            <th>Observaciones</th>
+                            <th>Acciones</th> <!-- Apartado de Acciones para la tabla -->
+                        </tr>
 
                     </thead>
 
                     <tbody>
 
-                    <?php
+                        <?php
 
-                    $item = null;
-                    $valor = null;
+                        $item = null;
+                        $valor = null;
 
-                    $entradas = ControladorEntradasInventario::ctrMostrarEntradas($item, $valor);
-                    $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
-                    $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
+                        $entradas = ControladorEntradasInventario::ctrMostrarEntradas($item, $valor);
+                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                        $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
-                    foreach ($entradas as $key => $value) {
-                        for ($i = 0; $i < count($bodegas); ++$i) {
-                            if ($bodegas[$i]["id"] == $value["id_bodega_destino"]) {
-                                $bodega = $bodegas[$i]["nombre"];
-                            }
-                        }
-                        if ($value["tipo_entrada"] == "Bodega a Bodega") {
+                        foreach ($entradas as $key => $value) {
                             for ($i = 0; $i < count($bodegas); ++$i) {
-                                if ($bodegas[$i]["id"] == $value["valor_tipo_entrada"]) {
-                                    $origen = $bodegas[$i]["nombre"];
+                                if ($bodegas[$i]["id"] == $value["id_bodega_destino"]) {
+                                    $bodega = $bodegas[$i]["nombre"];
                                 }
                             }
-                        } else if ($value["tipo_entrada"] == "Ingreso Manual a Bodega") {
-                            for ($i = 0; $i < count($plantel); ++$i) {
-                                if ($plantel[$i]["id"] == $value["valor_tipo_entrada"]) {
-                                    $origen = $plantel[$i]["nombre"];
+                            if ($value["tipo_entrada"] == "Bodega a Bodega") {
+                                for ($i = 0; $i < count($bodegas); ++$i) {
+                                    if ($bodegas[$i]["id"] == $value["valor_tipo_entrada"]) {
+                                        $origen = $bodegas[$i]["nombre"];
+                                    }
+                                }
+                            } else if ($value["tipo_entrada"] == "Ingreso Manual a Bodega") {
+                                for ($i = 0; $i < count($plantel); ++$i) {
+                                    if ($plantel[$i]["id"] == $value["valor_tipo_entrada"]) {
+                                        $origen = $plantel[$i]["nombre"];
+                                    }
                                 }
                             }
-                        }
 
 
-                        echo '<tr>
+                            echo '<tr>
 
 
                     <td>' . $value["codigo"] . '</td>
@@ -129,10 +127,9 @@ if ($_SESSION["perfil"] == "Especial") {
                     </td> <!-- Valores de Acciones para la tabla -->
                     
                   </tr>';
+                        }
 
-                    }
-
-                    ?>
+                        ?>
 
                     </tbody>
 
@@ -189,7 +186,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     <input type="date" class="form-control" id="editarFechaEmision"
-                                           name="editarFechaEmision" required>
+                                        name="editarFechaEmision" required>
                                 </div>
                             </div>
                             <!-- ORIGEN / INGRESADO POR -->
@@ -198,7 +195,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-check"></i></span>
                                     <select class="form-control" id="editarValorTipoEntrada" name="editarValorTipoEntrada"
-                                            required>
+                                        required>
                                         <option value="">Seleccionar Bodega</option>
                                         <!-- Opciones dinámicas de Plantel -->
                                         <?php
@@ -217,7 +214,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-check"></i></span>
                                     <select class="form-control" id="editarBodegaDestino" name="editarBodegaDestino"
-                                            required>
+                                        required>
                                         <option value="">Seleccionar Bodega</option>
                                         <!-- Opciones dinámicas de bodega -->
                                         <?php
@@ -234,7 +231,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="form-group">
                                 <label for="editarObservaciones">Observaciones</label>
                                 <textarea class="form-control" id="editarObservaciones" name="editarObservaciones"
-                                          rows="3"></textarea>
+                                    rows="3"></textarea>
                             </div>
 
                             <!-- CAMPO OCULTO PARA ID DE LA ENTRADA -->
@@ -272,4 +269,3 @@ $eliminarEntrada = new ControladorEntradasInventario();
 $eliminarEntrada->ctrEliminarEntrada();
 
 ?>
-

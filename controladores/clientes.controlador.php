@@ -206,7 +206,7 @@ class ControladorClientes
             CREAMOS EL ARCHIVO DE EXCEL
             =============================================*/
 
-			$Name = $_GET["reporte"] . '-clientes.xls';
+			$Name = ucfirst($_GET["reporte"]) . ' de clientes.xls';
 
 			header('Expires: 0');
 			header('Cache-control: private');

@@ -10,7 +10,6 @@ if ($_SESSION["perfil"] == "Especial") {
   </script>';
 
     return;
-
 }
 
 
@@ -43,9 +42,8 @@ if ($_SESSION["perfil"] == "Especial") {
                 <a href="ajustes">
 
                     <button class="btn btn-primary">
-
-                        Crear Ajuste
-
+                        <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
+                        Crear ajuste
                     </button>
 
                 </a>
@@ -61,46 +59,46 @@ if ($_SESSION["perfil"] == "Especial") {
 
                     <thead>
 
-                    <tr>
+                        <tr>
 
-                        <th>Folio</th>
-                        <th>Movimiento</th>
-                        <th>Emision</th>
-                        <th>Bodega Afectada</th>
-                        <th>Observaciones</th>
-                        <th>Acciones</th>
+                            <th>Folio</th>
+                            <th>Movimiento</th>
+                            <th>Emision</th>
+                            <th>Bodega Afectada</th>
+                            <th>Observaciones</th>
+                            <th>Acciones</th>
 
-                    </tr>
+                        </tr>
 
                     </thead>
 
                     <tbody>
 
-                    <?php
+                        <?php
 
-                    $item = null;
-                    $valor = null;
+                        $item = null;
+                        $valor = null;
 
-                    $ajustes = ControladorAjustesInventario::ctrMostrarAjustes($item, $valor);
-                    $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
-                    $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
+                        $ajustes = ControladorAjustesInventario::ctrMostrarAjustes($item, $valor);
+                        $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
+                        $plantel = ControladorPlantel::ctrMostrarPlantel($item, $valor);
 
-                    foreach ($ajustes as $key => $value) {
-                        for ($i = 0; $i < count($bodegas); ++$i) {
-                            if ($bodegas[$i]["id"] == $value["id_bodega_origen"]) {
-                                $bodega = $bodegas[$i]["nombre"];
-                            }
-                        }
-                        if ($value["tipo_salida"] == "Salida Manual") {
-                            for ($i = 0; $i < count($plantel); ++$i) {
-                                if ($plantel[$i]["id"] == $value["valor_tipo_salida"]) {
-                                    $origen = $plantel[$i]["nombre"];
+                        foreach ($ajustes as $key => $value) {
+                            for ($i = 0; $i < count($bodegas); ++$i) {
+                                if ($bodegas[$i]["id"] == $value["id_bodega_origen"]) {
+                                    $bodega = $bodegas[$i]["nombre"];
                                 }
                             }
-                        }
+                            if ($value["tipo_salida"] == "Salida Manual") {
+                                for ($i = 0; $i < count($plantel); ++$i) {
+                                    if ($plantel[$i]["id"] == $value["valor_tipo_salida"]) {
+                                        $origen = $plantel[$i]["nombre"];
+                                    }
+                                }
+                            }
 
 
-                        echo '<tr>
+                            echo '<tr>
 
 
                     <td>' . $value["codigo"] . '</td>
@@ -122,11 +120,10 @@ if ($_SESSION["perfil"] == "Especial") {
                     </td> <!-- Valores de Acciones para la tabla -->
                     
                   </tr>';
+                        }
 
-                    }
 
-
-                    ?>
+                        ?>
 
                     </tbody>
 
@@ -165,16 +162,16 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <label for="editarTipoEntrada">Tipo de Entrada / Movimiento</label>
                                 <div class="input-group">
                                     <select class="form-control input" id="editarTipoEntrada" name="editarTipoEntrada"
-                                            required>
+                                        required>
 
                                         <option value="">Seleccionar Tipo Entrada</option>
 
                                         <?php
-                            $datos = ControladorAjustesInventario::ctrMostrarAjustes(null, null); // Consultar todas las regiones
-                            foreach ($ajustes as $key => $value) {
-                                echo '<option value="' . $value["id"] . '">' . $value["tipo_ajuste"] . '</option>';
-                            }
-                            ?>
+                                        $datos = ControladorAjustesInventario::ctrMostrarAjustes(null, null); // Consultar todas las regiones
+                                        foreach ($ajustes as $key => $value) {
+                                            echo '<option value="' . $value["id"] . '">' . $value["tipo_ajuste"] . '</option>';
+                                        }
+                                        ?>
 
                                     </select>
                                 </div>
@@ -186,7 +183,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     <input type="date" class="form-control" id="editarFechaEmision"
-                                           name="editarFechaEmision" required>
+                                        name="editarFechaEmision" required>
                                 </div>
                             </div>
                             <!-- ORIGEN / INGRESADO POR -->
@@ -195,7 +192,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-check"></i></span>
                                     <select class="form-control" id="editarValorTipoAjuste" name="editarValorTipoAjuste"
-                                            required>
+                                        required>
                                         <option value="">Seleccionar Bodega</option>
                                         <!-- Opciones dinámicas de Plantel -->
                                         <?php
@@ -214,7 +211,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-check"></i></span>
                                     <select class="form-control" id="editarBodegaDestino" name="editarBodegaDestino"
-                                            required>
+                                        required>
                                         <option value="">Seleccionar Bodega</option>
                                         <!-- Opciones dinámicas de bodega -->
                                         <?php
@@ -231,7 +228,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <div class="form-group">
                                 <label for="editarObservaciones">Observaciones</label>
                                 <textarea class="form-control" id="editarObservaciones" name="editarObservaciones"
-                                          rows="3"></textarea>
+                                    rows="3"></textarea>
                             </div>
 
                             <!-- CAMPO OCULTO PARA ID DE LA ENTRADA -->
@@ -259,5 +256,3 @@ if ($_SESSION["perfil"] == "Especial") {
         </div>
     </div>
 </div>
-
-

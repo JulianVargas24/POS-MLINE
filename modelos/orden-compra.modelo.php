@@ -4,14 +4,11 @@ require_once "conexion.php";
 
 class ModeloOrdenCompra
 {
-
-	/*=============================================
-    CREAR ORDEN COMPRA
-    =============================================*/
-
+	/**
+	 * Método para ingresar una orden de compra
+	 */
 	static public function mdlIngresarOrdenCompra($tabla, $datos)
 	{
-
 		$con = Conexion::conectar();
 		$stmt = $con->prepare("INSERT INTO $tabla(codigo, id_proveedor, fecha_emision, fecha_vencimiento, id_centro, id_bodega, subtotal, descuento, total_neto, iva, total_final,  id_medio_pago, id_plazo_pago, observacion, productos, folio_ot) 
 												VALUES (:codigo, :id_proveedor, :fecha_emision, :fecha_vencimiento, :id_centro, :id_bodega, :subtotal, :descuento, :total_neto, :iva, :total_final, :id_medio_pago, :id_plazo_pago, :observacion, :productos, :folio_ot)");
@@ -33,7 +30,6 @@ class ModeloOrdenCompra
 		$stmt->bindParam(":folio_ot", $datos["folio_ot"], PDO::PARAM_STR);
 
 		if ($stmt->execute()) {
-
 			if ($con->lastInsertId() > 0) {
 				foreach ($datos["productos"] as $producto) {
 					$datos = [
@@ -44,19 +40,19 @@ class ModeloOrdenCompra
 						"descripcion" => $producto["descripcion"],
 						// TODO cambiar id_bodega por nombre del dato en formulario
 						"id_bodega" => $datos["id_bodega"],
-
 					];
 					ModeloEntradasInventario::mdlEntradaPorCompra($datos);
 				}
 			}
-
 			return "ok";
 		} else {
-
 			return "error";
 		}
 	}
 
+	/**
+	 * Método para editar una orden de compra
+	 */
 	static public function mdlEditarOrdenCompra($tabla, $datos)
 	{
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET codigo = :codigo, fecha_emision = :fecha_emision, fecha_vencimiento = :fecha_vencimiento, id_centro = :id_centro, id_bodega = :id_bodega, subtotal = :subtotal,
@@ -79,12 +75,9 @@ class ModeloOrdenCompra
 		$stmt->bindParam(":observacion", $datos["observacion"], PDO::PARAM_STR);
 		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
 
-
 		if ($stmt->execute()) {
-
 			return "ok";
 		} else {
-
 			return "error";
 		}
 
@@ -92,6 +85,9 @@ class ModeloOrdenCompra
 		$stmt = null;
 	}
 
+	/**
+	 * Método para mostrar las órdenes de compra
+	 */
 	static public function mdlMostrarOrdenCompra($tabla, $item, $valor, $fechaInicial = null, $fechaFinal = null)
 	{
 		if ($fechaInicial && $fechaFinal) {
@@ -122,23 +118,21 @@ class ModeloOrdenCompra
 		$stmt = null;
 	}
 
+	/**
+	 * Método para eliminar una orden de compra
+	 */
 	static public function mdlEliminarOrdenCompra($tabla, $datos)
 	{
-
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
 		$stmt->bindParam(":id", $datos, PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
-
 			return "ok";
 		} else {
-
 			return "error";
 		}
-
 		$stmt->close();
-
 		$stmt = null;
 	}
 }
