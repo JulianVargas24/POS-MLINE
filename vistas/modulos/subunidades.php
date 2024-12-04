@@ -43,7 +43,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                 <div class="box-header with-border">
 
                     <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarSubunidad">
-
+                        <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
                         Agregar subunidad
 
                     </button>
@@ -201,7 +201,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                                 <div class="col-xs-6">
                                     <div class="d-inline-block bg-primary"
                                          style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">
-                                        Subcunidad
+                                        Subunidad
                                     </div>
                                     <div class="input-group">
 
@@ -263,7 +263,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                     CABEZA DEL MODAL
                     ======================================-->
 
-                    <div class="modal-header" style="background:#FFA500; color:white">
+                    <div class="modal-header" style="background:#3f668d; color:white">
 
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -283,7 +283,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
                             <div class="form-group">
                                 <div class="d-inline-block bg-primary"
-                                     style="background-color:#FFA500;font-size:16px;font-weight:bold;text-indent:11px">
+                                     style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">
                                     Subunidad
                                 </div>
                                 <div class="input-group">
