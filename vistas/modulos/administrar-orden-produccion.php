@@ -40,7 +40,7 @@ if ($xml) {
 
         <!-- Botón Crear Orden -->
         <div class="box-header with-border">
-          <a href="nueva-orden-produccion">
+          <a href="orden-produccion">
             <button class="btn btn-primary">
               <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
               Crear orden de producción
@@ -623,7 +623,7 @@ EDITAR ORDEN DE VESTUARIO
     console.log("F Orden Produccion")
     var idOrdenProduccion = $(this).attr("idOrdenProduccion");
 
-    window.location = "index.php?ruta=editar-nueva-orden-produccion&idOrdenProduccion=" + idOrdenProduccion;
+    window.location = "index.php?ruta=editar-orden-produccion&idOrdenProduccion=" + idOrdenProduccion;
 
 
   })
