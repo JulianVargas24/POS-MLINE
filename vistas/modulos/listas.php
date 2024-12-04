@@ -100,7 +100,8 @@ MODAL AGREGAR LISTA DE PRECIOS
                             <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descuento</div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                                <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar descuento" required max="100">
+                                <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" 
+                                placeholder="Ingresar descuento"  max="100" min="0" required>
                             </div>
                         </div>
                     </div>
@@ -156,7 +157,7 @@ MODAL EDITAR LISTA
                             <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descuento</div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                                <input type="number" class="form-control input" id="editarFactor" name="editarFactor" required max="100">
+                                <input type="number" class="form-control input" id="editarFactor" name="editarFactor"  max="100" min="0" required>
                             </div>
                         </div>
                     </div>

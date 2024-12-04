@@ -294,7 +294,8 @@ MODAL AGREGAR BODEGA
 
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-                      <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                      <input type="text" class="form-control input" name="nuevoEmail" placeholder="Ingresar email" 
+                      required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
 
                     </div>
@@ -487,7 +488,8 @@ MODAL EDITAR PROVEEDOR
 
                       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-                      <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
+                      <input type="text" class="form-control input" name="editarEmail" id="editarEmail" placeholder="Ingresar email"
+                       required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="El email debe contener un arroba (@) y un punto (.) después del arroba">
 
                     </div>
                   </div>

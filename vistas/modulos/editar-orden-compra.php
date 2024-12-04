@@ -80,7 +80,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <input type="hidden" name="idOrdenCompra" id="idOrdenCompra"
                                                         value="<?php echo $ordenCompra["id"]; ?>">
                                                     <select class="form-control" id="nuevoProveedor"
-                                                        name="nuevoProveedor" required readonly>
+                                                        name="nuevoProveedor" required>
                                                         <option value="<?php echo $proveedor["id"]; ?>"><?php echo $proveedor["razon_social"]; ?></option>
                                                         <optgroup label="---Cambiar Proveedor--"></optgroup>
 
@@ -93,7 +93,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                                         foreach ($proveedores as $key => $value) {
 
-                                                            echo '<option disabled class="seleccionarProveedor" value="' . $value["id"] . '">' . $value["razon_social"] . ' </option>';
+                                                            echo '<option class="seleccionarProveedor" value="' . $value["id"] . '">' . $value["razon_social"] . ' </option>';
                                                         }
 
                                                         ?>
@@ -204,9 +204,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevoCentro"
-                                                            name="nuevoCentro" required>
+                                                        name="nuevoCentro" required>
                                                         <option selected
-                                                                value="<?php echo $centro["id"]; ?>"><?php echo $centro["centro"]; ?></option>
+                                                            value="<?php echo $centro["id"]; ?>"><?php echo $centro["centro"]; ?></option>
                                                         <optgroup label="---Cambiar Centro de Costo--"></optgroup>
 
                                                         <?php
@@ -231,9 +231,9 @@ if ($_SESSION["perfil"] == "Especial") {
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <select class="form-control input" id="nuevaBodega"
-                                                            name="nuevaBodega" required>
+                                                        name="nuevaBodega" required>
                                                         <option selected
-                                                                value="<?php echo $bodega["id"]; ?>"><?php echo $bodega["nombre"]; ?></option>
+                                                            value="<?php echo $bodega["id"]; ?>"><?php echo $bodega["nombre"]; ?></option>
                                                         <optgroup label="---Cambiar Bodega--"></optgroup>
 
 
@@ -422,7 +422,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                                 class="form-control" id="nuevoSubtotal" total=""
                                                                 name="nuevoSubtotal" value="" readonly>
                                                         </div>
-                                                    </div>  
+                                                    </div>
                                                 </div>
                                                 <div class="col-xs-7">
                                                     <div class="form-group">
@@ -600,7 +600,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     </div>
 
                     <a href="ordenes-compra">
-                    <button type="button" class="btn btn-default">Salir</button>
+                        <button type="button" class="btn btn-default">Salir</button>
                     </a>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
@@ -611,10 +611,10 @@ if ($_SESSION["perfil"] == "Especial") {
 
                     ?>
 
-                </form>    
+                </form>
             </div>
         </div>
-    </section>    
+    </section>
 </div>
 
 <style>

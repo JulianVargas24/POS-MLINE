@@ -140,12 +140,14 @@ class ModeloProductos
 	static public function mdlEditarProducto($tabla, $datos)
 	{
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_categoria = :id_categoria, id_subcategoria = :id_subcategoria, descripcion = :descripcion, stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta, stock_alerta = :stock_alerta, stock_min = :stock_min, id_medida = :id_medida, id_bodega = :id_bodega, id_rubro = :id_rubro, id_tabla_lista = :id_tabla_lista WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_categoria = :id_categoria, id_subcategoria = :id_subcategoria, descripcion = :descripcion, stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta, stock_alerta = :stock_alerta, stock_min = :stock_min, id_medida = :id_medida, id_subunidad = :id_subunidad, valor_medida = :valor_medida, id_bodega = :id_bodega, id_rubro = :id_rubro, id_tabla_lista = :id_tabla_lista WHERE id = :id");
 
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_subcategoria", $datos["id_subcategoria"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_medida", $datos["id_medida"], PDO::PARAM_INT);
+        $stmt->bindParam(":id_subunidad", $datos["id_subunidad"], PDO::PARAM_INT);
+        $stmt->bindParam(":valor_medida", $datos["valor_medida"], PDO::PARAM_INT);
 		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_bodega", $datos["id_bodega"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_rubro", $datos["id_rubro"], PDO::PARAM_INT);

@@ -86,9 +86,9 @@ class ControladorProductos
 	}
 
 
-	/*=============================================
-	CREAR PRODUCTO 
-	=============================================*/
+    /*=============================================
+    CREAR PRODUCTO
+    =============================================*/
 
 	static public function ctrCrearProducto()
 	{
@@ -204,9 +204,9 @@ class ControladorProductos
 		}
 	}
 
-	/*=============================================
-	EDITAR PRODUCTO
-	=============================================*/
+    /*=============================================
+    EDITAR PRODUCTO
+    =============================================*/
 
 	static public function ctrEditarProducto()
 	{
@@ -308,11 +308,13 @@ class ControladorProductos
 				rmdir('vistas/img/productos/' . $_GET["codigo"]);
 			}
 
-			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
+            }
 
-			if ($respuesta == "ok") {
+            $respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
 
-				echo '<script>
+            if ($respuesta == "ok") {
+
+                echo '<script>
 
 				swal({
 					  type: "success",
@@ -329,19 +331,18 @@ class ControladorProductos
 
 				</script>';
 			}
-		}
 	}
 
 	/*=============================================
-	MOSTRAR SUMA VENTAS
-	=============================================*/
+    MOSTRAR SUMA VENTAS
+    =============================================*/
 
 	static public function ctrMostrarSumaVentas()
 	{
 
-		$tabla = "productos";
+        $tabla = "productos";
 
-		$respuesta = ModeloProductos::mdlMostrarSumaVentas($tabla);
+        $respuesta = ModeloProductos::mdlMostrarSumaVentas($tabla);
 
 		return $respuesta;
 	}
@@ -418,7 +419,6 @@ class ControladorProductos
 	
 		 			</tr>");
 			}
-
 
 			echo "</table>";
 		}

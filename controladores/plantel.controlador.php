@@ -3,44 +3,56 @@
 class ControladorPlantel{
 
 
-    static public function ctrCrearPlantel(){
-
-		if(isset($_POST["nuevoNombre"])){
-
-			   	$tabla = "plantel";
-
-			   	$datos = array("nombre"=>$_POST["nuevoNombre"],
-                               "rut"=>$_POST["nuevoRutId"],
-                               "cargo"=>$_POST["nuevoCargo"],
-							   "comision"=>$_POST["nuevaComision"]);
-
-			   	$respuesta = ModeloPlantel::mdlIngresarPlantel($tabla, $datos);
-
-			   	if($respuesta == "ok"){
-
-					echo'<script>
-
-					swal({
-						  type: "success",
-						  title: "El Plantel ha sido agregado correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
-
+    static public function ctrCrearPlantel() {
+		if (isset($_POST["nuevoNombre"])) {
+	
+			$tabla = "plantel";
+			$rut = $_POST["nuevoRutId"];
+	
+			// Verificar si el RUT ya existe
+			if (ModeloPlantel::verificarRut($rut)) {
+				echo '<script>
+						swal({
+							type: "error",
+							title: "Este RUT ya está registrado",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						}).then(function(result) {
+							if (result.value) {
+								// Mostramos el modal de nuevo para que el usuario pueda seguir en el formulario
+								$("#modalAgregarPlantel").modal("show");
+							}
+						});
+					  </script>';
+				return; // Detiene el proceso si el RUT ya existe
+			}
+	
+			$datos = array(
+				"nombre" => $_POST["nuevoNombre"],
+				"rut" => $rut,
+				"cargo" => $_POST["nuevoCargo"],
+				"comision" => $_POST["nuevaComision"]
+			);
+	
+			$respuesta = ModeloPlantel::mdlIngresarPlantel($tabla, $datos);
+	
+			if ($respuesta == "ok") {
+				echo '<script>
+						swal({
+							  type: "success",
+							  title: "El Plantel ha sido agregado correctamente",
+							  showConfirmButton: true,
+							  confirmButtonText: "Cerrar"
+							}).then(function(result) {
+								if (result.value) {
 									window.location = "plantel";
-
-									}
-								})
-
-					</script>';
-
-				}
-
-			
+								}
+							});
+					  </script>';
+			}
 		}
-
 	}
+	
 
     static public function ctrMostrarPlantel($item, $valor){
 
@@ -87,46 +99,50 @@ class ControladorPlantel{
 
     }
     
-    static public function ctrEditarPlantel(){
-
-		if(isset($_POST["editarNombre"])){
-
-			
-
-			   	$tabla = "plantel";
-
-			   	$datos = array("id"=>$_POST["idPlantel"],
-			   				   "nombre"=>$_POST["editarNombre"],
-					           "rut"=>$_POST["editarRutId"],
-					           "cargo"=>$_POST["editarCargo"],
-					           "comision"=>$_POST["editarComision"]);
-
-			   	$respuesta = ModeloPlantel::mdlEditarPlantel($tabla, $datos);
-
-			   	if($respuesta == "ok"){
-
-					echo'<script>
-
+    static public function ctrEditarPlantel() {
+		if (isset($_POST["editarNombre"])) {
+			$tabla = "plantel";
+			$datos = array(
+				"id" => $_POST["idPlantel"],
+				"nombre" => $_POST["editarNombre"],
+				"rut" => $_POST["editarRutId"],
+				"cargo" => $_POST["editarCargo"],
+				"comision" => $_POST["editarComision"]
+			);
+	
+			// Verificar si el RUT ya existe para otro registro
+			if (ModeloPlantel::verificarRut($datos["rut"], $datos["id"])) {
+				echo '<script>
+						swal({
+							type: "error",
+							title: "Este RUT ya está registrado para otro usuario.",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						}).then(function(result) {
+							if (result.value) {
+								// No se realiza ninguna acción para evitar recarga de página
+							}
+						});
+					  </script>';
+				return;
+			}
+	
+			$respuesta = ModeloPlantel::mdlEditarPlantel($tabla, $datos);
+			if ($respuesta == "ok") {
+				echo '<script>
 					swal({
-						  type: "success",
-						  title: "El Plantel ha sido cambiado correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
-
-									window.location = "plantel";
-
-									}
-								})
-
-					</script>';
-
-				}
-
-			
-
+						type: "success",
+						title: "El Plantel ha sido cambiado correctamente",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then(function(result) {
+						if (result.value) {
+							window.location = "plantel";
+						}
+					});
+				</script>';
+			}
 		}
-
 	}
+	
 }

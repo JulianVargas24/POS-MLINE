@@ -60,48 +60,47 @@ $(".tablaCompras tbody").on("click", "button.agregarProducto", function () {
 
       $(".nuevoProducto").append(
         `<div class="row" style="padding:5px 15px">
-			  	<!-- Descripción del producto -->
-				<div class="col-xs-2" style="padding-right:0px">
-					<div class="input-group">
-					<span class="input-group-addon">
-						<button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="${idProducto}"><i class="fa fa-times"></i></button>
-					</span>
-						<input type="text" class="form-control nuevaDescripcionProducto" idProducto="${idProducto}" name="agregarProducto" value="${descripcion}" readonly required>
-					</div>
-				</div>
-			</div>
-				<!-- Cantidad del producto -->
-			<div class="col-xs-1 cantidadProducto" style="padding-right:0px">
-				<input type="text" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1"  required>
-			</div>
-				<!-- Precio Unitario -->
-			<div class="col-xs-1 precioUnitario" style="padding-right:0px">
-			<input type="text"  class="form-control nuevoPrecioUnitario" style="padding:5px; padding-left:0px"  name="nuevoPrecioUnitario" value="${precio}" required>
-			</div>
-				<!-- Subtotal Neto -->
-			<div class="col-xs-1 subtotalProducto" style="padding-right:0px">
-				<input type="text" class="form-control nuevoSubtotalProducto" style="padding:5px" name="nuevoSubtotalProducto" min="0" value="${precio}"  readonly required>
-			</div>
-				<!-- Descuento -->
-			<div class="col-xs-1 descuentoProducto" style="padding-right:0px">
-				<input type="text" class="form-control nuevoDescuentoProducto" style="padding:5px" name="nuevoDescuentoProducto" min="0" value="${descuento}"  required>
-			</div>
-				<!-- Precio Total Neto del producto -->
-			<div class="col-xs-2 ingresoPrecio" style="padding-right:0px">
-				<input   type="text" class="form-control nuevoPrecioProducto" onchange="cambios()" precioReal="${precio}" name="nuevoPrecioProducto" value="${precio}" readonly required>
-			</div>
-				<!-- IVA del producto -->
-			<div class="col-xs-1 ivaProducto" style="padding-right:0px">
-				<input type="text" class="form-control nuevoIvaProducto" style="padding:5px" name="nuevoIvaProducto" min="0" value="${impuesto}"  readonly required>
-			</div>
-				<!-- OTROS IMPUESTOS del producto -->
-			<div class="col-xs-1 " style="padding-right:0px">
-				<input type="text" class="form-control nuevoOtrosImpuestosProducto" style="padding:5px" name="nuevoOtrosImpuestosProducto" min="0" value="${descuento}"  required>
-			</div>
-			<div class="col-xs-2 totalProducto style="padding-right:0px">
-				<input type="text" class="form-control nuevoTotalProducto" name="nuevoTotalProducto" min="0" value="${total}" readonly required>
-			</div>
-			</div>`
+        <!-- Descripción del producto -->
+      <div class="col-xs-2" style="padding-right:0px">
+        <div class="input-group">
+        <span class="input-group-addon">
+          <button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="${idProducto}"><i class="fa fa-times"></i></button>
+        </span>
+          <input type="text" class="form-control nuevaDescripcionProducto" idProducto="${idProducto}" name="agregarProducto" value="${descripcion}" readonly required>
+        </div>
+      </div>
+        <!-- Cantidad del producto -->
+      <div class="col-xs-1 cantidadProducto" style="padding-right:0px">
+        <input type="text" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1"  required>
+      </div>
+        <!-- Precio Unitario -->
+      <div class="col-xs-1 precioUnitario" style="padding-right:0px">
+      <input type="text"  class="form-control nuevoPrecioUnitario" style="padding:5px; padding-left:0px"  name="nuevoPrecioUnitario" value="${precio}" required>
+      </div>
+        <!-- Subtotal Neto -->
+      <div class="col-xs-1 subtotalProducto" style="padding-right:0px">
+        <input type="text" class="form-control nuevoSubtotalProducto" style="padding:5px" name="nuevoSubtotalProducto" min="0" value="${precio}"  readonly required>
+      </div>
+        <!-- Descuento -->
+      <div class="col-xs-1 descuentoProducto" style="padding-right:0px">
+        <input type="text" class="form-control nuevoDescuentoProducto" style="padding:5px" name="nuevoDescuentoProducto" min="0" value="${descuento}"  required>
+      </div>
+        <!-- Precio Total Neto del producto -->
+      <div class="col-xs-2 ingresoPrecio" style="padding-right:0px">
+        <input   type="text" class="form-control nuevoPrecioProducto" onchange="cambios()" precioReal="${precio}" name="nuevoPrecioProducto" value="${precio}" readonly required>
+      </div>
+        <!-- IVA del producto -->
+      <div class="col-xs-1 ivaProducto" style="padding-right:0px">
+        <input type="text" class="form-control nuevoIvaProducto" style="padding:5px" name="nuevoIvaProducto" min="0" value="${impuesto}"  readonly required>
+      </div>
+        <!-- OTROS IMPUESTOS del producto -->
+      <div class="col-xs-1 " style="padding-right:0px">
+        <input type="text" class="form-control nuevoOtrosImpuestosProducto" style="padding:5px" name="nuevoOtrosImpuestosProducto" min="0" value="${descuento}"  required>
+      </div>
+      <div class="col-xs-2 totalProducto style="padding-right:0px">
+        <input type="text" class="form-control nuevoTotalProducto" name="nuevoTotalProducto" min="0" value="${total}" readonly required>
+      </div>
+      </div>`
       );
 
       // SUMAR TOTAL DE PRECIOS
@@ -1361,4 +1360,17 @@ ABRIR ARCHIVO XML EN NUEVA PESTAÑA
 $(".abrirXML").click(function () {
   var archivo = $(this).attr("archivo");
   window.open(archivo, "_blank");
+});
+
+/*=============================================
+SELECCIONAR VESTUARIO DESDE MODAL
+=============================================*/
+$(".tablas").on("click", ".btnSeleccionarVestuario", function () {
+  var codigoVestuario = $(this).attr("data-codigo");
+
+  // Actualizar el select con el valor seleccionado
+  $("#nuevoFolioOT").val(codigoVestuario);
+
+  // Cerrar el modal
+  $("#modalVerOrdenVestuario").modal("hide");
 });

@@ -253,7 +253,7 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                                <select class="form-control input-lg" name="nuevoPerfil">
+                                <select class="form-control" name="nuevoPerfil">
 
                                     <option value="">Selecionar perfil</option>
 

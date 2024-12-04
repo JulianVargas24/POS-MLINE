@@ -188,18 +188,22 @@ MODAL AGREGAR CATEGORÍA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" placeholder="Ingresar porcentaje" required max="100">
+                <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" 
+                placeholder="Ingresar porcentaje" 
+                max="100" min="0" required>
 
               </div>
             </div>
 
             <div class="form-group">
-              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
+              <div class="d-inline-block bg-primary"
+               style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" placeholder="Ingresar descripción" required>
+                <input type="text" class="form-control input" name="nuevoDescripcion" id="nuevoDescripcion" 
+                placeholder="Ingresar descripción" required>
 
               </div>
             </div>
@@ -299,18 +303,19 @@ MODAL EDITAR SUBCATEGORÍA
 
 
             <div class="form-group">
-              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Factor</div>
+              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Porcentaje</div>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="number" class="form-control input" id="editarFactor" name="editarFactor" required max="100">
+                <input type="number" class="form-control input" id="editarFactor" name="editarFactor" max="100" min="0" required>
 
               </div>
             </div>
 
             <div class="form-group">
-              <div class="d-inline-block bg-primary" style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
+              <div class="d-inline-block bg-primary" 
+              style="background-color:#3c8dbc;font-size:16px;font-weight:bold;text-indent:11px">Descripción</div>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
