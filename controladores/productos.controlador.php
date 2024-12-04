@@ -5,70 +5,69 @@ error_reporting(0);
 class ControladorProductos
 {
 
-    /*=============================================
-    MOSTRAR PRODUCTOS
-    =============================================*/
-
-    static public function ctrMostrarProductos($item, $valor, $orden)
-    {
-
-        $tabla = "productos";
-
-        $respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor, $orden);
-
-        return $respuesta;
-
-    }
-
-    static public function ctrMostrarStockPorBodega()
-    {
-        if (isset($_POST["idBodega"])) {
-            $bodega = $_POST["idBodega"];
-            $producto = $_POST["idProducto"];
-
-            $respuesta = ModeloProductos::mdlMostrarStockPorBodega($producto, $bodega);
-            return $respuesta;
-        }
-
-    }
-
-    static public function ctrMostrarProductoPorId()
-    {
-        if (isset($_POST["idProducto"])) {
-
-            $producto = $_POST["idProducto"];
-
-            $respuesta = ModeloProductos::mdlMostrarProductoPorId($producto);
-            return $respuesta;
-        }
-    }
-
-    static public function ctrMostrarProductosPorBodega()
-    {
-        $bodegas = ModeloBodegas::mdlMostrarBodegas("bodegas", null, null);
-        $productos = ModeloProductos::mdlMostrarProductos("productos", null, null, "id");
-
-        $data = [];
-        foreach ($bodegas as $index => $bodega) {
-            $data[] = [
-                "bodega" => $bodega["nombre"],
-                "productos" => []
-            ];
-            foreach ($productos as $producto) {
-                $stock = ModeloProductos::mdlMostrarStockPorBodega($producto["id"], $bodega["id"]);
-                $stock = ($stock > 0) ? $stock : 0;
-                $data[$index]["productos"][] = [
-                    "producto" => $producto["descripcion"],
-                    "stock" => $stock,
-                    "id" => $producto["id"],
-                    "stock_alerta" => $producto["stock_alerta"],
-                    "stock_min" => $producto["stock_min"]
-                ];
-            }
-        }
-
-        return $data;
-    }
+	/*=============================================
+	MOSTRAR PRODUCTOS
+	=============================================*/
+	static public function ctrMostrarProductos($item, $valor, $orden)
+	{
+		$tabla = "productos";
+		$respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor, $orden);
+		return $respuesta;
+	}
+	// Método en el controlador de productos
+	static public function ctrMostrarProductosPredeterminado($item, $valor)
+	{
+		$tabla = "productos";
+		// Si $item es null, no se hace filtro
+		if ($item == null && $valor == null) {
+			$respuesta = ModeloProductos::mdlMostrarProductosPredeterminado($tabla);
+		} else {
+			// Si se proporciona un filtro, se aplica
+			$respuesta = ModeloProductos::mdlMostrarProductosPredeterminado($tabla, $item, $valor);
+		}
+		return $respuesta;
+	}
+	static public function ctrMostrarStockPorBodega()
+	{
+		if (isset($_POST["idBodega"])) {
+			$bodega = $_POST["idBodega"];
+			$producto = $_POST["idProducto"];
+			$respuesta = ModeloProductos::mdlMostrarStockPorBodega($producto, $bodega);
+			return  $respuesta;
+		}
+	}
+	static public function ctrMostrarProductoPorId()
+	{
+		if (isset($_POST["idProducto"])) {
+			$producto = $_POST["idProducto"];
+			$respuesta = ModeloProductos::mdlMostrarProductoPorId($producto);
+			return $respuesta;
+		}
+	}
+	static public function ctrMostrarProductosPorBodega()
+	{
+		$bodegas = ModeloBodegas::mdlMostrarBodegas("bodegas", null, null);
+		$productos = ModeloProductos::mdlMostrarProductos("productos", null, null, "id");
+		$data = [];
+		foreach ($bodegas as $index => $bodega) {
+			$data[] = [
+				"bodega" => $bodega["nombre"],
+				"productos" => []
+			];
+			foreach ($productos as $producto) {
+				$stock = ModeloProductos::mdlMostrarStockPorBodega($producto["id"], $bodega["id"]);
+				$stock = ($stock > 0) ? $stock : 0;
+				$data[$index]["productos"][] = [
+					"producto" => $producto["descripcion"],
+					"stock" => $stock,
+					"id" => $producto["id"],
+					"stock_alerta" => $producto["stock_alerta"],
+					"stock_min" => $producto["stock_min"]
+				];
+			}
+		}
+		return $data;
+	}
 
 
     /*=============================================
