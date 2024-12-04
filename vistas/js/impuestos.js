@@ -21,7 +21,7 @@ $(".tablas").on("click", ".btnEditarImpuesto", function () {
       $("#editarFactor").val(respuesta["factor"]);
       $("#editarCodigo").val(respuesta["codigo"]);
       $("#editarImpuesto").val(respuesta["nombre"]);
-      $("#editarDescripcion").val(respuesta["descripcion"]); /*hola*/
+      $("#editarDescripcion").val(respuesta["descripcion"]); 
       $("#idImpuesto").val(respuesta["id"]);
     },
   });

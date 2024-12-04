@@ -183,7 +183,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                                 <input type="number" class="form-control input" id="nuevoNumero" name="nuevoNumero"
-                                    placeholder="Ingresar número de días" required max=200>
+                                    placeholder="Ingresar número de días" max=200 min=1 required>
 
                             </div>
                         </div>
@@ -282,7 +282,7 @@ if ($_SESSION["perfil"] == "Vendedor") {
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                                 <input type="number" class="form-control input" id="editarNumero" name="editarNumero"
-                                    required max=200>
+                                 max=200 min=1 required>
 
                             </div>
                         </div>

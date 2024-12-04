@@ -69,7 +69,7 @@ if ($_SESSION["perfil"] == "Especial") {
                                                     <input type="hidden" name="idCompra" id="idCompra"
                                                         value="<?php echo $compra["id"]; ?>">
                                                     <select class="form-control" id="nuevoProveedor"
-                                                        name="nuevoProveedor" required readonly>
+                                                        name="nuevoProveedor" required>
                                                         <option value="<?php echo $proveedor["id"]; ?>"><?php echo $proveedor["razon_social"]; ?></option>
                                                         <optgroup label="---Cambiar Proveedor--"></optgroup>
 
@@ -82,7 +82,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                                                         foreach ($proveedores as $key => $value) {
 
-                                                            echo '<option disabled class="seleccionarProveedor" value="' . $value["id"] . '">' . $value["razon_social"] . ' </option>';
+                                                            echo '<option class="seleccionarProveedor" value="' . $value["id"] . '">' . $value["razon_social"] . ' </option>';
                                                         }
 
                                                         ?>
@@ -557,9 +557,9 @@ if ($_SESSION["perfil"] == "Especial") {
                             </div>
                         </div>
                     </div>
-                    
+
                     <a href="compras">
-                     <button type="button" class="btn btn-default">Salir</button>
+                        <button type="button" class="btn btn-default">Salir</button>
                     </a>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
@@ -572,7 +572,7 @@ if ($_SESSION["perfil"] == "Especial") {
                 </form>
             </div>
         </div>
-    </section>    
+    </section>
 </div>
 
 <style>

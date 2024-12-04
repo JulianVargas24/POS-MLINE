@@ -166,13 +166,12 @@ MODAL AGREGAR PROVEEDOR
         <div class="modal-body">
 
           <div class="box-body">
-
             <h4 class="box-title" style="font-weight:bold;">
               Datos de proveedor
             </h4>
             <div class="box box-success">
-
               <div class="box-body">
+
                 <div class="form-group row">
                   <!-- ENTRADA PARA LA RAZON SOCIAL -->
                   <div class="col-xs-6">
@@ -201,120 +200,122 @@ MODAL AGREGAR PROVEEDOR
                     </div>
                   </div>
                 </div>
+
+                <div class="form-group row">
+                  <!-- ENTRADA PARA LA ACTIVIDAD -->
+                  <div class="col-xs-6">
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">
+                      Actividad
+                    </div>
+                    <div class="input-group">
+
+                      <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+
+                      <input type="text" class="form-control input" name="nuevaActividad"
+                        id="nuevaActividad" placeholder="Ingrese actividad">
+
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">
+                      País
+                    </div>
+                    <div class="input-group">
+
+                      <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+
+                      <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais"
+                        value="Chile" required>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-xs-6">
+                    <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">
+                      Región
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                      <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
+                        <option value="">Seleccionar región</option>
+
+                        <?php
+                        $regiones = ControladorRegiones::ctrMostrarRegiones(null, null);
+                        foreach ($regiones as $region) {
+                          echo '<option value="' . $region["id"] . '">' . $region["nombre"] . '</option>';
+                        }
+                        ?>
+
+                      </select>
+                    </div>
+                  </div>
+                  <!-- ENTRADA PARA LA CIUDAD -->
+                  <div class="col-xs-6">
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">
+                      Comuna
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                      <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
+                        <option value="">Seleccionar comuna</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Input hidden para la comuna actual -->
+                  <input type="hidden" id="comunaActual" value="<?php echo $bodegas['comuna']; ?>">
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-xs-6">
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">
+                      Dirección
+                    </div>
+                    <div class="input-group">
+
+                      <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+
+                      <input type="text" class="form-control input" name="nuevaDireccion"
+                        id="nuevaDireccion" placeholder="Ingrese dirección" required>
+
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="d-block text-center" style="font-size:16px;font-weight:bold">
+                      Rubro principal
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-apple"></i></span>
+                      <select class="form-control input" id="nuevoRubro" name="nuevoRubro" required>
+
+                        <?php
+
+                        $item = null;
+                        $valor = null;
+
+                        $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
+
+                        foreach ($rubros as $key => $value) {
+                          echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
+                        }
+
+                        ?>
+
+
+                      </select>
+
+                    </div>
+                  </div>
+
+                </div>
               </div>
-
-              <div class="form-group row">
-                <!-- ENTRADA PARA LA ACTIVIDAD -->
-                <div class="col-xs-6">
-                  <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Actividad
-                  </div>
-                  <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-
-                    <input type="text" class="form-control input" name="nuevaActividad"
-                      id="nuevaActividad" placeholder="Ingrese actividad">
-
-                  </div>
-                </div>
-                <div class="col-xs-6">
-                  <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">
-                    País
-                  </div>
-                  <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-
-                    <input type="text" class="form-control input" name="nuevoPais" id="nuevoPais"
-                      value="Chile" required>
-
-                  </div>
-                </div>
-
-              </div>
-              <div class="form-group row">
-                <div class="col-xs-6">
-                  <div class="d-inline-block text-center " style="font-size:16px;font-weight:bold">
-                    Región
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                    <select class="form-control input" id="nuevaRegion" name="nuevaRegion" required>
-                      <option value="">Seleccionar región</option>
-
-                      <?php
-                      $regiones = ControladorRegiones::ctrMostrarRegiones(null, null);
-                      foreach ($regiones as $region) {
-                        echo '<option value="' . $region["id"] . '">' . $region["nombre"] . '</option>';
-                      }
-                      ?>
-
-                    </select>
-                  </div>
-                </div>
-                <!-- ENTRADA PARA LA CIUDAD -->
-                <div class="col-xs-6">
-                  <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Comuna
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                    <select class="form-control input" id="nuevaComuna" name="nuevaComuna" required>
-                      <option value="">Seleccionar comuna</option>
-                    </select>
-                  </div>
-                </div>
-                <!-- Input hidden para la comuna actual -->
-                <input type="hidden" id="comunaActual" value="<?php echo $bodegas['comuna']; ?>">
-              </div>
-
-              <div class="form-group row">
-                <div class="col-xs-6">
-                  <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Dirección
-                  </div>
-                  <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-
-                    <input type="text" class="form-control input" name="nuevaDireccion"
-                      id="nuevaDireccion" placeholder="Ingrese dirección" required>
-
-                  </div>
-                </div>
-                <div class="col-xs-6">
-                  <div class="d-block text-center" style="font-size:16px;font-weight:bold">
-                    Rubro principal
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-apple"></i></span>
-                    <select class="form-control input" id="nuevoRubro" name="nuevoRubro" required>
-
-                      <?php
-
-                      $item = null;
-                      $valor = null;
-
-                      $rubros = ControladorRubros::ctrMostrarRubros($item, $valor);
-
-                      foreach ($rubros as $key => $value) {
-                        echo '<option  value="' . $value["nombre"] . '">' . $value["nombre"] . ' </option>';
-                      }
-
-                      ?>
-
-
-                    </select>
-
-                  </div>
-                </div>
-
-              </div>
-
             </div>
           </div>
+
           <h4 class="box-title" style="font-weight:bold;">Datos de pago</h4>
+
           <div class="box box-info">
             <div class="box-body">
               <div class="form-group row">
@@ -411,6 +412,7 @@ MODAL AGREGAR PROVEEDOR
 
             </div>
           </div>
+
           <h4 class="box-title" style="font-weight:bold;">Datos de contacto</h4>
           <div class="box box-warning">
             <div class="box-body">
