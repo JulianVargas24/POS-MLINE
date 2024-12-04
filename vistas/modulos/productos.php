@@ -33,11 +33,8 @@ if ($_SESSION["perfil"] == "Vendedor") {
     </section>
 
     <section class="content">
-
         <div class="box">
-
             <div class="box-header with-border">
-
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProducto">
                     <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px"></i>
                     Agregar producto
@@ -51,15 +48,11 @@ if ($_SESSION["perfil"] == "Vendedor") {
                         </button>
                     </a>
                 </div>
-
             </div>
 
             <div class="box-body">
-
                 <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
-
                     <thead>
-
                         <tr>
 
                             <th style="width:10px">#</th>
@@ -73,20 +66,12 @@ if ($_SESSION["perfil"] == "Vendedor") {
                             <th>Acciones</th>
 
                         </tr>
-
                     </thead>
-
                 </table>
-
-
                 <input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
-
             </div>
-
         </div>
-
     </section>
-
 </div>
 
 <!--=====================================
@@ -236,10 +221,8 @@ MODAL AGREGAR PRODUCTO
                                                 ?>
 
                                             </select>
-
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -257,12 +240,9 @@ MODAL AGREGAR PRODUCTO
                                             style="font-size:16px;font-weight:bold">Alerta de stock
                                         </div>
                                         <div class="input-group">
-
                                             <span class="input-group-addon"><i class="fa fa-check"></i></span>
-
                                             <input type="number" class="form-control input" name="nuevoStockAlerta"
                                                 min="0" placeholder="Alerta de stock" required>
-
                                         </div>
                                     </div>
 
@@ -271,20 +251,15 @@ MODAL AGREGAR PRODUCTO
                                             style="font-size:16px;font-weight:bold">Stock mínimo
                                         </div>
                                         <div class="input-group">
-
                                             <span class="input-group-addon"><i class="fa fa-check"></i></span>
-
                                             <input type="number" class="form-control input" name="nuevoStockMin" min="0"
                                                 placeholder="Stock mínimo" required>
-
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- ENTRADA PARA PRECIO COMPRA -->
-
                                 <div class="form-group row">
-
+                                    <!-- ENTRADA PARA PRECIO COMPRA -->
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Precio de compra neto
@@ -298,11 +273,9 @@ MODAL AGREGAR PRODUCTO
                                                 placeholder="Precio de compra" required>
 
                                         </div>
-
                                     </div>
 
                                     <!-- ENTRADA PARA PRECIO VENTA -->
-
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Precio lista neto
@@ -314,18 +287,16 @@ MODAL AGREGAR PRODUCTO
                                             <input type="number" class="form-control input" id="nuevoPrecioVenta"
                                                 name="nuevoPrecioVenta" step="any" min="0"
                                                 placeholder="Precio de venta" required>
-
                                         </div>
-
-
                                     </div>
-
+                                </div>   
+                                <div class="form-group row">
+                                    <!-- ENTRADA PARA UNIDAD DE MEDIDA -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Unidad de medida
                                         </div>
                                         <div class="input-group">
-
                                             <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                                             <select class="form-control input" id="nuevaMedida" name="nuevaMedida"
@@ -348,20 +319,15 @@ MODAL AGREGAR PRODUCTO
                                                 ?>
 
                                             </select>
-
                                         </div>
-
-
                                     </div>
-
+                                    <!-- ENTRADA PARA SUBUNIDAD DE MEDIDA -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Subunidad de medida
                                         </div>
                                         <div class="input-group">
-
                                             <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
                                             <select class="form-control input" id="nuevaSubunidad" name="nuevaSubunidad"
                                                     required>
 
@@ -382,12 +348,8 @@ MODAL AGREGAR PRODUCTO
                                                 ?>
 
                                             </select>
-
                                         </div>
-
-
                                     </div>
-
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Valor / Peso
@@ -402,55 +364,14 @@ MODAL AGREGAR PRODUCTO
 
                                         </div>
                                     </div>
-
-                                </div>
-
-
-
+                                </div>    
                             </div>
-                        </div>
-                        <!-- ENTRADA PARA EL CÓDIGO -->
-
-
+                        </div>                    
                         <div class="box box-success">
                             <div class="box-body">
                                 <div class="form-group row">
 
-                                    <div class="col-xs-4">
-                                        <div class="d-inline-block  text-center"
-                                            style="font-size:16px;font-weight:bold">Código de producto
-                                        </div>
-                                        <div class="input-group">
-
-                                            <span class="input-group-addon"><i class="fa fa-code"></i></span>
-
-                                            <input type="number" class="form-control input" id="nuevoCodigo"
-                                                name="nuevoCodigo"
-                                                value="<?php $rand = range(0, 10);
-                                                        shuffle($rand);
-                                                        foreach ($rand as $val) {
-                                                            echo $val;
-                                                        } ?>" required>
-
-                                        </div>
-
-                                        <button type="button" class="btn btn-success" style="margin-top: 5px"
-                                            onclick="generarbarcode();">Generar
-                                        </button>
-                                        <button type="button" class="btn btn-info" style="margin-top: 5px"
-                                            onclick="imprimir();">Imprimir
-                                        </button>
-                                        <div id="print" style="display: none;">
-                                            <svg id="barcode" class="barcode"></svg>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- ENTRADA PARA BODEGA -->
-
-
+                                    <!-- ENTRADA PARA AFECTO/EXENTO -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Afecto/Exento
@@ -466,33 +387,11 @@ MODAL AGREGAR PRODUCTO
                                                 <option value="Exento">Exento</option>
 
                                             </select>
-
                                         </div>
                                     </div>
-
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
-                                            style="font-size:16px;font-weight:bold;margin-top:10px;">Tabla lista
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
-
-                                            <select class="form-control input" id="nuevaTablaLista"
-                                                name="nuevaTablaLista">
-
-                                                <option value="">Seleccionar:</option>
-                                                <option value="">Producto</option>
-                                                <option value="">Servicio</option>
-                                                <option value="">Insumo</option>
-                                                <option value="">Mix</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-xs-4">
-                                        <div class="d-inline-block  text-center"
-                                            style="font-size:16px;font-weight:bold;margin-top:10px;">Impuestos
+                                            style="font-size:16px;font-weight:bold">Impuestos
                                             adicionales
                                         </div>
                                         <div class="input-group">
@@ -522,11 +421,60 @@ MODAL AGREGAR PRODUCTO
                                             </select>
                                         </div>
                                     </div>
+                                    <!-- ENTRADA PARA LA TABLA -->
+                                    <div class="col-xs-4">
+                                        <div class="d-inline-block  text-center"
+                                            style="font-size:16px;font-weight:bold">Tabla lista
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                            <select class="form-control input" id="nuevaTablaLista"
+                                                name="nuevaTablaLista">
+
+                                                <option value="">Seleccionar:</option>
+                                                <option value="">Producto</option>
+                                                <option value="">Servicio</option>
+                                                <option value="">Insumo</option>
+                                                <option value="">Mix</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <!-- ENTRADA PARA EL CÓDIGO -->                
+                                    <div class="col-xs-4">
+                                        <div class="d-inline-block  text-center"
+                                            style="font-size:16px;font-weight:bold">Código de producto
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-code"></i></span>
+
+                                            <input type="number" class="form-control input" id="nuevoCodigo"
+                                                name="nuevoCodigo"
+                                                value="<?php $rand = range(0, 10);
+                                                        shuffle($rand);
+                                                        foreach ($rand as $val) {
+                                                            echo $val;
+                                                        } ?>" required>
+
+                                        </div>
+
+                                        <button type="button" class="btn btn-success" style="margin-top: 5px"
+                                            onclick="generarbarcode();">Generar código de barras
+                                        </button>
+                                        <button type="button" class="btn btn-info" style="margin-top: 5px"
+                                            onclick="imprimir();">Imprimir
+                                        </button>
+                                        <div id="print" style="display: none;">
+                                            <svg id="barcode" class="barcode"></svg>
+                                        </div>
+                                    </div>
+                        
                                     <div class="col-xs-4">
                                         <div class="form-group">
 
-                                            <div class="panel"
-                                                style="font-weight:bold;margin-top:10px;margin-bottom:-2px;">SUBIR
+                                            <div style="font-weight:bold;margin-bottom:2px;">SUBIR
                                                 IMAGEN
                                             </div>
 
@@ -540,15 +488,11 @@ MODAL AGREGAR PRODUCTO
                                                 class="img-thumbnail previsualizar" height="80px" width="80px">
 
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <!--=====================================
@@ -562,7 +506,6 @@ MODAL AGREGAR PRODUCTO
                     <button type="submit" class="btn btn-primary text-center">Guardar producto</button>
 
                 </div>
-
             </form>
 
             <?php
@@ -572,15 +515,12 @@ MODAL AGREGAR PRODUCTO
             ?>
 
         </div>
-
     </div>
-
 </div>
 
 <!--=====================================
 MODAL EDITAR PRODUCTO
 ======================================-->
-
 
 <div id="modalEditarProducto" class="modal fade" role="dialog">
 
@@ -721,7 +661,6 @@ MODAL EDITAR PRODUCTO
                                                 ?>
 
                                             </select>
-
                                         </div>
                                     </div>
                                 </div>
@@ -731,8 +670,6 @@ MODAL EDITAR PRODUCTO
                         <div class="box box-danger">
                             <div class="box-body">
                                 <div class="form-group row">
-
-
                                     <input type="hidden" class="form-control input" id="editarStock" name="editarStock"
                                         min="0" placeholder="Stock" readonly required>
                                     <input type="hidden" class="form-control input" id="editarBodega"
@@ -765,12 +702,9 @@ MODAL EDITAR PRODUCTO
 
                                         </div>
                                     </div>
-                                </div>
-
-                                <!-- ENTRADA PARA PRECIO COMPRA -->
-
+                                </div>                           
                                 <div class="form-group row">
-
+                                    <!-- ENTRADA PARA PRECIO DE COMPRA -->
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Precio de compra neto
@@ -784,11 +718,8 @@ MODAL EDITAR PRODUCTO
                                                 placeholder="Precio de compra" required>
 
                                         </div>
-
                                     </div>
-
-                                    <!-- ENTRADA PARA PRECIO VENTA -->
-
+                                    <!-- ENTRADA PARA PRECIO LISTA -->
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Precio lista neto
@@ -802,10 +733,10 @@ MODAL EDITAR PRODUCTO
                                                 placeholder="Precio de venta" required>
 
                                         </div>
-
-
                                     </div>
-
+                                </div>
+                                <div class="form-group row">
+                                    <!-- ENTRADA PARA UNIDAD DE MEDIDA -->                
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Unidad de medida
@@ -834,12 +765,9 @@ MODAL EDITAR PRODUCTO
                                                 ?>
 
                                             </select>
-
                                         </div>
-
-
                                     </div>
-
+                                    <!-- ENTRADA PARA SUBUNIDAD DE MEDIDA -->                 
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Subunidad de medida
@@ -868,12 +796,9 @@ MODAL EDITAR PRODUCTO
                                                 ?>
 
                                             </select>
-
                                         </div>
-
-
                                     </div>
-
+                                    <!-- ENTRADA PARA VALOR/PESO -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Valor / Peso
@@ -888,49 +813,13 @@ MODAL EDITAR PRODUCTO
 
                                         </div>
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </div>
-                        <!-- ENTRADA PARA EL CÓDIGO -->
-
-
                         <div class="box box-success">
                             <div class="box-body">
                                 <div class="form-group row">
-
-                                    <div class="col-xs-4">
-                                        <div class="d-inline-block  text-center"
-                                            style="font-size:16px;font-weight:bold">Código de producto
-                                        </div>
-                                        <div class="input-group">
-
-                                            <span class="input-group-addon"><i class="fa fa-code"></i></span>
-
-                                            <input type="number" class="form-control input" id="editarCodigo"
-                                                name="editarCodigo" readonly required>
-
-                                        </div>
-
-                                        <button type="button" class="btn btn-success" style="margin-top:4px"
-                                            onclick="editarbarcode();">Generar
-                                        </button>
-                                        <button type="button" class="btn btn-info" style="margin-top:4px"
-                                            onclick="editarimprimir();">Imprimir
-                                        </button>
-                                        <div id="editarprint" style="display: none;">
-                                            <svg id="editarbarcode"></svg>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- ENTRADA PARA BODEGA -->
-
-
+                                    <!-- ENTRADA PARA AFECTO/EXENTO -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Afecto/Exento
@@ -946,12 +835,11 @@ MODAL EDITAR PRODUCTO
                                                 <option value="Exento">Exento</option>
 
                                             </select>
-
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
-                                            style="font-size:16px;font-weight:bold;margin-top:10px;">Impuestos
+                                            style="font-size:16px;font-weight:bold">Impuestos
                                             adicionales
                                         </div>
                                         <div class="input-group">
@@ -983,7 +871,7 @@ MODAL EDITAR PRODUCTO
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
-                                            style="font-size:16px;font-weight:bold;margin-top:10px;">Tabla lista
+                                            style="font-size:16px;font-weight:bold">Tabla lista
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-check"></i></span>
@@ -1008,8 +896,32 @@ MODAL EDITAR PRODUCTO
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group row">
+                                    <!-- ENTRADA PARA El CÓDIGO -->
+                                    <div class="col-xs-4">
+                                        <div class="d-inline-block  text-center"
+                                            style="font-size:16px;font-weight:bold">Código de producto
+                                        </div>
+                                        <div class="input-group">
 
+                                            <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
+                                            <input type="number" class="form-control input" id="editarCodigo"
+                                                name="editarCodigo" readonly required>
+
+                                        </div>
+
+                                        <button type="button" class="btn btn-success" style="margin-top:4px"
+                                            onclick="editarbarcode();">Generar código de barras
+                                        </button>
+                                        <button type="button" class="btn btn-info" style="margin-top:4px"
+                                            onclick="editarimprimir();">Imprimir
+                                        </button>
+                                        <div id="editarprint" style="display: none;">
+                                            <svg id="editarbarcode"></svg>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -58,6 +58,7 @@
                                 <li><a href="plazos"><i class="fa fa-circle-o"></i> Plazos de pago</a></li>
                                 <li><a href="listas"><i class="fa fa-circle-o"></i> Listas de precios</a></li>
                                 <li><a href="unidades"><i class="fa fa-circle-o"></i> Unidades</a></li>
+                                <li><a href="subunidades"><i class="fa fa-circle-o"></i> Subunidades</a></li>
                                 <li><a href="medios-pago"><i class="fa fa-circle-o"></i> Medios de pago</a></li>
                                 <li><a href="impuestos"><i class="fa fa-circle-o"></i> Impuestos</a></li>
                                 <li><a href="rubros"><i class="fa fa-circle-o"></i> Rubros</a></li>									
