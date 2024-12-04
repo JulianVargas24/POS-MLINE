@@ -13,25 +13,16 @@ if ($_SESSION["perfil"] == "Vendedor") {
 
 ?>
 <div class="content-wrapper">
-
     <section class="content-header">
-
         <h1>
-
             Administrar productos
-
         </h1>
-
         <ol class="breadcrumb">
-
             <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
             <li>Inventario</li>
             <li class="active">Productos</li>
-
         </ol>
-
     </section>
-
     <section class="content">
         <div class="box">
             <div class="box-header with-border">
@@ -39,7 +30,6 @@ if ($_SESSION["perfil"] == "Vendedor") {
                     <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px"></i>
                     Agregar producto
                 </button>
-
                 <div class="box-tools pull-right" style="margin-top: 5px;">
                     <a href="vistas/modulos/descargar-reporte-productos.php?reporte=reporte">
                         <button class="btn btn-success">
@@ -49,12 +39,10 @@ if ($_SESSION["perfil"] == "Vendedor") {
                     </a>
                 </div>
             </div>
-
             <div class="box-body">
                 <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
                     <thead>
                         <tr>
-
                             <th style="width:10px">#</th>
                             <th>Imagen</th>
                             <th>Código</th>
@@ -64,7 +52,6 @@ if ($_SESSION["perfil"] == "Vendedor") {
                             <th>Precio compra neto</th>
                             <th>Precio venta neto</th>
                             <th>Acciones</th>
-
                         </tr>
                     </thead>
                 </table>
@@ -84,38 +71,23 @@ MODAL AGREGAR PRODUCTO
 </style>
 
 <div id="modalAgregarProducto" class="modal fade" role="dialog">
-
     <div class="modal-dialog modal-lg">
-
         <div class="modal-content">
-
             <form role="form" method="post" id="form_nuevo_producto" enctype="multipart/form-data">
 
                 <!--=====================================
                 CABEZA DEL MODAL
                 ======================================-->
-
                 <div class="modal-header" style="background:#3f668d; color:white">
-
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-
                     <h4 class="modal-title">Agregar producto</h4>
-
                 </div>
 
                 <!--=====================================
                 CUERPO DEL MODAL
                 ======================================-->
-
                 <div class="modal-body">
-
                     <div class="box-body">
-
-
-                        <!-- ENTRADA PARA SELECCIONAR CATEGORÍA -->
-
-
-                        <!-- ENTRADA PARA LA DESCRIPCIÓN -->
                         <div class="box box-info">
                             <div class="box-body">
                                 <div class="form-group row">
@@ -124,12 +96,9 @@ MODAL AGREGAR PRODUCTO
                                             Producto
                                         </div>
                                         <div class="input-group">
-
                                             <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-
                                             <input type="text" class="form-control input" name="nuevaDescripcion"
                                                 placeholder="Nombre producto" required>
-
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
@@ -139,7 +108,6 @@ MODAL AGREGAR PRODUCTO
                                         <div class="input-group">
 
                                             <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
                                             <select class="form-control input" id="nuevoRubro" name="nuevoRubro"
                                                 required>
 
@@ -159,11 +127,11 @@ MODAL AGREGAR PRODUCTO
                                                 ?>
 
                                             </select>
-
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <!-- ENTRADA PARA CATEGORÍA -->
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Categoría
@@ -191,15 +159,13 @@ MODAL AGREGAR PRODUCTO
                                             </select>
                                         </div>
                                     </div>
-                                    <!-- ENTRADA PARA LA SUBCATEGORIA -->
+                                    <!-- ENTRADA PARA SUBCATEGORIA -->
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Subcategoría
                                         </div>
                                         <div class="input-group">
-
                                             <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
                                             <select class="form-control input" id="nuevaSubcategoria"
                                                 name="nuevaSubcategoria" required>
 
@@ -226,7 +192,6 @@ MODAL AGREGAR PRODUCTO
                                 </div>
                             </div>
                         </div>
-                        <!-- ENTRADA PARA STOCK -->
                         <div class="box box-danger">
                             <div class="box-body">
                                 <div class="form-group row">
@@ -235,6 +200,7 @@ MODAL AGREGAR PRODUCTO
                                     <input type="hidden" class="form-control input" name="nuevoStock" min="0"
                                         placeholder="Stock" value="0" required>
 
+                                    <!-- ENTRADA PARA STOCK -->            
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Alerta de stock
@@ -245,7 +211,6 @@ MODAL AGREGAR PRODUCTO
                                                 min="0" placeholder="Alerta de stock" required>
                                         </div>
                                     </div>
-
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Stock mínimo
@@ -257,7 +222,6 @@ MODAL AGREGAR PRODUCTO
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <!-- ENTRADA PARA PRECIO COMPRA -->
                                     <div class="col-xs-6">
@@ -274,16 +238,13 @@ MODAL AGREGAR PRODUCTO
 
                                         </div>
                                     </div>
-
                                     <!-- ENTRADA PARA PRECIO VENTA -->
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Precio lista neto
                                         </div>
                                         <div class="input-group">
-
                                             <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-
                                             <input type="number" class="form-control input" id="nuevoPrecioVenta"
                                                 name="nuevoPrecioVenta" step="any" min="0"
                                                 placeholder="Precio de venta" required>
@@ -298,7 +259,6 @@ MODAL AGREGAR PRODUCTO
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
                                             <select class="form-control input" id="nuevaMedida" name="nuevaMedida"
                                                 required>
 
@@ -350,6 +310,7 @@ MODAL AGREGAR PRODUCTO
                                             </select>
                                         </div>
                                     </div>
+                                    <!-- ENTRADA PARA VALOR/PESO -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                              style="font-size:16px;font-weight:bold">Valor / Peso
@@ -361,7 +322,6 @@ MODAL AGREGAR PRODUCTO
                                             <input type="number" class="form-control input" name="nuevoValorMedida"
                                                    min="0"
                                                    placeholder="Valor / Peso" required>
-
                                         </div>
                                     </div>
                                 </div>    
@@ -370,7 +330,6 @@ MODAL AGREGAR PRODUCTO
                         <div class="box box-success">
                             <div class="box-body">
                                 <div class="form-group row">
-
                                     <!-- ENTRADA PARA AFECTO/EXENTO -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
@@ -382,10 +341,8 @@ MODAL AGREGAR PRODUCTO
 
                                             <select class="form-control input" id="nuevoTipoProducto"
                                                 name="nuevoTipoProducto" required>
-
                                                 <option value="Afecto">Afecto</option>
                                                 <option value="Exento">Exento</option>
-
                                             </select>
                                         </div>
                                     </div>
@@ -400,11 +357,10 @@ MODAL AGREGAR PRODUCTO
                                             <select class="form-control input" id="nuevoImpuesto" name="nuevoImpuesto">
 
                                                 <option value="">Seleccionar impuesto adicional</option>
-
                                                 <!--
-                                              <select class="form-control input" id="nuevoImpuesto" name="nuevoImpuesto" required>
-
-                                                <option value="">Seleccionar Impuesto</option>-->
+                                                <select class="form-control input" id="nuevoImpuesto" name="nuevoImpuesto" required>
+                                                <option value="">Seleccionar Impuesto</option>
+                                                -->
                                                 <?php
 
                                                 $item = null;
@@ -421,14 +377,13 @@ MODAL AGREGAR PRODUCTO
                                             </select>
                                         </div>
                                     </div>
-                                    <!-- ENTRADA PARA LA TABLA -->
+                                    <!-- ENTRADA PARA TABLA -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Tabla lista
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-check"></i></span>
-
                                             <select class="form-control input" id="nuevaTablaLista"
                                                 name="nuevaTablaLista">
 
@@ -470,7 +425,7 @@ MODAL AGREGAR PRODUCTO
                                             <svg id="barcode" class="barcode"></svg>
                                         </div>
                                     </div>
-                        
+                                    <!-- IMAGEN -->                      
                                     <div class="col-xs-4">
                                         <div class="form-group">
 
@@ -482,7 +437,6 @@ MODAL AGREGAR PRODUCTO
                                                 data-input="false">
 
                                             <p class="help-block">Peso máximo de la imagen 2MB</p>
-
 
                                             <img src="vistas/img/productos/default/anonymous.png"
                                                 class="img-thumbnail previsualizar" height="80px" width="80px">
@@ -498,13 +452,9 @@ MODAL AGREGAR PRODUCTO
                 <!--=====================================
                 PIE DEL MODAL
                 ======================================-->
-
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
                     <button type="submit" class="btn btn-primary text-center">Guardar producto</button>
-
                 </div>
             </form>
 
@@ -521,40 +471,24 @@ MODAL AGREGAR PRODUCTO
 <!--=====================================
 MODAL EDITAR PRODUCTO
 ======================================-->
-
 <div id="modalEditarProducto" class="modal fade" role="dialog">
-
     <div class="modal-dialog modal-lg">
-
         <div class="modal-content">
-
             <form role="form" method="post" id="form_editar_producto" enctype="multipart/form-data">
 
                 <!--=====================================
                 CABEZA DEL MODAL
                 ======================================-->
-
                 <div class="modal-header" style="background:#3f668d; color:white">
-
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-
                     <h4 class="modal-title">Editar producto</h4>
-
                 </div>
 
                 <!--=====================================
                 CUERPO DEL MODAL
                 ======================================-->
-
                 <div class="modal-body">
-
                     <div class="box-body">
-
-
-                        <!-- ENTRADA PARA SELECCIONAR CATEGORÍA -->
-
-
-                        <!-- ENTRADA PARA LA DESCRIPCIÓN -->
                         <div class="box box-info">
                             <div class="box-body">
                                 <div class="form-group row">
@@ -604,6 +538,7 @@ MODAL EDITAR PRODUCTO
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <!-- ENTRADA PARA CATEGORÍA -->
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Categoría
@@ -666,7 +601,6 @@ MODAL EDITAR PRODUCTO
                                 </div>
                             </div>
                         </div>
-                        <!-- ENTRADA PARA STOCK -->
                         <div class="box box-danger">
                             <div class="box-body">
                                 <div class="form-group row">
@@ -674,7 +608,7 @@ MODAL EDITAR PRODUCTO
                                         min="0" placeholder="Stock" readonly required>
                                     <input type="hidden" class="form-control input" id="editarBodega"
                                         name="editarBodega" required>
-
+                                    <!-- ENTRADA PARA STOCK -->            
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Alerta de stock
@@ -689,6 +623,7 @@ MODAL EDITAR PRODUCTO
 
                                         </div>
                                     </div>
+                                    <!-- ENTRADA PARA STOCK MÍNIMO -->
                                     <div class="col-xs-6">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Stock mínimo
@@ -810,7 +745,6 @@ MODAL EDITAR PRODUCTO
                                             <input type="number" class="form-control input" id="editarValorMedida"
                                                    min="0"
                                                    placeholder="Valor / Peso" required>
-
                                         </div>
                                     </div>
                                 </div>
@@ -837,6 +771,7 @@ MODAL EDITAR PRODUCTO
                                             </select>
                                         </div>
                                     </div>
+                                    <!-- ENTRADA PARA IMPUESTOS ADICIONALES -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Impuestos
@@ -844,7 +779,6 @@ MODAL EDITAR PRODUCTO
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-check"></i></span>
-
                                             <select class="form-control input" id="editImpuesto" name="editImpuesto">
 
                                                 <option value="">Seleccionar impuesto adicional</option>
@@ -869,6 +803,7 @@ MODAL EDITAR PRODUCTO
                                             </select>
                                         </div>
                                     </div>
+                                    <!-- ENTRADA PARA TABLA -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Tabla lista
@@ -898,7 +833,7 @@ MODAL EDITAR PRODUCTO
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <!-- ENTRADA PARA El CÓDIGO -->
+                                    <!-- ENTRADA PARA CÓDIGO -->
                                     <div class="col-xs-4">
                                         <div class="d-inline-block  text-center"
                                             style="font-size:16px;font-weight:bold">Código de producto
@@ -909,7 +844,6 @@ MODAL EDITAR PRODUCTO
 
                                             <input type="number" class="form-control input" id="editarCodigo"
                                                 name="editarCodigo" readonly required>
-
                                         </div>
 
                                         <button type="button" class="btn btn-success" style="margin-top:4px"
@@ -926,21 +860,15 @@ MODAL EDITAR PRODUCTO
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <!--=====================================
                 PIE DEL MODAL
                 ======================================-->
-
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
                     <button type="submit" class="btn btn-primary text-center">Guardar producto</button>
-
                 </div>
-
             </form>
 
             <?php
@@ -950,9 +878,7 @@ MODAL EDITAR PRODUCTO
             ?>
 
         </div>
-
     </div>
-
 </div>
 
 <?php
