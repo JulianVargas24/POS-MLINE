@@ -214,8 +214,8 @@ if ($_SESSION["perfil"] == "Especial") {
           $item = "id";
           $valor = $_GET["idOrdenProduccion"];
 
-          $ordenProduccion = ControladorNuevoOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
-          $insumos = ControladorNuevoOrdenProduccion::ctrMostrarInsumosPorOrden($valor);
+          $ordenProduccion = ControladorOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
+          $insumos = ControladorOrdenProduccion::ctrMostrarInsumosPorOrden($valor);
 
           $itemBodega = "id";
           $valorBodega = $ordenProduccion["bodega_destino"];
@@ -900,7 +900,7 @@ if ($_SESSION["perfil"] == "Especial") {
         </form>
 
         <?php
-        $editarOrdenProduccion = new ControladorNuevoOrdenProduccion();
+        $editarOrdenProduccion = new ControladorOrdenProduccion();
         $editarOrdenProduccion->ctrEditarOrdenProduccion();
         ?>
 

@@ -461,7 +461,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <span class="input-group-addon" style="background-color:red; color:white; font-weight:bold">FOLIO</span>
                             <input type="text" style="font-weight:bold; font-size:16px;" class="form-control text-center" name="nuevoFolio"
-                              id="nuevoFolio" value="<?php echo ControladorNuevoOrdenProduccion::ctrObtenerUltimoFolio(); ?>"
+                              id="nuevoFolio" value="<?php echo ControladorOrdenProduccion::ctrObtenerUltimoFolio(); ?>"
                               readonly required>
                           </div>
                         </div>
@@ -818,7 +818,7 @@ if ($_SESSION["perfil"] == "Especial") {
         </form>
 
         <?php
-        $crearOrdenProduccion = new ControladorNuevoOrdenProduccion();
+        $crearOrdenProduccion = new ControladorOrdenProduccion();
         $crearOrdenProduccion->ctrCrearOrdenProduccion();
         ?>
 

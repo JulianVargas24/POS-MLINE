@@ -103,8 +103,8 @@ if ($xml) {
               $item = null;
               $valor = null;
 
-              $ordenesProduccion = ControladorNuevoOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
-              $ordenesMateriales = ControladorNuevoOrdenProduccion::ctrMostrarOrdenesProduccionMateriales($item, $valor);
+              $ordenesProduccion = ControladorOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
+              $ordenesMateriales = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionMateriales($item, $valor);
               $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
               $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
               $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
@@ -197,7 +197,7 @@ if ($xml) {
 
 
                 // Obtener los detalles de producción relacionados con la orden actual
-                $ordenesProduccionDetalle = ControladorNuevoOrdenProduccion::ctrMostrarOrdenesProduccionMateriales("folio_orden_produccion", $orden["folio_orden_produccion"]);
+                $ordenesProduccionDetalle = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionMateriales("folio_orden_produccion", $orden["folio_orden_produccion"]);
                 $item = null;
                 $valor = null;
                 $unidad = ControladorUnidades::ctrMostrarunidades($item, $valor);
@@ -630,6 +630,6 @@ EDITAR ORDEN DE VESTUARIO
 </script>
 
 <?php
-    $eliminarOrden = new ControladorNuevoOrdenProduccion();
-    $eliminarOrden->ctrEliminarNuevaOrdenProduccion();
+    $eliminarOrden = new ControladorOrdenProduccion();
+    $eliminarOrden->ctrEliminarOrdenProduccion();
 ?>

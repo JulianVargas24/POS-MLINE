@@ -1,6 +1,6 @@
 <?php
 
-class ControladorNuevoOrdenProduccion
+class ControladorOrdenProduccion
 {
   /**
    * Crear Orden de Producción
@@ -61,11 +61,11 @@ class ControladorNuevoOrdenProduccion
         "costo_produccion_total_con_embalaje" => $_POST["costoProduccionTotalConEmbalaje"]
       );
 
-      $respuesta = ModeloNuevoOrdenProduccion::mdlCrearOrdenProduccion($tabla, $datos);
+      $respuesta = ModeloOrdenProduccion::mdlCrearOrdenProduccion($tabla, $datos);
 
       if ($respuesta == "ok") {
         // Obtener el ID de la última inserción
-        $idOrden = ModeloNuevoOrdenProduccion::mdlObtenerUltimoId();
+        $idOrden = ModeloOrdenProduccion::mdlObtenerUltimoId();
 
         if ($idOrden) {
           // Crear materiales de la orden
@@ -83,7 +83,7 @@ class ControladorNuevoOrdenProduccion
               "costo_total" => $material["costo_total"]
             );
 
-            $respuestaMaterial = ModeloNuevoOrdenProduccion::mdlCrearOrdenProduccionMateriales($tabla, $datosMaterial);
+            $respuestaMaterial = ModeloOrdenProduccion::mdlCrearOrdenProduccionMateriales($tabla, $datosMaterial);
 
             if ($respuestaMaterial != "ok") {
               echo '<script>
@@ -194,7 +194,7 @@ class ControladorNuevoOrdenProduccion
         "costo_produccion_total_con_embalaje" => $_POST["costoProduccionTotalConEmbalaje"]
       );
       var_dump($datos);
-      $respuesta = ModeloNuevoOrdenProduccion::mdlEditarOrdenProduccion($tabla, $datos);
+      $respuesta = ModeloOrdenProduccion::mdlEditarOrdenProduccion($tabla, $datos);
       var_dump($respuesta);
 
       if ($respuesta == "ok") {
@@ -202,11 +202,11 @@ class ControladorNuevoOrdenProduccion
         $tablaMateriales = "orden_produccion_materiales";
 
         // Eliminar materiales antiguos
-        $respuestaEliminarMateriales = ModeloNuevoOrdenProduccion::mdlEliminarOrdenProduccionMateriales($tablaMateriales, $_POST["idOrdenProduccion"]);
+        $respuestaEliminarMateriales = ModeloOrdenProduccion::mdlEliminarOrdenProduccionMateriales($tablaMateriales, $_POST["idOrdenProduccion"]);
         var_dump($respuestaEliminarMateriales);
 
         if ($respuestaEliminarMateriales == "ok") {
-          $idOrden = ModeloNuevoOrdenProduccion::mdlObtenerUltimoId();
+          $idOrden = ModeloOrdenProduccion::mdlObtenerUltimoId();
           var_dump($idOrden);
 
           // Insertar materiales nuevos
@@ -224,7 +224,7 @@ class ControladorNuevoOrdenProduccion
               "costo_total" => $material["costo_total"]
             );
 
-            $respuestaMaterial = ModeloNuevoOrdenProduccion::mdlCrearOrdenProduccionMateriales($tablaMateriales, $datosMaterial);
+            $respuestaMaterial = ModeloOrdenProduccion::mdlCrearOrdenProduccionMateriales($tablaMateriales, $datosMaterial);
             var_dump($respuestaMaterial);
 
             if ($respuestaMaterial != "ok") {
@@ -275,7 +275,7 @@ class ControladorNuevoOrdenProduccion
   public static function ctrObtenerUltimoFolio()
   {
     $tabla = "nueva_orden_produccion";
-    $respuesta = ModeloNuevoOrdenProduccion::mdlObtenerUltimoFolio($tabla);
+    $respuesta = ModeloOrdenProduccion::mdlObtenerUltimoFolio($tabla);
     return ($respuesta) ? $respuesta["folio_orden_produccion"] + 1 : 1;
   }
 
@@ -283,7 +283,7 @@ class ControladorNuevoOrdenProduccion
   {
     $tabla = "nueva_orden_produccion";
 
-    $respuesta = ModeloNuevoOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
 
     return $respuesta;
   }
@@ -294,7 +294,7 @@ class ControladorNuevoOrdenProduccion
   static public function ctrMostrarOrdenesProduccionMateriales($item, $valor)
   {
     $tabla = "orden_produccion_materiales";
-    return ModeloNuevoOrdenProduccion::mdlMostrarOrdenesProduccionMateriales($tabla, $item, $valor);
+    return ModeloOrdenProduccion::mdlMostrarOrdenesProduccionMateriales($tabla, $item, $valor);
   }
 
   // Función para obtener los insumos de una orden de producción
@@ -302,11 +302,11 @@ class ControladorNuevoOrdenProduccion
   {
     // Consulta para obtener los insumos de la orden de producción
     $tabla = "orden_produccion_materiales"; // Nombre de la tabla de insumos
-    $respuesta = ModeloNuevoOrdenProduccion::mdlMostrarInsumosPorOrden($tabla, $idOrdenProduccion);
+    $respuesta = ModeloOrdenProduccion::mdlMostrarInsumosPorOrden($tabla, $idOrdenProduccion);
     return $respuesta;
   }
 
-  static public function ctrEliminarNuevaOrdenProduccion()
+  static public function ctrEliminarOrdenProduccion()
   {
     if (isset($_GET["idOrdenProduccion"])) {
       // Obtener el ID de la orden de producción
@@ -314,12 +314,12 @@ class ControladorNuevoOrdenProduccion
 
       // Eliminar los detalles de la orden de producción primero
       $tablaMateriales = "orden_produccion_materiales";
-      $respuestaMateriales = ModeloNuevoOrdenProduccion::mdlEliminarOrdenProduccionMateriales($tablaMateriales, $folioOrden);
+      $respuestaMateriales = ModeloOrdenProduccion::mdlEliminarOrdenProduccionMateriales($tablaMateriales, $folioOrden);
 
       if ($respuestaMateriales == "ok") {
         // Luego eliminar la orden de producción principal
         $tabla = "nueva_orden_produccion";
-        $respuesta = ModeloNuevoOrdenProduccion::mdlEliminarNuevaOrdenProduccion($tabla, $folioOrden);
+        $respuesta = ModeloOrdenProduccion::mdlEliminarNuevaOrdenProduccion($tabla, $folioOrden);
 
         if ($respuesta == "ok") {
           echo '<script>

@@ -2,7 +2,7 @@
 
 require_once "conexion.php";
 
-class ModeloNuevoOrdenProduccion
+class ModeloOrdenProduccion
 {
   /**
    * Crear Orden de Producción
