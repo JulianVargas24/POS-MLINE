@@ -226,8 +226,18 @@ if ($_SESSION["perfil"] == "Especial") {
           $centro = ControladorCentros::ctrMostrarCentros($itemCentro, $valorCentro);
 
           $itemCliente = "id";
-          $valorCliente = $ordenVestuario["id_cliente"];
-          $cliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+          $valorCliente = $ordenProduccion["id_cliente"];
+          $clientes = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+
+          $itemUnidad = "id";
+          $valorUnidad = $ordenProduccion["id_unidad"];
+          $unidades = ControladorUnidades::ctrMostrarUnidades($itemUnidad, $valorUnidad);
+
+          $itemCotizacion = "id";
+          $valorCotizacion = $ordenProduccion["id_cotizacion"];
+          $cotizacion = ControladorCotizacion::ctrMostrarCotizaciones($itemCotizacion, $valorCotizacion);
+          $valorCotizacionExcenta = $ordenProduccion["id_cotizacion_exenta"];
+          $cotizacionExcenta = ControladorCotizacion::ctrMostrarCotizacionesExentas($itemCotizacion, $valorCotizacionExcenta);
 
           $itemProducto = null;
           $valorProducto = null;
@@ -314,11 +324,13 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <input type="hidden" name="traerIdCliente" id="traerIdCliente">
                             <input type="text" class="form-control"
+                              value="<?php echo $clientes['nombre']; ?>"
                               id="nombreCliente"
                               placeholder="Seleccionar cliente"
                               readonly
                               style="cursor: pointer;"
                               data-toggle="modal"
+                              data-id="<?php $clientes['id']; ?>"
                               data-target="#modalSeleccionarCliente">
                             <span class="input-group-btn">
                               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalSeleccionarCliente">
@@ -487,6 +499,11 @@ if ($_SESSION["perfil"] == "Especial") {
                             <input type="hidden" name="traerIdCotizacionExenta" id="traerIdCotizacionExenta">
                             <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
                             <input type="text" class="form-control"
+                            value="<?php 
+                                      echo isset($cotizacion['nombre_orden']) 
+                                        ? $cotizacion['nombre_orden'] . ' - Folio: ' . $cotizacion['codigo'] 
+                                        : $cotizacionExcenta['nombre_orden'] . ' - Folio: ' . $cotizacionExcenta['codigo']; 
+                                    ?>"
                               id="nombreCotizacion"
                               placeholder="Seleccionar cotización"
                               readonly
@@ -656,7 +673,7 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
                             <select class="form-control" id="detalleUnidad" name="detalleUnidad">
-                              <option value="">Seleccione un tipo de unidad</option>
+                              <option value=""><?php echo $unidades['medida']; ?></option>
                               <?php
                               $unidades = ControladorUnidades::ctrMostrarUnidades($item, $valor);
                               foreach ($unidades as $unidad) {
