@@ -321,7 +321,7 @@ if ($xml) {
                     data-costo_unitario_total="' . $orden["costo_unitario_total"] . '" 
                     data-costo_produccion_total="' . $orden["costo_produccion_total"] . '" 
                     data-costo_embalaje_total="' . $orden["costo_embalaje_total"] . '" 
-                    data-costo_total_con_embalaje="' . $orden["costo_total_con_embalaje"] . '"
+                    data-costo_total_con_embalaje="' . $orden["costo_produccion_total_con_embalaje"] . '"
                     data-nombre="' . $dataNombre . '"
                     data-codigo="' . $codigoDetalleJson . '"
                     data-medida="' . $medidaDetalleJson . '"
@@ -384,9 +384,10 @@ if ($xml) {
               <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
               <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
               <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
-              <p><strong>Nombre de orden:</strong> <span id="modalOrden"></span></p>
+              
             </div>
             <div class="col-md-5">
+              <p><strong>Nombre de orden:</strong> <span id="modalOrden"></span></p>
               <p><strong>País:</strong> <span id="modalClientePais"></span></p>
               <p><strong>Región:</strong> <span id="modalClienteRegion"></span></p>
               <p><strong>Comuna:</strong> <span id="modalClienteComuna"></span></p>
@@ -416,24 +417,16 @@ if ($xml) {
           <div style="height: 3px; width: 100%; background-color: #ffc107; margin-bottom: 15px;"></div>
           <div class="row">
             <div class="col-md-5">
-              <p><strong>Cantidad producida total:</strong> <span id="modalCantidadProducidaTotal"></span></p>
-              <p><strong>Costo unitario total:</strong> <span id="modalCostoUnitarioTotal"></span></p>
-              <p><strong>Costo producción total:</strong> <span id="modalCostoProduccionTotal"></span></p>
+              <p><strong>Costo sin embalaje:</strong> <span id="modalCostoProduccionTotal"></span></p>
+              <p><strong>Costo total del lote:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
             </div>
             <div class="col-md-5">
-              <p><strong>Costo embalaje total:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
-              <p><strong>Costo total con embalaje:</strong> <span id="modalCostoTotalConEmbalaje"></span></p>
+              <p><strong>Costo del embalaje:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
+              
             </div>
           </div>
         </div>
 
-        <!-- Detalles de los productos -->
-        <div class="container mb-3">
-          <h4 class="pb-2" style="font-weight: bold">Productos</h4>
-          <div id="productosContainer">
-            <!-- Aquí se pueden agregar múltiples productos desde un array -->
-          </div>
-        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -478,7 +471,6 @@ if ($xml) {
       var costoUnitarioJson = $(this).data('costo_unitario');
       var costoProduccionJson = $(this).data('costo_produccion');
       var costoEmbalajeJson = $(this).data('costo_embalaje');
-      var costoProduccionConEmbalajeJson = $(this).data('costo_produccion_con_embalaje');
 
       // Limpiar el contenedor del modal antes de agregar los nuevos productos
       $('#productosContainer').empty();

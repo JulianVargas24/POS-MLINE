@@ -324,7 +324,6 @@ if ($_SESSION["perfil"] == "Especial") {
                           <div class="input-group">
                             <input type="hidden" name="traerIdCliente" id="traerIdCliente">
                             <input type="text" class="form-control"
-                              value="<?php echo $clientes['nombre']; ?>"
                               id="nombreCliente"
                               placeholder="Seleccionar cliente"
                               readonly
