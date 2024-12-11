@@ -358,4 +358,14 @@ class ControladorOrdenProduccion
       }
     }
   }
+
+  // Función para finalizar la orden
+  public static function ctrFinalizarOrden($idOrdenProduccion) {
+    $tabla = "nueva_orden_produccion";
+    $estado = "Finalizada";
+
+    $respuesta = ModeloOrdenProduccion::mdlActualizarEstadoOrden($tabla, $idOrdenProduccion, $estado);
+
+    return $respuesta;
+  }  
 }

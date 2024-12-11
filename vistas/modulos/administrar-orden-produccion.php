@@ -93,6 +93,7 @@ if ($xml) {
                 <th>Emisión</th>
                 <th>Vencimiento</th>
                 <th>Cantidad Producida</th>
+                <th>Estado</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -294,6 +295,7 @@ if ($xml) {
                     <td>' . $orden["fecha_orden_emision"] . '</td>
                     <td>' . $orden["fecha_orden_vencimiento"] . '</td>
                     <td>' . $orden["cantidad_produccion"] . '</td>
+                    <td>' . $orden["estado_orden"] . '</td>
                     
 
                     <td>
@@ -337,9 +339,13 @@ if ($xml) {
                     ';
 
                 if ($_SESSION["perfil"] == "Administrador") {
+                  
+                  $deshabilitarBoton = $orden["estado_orden"] === "Finalizada" ? 'disabled' : '';
+
                   echo ' 
                      <button class="btn btn-warning btnEditarOrdenProduccion" idOrdenProduccion="' . $orden["id"] . '"><i class="fa fa-pencil"></i></button>
-                     <button class="btn btn-danger btnEliminarOrdenProduccion" idOrdenProduccion="' . $orden["folio_orden_produccion"] . '"><i class="fa fa-times"></i></button>';
+                     <button class="btn btn-danger btnEliminarOrdenProduccion" idOrdenProduccion="' . $orden["folio_orden_produccion"] . '"><i class="fa fa-times"></i></button>
+                     <button class="btn btn-success btnFinalizarOrdenProduccion" idOrdenProduccion="' . $orden["id"] . '" ' . $deshabilitarBoton . '><i class="fa fa-check"></i></button>';
                 }
                 echo '</div></td></tr>';
               }
@@ -627,6 +633,66 @@ EDITAR ORDEN DE VESTUARIO
 
 
   })
+
+/*=============================================
+FINALIZAR ORDEN DE PRODUCCIÓN
+=============================================*/
+$(document).ready(function () {
+  $(".tablas").on("click", ".btnFinalizarOrdenProduccion", function () {
+    var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+    //console.log("ID orden:", idOrdenProduccion);
+
+    swal({
+      title: "¿Está seguro de finalizar esta orden?",
+      text: "¡Una vez finalizada ya no se podrá modificar!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, finalizar",
+      cancelButtonText: "Cancelar",
+    }).then(function (result) {
+      //console.log("Valor de result:", result);
+      if (result.value) { // Solo proceder si el usuario confirma
+        console.log("Usuario confirmó la acción, enviando solicitud AJAX...");
+        $.ajax({
+          url: "ajax/orden-produccion.ajax.php",
+          method: "POST",
+          data: { idOrdenProduccion: idOrdenProduccion, accion: "finalizarOrden" },
+          success: function (respuesta) {
+            //console.log("Respuesta del servidor:", respuesta);
+            if ($.trim(respuesta) === "ok") {
+              swal({
+                title: "Finalizado",
+                text: "La orden ha sido finalizada exitosamente.",
+                type: "success",
+              }).then(function () {
+                location.reload();
+              });
+            } else {
+              swal(
+                "Error",
+                "Hubo un problema al finalizar la orden. Inténtelo nuevamente.",
+                "error"
+              );
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", error);
+            swal(
+              "Error",
+              "No se pudo procesar la solicitud.",
+              "error"
+            );
+          }
+        });
+      } else {
+        console.log("Se canceló la acción.");
+      }
+    });
+  });
+});  
+
 </script>
 
 <?php

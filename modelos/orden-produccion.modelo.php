@@ -362,4 +362,22 @@ class ModeloOrdenProduccion
 
     $stmt = null; // Cerrar la conexión
   }
+
+  // Función para actualizar el estado de la orden
+  public static function mdlActualizarEstadoOrden($tabla, $idOrdenProduccion, $estado) {
+    try {
+      $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estado_orden = :estado WHERE id = :id_orden_produccion");
+    
+      $stmt->bindParam(":estado", $estado, PDO::PARAM_STR);
+      $stmt->bindParam(":id_orden_produccion", $idOrdenProduccion, PDO::PARAM_INT);
+    
+      if ($stmt->execute()) {
+        return "ok";
+      } else {
+        return "error";
+      }
+    } catch (PDOException $e) {
+            return "error: " . $e->getMessage();
+    }
+  }  
 }
