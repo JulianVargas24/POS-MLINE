@@ -42,14 +42,16 @@ class TablaInsumos
 
   private function formatearDatosInsumo($producto, $index)
   {
+    $precioCompra = number_format(intval(str_replace(',', '', $producto["precio_compra"])), 0, '', '.');
     $tablaLista = $this->obtenerTablaLista($producto["id_tabla_lista"]);
+
     return [
       $index + 1,
       "<img src='{$producto["imagen"]}' width='40px'>",
       $producto["codigo"],
       $producto["descripcion"],
       $tablaLista['nombre'],
-      $producto["precio_compra"],
+      "$" . $precioCompra,
       $this->accionBotonAgregar($producto)
     ];
   }

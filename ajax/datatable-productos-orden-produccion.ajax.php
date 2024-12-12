@@ -37,13 +37,15 @@ class TablaProduccion
 
 	private function formatearDatosProducto($producto, $index)
 	{
+		$precioCompra = number_format(intval(str_replace(',', '', $producto["precio_compra"])), 0, '', '.');
+
 		return [
 			$index + 1,
 			"<img src='{$producto["imagen"]}' width='40px'>",
 			$producto["codigo"],
 			$producto["descripcion"],
 			$this->obtenerTablaLista($producto["id_tabla_lista"]),
-			$producto["precio_compra"],
+			"$" . $precioCompra,
 			$this->accionBotonAgregar($producto)
 		];
 	}

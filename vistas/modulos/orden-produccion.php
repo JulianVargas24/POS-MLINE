@@ -938,7 +938,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   <th style="width:20%">Código</th>
                   <th style="width:32%">Nombre</th>
                   <th style="width:10%">Tipo</th>
-                  <th style="width:15%">Precio de compra</th>
+                  <th style="width:15%">Precio unitario</th>
                   <th style="width:10%">Acción</th>
                 </tr>
               </thead>
