@@ -3,7 +3,7 @@ $(document).ready(function () {
    * Variables Globales
    *==================================================*/
   // Array para almacenar los insumos seleccionados
-  let insumosSeleccionados = [];
+  window.insumosSeleccionados = [];
 
   /*==================================================
    * Funciones Principales
@@ -626,26 +626,59 @@ $(document).ready(function () {
     $("#boxInsumos").show();
   });
 
-  // Funciones que se realizan al cambiar el "Tipo de Producción"
-  $('input[name="tipoProduccion"]').change(function () {
-    let tipoProduccion = $(this).val();
-
+  // Función para seleccionar el Tipo de Producción
+  function seleccionarTipoProduccion(tipoProduccion) {
     // Mostrar el boxDetalleProduccion
     $("#boxDetalleProduccion").show();
 
-    // Limpiar campos de "Detalle de Producción" cuando cambie el tipo de producción
+    // Limpiar campos de "Detalle de Producción"
     limpiarCamposProducto();
 
     // Limpiar la tabla de insumos y reiniciar el array
     limpiarInsumosSeleccionados();
 
-    // Recargar la tabla mostrando los productos identificados como "Pack"
+    // Recargar la tabla mostrando los productos según el tipo
     $(".tablaProduccion")
       .DataTable()
       .ajax.url(
         `ajax/datatable-productos-orden-produccion.ajax.php?tipoProduccion=${tipoProduccion}`
       )
       .load();
+  }
+
+  // Cambiar el Tipo de Producción
+  $('input[name="tipoProduccion"]').change(function () {
+    let tipoProduccion = $(this).val();
+    let radioButtonNuevoSeleccionado = $(this);
+    let radioButtonAntesSeleccionado = $(
+      'input[name="tipoProduccion"]:not(:checked)'
+    );
+
+    // Si hay un producto seleccionado, mostrar confirmación
+    if ($("#idProductoProduccion").val()) {
+      swal({
+        title: "¿Está seguro?",
+        text: "Al cambiar el tipo de producción se eliminarán todos los datos ingresados para el producto actual",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, cambiar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.value) {
+          // Si confirma, se procede con el cambio
+          seleccionarTipoProduccion(tipoProduccion);
+        } else {
+          // Si cancela, se revertirá la selección del radio button
+          radioButtonNuevoSeleccionado.prop("checked", false);
+          radioButtonAntesSeleccionado.prop("checked", true);
+        }
+      });
+    } else {
+      // Si no hay un producto seleccionado se selecciona normalmente
+      seleccionarTipoProduccion(tipoProduccion);
+    }
   });
 
   /**
