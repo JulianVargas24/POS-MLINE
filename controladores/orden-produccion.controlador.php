@@ -268,7 +268,6 @@ class ControladorOrdenProduccion
     }
   }
 
-
   /**
    * Obtener el último folio de la orden de producción
    */
@@ -279,11 +278,14 @@ class ControladorOrdenProduccion
     return ($respuesta) ? $respuesta["folio_orden_produccion"] + 1 : 1;
   }
 
-  static public function ctrNuevaMostrarOrdenesProduccion($item, $valor)
+  static public function ctrMostrarOrdenesProduccion($item, $valor)
   {
     $tabla = "nueva_orden_produccion";
 
-    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor);
+    $fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+    $fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
+
+    $respuesta = ModeloOrdenProduccion::mdlMostrarOrdenesProduccion($tabla, $item, $valor, $fechaInicial, $fechaFinal);
 
     return $respuesta;
   }
@@ -360,12 +362,13 @@ class ControladorOrdenProduccion
   }
 
   // Función para finalizar la orden
-  public static function ctrFinalizarOrden($idOrdenProduccion) {
+  public static function ctrFinalizarOrden($idOrdenProduccion)
+  {
     $tabla = "nueva_orden_produccion";
     $estado = "Finalizada";
 
     $respuesta = ModeloOrdenProduccion::mdlActualizarEstadoOrden($tabla, $idOrdenProduccion, $estado);
 
     return $respuesta;
-  }  
+  }
 }

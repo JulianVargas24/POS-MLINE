@@ -198,8 +198,10 @@ if ($_SESSION["perfil"] == "Especial") {
         EDITAR ORDEN DE PRODUCCIÓN
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li class="active">Crear Orden de Producción</li>
+        <li><a href="inicio"><i class="fa fa-dashboard"></i>Inicio</a></li>
+        <li>Orden de Trabajo</li>
+        <li><a href="administrar-orden-produccion">Administrar Ordenes de Producción</a></li>
+        <li class="active">Editar Orden de Producción</li>
       </ol>
     </section>
 
@@ -214,7 +216,7 @@ if ($_SESSION["perfil"] == "Especial") {
           $item = "id";
           $valor = $_GET["idOrdenProduccion"];
 
-          $ordenProduccion = ControladorOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
+          $ordenProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
           $insumos = ControladorOrdenProduccion::ctrMostrarInsumosPorOrden($valor);
 
           $itemBodega = "id";
@@ -410,7 +412,8 @@ if ($_SESSION["perfil"] == "Especial") {
                           <p>Fecha de emisión</p>
                           <input type="date" class="form-control"
                             name="nuevaFechaEmision" id="nuevaFechaEmision"
-                            readonly value="<?php echo $ordenProduccion["fecha_orden_emision"]; ?>">
+                            readonly value="<?php echo $ordenProduccion["fecha_orden_emision"]; ?>"
+                            onchange="validarFechas(this.id, 'nuevaFechaVencimiento')">
                         </div>
                       </div>
 
@@ -498,11 +501,11 @@ if ($_SESSION["perfil"] == "Especial") {
                             <input type="hidden" name="traerIdCotizacionExenta" id="traerIdCotizacionExenta">
                             <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
                             <input type="text" class="form-control"
-                            value="<?php 
-                                      echo isset($cotizacion['nombre_orden']) 
-                                        ? $cotizacion['nombre_orden'] . ' - Folio: ' . $cotizacion['codigo'] 
-                                        : $cotizacionExcenta['nombre_orden'] . ' - Folio: ' . $cotizacionExcenta['codigo']; 
-                                    ?>"
+                              value="<?php
+                                      echo isset($cotizacion['nombre_orden'])
+                                        ? $cotizacion['nombre_orden'] . ' - Folio: ' . $cotizacion['codigo']
+                                        : $cotizacionExcenta['nombre_orden'] . ' - Folio: ' . $cotizacionExcenta['codigo'];
+                                      ?>"
                               id="nombreCotizacion"
                               placeholder="Seleccionar cotización"
                               readonly
@@ -749,24 +752,23 @@ if ($_SESSION["perfil"] == "Especial") {
 
                         <!-- Generar código de barras -->
                         <div class="form-group">
-                          <button type="button" class="btn btn-success" style="margin-bottom: 10px;"
+                          <button type="button" class="btn btn-success" style="margin-right: 5px; margin-bottom: 10px;"
                             onclick="generarbarcodeOP();">Generar código de barras
+                          </button>
+                          <button type="button" id="btnImprimir" class="btn btn-info" style="display: none; margin-right: 5px; margin-bottom: 10px;"
+                            onclick="imprimir();">
+                            <i class="fa fa-print" style="margin-right: 2px;"></i> Imprimir
+                          </button>
+                          <button type="button" id="btnOcultar" class="btn btn-default" style="display: none; margin-bottom: 10px;"
+                            onclick="ocultarCodigoBarras();">
+                            <i class="fa fa-eye-slash" style="margin-right: 2px;"></i> Ocultar
                           </button>
                           <div id="cuadroCodigoBarras" class="text-center" style="display:none; border: 1px solid #ddd;">
                             <div id="print">
                               <svg id="barcode" class="barcode"></svg>
                             </div>
                           </div>
-                          <button type="button" id="btnImprimir" class="btn btn-info" style="display: none; margin-top: 10px; margin-right: 5px;"
-                            onclick="imprimir();">
-                            <i class="fa fa-print"></i> Imprimir
-                          </button>
-                          <button type="button" id="btnOcultar" class="btn btn-default" style="display: none; margin-top: 10px;"
-                            onclick="ocultarCodigoBarras();">
-                            <i class="fa fa-eye-slash"></i> Ocultar
-                          </button>
                         </div>
-
                       </div>
 
                       <!-- Observaciones -->
@@ -1003,7 +1005,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   <th style="width:8%">Imagen</th>
                   <th style="width:20%">Código</th>
                   <th style="width:32%">Nombre</th>
-                  <th style="width:10%">Tabla Lista</th>
+                  <th style="width:10%">Tipo</th>
                   <th style="width:15%">Precio de compra</th>
                   <th style="width:10%">Acción</th>
                 </tr>
@@ -1035,8 +1037,8 @@ if ($_SESSION["perfil"] == "Especial") {
                   <th style="width:8%">Imagen</th>
                   <th style="width:20%">Código</th>
                   <th style="width:32%">Nombre</th>
-                  <th style="width:10%">Tabla Lista</th>
-                  <th style="width:15%">Precio de compra</th>
+                  <th style="width:10%">Tipo</th>
+                  <th style="width:15%">Precio unitario</th>
                   <th style="width:10%">Acción</th>
                 </tr>
               </thead>
@@ -1052,7 +1054,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
   <script>
     $(document).ready(function() {
-      $.getScript('vistas/js/nueva-orden-produccion.js');
+      $.getScript('vistas/js/orden-produccion.js');
 
       // Verificar qué tipo de orden está seleccionado al cargar la página
       let tipoOrdenSeleccionado = $('input[name="tipoOrden"]:checked').val();

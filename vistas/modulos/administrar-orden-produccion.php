@@ -40,7 +40,7 @@ if ($xml) {
 
         <!-- Botón Crear Orden -->
         <div class="box-header with-border">
-          <a href="orden-produccion">
+          <a href="crear-orden-produccion">
             <button class="btn btn-primary">
               <i class="fa fa-plus-circle fa-lg" style="margin-right: 5px;"></i>
               Crear orden de producción
@@ -71,7 +71,7 @@ if ($xml) {
           <!-- Botón para descargar el reporte -->
           <div class="box-tools pull-right" style="margin-top:5px">
             <a href="vistas/modulos/descargar-reporte-orden-produccion.php?reporte=reporte&fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>">
-              <button class="btn btn-success">
+              <button class="btn btn-success" disabled>
                 <i class="fa fa-download fa-lg" style="margin-right: 5px;"></i>
                 Reporte en Excel
               </button>
@@ -104,7 +104,7 @@ if ($xml) {
               $item = null;
               $valor = null;
 
-              $ordenesProduccion = ControladorOrdenProduccion::ctrNuevaMostrarOrdenesProduccion($item, $valor);
+              $ordenesProduccion = ControladorOrdenProduccion::ctrMostrarOrdenesProduccion($item, $valor);
               $ordenesMateriales = ControladorOrdenProduccion::ctrMostrarOrdenesProduccionMateriales($item, $valor);
               $centros = ControladorCentros::ctrMostrarCentros($item, $valor);
               $bodegas = ControladorBodegas::ctrMostrarBodegas($item, $valor);
@@ -339,7 +339,7 @@ if ($xml) {
                     ';
 
                 if ($_SESSION["perfil"] == "Administrador") {
-                  
+
                   $deshabilitarBoton = $orden["estado_orden"] === "Finalizada" ? 'disabled' : '';
 
                   echo ' 
@@ -370,7 +370,7 @@ if ($xml) {
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title mb-0" id="detalleModalLabel" style="color: black; font-weight: bold"></h4>
-        </div>
+      </div>
       <div class="modal-body">
         <!-- Información de la orden -->
         <div class="container-fluid">
@@ -384,7 +384,7 @@ if ($xml) {
               <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
               <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
               <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
-              
+
             </div>
             <div class="col-md-5">
               <p><strong>Nombre de orden:</strong> <span id="modalOrden"></span></p>
@@ -422,7 +422,7 @@ if ($xml) {
             </div>
             <div class="col-md-5">
               <p><strong>Costo del embalaje:</strong> <span id="modalCostoEmbalajeTotal"></span></p>
-              
+
             </div>
           </div>
         </div>
@@ -626,68 +626,70 @@ EDITAR ORDEN DE VESTUARIO
 
   })
 
-/*=============================================
-FINALIZAR ORDEN DE PRODUCCIÓN
-=============================================*/
-$(document).ready(function () {
-  $(".tablas").on("click", ".btnFinalizarOrdenProduccion", function () {
-    var idOrdenProduccion = $(this).attr("idOrdenProduccion");
-    //console.log("ID orden:", idOrdenProduccion);
+  /*=============================================
+  FINALIZAR ORDEN DE PRODUCCIÓN
+  =============================================*/
+  $(document).ready(function() {
+    $(".tablas").on("click", ".btnFinalizarOrdenProduccion", function() {
+      var idOrdenProduccion = $(this).attr("idOrdenProduccion");
+      //console.log("ID orden:", idOrdenProduccion);
 
-    swal({
-      title: "¿Está seguro de finalizar esta orden?",
-      text: "¡Una vez finalizada ya no se podrá modificar!",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, finalizar",
-      cancelButtonText: "Cancelar",
-    }).then(function (result) {
-      //console.log("Valor de result:", result);
-      if (result.value) { // Solo proceder si el usuario confirma
-        console.log("Usuario confirmó la acción, enviando solicitud AJAX...");
-        $.ajax({
-          url: "ajax/orden-produccion.ajax.php",
-          method: "POST",
-          data: { idOrdenProduccion: idOrdenProduccion, accion: "finalizarOrden" },
-          success: function (respuesta) {
-            //console.log("Respuesta del servidor:", respuesta);
-            if ($.trim(respuesta) === "ok") {
-              swal({
-                title: "Finalizado",
-                text: "La orden ha sido finalizada exitosamente.",
-                type: "success",
-              }).then(function () {
-                location.reload();
-              });
-            } else {
+      swal({
+        title: "¿Está seguro de finalizar esta orden?",
+        text: "¡Una vez finalizada ya no se podrá modificar!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, finalizar",
+        cancelButtonText: "Cancelar",
+      }).then(function(result) {
+        //console.log("Valor de result:", result);
+        if (result.value) { // Solo proceder si el usuario confirma
+          console.log("Usuario confirmó la acción, enviando solicitud AJAX...");
+          $.ajax({
+            url: "ajax/orden-produccion.ajax.php",
+            method: "POST",
+            data: {
+              idOrdenProduccion: idOrdenProduccion,
+              accion: "finalizarOrden"
+            },
+            success: function(respuesta) {
+              //console.log("Respuesta del servidor:", respuesta);
+              if ($.trim(respuesta) === "ok") {
+                swal({
+                  title: "Finalizado",
+                  text: "La orden ha sido finalizada exitosamente.",
+                  type: "success",
+                }).then(function() {
+                  location.reload();
+                });
+              } else {
+                swal(
+                  "Error",
+                  "Hubo un problema al finalizar la orden. Inténtelo nuevamente.",
+                  "error"
+                );
+              }
+            },
+            error: function(xhr, status, error) {
+              console.error("Error en la solicitud AJAX:", error);
               swal(
                 "Error",
-                "Hubo un problema al finalizar la orden. Inténtelo nuevamente.",
+                "No se pudo procesar la solicitud.",
                 "error"
               );
             }
-          },
-          error: function (xhr, status, error) {
-            console.error("Error en la solicitud AJAX:", error);
-            swal(
-              "Error",
-              "No se pudo procesar la solicitud.",
-              "error"
-            );
-          }
-        });
-      } else {
-        console.log("Se canceló la acción.");
-      }
+          });
+        } else {
+          console.log("Se canceló la acción.");
+        }
+      });
     });
   });
-});  
-
 </script>
 
 <?php
-    $eliminarOrden = new ControladorOrdenProduccion();
-    $eliminarOrden->ctrEliminarOrdenProduccion();
+$eliminarOrden = new ControladorOrdenProduccion();
+$eliminarOrden->ctrEliminarOrdenProduccion();
 ?>

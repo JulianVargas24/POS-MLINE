@@ -195,11 +195,12 @@ if ($_SESSION["perfil"] == "Especial") {
     <!-- Encabezado de la página -->
     <section class="content-header">
       <h1 style="color:green;font-weight:bold">
-        ORDEN DE PRODUCCIÓN
+        CREAR ORDEN DE PRODUCCIÓN
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i>Inicio</a></li>
-        <li>Orden de trabajo</li>
+        <li><a href="inicio"><i class="fa fa-home"></i>Inicio</a></li>
+        <li>Orden de Trabajo</li>
+        <li><a href="administrar-orden-produccion">Administrar Ordenes de Producción</a></li>
         <li class="active">Crear Orden de Producción</li>
       </ol>
     </section>
@@ -954,7 +955,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
   <script>
     $(document).ready(function() {
-      $.getScript('vistas/js/nueva-orden-produccion.js');
+      $.getScript('vistas/js/orden-produccion.js');
     });
   </script>
 
