@@ -67,7 +67,7 @@ class ControladorListas{
                     
 					swal({
 						  type: "success",
-						  title: "La Lista ha sido editada correctamente",
+						  title: "La lista ha sido editada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){

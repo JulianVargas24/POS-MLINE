@@ -632,7 +632,6 @@ EDITAR ORDEN DE VESTUARIO
   $(document).ready(function() {
     $(".tablas").on("click", ".btnFinalizarOrdenProduccion", function() {
       var idOrdenProduccion = $(this).attr("idOrdenProduccion");
-      //console.log("ID orden:", idOrdenProduccion);
 
       swal({
         title: "¿Está seguro de finalizar esta orden?",
@@ -644,9 +643,8 @@ EDITAR ORDEN DE VESTUARIO
         confirmButtonText: "Sí, finalizar",
         cancelButtonText: "Cancelar",
       }).then(function(result) {
-        //console.log("Valor de result:", result);
+
         if (result.value) { // Solo proceder si el usuario confirma
-          console.log("Usuario confirmó la acción, enviando solicitud AJAX...");
           $.ajax({
             url: "ajax/orden-produccion.ajax.php",
             method: "POST",
@@ -655,7 +653,6 @@ EDITAR ORDEN DE VESTUARIO
               accion: "finalizarOrden"
             },
             success: function(respuesta) {
-              //console.log("Respuesta del servidor:", respuesta);
               if ($.trim(respuesta) === "ok") {
                 swal({
                   title: "Finalizado",
@@ -667,13 +664,12 @@ EDITAR ORDEN DE VESTUARIO
               } else {
                 swal(
                   "Error",
-                  "Hubo un problema al finalizar la orden. Inténtelo nuevamente.",
+                  "Hubo un problema al finalizar la orden.",
                   "error"
                 );
               }
             },
             error: function(xhr, status, error) {
-              console.error("Error en la solicitud AJAX:", error);
               swal(
                 "Error",
                 "No se pudo procesar la solicitud.",
@@ -681,8 +677,6 @@ EDITAR ORDEN DE VESTUARIO
               );
             }
           });
-        } else {
-          console.log("Se canceló la acción.");
         }
       });
     });

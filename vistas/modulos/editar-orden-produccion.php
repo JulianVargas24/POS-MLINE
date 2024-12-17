@@ -290,6 +290,9 @@ if ($_SESSION["perfil"] == "Especial") {
                       Tipo de Orden
                     </h2>
 
+                    <!-- Capturar estado de la orden a editar-->
+                    <input type="hidden" id="estadoOrden" value="<?php echo $ordenProduccion['estado_orden']; ?>">
+
                     <!-- Opciones de Tipo de Orden -->
                     <div class="radio-options">
                       <label class="btn-orden">
@@ -481,7 +484,6 @@ if ($_SESSION["perfil"] == "Especial") {
                           </select>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -871,7 +873,7 @@ if ($_SESSION["perfil"] == "Especial") {
                               style="cursor: pointer;"
                               data-toggle="modal"
                               data-target="#modalAgregarInsumos">
-                            <span class="input-group-addon"
+                            <span class="input-group-addon agregarInsumos"
                               style="border-left: none; cursor: pointer;"
                               data-toggle="modal"
                               data-target="#modalAgregarInsumos">
@@ -1195,6 +1197,28 @@ if ($_SESSION["perfil"] == "Especial") {
         $("#costoProduccionTotalConEmbalaje").val(costoTotalLoteFinal);
       }
     });
+
+  /* Si la orden está finalizada, se bloquea todo el formulario.*/
+
+    $(document).ready(function() {
+    const estadoOrden = $('#estadoOrden').val(); // Obtener el estado de la orden
+
+    if (estadoOrden === 'Finalizada') {
+      // Deshabilitar todos los campos del formulario
+      $('input, select, textarea').prop('readonly', true).prop('disabled', true);
+      // Deshabilitar los botones
+      $('button, input[type="submit"]').prop('disabled', true);
+
+      // Deshabilitar botón para abrir el modal de agregar insumos.
+      $('.agregarInsumos').prop('disabled', true);
+      $('.agregarInsumos').css('cursor', 'not-allowed');
+
+      // Habilitar específicamente los botones de código de barras.
+      $('button[onclick="generarbarcodeOP();"]').prop('disabled', false);
+      $('#btnImprimir, #btnOcultar').prop('disabled', false);
+    }
+  });
+
   </script>
 
 
