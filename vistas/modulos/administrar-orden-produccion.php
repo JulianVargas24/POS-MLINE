@@ -16,7 +16,7 @@ if ($xml) {
 
 <head>
   <meta charset="UTF-8">
-  <title>Administrar Ordenes de Producción</title>
+  <title>Administrar Órdenes de Producción</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@ if ($xml) {
 
     <section class="content-header">
       <h1>
-        Administrar Ordenes de Producción
+        Administrar Órdenes de Producción
       </h1>
 
       <ol class="breadcrumb">
