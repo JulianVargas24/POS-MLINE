@@ -1,6 +1,5 @@
 $(document).ready(function () {
     var url = window.location.href; // Obtener la ruta actual
-    console.log("Ruta actual:", url);
     
     // Buscar el enlace que coincide con la URL actual
     var rutaActiva = $('ul.sidebar-menu a').filter(function () {

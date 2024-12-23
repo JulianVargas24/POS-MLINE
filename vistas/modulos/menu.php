@@ -116,7 +116,7 @@
                                 </li>
                                                               
                                 <li><a href="administrar-orden-produccion"><i class="fa fa-circle-o"></i> Administrador OTP</a></li>
-                                <li><a href="orden-produccion"><i class="fa fa-circle-o"></i> Orden de producción</a></li>                                                           			
+                                <li><a href="crear-orden-produccion"><i class="fa fa-circle-o"></i> Orden de producción</a></li>                                                           			
                             </ul>
                         </li>';
                 }
