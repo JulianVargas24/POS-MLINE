@@ -59,6 +59,7 @@ if ($_SESSION["perfil"] == "Especial") {
               <th style="width:10px">#</th>
               <th>Bodega</th>
               <th>Región</th>
+              <th>Comuna</th>
               <th>Dirección</th>
               <th>Jefe encargado</th>
               <th>Teléfono</th>
@@ -94,6 +95,8 @@ if ($_SESSION["perfil"] == "Especial") {
                     <td>' . $value["nombre"] . '</td>
 
                     <td>' . $regionDisplay . '</td>
+
+                    <td>' . $comunaDisplay . '</td>
 
                     <td>' . $value["direccion"] . '</td>
 
