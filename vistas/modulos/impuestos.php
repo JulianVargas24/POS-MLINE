@@ -190,7 +190,7 @@ MODAL AGREGAR CATEGORÍA
 
                 <input type="number" class="form-control input" id="nuevoFactor" name="nuevoFactor" 
                 placeholder="Ingresar porcentaje" 
-                max="100" min="0" required>
+                max="100" min="1" required>
 
               </div>
             </div>
@@ -263,7 +263,7 @@ MODAL EDITAR SUBCATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar lista</h4>
+          <h4 class="modal-title">Editar impuesto</h4>
 
         </div>
 
@@ -308,7 +308,7 @@ MODAL EDITAR SUBCATEGORÍA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="number" class="form-control input" id="editarFactor" name="editarFactor" max="100" min="0" required>
+                <input type="number" class="form-control input" id="editarFactor" name="editarFactor" max="100" min="1" required>
 
               </div>
             </div>
