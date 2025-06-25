@@ -379,15 +379,16 @@ if ($xml) {
           <div class="row">
             <div class="col-md-5">
               <p><strong>Folio:</strong> <span id="modalFolio"></span></p>
+              <p><strong>Nombre de orden:</strong> <span id="modalOrden"></span></p>
               <p><strong>Cliente:</strong> <span id="modalCliente"></span></p>
               <p><strong>RUT:</strong> <span id="modalClienteRut"></span></p>
-              <p><strong>Teléfono:</strong> <span id="modalClienteTelefono"></span></p>
-              <p><strong>Email:</strong> <span id="modalClienteEmail"></span></p>
+              
+              
               <p><strong>Dirección:</strong> <span id="modalClienteDireccion"></span></p>
 
             </div>
             <div class="col-md-5">
-              <p><strong>Nombre de orden:</strong> <span id="modalOrden"></span></p>
+              
               <p><strong>País:</strong> <span id="modalClientePais"></span></p>
               <p><strong>Región:</strong> <span id="modalClienteRegion"></span></p>
               <p><strong>Comuna:</strong> <span id="modalClienteComuna"></span></p>
